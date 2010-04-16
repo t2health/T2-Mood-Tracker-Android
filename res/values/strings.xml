@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VAS</string>
+	<string name="click_chart_tooltip">Touch the chart to add/edit notes about the data points.</string>
+	<string name="no_notes_message">You do not have any notes yet. Add a note by touching a point on the chart of pressing the button below.</string>
+	<string name="results_click_to_see_chart">Click an item in the legend below to see its chart.</string>
+</resources>

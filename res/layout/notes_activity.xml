@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+	
+	<FrameLayout
+		android:layout_width="fill_parent"
+		android:layout_height="250dp"
+		android:background="@drawable/chart_background">
+		
+		<include 
+			android:id="@+id/chartLayout" 
+			layout="@layout/chart_layout"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent" />	
+	</FrameLayout>
+	
+	<FrameLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0">
+		
+		<TextView
+			android:id="@+id/noNotesMessage"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:text="@string/no_notes_message" />
+		
+		<ListView
+			android:id="@+id/list"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0">
+		</ListView>
+	</FrameLayout>
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center">
+		
+		<Button
+			android:id="@+id/addButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Add Note" />
+	</LinearLayout>
+</LinearLayout>
