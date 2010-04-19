@@ -15,7 +15,7 @@
 			android:text="Posted On: " />
 			
 		<TextView
-			android:id="@+id/postedOn"
+			android:id="@+id/date"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" />
 	</LinearLayout>

@@ -1,6 +1,9 @@
 package com.t2.vas.activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
@@ -16,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,17 +46,12 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	private ScaleKeyAdapter keyListAdapter;
 	private int lastActiveListIndex = -1;
 	
-	private Toast tooltipToast;
 	private FrameLayout fadeOutCharts;
 	
 	private int resultsGroupBy = Scale.GROUPBY_DAY;
-	private View notesButton;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        tooltipToast = Toast.makeText(this, R.string.click_chart_tooltip, 3000);
-        tooltipToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         
         activeGroupId = this.getIntent().getIntExtra("group_id", 1);
         
@@ -63,9 +62,6 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         keyListView = (ListView)l.findViewById(R.id.list);
         chartViewAnimator = (ViewSwitcher)l.findViewById(R.id.charts);
         fadeOutCharts = (FrameLayout)l.findViewById(R.id.fadeOutCharts);
-        notesButton = (View)l.findViewById(R.id.notesButton);
-        notesButton.setOnClickListener(this);
-        notesButton.setVisibility(View.INVISIBLE);
         
         DBAdapter db = new DBAdapter(this, Global.Database.name, Global.Database.version);
         db.open();
@@ -79,13 +75,18 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         int scaleCount = scales.size();
         for(int i = 0; i < scaleCount ; i++) {
         	Scale s = scales.get(i);
-        	LineSeries lineSeries = new LineSeries(s.max_label +" - "+ s.min_label);
         	ResultValues scaleValues = s.getResultValues(resultsGroupBy, Global.CHART_LABEL_DATE_FORMAT);
+        	
+        	LineSeries lineSeries = new LineSeries(
+        			s.max_label +" - "+ s.min_label,
+        			scaleValues.labels,
+        			scaleValues.values
+        	);
+        	
         	ChartLayout chartLayout = (ChartLayout)layoutInflater.inflate(R.layout.chart_layout, null);
         	chartLayout.setYMaxLabel(s.max_label);
         	chartLayout.setYMinLabel(s.min_label);
         	chartLayout.setTag(s._id+"");
-        	//chartLayout.setOnClickListener(this);
         	
         	lineSeries.setSelectable(false);
         	
@@ -124,8 +125,6 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         			}
         	));
         	
-        	lineSeries.addAllValues(scaleValues.values);
-        	lineSeries.addAllLabels(scaleValues.labels);
         	chartLayout.getChart().addSeries("main", lineSeries);
         	
         	chartLayouts.add(chartLayout);
@@ -137,6 +136,13 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         
         this.setContentView(l);
         
+        this.findViewById(R.id.notesButton).setOnClickListener(this);
+        this.findViewById(R.id.notesButton).setVisibility(View.INVISIBLE);
+        
+        this.findViewById(R.id.addNoteButton).setOnClickListener(this);
+        this.findViewById(R.id.addNoteButton).setVisibility(View.INVISIBLE);
+        
+        
         db.close();
 	}
 	
@@ -145,10 +151,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		ChartLayout chartLayout = (ChartLayout)arg1.getTag();
 		chartLayout.setShowLabels(true);
 		chartLayout.setLabelsColor(Color.WHITE);
-		chartLayout.getChart().setShowVerticalPositionBar(true);
-		
-		tooltipToast.cancel();
-		//tooltipToast.show();
+		chartLayout.getChart().setShowYHilight(true);
 		
 		// Flash the chart if it already selected
 		if(arg2 == lastActiveListIndex) {
@@ -197,7 +200,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 				ChartLayout childChart = (ChartLayout)child;
 				childChart.setShowLabels(false);
 				childChart.getChart().setDropShadowEnabled(false);
-				childChart.getChart().setShowVerticalPositionBar(false);
+				childChart.getChart().setShowYHilight(false);
 			} catch (ClassCastException cce) {}
 		}
 		
@@ -207,41 +210,53 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		
 		lastActiveListIndex = arg2;
 		
-		notesButton.setVisibility(View.VISIBLE);
+		
+		this.findViewById(R.id.addNoteButton).setVisibility(View.VISIBLE);
+		this.findViewById(R.id.notesButton).setVisibility(View.VISIBLE);
 	}
 
 	@Override
 	public void onClick(View v) {
+		switch(v.getId()) {
+			case R.id.notesButton:
+			case R.id.addNoteButton:
+				notesActivity(v);
+				break;
+		}
+	}
+	
+	private void notesActivity(View v) {
+		ChartLayout chartLayout;
+		
+		try {
+			chartLayout = (ChartLayout)chartViewAnimator.getCurrentView();
+		} catch(ClassCastException cce) {
+			return;
+		}
+		
+		if(chartLayout == null) {
+			return;
+		}
+		
+		int seriesIndex = chartLayout.getChart().getYHilightSeriesIndex();
+		
+		Date d = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex).getLabelValue();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		
+		// stat the notes list activity
 		if(v.getId() == R.id.notesButton) {
-			ChartLayout chartLayout;
-			
-			try {
-				chartLayout = (ChartLayout)chartViewAnimator.getCurrentView();
-			} catch(ClassCastException cce) {
-				return;
-			}
-			
-			if(chartLayout == null) {
-				return;
-			}
-			
-			LineSeries series = (LineSeries)chartLayout.getChart().getSeries("main");
-			long scaleId = Long.parseLong((String)chartLayout.getTag());
-			
 			Intent i = new Intent(this, NotesActivity.class);
+			i.putExtra("timstamp", cal.getTimeInMillis());
 			
-			i.putExtra("scale_id", scaleId);
-			i.putExtra("seriesType", "LineSeries");
-			i.putExtra("resultsGroupBy", resultsGroupBy);
-			i.putExtra("seriesFillColor", series.getFillColor());
-			i.putExtra("seriesStrokeColor", series.getStrokeColor());
-			i.putExtra("seriesLineFillColor", series.getLineFillColor());
-			i.putExtra("seriesLineStrokeColor", series.getLineStrokeColor());
-			i.putExtra("chartLabelsColor", chartLayout.getLabelsColor());
+			this.startActivity(i);
+			
+		// Start the add note activity
+		} else if(v.getId() == R.id.addNoteButton) {
+			Intent i = new Intent(this, NoteActivity.class);
+			i.putExtra("timstamp", cal.getTimeInMillis());
 			
 			this.startActivity(i);
 		}
-		
-		
 	}
 }

@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.t2.vas.db.tables.Scale.ResultValues;
+
 import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.DashPathEffect;
@@ -24,6 +26,10 @@ public class LineSeries extends Series {
 		super(name);
 	}
 
+	public LineSeries(String name, ArrayList<Label> labels, ArrayList<Value> values) {
+		super(name, labels, values);
+	}
+	
 	private int lineFillColor = Color.BLUE;
 	private int lineStrokeColor = Color.RED;
 	
@@ -110,7 +116,7 @@ public class LineSeries extends Series {
 			}
 		}
 		
-		Log.v(TAG, "PATH COUNT:"+linePaths.size());
+		//Log.v(TAG, "PATH COUNT:"+linePaths.size());
 		for(int i = 0; i < linePaths.size(); i++) {
 			Path linePath = linePaths.get(i);
 			boolean solidPath = solidLinePaths.get(i);

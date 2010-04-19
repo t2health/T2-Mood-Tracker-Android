@@ -2,6 +2,8 @@ package com.t2.vas.view.chart;
 
 import java.util.ArrayList;
 
+import com.t2.vas.db.tables.Scale.ResultValues;
+
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -16,6 +18,10 @@ public class BarSeries extends Series {
 
 	public BarSeries(String name) {
 		super(name);
+	}
+	
+	public BarSeries(String name, ArrayList<Label> labels, ArrayList<Value> values) {
+		super(name, labels, values);
 	}
 
 	protected ArrayList<ShapeDrawable> loadDrawables(ArrayList<ChartRect> areas, int width, int height) {

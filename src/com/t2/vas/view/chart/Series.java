@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.t2.vas.db.tables.Scale.ResultValues;
+
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -28,9 +30,13 @@ public abstract class Series {
 	private int selectedFillColor = Color.YELLOW;
 	private int selectedStrokeColor = Color.RED;
 	
-	protected ArrayList<String> labels = new ArrayList<String>();
-	protected ArrayList<Double> values = new ArrayList<Double>();
-	protected ArrayList<Object> valuesMeta = new ArrayList<Object>();
+	
+	protected ArrayList<Label> labels = new ArrayList<Label>();
+	protected ArrayList<Value> values = new ArrayList<Value>();
+	/*protected ArrayList<String> labels = new ArrayList<String>();
+	protected ArrayList<String> labelValues = new ArrayList<String>();*/
+	/*protected ArrayList<Double> values = new ArrayList<Double>();
+	protected ArrayList<Object> valuesMeta = new ArrayList<Object>();*/
 	
 	private boolean isSelectable = true;
 	
@@ -43,6 +49,12 @@ public abstract class Series {
 	
 	public Series(String name) {
 		this.setName(name);
+	}
+	
+	public Series(String name, ArrayList<Label> labels, ArrayList<Value> values) {
+		this.setName(name);
+		this.addAllLabels(labels);
+		this.addAllValues(values);
 	}
 
 	public void setName(String name) {
@@ -122,21 +134,33 @@ public abstract class Series {
 		return isSeriesSelected;
 	}
 
-	public void addValue(Double value) {
+	
+	public void addValue(Value v) {
+		this.values.add(v);
+	}
+	public void addAllValues(Value[] v) {
+		for(int i = 0; i < v.length; i++) {
+			this.values.add(v[i]);
+		}
+	}
+	public void addAllValues(ArrayList<Value> v) {
+		this.values.addAll(v);
+	}
+	public ArrayList<Value> getValues() {
+		return this.values;
+	}
+	/*public void addValue(Double value) {
 		this.addValue(value, null);
 	}
-	
 	public void addValue(Double value, Object meta) {
 		this.values.add(value);
 		this.valuesMeta.add(meta);
 	}
-	
 	public void addAllValues(Double[] values) {
 		for(int i = 0; i < values.length; i++) {
 			this.addValue(values[i], null);
 		}
 	}
-	
 	public void addAllValues(Double[] values, Object[] metaValues) {
 		int metaValuesLength = metaValues.length;
 		for(int i = 0; i < values.length; i++) {
@@ -147,13 +171,11 @@ public abstract class Series {
 			}
 		}
 	}
-	
 	public void addAllValues(ArrayList<Double> values) {
 		for(int i = 0; i < values.size(); i++) {
 			this.addValue(values.get(i), null);
 		}
 	}
-	
 	public void addAllValues(ArrayList<Double> values, ArrayList<Object> metaValues) {
 		int metaValuesLength = metaValues.size();
 		for(int i = 0; i < values.size(); i++) {
@@ -165,13 +187,13 @@ public abstract class Series {
 		}
 	}
 	
+	
 	public ArrayList<Double> getValues() {
 		return this.values;
 	}
-	
 	public ArrayList<Object> getValuesMeta() {
 		return this.valuesMeta;
-	}
+	}*/
 	
 	public int size() {
 		return this.values.size();
@@ -182,23 +204,51 @@ public abstract class Series {
 	}
 	
 	
-	public void addLabel(String l) {
+	public void addLabel(Label l) {
 		this.labels.add(l);
 	}
-	
+	public void addAllLabels(Label[] l) {
+		for(int i = 0; i < l.length; i++) {
+			this.labels.add(l[i]);
+		}
+	}
+	public void addAllLabels(ArrayList<Label> l) {
+		this.labels.addAll(l);
+	}
+	public ArrayList<Label> getLabels() {
+		return this.labels;
+	}
+	/*public void addLabel(String l) {
+		this.labels.add(l);
+	}
 	public void addAllLabels(String[] l) {
 		for(int i = 0; i < l.length; i++) {
 			this.labels.add(l[i]);
 		}
 	}
-	
 	public void addAllLabels(ArrayList<String> l) {
 		this.addAllLabels(l.toArray(new String[l.size()]));
 	}
-	
 	public ArrayList<String> getLabels() {
 		return this.labels;
 	}
+	
+	
+	public void addLabelValue(String l) {
+		this.labelValues.add(l);
+	}
+	public void addAllLabelValues(String[] l) {
+		for(int i = 0; i < l.length; i++) {
+			this.labelValues.add(l[i]);
+		}
+	}
+	public void addAllLabelValues(ArrayList<String> l) {
+		this.addAllLabelValues(l.toArray(new String[l.size()]));
+	}
+	public ArrayList<String> getLabelValues() {
+		return this.labelValues;
+	}*/
+	
 	
 	public final ArrayList<ShapeDrawable> getDrawables(ArrayList<ChartRect> areas, int width, int height) {
 		if(this.drawables.size() > 0) {

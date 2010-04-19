@@ -45,7 +45,7 @@ public class Group extends Table {
 	}
 
 	@Override
-	protected boolean load(Cursor c) {
+	public boolean load(Cursor c) {
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		this.title = c.getString(c.getColumnIndex("title"));
 		return true;
@@ -54,6 +54,7 @@ public class Group extends Table {
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
+		v.put("_id", this._id);
 		v.put("title", this.title);
 		
 		return this.update(v);

@@ -15,6 +15,8 @@ import com.t2.vas.ExtraMath;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.AbsTable;
 import com.t2.vas.db.Table;
+import com.t2.vas.view.chart.Label;
+import com.t2.vas.view.chart.Value;
 
 public class Scale extends Table {
 	private static final String TAG = "SCALE";
@@ -151,7 +153,7 @@ public class Scale extends Table {
 	}
 
 	@Override
-	protected boolean load(Cursor c) {
+	public boolean load(Cursor c) {
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		this.group_id = c.getLong(c.getColumnIndex("group_id"));
 		this.max_label = c.getString(c.getColumnIndex("max_label"));
@@ -163,6 +165,7 @@ public class Scale extends Table {
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
+		v.put("_id", this._id);
 		v.put("group_id", this.group_id);
 		v.put("max_label", this.max_label);
 		v.put("min_label", this.min_label);
@@ -287,9 +290,13 @@ public class Scale extends Table {
 			ArrayList<Result> resultsList = new ArrayList<Result>();
 			
 			// Add the label.
-			//resultValues.labels.add(dateFormatter.format(resultsAxisCal.getTime()));
-			resultValues.labels.add(labelDateFormatter.format(resultsAxisCal.getTime()));
-			resultValues.results.add(resultsList);
+			resultValues.labels.add(
+					new Label<Date>(
+						labelDateFormatter.format(resultsAxisCal.getTime()),
+						resultsAxisCal.getTime()
+					)
+			);
+			//resultValues.results.add(resultsList);
 			
 			// Group the results together.
 			resultsAxisCal.add(group_by, 1);
@@ -318,98 +325,28 @@ public class Scale extends Table {
 			
 			// append the value to the values list. yes this can take a null value.
 			// nulls are reult groups where nothing was recorded.
-			resultValues.values.add(value);
+			resultValues.values.add(
+					new Value<ArrayList<Result>>(
+						value,
+						resultsList
+					)
+			);
 		}
 		
 		return resultValues;
 	}
-	/*public GroupsResultValue getResultValues(int group_by) {
-		String date_format;
-		switch(group_by) {
-			case Scale.GROUPBY_DAY:
-				date_format = Scale.GROUPBY_DAY_FORMAT;
-				break;
-			case Scale.GROUPBY_HOUR:
-				date_format = Scale.GROUPBY_HOUR_FORMAT;
-				break;
-			case Scale.GROUPBY_MONTH:
-				date_format = Scale.GROUPBY_MONTH_FORMAT;
-				break;
-			case Scale.GROUPBY_WEEK:
-				date_format = Scale.GROUPBY_WEEK_FORMAT;
-				break;
-			case Scale.GROUPBY_YEAR:
-				date_format = Scale.GROUPBY_YEAR_FORMAT;
-				break;
-			default:
-				date_format = Scale.GROUPBY_DAY_FORMAT;
-				break;
-		}
-		
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormatter = new SimpleDateFormat(date_format);
-		LinkedHashMap<String,ArrayList<Result>> chartValues = new LinkedHashMap<String,ArrayList<Result>>();
-    	
-		// Group result values based on date.
-    	for(Result r: this.getResults()) {
-    		cal.setTimeInMillis(r.timestamp);
-    		
-    		String key = dateFormatter.format(cal.getTime());
-    		
-    		ArrayList<Result> values = chartValues.get(key);
-    		if(values == null) {
-    			values = new ArrayList<Result>();
-    			chartValues.put(key, values);
-    		}
-    		
-    		values.add(r);
-    	}
-    	
-    	
-    	double[] values = new double[chartValues.size()];
-    	Result[][] results = new Result[chartValues.size()][0];
-    	
-    	int i = 0;
-    	for(String key: chartValues.keySet()) {
-    		ArrayList<Result> tmpRes = chartValues.get(key);
-    		
-    		results[i] = tmpRes.toArray(new Result[chartValues.get(key).size()]);
-    		values[i] = this.meanResultValues(tmpRes);
-    		i++;
-    	}
-
-    	GroupsResultValue grv = new GroupsResultValue();
-    	grv.results = results;
-    	grv.values = values;
-    	
-    	return grv;
-	}
-	
-	private double meanResultValues(ArrayList<Result> res) {
-		double total = 0;
-		for(int i = 0; i < res.size(); i++) {
-			total += res.get(i).value;
-		}
-		return total / res.size();
-	}*/
 	
 	public class ResultValues {
-		public ArrayList<ArrayList<Result>> results = new ArrayList<ArrayList<Result>>();
-		public ArrayList<Double> values = new ArrayList<Double>();
-		public ArrayList<String> labels = new ArrayList<String>();
+		//public ArrayList<ArrayList<Result>> results = new ArrayList<ArrayList<Result>>();
+		public ArrayList<Value> values = new ArrayList<Value>();
+		public ArrayList<Label> labels = new ArrayList<Label>();
 		
-		public ArrayList<Object> getResultsAsObjectList() {
+		/*public ArrayList<Object> getResultsAsObjectList() {
 			ArrayList<Object> list = new ArrayList<Object>();
 			for(int i = 0; i < results.size(); i++) {
 				list.add(results.get(i));
 			}
 			return list;
-		}
+		}*/
 	}
-	
-	/*public class GroupsResultValue {
-		public Result[][] results;
-		public double[] values;
-	}*/
-
 }

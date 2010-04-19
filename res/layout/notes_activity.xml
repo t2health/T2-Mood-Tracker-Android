@@ -7,18 +7,6 @@
 	
 	<FrameLayout
 		android:layout_width="fill_parent"
-		android:layout_height="250dp"
-		android:background="@drawable/chart_background">
-		
-		<include 
-			android:id="@+id/chartLayout" 
-			layout="@layout/chart_layout"
-			android:layout_height="fill_parent"
-			android:layout_width="fill_parent" />	
-	</FrameLayout>
-	
-	<FrameLayout
-		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1.0">
 		
@@ -42,9 +30,9 @@
 		android:gravity="center">
 		
 		<Button
-			android:id="@+id/addButton"
+			android:id="@+id/addNoteButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Add Note" />
+			android:text="@string/add_note" />
 	</LinearLayout>
 </LinearLayout>

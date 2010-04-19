@@ -44,9 +44,11 @@ public class Chart extends View {
 	private boolean interactiveModeEnabled = true;
 	private Rect chartContainer;
 	
-	private boolean showVerticalPositionBar = true;
-	private ShapeDrawable verticalPositionBar = new ShapeDrawable(new RectShape());
-	private String verticalPositionBarString = "";
+	private boolean showYHilight = true;
+	private ShapeDrawable yHilightDrawable = new ShapeDrawable(new RectShape());
+	private boolean yHilightSnap = true;
+	private String yHilightDrawableLabel = "";
+	private int yHilightSeriesIndex = -1;
 	
 	public Chart(Context context) {
 		super(context);
@@ -70,12 +72,20 @@ public class Chart extends View {
 		return dropShadowEnabled;
 	}
 
-	public void setShowVerticalPositionBar(boolean showVerticalPositionBar) {
-		this.showVerticalPositionBar = showVerticalPositionBar;
+	public void setShowYHilight(boolean showYHilight) {
+		this.showYHilight = showYHilight;
 	}
 
-	public boolean isShowVerticalPositionBar() {
-		return showVerticalPositionBar;
+	public boolean isShowYHilight() {
+		return showYHilight;
+	}
+
+	public void setyHilightSnap(boolean yHilightSnap) {
+		this.yHilightSnap = yHilightSnap;
+	}
+
+	public boolean isyHilightSnap() {
+		return yHilightSnap;
 	}
 
 	public void setInteractiveModeEnabled(boolean interactiveModeEnabled) {
@@ -92,6 +102,17 @@ public class Chart extends View {
 	
 	public Series getSeries(String name) {
 		return this.seriesList.get(name);
+	}
+	
+	public Series getSeriesAt(int index) {
+		int i = 0;
+		for(String key: this.seriesList.keySet()) {
+			if(i == index) {
+				return this.seriesList.get(key);
+			}
+			i++;
+		}
+		return null;
 	}
 	
 	public Series getLargestSeries() {
@@ -121,29 +142,25 @@ public class Chart extends View {
 		
 		for(String s: this.seriesList.keySet()) {
 			Series series = seriesList.get(s);
-			ArrayList<ShapeDrawable> tmpDrawables = this.getSeriesDrawables(series, this.chartContainer);
+			ArrayList<ChartRect> points = getDrawablePointRects(series, this.chartContainer);
+			ArrayList<ShapeDrawable> tmpDrawables = this.getSeriesDrawables(series, points, this.chartContainer);
 			
 			this.drawables.addAll(tmpDrawables);
 		}
 		
-		if(showVerticalPositionBar) {
-			this.drawables.add(verticalPositionBar);
+		if(showYHilight) {
+			this.drawables.add(yHilightDrawable);
 		}
 		
-		Series firstSeries = this.seriesList.get(0);
+		//Series firstSeries = this.seriesList.get(0);
 		
 	}
 	
-	private ArrayList<ShapeDrawable> getSeriesDrawables(Series series, Rect container) {
-		//Log.v(TAG, "GetDrawables:"+ this.getWidth() +"x"+this.getHeight());
-		int maxHeight = this.getHeight() - (pointWidth);
-		
-		// Factor in the chart should not goto the bottom (if specified)
-		maxHeight -= (this.getHeight() - container.bottom);
-		
+	private ArrayList<ChartRect> getDrawablePointRects(Series series, Rect container) {
+		int maxHeight = container.height();
 		
 		ArrayList<ChartRect> drawablePointAreas = new ArrayList<ChartRect>();
-		ArrayList<Double> values = series.getValues();
+		ArrayList<Value> values = series.getValues();
 		
 		// If the right most point will end up off the screen, shift the chart left
 		// just enough to keep the right point visible. This of course hides some of the left points.
@@ -161,7 +178,7 @@ public class Chart extends View {
 		Double calcValue = null;
 		for(int i = 0; i < values.size(); i++) {
 			prevValue = value;
-			value = values.get(i);
+			value = values.get(i).getValue();
 			calcValue = value;
 
 			if(calcValue == null) {
@@ -180,7 +197,17 @@ public class Chart extends View {
 			drawablePointAreas.add(new ChartRect(left, top, right, bottom, value));
 		}
 		
-		ArrayList<ShapeDrawable> drawables = series.getDrawables(drawablePointAreas, this.getWidth(), maxHeight);
+		return drawablePointAreas;
+	}
+	
+	private ArrayList<ShapeDrawable> getSeriesDrawables(Series series, ArrayList<ChartRect> drawablePointAreas, Rect container) {
+		int maxHeight = container.height();
+		
+		ArrayList<ShapeDrawable> drawables = series.getDrawables(
+				drawablePointAreas, 
+				this.getWidth(), 
+				maxHeight
+		);
 		
 		// Set some other nice effects to the drawables.
 		for(int i = 0; i < drawables.size(); i++) {
@@ -208,13 +235,70 @@ public class Chart extends View {
 			this.drawables.get(i).draw(canvas);
 		}
 		
-		if(isShowVerticalPositionBar()) {
-			drawVerticalPositionBarText(canvas);
+		if(isShowYHilight()) {
+			drawYHilightBar(canvas);
 		}
+		
+		drawAxis(canvas);
 	}
 	
-	private void drawVerticalPositionBarText(Canvas canvas) {
-		if(verticalPositionBarString == null || verticalPositionBarString.length() == 0) {
+	private void drawAxis(Canvas canvas) {
+		int axisOffset = 3;
+		int hashWidth = 10;
+		int lineThickness = 3;
+		ShapeDrawable shape;
+		
+		// Draw the vertical axis
+		shape = new ShapeDrawable(new RectShape());
+		shape.setBounds(
+			axisOffset, 
+			0, 
+			axisOffset + lineThickness, 
+			this.getHeight()
+		);
+		shape.getPaint().setColor(Color.BLACK);
+		shape.getPaint().setStyle(Style.FILL);
+		shape.draw(canvas);
+		
+		// Draw the top hash mark
+		shape = new ShapeDrawable(new RectShape());
+		shape.setBounds(
+			axisOffset, 
+			0, 
+			axisOffset + hashWidth, 
+			lineThickness
+		);
+		shape.getPaint().setColor(Color.BLACK);
+		shape.getPaint().setStyle(Style.FILL);
+		shape.draw(canvas);
+		
+		// Draw the center hash mark
+		shape = new ShapeDrawable(new RectShape());
+		shape.setBounds(
+			axisOffset, 
+			(int)this.getHeight() / 2, 
+			axisOffset + hashWidth, 
+			((int)this.getHeight() / 2) + lineThickness
+		);
+		shape.getPaint().setColor(Color.BLACK);
+		shape.getPaint().setStyle(Style.FILL);
+		shape.draw(canvas);
+		
+		// Draw the bottom hash mark
+		shape = new ShapeDrawable(new RectShape());
+		shape.setBounds(
+			axisOffset, 
+			this.getHeight() - lineThickness, 
+			axisOffset + hashWidth, 
+			this.getHeight()
+		);
+		shape.getPaint().setColor(Color.BLACK);
+		shape.getPaint().setStyle(Style.FILL);
+		shape.draw(canvas);
+	}
+	
+	private void drawYHilightBar(Canvas canvas) {
+		if(yHilightDrawableLabel == null || yHilightDrawableLabel.length() == 0) {
 			return;
 		}
 		
@@ -226,9 +310,10 @@ public class Chart extends View {
 		p.setStyle(Style.FILL);
 		p.setAntiAlias(true);
 		p.setTextSize(textSize);
+		p.setShadowLayer(5.0f, 2.0f, 2.0f, Color.BLACK);
 		
-		Rect bounds = this.verticalPositionBar.getBounds();
-		int textWidth = (int)p.measureText(verticalPositionBarString);
+		Rect bounds = this.yHilightDrawable.getBounds();
+		int textWidth = (int)p.measureText(yHilightDrawableLabel);
 		int leftPos = bounds.right + textMargin;
 		
 		if(leftPos + textWidth > this.getWidth()) {
@@ -236,14 +321,14 @@ public class Chart extends View {
 		}
 		
 		canvas.drawText(
-			verticalPositionBarString, 
+			yHilightDrawableLabel, 
 			leftPos,
 			bounds.bottom - (textSize / 2), 
 			p
 		);
 		
 		canvas.drawText(
-			verticalPositionBarString, 
+			yHilightDrawableLabel, 
 			leftPos,
 			bounds.top + textSize + (textSize / 2), 
 			p
@@ -274,12 +359,22 @@ public class Chart extends View {
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 		
-		this.chartContainer = new Rect(0, 0, this.getWidth(), this.getHeight() - 20);
+		this.chartContainer = new Rect(15, 0, this.getWidth() - 10, this.getHeight() - 20);
 		
-		this.pointWidth = this.getWidth() / 30;
+		this.pointWidth = this.chartContainer.width() / 30;
 		this.pointPaddingRight = pointWidth / 2;
 		
+		this.chartContainer.bottom -= this.pointWidth;
+		
 		this.initChartDrawables();
+		
+		// Style the hilight.
+		yHilightDrawable.getPaint().setStyle(Style.FILL);
+		yHilightDrawable.getPaint().setColor(Color.argb(100, 0, 255, 0));
+		
+		if(this.getYHilightBounds().left <= 0) {
+			this.moveYHilightTo(this.chartContainer.right);
+		}
 	}
 	
 	
@@ -322,53 +417,18 @@ public class Chart extends View {
 	}
 
 	
-	public String getSeriesLabelAt(int leftX, int rightX, Series firstSeries) {
-		int currX = 0;
-		for(int i = firstSeries.drawablesSize()-1; i >= 0; i--) {
-			SeriesDrawable d = firstSeries.getDrawableValueAt(i);
-			
-			Rect currBounds = d.getBounds();
-			currX = currBounds.left + ((currBounds.right - currBounds.left) / 2);
-			//currX = currBounds.left;
-			
-			if(rightX >= currX) {
-				return firstSeries.getLabels().get(i);
-			}
-		}
-		return null;
-	}
-	
-	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_MOVE) {
-			if(isShowVerticalPositionBar()) {
-				int actionX = (int)event.getX();
-				this.verticalPositionBar.setBounds(
-					actionX, 
-					0, 
-					actionX + this.pointWidth,
-					this.getHeight()
-				);
-				verticalPositionBar.getPaint().setStyle(Style.FILL);
-				verticalPositionBar.getPaint().setColor(Color.argb(100, 0, 255, 0));
-				
-				for(String key: this.seriesList.keySet()) {
-					verticalPositionBarString = getSeriesLabelAt(
-							actionX, 
-							actionX + this.pointWidth, 
-							this.seriesList.get(key)
-					);
-					break;
-				}
+			if(isShowYHilight()) {
+				this.moveYHilightTo((int)event.getX());
 			}
-			
-			
 			
 		} else if(event.getHistorySize() < 3 && event.getAction() == MotionEvent.ACTION_UP) {
 			if(dispatchClickToSeriesDrawable(event)) {
 				Log.v(TAG, "Dispatched");
-				return true;
+			} else if(isShowYHilight()) {
+				this.moveYHilightTo((int)event.getX());
 			}
 		}
 				
@@ -400,5 +460,96 @@ public class Chart extends View {
 			}
 		}
 		return false;
+	}
+	
+	
+
+	private int getSeriesXBetween(int leftX, int rightX, Series firstSeries) {
+		ArrayList<ChartRect> points = getDrawablePointRects(firstSeries, this.chartContainer);
+		
+		int currX = 0;
+		for(int i = points.size()-1; i >= 0; i--) {
+			ChartRect currBounds = points.get(i);
+			currX = currBounds.left + ((currBounds.right - currBounds.left) / 2);
+			
+			if(rightX >= currX) {
+				return currBounds.left;
+			}
+		}
+		
+		return -1;
+	}
+
+	private int getSeriesIndexBetween(int leftX, int rightX, Series firstSeries) {
+		ArrayList<ChartRect> points = getDrawablePointRects(firstSeries, this.chartContainer);
+		
+		int currX = 0;
+		for(int i = points.size()-1; i >= 0; i--) {
+			ChartRect currBounds = points.get(i);
+			currX = currBounds.left + ((currBounds.right - currBounds.left) / 2);
+			
+			if(rightX >= currX) {
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	public Rect getYHilightBounds() {
+		return this.yHilightDrawable.copyBounds();
+	}
+	
+	public int getYHilightSeriesIndex() {
+		return this.yHilightSeriesIndex;
+	}
+	
+	public void moveYHilightTo(int x) {
+		// Find the first series for this chart.
+		Series firstSeries = null;
+		for(String key: this.seriesList.keySet()) {
+			firstSeries = this.seriesList.get(key);
+			break;
+		}
+		
+		ArrayList<ChartRect> drawablePointRects = this.getDrawablePointRects(firstSeries, this.chartContainer);
+		ChartRect lastPoint = drawablePointRects.get(drawablePointRects.size() - 1);
+		ChartRect firstPoint = drawablePointRects.get(0);
+		int seriesIndex = -1;
+		
+		// Make sure the hilight staying within the container of the chart.
+		if(x < firstPoint.left) {
+			x = firstPoint.left;
+		}
+		if(x > lastPoint.left) {
+			x = lastPoint.left;
+		}
+		
+		if(this.yHilightSnap) {
+			x = getSeriesXBetween(
+				x,
+				x + this.pointWidth,
+				firstSeries
+			);
+		}
+		
+		// Figure out which series index is at this position
+		seriesIndex = getSeriesIndexBetween(
+			x,
+			x + this.pointWidth,
+			firstSeries
+		);
+		
+		// Move the hilight
+		this.yHilightDrawable.setBounds(
+			x, 
+			0, 
+			x + this.pointWidth,
+			this.getHeight()
+		);
+		
+		// register the series index and label for the hilight.
+		yHilightSeriesIndex = seriesIndex;
+		yHilightDrawableLabel = firstSeries.getLabels().get(seriesIndex).getLabelString();
 	}
 }

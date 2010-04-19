@@ -61,6 +61,8 @@ public abstract class AbsTable {
 			openForThis = true;
 		}
 		
+		whereConditions.put("_id", values.getAsLong("_id"));
+		
 		QueryComponents qc = QueryComponents.factory(whereConditions);
 		int i = this.dbAdapter.getDatabase().update("`"+this.getTableName()+"`", values, qc.whereClause, qc.whereArgs);
 		
@@ -164,7 +166,9 @@ public abstract class AbsTable {
 			for(int i = 0; i < where.size(); i++) {
 				where_st += where.get(i)+" AND ";
 			}
-			where_st = where_st.substring(0, where_st.length() - 4);
+			if(where_st.length() > 4) {
+				where_st = where_st.substring(0, where_st.length() - 4);
+			}
 			
 			String[] whereArgs = values.toArray(new String[values.size()]);
 			

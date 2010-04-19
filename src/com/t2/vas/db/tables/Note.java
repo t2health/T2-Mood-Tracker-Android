@@ -1,5 +1,7 @@
 package com.t2.vas.db.tables;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 
@@ -46,7 +48,7 @@ public class Note extends Table {
 	}
 
 	@Override
-	protected boolean load(Cursor c) {
+	public boolean load(Cursor c) {
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		this.group_id = c.getLong(c.getColumnIndex("group_id"));
 		this.scale_id = c.getLong(c.getColumnIndex("scale_id"));
@@ -59,6 +61,7 @@ public class Note extends Table {
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
+		v.put("_id", this._id);
 		v.put("group_id", this.group_id);
 		v.put("scale_id", this.scale_id);
 		v.put("result_id", this.result_id);
@@ -73,4 +76,16 @@ public class Note extends Table {
 		return new Note(this.dbAdapter);
 	}
 
+	public ArrayList<Note> getNotes(String orderBy) {
+		ArrayList<Note> notes = new ArrayList<Note>();
+		Cursor c = this.select(null, "timestamp DESC");
+		
+		while(c.moveToNext()) {
+			Note n = (Note)this.getDBAdapter().getTable("note").newInstance();
+			n.load(c);
+			notes.add(n);
+		}
+		
+        return notes;
+	}
 }

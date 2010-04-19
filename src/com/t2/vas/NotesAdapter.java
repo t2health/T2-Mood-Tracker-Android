@@ -33,7 +33,7 @@ public class NotesAdapter extends ArrayAdapter<Note> {
         if (data != null) {
         	v.setTag(data);
         	
-        	TextView timestampTextView = (TextView)v.findViewById(R.id.postedOn);
+        	TextView timestampTextView = (TextView)v.findViewById(R.id.date);
         	if(timestampTextView != null) {
         		Calendar c = Calendar.getInstance();
         		c.setTimeInMillis(data.timestamp);
