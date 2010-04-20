@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 public abstract class AbsTable {
 	protected DBAdapter dbAdapter;

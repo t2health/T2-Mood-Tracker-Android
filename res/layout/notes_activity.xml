@@ -7,8 +7,7 @@
 	
 	<FrameLayout
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_weight="1.0">
+		android:layout_height="fill_parent">
 		
 		<TextView
 			android:id="@+id/noNotesMessage"
@@ -19,21 +18,7 @@
 		<ListView
 			android:id="@+id/list"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1.0">
+			android:layout_height="fill_parent">
 		</ListView>
 	</FrameLayout>
-	
-	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center">
-		
-		<ImageButton
-			android:id="@+id/addNoteButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/add_note"
-			android:src="@android:drawable/ic_menu_add" />
-	</LinearLayout>
 </LinearLayout>

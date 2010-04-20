@@ -1,44 +1,26 @@
 package com.t2.vas.activity;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import com.t2.vas.Global;
-import com.t2.vas.NoteCursorAdapter;
-import com.t2.vas.NotesAdapter;
 import com.t2.vas.NotesCursorAdapter;
 import com.t2.vas.R;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Note;
-import com.t2.vas.view.ChartLayout;
-import com.t2.vas.view.NoteLayout;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.DatePicker.OnDateChangedListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 
-public class NotesActivity extends BaseActivity implements OnItemClickListener, OnClickListener {
+public class NotesActivity extends BaseActivity implements OnItemClickListener, OnClickListener, OnItemLongClickListener {
 	private static final String TAG = NotesActivity.class.getName();
 	
 	private NotesCursorAdapter notesAdapter;
@@ -53,33 +35,35 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 		// init the local variables;
 		Intent intent = this.getIntent();
 		
-		
 		// Init global main variables.
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		
 		this.notesCursor = ((Note)dbAdapter.getTable("note")).select(null, "timestamp DESC");
-		
         this.notesAdapter = new NotesCursorAdapter(
         		this, 
-        		R.layout.note_adapter_item, 
+        		android.R.layout.simple_list_item_2,
         		this.notesCursor, 
         		new String[] {
-        			"timestamp",
-        			"note"
+    				"note",
+        			"timestamp"
         		}, 
         		new int[] {
-        			R.id.date,
-        			R.id.note
+        			android.R.id.text1,
+        			android.R.id.text2
         		},
         		new SimpleDateFormat(NOTE_DATE_FORMAT)
         );
         this.setContentView(R.layout.notes_activity);
         
+        LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
+        ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.add_note);
+        ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);
+        
         notesListView = ((ListView)this.findViewById(R.id.list));
+        notesListView.addHeaderView(addViewItem);
         notesListView.setAdapter(notesAdapter);
         notesListView.setOnItemClickListener(this);
-        
-        this.findViewById(R.id.addNoteButton).setOnClickListener(this);
+        notesListView.setOnItemLongClickListener(this);
         
         // Hide the no notes message if there are notes.
         if(notesListView.getCount() > 0) {
@@ -108,9 +92,17 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 		Long noteId = (Long)arg1.getTag();
 		
 		Intent i = new Intent(this, NoteActivity.class);
-		i.putExtra("noteId", noteId);
+		if(noteId != null) {
+			i.putExtra("noteId", noteId);
+		}
 		
 		this.startActivityForResult(i, 1234567890);
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		onItemClick(arg0, arg1, arg2, arg3);
+		return false;
 	}
 
 	@Override

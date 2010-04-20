@@ -57,6 +57,10 @@ public class LineSeries extends Series {
 		ArrayList<Path> linePaths = new ArrayList<Path>();
 		//Path linePath = new Path();
 		
+		if(areas == null || areas.size() <= 0) {
+			return drawables;
+		}
+		
 		solidLinePaths.add(true);
 		linePaths.add(currentLinePath);
 		

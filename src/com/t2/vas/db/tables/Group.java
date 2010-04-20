@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.AbsTable;
 import com.t2.vas.db.Table;
 
 public class Group extends Table {
@@ -61,10 +60,41 @@ public class Group extends Table {
 	}
 	
 	@Override
+	public boolean delete() {
+		ContentValues cv;
+		
+		Scale s = (Scale)this.dbAdapter.getTable("scale");
+		cv = new ContentValues();
+		cv.put("group_id", this._id);
+		s.delete(cv);
+		
+		Result r = (Result)this.dbAdapter.getTable("result");
+		cv = new ContentValues();
+		cv.put("group_id", this._id);
+		r.delete(cv);
+		
+		return super.delete();
+	}
+
+	@Override
 	public Group newInstance() {
 		return new Group(this.dbAdapter);
 	}
 	
+	public ArrayList<Group> getGroups() {
+		ContentValues v = new ContentValues();
+		
+		ArrayList<Group> groups = new ArrayList<Group>();
+		Cursor c = this.getDBAdapter().getTable("group").select(v);
+		while(c.moveToNext()) {
+			Group group = (Group)this.getDBAdapter().getTable("group").newInstance();
+			group.load(c);
+			
+			groups.add(group);
+		}
+		
+		return groups;
+	}
 	
 	public ArrayList<Scale> getScales() {
 		ContentValues v = new ContentValues();

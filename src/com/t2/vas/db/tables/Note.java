@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.AbsTable;
 import com.t2.vas.db.Table;
 
 public class Note extends Table {

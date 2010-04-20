@@ -2,7 +2,6 @@ package com.t2.vas.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 public abstract class Table extends AbsTable {
 	private static final String TAG = "TABLE";

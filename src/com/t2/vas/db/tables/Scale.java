@@ -11,7 +11,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.t2.vas.ExtraMath;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.AbsTable;
 import com.t2.vas.db.Table;
@@ -144,7 +143,6 @@ public class Scale extends Table {
 	public long insert() {
 		ContentValues v = new ContentValues();
 		v.put("group_id", this.group_id);
-		v.put("scale_id", this.scale_id);
 		v.put("max_label", this.max_label);
 		v.put("min_label", this.min_label);
 		v.put("weight", this.weight);
@@ -174,6 +172,16 @@ public class Scale extends Table {
 		return this.update(v);
 	}
 	
+	@Override
+	public boolean delete() {
+		Result r = (Result)this.dbAdapter.getTable("result");
+		ContentValues cv = new ContentValues();
+		cv.put("scale_id", this._id);
+		r.delete(cv);
+		
+		return super.delete();
+	}
+
 	@Override
 	public Scale newInstance() {
 		return new Scale(this.dbAdapter);
@@ -239,6 +247,9 @@ public class Scale extends Table {
 		SimpleDateFormat groupByDateFormatter;
 		SimpleDateFormat labelDateFormatter = new SimpleDateFormat(labelFormat);
 		
+		if(results.length <= 0) {
+			return new ResultValues();
+		}
 		
 		// Determine the label format to use.
 		switch(group_by) {
@@ -337,16 +348,7 @@ public class Scale extends Table {
 	}
 	
 	public class ResultValues {
-		//public ArrayList<ArrayList<Result>> results = new ArrayList<ArrayList<Result>>();
 		public ArrayList<Value> values = new ArrayList<Value>();
 		public ArrayList<Label> labels = new ArrayList<Label>();
-		
-		/*public ArrayList<Object> getResultsAsObjectList() {
-			ArrayList<Object> list = new ArrayList<Object>();
-			for(int i = 0; i < results.size(); i++) {
-				list.add(results.get(i));
-			}
-			return list;
-		}*/
 	}
 }

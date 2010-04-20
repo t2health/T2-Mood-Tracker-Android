@@ -19,8 +19,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +28,6 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.ViewSwitcher;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -241,11 +238,12 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			return;
 		}
 		
-		int seriesIndex = chartLayout.getChart().getYHilightSeriesIndex();
-		
-		Date d = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex).getLabelValue();
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(d);
+		int seriesIndex = chartLayout.getChart().getYHilightSeriesIndex();
+		if(seriesIndex >= 0) {
+			Date d = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex).getLabelValue();
+			cal.setTime(d);
+		}
 		
 		// stat the notes list activity
 		if(v.getId() == R.id.notesButton) {

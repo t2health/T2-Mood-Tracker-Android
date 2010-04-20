@@ -1,25 +1,17 @@
 package com.t2.vas.activity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ScaleAdapter;
-import com.t2.vas.Global.Database;
-import com.t2.vas.R.id;
-import com.t2.vas.R.layout;
 import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.VASDBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.SliderWidget;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,9 +21,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class FormActivity extends BaseActivity implements OnClickListener, OnLongClickListener {

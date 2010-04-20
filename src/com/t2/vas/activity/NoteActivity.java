@@ -82,6 +82,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener, OnDat
 		// Focus on the text box will result in the keyboard appearing.
 		InputMethodManager imm = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.showSoftInput(this.findViewById(R.id.note), 0);
+		((TextView)this.findViewById(R.id.note)).requestFocus();
 	}
 	
 	@Override

@@ -340,6 +340,7 @@ public class Chart extends View {
 		Series largestSeries = this.getLargestSeries();
 		
 		if(largestSeries == null) {
+			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 			return;
 		}
 		
@@ -513,6 +514,10 @@ public class Chart extends View {
 		}
 		
 		ArrayList<ChartRect> drawablePointRects = this.getDrawablePointRects(firstSeries, this.chartContainer);
+		if(drawablePointRects == null || drawablePointRects.size() <= 0) {
+			return;
+		}
+		
 		ChartRect lastPoint = drawablePointRects.get(drawablePointRects.size() - 1);
 		ChartRect firstPoint = drawablePointRects.get(0);
 		int seriesIndex = -1;

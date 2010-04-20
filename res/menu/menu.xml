@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-  xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:id="@+id/settings" android:title="Settings"></item>
-<item android:id="@+id/groupEditor" android:title="Scale Editor"></item>
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<item 
+		android:id="@+id/settings" 
+		android:title="@string/menu_settings" 
+		android:icon="@android:drawable/ic_menu_manage">
+	</item>
+	<item 
+		android:id="@+id/groupEditor" 
+		android:title="@string/menu_editor" 
+		android:icon="@android:drawable/ic_menu_agenda">
+	</item>
+	<item 
+		android:id="@+id/help" 
+		android:title="@string/menu_help" 
+		android:icon="@android:drawable/ic_menu_help">
+	</item>
 </menu>
