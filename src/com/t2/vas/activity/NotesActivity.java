@@ -89,7 +89,10 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
-		long noteId = data.getLongExtra("noteId", -1);
+		long noteId = -1;
+		if(data != null) {
+			noteId = data.getLongExtra("noteId", -1);
+		}
 		
 		this.notesAdapter.getCursor().requery();
 		this.notesAdapter.notifyDataSetChanged();

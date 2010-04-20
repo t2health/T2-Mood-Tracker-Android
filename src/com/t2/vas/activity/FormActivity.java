@@ -46,6 +46,14 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         
+        Intent intent = this.getIntent();
+        this.activeGroupId = intent.getLongExtra("group_id", -1);
+        
+        if(this.activeGroupId < 0) {
+        	this.finish();
+        }
+        
+        
         LayoutInflater li = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup mainView = (ViewGroup)li.inflate(R.layout.form_activity, null);
         ListView listView = (ListView)mainView.findViewById(R.id.list);
@@ -53,9 +61,12 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
         
-        Group group = (Group)dbHelper.getTable("group").newInstance();
+        Group group = ((Group)dbHelper.getTable("group")).newInstance();
         group._id = this.activeGroupId;
-        group.load();
+        if(!group.load()) {
+        	this.finish();
+        	return;
+        }
         
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
         listView.setAdapter(scaleAdapter);
@@ -97,6 +108,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 			intent = new Intent(this, ResultsActivity.class);
 			intent.putExtra("group_id", this.activeGroupId);
 			this.startActivity(intent);
+			this.finish();
 			break;
 		}
 	}
@@ -110,6 +122,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 			intent = new Intent(this, ResultsActivity.class);
 			intent.putExtra("group_id", this.activeGroupId);
 			this.startActivity(intent);
+			this.finish();
 			
 			return true;
 		}

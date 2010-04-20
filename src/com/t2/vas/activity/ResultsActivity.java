@@ -38,7 +38,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	private static final String TAG = "ResultsActivity";
 	ArrayList<ChartLayout> chartLayouts = new ArrayList<ChartLayout>();
 	
-	private int activeGroupId;
+	private long activeGroupId;
 	LayoutInflater layoutInflater;
 	
 	ViewSwitcher chartViewAnimator;
@@ -53,7 +53,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        activeGroupId = this.getIntent().getIntExtra("group_id", 1);
+        activeGroupId = this.getIntent().getLongExtra("group_id", -1);
         
         ArrayList<Series> chartSeries = new ArrayList<Series>();
         layoutInflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,7 +69,10 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         // Build a test linechart 
         Group g = (Group)db.getTable("group").newInstance();
         g._id = activeGroupId;
-        g.load();
+        if(!g.load()) {
+        	this.finish();
+        	return;
+        }
         
         ArrayList<Scale> scales = g.getScales();
         int scaleCount = scales.size();

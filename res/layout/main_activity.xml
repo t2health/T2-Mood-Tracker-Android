@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="@drawable/chart_background">
 	
-	<TableLayout
+	<LinearLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:stretchColumns="*">
+		android:layout_marginTop="10dp"
+		android:orientation="vertical">
 		
-	</TableLayout>
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/main_spinner_label"
+			android:color="#FF000000" />
+			
+		<Spinner
+			android:id="@+id/groupSelector"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+	
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="0.5">
+		
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:gravity="left|center">
+			<Button
+				android:id="@+id/formActivityButton"
+				android:layout_width="150dp"
+				android:layout_height="150dp"
+				android:text="Form Activity"
+				android:background="@android:drawable/ic_menu_sort_by_size"
+				android:gravity="bottom|center" />
+		</LinearLayout>
+			
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:gravity="right|center"
+			android:layout_weight="1.0">
+			<Button
+				android:id="@+id/resultsActivityButton"
+				android:layout_width="150dp"
+				android:layout_height="150dp"
+				android:text="Results Activity"
+				android:background="@android:drawable/ic_menu_slideshow"
+				android:gravity="bottom|center" />
+		</LinearLayout>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="0.5">
+		
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:gravity="left|center">
+			<Button
+				android:id="@+id/notesActivityButton"
+				android:layout_width="150dp"
+				android:layout_height="150dp"
+				android:text="Notes Activity"
+				android:background="@android:drawable/ic_menu_agenda"
+				android:gravity="bottom|center" />
+		</LinearLayout>
+			
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:gravity="right|center"
+			android:layout_weight="1.0">
+		</LinearLayout>
+	</LinearLayout>
 	
 </LinearLayout>

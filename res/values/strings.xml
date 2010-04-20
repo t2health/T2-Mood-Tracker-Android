@@ -7,6 +7,7 @@
 	<string name="delete_note_message">Are you sure you would like to delete this note?</string>
 	<string name="note_deleted">The note was deleted.</string>
 	
+	<string name="main_spinner_label">How are you feeling today?</string>
 	<string name="form_activity_submit">See my results!</string>
 	<string name="add_note">Add Note</string>
 	

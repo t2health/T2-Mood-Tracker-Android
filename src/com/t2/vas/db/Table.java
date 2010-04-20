@@ -26,7 +26,9 @@ public abstract class Table extends AbsTable {
 		whereConditions.put("_id", this._id);
 		
 		Cursor c = this.select(whereConditions);
-		c.moveToNext();
+		if(!c.moveToNext()) {
+			return false;
+		}
 		boolean res = this.load(c);
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		
