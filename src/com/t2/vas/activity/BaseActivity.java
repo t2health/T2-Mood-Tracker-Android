@@ -30,7 +30,7 @@ public class BaseActivity extends Activity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
 		
-		if(this.getHelp() == null) {
+		if(this.getHelp() == 0) {
 			menu.removeItem(R.id.help);
 		}
 		
@@ -50,7 +50,7 @@ public class BaseActivity extends Activity {
 				
 			case R.id.help:
 				i = new Intent(this, HelpActivity.class);
-				i.putExtra("message", this.getHelp());
+				i.putExtra("string_resource_id", this.getHelp());
 				this.startActivity(i);
 				return true;
 		}
@@ -58,7 +58,7 @@ public class BaseActivity extends Activity {
 		return super.onContextItemSelected(item);
 	}
 	
-	public String getHelp() {
-		return null;
+	public int getHelp() {
+		return 0;
 	}
 }

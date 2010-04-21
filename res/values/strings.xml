@@ -3,6 +3,8 @@
 	<string name="app_name">Visual Analog Scale</string>
 
 	<string name="activity_main">Visual Analog Scale</string>
+	<string name="activity_main_help">This is the help for the main activity.</string>
+	
 	<string name="activity_form">Form</string>
 	<string name="activity_results">Results</string>
 	<string name="activity_help">Help</string>

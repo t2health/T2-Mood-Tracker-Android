@@ -116,8 +116,4 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 		
 		return false;
 	}
-	
-	public String getHelp() {
-		return "This is the form help message.";
-	}
 }

@@ -10,7 +10,9 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	private Toast needScalesToast;
 
 	private ArrayList<String> groupListString = new ArrayList<String>();
+	private SharedPreferences sharedPrefs;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         this.findViewById(R.id.resultsActivityButton).setOnClickListener(this);
         this.findViewById(R.id.notesActivityButton).setOnClickListener(this);
         this.findViewById(R.id.reminderPreferenceActivityButton).setOnClickListener(this);
-        
+
+        sharedPrefs = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_WORLD_WRITEABLE);
         needScalesToast = Toast.makeText(this, R.string.add_group_scales, 3000);
         dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
@@ -77,8 +81,23 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		this.findViewById(R.id.resultsActivityButton).setEnabled(false);
 		this.findViewById(R.id.notesActivityButton).setEnabled(false);
         
+		// Select the group to work with.
         if(groupList.size() > 0) {
-        	selectGroup(groupList.get(0));
+        	boolean groupSelected = false;
+        	long group_id = sharedPrefs.getLong("selected_group_id", groupList.get(0)._id);
+        	if(group_id > 0) {
+	        	for(int i = 0; i < groupList.size(); i++) {
+	        		if(groupList.get(i)._id == group_id) {
+	        			((Spinner)this.findViewById(R.id.groupSelector)).setSelection(i);
+	        			groupSelected = true;
+	        			break;
+	        		}
+	        	}
+        	}
+        	
+        	if(!groupSelected) {
+        		((Spinner)this.findViewById(R.id.groupSelector)).setSelection(0);
+        	}
         }
         
         
@@ -102,8 +121,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		}
 	}
 	
-	private void selectGroup(Group g) {
-		this.currentGroup = g;
+	private void selectGroupAt(int index) {
+		this.currentGroup = this.groupList.get(index);
 		this.dbHelper.open();
 		
 		ArrayList<Scale> scales = this.currentGroup.getScales();
@@ -121,12 +140,19 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		this.dbHelper.close();
 	}
 	
-	
-	
 	@Override
 	protected void onResume() {
 		super.onResume();
 		initAdapterData();
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		
+		SharedPreferences.Editor ed = sharedPrefs.edit();
+		ed.putLong("selected_group_id", this.currentGroup._id);
+		ed.commit();
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -192,11 +218,15 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		selectGroup(this.groupList.get(arg2));
+		selectGroupAt(arg2);
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		
+	}
+	
+	public int getHelp() {
+		return R.string.activity_main_help;
 	}
 }

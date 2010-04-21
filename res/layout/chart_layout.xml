@@ -15,8 +15,7 @@
 			android:text="MAX"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textStyle="bold"
-			android:textSize="20dp" />
+			android:textAppearance="?android:attr/textAppearanceLarge" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -42,8 +41,7 @@
 			android:text="MIN"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textStyle="bold"
-			android:textSize="20dp" /> 
+			android:textAppearance="?android:attr/textAppearanceLarge" /> 
 	</LinearLayout>
 	
 	<TableLayout
