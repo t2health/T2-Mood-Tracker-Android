@@ -55,15 +55,17 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
         );
         this.setContentView(R.layout.notes_activity);
         
-        LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
+        /*LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
         ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.add_note);
-        ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);
+        ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);*/
         
         notesListView = ((ListView)this.findViewById(R.id.list));
-        notesListView.addHeaderView(addViewItem);
+        //notesListView.addHeaderView(addViewItem);
         notesListView.setAdapter(notesAdapter);
         notesListView.setOnItemClickListener(this);
         notesListView.setOnItemLongClickListener(this);
+        
+        this.findViewById(R.id.addNote).setOnClickListener(this);
         
         // Hide the no notes message if there are notes.
         if(notesListView.getCount() > 0) {
@@ -108,7 +110,7 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
-			case R.id.addNoteButton:
+			case R.id.addNote:
 				Intent i = new Intent(this, NoteActivity.class);
 				this.startActivityForResult(i, 1234567890);
 				break;

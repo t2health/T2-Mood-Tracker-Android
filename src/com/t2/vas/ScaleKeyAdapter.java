@@ -6,6 +6,7 @@ import com.t2.vas.view.ChartLayout;
 import com.t2.vas.view.chart.KeyBoxData;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ScaleKeyAdapter extends ArrayAdapter<ChartLayout> {
+	private static final String TAG = ScaleKeyAdapter.class.getName();
+	
 	private LayoutInflater inflater;
 	private int layoutResId;
 	private ArrayList<ChartLayout> items;

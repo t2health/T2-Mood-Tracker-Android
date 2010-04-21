@@ -63,7 +63,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         DBAdapter db = new DBAdapter(this, Global.Database.name, Global.Database.version);
         db.open();
         
-        // Build a test linechart 
+        // ensure the group privided exists.
         Group g = (Group)db.getTable("group").newInstance();
         g._id = activeGroupId;
         if(!g.load()) {
@@ -71,6 +71,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	return;
         }
         
+        // Create the chart for each scale.
         ArrayList<Scale> scales = g.getScales();
         int scaleCount = scales.size();
         for(int i = 0; i < scaleCount ; i++) {
@@ -90,6 +91,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	
         	lineSeries.setSelectable(false);
         	
+        	// Style the colors of the lines and points.
         	float hue = i / (1.00f * scaleCount) * 360.00f;
         	lineSeries.setFillColor(Color.HSVToColor(
         			255, 
@@ -125,8 +127,8 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         			}
         	));
         	
+        	// Add the series and add the chart to the list of charts.
         	chartLayout.getChart().addSeries("main", lineSeries);
-        	
         	chartLayouts.add(chartLayout);
         }
         
@@ -169,8 +171,10 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		}
 		
 		// Progressivley stack the previous charts and slowly fade them out.
-		float alphaStep = 0.34f;
-		int removeAfterIndex = (int)(1 / alphaStep);
+		float alphaStart = 0.5f;
+		float alphaStep = 0.24f;
+		//int removeAfterIndex = (int)(1 / alphaStep);
+		int removeAfterIndex = (int)((1 - alphaStart) / alphaStep);
 		View v = this.chartViewAnimator.getChildAt(0);
 		this.chartViewAnimator.removeViewAt(0);
 		this.fadeOutCharts.addView(v, 0);
@@ -184,8 +188,8 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			float startAlpha = 0.00f;
 			float endAlpha = 0.00f;
 			
-			startAlpha = 1.00f - (alphaStep * (i)); 
-			endAlpha = 1.00f - (alphaStep * (i + 1));
+			startAlpha = alphaStart - (alphaStep * (i)); 
+			endAlpha = alphaStart - (alphaStep * (i + 1));
 			
 			startAlpha = (startAlpha > 1)?1.00f:startAlpha;
 			endAlpha = (endAlpha < 0)?0.00f:endAlpha;

@@ -29,11 +29,9 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 	private void init() {
 		this.fillDrawable = new ShapeDrawable();
 		this.fillDrawable.getPaint().setStyle(Style.FILL);
-		//this.fillDrawable.setBounds(this.getBounds());
 		
 		this.strokeDrawable = new ShapeDrawable();
 		this.strokeDrawable.getPaint().setStyle(Style.STROKE);
-		//this.strokeDrawable.setBounds(this.getBounds());
 		
 		this.setDeseleted();
 	}

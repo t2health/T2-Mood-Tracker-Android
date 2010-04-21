@@ -5,10 +5,20 @@
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
 	
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/max_label" />
+		
 	<EditText
 		android:id="@+id/maxLabel"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"/>
+	
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/min_label" />
 	
 	<EditText
 		android:id="@+id/minLabel"

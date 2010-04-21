@@ -5,9 +5,39 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
 	
+	<!-- The Add Note Button -->
+	<LinearLayout
+		android:id="@+id/addNote"
+		xmlns:android="http://schemas.android.com/apk/res/android" 
+		android:paddingTop="2dip"
+		android:paddingBottom="2dip"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:minHeight="?android:attr/listPreferredItemHeight">
+		
+		<ImageView
+			android:id="@+id/image1"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+	        android:layout_marginLeft="6dip"
+	        android:layout_marginTop="6dip"
+	        android:src="@android:drawable/ic_menu_add" />
+	        
+	   	<TextView android:id="@+id/text1"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+	        android:layout_marginLeft="6dip"
+	        android:layout_marginTop="6dip"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:gravity="center_vertical"
+			android:text="@string/add_note" /> 
+	</LinearLayout>
+	
+	
 	<FrameLayout
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0">
 		
 		<TextView
 			android:id="@+id/noNotesMessage"

@@ -29,6 +29,11 @@ public class BaseActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
+		
+		if(this.getHelp() == null) {
+			menu.removeItem(R.id.help);
+		}
+		
 		return true;
 	}
 	
@@ -36,14 +41,24 @@ public class BaseActivity extends Activity {
 		Intent i;
 		switch(item.getItemId()){
 			case R.id.settings:
-				
 				return true;
+				
 			case R.id.groupEditor:
 				i = new Intent(this, GroupListActivity.class);
 				this.startActivityForResult(i, GROUP_EDITOR);
 				return true;
+				
+			case R.id.help:
+				i = new Intent(this, HelpActivity.class);
+				i.putExtra("message", this.getHelp());
+				this.startActivity(i);
+				return true;
 		}
 		
 		return super.onContextItemSelected(item);
+	}
+	
+	public String getHelp() {
+		return null;
 	}
 }

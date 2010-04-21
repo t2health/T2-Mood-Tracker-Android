@@ -71,6 +71,20 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		initAdapterData();
+		
+		if(data == null) {
+			return;
+		}
+		
+		// This group was just added, bring up the add scale interface.
+		String mode = data.getStringExtra("mode");
+		long group_id = data.getLongExtra("groupId", -1);
+		
+		if(mode.equals("insert") && group_id > 0) {
+			Intent i = new Intent(this, ScaleListActivity.class);
+			i.putExtra("groupId", group_id);
+			this.startActivity(i);
+		}
 	}
 
 	@Override

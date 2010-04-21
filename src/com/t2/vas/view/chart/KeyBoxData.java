@@ -5,7 +5,7 @@ public class KeyBoxData {
 	private int strokeColor;
 	private String label;
 	
-	public KeyBoxData(String label, int fillColor, int stokeColor) {
+	public KeyBoxData(String label, int fillColor, int strokeColor) {
 		this.setLabel(label);
 		this.setFillColor(fillColor);
 		this.setStrokeColor(strokeColor);

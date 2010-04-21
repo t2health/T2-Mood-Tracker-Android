@@ -66,11 +66,15 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		String mode;
+		
 		switch(v.getId()) {
 			// Start the delete intent
 			case R.id.deleteButton:
 				Intent i = new Intent(this, DeleteGroupActivity.class);
+				i.putExtra("mode", "delete");
 				i.putExtra("groupId", currentGroup._id);
+				
 				this.startActivity(i);
 				this.finish();
 				break;
@@ -83,6 +87,12 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
 				
 			// save the note and exit this activity
 			case R.id.saveButton:
+				if(currentGroup._id > 0) {
+					this.getIntent().putExtra("mode", "update");
+				} else {
+					this.getIntent().putExtra("mode", "insert");
+				}
+				
 				dbAdapter.open();
 				currentGroup.title = ((TextView)this.findViewById(R.id.title)).getText().toString();
 				currentGroup.save();

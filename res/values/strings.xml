@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">VAS</string>
+	<string name="app_name">Visual Analog Scale</string>
+
+	<string name="activity_main">Visual Analog Scale</string>
+	<string name="activity_form">Form</string>
+	<string name="activity_results">Results</string>
+	<string name="activity_help">Help</string>
+	
+	<string name="activity_note_list">Notes List</string>
+	<string name="activity_note">Add/Edit Note</string>
+	<string name="activity_delete_note">Delete Note</string>
+	
+	<string name="activity_group_list">Group List</string>
+	<string name="activity_group">Add/Edit Group</string>
+	<string name="activity_delete_group">Delete Group</string>
+	
+	<string name="activity_scale_list">Scale List</string>
+	<string name="activity_scale">Add/Edit Scale</string>
+	<string name="activity_delete_scale">Delete Scale</string>
+    
 	<string name="no_notes_message">You do not have any notes yet. Add a note by touching a point on the chart of pressing the button below.</string>
 	<string name="results_click_to_see_chart">Click an item in the legend below to see its chart.</string>
 	<string name="add_group_scales">The selected group needs to have scales added to it.</string>
@@ -26,6 +44,9 @@
 	<string name="main_spinner_label">How are you feeling today?</string>
 	<string name="form_activity_submit">See my results!</string>
 	<string name="add_note">Add Note</string>
+	
+	<string name="min_label">Min Label</string>
+	<string name="max_label">Max Label</string>
 	
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
