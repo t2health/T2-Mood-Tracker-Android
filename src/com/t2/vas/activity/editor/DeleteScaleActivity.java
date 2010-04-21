@@ -30,7 +30,7 @@ public class DeleteScaleActivity extends BaseActivity implements OnClickListener
 		
 		// init the local variables;
 		Intent intent = this.getIntent();
-		long currentScaleId = intent.getLongExtra("scaleId", -1);
+		long currentScaleId = intent.getLongExtra("scale_id", -1);
 		
 		if(currentScaleId < 0) {
 			this.finish();

@@ -19,6 +19,12 @@
 	<string name="activity_scale">Add/Edit Scale</string>
 	<string name="activity_delete_scale">Delete Scale</string>
     
+    <string name="activity_reminder">Reminder Forms</string>
+    <string name="activity_reminder_next_form">Next Form</string>
+    <string name="activity_reminder_finish">Finish</string>
+    
+    <string name="activity_reminder_preference">Reminder Preference</string>
+    
 	<string name="no_notes_message">You do not have any notes yet. Add a note by touching a point on the chart of pressing the button below.</string>
 	<string name="results_click_to_see_chart">Click an item in the legend below to see its chart.</string>
 	<string name="add_group_scales">The selected group needs to have scales added to it.</string>
@@ -53,4 +59,9 @@
 	<string name="save">Save</string>
 	<string name="cancel">Cancel</string>
 	<string name="delete">Delete</string>
+	<string name="close">Close</string>
+	
+	<string name="notification_ticker">1 or more scale need to be taken.</string>
+	<string name="notification_title">1 or more scales need to be taken.</string>
+	<string name="notification_text">You will be returned to your current activity when finished.</string>
 </resources>

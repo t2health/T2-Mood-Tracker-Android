@@ -30,7 +30,7 @@ public class DeleteGroupActivity extends BaseActivity implements OnClickListener
 		
 		// init the local variables;
 		Intent intent = this.getIntent();
-		long currentGroupId = intent.getLongExtra("groupId", -1);
+		long currentGroupId = intent.getLongExtra("group_id", -1);
 		
 		if(currentGroupId < 0) {
 			this.finish();

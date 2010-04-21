@@ -10,6 +10,7 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 	private static final String TAG = FormActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
+	private String submitButtonText;
 	
     /** Called when the activity is first created. */
     @Override
@@ -38,6 +40,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         
         Intent intent = this.getIntent();
         this.activeGroupId = intent.getLongExtra("group_id", -1);
+        this.submitButtonText = intent.getStringExtra("submit_button_text");
         
         if(this.activeGroupId < 0) {
         	this.finish();
@@ -64,22 +67,23 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         ((TextView)mainView.findViewById(R.id.title)).setText(group.title);
         ((Button)mainView.findViewById(R.id.submitButton)).setOnClickListener(this);
         ((Button)mainView.findViewById(R.id.submitButton)).setOnLongClickListener(this);
-
+        if(this.submitButtonText != null) {
+        	((Button)mainView.findViewById(R.id.submitButton)).setText(this.submitButtonText);
+        }
+        
         dbHelper.close();
         setContentView(mainView);
     }
 
 	@Override
 	public void onClick(View v) {
-		Intent intent;
-		
 		switch(v.getId()) {
 		case R.id.submitButton:
 			DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
 	        dbHelper.open();
 			
 	        for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
-	        	Log.v(TAG, "ADD RESULT");
+	        	//Log.v(TAG, "ADD RESULT");
 	        	Scale s = this.scaleAdapter.getItem(i);
 	        	int value = this.scaleAdapter.getProgressValuesAt(i);
 	        	
@@ -95,9 +99,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 			
 			dbHelper.close();
 			
-			intent = new Intent(this, ResultsActivity.class);
-			intent.putExtra("group_id", this.activeGroupId);
-			this.startActivity(intent);
+			this.setResult(Activity.RESULT_OK);
 			this.finish();
 			break;
 		}
@@ -105,15 +107,10 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 
 	@Override
 	public boolean onLongClick(View v) {
-		Intent intent;
-		
 		switch(v.getId()) {
 		case R.id.submitButton:
-			intent = new Intent(this, ResultsActivity.class);
-			intent.putExtra("group_id", this.activeGroupId);
-			this.startActivity(intent);
+			this.setResult(Activity.RESULT_OK);
 			this.finish();
-			
 			return true;
 		}
 		

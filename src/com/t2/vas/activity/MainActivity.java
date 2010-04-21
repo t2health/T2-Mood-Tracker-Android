@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.ReminderService;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,11 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class MainActivity extends BaseActivity implements OnClickListener, OnItemSelectedListener {
 	private static final String TAG = MainActivity.class.getName();
+	
+	private static final int FORM_ACTIVITY = 345;
+	private static final int RESULTS_ACTIVITY = 346;
+	private static final int NOTES_ACTIVITY = 347;
+	private static final int REMINDER_ACTIVITY = 348;
 	
 	private ArrayAdapter<String> adapter;
 	private ArrayList<Group> groupList;
@@ -41,6 +48,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         this.findViewById(R.id.formActivityButton).setOnClickListener(this);
         this.findViewById(R.id.resultsActivityButton).setOnClickListener(this);
         this.findViewById(R.id.notesActivityButton).setOnClickListener(this);
+        this.findViewById(R.id.reminderPreferenceActivityButton).setOnClickListener(this);
         
         needScalesToast = Toast.makeText(this, R.string.add_group_scales, 3000);
         dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
@@ -72,6 +80,12 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         if(groupList.size() > 0) {
         	selectGroup(groupList.get(0));
         }
+        
+        
+        // Stopping any services that may be running and starting them up again.
+        Intent serviceIntent = new Intent(this, ReminderService.class);
+        this.stopService(serviceIntent);
+        this.startService(serviceIntent);
 	}
 	
 	private void initAdapterData() {
@@ -107,43 +121,77 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		this.dbHelper.close();
 	}
 	
+	
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		initAdapterData();
+	}
+
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch(requestCode) {
-			case GROUP_EDITOR:
-				Log.v(TAG, "RESULT");
-				initAdapterData();
+			case FORM_ACTIVITY:
+				if(resultCode == Activity.RESULT_OK) {
+					this.startActivity(RESULTS_ACTIVITY);
+				}
 				break;
 		}
 	}
 
+	private void startActivity(int id) {
+		Intent intent;
+		switch(id) {
+			case FORM_ACTIVITY:
+				intent = new Intent(this, FormActivity.class);
+				intent.putExtra("group_id", this.currentGroup._id);
+				this.startActivityForResult(intent, FORM_ACTIVITY);
+				break;
+				
+			case RESULTS_ACTIVITY:
+				intent = new Intent(this, ResultsActivity.class);
+				intent.putExtra("group_id", this.currentGroup._id);
+				this.startActivityForResult(intent, RESULTS_ACTIVITY);
+				break;
+				
+			case NOTES_ACTIVITY:
+				intent = new Intent(this, NotesActivity.class);
+				intent.putExtra("group_id", this.currentGroup._id);
+				this.startActivityForResult(intent, NOTES_ACTIVITY);
+				break;
+				
+			case REMINDER_ACTIVITY:
+				intent = new Intent(this, ReminderPreferenceActivity.class);
+				intent.putExtra("group_id", this.currentGroup._id);
+				this.startActivityForResult(intent, NOTES_ACTIVITY);
+				break;
+		}
+	}
+	
 	@Override
 	public void onClick(View v) {
-		Intent intent;
 		
 		switch(v.getId()) {
 			case R.id.formActivityButton:
-				intent = new Intent(this, FormActivity.class);
-				intent.putExtra("group_id", this.currentGroup._id);
-				this.startActivity(intent);
+				this.startActivity(FORM_ACTIVITY);
 				break;
 				
 			case R.id.resultsActivityButton:
-				intent = new Intent(this, ResultsActivity.class);
-				intent.putExtra("group_id", this.currentGroup._id);
-				this.startActivity(intent);
+				this.startActivity(RESULTS_ACTIVITY);
 				break;
 				
 			case R.id.notesActivityButton:
-				intent = new Intent(this, NotesActivity.class);
-				intent.putExtra("group_id", this.currentGroup._id);
-				this.startActivity(intent);
+				this.startActivity(NOTES_ACTIVITY);
+				break;
+				
+			case R.id.reminderPreferenceActivityButton:
+				this.startActivity(REMINDER_ACTIVITY);
 				break;
 		}
 	}
 
 	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		selectGroup(this.groupList.get(arg2));
 	}
 

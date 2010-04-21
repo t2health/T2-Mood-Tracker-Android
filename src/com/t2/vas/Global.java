@@ -8,4 +8,5 @@ public class Global {
 	}
 	
 	public static final String CHART_LABEL_DATE_FORMAT = "MMM d";
+	public static final int NOTIFICATION_ICON = R.drawable.icon;
 }

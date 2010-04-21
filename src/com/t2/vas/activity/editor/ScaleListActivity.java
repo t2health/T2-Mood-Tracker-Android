@@ -38,7 +38,7 @@ public class ScaleListActivity extends BaseActivity implements OnItemClickListen
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
         
         currentGroup = (Group)dbAdapter.getTable("group");
-        currentGroup._id = intent.getLongExtra("groupId", -1);
+        currentGroup._id = intent.getLongExtra("group_id", -1);
         
         if(currentGroup._id < 0 || !currentGroup.load()) {
         	this.finish();
@@ -75,13 +75,13 @@ public class ScaleListActivity extends BaseActivity implements OnItemClickListen
 
 	private void startAddActivity(long groupId) {
 		Intent i = new Intent(this, ScaleActivity.class);
-		i.putExtra("groupId", currentGroup._id);
+		i.putExtra("group_id", currentGroup._id);
 		this.startActivityForResult(i, 123457890);
 	}
 	
 	private void startEditActivity(long scaleId) {
 		Intent i = new Intent(this, ScaleActivity.class);
-		i.putExtra("scaleId", scaleId);
+		i.putExtra("scale_id", scaleId);
 		this.startActivityForResult(i, 123457890);
 	}
 	
@@ -109,18 +109,11 @@ public class ScaleListActivity extends BaseActivity implements OnItemClickListen
 		// The add scale button was pressed
 		if(arg2 == 0) {
 			this.startAddActivity(currentGroup._id);
-			/*i = new Intent(this, ScaleActivity.class);
-			i.putExtra("groupId", currentGroup._id);
-			this.startActivityForResult(i, 123457890);*/
 			return;
 		}
 		
 		// Load the edit scale activity.
 		startEditActivity(this.scaleList.get(arg2 - 1)._id);
-		/*Scale scale = this.scaleList.get(arg2 - 1);
-		i = new Intent(this, ScaleActivity.class);
-		i.putExtra("scaleId", scale._id);
-		this.startActivityForResult(i, 123457890);*/
 	}
 	
 	@Override

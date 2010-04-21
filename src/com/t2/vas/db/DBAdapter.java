@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.GroupReminder;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
@@ -28,7 +29,6 @@ public class DBAdapter extends SQLiteOpenHelper {
 	}
 	
 	private void init() {
-		Log.v(TAG, "INIT");
 		AbsTable t;
 		
 		t = new Group(this);
@@ -41,6 +41,9 @@ public class DBAdapter extends SQLiteOpenHelper {
 		this.tables.put(t.getTableName(), t);
 		
 		t = new Note(this);
+		this.tables.put(t.getTableName(), t);
+		
+		t = new GroupReminder(this);
 		this.tables.put(t.getTableName(), t);
 	}
 	

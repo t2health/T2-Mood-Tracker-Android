@@ -34,8 +34,8 @@ public class ScaleActivity extends BaseActivity implements OnClickListener {
         
 		Intent intent = this.getIntent();
 		
-		currentScale._id = intent.getLongExtra("scaleId", -1);
-		currentScale.group_id = intent.getLongExtra("groupId", -1);
+		currentScale._id = intent.getLongExtra("scale_id", -1);
+		currentScale.group_id = intent.getLongExtra("group_id", -1);
 		
 		// Load the note from the DB
 		if(currentScale._id > 0) {
@@ -77,7 +77,7 @@ public class ScaleActivity extends BaseActivity implements OnClickListener {
 			// Start the delete intent
 			case R.id.deleteButton:
 				Intent i = new Intent(this, DeleteScaleActivity.class);
-				i.putExtra("scaleId", currentScale._id);
+				i.putExtra("scale_id", currentScale._id);
 				this.startActivity(i);
 				this.finish();
 				break;
@@ -99,7 +99,7 @@ public class ScaleActivity extends BaseActivity implements OnClickListener {
 				
 				toastPopup.show();
 				
-				this.getIntent().putExtra("scaleId", currentScale._id);
+				this.getIntent().putExtra("scale_id", currentScale._id);
 				this.setResult(Activity.RESULT_OK, this.getIntent());
 				this.finish();
 				break;

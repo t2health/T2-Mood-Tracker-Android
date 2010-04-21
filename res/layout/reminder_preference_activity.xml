@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+	
+	<RadioGroup
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+	
+		<RadioButton
+			android:id="@+id/reminderPreferenceNever"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Never" />
+			
+		<RadioButton
+			android:id="@+id/reminderPreferenceHourly"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Hourly" />
+			
+		<RadioButton
+			android:id="@+id/reminderPreferenceDaily"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Daily" />
+			
+		<RadioButton
+			android:id="@+id/reminderPreferenceWeekly"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Weekly" />		
+	</RadioGroup>
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center">
+		
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/closeButton"
+			android:text="@string/close" />
+	</LinearLayout>
+</LinearLayout>

@@ -82,6 +82,13 @@
 			android:layout_height="fill_parent"
 			android:gravity="right|center"
 			android:layout_weight="1.0">
+			<Button
+				android:id="@+id/reminderPreferenceActivityButton"
+				android:layout_width="150dp"
+				android:layout_height="150dp"
+				android:text="Reminder Preference Activity"
+				android:background="@android:drawable/ic_menu_recent_history"
+				android:gravity="bottom|center" />
 		</LinearLayout>
 	</LinearLayout>
 	

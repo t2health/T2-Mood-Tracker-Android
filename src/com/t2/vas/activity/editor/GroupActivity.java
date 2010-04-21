@@ -32,7 +32,7 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
         
 		Intent intent = this.getIntent();
 		
-		currentGroup._id = intent.getLongExtra("groupId", -1);
+		currentGroup._id = intent.getLongExtra("group_id", -1);
 		
 		// Load the note from the DB
 		if(currentGroup._id > 0) {
@@ -73,7 +73,7 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
 			case R.id.deleteButton:
 				Intent i = new Intent(this, DeleteGroupActivity.class);
 				i.putExtra("mode", "delete");
-				i.putExtra("groupId", currentGroup._id);
+				i.putExtra("group_id", currentGroup._id);
 				
 				this.startActivity(i);
 				this.finish();
@@ -100,7 +100,7 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
 				
 				toastPopup.show();
 				
-				this.getIntent().putExtra("groupId", currentGroup._id);
+				this.getIntent().putExtra("group_id", currentGroup._id);
 				this.setResult(Activity.RESULT_OK, this.getIntent());
 				this.finish();
 				break;
