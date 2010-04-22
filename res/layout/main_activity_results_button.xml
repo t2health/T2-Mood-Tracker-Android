@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/resultsActivityButton"
+	android:layout_width="100dp"
+	android:layout_height="100dp"
+	android:text="@string/activity_results"
+	android:background="@android:drawable/ic_menu_slideshow"
+	android:gravity="bottom|center" />

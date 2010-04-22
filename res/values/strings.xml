@@ -14,7 +14,7 @@
 	<string name="activity_preference">Preferences</string>
 	
 	<string name="activity_results">Results</string>
-	<string name="activity_results_click_to_see_chart">Click a field in the list below to see its chart.</string>
+	<string name="activity_results_click_to_see_chart">Click a field in the list to see its chart.</string>
 	
 	<string name="activity_password">Password Update</string>
 	<string name="activity_password_unlock">Unlock</string>

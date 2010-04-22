@@ -38,10 +38,7 @@
 				
 				<include layout="@layout/main_activity_results_button" />
 			</LinearLayout>
-		</TableRow>
-		
-		<TableRow
-			android:layout_weight="0.5">
+
 			<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="fill_parent"

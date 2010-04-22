@@ -27,7 +27,7 @@
 		<view
 			class="com.t2.vas.view.chart.Chart"
 			android:id="@+id/chart"
-			android:layout_width="wrap_content"
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0" />
 	</LinearLayout>
