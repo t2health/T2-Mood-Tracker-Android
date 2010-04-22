@@ -28,7 +28,7 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
         // init global variables.
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
-		toastPopup = Toast.makeText(this, R.string.group_saved, 2000);
+		toastPopup = Toast.makeText(this, R.string.activity_group_saved, 2000);
         
 		Intent intent = this.getIntent();
 		

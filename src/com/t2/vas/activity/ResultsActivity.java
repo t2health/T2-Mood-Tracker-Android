@@ -89,7 +89,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	chartLayout.setYMinLabel(s.min_label);
         	chartLayout.setTag(s._id+"");
         	
-        	lineSeries.setSelectable(false);
+        	/*lineSeries.setSelectable(false);*/
         	
         	// Style the colors of the lines and points.
         	float hue = i / (1.00f * scaleCount) * 360.00f;

@@ -64,24 +64,21 @@ public class LineSeries extends Series {
 		solidLinePaths.add(true);
 		linePaths.add(currentLinePath);
 		
-		ChartRect firstRect = areas.get(0);
+		ChartRect firstRect = areas.get(0).copy();
 		Rect tmpRect;
-		int pointDiameter = firstRect.right - firstRect.left;
+		int pointDiameter = firstRect.width();
 		
 		ChartRect prevChartRect = null;
 		ChartRect currentChartRect = null;
 		for(int i = 0; i < areas.size(); i++) {
 			prevChartRect = currentChartRect;
-			currentChartRect = areas.get(i);
+			currentChartRect = areas.get(i).copy();
+			
 			LineSeriesDrawable point = new LineSeriesDrawable(currentChartRect.toRect());
 			
-			point.setSelectedFillColor(this.getSelectedFillColor());
-			point.setSelectedStrokeColor(this.getSelectedStrokeColor());
 			
 			point.setFillColor(this.getFillColor());
 			point.setStrokeColor(this.getStrokeColor());
-			
-			point.setSelectable(this.isSelectable());
 			
 			if(currentChartRect.value != null) {
 				drawables.add(point);

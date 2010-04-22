@@ -640,4 +640,8 @@ public final class ChartRect implements Parcelable {
     public Rect toRect() {
     	return new Rect(left, top, right, bottom);
     }
+    
+    public ChartRect copy() {
+    	return new ChartRect(left, top, right, bottom, value);
+    }
 }

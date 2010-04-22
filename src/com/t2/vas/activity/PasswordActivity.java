@@ -67,7 +67,7 @@ public class PasswordActivity extends Activity implements android.view.View.OnCl
         	return;
         }
         
-        if(CURRENT_MODE == MODE_UPDATE && CURRENT_PASSWORD == null || CURRENT_PASSWORD.length() <= 0) {
+        if(CURRENT_MODE == MODE_UPDATE && (CURRENT_PASSWORD == null || CURRENT_PASSWORD.length() <= 0)) {
         	CURRENT_MODE = MODE_SET;
         }
         
@@ -195,6 +195,7 @@ public class PasswordActivity extends Activity implements android.view.View.OnCl
 				break;
 		}
 		
+		((TextView)vi.findViewById(R.id.text1)).requestFocus();
 	}
 	
 	private View getInterface(int id) {

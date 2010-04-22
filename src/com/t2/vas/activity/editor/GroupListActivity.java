@@ -43,7 +43,7 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 		);
         
         LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
-        ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.add_group);
+        ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.activity_group_list_add_group);
         ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);
         
         ListView listView = (ListView)this.findViewById(R.id.list);

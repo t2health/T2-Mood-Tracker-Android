@@ -30,13 +30,8 @@ public class BarSeries extends Series {
 		for(int i = 0; i < areas.size(); i++) {
 			BarSeriesDrawable point = new BarSeriesDrawable(areas.get(i).toRect());
 			
-			point.setSelectedFillColor(this.getSelectedFillColor());
-			point.setSelectedStrokeColor(this.getSelectedStrokeColor());
-			
 			point.setFillColor(this.getFillColor());
 			point.setStrokeColor(this.getStrokeColor());
-			
-			point.setSelectable(this.isSelectable());
 			
 			drawables.add(point);
 		}

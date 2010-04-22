@@ -26,7 +26,7 @@ public class DeleteGroupActivity extends BaseActivity implements OnClickListener
 		
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
-		toastPopup = Toast.makeText(this, R.string.group_deleted, 2000);
+		toastPopup = Toast.makeText(this, R.string.activity_group_deleted, 2000);
 		
 		// init the local variables;
 		Intent intent = this.getIntent();

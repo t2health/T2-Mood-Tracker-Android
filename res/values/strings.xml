@@ -29,7 +29,7 @@
 	<string name="activity_note_list">Notes</string>
 	<string name="activity_note">Add/Edit Note</string>
 	<string name="activity_delete_note">Delete Note</string>
-	<string name="activity_note_list_no_notes_message">You do not have any notes yet. Add a note by touching a point on the chart of pressing the button below.</string>
+	<string name="activity_note_list_no_notes_message">You do not have any notes yet.</string>
 	<string name="activity_note_saved">The note has been saved.</string>
 	<string name="activity_note_delete_message">Are you sure you would like to delete this note?</string>
 	<string name="activity_note_deleted">The note was deleted.</string>
@@ -38,18 +38,18 @@
 	<string name="activity_group_list">Tracking Targets</string>
 	<string name="activity_group">Add/Edit Tracking Target</string>
 	<string name="activity_delete_group">Delete Tracking Target</string>
-	<string name="add_group">Add Measure</string>
-	<string name="group_saved">The measure has been saved.</string>
-	<string name="delete_group_message">Are you sure you would like to delete this group and all of its scales?</string>
-	<string name="group_deleted">The group was deleted.</string>
+	<string name="activity_group_list_add_group">Add Tracking Target</string>
+	<string name="activity_group_saved">The tracking target has been saved.</string>
+	<string name="activity_delete_group_message">Are you sure you would like to delete this tracking target and all of its fields?</string>
+	<string name="activity_group_deleted">The tracking target was deleted.</string>
 	
 	<string name="activity_scale_list">Fields</string>
 	<string name="activity_scale">Add/Edit Field</string>
 	<string name="activity_delete_scale">Delete Field</string>
     <string name="add_scale">Add Field</string>
-	<string name="scale_saved">The scale has been saved.</string>
-	<string name="delete_scale_message">Are you sure you would like to delete this scale and all of its results?</string>
-	<string name="scale_deleted">The scale was deleted.</string>
+	<string name="scale_saved">The field has been saved.</string>
+	<string name="delete_scale_message">Are you sure you would like to delete this field and all of its measurements?</string>
+	<string name="scale_deleted">The field was deleted.</string>
 	<string name="min_label">Min Label</string>
 	<string name="max_label">Max Label</string>
 	
@@ -59,8 +59,8 @@
     
     <string name="activity_reminder_preference">Reminder</string>
     
-    <string name="notification_ticker">1 or more scale need to be taken.</string>
-	<string name="notification_title">1 or more scales need to be taken.</string>
+    <string name="notification_ticker">A tracking target needs to be taken.</string>
+	<string name="notification_title">A tracking target needs to be taken.</string>
 	<string name="notification_text">You will be returned to your current activity when finished.</string>
     
 	<string name="menu_help">Help</string>

@@ -1,36 +1,21 @@
 package com.t2.vas.view.chart;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.graphics.drawable.shapes.PathShape;
 import android.graphics.drawable.shapes.RectShape;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class Chart extends View {
 	private static final String TAG = "VAS";
@@ -156,6 +141,7 @@ public class Chart extends View {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	private ArrayList<ChartRect> getDrawablePointRects(Series series, Rect container) {
 		int maxHeight = container.height();
 		
@@ -173,11 +159,11 @@ public class Chart extends View {
 		/*
 		 * Create the point drawable areas
 		 */
-		Double prevValue = null;
+		//Double prevValue = null;
 		Double value = null;
 		Double calcValue = null;
 		for(int i = 0; i < values.size(); i++) {
-			prevValue = value;
+			//prevValue = value;
 			value = values.get(i).getValue();
 			calcValue = value;
 
@@ -187,7 +173,7 @@ public class Chart extends View {
 			
 			int x = getPointX(i, pointWidth, pointPaddingRight, container.left) + pointXShift;
 			int y = getPointY(maxHeight, calcValue);
-			int nextX = getPointX(i+1, pointWidth, pointPaddingRight, container.left) + pointXShift;
+			//int nextX = getPointX(i+1, pointWidth, pointPaddingRight, container.left) + pointXShift;
 			
 			int left = x;
 			int top  = maxHeight - y;
@@ -248,13 +234,17 @@ public class Chart extends View {
 		int lineThickness = 3;
 		ShapeDrawable shape;
 		
+		int top = this.chartContainer.top;
+		int bottom = this.chartContainer.bottom;
+		int height = this.chartContainer.height();
+		
 		// Draw the vertical axis
 		shape = new ShapeDrawable(new RectShape());
 		shape.setBounds(
 			axisOffset, 
-			0, 
+			top, 
 			axisOffset + lineThickness, 
-			this.getHeight()
+			bottom
 		);
 		shape.getPaint().setColor(Color.BLACK);
 		shape.getPaint().setStyle(Style.FILL);
@@ -264,9 +254,9 @@ public class Chart extends View {
 		shape = new ShapeDrawable(new RectShape());
 		shape.setBounds(
 			axisOffset, 
-			0, 
+			top, 
 			axisOffset + hashWidth, 
-			lineThickness
+			top+lineThickness
 		);
 		shape.getPaint().setColor(Color.BLACK);
 		shape.getPaint().setStyle(Style.FILL);
@@ -274,11 +264,12 @@ public class Chart extends View {
 		
 		// Draw the center hash mark
 		shape = new ShapeDrawable(new RectShape());
+		int centerTop = Math.round(((height + top) / 2) - (lineThickness / 2));
 		shape.setBounds(
 			axisOffset, 
-			(int)this.getHeight() / 2, 
+			(int)centerTop, 
 			axisOffset + hashWidth, 
-			((int)this.getHeight() / 2) + lineThickness
+			(int)centerTop + lineThickness
 		);
 		shape.getPaint().setColor(Color.BLACK);
 		shape.getPaint().setStyle(Style.FILL);
@@ -288,9 +279,9 @@ public class Chart extends View {
 		shape = new ShapeDrawable(new RectShape());
 		shape.setBounds(
 			axisOffset, 
-			this.getHeight() - lineThickness, 
+			bottom - lineThickness, 
 			axisOffset + hashWidth, 
-			this.getHeight()
+			bottom
 		);
 		shape.getPaint().setColor(Color.BLACK);
 		shape.getPaint().setStyle(Style.FILL);
@@ -360,20 +351,24 @@ public class Chart extends View {
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 		
-		this.chartContainer = new Rect(15, 0, this.getWidth() - 10, this.getHeight() - 20);
+		this.chartContainer = new Rect(15, 10, this.getWidth() - 15, this.getHeight() - 10);
 		
 		this.pointWidth = this.chartContainer.width() / 30;
 		this.pointPaddingRight = pointWidth / 2;
-		
-		this.chartContainer.bottom -= this.pointWidth;
 		
 		this.initChartDrawables();
 		
 		// Style the hilight.
 		yHilightDrawable.getPaint().setStyle(Style.FILL);
 		yHilightDrawable.getPaint().setColor(Color.argb(100, 0, 255, 0));
+		yHilightDrawable.setBounds(
+			this.chartContainer.left, 
+			this.chartContainer.top, 
+			this.chartContainer.left + this.pointWidth,
+			this.chartContainer.bottom
+		);
 		
-		if(this.getYHilightBounds().left <= 0) {
+		if(this.getYHilightBounds().left <= this.chartContainer.left) {
 			this.moveYHilightTo(this.chartContainer.right);
 		}
 	}
@@ -408,14 +403,14 @@ public class Chart extends View {
 		
 	}
 
-	private boolean selectSeriesDrawableAt(int x, int y, int boundsPadding) {
+	/*private boolean selectSeriesDrawableAt(int x, int y, int boundsPadding) {
 		for(Series s: this.seriesList.values()) {
 			if(s.selectDrawableValueAt(x, y, boundsPadding)) {
 				return true;
 			}
 		}
 		return false;
-	}
+	}*/
 
 	
 	@Override
@@ -426,9 +421,9 @@ public class Chart extends View {
 			}
 			
 		} else if(event.getHistorySize() < 3 && event.getAction() == MotionEvent.ACTION_UP) {
-			if(dispatchClickToSeriesDrawable(event)) {
+			/*if(dispatchClickToSeriesDrawable(event)) {
 				Log.v(TAG, "Dispatched");
-			} else if(isShowYHilight()) {
+			} else */if(isShowYHilight()) {
 				this.moveYHilightTo((int)event.getX());
 			}
 		}
@@ -437,7 +432,7 @@ public class Chart extends View {
 		return true;
 	}
 	
-	public boolean dispatchClickToSeriesDrawable(MotionEvent event) {
+	/*public boolean dispatchClickToSeriesDrawable(MotionEvent event) {
 		int padding = (int)Math.ceil(this.pointPaddingRight / 2);
 		
 		for(int i = 0; i < event.getPointerCount(); i++) {
@@ -461,7 +456,7 @@ public class Chart extends View {
 			}
 		}
 		return false;
-	}
+	}*/
 	
 	
 
@@ -546,11 +541,12 @@ public class Chart extends View {
 		);
 		
 		// Move the hilight
+		Rect bounds = this.yHilightDrawable.copyBounds();
 		this.yHilightDrawable.setBounds(
 			x, 
-			0, 
-			x + this.pointWidth,
-			this.getHeight()
+			bounds.top, 
+			x + bounds.width(),
+			bounds.bottom
 		);
 		
 		// register the series index and label for the hilight.

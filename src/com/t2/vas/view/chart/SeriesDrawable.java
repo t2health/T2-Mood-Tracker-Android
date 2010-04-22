@@ -12,14 +12,14 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 	private int fillColor = Color.RED;
 	private int strokeColor = Color.GREEN;
 	
-	private int selectedFillColor = Color.YELLOW;
-	private int selectedStrokeColor = Color.RED;
+	/*private int selectedFillColor = Color.YELLOW;
+	private int selectedStrokeColor = Color.RED;*/
 	
 	protected ShapeDrawable fillDrawable;
 	protected ShapeDrawable strokeDrawable;
 	
-	private boolean isSelected = false;
-	private boolean isSelectable = true;
+	/*private boolean isSelected = false;
+	private boolean isSelectable = true;*/
 	
 	public SeriesDrawable(Rect bounds) {
 		this.init();
@@ -33,7 +33,7 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 		this.strokeDrawable = new ShapeDrawable();
 		this.strokeDrawable.getPaint().setStyle(Style.STROKE);
 		
-		this.setDeseleted();
+		/*this.setDeseleted();*/
 	}
 	
 	public void setFillColor(int fillColor) {
@@ -54,7 +54,7 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 		return strokeColor;
 	}
 
-	public void setSelectedFillColor(int selectedFillColor) {
+	/*public void setSelectedFillColor(int selectedFillColor) {
 		this.selectedFillColor = selectedFillColor;
 	}
 
@@ -68,7 +68,7 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 
 	public int getSelectedStrokeColor() {
 		return selectedStrokeColor;
-	}
+	}*/
 	
 	@Override
 	public void setBounds(int left, int top, int right, int bottom) {
@@ -107,7 +107,7 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 		
 	}
 
-	public void setSeleted() {
+	/*public void setSeleted() {
 		if(!this.isSelectable) {
 			return;
 		}
@@ -133,5 +133,5 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 
 	public boolean isSelectable() {
 		return isSelectable;
-	}
+	}*/
 }
