@@ -29,8 +29,8 @@
    		android:gravity="center">
 	   	<Button
 	   		android:id="@+id/submitButton"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="@string/form_activity_submit" />
+	        android:text="@string/activity_form_submit" />
     </LinearLayout>
 </LinearLayout>

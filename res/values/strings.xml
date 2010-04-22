@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Visual Analog Scale</string>
+	<string name="app_name">Mood Tracker</string>
 
-	<string name="activity_main">Visual Analog Scale</string>
+	<string name="activity_main">Mood Tracker</string>
 	<string name="activity_main_help">This is the help for the main activity.</string>
+	<string name="activity_main_no_group_scales">The selected tracking target needs to have fields added to it. This can be done in "Preferences"</string>
+	<string name="activity_main_spinner_label">How are you feeling today?</string>
 	
 	<string name="activity_form">Form</string>
-	<string name="activity_results">Results</string>
-	<string name="activity_help">Help</string>
+	<string name="activity_form_submit">See my results!</string>
 	
-	<string name="activity_note_list">Notes List</string>
+	<string name="activity_help">Help</string>
+	<string name="activity_preference">Preferences</string>
+	
+	<string name="activity_results">Results</string>
+	<string name="activity_results_click_to_see_chart">Click a field in the list below to see its chart.</string>
+	
+	<string name="activity_password">Password Update</string>
+	<string name="activity_password_unlock">Unlock</string>
+	<string name="activity_password_next">Next</string>
+	<string name="activity_password_set">Set</string>
+	<string name="activity_password_confirm_message">Enter the current password.</string>
+	<string name="activity_password_confirm_message_error">The password entered is not corrent. Enter the current password.</string>
+	<string name="activity_password_new_message1">Enter the new password.</string>
+	<string name="activity_password_new_message1_error">The passwords did not match. Enter the new password.</string>
+	<string name="activity_password_new_message2">Re-enter the new password.</string>
+	
+	<string name="activity_note_list">Notes</string>
 	<string name="activity_note">Add/Edit Note</string>
 	<string name="activity_delete_note">Delete Note</string>
+	<string name="activity_note_list_no_notes_message">You do not have any notes yet. Add a note by touching a point on the chart of pressing the button below.</string>
+	<string name="activity_note_saved">The note has been saved.</string>
+	<string name="activity_note_delete_message">Are you sure you would like to delete this note?</string>
+	<string name="activity_note_deleted">The note was deleted.</string>
+	<string name="activity_note_list_add_note">Add Note</string>
 	
-	<string name="activity_group_list">Group List</string>
-	<string name="activity_group">Add/Edit Group</string>
-	<string name="activity_delete_group">Delete Group</string>
-	
-	<string name="activity_scale_list">Scale List</string>
-	<string name="activity_scale">Add/Edit Scale</string>
-	<string name="activity_delete_scale">Delete Scale</string>
-    
-    <string name="activity_reminder">Reminder Forms</string>
-    <string name="activity_reminder_next_form">Next Form</string>
-    <string name="activity_reminder_finish">Finish</string>
-    
-    <string name="activity_reminder_preference">Reminder Preference</string>
-    
-	<string name="no_notes_message">You do not have any notes yet. Add a note by touching a point on the chart of pressing the button below.</string>
-	<string name="results_click_to_see_chart">Click an item in the legend below to see its chart.</string>
-	<string name="add_group_scales">The selected group needs to have scales added to it.</string>
-	
-	<string name="menu_help">Help</string>
-	<string name="menu_settings">Settings</string>
-	<string name="menu_editor">Scale Editor</string>
-	
-	<string name="note_saved">The note has been saved.</string>
-	<string name="delete_note_message">Are you sure you would like to delete this note?</string>
-	<string name="note_deleted">The note was deleted.</string>
-	
-	<string name="add_group">Add Group</string>
-	<string name="group_saved">The group has been saved.</string>
+	<string name="activity_group_list">Tracking Targets</string>
+	<string name="activity_group">Add/Edit Tracking Target</string>
+	<string name="activity_delete_group">Delete Tracking Target</string>
+	<string name="add_group">Add Measure</string>
+	<string name="group_saved">The measure has been saved.</string>
 	<string name="delete_group_message">Are you sure you would like to delete this group and all of its scales?</string>
 	<string name="group_deleted">The group was deleted.</string>
 	
-	<string name="add_scale">Add Scale</string>
+	<string name="activity_scale_list">Fields</string>
+	<string name="activity_scale">Add/Edit Field</string>
+	<string name="activity_delete_scale">Delete Field</string>
+    <string name="add_scale">Add Field</string>
 	<string name="scale_saved">The scale has been saved.</string>
 	<string name="delete_scale_message">Are you sure you would like to delete this scale and all of its results?</string>
 	<string name="scale_deleted">The scale was deleted.</string>
-	
-	<string name="main_spinner_label">How are you feeling today?</string>
-	<string name="form_activity_submit">See my results!</string>
-	<string name="add_note">Add Note</string>
-	
 	<string name="min_label">Min Label</string>
 	<string name="max_label">Max Label</string>
+	
+    <string name="activity_reminder">Reminder</string>
+    <string name="activity_reminder_next_form">Next Form</string>
+    <string name="activity_reminder_finish">Finish</string>
+    
+    <string name="activity_reminder_preference">Reminder</string>
+    
+    <string name="notification_ticker">1 or more scale need to be taken.</string>
+	<string name="notification_title">1 or more scales need to be taken.</string>
+	<string name="notification_text">You will be returned to your current activity when finished.</string>
+    
+	<string name="menu_help">Help</string>
+	<string name="menu_settings">Preferences</string>
 	
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
@@ -62,8 +72,4 @@
 	<string name="cancel">Cancel</string>
 	<string name="delete">Delete</string>
 	<string name="close">Close</string>
-	
-	<string name="notification_ticker">1 or more scale need to be taken.</string>
-	<string name="notification_title">1 or more scales need to be taken.</string>
-	<string name="notification_text">You will be returned to your current activity when finished.</string>
 </resources>

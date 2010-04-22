@@ -30,7 +30,7 @@
 	        android:layout_marginTop="6dip"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:gravity="center_vertical"
-			android:text="@string/add_note" /> 
+			android:text="@string/activity_note_list_add_note" /> 
 	</LinearLayout>
 	
 	
@@ -43,7 +43,7 @@
 			android:id="@+id/noNotesMessage"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
-			android:text="@string/no_notes_message" />
+			android:text="@string/activity_note_list_no_notes_message" />
 		
 		<ListView
 			android:id="@+id/list"

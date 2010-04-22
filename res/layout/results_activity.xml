@@ -31,7 +31,7 @@
 				<TextView
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="@string/results_click_to_see_chart"
+					android:text="@string/activity_results_click_to_see_chart"
 					android:textSize="25dp"
 					android:gravity="center"
 					android:layout_weight="0.5"

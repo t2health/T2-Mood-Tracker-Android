@@ -8,11 +8,6 @@
 		android:icon="@android:drawable/ic_menu_manage">
 	</item>
 	<item 
-		android:id="@+id/groupEditor" 
-		android:title="@string/menu_editor" 
-		android:icon="@android:drawable/ic_menu_agenda">
-	</item>
-	<item 
 		android:id="@+id/help" 
 		android:title="@string/menu_help" 
 		android:icon="@android:drawable/ic_menu_help">

@@ -2,6 +2,7 @@ package com.t2.vas.activity;
 
 import com.t2.vas.R;
 import com.t2.vas.activity.editor.GroupListActivity;
+import com.t2.vas.activity.preference.MainPreferenceActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 public class BaseActivity extends Activity {
 	private static final String TAG = BaseActivity.class.getName();
 	public static final int GROUP_EDITOR = 4325;
+	public static final int SETTINGS = 4326;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,11 +43,8 @@ public class BaseActivity extends Activity {
 		Intent i;
 		switch(item.getItemId()){
 			case R.id.settings:
-				return true;
-				
-			case R.id.groupEditor:
-				i = new Intent(this, GroupListActivity.class);
-				this.startActivityForResult(i, GROUP_EDITOR);
+				i = new Intent(this, MainPreferenceActivity.class);
+				this.startActivityForResult(i, SETTINGS);
 				return true;
 				
 			case R.id.help:

@@ -53,8 +53,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         this.findViewById(R.id.notesActivityButton).setOnClickListener(this);
         this.findViewById(R.id.reminderPreferenceActivityButton).setOnClickListener(this);
 
-        sharedPrefs = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_WORLD_WRITEABLE);
-        needScalesToast = Toast.makeText(this, R.string.add_group_scales, 3000);
+        sharedPrefs = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        needScalesToast = Toast.makeText(this, R.string.activity_main_no_group_scales, 3000);
         dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
         

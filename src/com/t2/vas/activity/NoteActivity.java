@@ -33,7 +33,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener, OnDat
 		// init global variables.
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();
-		toastPopup = Toast.makeText(this, R.string.note_saved, 2000);
+		toastPopup = Toast.makeText(this, R.string.activity_note_saved, 2000);
 		
 		// init the local variables;
 		Calendar cal = Calendar.getInstance();

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory
+		android:title="General">
+		
+		<Preference
+			android:title="Group Editor"
+			android:key="group_editor" />
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+		android:title="Security">
+		
+		<CheckBoxPreference
+			android:key="password_protect_notes"
+			android:title="Password Protect Notes"
+			android:defaultValue="false"
+			android:summary="Pretty obvious"
+			android:shouldDisableView="true" />
+		
+		<Preference
+			android:title="Change Password"
+			android:key="change_password"
+			android:dependency="password_protect_notes" />
+	</PreferenceCategory>
+</PreferenceScreen>

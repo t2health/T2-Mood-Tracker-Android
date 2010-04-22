@@ -25,7 +25,7 @@ public class DeleteNoteActivity extends BaseActivity implements OnClickListener 
 		
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();
-		toastPopup = Toast.makeText(this, R.string.note_deleted, 2000);
+		toastPopup = Toast.makeText(this, R.string.activity_note_deleted, 2000);
 		
 		// init the local variables;
 		Intent intent = this.getIntent();

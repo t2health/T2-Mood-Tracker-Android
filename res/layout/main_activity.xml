@@ -15,14 +15,14 @@
 		<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/main_spinner_label"
+			android:text="@string/activity_main_spinner_label"
 			android:color="#FF000000" />
 			
 		<Spinner
 			android:id="@+id/groupSelector"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:prompt="@string/main_spinner_label" />
+			android:prompt="@string/activity_main_spinner_label" />
 	</LinearLayout>
 	
 	
@@ -39,7 +39,7 @@
 				android:id="@+id/formActivityButton"
 				android:layout_width="150dp"
 				android:layout_height="150dp"
-				android:text="Form Activity"
+				android:text="@string/activity_form"
 				android:background="@android:drawable/ic_menu_sort_by_size"
 				android:gravity="bottom|center" />
 		</LinearLayout>
@@ -53,7 +53,7 @@
 				android:id="@+id/resultsActivityButton"
 				android:layout_width="150dp"
 				android:layout_height="150dp"
-				android:text="Results Activity"
+				android:text="@string/activity_results"
 				android:background="@android:drawable/ic_menu_slideshow"
 				android:gravity="bottom|center" />
 		</LinearLayout>
@@ -72,7 +72,7 @@
 				android:id="@+id/notesActivityButton"
 				android:layout_width="150dp"
 				android:layout_height="150dp"
-				android:text="Notes Activity"
+				android:text="@string/activity_note_list"
 				android:background="@android:drawable/ic_menu_agenda"
 				android:gravity="bottom|center" />
 		</LinearLayout>
@@ -86,7 +86,7 @@
 				android:id="@+id/reminderPreferenceActivityButton"
 				android:layout_width="150dp"
 				android:layout_height="150dp"
-				android:text="Reminder Preference Activity"
+				android:text="@string/activity_reminder_preference"
 				android:background="@android:drawable/ic_menu_recent_history"
 				android:gravity="bottom|center" />
 		</LinearLayout>

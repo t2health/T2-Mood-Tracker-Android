@@ -8,7 +8,7 @@
 	<TextView
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/delete_note_message" />
+		android:text="@string/activity_note_delete_message" />
 	
 	<TableLayout
 		android:layout_width="fill_parent"
