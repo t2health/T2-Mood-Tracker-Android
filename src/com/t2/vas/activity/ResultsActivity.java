@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
@@ -49,6 +50,8 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         
         activeGroupId = this.getIntent().getLongExtra("group_id", -1);
         

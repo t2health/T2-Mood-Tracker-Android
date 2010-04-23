@@ -61,7 +61,7 @@ public class ReminderPreferenceActivity extends BaseActivity implements OnClickL
         ((RadioButton)this.findViewById(R.id.reminderPreferenceHourly)).setOnClickListener(this);
         ((RadioButton)this.findViewById(R.id.reminderPreferenceDaily)).setOnClickListener(this);
         ((RadioButton)this.findViewById(R.id.reminderPreferenceWeekly)).setOnClickListener(this);
-        ((Button)this.findViewById(R.id.closeButton)).setOnClickListener(this);
+        //((Button)this.findViewById(R.id.closeButton)).setOnClickListener(this);
 	}
 
 	@Override
@@ -87,9 +87,9 @@ public class ReminderPreferenceActivity extends BaseActivity implements OnClickL
 				currentGroupReminder.save();
 				break;
 				
-			case R.id.closeButton:
+			/*case R.id.closeButton:
 				this.finish();
-				break;
+				break;*/
 		}
 	}
 }

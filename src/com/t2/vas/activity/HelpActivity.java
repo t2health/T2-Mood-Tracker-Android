@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class HelpActivity extends BaseActivity implements OnClickListener {
+public class HelpActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -30,15 +30,15 @@ public class HelpActivity extends BaseActivity implements OnClickListener {
         this.setContentView(R.layout.help_activity);
         
         ((TextView)this.findViewById(R.id.message)).setText(message);
-        ((Button)this.findViewById(R.id.closeButton)).setOnClickListener(this);
+        //((Button)this.findViewById(R.id.closeButton)).setOnClickListener(this);
 	}
 
-	@Override
+	/*@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.closeButton:
 				this.finish();
 				break;
 		}
-	}
+	}*/
 }

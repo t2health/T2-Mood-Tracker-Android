@@ -3,25 +3,25 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<PreferenceCategory
-		android:title="General">
+		android:title="@string/activity_preference_general">
 		
 		<Preference
-			android:title="Group Editor"
+			android:title="@string/activity_settings_group_editor"
 			android:key="group_editor" />
 	</PreferenceCategory>
 	
 	<PreferenceCategory
-		android:title="Security">
+		android:title="@string/activity_preference_security">
 		
 		<CheckBoxPreference
 			android:key="password_protect_notes"
-			android:title="Password Protect Notes"
+			android:title="@string/activity_preference_password_protect_notes_title"
 			android:defaultValue="false"
-			android:summary="Pretty obvious"
+			android:summary="@string/activity_preference_password_protect_notes_description"
 			android:shouldDisableView="true" />
 		
 		<Preference
-			android:title="Change Password"
+			android:title="@string/activity_preference_change_password"
 			android:key="change_password"
 			android:dependency="password_protect_notes" />
 	</PreferenceCategory>

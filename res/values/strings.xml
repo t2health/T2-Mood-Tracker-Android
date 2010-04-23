@@ -3,7 +3,7 @@
 	<string name="app_name">Mood Tracker</string>
 
 	<string name="activity_main">Mood Tracker</string>
-	<string name="activity_main_help">This is the help for the main activity.</string>
+	<string name="activity_main_help">ec vitae metus nec enim adipiscing varius. Cras eu nibh lacus. In rutrum sagittis volutpat. Aliquam erat volutpat. Sed congue condimentum vehicula. Sed turpis arcu, interdum quis consequat eu, fermentum non velit. Vivamus bibendum, urna ut tincidunt lobortis, justo neque pretium urna, at mollis est ligula eu sapien. Praesent lorem ligula, vehicula at tincidunt eget, gravida quis risus. Nam ac viverra enim. Aenean placerat tortor quis dui adipiscing nec fermentum sapien aliquam. Donec tincidunt dictum consectetur. Mauris orci erat, fermentum id pulvinar at, consequat et erat. Aliquam vitae dapibus orci. Maecenas tempor accumsan ullamcorper. Cras convallis nibh in nisl venenatis imperdiet. Duis consectetur mattis nibh quis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nibh sed quam convallis imperdiet nec quis turpis.</string>
 	<string name="activity_main_no_group_scales">The selected tracking target needs to have fields added to it. This can be done in "Preferences"</string>
 	<string name="activity_main_spinner_label">How are you feeling today?</string>
 	
@@ -34,6 +34,8 @@
 	<string name="activity_note_delete_message">Are you sure you would like to delete this note?</string>
 	<string name="activity_note_deleted">The note was deleted.</string>
 	<string name="activity_note_list_add_note">Add Note</string>
+	<string name="activity_preference_password_protect_notes_title">Password Protect Notes</string>
+	<string name="activity_preference_password_protect_notes_description">Require a password to view notes.</string>
 	
 	<string name="activity_group_list">Tracking Targets</string>
 	<string name="activity_group">Add/Edit Tracking Target</string>
@@ -42,6 +44,7 @@
 	<string name="activity_group_saved">The tracking target has been saved.</string>
 	<string name="activity_delete_group_message">Are you sure you would like to delete this tracking target and all of its fields?</string>
 	<string name="activity_group_deleted">The tracking target was deleted.</string>
+	<string name="activity_settings_group_editor">Tracking Targets Editor</string>
 	
 	<string name="activity_scale_list">Fields</string>
 	<string name="activity_scale">Add/Edit Field</string>
@@ -62,6 +65,10 @@
     <string name="notification_ticker">A tracking target needs to be taken.</string>
 	<string name="notification_title">A tracking target needs to be taken.</string>
 	<string name="notification_text">You will be returned to your current activity when finished.</string>
+    
+    <string name="activity_preference_general">General</string>
+    <string name="activity_preference_security">Security</string>
+    <string name="activity_preference_change_password">Change Password</string>
     
 	<string name="menu_help">Help</string>
 	<string name="menu_settings">Preferences</string>
