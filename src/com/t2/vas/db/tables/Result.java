@@ -10,7 +10,6 @@ import com.t2.vas.db.Table;
 public class Result extends Table {
 	public long group_id;
 	public long scale_id;
-	public long result_id;
 	public long timestamp;
 	public int value;
 	

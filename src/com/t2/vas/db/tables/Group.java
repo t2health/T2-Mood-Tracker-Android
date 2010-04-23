@@ -24,10 +24,6 @@ public class Group extends Table {
 	@Override
 	public void onCreate() {
 		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL)");
-		
-		ContentValues v = new ContentValues();
-		v.put("title", "How are you feeling today?");
-		this.insert(v);
 	}
 
 	@Override

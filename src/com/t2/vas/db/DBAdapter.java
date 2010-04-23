@@ -76,6 +76,9 @@ public class DBAdapter extends SQLiteOpenHelper {
 		for(String key: keys) {
 			this.tables.get(key).onCreate();
 		}
+		
+		// Install the base and test data
+		InstallDB.onCreate(this);
 	}
 
 	@Override
