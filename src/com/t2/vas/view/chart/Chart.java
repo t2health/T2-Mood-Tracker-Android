@@ -122,8 +122,6 @@ public class Chart extends View {
 	
 	
 	private void initChartDrawables() {
-		//Log.v(TAG, "initChartDrawables");
-		
 		this.drawables.clear();
 		
 		for(String s: this.seriesList.keySet()) {
@@ -142,9 +140,6 @@ public class Chart extends View {
 	
 	private void setDrawablePointRects(Series series, Rect container) {
 		int maxHeight = container.height();
-		Log.v(TAG, "CT:"+ container.top);
-		Log.v(TAG, "H1:"+ (container.bottom-container.top));
-		Log.v(TAG, "H2:"+maxHeight);
 		
 		ArrayList<ChartRect> drawablePointAreas = new ArrayList<ChartRect>();
 		ArrayList<Value> values = series.getValues();
@@ -190,23 +185,8 @@ public class Chart extends View {
 		ArrayList<Drawable> extraDrawables = series.getExtraDrawables(container.width(), container.height());
 		ArrayList<Drawable> allDrawables = new ArrayList<Drawable>();
 		
-		/*// Add markers to denote where notes exist.
-		for(int i = 0; i < shapeDrawables.size(); i++) {
-			SeriesDrawable sd = shapeDrawables.get(i);
-			
-			if(sd.isHilightEnabled()) {
-				ShapeDrawable s = new ShapeDrawable(new RectShape());
-				s.setBounds(sd.getBounds().left, container.top, sd.getBounds().right, container.top + 10);
-				allDrawables.add(s);
-			}
-		}*/
-		
 		allDrawables.addAll(extraDrawables);
 		allDrawables.addAll(shapeDrawables);
-		
-		/*for(int i = 0; i < allDrawables.size(); i++) {
-			allDrawables.get(i).getBounds().top += container.top;
-		}*/
 		
 		return allDrawables;
 	}
@@ -330,8 +310,23 @@ public class Chart extends View {
 		);
 	}
 
+	public void updateChart() {
+		this.refreshData();
+		this.initChartDrawables();
+		this.invalidate();
+	}
+	
+	public void refreshData() {
+		// Tell the series to refresh their data based on their sources.
+		for(String key: this.seriesList.keySet()) {
+			this.seriesList.get(key).refreshData();
+		}
+	}
+	
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		this.refreshData();
+		
 		Series largestSeries = this.getLargestSeries();
 		
 		if(largestSeries == null) {

@@ -35,6 +35,8 @@ public abstract class Series {
 	private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 	private ArrayList<SeriesDrawable> seriesDrawables = new ArrayList<SeriesDrawable>();
 	
+	private SeriesDataAdapter dataAdapter = null;
+	
 	public Series(String name) {
 		this.setName(name);
 	}
@@ -115,6 +117,11 @@ public abstract class Series {
 		}
 	}
 	
+	public void clear() {
+		this.labels.clear();
+		this.values.clear();
+	}
+	
 	public ArrayList<Value> getValues() {
 		return this.values;
 	}
@@ -168,4 +175,27 @@ public abstract class Series {
 		return new ArrayList<Drawable>();
 	}
 	
+	
+	public final void refreshData() {
+		if(dataAdapter == null) {
+			return;
+		}
+		
+		SeriesAdapterData data = dataAdapter.getData();
+		
+		this.clear();
+		this.addAll(data.getLabels(), data.getValues());
+		
+		// Clear the drawable cache
+		this.drawables.clear();
+		this.seriesDrawables.clear();
+	}
+	
+	public void setSeriesDataAdapter(SeriesDataAdapter s) {
+		this.dataAdapter = s;
+	}
+	
+	public interface SeriesDataAdapter {
+		public SeriesAdapterData getData();
+	}
 }

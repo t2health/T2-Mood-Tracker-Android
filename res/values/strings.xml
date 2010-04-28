@@ -63,6 +63,11 @@
     <string name="activity_reminder_finish">Finish</string>
     
     <string name="activity_reminder_preference">Reminder</string>
+    <string name="activity_reminder_preference_never">Never</string>
+    <string name="activity_reminder_preference_hourly">Hourly</string>
+    <string name="activity_reminder_preference_daily">Daily</string>
+    <string name="activity_reminder_preference_weekly">Weekly</string>
+    <string name="activity_reminder_preference_monthly">Monthly</string>
     
     <string name="notification_ticker">A tracking target needs to be taken.</string>
 	<string name="notification_title">A tracking target needs to be taken.</string>

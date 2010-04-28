@@ -11,6 +11,7 @@ public class GroupReminder extends Table {
 	public static final int REMIND_HOURLY = 1;
 	public static final int REMIND_DAILY = 2;
 	public static final int REMIND_WEEKLY = 3;
+	public static final int REMIND_MONTHLY = 4;
 	
 	public long group_id;
 	public int remind_mode = REMIND_NEVER;

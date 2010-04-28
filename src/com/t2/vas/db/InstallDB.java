@@ -121,7 +121,7 @@ public class InstallDB {
 			Scale tmpScale = scales.get(i);
 			int prevValue = 50;
 			
-			Log.v(TAG, "Scale:"+tmpScale._id);
+			//Log.v(TAG, "Scale:"+tmpScale._id);
 			for(int j = 0; j < resultCount; j++) {
 				cal.add(Calendar.DAY_OF_MONTH, 1);
 				
@@ -130,12 +130,18 @@ public class InstallDB {
 					continue;
 				}
 				int value = prevValue + 10 - rand.nextInt(21);
+				value = (value < 0)?0:value;
+				value = (value > 100)?100:value;
+				Log.v(TAG, "V:"+value);
 				
 				c = new ContentValues();
 				c.put("group_id", tmpScale.group_id);
 				c.put("scale_id", tmpScale._id);
 				c.put("timestamp", cal.getTimeInMillis());
 				c.put("value", value);
+				result.insert(c);
+				
+				//Log.v(TAG, "gid:"+tmpScale.group_id+" sid:"+tmpScale._id+" v:"+value+" ts:"+cal.getTimeInMillis());
 				
 				prevValue = value;
 			}

@@ -26,17 +26,11 @@ public class Scale extends Table {
 	public String min_label;
 	public int weight = 0;
 
-	public static final int GROUPBY_YEAR = Calendar.YEAR;
+	/*public static final int GROUPBY_YEAR = Calendar.YEAR;
 	public static final int GROUPBY_MONTH = Calendar.MONTH;
 	public static final int GROUPBY_WEEK = Calendar.WEEK_OF_YEAR;
 	public static final int GROUPBY_DAY = Calendar.DAY_OF_MONTH;
-	public static final int GROUPBY_HOUR = Calendar.HOUR_OF_DAY;
-	
-	/*private static final String GROUPBY_YEAR_FORMAT = "yyyy";
-	private static final String GROUPBY_MONTH_FORMAT = "yyyy-MM";
-	private static final String GROUPBY_DAY_FORMAT = "yyyy-MM-dd";
-	private static final String GROUPBY_HOUR_FORMAT = "yyyy-MM-dd HH";
-	private static final String GROUPBY_WEEK_FORMAT = "yyyy-ww";*/
+	public static final int GROUPBY_HOUR = Calendar.HOUR_OF_DAY;*/
 	
 	public static final int ORDERBY_ASC = 13;
 	public static final int ORDERBY_DESC = 14;
@@ -161,7 +155,7 @@ public class Scale extends Table {
 		return notes.toArray(new Note[notes.size()]);
 	}
 	
-	
+	/*
 	public ResultValues getResultValues(int group_by, String labelFormat) {
 		SimpleDateFormat labelDateFormatter = new SimpleDateFormat(labelFormat);
 		String formatter_date_format = "";
@@ -210,9 +204,9 @@ public class Scale extends Table {
 				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))", 
 				null, 
 				"label_value ASC",
-				"200"
+				null
 		);
-		//Log.v(TAG, "ROW COUNT:"+c.getCount());
+		Log.v(TAG, "ROW COUNT:"+c.getCount());
 		
 		String rLabelValue = "";
 		long rTimestamp = 0;
@@ -289,7 +283,7 @@ public class Scale extends Table {
 		}
 		
 		return resultValues;
-	}
+	}*/
 	
 	/*public ResultValues getResultValues2(int group_by, String labelFormat) {
 		Result[] results = this.getResults();

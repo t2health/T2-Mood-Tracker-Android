@@ -7,6 +7,7 @@ import java.util.Date;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
+import com.t2.vas.ScaleSeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
@@ -21,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ResultsActivity extends BaseActivity implements OnItemClickListener, OnClickListener {
 	private static final String TAG = "ResultsActivity";
-	private static final int ADD_NOTE = 234;
+	private static final int NOTES_MANAGE = 234;
 	
 	ArrayList<ChartLayout> chartLayouts = new ArrayList<ChartLayout>();
 	
@@ -50,7 +52,8 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	
 	private FrameLayout fadeOutCharts;
 	
-	private int resultsGroupBy = Scale.GROUPBY_DAY;
+	private int resultsGroupBy = ScaleSeriesDataAdapter.GROUPBY_DAY;
+	private ChartLayout currentChartLayout;
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,19 +87,22 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         int scaleCount = scales.size();
         for(int i = 0; i < scaleCount ; i++) {
         	Scale s = scales.get(i);
-        	ResultValues scaleValues = s.getResultValues(resultsGroupBy, Global.CHART_LABEL_DATE_FORMAT);
+        	NotesSeries notesSeries = new NotesSeries("Notes");
+        	LineSeries lineSeries = new LineSeries(s.max_label +" - "+ s.min_label);
         	
-        	NotesSeries notesSeries = new NotesSeries(
-        			"Notes",
-        			scaleValues.labels,
-        			scaleValues.values
-        	);
+        	lineSeries.setSeriesDataAdapter(new ScaleSeriesDataAdapter(
+        			db,
+        			s._id,
+        			resultsGroupBy,
+        			Global.CHART_LABEL_DATE_FORMAT
+        	));
         	
-        	LineSeries lineSeries = new LineSeries(
-        			s.max_label +" - "+ s.min_label,
-        			scaleValues.labels,
-        			scaleValues.values
-        	);
+        	notesSeries.setSeriesDataAdapter(new ScaleSeriesDataAdapter(
+        			db,
+        			s._id,
+        			resultsGroupBy,
+        			Global.CHART_LABEL_DATE_FORMAT
+        	));
         	
         	ChartLayout chartLayout = (ChartLayout)layoutInflater.inflate(R.layout.chart_layout, null);
         	chartLayout.setYMaxLabel(s.max_label);
@@ -169,35 +175,32 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		// Refresh current chart to show notes.
-		if(requestCode == ADD_NOTE) {
-			if(data != null && resultCode == Activity.RESULT_OK) {
-				if(data.getLongExtra("noteId", -1) > 0) {
-					
-				}
-			}
+		if(requestCode == NOTES_MANAGE) {
+			currentChartLayout.getChart().updateChart();
+			currentChartLayout.invalidate();
 		}
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		ChartLayout chartLayout = (ChartLayout)arg1.getTag();
-		chartLayout.setShowLabels(true);
-		chartLayout.setLabelsColor(Color.WHITE);
-		chartLayout.getChart().setShowYHilight(true);
+		currentChartLayout = (ChartLayout)arg1.getTag();
+		currentChartLayout.setShowLabels(true);
+		currentChartLayout.setLabelsColor(Color.WHITE);
+		currentChartLayout.getChart().setShowYHilight(true);
 		
 		// Flash the chart if it already selected
 		if(arg2 == lastActiveListIndex) {
 			AlphaAnimation fadeDown = new AlphaAnimation(1.0f, 0.0f);
 			fadeDown.setDuration(250);
 			
-			chartLayout.startAnimation(fadeDown);
+			currentChartLayout.startAnimation(fadeDown);
 			return;
 		}
 		
 		// Have the parent remove the child view. This prevents an issue in the next code block.
-		ViewGroup parent = (ViewGroup)chartLayout.getParent();
+		ViewGroup parent = (ViewGroup)currentChartLayout.getParent();
 		if(parent != null) {
-			parent.removeView(chartLayout);
+			parent.removeView(currentChartLayout);
 		}
 		
 		// Progressivley stack the previous charts and slowly fade them out.
@@ -238,7 +241,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			} catch (ClassCastException cce) {}
 		}
 		
-		this.chartViewAnimator.addView(chartLayout);
+		this.chartViewAnimator.addView(currentChartLayout);
 		this.chartViewAnimator.showNext();
 		
 		
@@ -297,14 +300,14 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			i.putExtra("start_timestamp", startTimestamp);
 			i.putExtra("end_timestamp", endTimestamp);
 			
-			this.startActivity(i);
+			this.startActivityForResult(i, NOTES_MANAGE);
 			
 		// Start the add note activity
 		} else if(v.getId() == R.id.addNoteButton) {
 			Intent i = new Intent(this, NoteActivity.class);
 			i.putExtra("timstamp", startTimestamp);
 			
-			this.startActivityForResult(i, ADD_NOTE );
+			this.startActivityForResult(i, NOTES_MANAGE);
 		}
 	}
 }

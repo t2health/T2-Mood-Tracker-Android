@@ -8,6 +8,10 @@ import android.util.Log;
 public class NotesSeries extends Series {
 	private static final String TAG = NotesSeries.class.getName();
 
+	public NotesSeries(String name) {
+		super(name);
+	}
+	
 	public NotesSeries(String name, ArrayList<Label> labels, ArrayList<Value> values) {
 		super(name, labels, values);
 	}

@@ -99,41 +99,6 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
         }
 	}
 	
-	/*private Cursor queryForNotes(long startTimestamp, long endTimestamp) {
-		ArrayList<String> whereValues = new ArrayList<String>();
-		ArrayList<String> whereConditions = new ArrayList<String>();
-		
-		Log.v(TAG, "start time:"+ startTimestamp);
-		Log.v(TAG, "end time:"+ endTimestamp);
-		
-		if(startTimestamp >= 0) {
-			whereConditions.add("timestamp >= ?");
-			whereValues.add(startTimestamp+"");
-		}
-		if(endTimestamp >= 0) {
-			whereConditions.add("timestamp < ?");
-			whereValues.add(endTimestamp+"");
-		}
-		
-		String[] whereValuesArray = null;
-		String whereSt = null;
-		if(whereConditions.size() > 0) {
-			whereValuesArray = whereValues.toArray(new String[whereValues.size()]);
-			whereSt = "";
-			
-			for(int i = 0; i < whereConditions.size(); i++) {
-				whereSt += whereConditions.get(i)+ " AND ";
-			}
-			whereSt = whereSt.substring(0, whereSt.length() - 4);
-		}
-		
-		return ((Note)dbAdapter.getTable("note")).select(
-				whereSt, 
-				whereValuesArray, 
-				"timestamp DESC"
-		);
-	}*/
-	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		switch(requestCode) {
@@ -160,6 +125,13 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 					return;
 				}
 		}
+		
+		// Hide the no notes message if there are notes.
+        if(notesListView.getCount() == 0) {
+        	this.findViewById(R.id.noNotesMessage).setVisibility(View.VISIBLE);
+        } else {
+        	this.findViewById(R.id.noNotesMessage).setVisibility(View.GONE);
+        }
 		
 	}
 
