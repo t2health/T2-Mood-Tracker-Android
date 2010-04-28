@@ -85,6 +85,12 @@
 	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity 
+	    	android:name=".activity.NotesDialogActivity" 
+	    	android:label="@string/activity_note_dialog_list" 
+	    	android:excludeFromRecents="true" 
+	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	</activity>
+	   	<activity 
 	    	android:name=".activity.NoteActivity" 
 	    	android:label="@string/activity_note" 
 	    	android:excludeFromRecents="true" 

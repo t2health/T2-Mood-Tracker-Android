@@ -47,6 +47,10 @@ public class DBAdapter extends SQLiteOpenHelper {
 		this.tables.put(t.getTableName(), t);
 	}
 	
+	public Context getContext() {
+		return this.context;
+	}
+	
 	public SQLiteDatabase getDatabase() {
 		//Log.v(TAG, "GETDATABASE");
 		return this.database;

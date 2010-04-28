@@ -11,6 +11,7 @@ import com.t2.vas.db.Table;
 public class Group extends Table {
 	public long group_id;
 	public String title;
+	public int immutable = 0;
 
 	public Group(DBAdapter d) {
 		super(d);
@@ -23,7 +24,7 @@ public class Group extends Table {
 
 	@Override
 	public void onCreate() {
-		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL)");
+		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, immutable INTEGER NOT NULL)");
 	}
 
 	@Override
@@ -35,6 +36,7 @@ public class Group extends Table {
 	public long insert() {
 		ContentValues v = new ContentValues();
 		v.put("title", this.title);
+		v.put("immutable", this.immutable);
 		
 		return this.insert(v);
 	}
@@ -43,6 +45,7 @@ public class Group extends Table {
 	public boolean load(Cursor c) {
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		this.title = c.getString(c.getColumnIndex("title"));
+		this.immutable = c.getInt(c.getColumnIndex("immutable"));
 		return true;
 	}
 
@@ -51,6 +54,7 @@ public class Group extends Table {
 		ContentValues v = new ContentValues();
 		v.put("_id", this._id);
 		v.put("title", this.title);
+		v.put("immutable", this.immutable);
 		
 		return this.update(v);
 	}

@@ -18,13 +18,13 @@ import com.t2.vas.view.chart.Label;
 import com.t2.vas.view.chart.Value;
 
 public class Scale extends Table {
-	private static final String TAG = "SCALE";
+	private static final String TAG = Scale.class.getName();
 	
 	public long group_id;
 	public long scale_id;
 	public String max_label;
 	public String min_label;
-	public int weight;
+	public int weight = 0;
 
 	public static final int GROUPBY_YEAR = Calendar.YEAR;
 	public static final int GROUPBY_MONTH = Calendar.MONTH;
@@ -32,11 +32,11 @@ public class Scale extends Table {
 	public static final int GROUPBY_DAY = Calendar.DAY_OF_MONTH;
 	public static final int GROUPBY_HOUR = Calendar.HOUR_OF_DAY;
 	
-	private static final String GROUPBY_YEAR_FORMAT = "yyyy";
+	/*private static final String GROUPBY_YEAR_FORMAT = "yyyy";
 	private static final String GROUPBY_MONTH_FORMAT = "yyyy-MM";
 	private static final String GROUPBY_DAY_FORMAT = "yyyy-MM-dd";
 	private static final String GROUPBY_HOUR_FORMAT = "yyyy-MM-dd HH";
-	private static final String GROUPBY_WEEK_FORMAT = "yyyy-ww";
+	private static final String GROUPBY_WEEK_FORMAT = "yyyy-ww";*/
 	
 	public static final int ORDERBY_ASC = 13;
 	public static final int ORDERBY_DESC = 14;
@@ -163,6 +163,135 @@ public class Scale extends Table {
 	
 	
 	public ResultValues getResultValues(int group_by, String labelFormat) {
+		SimpleDateFormat labelDateFormatter = new SimpleDateFormat(labelFormat);
+		String formatter_date_format = "";
+		String db_date_format = "";
+		
+		// Determine the label format to use.
+		switch(group_by) {
+			case Scale.GROUPBY_HOUR:
+				formatter_date_format = "yyyy-MM-dd HH";
+				db_date_format = "%Y-%m-%d %H";
+				break;
+			case Scale.GROUPBY_MONTH:
+				formatter_date_format = "yyyy-MM";
+				db_date_format = "%Y-%m";
+				break;
+			case Scale.GROUPBY_WEEK:
+				formatter_date_format = "yyyy-ww";
+				db_date_format = "%Y-%W";
+				break;
+			case Scale.GROUPBY_YEAR:
+				formatter_date_format = "yyyy";
+				db_date_format = "%Y";
+				break;
+			case Scale.GROUPBY_DAY:
+			default:
+				formatter_date_format = "yyyy-MM-dd";
+				db_date_format = "%Y-%m-%d";
+				break;
+		}
+		
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				"result r " +
+				"LEFT JOIN note n ON (" +
+					"strftime('"+db_date_format+"', datetime(n.timestamp / 1000, 'unixepoch')) = strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))" +
+				")",
+				new String[]{
+					"strftime('"+db_date_format+"', datetime(MIN(r.timestamp) / 1000, 'unixepoch')) label_value", 
+					"MIN(r.timestamp) timestamp",
+					"AVG(r.value) value",
+					"COUNT(n._id) has_notes",
+				}, 
+				"scale_id=?", 
+				new String[]{
+					this._id+""
+				}, 
+				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))", 
+				null, 
+				"label_value ASC",
+				"200"
+		);
+		//Log.v(TAG, "ROW COUNT:"+c.getCount());
+		
+		String rLabelValue = "";
+		long rTimestamp = 0;
+		double rValue = 0.00;
+		boolean rHasNotes = false;
+		
+		ResultValues resultValues = new ResultValues();
+		SimpleDateFormat groupByDateFormatter = new SimpleDateFormat(formatter_date_format);
+		Date tmpDate;
+		Calendar runningCal = null;
+		Calendar rowCal = Calendar.getInstance();
+		boolean loadNext = true;
+		while(true) {
+			if(loadNext) {
+				if(!c.moveToNext()) {
+					break;
+				}
+				
+				rLabelValue = c.getString(c.getColumnIndex("label_value"));
+				rTimestamp = c.getLong(c.getColumnIndex("timestamp"));
+				rValue = c.getDouble(c.getColumnIndex("value"));
+				rHasNotes = c.getInt(c.getColumnIndex("has_notes")) > 0;
+				
+				Calendar tmpCal = Calendar.getInstance();
+				tmpCal.setTimeInMillis(rTimestamp);
+				//Log.v(TAG, "DATE:"+groupByDateFormatter.format(tmpCal.getTime()));
+				//Log.v(TAG, "DATE:"+rLabelValue);
+				//Log.v(TAG, "  .");
+				//Log.v(TAG, "TIMESTAMP:"+rTimestamp);
+				
+				//Log.v(TAG, "VAL:"+rValue);
+				//Log.v(TAG, "HN:"+rHasNotes);
+				
+				if(runningCal == null) {
+					runningCal = Calendar.getInstance();
+					runningCal.setTimeInMillis(rTimestamp);
+				}
+			}
+			loadNext = false;
+			
+			
+			try {
+				rowCal.setTimeInMillis(rTimestamp);
+				tmpDate = rowCal.getTime();
+				rowCal.setTime(
+						groupByDateFormatter.parse(groupByDateFormatter.format(tmpDate))
+				);
+				
+				tmpDate = runningCal.getTime();
+				runningCal.setTime(
+						groupByDateFormatter.parse(groupByDateFormatter.format(tmpDate))
+				);
+				//Log.v(TAG, groupByDateFormatter.format(rowCal.getTime())+", "+ groupByDateFormatter.format(runningCal.getTime()));
+				//Log.v(TAG, rowCal.getTimeInMillis()+", "+ runningCal.getTimeInMillis());
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			String labelString = labelDateFormatter.format(runningCal.getTime());
+			if(rowCal.getTimeInMillis() == runningCal.getTimeInMillis()) {
+				//Log.v(TAG, "DD");
+				resultValues.values.add(new Value(rValue, null, rHasNotes));
+				resultValues.labels.add(new Label<Date>(labelString, runningCal.getTime()));
+				
+				loadNext = true;
+			} else {
+				//Log.v(TAG, "EE");
+				resultValues.values.add(new Value(null, null, false));
+				resultValues.labels.add(new Label<Date>(labelString, runningCal.getTime()));
+			}
+			
+			runningCal.add(group_by, 1);
+		}
+		
+		return resultValues;
+	}
+	
+	/*public ResultValues getResultValues2(int group_by, String labelFormat) {
 		Result[] results = this.getResults();
 		String date_format;
 		Calendar resultsAxisCal;
@@ -232,6 +361,7 @@ public class Scale extends Table {
 			//resultValues.results.add(resultsList);
 			
 			// Group the results together.
+			currentTime = resultsAxisCal.getTimeInMillis();
 			resultsAxisCal.add(group_by, 1);
 			nextTime = resultsAxisCal.getTimeInMillis();
 			
@@ -246,7 +376,6 @@ public class Scale extends Table {
 				}
 			}
 			
-			
 			// Average the results in this group and use the value
 			if(resultsList.size() > 0) {
 				value = 0.00;
@@ -256,18 +385,35 @@ public class Scale extends Table {
 				value /= resultsList.size();
 			}
 			
+			
 			// append the value to the values list. yes this can take a null value.
-			// nulls are reult groups where nothing was recorded.
+			// nulls are result groups where nothing was recorded.
 			resultValues.values.add(
 					new Value<ArrayList<Result>>(
 						value,
 						resultsList
 					)
 			);
+			
+			
+			// Check if there are notes in the result range
+			if(resultsList.size() > 0) {
+				long startTimestamp = currentTime;
+				long endTimestamp = nextTime;
+				
+				Log.v(TAG, "TS:"+startTimestamp+","+endTimestamp);
+				
+				Cursor c = ((Note)this.getDBAdapter().getTable("note")).queryForNotes(startTimestamp, endTimestamp, "timestamp DESC");
+				if(c.getCount() > 0) {
+					Log.v(TAG, "HAS NOTES");
+					resultValues.values.get(resultValues.values.size() - 1).setHilight(true);
+				}
+				c.close();
+			}
 		}
 		
 		return resultValues;
-	}
+	}*/
 	
 	public class ResultValues {
 		public ArrayList<Value> values = new ArrayList<Value>();

@@ -27,11 +27,12 @@ public abstract class Series {
 	protected int fillColor = Color.RED;
 	protected int strokeColor = Color.GREEN;
 	
+	private int hilightColor = Color.YELLOW;
+	
 	protected ArrayList<Label> labels = new ArrayList<Label>();
 	protected ArrayList<Value> values = new ArrayList<Value>();
 	
-	
-	private ArrayList<ShapeDrawable> drawables = new ArrayList<ShapeDrawable>();
+	private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 	private ArrayList<SeriesDrawable> seriesDrawables = new ArrayList<SeriesDrawable>();
 	
 	public Series(String name) {
@@ -40,8 +41,7 @@ public abstract class Series {
 	
 	public Series(String name, ArrayList<Label> labels, ArrayList<Value> values) {
 		this.setName(name);
-		this.addAllLabels(labels);
-		this.addAllValues(values);
+		this.addAll(labels, values);
 	}
 
 	public void setName(String name) {
@@ -68,21 +68,14 @@ public abstract class Series {
 		return strokeColor;
 	}
 	
-	public void addValue(Value v) {
-		this.values.add(v);
+	public void setHilightColor(int hilightColor) {
+		this.hilightColor = hilightColor;
 	}
-	public void addAllValues(Value[] v) {
-		for(int i = 0; i < v.length; i++) {
-			this.values.add(v[i]);
-		}
+
+	public int getHilightColor() {
+		return hilightColor;
 	}
-	public void addAllValues(ArrayList<Value> v) {
-		this.values.addAll(v);
-	}
-	public ArrayList<Value> getValues() {
-		return this.values;
-	}
-	
+
 	public int size() {
 		return this.values.size();
 	}
@@ -91,41 +84,88 @@ public abstract class Series {
 		return this.seriesDrawables.size();
 	}
 	
-	
-	public void addLabel(Label l) {
-		this.labels.add(l);
+	public void add(Label l) {
+		this.add(l, null);
 	}
-	public void addAllLabels(Label[] l) {
-		for(int i = 0; i < l.length; i++) {
-			this.labels.add(l[i]);
+	
+	public void add(Label l, Value v) {
+		this.labels.add(l);
+		this.values.add(v);
+	}
+	
+	public void addAll(ArrayList<Label> l, ArrayList<Value> v) {
+		for(int i = 0; i < l.size(); i++) {
+			Value val = null;
+			if(i <= v.size()-1) {
+				val = v.get(i);
+			}
+			
+			this.add(l.get(i), val);
 		}
 	}
-	public void addAllLabels(ArrayList<Label> l) {
-		this.labels.addAll(l);
+	
+	public void addAll(Label[] l, Value[] v) {
+		for(int i = 0; i < l.length; i++) {
+			Value val = null;
+			if(i <= v.length-1) {
+				val = v[i];
+			}
+			
+			this.add(l[i], val);
+		}
 	}
+	
+	public ArrayList<Value> getValues() {
+		return this.values;
+	}
+	
 	public ArrayList<Label> getLabels() {
 		return this.labels;
 	}
 	
+	public final ArrayList<SeriesDrawable> getSeriesDrawables(int width, int height) {
+		if(this.seriesDrawables.size() > 0) {
+			return this.seriesDrawables;
+		}
+		
+		this.seriesDrawables.clear();
+		
+		for(int i = 0; i < this.values.size(); i++) {
+			Value val = this.values.get(i);
+			SeriesDrawable sD = this.onLoadDrawable(val, i, width, height);
+			
+			if(sD == null) {
+				continue;
+			}
+			
+			sD.setHilightEnabled(val.isHilight());
+			sD.setValue(val);
+			
+			seriesDrawables.add(sD);
+		}
+		
+		return seriesDrawables;
+	}
 	
-	public final ArrayList<ShapeDrawable> getDrawables(ArrayList<ChartRect> areas, int width, int height) {
+	public final ArrayList<Drawable> getExtraDrawables(int width, int height) {
 		if(this.drawables.size() > 0) {
 			return this.drawables;
 		}
 		
-		this.drawables = this.loadDrawables(areas, width, height);
+		this.drawables.clear();
 		
-		// Create a list of just the SeriesDrawable objects.
-		for(int i = 0; i < this.drawables.size(); i++) {
-			Drawable d = this.drawables.get(i);
-			
-			try {
-				this.seriesDrawables.add((SeriesDrawable)d);
-			} catch(ClassCastException cce) {}
+		// Add the extras to the drawable list first
+		ArrayList<Drawable> extras = this.onLoadExtraDrawables(width, height);
+		for(int i = 0; i < extras.size(); i++) {
+			this.drawables.add(extras.get(i));
 		}
 		
 		return this.drawables;
 	}
 	
-	protected abstract ArrayList<ShapeDrawable> loadDrawables(ArrayList<ChartRect> areas, int width, int height);
+	protected abstract SeriesDrawable onLoadDrawable(Value v, int pos, int width, int height);
+	protected ArrayList<Drawable> onLoadExtraDrawables(int width, int height) {
+		return new ArrayList<Drawable>();
+	}
+	
 }

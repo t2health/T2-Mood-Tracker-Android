@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -26,12 +27,14 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 	private ArrayList<Group> groupList = new ArrayList<Group>();
 	private ArrayAdapter<String> adapter;
 	private ArrayList<String> groupListString = new ArrayList<String>();
+	private Toast immutableToast;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         this.setContentView(R.layout.group_list_activity);
         
+        immutableToast = Toast.makeText(this, R.string.activity_group_immutable, 5000);
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
         
         initAdapterData();
@@ -99,12 +102,18 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 		
 		// Load the scale list
 		Group group = groupList.get(arg2 - 1);
-		Intent i = new Intent(this, ScaleListActivity.class);
 		
+		// Enforce the immutable nature of this group.
+		if(group.immutable > 0) {
+			immutableToast.show();
+			return;
+		}
+		
+		// All the user to see the scales
+		Intent i = new Intent(this, ScaleListActivity.class);
 		if(group != null) {
 			i.putExtra("group_id", group._id);
 		}
-		
 		this.startActivity(i);
 	}
 	
@@ -119,13 +128,19 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 		
 		// Load the add/edit group activity.
 		Group group = groupList.get(arg2 - 1);
-		Intent i = new Intent(this, GroupActivity.class);
 		
+		// Enforce the immutable nature of this group.
+		if(group.immutable > 0) {
+			immutableToast.show();
+			return false;
+		}
+		
+		// Allow the user to edit this group. 
+		Intent i = new Intent(this, GroupActivity.class);
 		if(group != null) {
 			i.putExtra("group_id", group._id);
 		}
 		this.startActivityForResult(i, 1234567890);
-		
 		return false;
 	}
 }

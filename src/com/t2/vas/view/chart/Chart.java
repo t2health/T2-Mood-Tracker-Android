@@ -120,6 +120,7 @@ public class Chart extends View {
 		return this.seriesList.get(largestIndex);
 	}
 	
+	
 	private void initChartDrawables() {
 		//Log.v(TAG, "initChartDrawables");
 		
@@ -127,8 +128,9 @@ public class Chart extends View {
 		
 		for(String s: this.seriesList.keySet()) {
 			Series series = seriesList.get(s);
-			ArrayList<ChartRect> points = getDrawablePointRects(series, this.chartContainer);
-			ArrayList<ShapeDrawable> tmpDrawables = this.getSeriesDrawables(series, points, this.chartContainer);
+			this.setDrawablePointRects(series, this.chartContainer);
+			
+			ArrayList<Drawable> tmpDrawables = this.getSeriesDrawables(series, this.chartContainer);
 			
 			this.drawables.addAll(tmpDrawables);
 		}
@@ -136,14 +138,13 @@ public class Chart extends View {
 		if(showYHilight) {
 			this.drawables.add(yHilightDrawable);
 		}
-		
-		//Series firstSeries = this.seriesList.get(0);
-		
 	}
 	
-	@SuppressWarnings("unchecked")
-	private ArrayList<ChartRect> getDrawablePointRects(Series series, Rect container) {
+	private void setDrawablePointRects(Series series, Rect container) {
 		int maxHeight = container.height();
+		Log.v(TAG, "CT:"+ container.top);
+		Log.v(TAG, "H1:"+ (container.bottom-container.top));
+		Log.v(TAG, "H2:"+maxHeight);
 		
 		ArrayList<ChartRect> drawablePointAreas = new ArrayList<ChartRect>();
 		ArrayList<Value> values = series.getValues();
@@ -159,12 +160,12 @@ public class Chart extends View {
 		/*
 		 * Create the point drawable areas
 		 */
-		//Double prevValue = null;
+		Value valueObj = null;
 		Double value = null;
 		Double calcValue = null;
 		for(int i = 0; i < values.size(); i++) {
-			//prevValue = value;
-			value = values.get(i).getValue();
+			valueObj = values.get(i);
+			value = valueObj.getValue();
 			calcValue = value;
 
 			if(calcValue == null) {
@@ -173,38 +174,41 @@ public class Chart extends View {
 			
 			int x = getPointX(i, pointWidth, pointPaddingRight, container.left) + pointXShift;
 			int y = getPointY(maxHeight, calcValue);
-			//int nextX = getPointX(i+1, pointWidth, pointPaddingRight, container.left) + pointXShift;
 			
 			int left = x;
 			int top  = maxHeight - y;
 			int right = left + pointWidth;
 			int bottom = maxHeight;
 			
-			drawablePointAreas.add(new ChartRect(left, top, right, bottom, value));
+			valueObj.setBounds(new Rect(left, top, right, bottom));
 		}
-		
-		return drawablePointAreas;
 	}
 	
-	private ArrayList<ShapeDrawable> getSeriesDrawables(Series series, ArrayList<ChartRect> drawablePointAreas, Rect container) {
-		int maxHeight = container.height();
+	
+	private ArrayList<Drawable> getSeriesDrawables(Series series, Rect container) {
+		ArrayList<SeriesDrawable> shapeDrawables = series.getSeriesDrawables(container.width(), container.height());
+		ArrayList<Drawable> extraDrawables = series.getExtraDrawables(container.width(), container.height());
+		ArrayList<Drawable> allDrawables = new ArrayList<Drawable>();
 		
-		ArrayList<ShapeDrawable> drawables = series.getDrawables(
-				drawablePointAreas, 
-				this.getWidth(), 
-				maxHeight
-		);
-		
-		// Set some other nice effects to the drawables.
-		for(int i = 0; i < drawables.size(); i++) {
-			drawables.get(i).getPaint().setAntiAlias(true);
+		/*// Add markers to denote where notes exist.
+		for(int i = 0; i < shapeDrawables.size(); i++) {
+			SeriesDrawable sd = shapeDrawables.get(i);
 			
-			if(isDropShadowEnabled()) {
-				drawables.get(i).getPaint().setShadowLayer(5, 3, 3, Color.argb(100, 0, 0, 0));
+			if(sd.isHilightEnabled()) {
+				ShapeDrawable s = new ShapeDrawable(new RectShape());
+				s.setBounds(sd.getBounds().left, container.top, sd.getBounds().right, container.top + 10);
+				allDrawables.add(s);
 			}
-		}
+		}*/
 		
-		return drawables;
+		allDrawables.addAll(extraDrawables);
+		allDrawables.addAll(shapeDrawables);
+		
+		/*for(int i = 0; i < allDrawables.size(); i++) {
+			allDrawables.get(i).getBounds().top += container.top;
+		}*/
+		
+		return allDrawables;
 	}
 	
 	private static int getPointX(int pointNum, int pointWidth, int pointPaddingRight, int containerLeft) {
@@ -351,7 +355,7 @@ public class Chart extends View {
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 		
-		this.chartContainer = new Rect(15, 10, this.getWidth() - 15, this.getHeight() - 10);
+		this.chartContainer = new Rect(15, 0, this.getWidth() - 15, this.getHeight());
 		
 		this.pointWidth = this.chartContainer.width() / 30;
 		this.pointPaddingRight = pointWidth / 2;
@@ -403,15 +407,6 @@ public class Chart extends View {
 		
 	}
 
-	/*private boolean selectSeriesDrawableAt(int x, int y, int boundsPadding) {
-		for(Series s: this.seriesList.values()) {
-			if(s.selectDrawableValueAt(x, y, boundsPadding)) {
-				return true;
-			}
-		}
-		return false;
-	}*/
-
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -432,40 +427,13 @@ public class Chart extends View {
 		return true;
 	}
 	
-	/*public boolean dispatchClickToSeriesDrawable(MotionEvent event) {
-		int padding = (int)Math.ceil(this.pointPaddingRight / 2);
-		
-		for(int i = 0; i < event.getPointerCount(); i++) {
-			//Log.v(TAG, "TOUCH Pointer:"+i);
-			int pointerId = event.getPointerId(i);
-			int x = (int)Math.round(event.getX(i));
-			int y = (int)Math.round(event.getY(i));
-			
-			if(!selectSeriesDrawableAt(x, y, 0)) {
-				if(!selectSeriesDrawableAt(x, y, padding)) {
-					if(!selectSeriesDrawableAt(x, y, padding*2)) {
-						return selectSeriesDrawableAt(x, y, padding*4);
-					} else {
-						return true;
-					}
-				} else {
-					return true;
-				}
-			} else {
-				return true;
-			}
-		}
-		return false;
-	}*/
-	
-	
 
 	private int getSeriesXBetween(int leftX, int rightX, Series firstSeries) {
-		ArrayList<ChartRect> points = getDrawablePointRects(firstSeries, this.chartContainer);
+		ArrayList<Value> values = firstSeries.getValues();
 		
 		int currX = 0;
-		for(int i = points.size()-1; i >= 0; i--) {
-			ChartRect currBounds = points.get(i);
+		for(int i = values.size()-1; i >= 0; i--) {
+			Rect currBounds = values.get(i).getBounds();
 			currX = currBounds.left + ((currBounds.right - currBounds.left) / 2);
 			
 			if(rightX >= currX) {
@@ -477,11 +445,11 @@ public class Chart extends View {
 	}
 
 	private int getSeriesIndexBetween(int leftX, int rightX, Series firstSeries) {
-		ArrayList<ChartRect> points = getDrawablePointRects(firstSeries, this.chartContainer);
+		ArrayList<Value> values = firstSeries.getValues();
 		
 		int currX = 0;
-		for(int i = points.size()-1; i >= 0; i--) {
-			ChartRect currBounds = points.get(i);
+		for(int i = values.size()-1; i >= 0; i--) {
+			Rect currBounds = values.get(i).getBounds();
 			currX = currBounds.left + ((currBounds.right - currBounds.left) / 2);
 			
 			if(rightX >= currX) {
@@ -508,13 +476,13 @@ public class Chart extends View {
 			break;
 		}
 		
-		ArrayList<ChartRect> drawablePointRects = this.getDrawablePointRects(firstSeries, this.chartContainer);
-		if(drawablePointRects == null || drawablePointRects.size() <= 0) {
+		ArrayList<Value> values = firstSeries.getValues();
+		if(values == null || values.size() <= 0) {
 			return;
 		}
 		
-		ChartRect lastPoint = drawablePointRects.get(drawablePointRects.size() - 1);
-		ChartRect firstPoint = drawablePointRects.get(0);
+		Rect lastPoint = values.get(values.size() - 1).getBounds();
+		Rect firstPoint = values.get(0).getBounds();
 		int seriesIndex = -1;
 		
 		// Make sure the hilight staying within the container of the chart.

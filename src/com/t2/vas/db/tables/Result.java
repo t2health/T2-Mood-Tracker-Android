@@ -25,6 +25,10 @@ public class Result extends Table {
 	@Override
 	public void onCreate() {
 		this.dbAdapter.getDatabase().execSQL("CREATE TABLE result (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, scale_id INTEGER NOT NULL, timestamp INTEGER NOT NULL, value INTEGER NOT NULL)");
+		// Create the index
+		this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE INDEX result_timestamp_index ON result(timestamp)" +
+		"");
 	}
 
 	@Override

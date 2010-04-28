@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Note extends Table {
-	public long group_id;
-	public long scale_id;
-	public long result_id;
 	public long timestamp;
 	public String note;
 	
@@ -26,7 +24,20 @@ public class Note extends Table {
 
 	@Override
 	public void onCreate() {
-		this.dbAdapter.getDatabase().execSQL("CREATE TABLE note (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, scale_id INTEGER NOT NULL, result_id INTEGER NOT NULL, timestamp INTEGER NOT NULL, note TEXT NOT NULL)");
+		// Create the table
+		this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE TABLE " +
+				"	note " +
+				"(" +
+				"	_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"	timestamp INTEGER NOT NULL, " +
+				"	note TEXT NOT NULL" +
+				")");
+		
+		// Create the index
+		this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE INDEX note_timestamp_index ON note(timestamp)" +
+		"");
 	}
 
 	@Override
@@ -37,9 +48,6 @@ public class Note extends Table {
 	@Override
 	public long insert() {
 		ContentValues v = new ContentValues();
-		v.put("group_id", this.group_id);
-		v.put("scale_id", this.scale_id);
-		v.put("result_id", this.result_id);
 		v.put("timestamp", this.timestamp);
 		v.put("note", this.note);
 		
@@ -49,9 +57,6 @@ public class Note extends Table {
 	@Override
 	public boolean load(Cursor c) {
 		this._id = c.getLong(c.getColumnIndex("_id"));
-		this.group_id = c.getLong(c.getColumnIndex("group_id"));
-		this.scale_id = c.getLong(c.getColumnIndex("scale_id"));
-		this.result_id = c.getLong(c.getColumnIndex("result_id"));
 		this.timestamp = c.getLong(c.getColumnIndex("timestamp"));
 		this.note = c.getString(c.getColumnIndex("note"));
 		return true;
@@ -61,9 +66,6 @@ public class Note extends Table {
 	public boolean update() {
 		ContentValues v = new ContentValues();
 		v.put("_id", this._id);
-		v.put("group_id", this.group_id);
-		v.put("scale_id", this.scale_id);
-		v.put("result_id", this.result_id);
 		v.put("timestamp", this.timestamp);
 		v.put("note", this.note);
 		
@@ -86,5 +88,37 @@ public class Note extends Table {
 		}
 		
         return notes;
+	}
+	
+	public Cursor queryForNotes(long startTimestamp, long endTimestamp, String orderBy) {
+		ArrayList<String> whereValues = new ArrayList<String>();
+		ArrayList<String> whereConditions = new ArrayList<String>();
+		
+		if(startTimestamp >= 0) {
+			whereConditions.add("timestamp >= ?");
+			whereValues.add(startTimestamp+"");
+		}
+		if(endTimestamp >= 0) {
+			whereConditions.add("timestamp < ?");
+			whereValues.add(endTimestamp+"");
+		}
+		
+		String[] whereValuesArray = null;
+		String whereSt = null;
+		if(whereConditions.size() > 0) {
+			whereValuesArray = whereValues.toArray(new String[whereValues.size()]);
+			whereSt = "";
+			
+			for(int i = 0; i < whereConditions.size(); i++) {
+				whereSt += whereConditions.get(i)+ " AND ";
+			}
+			whereSt = whereSt.substring(0, whereSt.length() - 4);
+		}
+		
+		return ((Note)dbAdapter.getTable("note")).select(
+				whereSt, 
+				whereValuesArray, 
+				orderBy
+		);
 	}
 }

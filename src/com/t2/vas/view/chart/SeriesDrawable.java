@@ -8,7 +8,9 @@ import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 
-public abstract class SeriesDrawable extends ShapeDrawable {
+public class SeriesDrawable extends ShapeDrawable {
+	private Value value = null;
+	
 	private int fillColor = Color.RED;
 	private int strokeColor = Color.GREEN;
 	
@@ -18,6 +20,7 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 	protected ShapeDrawable fillDrawable;
 	protected ShapeDrawable strokeDrawable;
 	
+	private boolean isHilightEnabled = false;
 	/*private boolean isSelected = false;
 	private boolean isSelectable = true;*/
 	
@@ -70,6 +73,14 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 		return selectedStrokeColor;
 	}*/
 	
+	public void setHilightEnabled(boolean isHilightEnabled) {
+		this.isHilightEnabled = isHilightEnabled;
+	}
+
+	public boolean isHilightEnabled() {
+		return isHilightEnabled;
+	}
+
 	@Override
 	public void setBounds(int left, int top, int right, int bottom) {
 		super.setBounds(left, top, right, bottom);
@@ -80,10 +91,7 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 
 	@Override
 	public void setBounds(Rect bounds) {
-		super.setBounds(bounds);
-		
-		this.fillDrawable.setBounds(bounds);
-		this.strokeDrawable.setBounds(bounds);
+		this.setBounds(bounds.left, bounds.top, bounds.right, bounds.bottom);
 	}
 	
 	@Override
@@ -105,6 +113,14 @@ public abstract class SeriesDrawable extends ShapeDrawable {
 	@Override
 	public void setColorFilter(ColorFilter cf) {
 		
+	}
+
+	public void setValue(Value value) {
+		this.value = value;
+	}
+
+	public Value getValue() {
+		return value;
 	}
 
 	/*public void setSeleted() {

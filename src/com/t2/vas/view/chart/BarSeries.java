@@ -24,7 +24,16 @@ public class BarSeries extends Series {
 		super(name, labels, values);
 	}
 
-	protected ArrayList<ShapeDrawable> loadDrawables(ArrayList<ChartRect> areas, int width, int height) {
+	protected SeriesDrawable onLoadDrawable(Value v, int pos, int width, int height) {
+		BarSeriesDrawable point = new BarSeriesDrawable(v.getBounds());
+		
+		point.setFillColor(this.getFillColor());
+		point.setStrokeColor(this.getStrokeColor());
+		
+		return point;
+	}
+	
+	/*protected ArrayList<ShapeDrawable> loadDrawables(ArrayList<ChartRect> areas, int width, int height) {
 		ArrayList<ShapeDrawable> drawables = new ArrayList<ShapeDrawable>();
 		
 		for(int i = 0; i < areas.size(); i++) {
@@ -37,5 +46,5 @@ public class BarSeries extends Series {
 		}
 		
 		return drawables;
-	}
+	}*/
 }

@@ -1,6 +1,8 @@
 package com.t2.vas.activity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import com.t2.vas.Global;
 import com.t2.vas.NotesCursorAdapter;
 import com.t2.vas.R;
@@ -13,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -41,6 +44,7 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 		
 		// Init global main variables.
 		sharedPref = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+		this.setContentView(R.layout.notes_activity);
 		
 		if(sharedPref.getBoolean("password_protect_notes", false)) {
 			showPasswordPrompt();
@@ -59,10 +63,14 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 	}
 	
 	private void initInterface() {
+		Intent intent = this.getIntent();
+		long startTimestamp = intent.getLongExtra("start_timestamp", -1);
+		long endTimestamp = intent.getLongExtra("end_timestamp", -1);
+		
 		// Init global main variables.
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		
-		this.notesCursor = ((Note)dbAdapter.getTable("note")).select(null, "timestamp DESC");
+		this.notesCursor = ((Note)dbAdapter.getTable("note")).queryForNotes(startTimestamp, endTimestamp, "timestamp DESC");
         this.notesAdapter = new NotesCursorAdapter(
         		this, 
         		android.R.layout.simple_list_item_2,
@@ -77,14 +85,8 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
         		},
         		new SimpleDateFormat(NOTE_DATE_FORMAT)
         );
-        this.setContentView(R.layout.notes_activity);
-        
-        /*LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
-        ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.add_note);
-        ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);*/
         
         notesListView = ((ListView)this.findViewById(R.id.list));
-        //notesListView.addHeaderView(addViewItem);
         notesListView.setAdapter(notesAdapter);
         notesListView.setOnItemClickListener(this);
         notesListView.setOnItemLongClickListener(this);
@@ -96,6 +98,41 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
         	this.findViewById(R.id.noNotesMessage).setVisibility(View.GONE);
         }
 	}
+	
+	/*private Cursor queryForNotes(long startTimestamp, long endTimestamp) {
+		ArrayList<String> whereValues = new ArrayList<String>();
+		ArrayList<String> whereConditions = new ArrayList<String>();
+		
+		Log.v(TAG, "start time:"+ startTimestamp);
+		Log.v(TAG, "end time:"+ endTimestamp);
+		
+		if(startTimestamp >= 0) {
+			whereConditions.add("timestamp >= ?");
+			whereValues.add(startTimestamp+"");
+		}
+		if(endTimestamp >= 0) {
+			whereConditions.add("timestamp < ?");
+			whereValues.add(endTimestamp+"");
+		}
+		
+		String[] whereValuesArray = null;
+		String whereSt = null;
+		if(whereConditions.size() > 0) {
+			whereValuesArray = whereValues.toArray(new String[whereValues.size()]);
+			whereSt = "";
+			
+			for(int i = 0; i < whereConditions.size(); i++) {
+				whereSt += whereConditions.get(i)+ " AND ";
+			}
+			whereSt = whereSt.substring(0, whereSt.length() - 4);
+		}
+		
+		return ((Note)dbAdapter.getTable("note")).select(
+				whereSt, 
+				whereValuesArray, 
+				"timestamp DESC"
+		);
+	}*/
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){

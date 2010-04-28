@@ -13,8 +13,10 @@ import com.t2.vas.db.tables.Scale;
 import com.t2.vas.db.tables.Scale.ResultValues;
 import com.t2.vas.view.ChartLayout;
 import com.t2.vas.view.chart.LineSeries;
+import com.t2.vas.view.chart.NotesSeries;
 import com.t2.vas.view.chart.Series;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,6 +36,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ResultsActivity extends BaseActivity implements OnItemClickListener, OnClickListener {
 	private static final String TAG = "ResultsActivity";
+	private static final int ADD_NOTE = 234;
+	
 	ArrayList<ChartLayout> chartLayouts = new ArrayList<ChartLayout>();
 	
 	private long activeGroupId;
@@ -47,6 +51,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	private FrameLayout fadeOutCharts;
 	
 	private int resultsGroupBy = Scale.GROUPBY_DAY;
+	
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +85,12 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         for(int i = 0; i < scaleCount ; i++) {
         	Scale s = scales.get(i);
         	ResultValues scaleValues = s.getResultValues(resultsGroupBy, Global.CHART_LABEL_DATE_FORMAT);
+        	
+        	NotesSeries notesSeries = new NotesSeries(
+        			"Notes",
+        			scaleValues.labels,
+        			scaleValues.values
+        	);
         	
         	LineSeries lineSeries = new LineSeries(
         			s.max_label +" - "+ s.min_label,
@@ -132,7 +143,9 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	
         	// Add the series and add the chart to the list of charts.
         	chartLayout.getChart().addSeries("main", lineSeries);
+        	chartLayout.getChart().addSeries("notes", notesSeries);
         	chartLayouts.add(chartLayout);
+        	
         }
         
         keyListAdapter = new ScaleKeyAdapter(this, R.layout.key_box_adapter_list_label_right, chartLayouts);
@@ -151,6 +164,20 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         db.close();
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		// Refresh current chart to show notes.
+		if(requestCode == ADD_NOTE) {
+			if(data != null && resultCode == Activity.RESULT_OK) {
+				if(data.getLongExtra("noteId", -1) > 0) {
+					
+				}
+			}
+		}
+	}
+
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		ChartLayout chartLayout = (ChartLayout)arg1.getTag();
@@ -245,26 +272,39 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			return;
 		}
 		
+		
 		Calendar cal = Calendar.getInstance();
+		Date tmpDate;
+		long startTimestamp = -1;
+		long endTimestamp = -1;
+		
 		int seriesIndex = chartLayout.getChart().getYHilightSeriesIndex();
 		if(seriesIndex >= 0) {
-			Date d = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex).getLabelValue();
-			cal.setTime(d);
+			tmpDate = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex).getLabelValue();
+			cal.setTime(tmpDate);
+			startTimestamp = cal.getTimeInMillis();
+			
+			if(seriesIndex+1 < chartLayout.getChart().getSeriesAt(0).getLabels().size()) {
+				tmpDate = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex+1).getLabelValue();
+				cal.setTime(tmpDate);
+				endTimestamp = cal.getTimeInMillis();
+			}
 		}
 		
 		// stat the notes list activity
 		if(v.getId() == R.id.notesButton) {
-			Intent i = new Intent(this, NotesActivity.class);
-			i.putExtra("timstamp", cal.getTimeInMillis());
+			Intent i = new Intent(this, NotesDialogActivity.class);
+			i.putExtra("start_timestamp", startTimestamp);
+			i.putExtra("end_timestamp", endTimestamp);
 			
 			this.startActivity(i);
 			
 		// Start the add note activity
 		} else if(v.getId() == R.id.addNoteButton) {
 			Intent i = new Intent(this, NoteActivity.class);
-			i.putExtra("timstamp", cal.getTimeInMillis());
+			i.putExtra("timstamp", startTimestamp);
 			
-			this.startActivity(i);
+			this.startActivityForResult(i, ADD_NOTE );
 		}
 	}
 }

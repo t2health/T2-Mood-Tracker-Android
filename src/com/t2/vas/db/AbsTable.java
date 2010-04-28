@@ -7,8 +7,10 @@ import java.util.Map.Entry;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 public abstract class AbsTable {
+	private static final String TAG = AbsTable.class.getName();
 	protected DBAdapter dbAdapter;
 	protected HashMap<String, String> metaData = new HashMap<String, String>(); 
 	
@@ -35,6 +37,7 @@ public abstract class AbsTable {
 	public long insert(ContentValues v) {
 		boolean openForThis = false;
 		if(!this.dbAdapter.isOpen()) {
+			Log.v(TAG, "OPEN");
 			this.dbAdapter.open();
 			openForThis = true;
 		}

@@ -108,6 +108,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	}
 	
 	private void initAdapterData() {
+		this.dbHelper.open();
 		groupList = currentGroup.getGroups();
 		
 		// Convert the group list to an array of strings.

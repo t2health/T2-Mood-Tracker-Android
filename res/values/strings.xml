@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Mood Tracker</string>
+	<string name="app_name">Telehealth Mood Tracker</string>
 
-	<string name="activity_main">Mood Tracker</string>
+	<string name="activity_main">Telehealth Mood Tracker</string>
 	<string name="activity_main_help">ec vitae metus nec enim adipiscing varius. Cras eu nibh lacus. In rutrum sagittis volutpat. Aliquam erat volutpat. Sed congue condimentum vehicula. Sed turpis arcu, interdum quis consequat eu, fermentum non velit. Vivamus bibendum, urna ut tincidunt lobortis, justo neque pretium urna, at mollis est ligula eu sapien. Praesent lorem ligula, vehicula at tincidunt eget, gravida quis risus. Nam ac viverra enim. Aenean placerat tortor quis dui adipiscing nec fermentum sapien aliquam. Donec tincidunt dictum consectetur. Mauris orci erat, fermentum id pulvinar at, consequat et erat. Aliquam vitae dapibus orci. Maecenas tempor accumsan ullamcorper. Cras convallis nibh in nisl venenatis imperdiet. Duis consectetur mattis nibh quis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nibh sed quam convallis imperdiet nec quis turpis.</string>
 	<string name="activity_main_no_group_scales">The selected tracking target needs to have fields added to it. This can be done in "Preferences"</string>
-	<string name="activity_main_spinner_label">How are you feeling today?</string>
+	<string name="activity_main_spinner_label">Choose a category below.</string>
 	
 	<string name="activity_form">Form</string>
 	<string name="activity_form_submit">See my results!</string>
@@ -27,6 +27,7 @@
 	<string name="activity_password_new_message2">Re-enter the new password.</string>
 	
 	<string name="activity_note_list">Notes</string>
+	<string name="activity_note_dialog_list">Notes for selected date</string>
 	<string name="activity_note">Add/Edit Note</string>
 	<string name="activity_delete_note">Delete Note</string>
 	<string name="activity_note_list_no_notes_message">You do not have any notes yet.</string>
@@ -37,14 +38,15 @@
 	<string name="activity_preference_password_protect_notes_title">Password Protect Notes</string>
 	<string name="activity_preference_password_protect_notes_description">Require a password to view notes.</string>
 	
-	<string name="activity_group_list">Tracking Targets</string>
-	<string name="activity_group">Add/Edit Tracking Target</string>
-	<string name="activity_delete_group">Delete Tracking Target</string>
-	<string name="activity_group_list_add_group">Add Tracking Target</string>
-	<string name="activity_group_saved">The tracking target has been saved.</string>
-	<string name="activity_delete_group_message">Are you sure you would like to delete this tracking target and all of its fields?</string>
-	<string name="activity_group_deleted">The tracking target was deleted.</string>
-	<string name="activity_settings_group_editor">Tracking Targets Editor</string>
+	<string name="activity_group_list">Categories</string>
+	<string name="activity_group">Add/Edit Category</string>
+	<string name="activity_delete_group">Delete Category</string>
+	<string name="activity_group_list_add_group">Add Category</string>
+	<string name="activity_group_saved">The category has been saved.</string>
+	<string name="activity_delete_group_message">Are you sure you would like to delete this category and all of its fields?</string>
+	<string name="activity_group_deleted">The category was deleted.</string>
+	<string name="activity_settings_group_editor">Category Editor</string>
+	<string name="activity_group_immutable">This category and its fields cannot be modified.</string>
 	
 	<string name="activity_scale_list">Fields</string>
 	<string name="activity_scale">Add/Edit Field</string>
@@ -79,4 +81,164 @@
 	<string name="cancel">Cancel</string>
 	<string name="delete">Delete</string>
 	<string name="close">Close</string>
+	
+	
+	
+	<string name="group1">Depression</string>
+	<string-array name="group1_min">
+		<item>Depressed</item>
+		<item>Joyless</item>
+		<item>Fatigued</item>
+		<item>Sleepy</item>
+		<item>Isolated</item>
+		<item>Hopeless</item>
+		<item>Distracted</item>
+		<item>Slow</item>
+		<item>Restless</item>
+		<item>Destructive</item>
+	</string-array>
+	<string-array name="group1_max">
+		<item>Happy</item>
+		<item>Joyful</item>
+		<item>Energetic</item>
+		<item>Alert</item>
+		<item>Involved</item>
+		<item>Hopeful</item>
+		<item>Focused</item>
+		<item>Fast</item>
+		<item>Relaxed</item>
+		<item>Creative</item>
+	</string-array>
+	
+	<string name="group2">Anxiety</string>
+	<string-array name="group2_min">
+		<item>Worried</item>
+		<item>Pressured</item>
+		<item>Tense</item>
+		<item>Sleepless</item>
+		<item>Distracted</item>
+		<item>Irritable</item>
+		<item>Nervous</item>
+		<item>Fearful</item>
+		<item>Panicked</item>
+		<item>Anxious</item>
+	</string-array>
+	<string-array name="group2_max">
+		<item>Untroubled</item>
+		<item>Calm</item>
+		<item>Relaxed</item>
+		<item>Rested</item>
+		<item>Focused</item>
+		<item>Cheerful</item>
+		<item>Brave</item>
+		<item>Fearless</item>
+		<item>Content</item>
+		<item>Peaceful</item>
+	</string-array>
+	
+	<string name="group3">Post-traumatic Stress</string>
+	<string-array name="group3_min">
+		<item>Avoiding</item>
+		<item>Fearful</item>
+		<item>Anxious</item>
+		<item>Jumpy</item>
+		<item>Guarded</item>
+		<item>Numb</item>
+		<item>Hyper </item>
+		<item>Isolated</item>
+		<item>Bored</item>
+		<item>Hopeless</item>
+	</string-array>
+	<string-array name="group3_max">
+		<item>Welcoming</item>
+		<item>Fearless</item>
+		<item>Peaceful</item>
+		<item>Laid-back</item>
+		<item>Easy-going</item>
+		<item>Responsive</item>
+		<item>Calm</item>
+		<item>Involved</item>
+		<item>Interested</item>
+		<item>Hopeful</item>
+	</string-array>
+	
+	<string name="group4">Brain Injury</string>
+	<string-array name="group4_min">
+		<item>Confused</item>
+		<item>Forgetful</item>
+		<item>Dizzy</item>
+		<item>Distracted</item>
+		<item>Moody</item>
+		<item>Headache</item>
+		<item>Irritable</item>
+		<item>Disorganized</item>
+		<item>Impulsive</item>
+		<item>Depressed</item>
+	</string-array>
+	<string-array name="group4_max">
+		<item>Alert</item>
+		<item>Sharp</item>
+		<item>Stable</item>
+		<item>Attentive</item>
+		<item>Even</item>
+		<item>No Headache</item>
+		<item>Cheerful</item>
+		<item>Organized</item>
+		<item>Thoughtful</item>
+		<item>Happy</item>
+	</string-array>
+	
+	<string name="group5">Stress</string>
+	<string-array name="group5_min">
+		<item>Stressed</item>
+		<item>Pressured</item>
+		<item>Angry</item>
+		<item>Withdrawn</item>
+		<item>Restless</item>
+		<item>Moody</item>
+		<item>Irritable</item>
+		<item>Fatigued</item>
+		<item>Distracted</item>
+		<item>Hopeless</item>
+	</string-array>
+	<string-array name="group5_max">
+		<item>Relaxed</item>
+		<item>Calm</item>
+		<item>Content</item>
+		<item>Social</item>
+		<item>Peaceful</item>
+		<item>Even</item>
+		<item>Cheerful</item>
+		<item>Energetic</item>
+		<item>Focused</item>
+		<item>Hopeful</item>
+	</string-array>
+	
+	<string name="group6">General Well-Being</string>
+	<string-array name="group6_min">
+		<item>Sad</item>
+		<item>Tired</item>
+		<item>Worried</item>
+		<item>Tense</item>
+		<item>Pessimistic</item>
+		<item>Hopeless</item>
+		<item>Alone</item>
+		<item>Unsafe</item>
+		<item>Unloved</item>
+		<item>Angry</item>
+	</string-array>
+	<string-array name="group6_max">
+		<item>Happy</item>
+		<item>Energetic</item>
+		<item>Calm</item>
+		<item>Relaxed</item>
+		<item>Optimistic</item>
+		<item>Hopeful</item>
+		<item>Connected</item>
+		<item>Safe</item>
+		<item>Loved</item>
+		<item>Content</item>
+	</string-array>
+	
+	
 </resources>
