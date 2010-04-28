@@ -6,6 +6,9 @@
 	<string name="activity_main_help">ec vitae metus nec enim adipiscing varius. Cras eu nibh lacus. In rutrum sagittis volutpat. Aliquam erat volutpat. Sed congue condimentum vehicula. Sed turpis arcu, interdum quis consequat eu, fermentum non velit. Vivamus bibendum, urna ut tincidunt lobortis, justo neque pretium urna, at mollis est ligula eu sapien. Praesent lorem ligula, vehicula at tincidunt eget, gravida quis risus. Nam ac viverra enim. Aenean placerat tortor quis dui adipiscing nec fermentum sapien aliquam. Donec tincidunt dictum consectetur. Mauris orci erat, fermentum id pulvinar at, consequat et erat. Aliquam vitae dapibus orci. Maecenas tempor accumsan ullamcorper. Cras convallis nibh in nisl venenatis imperdiet. Duis consectetur mattis nibh quis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nibh sed quam convallis imperdiet nec quis turpis.</string>
 	<string name="activity_main_no_group_scales">The selected tracking target needs to have fields added to it. This can be done in "Preferences"</string>
 	<string name="activity_main_spinner_label">Choose a category below.</string>
+	<string name="activity_main_replay_intro">Replay Introduction</string>
+	
+	<string name="activity_splash_screen_message">Press anywhere on the screen to skip this into.</string>
 	
 	<string name="activity_form">Form</string>
 	<string name="activity_form_submit">See my results!</string>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/main"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<ImageView
+		android:id="@+id/iBackground"
+		android:src="@drawable/splash_bg"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iChip"
+		android:src="@drawable/splash_chip"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	
+	
+	<ImageView
+		android:id="@+id/iGlow1_1"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_2"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_3"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_4"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_5"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_6"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_7"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_8"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_9"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_10"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_11"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_12"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_13"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow1_14"
+		android:src="@drawable/splash_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+		
+		
+	<ImageView
+		android:id="@+id/iGlow3_1"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_2"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_3"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_4"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_5"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_6"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_7"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_8"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	<ImageView
+		android:id="@+id/iGlow3_9"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />
+	
+	
+	<ImageView
+		android:id="@+id/iT2Glow1"
+		android:src="@drawable/splash_t2_glow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />	
+	<ImageView
+		android:id="@+id/iT2Glow2"
+		android:src="@drawable/splash_t2_glow2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="center" />	
+	<!-- <ImageView
+		android:id="@+id/iGlow2"
+		android:src="@drawable/splash_glow2"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+	<ImageView
+		android:id="@+id/iGlow3"
+		android:src="@drawable/splash_glow3"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+	<ImageView
+		android:id="@+id/iLogoGlow"
+		android:src="@drawable/splash_logo_glow"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+	<ImageView
+		android:id="@+id/iT2Glow1"
+		android:src="@drawable/splash_t2_glow1"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+	<ImageView
+		android:id="@+id/iT2Glow2"
+		android:src="@drawable/splash_t2_glow2"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+		 -->
+</FrameLayout>

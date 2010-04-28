@@ -13,12 +13,19 @@
         
         <activity 
         	android:label="@string/activity_main" 
-        	android:name=".activity.MainActivity">
+        	android:name=".activity.SplashScreen" android:screenOrientation="landscape">
         	
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
+        </activity>
+
+		<activity 
+        	android:label="@string/activity_main" 
+        	android:launchMode="singleTop" 
+        	android:name=".activity.MainActivity"
+        	android:excludeFromRecents="true">
         </activity>
 
 	    <activity 

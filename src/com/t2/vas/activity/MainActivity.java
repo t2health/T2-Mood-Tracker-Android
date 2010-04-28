@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ReminderService;
+import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
@@ -15,6 +16,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -32,6 +36,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	private static final int NOTES_ACTIVITY = 347;
 	private static final int REMINDER_ACTIVITY = 348;
 	
+	private static final int REPLAY_INTRO = 235325243;
+	
 	private ArrayAdapter<String> adapter;
 	private ArrayList<Group> groupList;
 	private Group currentGroup;
@@ -43,6 +49,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         
@@ -229,5 +237,31 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	
 	public int getHelp() {
 		return R.string.activity_main_help;
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		
+		MenuItem item = menu.add(Menu.NONE, REPLAY_INTRO, 0, R.string.activity_main_replay_intro);
+		item.setIcon(android.R.drawable.ic_menu_revert);
+		
+		return true;
+	}
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		switch(item.getItemId()){
+			case REPLAY_INTRO:
+				i = new Intent(this, SplashScreen.class);
+				this.startActivity(i);
+				this.finish();
+				return true;
+		}
+		
+		return super.onContextItemSelected(item);
 	}
 }
