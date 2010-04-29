@@ -262,6 +262,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 				return true;
 		}
 		
-		return super.onContextItemSelected(item);
+		return super.onOptionsItemSelected(item);
 	}
 }
