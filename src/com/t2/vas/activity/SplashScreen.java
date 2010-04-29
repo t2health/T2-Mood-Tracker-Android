@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -30,7 +31,6 @@ import android.widget.Toast;
 
 public class SplashScreen extends Activity implements OnClickListener {
 	private static final String TAG = SplashScreen.class.getName();
-	private View contentView;
 	Timer startAppTimer = new Timer();
 	Toast skipMessage;
 
@@ -66,20 +66,18 @@ public class SplashScreen extends Activity implements OnClickListener {
 		
 		Random random = new Random();
 		Display display = this.getWindowManager().getDefaultDisplay();
-		int width = display.getWidth();
-		int height = display.getHeight();
 		
 		ScaleAnimation scaleAnimation;
 		AlphaAnimation alphaAnimation;
-		TranslateAnimation translateAnimation;
 		
 		View mainView = this.findViewById(R.id.main);
 		mainView.setOnClickListener(this);
 		
 		ImageView iBackground = (ImageView)this.findViewById(R.id.iBackground);
-		ImageView iChip = (ImageView)this.findViewById(R.id.iChip);
-		ImageView iT2Glow1 = (ImageView)this.findViewById(R.id.iT2Glow1);
-		ImageView iT2Glow2 = (ImageView)this.findViewById(R.id.iT2Glow2);
+		ImageView iChip0Overlay = (ImageView)this.findViewById(R.id.iChip0Overlay);
+		ImageView iChip0Glow = (ImageView)this.findViewById(R.id.iChip0Glow);
+		ImageView iChip1Glow = (ImageView)this.findViewById(R.id.iChip1Glow);
+		ImageView iChip2Glow = (ImageView)this.findViewById(R.id.iChip2Glow);
 		
 		ArrayList<ImageView> glow1Lines = new ArrayList<ImageView>();
 		glow1Lines.add((ImageView)this.findViewById(R.id.iGlow1_1));
@@ -96,126 +94,118 @@ public class SplashScreen extends Activity implements OnClickListener {
 		glow1Lines.add((ImageView)this.findViewById(R.id.iGlow1_12));
 		glow1Lines.add((ImageView)this.findViewById(R.id.iGlow1_13));
 		glow1Lines.add((ImageView)this.findViewById(R.id.iGlow1_14));
-		for(int i = 0; i < glow1Lines.size(); i++) {
-			glow1Lines.get(i).setVisibility(View.INVISIBLE);
-		}
 		
 		ArrayList<ImageView> glow2Lines = new ArrayList<ImageView>();
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_1));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_2));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_3));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_4));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_5));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_6));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_7));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_8));
-		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow3_9));
-		for(int i = 0; i < glow2Lines.size(); i++) {
-			glow2Lines.get(i).setVisibility(View.INVISIBLE);
-		}
-		
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_1));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_2));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_3));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_4));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_5));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_6));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_7));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_8));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_9));
+		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_10));
+
+		float scale = this.getResources().getDisplayMetrics().density;
 		
 		// Set the animation for the chip.
 		scaleAnimation = new ScaleAnimation(
 				1.0f, 
-				0.52f, 
+				0.30f,
 				1.0f, 
-				0.52f,
-				(width / 2) + 185,
-				(height / 2) + 5
+				0.30f,
+				350 * scale,
+				150 * scale
 		);
 		scaleAnimation.setDuration(2000);
 		alphaAnimation = new AlphaAnimation(
 				1.0f,
 				0.0f
 		);
-		alphaAnimation.setDuration(1500);
-		alphaAnimation.setStartOffset(1500);
+		alphaAnimation.setDuration(500);
+		alphaAnimation.setStartOffset(1000);
 		
-		AnimationSet iChipAnimation = new AnimationSet(true);
-		iChipAnimation.addAnimation(scaleAnimation);
-		iChipAnimation.addAnimation(alphaAnimation);
-		iChipAnimation.setFillAfter(true);
+		AnimationSet iChip0OverlayAnimation = new AnimationSet(true);
+		iChip0OverlayAnimation.addAnimation(scaleAnimation);
+		iChip0OverlayAnimation.addAnimation(alphaAnimation);
+		iChip0OverlayAnimation.setFillAfter(true);
+		iChip0Overlay.setVisibility(View.VISIBLE);
+		iChip0Overlay.startAnimation(iChip0OverlayAnimation);
 		
 		
 		// Init the glow1 animation
-		for(int i = 0; i < glow1Lines.size(); i+=4) {
+		for(int i = 0; i < glow1Lines.size(); i+=2) {
 			AnimationSet glow1Animation = new AnimationSet(true);
-			translateAnimation = new TranslateAnimation(
-					0.0f,
-					(width / 2) - 122 + (i * 3.1f),
-					0.0f,
-					(height / 2) - 8 + (i * 2.3f)
-			);
-			translateAnimation.setFillAfter(true);
-			
-			glow1Animation.addAnimation(translateAnimation);
-			glow1Animation.addAnimation(newAlphaAnimation(0.0f, 1.0f, 500, 0 + random.nextInt(500)));
-			glow1Animation.addAnimation(newAlphaAnimation(0.0f, 1.0f, 500, 1000 + random.nextInt(500)));
+			glow1Animation.addAnimation(circuitLineAlphaAnimation(0.0f, 1.0f, 500 + random.nextInt(250), 0 + random.nextInt(500)));
+			glow1Animation.addAnimation(circuitLineAlphaAnimation(0.0f, 1.0f, 500 + random.nextInt(250), 1000 + random.nextInt(500)));
 			
 			glow1Animation.setFillBefore(false);
 			glow1Animation.setFillAfter(true);
-			glow1Animation.setStartOffset(2500 + random.nextInt(500));
-			glow1Animation.setInterpolator(new BounceInterpolator());
+			glow1Animation.setStartOffset(1500 + random.nextInt(500));
 			
 			glow1Lines.get(i).setVisibility(View.VISIBLE);
 			glow1Lines.get(i).startAnimation(glow1Animation);
 		}
 		
-		
 		// Init the glow2 animation
 		for(int i = 0; i < glow2Lines.size(); i+=2) {
 			AnimationSet glow2Animation = new AnimationSet(true);
-			translateAnimation = new TranslateAnimation(
-					0.0f,
-					(width / 2) + 125 - (i * 2.8f),
-					0.0f,
-					(height / 2) - 4 + (i * 3.5f)
-			);
-			
-			glow2Animation.addAnimation(translateAnimation);
-			glow2Animation.addAnimation(newAlphaAnimation(0.0f, 1.0f, 500, 0 + random.nextInt(500)));
-			glow2Animation.addAnimation(newAlphaAnimation(0.0f, 1.0f, 500, 1000 + random.nextInt(500)));
+			glow2Animation.addAnimation(circuitLineAlphaAnimation(0.0f, 1.0f, 500 + random.nextInt(250), 0 + random.nextInt(500)));
+			glow2Animation.addAnimation(circuitLineAlphaAnimation(0.0f, 1.0f, 500 + random.nextInt(250), 1000 + random.nextInt(500)));
 			
 			glow2Animation.setFillBefore(false);
 			glow2Animation.setFillAfter(true);
-			glow2Animation.setStartOffset(2000 + random.nextInt(500));
+			glow2Animation.setStartOffset(1000 + random.nextInt(500));
 			
 			glow2Lines.get(i).setVisibility(View.VISIBLE);
 			glow2Lines.get(i).startAnimation(glow2Animation);
+			
 		}
 		
 		
-		
 		// Init the t2 glow1 animation
-		AnimationSet iT2Glow1Animation = new AnimationSet(true);
+		AnimationSet iChip1GlowAnimation = new AnimationSet(true);
 		alphaAnimation = new AlphaAnimation(
 				0.0f,
 				1.0f
 		);
-		alphaAnimation.setDuration(2000);
-		alphaAnimation.setStartOffset(3000);
-		iT2Glow1Animation.addAnimation(alphaAnimation);
-		iT2Glow1.startAnimation(alphaAnimation);
+		alphaAnimation.setDuration(3000);
+		alphaAnimation.setStartOffset(2250);
+		iChip1GlowAnimation.addAnimation(alphaAnimation);
+		iChip1Glow.setVisibility(View.VISIBLE);
+		iChip1Glow.startAnimation(alphaAnimation);
 		
 		
 		// Init the t2 glow1 animation
-		AnimationSet iT2Glow2Animation = new AnimationSet(true);
+		AnimationSet iChip2GlowAnimation = new AnimationSet(true);
 		alphaAnimation = new AlphaAnimation(
 				0.0f,
 				1.0f
 		);
-		alphaAnimation.setDuration(2000);
+		alphaAnimation.setDuration(3500);
+		alphaAnimation.setStartOffset(2000);
+		iChip2GlowAnimation.addAnimation(alphaAnimation);
+		iChip2Glow.setVisibility(View.VISIBLE);
+		iChip2Glow.startAnimation(alphaAnimation);
+		
+		
+		// Init the logo glow animation
+		AnimationSet iChip0GlowAnimation = new AnimationSet(true);
+		alphaAnimation = new AlphaAnimation(
+				0.0f,
+				1.0f
+		);
+		alphaAnimation.setDuration(4000);
 		alphaAnimation.setStartOffset(3000);
-		iT2Glow2Animation.addAnimation(alphaAnimation);
-		iT2Glow2.startAnimation(alphaAnimation);
-		
-		
-		iChip.startAnimation(iChipAnimation);
+		iChip0GlowAnimation.addAnimation(alphaAnimation);
+		iChip0Glow.setVisibility(View.VISIBLE);
+		iChip0Glow.startAnimation(alphaAnimation);
 	}
 	
-	private static AlphaAnimation newAlphaAnimation(float from, float to, int duration, int offset) {
+	private static AlphaAnimation circuitLineAlphaAnimation(float from, float to, int duration, int offset) {
 		AlphaAnimation a = new AlphaAnimation(from, to);
+		a.setInterpolator(new BounceInterpolator());
 		a.setDuration(duration);
 		a.setStartOffset(offset);
 		return a;

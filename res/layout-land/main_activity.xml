@@ -5,7 +5,7 @@
 	android:layout_height="fill_parent">
 	
 	<ImageView
-		android:src="@drawable/bg"
+		android:src="@drawable/chart_background"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:scaleType="centerCrop" />

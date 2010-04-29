@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/notesActivityButton"
-	android:layout_width="100dp"
-	android:layout_height="100dp"
-	android:text="@string/activity_note_list"
-	android:background="@drawable/note_b2"
-	android:gravity="bottom|center" />
-<!-- android:background="@android:drawable/ic_menu_agenda" -->
+	android:layout_width="100dip"
+	android:layout_height="100dip"
+	android:orientation="vertical">
+	
+	<ImageView
+		android:src="@android:drawable/ic_menu_agenda"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0" />
+	
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/activity_note_list"
+		android:gravity="center" />
+</LinearLayout>

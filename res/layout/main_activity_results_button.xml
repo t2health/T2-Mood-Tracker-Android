@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/resultsActivityButton"
-	android:layout_width="100dp"
-	android:layout_height="100dp"
-	android:text="@string/activity_results"
-	android:background="@android:drawable/ic_menu_slideshow"
-	android:gravity="bottom|center" />
+	android:layout_width="100dip"
+	android:layout_height="100dip"
+	android:orientation="vertical">
+	
+	<ImageView
+		android:src="@android:drawable/ic_menu_slideshow"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0" />
+	
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/activity_results"
+		android:gravity="center" />
+</LinearLayout>
