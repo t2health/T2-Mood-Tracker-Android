@@ -63,13 +63,13 @@ public class SplashScreen extends Activity implements OnClickListener {
 		super.onPostCreate(savedInstanceState);
 		
 		skipMessage.show();
-		/*startAppTimer.schedule(new TimerTask() {
+		startAppTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				startMain();
 				this.cancel();
 			}
-		}, 8000);*/
+		}, 8000);
 		
 		Random random = new Random();
 		Display display = this.getWindowManager().getDefaultDisplay();
