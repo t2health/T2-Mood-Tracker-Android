@@ -12,7 +12,8 @@ import android.util.Log;
 public abstract class AbsTable {
 	private static final String TAG = AbsTable.class.getName();
 	protected DBAdapter dbAdapter;
-	protected HashMap<String, String> metaData = new HashMap<String, String>(); 
+	protected HashMap<String, String> metaData = new HashMap<String, String>();
+	private boolean openForThis = false; 
 	
 	public AbsTable(DBAdapter d) {
 		this.setDBAdapter(d);
@@ -34,20 +35,26 @@ public abstract class AbsTable {
 		return dbAdapter;
 	}
 	
-	public long insert(ContentValues v) {
-		boolean openForThis = false;
+	protected void openForThis() {
 		if(!this.dbAdapter.isOpen()) {
-			Log.v(TAG, "OPEN");
-			this.dbAdapter.open();
 			openForThis = true;
+			this.dbAdapter.open();
 		}
+	}
+	
+	protected void closeForThis() {
+		if(this.openForThis) {
+			this.dbAdapter.close();
+			this.openForThis = false;
+		}
+	}
+	
+	public long insert(ContentValues v) {
+		this.openForThis();
 		
 		long l = this.dbAdapter.getDatabase().insert("`"+this.getTableName()+"`", null, v);
 		
-		if(openForThis) {
-			this.dbAdapter.close();
-		}
-		
+		this.closeForThis();
 		return l;
 	}
 	
@@ -57,21 +64,14 @@ public abstract class AbsTable {
 	}
 	
 	public int update(ContentValues values, ContentValues whereConditions) {
-		boolean openForThis = false;
-		if(!this.dbAdapter.isOpen()) {
-			this.dbAdapter.open();
-			openForThis = true;
-		}
+		this.openForThis();
 		
 		whereConditions.put("_id", values.getAsLong("_id"));
 		
 		QueryComponents qc = QueryComponents.factory(whereConditions);
 		int i = this.dbAdapter.getDatabase().update("`"+this.getTableName()+"`", values, qc.whereClause, qc.whereArgs);
 		
-		if(openForThis) {
-			this.dbAdapter.close();
-		}
-		
+		this.closeForThis();
 		return i;
 	}
 	
@@ -81,18 +81,11 @@ public abstract class AbsTable {
 	}
 	
 	public long delete(String whereClause, String[] whereArgs) {
-		boolean openForThis = false;
-		if(!this.dbAdapter.isOpen()) {
-			this.dbAdapter.open();
-			openForThis = true;
-		}
+		this.openForThis();
 		
 		long l = this.dbAdapter.getDatabase().delete("`"+this.getTableName()+"`", whereClause, whereArgs);
 		
-		if(openForThis) {
-			this.dbAdapter.close();
-		}
-		
+		this.closeForThis();
 		return l;
 	}
 	
@@ -121,14 +114,11 @@ public abstract class AbsTable {
 	}
 	
 	public Cursor select(String whereClause, String[] whereArgs, String groupBy, String having, String orderBy, String limit) {
-		boolean openForThis = false;
-		if(!this.dbAdapter.isOpen()) {
-			this.dbAdapter.open();
-			openForThis = true;
-		}
+		this.openForThis();
 		
 		Cursor c = this.dbAdapter.getDatabase().query("`"+this.getTableName()+"`", null, whereClause, whereArgs, groupBy, having, orderBy, limit);
 		
+		this.closeForThis();
 		return c;
 	}
 	

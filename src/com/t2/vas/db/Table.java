@@ -30,6 +30,7 @@ public abstract class Table extends AbsTable {
 		}
 		boolean res = this.load(c);
 		this._id = c.getLong(c.getColumnIndex("_id"));
+		c.close();
 		
 		return res;
 	}
@@ -38,10 +39,8 @@ public abstract class Table extends AbsTable {
 	public boolean save() {
 		if(this._id > 0) {
 			this.update();
-			//Log.v(TAG, "UPDATE:"+this._id);
 		} else {
 			this._id = this.insert();
-			//Log.v(TAG, "INSERT:"+this._id);
 		}
 		return this.load();
 	}

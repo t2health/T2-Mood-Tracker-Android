@@ -97,6 +97,7 @@ public class Group extends Table {
 			
 			groups.add(group);
 		}
+		c.close();
 		
 		return groups;
 	}
@@ -113,6 +114,7 @@ public class Group extends Table {
 			
 			scales.add(scale);
 		}
+		c.close();
 		
 		return scales;
 	}
@@ -128,9 +130,8 @@ public class Group extends Table {
 		Cursor c = gr.select(whereConditions);
 		if(c.moveToNext()) {
 			gr.load(c);
-			c.close();
-			
 		}
+		c.close();
 		
 		return gr;
 	}
