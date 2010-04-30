@@ -46,6 +46,8 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 		sharedPref = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
 		this.setContentView(R.layout.notes_activity);
 		
+		this.findViewById(R.id.closeButton).setOnClickListener(this);
+		
 		if(sharedPref.getBoolean("password_protect_notes", false)) {
 			showPasswordPrompt();
 		} else {
@@ -57,6 +59,7 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 		String notesPassword = sharedPref.getString("notes_password", null);
 		
 		Intent i = new Intent(this, PasswordActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 		i.putExtra("mode", PasswordActivity.MODE_UNLOCK);
 		i.putExtra("current_password", notesPassword);
 		this.startActivityForResult(i, PASSWORD_PROMPT);
@@ -160,6 +163,9 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 				Intent i = new Intent(this, NoteActivity.class);
 				this.startActivityForResult(i, NOTE_ACTIVITY);
 				break;
+			case R.id.closeButton:
+				this.finish();
+				return;
 		}
 	}
 	

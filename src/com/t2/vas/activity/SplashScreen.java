@@ -10,6 +10,7 @@ import com.t2.vas.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
@@ -112,13 +114,20 @@ public class SplashScreen extends Activity implements OnClickListener {
 		// Set the animation for the chip.
 		scaleAnimation = new ScaleAnimation(
 				1.0f, 
-				0.30f,
+				0.3f,
 				1.0f, 
-				0.30f,
-				350 * scale,
-				150 * scale
+				0.3f,
+				350 * scale + 0.5f,
+				150 * scale + 0.5f
 		);
 		scaleAnimation.setDuration(2000);
+		TranslateAnimation translateAnimation = new TranslateAnimation(
+			0.0f,
+			350 * scale + 0.5f,
+			0.0f,
+			150 * scale + 0.5f
+		);
+		translateAnimation.setDuration(2000);
 		alphaAnimation = new AlphaAnimation(
 				1.0f,
 				0.0f
@@ -127,6 +136,7 @@ public class SplashScreen extends Activity implements OnClickListener {
 		alphaAnimation.setStartOffset(1000);
 		
 		AnimationSet iChip0OverlayAnimation = new AnimationSet(true);
+		//iChip0OverlayAnimation.addAnimation(translateAnimation);
 		iChip0OverlayAnimation.addAnimation(scaleAnimation);
 		iChip0OverlayAnimation.addAnimation(alphaAnimation);
 		iChip0OverlayAnimation.setFillAfter(true);

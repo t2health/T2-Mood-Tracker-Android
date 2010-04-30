@@ -8,6 +8,10 @@
 		<Preference
 			android:title="@string/activity_settings_group_editor"
 			android:key="group_editor" />
+			
+		<CheckBoxPreference
+			android:title="@string/activity_startup_tips_hide"
+			android:key="hide_startup_tips" />
 	</PreferenceCategory>
 	
 	<PreferenceCategory

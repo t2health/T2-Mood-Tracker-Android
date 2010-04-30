@@ -12,4 +12,9 @@
 		android:title="@string/menu_help" 
 		android:icon="@android:drawable/ic_menu_help">
 	</item>
+	<item
+		android:id="@+id/tips"
+		android:title="@string/activity_startup_tips"
+		android:icon="@android:drawable/ic_menu_info_details">
+	</item>
 </menu>

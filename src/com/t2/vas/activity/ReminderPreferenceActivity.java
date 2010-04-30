@@ -60,15 +60,20 @@ public class ReminderPreferenceActivity extends BaseActivity implements OnClickL
 	        	break;	
         }
         
-        ((RadioButton)this.findViewById(R.id.reminderPreferenceNever)).setOnClickListener(this);
-        //((RadioButton)this.findViewById(R.id.reminderPreferenceHourly)).setOnClickListener(this);
-        ((RadioButton)this.findViewById(R.id.reminderPreferenceDaily)).setOnClickListener(this);
-        ((RadioButton)this.findViewById(R.id.reminderPreferenceWeekly)).setOnClickListener(this);
+        this.findViewById(R.id.closeButton).setOnClickListener(this);
+        this.findViewById(R.id.reminderPreferenceNever).setOnClickListener(this);
+        //this.findViewById(R.id.reminderPreferenceHourly).setOnClickListener(this);
+        this.findViewById(R.id.reminderPreferenceDaily).setOnClickListener(this);
+        this.findViewById(R.id.reminderPreferenceWeekly).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
+			case R.id.closeButton:
+				this.finish();
+				return;
+				
 			case R.id.reminderPreferenceNever:
 				currentGroupReminder.remind_mode = GroupReminder.REMIND_NEVER;
 				currentGroupReminder.save();

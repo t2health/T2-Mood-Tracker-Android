@@ -64,6 +64,13 @@
 	   	</activity>
 	   	
 	   	<activity 
+	    	android:name=".activity.StartupTipsActivity" 
+	    	android:label="@string/activity_help" 
+	    	android:excludeFromRecents="true" 
+	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	</activity>
+	   	
+	   	<activity 
 	    	android:name=".activity.ReminderActivity" 
 	    	android:label="@string/activity_reminder" 
 	    	android:excludeFromRecents="true" 

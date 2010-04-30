@@ -53,6 +53,10 @@ public class BaseActivity extends Activity {
 				i.putExtra("string_resource_id", this.getHelp());
 				this.startActivity(i);
 				return true;
+			case R.id.tips:
+				i = new Intent(this, StartupTipsActivity.class);
+				this.startActivity(i);
+				return true;
 		}
 		
 		return super.onContextItemSelected(item);

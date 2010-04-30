@@ -65,6 +65,7 @@
     <string name="activity_reminder_next_form">Next Form</string>
     <string name="activity_reminder_finish">Finish</string>
     
+    <string name="activity_reminder_preference_message">Choose how long since your last entry you should be reminded to take this activity.</string>
     <string name="activity_reminder_preference">Reminder</string>
     <string name="activity_reminder_preference_never">Never</string>
     <string name="activity_reminder_preference_hourly">Hourly</string>
@@ -90,7 +91,13 @@
 	<string name="delete">Delete</string>
 	<string name="close">Close</string>
 	
-	
+	<string name="activity_startup_tips">Health Tip</string>
+	<string name="activity_startup_tips_hide">Hide Startup Tips</string>
+	<string-array name="startup_tips">
+		<item>This is startup tip #1</item>
+		<item>This is startup tip #2</item>
+		<item>This is startup tip #3</item>
+	</string-array>
 	
 	<string name="group1">Depression</string>
 	<string-array name="group1_min">

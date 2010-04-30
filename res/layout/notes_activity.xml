@@ -51,4 +51,34 @@
 			android:layout_height="fill_parent">
 		</ListView>
 	</FrameLayout>
+	
+	
+	<TableLayout
+		android:id="@+id/dialogButtons"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:stretchColumns="*"
+		android:visibility="gone">
+		
+		<TableRow>
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+				
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+				
+				<Button
+					android:id="@+id/closeButton"
+					android:text="@string/close"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent" />
+				
+			</LinearLayout>
+		</TableRow>
+	
+	</TableLayout>
 </LinearLayout>

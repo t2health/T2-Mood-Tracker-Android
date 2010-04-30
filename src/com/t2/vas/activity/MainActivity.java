@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	private static final int RESULTS_ACTIVITY = 346;
 	private static final int NOTES_ACTIVITY = 347;
 	private static final int REMINDER_ACTIVITY = 348;
+	private static final int TIPS_ACTIVITY = 349;
 	
 	private static final int REPLAY_INTRO = 235325243;
 	
@@ -113,6 +114,14 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         Intent serviceIntent = new Intent(this, ReminderService.class);
         this.stopService(serviceIntent);
         this.startService(serviceIntent);
+        
+        
+        // Bring up the health tips.
+        if(!sharedPrefs.getBoolean("hide_startup_tips", false)) {
+        	Intent i = new Intent(this, StartupTipsActivity.class);
+        	i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+        	this.startActivity(i);
+        }
 	}
 	
 	private void initAdapterData() {

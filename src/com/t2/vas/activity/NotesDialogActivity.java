@@ -17,5 +17,6 @@ public class NotesDialogActivity extends NotesActivity {
 		}
 		
 		((ViewGroup)addButton.getParent()).removeView(addButton);
+		this.findViewById(R.id.dialogButtons).setVisibility(View.VISIBLE);
 	}
 }
