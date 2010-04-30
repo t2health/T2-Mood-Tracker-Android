@@ -7,6 +7,7 @@
 	<string name="activity_main_no_group_scales">The selected tracking target needs to have fields added to it. This can be done in "Preferences"</string>
 	<string name="activity_main_spinner_label">Choose a category below.</string>
 	<string name="activity_main_replay_intro">Replay Introduction</string>
+	<string name="activity_main_form_used">You have already provided information for this group today. You can still mange your notes and review you results.</string>
 	
 	<string name="activity_splash_screen_message">Press anywhere on the screen to skip this into.</string>
 	

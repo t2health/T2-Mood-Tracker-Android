@@ -10,6 +10,8 @@ import com.t2.vas.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -20,6 +22,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -45,6 +48,7 @@ public class SplashScreen extends Activity implements OnClickListener {
 		skipMessage.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
 		this.setContentView(R.layout.splash_screen);
 	}
+	
 
 	private void startMain() {
 		startAppTimer.cancel();

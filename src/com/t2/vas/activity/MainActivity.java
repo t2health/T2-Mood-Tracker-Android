@@ -1,6 +1,8 @@
 package com.t2.vas.activity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
@@ -48,6 +50,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	private ArrayList<String> groupListString = new ArrayList<String>();
 	private SharedPreferences sharedPrefs;
 
+	private Toast formsAlreadyUsedToast;
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -63,6 +67,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         this.findViewById(R.id.reminderPreferenceActivityButton).setOnClickListener(this);
 
         sharedPrefs = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        formsAlreadyUsedToast = Toast.makeText(this, R.string.activity_main_form_used, 3000);
         needScalesToast = Toast.makeText(this, R.string.activity_main_no_group_scales, 3000);
         dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
@@ -187,9 +192,26 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		Intent intent;
 		switch(id) {
 			case FORM_ACTIVITY:
-				intent = new Intent(this, FormActivity.class);
-				intent.putExtra("group_id", this.currentGroup._id);
-				this.startActivityForResult(intent, FORM_ACTIVITY);
+				// Disable the forms activity because it was already used today.
+				this.dbHelper.open();
+				long lastResult = this.currentGroup.getLatestResultTimestamp();
+				this.dbHelper.close();
+				Calendar nowCal = Calendar.getInstance();
+				Calendar thenCal = Calendar.getInstance();
+				thenCal.setTimeInMillis(lastResult);
+				
+				// Dont start the activity becase it was already used.
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				if(sdf.format(nowCal.getTime()).equals(sdf.format(thenCal.getTime()))) {
+					formsAlreadyUsedToast.show();
+					
+				// Start the activity
+				} else {
+					intent = new Intent(this, FormActivity.class);
+					intent.putExtra("group_id", this.currentGroup._id);
+					this.startActivityForResult(intent, FORM_ACTIVITY);					
+				}
+				
 				break;
 				
 			case RESULTS_ACTIVITY:
