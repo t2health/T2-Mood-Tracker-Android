@@ -323,7 +323,7 @@ public class Chart extends View {
 		}
 	}
 	
-	@Override
+	/*@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		this.refreshData();
 		
@@ -344,17 +344,26 @@ public class Chart extends View {
 			getMeasurement(widthMeasureSpec, width), 
 			getMeasurement(heightMeasureSpec, height)
 		);
-	}
+	}*/
 
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 		
+		// Update the chart data.
+		this.refreshData();
+		
 		this.chartContainer = new Rect(15, 0, this.getWidth() - 15, this.getHeight());
 		
-		this.pointWidth = this.chartContainer.width() / 30;
+		// Calculate the point width
+		int conWidth = this.chartContainer.width();
+		int conHeight = this.chartContainer.height();
+		int maxValue = (conWidth < conHeight)?conHeight:conWidth;
+		
+		this.pointWidth = maxValue / 30;
 		this.pointPaddingRight = pointWidth / 2;
 		
+		// Create the drawables.
 		this.initChartDrawables();
 		
 		// Style the hilight.
@@ -373,7 +382,7 @@ public class Chart extends View {
 	}
 	
 	
-	private int getMeasurement(int measureSpec, int preferred) {
+	/*private int getMeasurement(int measureSpec, int preferred) {
 		int specSize = MeasureSpec.getSize(measureSpec);
 		
 		switch(MeasureSpec.getMode(measureSpec)) {
@@ -384,7 +393,7 @@ public class Chart extends View {
 			default:
 				return preferred;
 		}
-	}
+	}*/
 	
 	public ArrayList<KeyBoxData> getKey() {
 		ArrayList<KeyBoxData> output = new ArrayList<KeyBoxData>();

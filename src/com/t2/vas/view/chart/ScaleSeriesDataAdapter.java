@@ -1,4 +1,4 @@
-package com.t2.vas;
+package com.t2.vas.view.chart;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,10 +12,6 @@ import android.util.Log;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.db.tables.Scale.ResultValues;
-import com.t2.vas.view.chart.Label;
-import com.t2.vas.view.chart.SeriesAdapterData;
-import com.t2.vas.view.chart.Value;
-import com.t2.vas.view.chart.Series;
 import com.t2.vas.view.chart.Series.SeriesDataAdapter;
 
 public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
@@ -177,6 +173,8 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 			
 			runningCal.add(this.groupBy, 1);
 		}
+		c.close();
+		
 		
 		if(openForThis) {
 			this.dbAdapter.close();

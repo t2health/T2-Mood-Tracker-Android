@@ -8,7 +8,6 @@ import java.util.LinkedHashMap;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
-import com.t2.vas.ScaleSeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
@@ -16,6 +15,7 @@ import com.t2.vas.db.tables.Scale.ResultValues;
 import com.t2.vas.view.ChartLayout;
 import com.t2.vas.view.chart.LineSeries;
 import com.t2.vas.view.chart.NotesSeries;
+import com.t2.vas.view.chart.ScaleSeriesDataAdapter;
 import com.t2.vas.view.chart.Series;
 
 import android.app.Activity;
