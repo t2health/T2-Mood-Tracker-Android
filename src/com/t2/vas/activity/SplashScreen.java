@@ -27,6 +27,7 @@ import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -62,13 +63,13 @@ public class SplashScreen extends Activity implements OnClickListener {
 		super.onPostCreate(savedInstanceState);
 		
 		skipMessage.show();
-		startAppTimer.schedule(new TimerTask() {
+		/*startAppTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				startMain();
 				this.cancel();
 			}
-		}, 8000);
+		}, 8000);*/
 		
 		Random random = new Random();
 		Display display = this.getWindowManager().getDefaultDisplay();
@@ -113,25 +114,6 @@ public class SplashScreen extends Activity implements OnClickListener {
 		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_9));
 		glow2Lines.add((ImageView)this.findViewById(R.id.iGlow2_10));
 
-		float scale = this.getResources().getDisplayMetrics().density;
-		
-		// Set the animation for the chip.
-		scaleAnimation = new ScaleAnimation(
-				1.0f, 
-				0.3f,
-				1.0f, 
-				0.3f,
-				350 * scale + 0.5f,
-				150 * scale + 0.5f
-		);
-		scaleAnimation.setDuration(2000);
-		TranslateAnimation translateAnimation = new TranslateAnimation(
-			0.0f,
-			350 * scale + 0.5f,
-			0.0f,
-			150 * scale + 0.5f
-		);
-		translateAnimation.setDuration(2000);
 		alphaAnimation = new AlphaAnimation(
 				1.0f,
 				0.0f
@@ -140,8 +122,7 @@ public class SplashScreen extends Activity implements OnClickListener {
 		alphaAnimation.setStartOffset(1000);
 		
 		AnimationSet iChip0OverlayAnimation = new AnimationSet(true);
-		//iChip0OverlayAnimation.addAnimation(translateAnimation);
-		iChip0OverlayAnimation.addAnimation(scaleAnimation);
+		iChip0OverlayAnimation.addAnimation(AnimationUtils.loadAnimation(this, R.anim.chip0_scale_down));
 		iChip0OverlayAnimation.addAnimation(alphaAnimation);
 		iChip0OverlayAnimation.setFillAfter(true);
 		iChip0Overlay.setVisibility(View.VISIBLE);
