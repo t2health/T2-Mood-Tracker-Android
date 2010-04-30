@@ -25,6 +25,12 @@
 			android:shouldDisableView="true" />
 		
 		<Preference
+			android:title="@string/activity_preference_password_lock_now_title"
+			android:summary="@string/activity_preference_password_lock_now_description"
+			android:key="lock_notes_now"
+			android:dependency="password_protect_notes" />
+			
+		<Preference
 			android:title="@string/activity_preference_change_password"
 			android:key="change_password"
 			android:dependency="password_protect_notes" />

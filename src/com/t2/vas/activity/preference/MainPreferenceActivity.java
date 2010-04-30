@@ -27,10 +27,12 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 	
 	private SharedPreferences sharedPref;
 	private CheckBoxPreference passwordProtectNotesPref;
+	private Toast notesLockedToast;
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.notesLockedToast = Toast.makeText(this, R.string.activity_preference_notes_locked_message, 3000);
         this.sharedPref = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         this.getPreferenceManager().setSharedPreferencesName(Global.SHARED_PREFERENCES_NAME);
         
@@ -43,6 +45,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
         
         screen.findPreference("group_editor").setOnPreferenceClickListener(this);
         screen.findPreference("change_password").setOnPreferenceClickListener(this);
+        screen.findPreference("lock_notes_now").setOnPreferenceClickListener(this);
     }
 
 	
@@ -102,21 +105,26 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
+		String prefKey = preference.getKey();
 		String current_password = sharedPref.getString("notes_password", null);
 		Log.v(TAG, "Current password:"+current_password);
 		
-		if(preference.getKey().equals("group_editor")) {
+		if(prefKey.equals("group_editor")) {
 			Intent i = new Intent(this, GroupListActivity.class);
 			this.startActivity(i);
 			return true;
 			
 			
-		} else if(preference.getKey().equals("change_password")) {
+		} else if(prefKey.equals("change_password")) {
 			Intent i = new Intent(this, PasswordActivity.class);
 			i.putExtra("mode", PasswordActivity.MODE_UPDATE);
 			i.putExtra("current_password", current_password);
 			this.startActivityForResult(i, REQUEST_PASSWORD_UPDATE);
 			return true;
+		
+		} else if(prefKey.equals("lock_notes_now")) {
+			this.sharedPref.edit().putLong("notes_relock_time", 0).commit();
+			notesLockedToast.show();
 		}
 		
 		

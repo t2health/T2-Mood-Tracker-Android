@@ -2,6 +2,7 @@ package com.t2.vas.activity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.t2.vas.Global;
 import com.t2.vas.NotesCursorAdapter;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -38,17 +40,22 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 	private Cursor notesCursor;
 
 	private SharedPreferences sharedPref;
+	private Toast notesUnlockToast;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		// Init global main variables.
+		notesUnlockToast = Toast.makeText(this, R.string.activity_note_unlocked_message, 6000);
 		sharedPref = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
 		this.setContentView(R.layout.notes_activity);
 		
 		this.findViewById(R.id.closeButton).setOnClickListener(this);
 		
-		if(sharedPref.getBoolean("password_protect_notes", false)) {
+		Calendar cal = Calendar.getInstance();
+		long nowTime = cal.getTimeInMillis();
+		long relockTime = sharedPref.getLong("notes_relock_time", nowTime);
+		if(sharedPref.getBoolean("password_protect_notes", false) && relockTime <= nowTime) {
 			showPasswordPrompt();
 		} else {
 			this.initInterface();
@@ -123,6 +130,13 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 			case PASSWORD_PROMPT:
 				if(resultCode == Activity.RESULT_OK) {
 					initInterface();
+					
+					// Do not require a password to view notes for 1 hour.
+					Calendar cal = Calendar.getInstance();
+					cal.add(Calendar.HOUR, 1);
+					this.sharedPref.edit().putLong("notes_relock_time", cal.getTimeInMillis()).commit();
+					
+					notesUnlockToast.show();
 				} else {
 					this.finish();
 					return;

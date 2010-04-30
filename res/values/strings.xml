@@ -20,7 +20,7 @@
 	<string name="activity_results">Results</string>
 	<string name="activity_results_click_to_see_chart">Click a field in the list to see its chart.</string>
 	
-	<string name="activity_password">Password Update</string>
+	<string name="activity_password">Password</string>
 	<string name="activity_password_unlock">Unlock</string>
 	<string name="activity_password_next">Next</string>
 	<string name="activity_password_set">Set</string>
@@ -41,6 +41,10 @@
 	<string name="activity_note_list_add_note">Add Note</string>
 	<string name="activity_preference_password_protect_notes_title">Password Protect Notes</string>
 	<string name="activity_preference_password_protect_notes_description">Require a password to view notes.</string>
+	<string name="activity_note_unlocked_message">Notes have been unlocked for 1 hour.</string>
+	<string name="activity_preference_password_lock_now_title">Lock the notes screen now.</string>
+	<string name="activity_preference_password_lock_now_description">Force the notes screen require a password next time it is visited.</string>
+	<string name="activity_preference_notes_locked_message">Notes will require a password next time it is accessed.</string>
 	
 	<string name="activity_group_list">Categories</string>
 	<string name="activity_group">Add/Edit Category</string>
