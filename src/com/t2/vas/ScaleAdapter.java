@@ -60,6 +60,10 @@ public class ScaleAdapter extends ArrayAdapter<Scale> implements OnSliderWidgetC
 	public int getProgressValuesAt(int pos) {
 		return values[pos];
 	}
+	
+	public void setProgressValueAt(int pos, int value) {
+		this.values[pos] = value;
+	}
 
 	@Override
 	public void onStartTrackingTouch(SliderWidget sliderWidget) {

@@ -3,6 +3,7 @@ package com.t2.vas.activity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
@@ -29,6 +30,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -40,20 +45,19 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	private static final String TAG = "ResultsActivity";
 	private static final int NOTES_MANAGE = 234;
 	
-	ArrayList<ChartLayout> chartLayouts = new ArrayList<ChartLayout>();
+	private LinkedHashMap<Long, ChartLayout> chartLayouts = new LinkedHashMap<Long, ChartLayout>();
 	
 	private long activeGroupId;
-	LayoutInflater layoutInflater;
+	private LayoutInflater layoutInflater;
 	
-	ViewSwitcher chartViewAnimator;
-	ListView keyListView;
+	private ListView keyListView;
 	private ScaleKeyAdapter keyListAdapter;
-	private int lastActiveListIndex = -1;
-	
-	private FrameLayout fadeOutCharts;
 	
 	private int resultsGroupBy = ScaleSeriesDataAdapter.GROUPBY_DAY;
 	private ChartLayout currentChartLayout;
+	private FrameLayout chartsContainer;
+	private Animation chartInAnimation;
+	private AnimationSet flashAnimation;
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,9 +72,22 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         
         LinearLayout l = (LinearLayout)layoutInflater.inflate(R.layout.results_activity, null);
         keyListView = (ListView)l.findViewById(R.id.list);
-        chartViewAnimator = (ViewSwitcher)l.findViewById(R.id.charts);
-        fadeOutCharts = (FrameLayout)l.findViewById(R.id.fadeOutCharts);
+        chartsContainer = (FrameLayout)l.findViewById(R.id.charts);
+        chartInAnimation = AnimationUtils.loadAnimation(this, R.anim.push_bottom_in);
         
+        // Build the animation that let the user know they already have selected
+        // that chart.
+        flashAnimation = new AnimationSet(true);
+		AlphaAnimation alphaAnim;
+		alphaAnim = new AlphaAnimation(1.0f, 0.5f);
+		alphaAnim.setDuration(250);
+		flashAnimation.addAnimation(alphaAnim);
+		alphaAnim = new AlphaAnimation(0.5f, 1.0f);
+		alphaAnim.setDuration(250);
+		alphaAnim.setStartOffset(250);
+		flashAnimation.addAnimation(alphaAnim);
+        
+		
         DBAdapter db = new DBAdapter(this, Global.Database.name, Global.Database.version);
         db.open();
         
@@ -107,7 +124,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	ChartLayout chartLayout = (ChartLayout)layoutInflater.inflate(R.layout.chart_layout, null);
         	chartLayout.setYMaxLabel(s.max_label);
         	chartLayout.setYMinLabel(s.min_label);
-        	chartLayout.setTag(s._id+"");
+        	chartLayout.setTag((Long)s._id);
         	
         	/*lineSeries.setSelectable(false);*/
         	
@@ -150,11 +167,15 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	// Add the series and add the chart to the list of charts.
         	chartLayout.getChart().addSeries("main", lineSeries);
         	chartLayout.getChart().addSeries("notes", notesSeries);
-        	chartLayouts.add(chartLayout);
-        	
+        	//chartLayouts.add(chartLayout);
+        	chartLayouts.put(s._id, chartLayout);
         }
         
-        keyListAdapter = new ScaleKeyAdapter(this, R.layout.key_box_adapter_list_label_right, chartLayouts);
+        ArrayList<ChartLayout> chartLayoutsList = new ArrayList<ChartLayout>();
+        chartLayoutsList.addAll(chartLayouts.values());
+        
+        //keyListAdapter = new ScaleKeyAdapter(this, R.layout.key_box_adapter_list_label_right, chartLayouts);
+        keyListAdapter = new ScaleKeyAdapter(this, R.layout.key_box_adapter_list_label_right, chartLayoutsList);
         keyListView.setAdapter(keyListAdapter);
         keyListView.setOnItemClickListener(this);
         
@@ -168,7 +189,51 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         
         
         db.close();
+        
+        // Restore some of the data
+        if(savedInstanceState != null) {
+        	// Remember which charts are visible
+        	long[] chartScaleIds = savedInstanceState.getLongArray("chartScaleIds");
+        	for(int i = 0; i < chartScaleIds.length; i++) {
+        		ChartLayout tmpChartLayout = this.chartLayouts.get(chartScaleIds[i]);
+        		if(tmpChartLayout != null) {
+        			this.showChart(tmpChartLayout);
+        		}
+        	}
+        	
+        	// Remember the scroll position
+	        int listFirstVisible = savedInstanceState.getInt("listFirstVisible");
+	        keyListView.setSelection(listFirstVisible);
+        }
 	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// Determine which charts are visible.
+		ArrayList<Long> list = new ArrayList<Long>();
+		for(int i = 0; i < this.chartsContainer.getChildCount(); i++) {
+			View childView = this.chartsContainer.getChildAt(i);
+			try {
+				ChartLayout childChart = (ChartLayout)childView;
+				long scaleId = (Long)childChart.getTag();
+				list.add(scaleId);
+			} catch (ClassCastException cce) {}
+		}
+		
+		long[] scaleIds = new long[list.size()];
+		for(int i = 0; i < scaleIds.length; i++) {
+			scaleIds[i] = list.get(i);
+		}
+		outState.putLongArray("chartScaleIds", scaleIds);
+		
+		
+		//store the scoll position of the key list
+		outState.putInt("listFirstVisible", keyListView.getFirstVisiblePosition());
+		
+		
+		super.onSaveInstanceState(outState);
+	}
+	
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -183,19 +248,22 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		currentChartLayout = (ChartLayout)arg1.getTag();
+		this.showChart((ChartLayout)arg1.getTag());
+	}
+	
+	public void showChart(ChartLayout chartLayout) {
+		int chartBackgroundCount = 2;
+		
+		// Flash the chart if it already selected
+		if(currentChartLayout != null && currentChartLayout.equals(chartLayout)) {
+			currentChartLayout.startAnimation(flashAnimation);
+			return;
+		}
+		
+		currentChartLayout = chartLayout;
 		currentChartLayout.setShowLabels(true);
 		currentChartLayout.setLabelsColor(Color.WHITE);
 		currentChartLayout.getChart().setShowYHilight(true);
-		
-		// Flash the chart if it already selected
-		if(arg2 == lastActiveListIndex) {
-			AlphaAnimation fadeDown = new AlphaAnimation(1.0f, 0.0f);
-			fadeDown.setDuration(250);
-			
-			currentChartLayout.startAnimation(fadeDown);
-			return;
-		}
 		
 		// Have the parent remove the child view. This prevents an issue in the next code block.
 		ViewGroup parent = (ViewGroup)currentChartLayout.getParent();
@@ -203,51 +271,46 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			parent.removeView(currentChartLayout);
 		}
 		
-		// Progressivley stack the previous charts and slowly fade them out.
-		float alphaStart = 0.5f;
-		float alphaStep = 0.24f;
-		//int removeAfterIndex = (int)(1 / alphaStep);
-		int removeAfterIndex = (int)((1 - alphaStart) / alphaStep);
-		View v = this.chartViewAnimator.getChildAt(0);
-		this.chartViewAnimator.removeViewAt(0);
-		this.fadeOutCharts.addView(v, 0);
-		for(int i = this.fadeOutCharts.getChildCount()-1; i >= 0; i--) {
-			if(i >= removeAfterIndex) {
-				this.fadeOutCharts.removeViewAt(i);
-				continue;
-			}
+		// Remove any child views that are in excess
+		this.chartsContainer.addView(currentChartLayout);
+		int removeCount = this.chartsContainer.getChildCount() - chartBackgroundCount - 1;
+		for(int i = 0; i < removeCount; i++) {
+			this.chartsContainer.removeViewAt(0);
+		}
+		
+		// Progressivly fade out each view behind the current one
+		int childCount = chartsContainer.getChildCount();
+		float startAlpha = 0.50f;
+		float endAlpha = 0.25f;
+		float alphaStep = (startAlpha - endAlpha) / chartBackgroundCount;
+		for(int i = childCount-2; i >= 0; i--) {
+			int multiplier = childCount - i - 1;
+			float alphaEnd = 1 - (alphaStep * multiplier) - startAlpha;
+			float alphaStart = alphaEnd + alphaStep;
+			View childView = chartsContainer.getChildAt(i);
 			
-			View child = this.fadeOutCharts.getChildAt(i);
-			float startAlpha = 0.00f;
-			float endAlpha = 0.00f;
+			AlphaAnimation alphaAnimation = new AlphaAnimation(
+				alphaStart,
+				alphaEnd
+			);
+			alphaAnimation.setDuration(1000);
+			alphaAnimation.setFillAfter(true);
 			
-			startAlpha = alphaStart - (alphaStep * (i)); 
-			endAlpha = alphaStart - (alphaStep * (i + 1));
+			chartsContainer.getChildAt(i).startAnimation(alphaAnimation);
 			
-			startAlpha = (startAlpha > 1)?1.00f:startAlpha;
-			endAlpha = (endAlpha < 0)?0.00f:endAlpha;
-			
-			AlphaAnimation fadeDown = new AlphaAnimation(startAlpha, endAlpha);
-			fadeDown.setDuration(250);
-			fadeDown.setFillAfter(true);
-			fadeDown.setFillBefore(true);
-			child.startAnimation(fadeDown);
-			
+			// If the child view is a chartlayout, remove some of the extra drawables.
 			try {
-				ChartLayout childChart = (ChartLayout)child;
+				ChartLayout childChart = (ChartLayout)childView;
 				childChart.setShowLabels(false);
 				childChart.getChart().setDropShadowEnabled(false);
 				childChart.getChart().setShowYHilight(false);
 			} catch (ClassCastException cce) {}
 		}
 		
-		this.chartViewAnimator.addView(currentChartLayout);
-		this.chartViewAnimator.showNext();
+		// Slide the new chart in.
+		this.chartsContainer.getChildAt(chartsContainer.getChildCount()-1).startAnimation(chartInAnimation);
 		
-		
-		lastActiveListIndex = arg2;
-		
-		
+		// Since a chart is now selected, show the notes buttons.
 		this.findViewById(R.id.addNoteButton).setVisibility(View.VISIBLE);
 		this.findViewById(R.id.notesButton).setVisibility(View.VISIBLE);
 	}
@@ -266,7 +329,8 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		ChartLayout chartLayout;
 		
 		try {
-			chartLayout = (ChartLayout)chartViewAnimator.getCurrentView();
+			//chartLayout = (ChartLayout)chartViewAnimator.getCurrentView();
+			chartLayout = (ChartLayout)chartsContainer.getChildAt(0);
 		} catch(ClassCastException cce) {
 			return;
 		}

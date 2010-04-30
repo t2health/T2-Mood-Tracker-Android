@@ -13,6 +13,7 @@ import com.t2.vas.db.tables.Scale;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
 	private String submitButtonText;
+	private ListView listView;
 	
     /** Called when the activity is first created. */
     @Override
@@ -49,7 +51,7 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         
         LayoutInflater li = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup mainView = (ViewGroup)li.inflate(R.layout.form_activity, null);
-        ListView listView = (ListView)mainView.findViewById(R.id.list);
+        listView = (ListView)mainView.findViewById(R.id.list);
         
         DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
@@ -71,9 +73,44 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         	((Button)mainView.findViewById(R.id.submitButton)).setText(this.submitButtonText);
         }
         
+        
         dbHelper.close();
         setContentView(mainView);
+        
+        // Restore some of the data
+        if(savedInstanceState != null) {
+        	// Restore the positions of the scales
+	        int[] scaleValues = savedInstanceState.getIntArray("scaleValues");
+	        if(scaleValues != null) {
+	        	for(int i = 0; i < scaleValues.length; i++) {
+	        		this.scaleAdapter.setProgressValueAt(i, scaleValues[i]);
+	        	}
+	        }
+	        
+	        // Remember the scroll position
+	        int listFirstVisible = savedInstanceState.getInt("listFirstVisible");
+        	listView.setSelection(listFirstVisible);
+        }
     }
+    
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// Remember the values of the scales.
+		int[] scaleValues = new int[this.scaleAdapter.getCount()];
+		for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
+        	scaleValues[i] = this.scaleAdapter.getProgressValuesAt(i);
+		}
+		outState.putIntArray("scaleValues", scaleValues);
+		
+		// Remember the list's scroll position.
+		outState.putInt("listFirstVisible", listView.getFirstVisiblePosition());
+		
+		super.onSaveInstanceState(outState);
+	}
+
+
+
 
 	@Override
 	public void onClick(View v) {

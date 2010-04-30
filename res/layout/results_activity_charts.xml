@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1.0"
+	android:background="@drawable/chart_background">
+	
+	<FrameLayout
+		android:id="@+id/charts"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		
+		<TextView
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:text="@string/activity_results_click_to_see_chart"
+				android:textSize="25dp"
+				android:gravity="center"
+				android:layout_weight="0.5"
+				android:textColor="#FFFFFFFF" />
+	</FrameLayout>
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|right"
+		android:gravity="right">
+	
+		<ImageButton
+			android:id="@+id/addNoteButton"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:src="@android:drawable/ic_menu_add"
+			android:scaleType="centerInside" />
+			
+		<ImageButton
+			android:id="@+id/notesButton"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:src="@android:drawable/ic_menu_agenda"
+			android:scaleType="centerInside" />
+	</LinearLayout>
+</FrameLayout>

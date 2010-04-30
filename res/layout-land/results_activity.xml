@@ -4,70 +4,19 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
 	
-	<FrameLayout
+	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
-		android:layout_weight="1.0"
-		android:background="@drawable/chart_background">
-		
-		<FrameLayout
-			android:id="@+id/fadeOutCharts"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent">
-		</FrameLayout>
-		
-		<ViewSwitcher
-			android:id="@+id/charts"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:inAnimation="@anim/push_bottom_in">
-			
-			<LinearLayout
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:orientation="vertical"
-				android:gravity="center">
-				
-				<TextView
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:text="@string/activity_results_click_to_see_chart"
-					android:textSize="25dp"
-					android:gravity="center"
-					android:layout_weight="0.5"
-					android:textColor="#FFFFFFFF" />
-			</LinearLayout>
-			
-		</ViewSwitcher>
-		
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="bottom|right"
-			android:gravity="right">
-		
-			<ImageButton
-				android:id="@+id/addNoteButton"
-				android:layout_width="50dp"
-				android:layout_height="50dp"
-				android:src="@android:drawable/ic_menu_add"
-				android:scaleType="centerInside" />
-				
-			<ImageButton
-				android:id="@+id/notesButton"
-				android:layout_width="50dp"
-				android:layout_height="50dp"
-				android:src="@android:drawable/ic_menu_agenda"
-				android:scaleType="centerInside" />
-		</LinearLayout>
-	</FrameLayout>
+		android:layout_weight="1.0">
 	
+		<include layout="@layout/results_activity_charts" />
+	</LinearLayout>
 	
-	<ListView
-		android:id="@+id/list"
-		android:layout_width="250dp"
+	<LinearLayout
+		android:layout_width="250dip"
 		android:layout_height="fill_parent">
 		
-	</ListView>
+		<include layout="@layout/result_activity_key_list" />
+	</LinearLayout>
 	
 </LinearLayout>
