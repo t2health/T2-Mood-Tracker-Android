@@ -197,7 +197,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	for(int i = 0; i < chartScaleIds.length; i++) {
         		ChartLayout tmpChartLayout = this.chartLayouts.get(chartScaleIds[i]);
         		if(tmpChartLayout != null) {
-        			this.showChart(tmpChartLayout);
+        			this.showChart(tmpChartLayout, false);
         		}
         	}
         	
@@ -248,15 +248,17 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		this.showChart((ChartLayout)arg1.getTag());
+		this.showChart((ChartLayout)arg1.getTag(), true);
 	}
 	
-	public void showChart(ChartLayout chartLayout) {
+	public void showChart(ChartLayout chartLayout, boolean animate) {
 		int chartBackgroundCount = 2;
 		
 		// Flash the chart if it already selected
 		if(currentChartLayout != null && currentChartLayout.equals(chartLayout)) {
-			currentChartLayout.startAnimation(flashAnimation);
+			if(animate) {
+				currentChartLayout.startAnimation(flashAnimation);
+			}
 			return;
 		}
 		
@@ -293,7 +295,9 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 				alphaStart,
 				alphaEnd
 			);
-			alphaAnimation.setDuration(1000);
+			if(animate) {
+				alphaAnimation.setDuration(1000);
+			}
 			alphaAnimation.setFillAfter(true);
 			
 			chartsContainer.getChildAt(i).startAnimation(alphaAnimation);
@@ -308,7 +312,9 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		}
 		
 		// Slide the new chart in.
-		this.chartsContainer.getChildAt(chartsContainer.getChildCount()-1).startAnimation(chartInAnimation);
+		if(animate) {
+			this.chartsContainer.getChildAt(chartsContainer.getChildCount()-1).startAnimation(chartInAnimation);
+		}
 		
 		// Since a chart is now selected, show the notes buttons.
 		this.findViewById(R.id.addNoteButton).setVisibility(View.VISIBLE);
