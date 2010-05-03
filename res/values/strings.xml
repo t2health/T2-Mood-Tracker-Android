@@ -12,12 +12,14 @@
 	<string name="activity_splash_screen_message">Press anywhere on the screen to skip this into.</string>
 	
 	<string name="activity_form">Form</string>
+	<string name="activity_form_desc">Take this measure.</string>
 	<string name="activity_form_submit">See my results!</string>
 	
 	<string name="activity_help">Help</string>
 	<string name="activity_preference">Preferences</string>
 	
 	<string name="activity_results">Results</string>
+	<string name="activity_results_desc">See the results of your form entries.</string>
 	<string name="activity_results_click_to_see_chart">Click a field in the list to see its chart.</string>
 	
 	<string name="activity_password">Password</string>
@@ -31,6 +33,7 @@
 	<string name="activity_password_new_message2">Re-enter the new password.</string>
 	
 	<string name="activity_note_list">Notes</string>
+	<string name="activity_note_list_desc">Review notes corresponding to days of the month.</string>
 	<string name="activity_note_dialog_list">Notes for selected date</string>
 	<string name="activity_note">Add/Edit Note</string>
 	<string name="activity_delete_note">Delete Note</string>
@@ -67,6 +70,7 @@
 	<string name="max_label">Max Label</string>
 	
     <string name="activity_reminder">Reminder</string>
+    <string name="activity_reminder_preference_desc">Set if you should be reminded, and when, if you havn\'t taken a measure.</string>
     <string name="activity_reminder_next_form">Next Form</string>
     <string name="activity_reminder_finish">Finish</string>
     

@@ -41,8 +41,15 @@ public class ScaleKeyAdapter extends ArrayAdapter<ChartLayout> {
 		String labelText = data.getLabel();
 		
 		String[] parts = labelText.split(" - ");
-		String minLabelText = parts[0];
-		String maxLabelText = parts[1];
+		String minLabelText = "";
+		String maxLabelText = "";
+		
+		if(parts.length > 0) {
+			minLabelText = parts[0];
+		}
+		if(parts.length > 1) {
+			maxLabelText = parts[1];
+		}
 		
 		LinearLayout v = (LinearLayout)inflater.inflate(this.layoutResId, null);
 		v.setTag(chartLayout);

@@ -3,6 +3,7 @@ package com.t2.vas.activity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
@@ -26,11 +27,14 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MainActivity extends BaseActivity implements OnClickListener, OnItemSelectedListener {
+public class MainActivity extends BaseActivity implements OnItemSelectedListener, OnItemClickListener {
 	private static final String TAG = MainActivity.class.getName();
 	
 	private static final int FORM_ACTIVITY = 345;
@@ -52,19 +56,16 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 	private Toast formsAlreadyUsedToast;
 
+	private ArrayList<HashMap<String, Object>> activityList;
+
+	private ListView activityListView;
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-        
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
         this.setContentView(R.layout.main_activity);
-        
-        this.findViewById(R.id.formActivityButton).setOnClickListener(this);
-        this.findViewById(R.id.resultsActivityButton).setOnClickListener(this);
-        this.findViewById(R.id.notesActivityButton).setOnClickListener(this);
-        this.findViewById(R.id.reminderPreferenceActivityButton).setOnClickListener(this);
 
         sharedPrefs = this.getSharedPreferences(Global.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         formsAlreadyUsedToast = Toast.makeText(this, R.string.activity_main_form_used, 3000);
@@ -74,9 +75,10 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         
         currentGroup = ((Group)dbHelper.getTable("group")).newInstance();
         groupList = currentGroup.getGroups();
+
         
-        initAdapterData();
-        
+        // Init the spinner and its data
+        initDropDownAdapterData();
         adapter = new ArrayAdapter<String>(
         		this, 
         		android.R.layout.simple_spinner_item, 
@@ -84,16 +86,63 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
-        // Init the spinner.
         Spinner spinner = (Spinner)this.findViewById(R.id.groupSelector);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         
         dbHelper.close();
         
-        this.findViewById(R.id.formActivityButton).setEnabled(false);
-		this.findViewById(R.id.resultsActivityButton).setEnabled(false);
-		this.findViewById(R.id.notesActivityButton).setEnabled(false);
+        
+        // Init the activity list options
+        activityList = new ArrayList<HashMap<String,Object>>();
+        HashMap<String, Object> activityItem;
+        
+        activityItem = new HashMap<String, Object>();
+        activityItem.put("activityId", FORM_ACTIVITY);
+        activityItem.put("text1", this.getString(R.string.activity_form));
+        activityItem.put("text2", this.getString(R.string.activity_form_desc));
+        activityItem.put("image1", android.R.drawable.ic_menu_sort_by_size+"");
+        activityList.add(activityItem);
+        
+        activityItem = new HashMap<String, Object>();
+        activityItem.put("activityId", RESULTS_ACTIVITY);
+        activityItem.put("text1", this.getString(R.string.activity_results));
+        activityItem.put("text2", this.getString(R.string.activity_results_desc));
+        activityItem.put("image1", android.R.drawable.ic_menu_slideshow+"");
+        activityList.add(activityItem);
+        
+        activityItem = new HashMap<String, Object>();
+        activityItem.put("activityId", NOTES_ACTIVITY);
+        activityItem.put("text1", this.getString(R.string.activity_note_list));
+        activityItem.put("text2", this.getString(R.string.activity_note_list_desc));
+        activityItem.put("image1", android.R.drawable.ic_menu_agenda+"");
+        activityList.add(activityItem);
+        
+        activityItem = new HashMap<String, Object>();
+        activityItem.put("activityId", REMINDER_ACTIVITY);
+        activityItem.put("text1", this.getString(R.string.activity_reminder_preference));
+        activityItem.put("text2", this.getString(R.string.activity_reminder_preference_desc));
+        activityItem.put("image1", android.R.drawable.ic_menu_recent_history+"");
+        activityList.add(activityItem);
+        
+        activityListView = (ListView)this.findViewById(R.id.activityList);
+        activityListView.setOnItemClickListener(this);
+        activityListView.setAdapter(new SimpleAdapter(
+        	this,
+        	activityList,
+        	R.layout.main_activity_list_item,
+        	new String[]{
+        			"text1",
+        			"text2",
+        			"image1",
+        	},
+        	new int[] {
+        			R.id.text1,
+        			R.id.text2,
+        			R.id.image1,
+        	}
+        ));
+        
         
 		// Select the group to work with.
         if(groupList.size() > 0) {
@@ -140,7 +189,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 
 
-	private void initAdapterData() {
+	private void initDropDownAdapterData() {
 		this.dbHelper.open();
 		groupList = currentGroup.getGroups();
 		
@@ -157,27 +206,12 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	
 	private void selectGroupAt(int index) {
 		this.currentGroup = this.groupList.get(index);
-		this.dbHelper.open();
-		
-		ArrayList<Scale> scales = this.currentGroup.getScales();
-		if(scales.size() <= 0) {
-			this.findViewById(R.id.formActivityButton).setEnabled(false);
-			this.findViewById(R.id.resultsActivityButton).setEnabled(false);
-			this.findViewById(R.id.notesActivityButton).setEnabled(false);
-			needScalesToast.show();
-		} else {
-			this.findViewById(R.id.formActivityButton).setEnabled(true);
-			this.findViewById(R.id.resultsActivityButton).setEnabled(true);
-			this.findViewById(R.id.notesActivityButton).setEnabled(true);
-		}
-		
-		this.dbHelper.close();
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		initAdapterData();
+		initDropDownAdapterData();
 	}
 	
 	@Override
@@ -200,12 +234,14 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	}
 
 	private void startActivity(int id) {
+		ArrayList<Scale> scales;
 		Intent intent;
 		switch(id) {
 			case FORM_ACTIVITY:
 				// Disable the forms activity because it was already used today.
 				this.dbHelper.open();
 				long lastResult = this.currentGroup.getLatestResultTimestamp();
+				scales = this.currentGroup.getScales();
 				this.dbHelper.close();
 				Calendar nowCal = Calendar.getInstance();
 				Calendar thenCal = Calendar.getInstance();
@@ -215,6 +251,10 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				if(sdf.format(nowCal.getTime()).equals(sdf.format(thenCal.getTime()))) {
 					formsAlreadyUsedToast.show();
+					
+				// we require scales in order to use this activity.
+				} else if(scales.size() <= 0) {
+					needScalesToast.show();
 					
 				// Start the activity
 				} else {
@@ -226,9 +266,18 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 				break;
 				
 			case RESULTS_ACTIVITY:
-				intent = new Intent(this, ResultsActivity.class);
-				intent.putExtra("group_id", this.currentGroup._id);
-				this.startActivityForResult(intent, RESULTS_ACTIVITY);
+				this.dbHelper.open();
+				scales = this.currentGroup.getScales();
+				this.dbHelper.close();
+				
+				// we require scales in order to use this activity.
+				if(scales.size() <= 0) {
+						needScalesToast.show();
+				} else {
+					intent = new Intent(this, ResultsActivity.class);
+					intent.putExtra("group_id", this.currentGroup._id);
+					this.startActivityForResult(intent, RESULTS_ACTIVITY);
+				}
 				break;
 				
 			case NOTES_ACTIVITY:
@@ -241,28 +290,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 				intent = new Intent(this, ReminderPreferenceActivity.class);
 				intent.putExtra("group_id", this.currentGroup._id);
 				this.startActivityForResult(intent, NOTES_ACTIVITY);
-				break;
-		}
-	}
-	
-	@Override
-	public void onClick(View v) {
-		
-		switch(v.getId()) {
-			case R.id.formActivityButton:
-				this.startActivity(FORM_ACTIVITY);
-				break;
-				
-			case R.id.resultsActivityButton:
-				this.startActivity(RESULTS_ACTIVITY);
-				break;
-				
-			case R.id.notesActivityButton:
-				this.startActivity(NOTES_ACTIVITY);
-				break;
-				
-			case R.id.reminderPreferenceActivityButton:
-				this.startActivity(REMINDER_ACTIVITY);
 				break;
 		}
 	}
@@ -305,5 +332,12 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		}
 		
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		Integer activityId = (Integer)this.activityList.get(arg2).get("activityId");
+		this.startActivity(activityId);
 	}
 }

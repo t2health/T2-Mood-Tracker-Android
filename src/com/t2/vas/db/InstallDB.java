@@ -114,6 +114,12 @@ public class InstallDB {
 		ContentValues c = new ContentValues();
 		int resultCount = 20;
 		Random rand = new Random();
+		
+		boolean[] skipRecord = new boolean[resultCount];
+		for(int i = 0; i < skipRecord.length; i++) {
+			skipRecord[i] = false;
+		}
+		
 		for(int i = 0; i < scales.size(); i++) {
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.DAY_OF_MONTH, (resultCount + 1)*-1);
@@ -126,7 +132,10 @@ public class InstallDB {
 				cal.add(Calendar.DAY_OF_MONTH, 1);
 				
 				// Skip a day 10% of the time
-				if(j > 0 && j < resultCount && rand.nextInt(11) < 2) {
+				if(skipRecord[j] || (j > 0 && j < resultCount-1 && rand.nextInt(11) < 2)) {
+					if(i == 0) {
+						skipRecord[j] = true;
+					}
 					continue;
 				}
 				int value = prevValue + 10 - rand.nextInt(21);
