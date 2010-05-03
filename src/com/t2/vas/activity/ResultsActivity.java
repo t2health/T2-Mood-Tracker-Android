@@ -8,15 +8,17 @@ import java.util.LinkedHashMap;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
+import com.t2.vas.ScaleSeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.db.tables.Scale.ResultValues;
 import com.t2.vas.view.ChartLayout;
+import com.t2.vas.view.chart.Chart;
 import com.t2.vas.view.chart.LineSeries;
 import com.t2.vas.view.chart.NotesSeries;
-import com.t2.vas.view.chart.ScaleSeriesDataAdapter;
 import com.t2.vas.view.chart.Series;
+import com.t2.vas.view.chart.Chart.ChartEventListener;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +27,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -41,7 +44,7 @@ import android.widget.ListView;
 import android.widget.ViewSwitcher;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ResultsActivity extends BaseActivity implements OnItemClickListener, OnClickListener {
+public class ResultsActivity extends BaseActivity implements OnItemClickListener, OnClickListener, ChartEventListener {
 	private static final String TAG = "ResultsActivity";
 	private static final int NOTES_MANAGE = 234;
 	
@@ -126,8 +129,6 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	chartLayout.setYMinLabel(s.min_label);
         	chartLayout.setTag((Long)s._id);
         	
-        	/*lineSeries.setSelectable(false);*/
-        	
         	// Style the colors of the lines and points.
         	float hue = i / (1.00f * scaleCount) * 360.00f;
         	lineSeries.setFillColor(Color.HSVToColor(
@@ -163,6 +164,9 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         				0.5f
         			}
         	));
+        	
+        	
+        	chartLayout.getChart().setChartEventListener(this);
         	
         	// Add the series and add the chart to the list of charts.
         	chartLayout.getChart().addSeries("main", lineSeries);
@@ -325,21 +329,17 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.notesButton:
+				this.viewNotesPressed();
+				break;
+				
 			case R.id.addNoteButton:
-				notesActivity(v);
+				this.addNotesPressed();
 				break;
 		}
 	}
 	
-	private void notesActivity(View v) {
-		ChartLayout chartLayout;
-		
-		try {
-			//chartLayout = (ChartLayout)chartViewAnimator.getCurrentView();
-			chartLayout = (ChartLayout)chartsContainer.getChildAt(0);
-		} catch(ClassCastException cce) {
-			return;
-		}
+	/*private void notesActivity(View v) {
+		ChartLayout chartLayout = this.currentChartLayout;
 		
 		if(chartLayout == null) {
 			return;
@@ -379,5 +379,64 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 			
 			this.startActivityForResult(i, NOTES_MANAGE);
 		}
+	}*/
+
+	private long[] getActiveChartTimeRange() {
+		ChartLayout chartLayout = this.currentChartLayout;
+		
+		if(chartLayout == null) {
+			return null;
+		}
+		
+		Calendar cal = Calendar.getInstance();
+		Date tmpDate;
+		long startTimestamp = -1;
+		long endTimestamp = -1;
+		
+		int seriesIndex = chartLayout.getChart().getYHilightSeriesIndex();
+		if(seriesIndex >= 0) {
+			tmpDate = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex).getLabelValue();
+			cal.setTime(tmpDate);
+			startTimestamp = cal.getTimeInMillis();
+			
+			if(seriesIndex+1 < chartLayout.getChart().getSeriesAt(0).getLabels().size()) {
+				tmpDate = (Date)chartLayout.getChart().getSeriesAt(0).getLabels().get(seriesIndex+1).getLabelValue();
+				cal.setTime(tmpDate);
+				endTimestamp = cal.getTimeInMillis();
+			}
+		}
+		
+		return new long[]{
+			startTimestamp,
+			endTimestamp
+		};
+	}
+	
+	private void addNotesPressed() {
+		long[] range = getActiveChartTimeRange();
+		Intent i = new Intent(this, NoteActivity.class);
+		i.putExtra("timstamp", range[0]);
+		
+		this.startActivityForResult(i, NOTES_MANAGE);
+	}
+	
+	private void viewNotesPressed() {
+		long[] range = getActiveChartTimeRange();
+		Intent i = new Intent(this, NotesDialogActivity.class);
+		i.putExtra("start_timestamp", range[0]);
+		i.putExtra("end_timestamp", range[1]);
+		
+		this.startActivityForResult(i, NOTES_MANAGE);
+	}
+	
+	@Override
+	public boolean onChartClick(Chart c, MotionEvent event) {
+		return false;
+	}
+
+	@Override
+	public boolean onChartLongClick(Chart c, MotionEvent event) {
+		this.addNotesPressed();
+		return false;
 	}
 }

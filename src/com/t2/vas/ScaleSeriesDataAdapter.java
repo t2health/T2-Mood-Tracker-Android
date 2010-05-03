@@ -1,4 +1,4 @@
-package com.t2.vas.view.chart;
+package com.t2.vas;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,15 +12,19 @@ import android.util.Log;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.db.tables.Scale.ResultValues;
+import com.t2.vas.view.chart.Label;
+import com.t2.vas.view.chart.Series;
+import com.t2.vas.view.chart.SeriesAdapterData;
+import com.t2.vas.view.chart.Value;
 import com.t2.vas.view.chart.Series.SeriesDataAdapter;
 
 public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 	private static final String TAG = ScaleSeriesDataAdapter.class.getName();
 	
-	private DBAdapter dbAdapter;
-	private long scaleId;
-	private int groupBy;
-	private String labelFormat;
+	protected DBAdapter dbAdapter;
+	protected long scaleId;
+	protected int groupBy;
+	protected String labelFormat;
 	
 	public static final int GROUPBY_YEAR = Calendar.YEAR;
 	public static final int GROUPBY_MONTH = Calendar.MONTH;
@@ -37,6 +41,84 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 		this.groupBy = groupBy;
 		this.labelFormat = labelFormat;
 	}
+	
+	private boolean noteBetween(long startTimestamp, long endTimestamp) {
+		//Log.v(TAG, "S:"+startTimestamp+" E:"+endTimestamp);
+		Cursor c = dbAdapter.getDatabase().query(
+				"note", 
+				new String[]{
+						"_id"
+				}, 
+				"timestamp >= ? AND timestamp < ?", 
+				new String[]{
+						startTimestamp+"",
+						endTimestamp+""
+				},
+				null, 
+				null, 
+				null,
+				"1"
+		);
+		
+		if(c.moveToNext()) {
+			c.close();
+			return true;
+		}
+		
+		c.close();
+		return false;
+	}
+	
+	private Cursor getCursor(String db_date_format) {
+		Cursor c = dbAdapter.getDatabase().query(
+				"result r "/* +
+				"LEFT JOIN note n ON (" +
+					"strftime('"+db_date_format+"', datetime(n.timestamp / 1000, 'unixepoch')) = strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))" +
+				")"*/,
+				new String[]{
+					"strftime('"+db_date_format+"', datetime(MIN(r.timestamp) / 1000, 'unixepoch')) label_value", 
+					"MIN(r.timestamp) timestamp",
+					"AVG(r.value) value",
+					//"COUNT(n._id) has_notes",
+				}, 
+				"scale_id=?", 
+				new String[]{
+					this.scaleId+""
+				}, 
+				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))", 
+				null, 
+				"label_value ASC",
+				null
+		);
+		//Log.v(TAG, "ROW COUNT:"+c.getCount());
+		
+		return c;
+	}
+	/*private Cursor getCursor(String db_date_format) {
+		Cursor c = dbAdapter.getDatabase().query(
+				"result r " +
+				"LEFT JOIN note n ON (" +
+					"strftime('"+db_date_format+"', datetime(n.timestamp / 1000, 'unixepoch')) = strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))" +
+				")",
+				new String[]{
+					"strftime('"+db_date_format+"', datetime(MIN(r.timestamp) / 1000, 'unixepoch')) label_value", 
+					"MIN(r.timestamp) timestamp",
+					"AVG(r.value) value",
+					"COUNT(n._id) has_notes",
+				}, 
+				"scale_id=?", 
+				new String[]{
+					this.scaleId+""
+				}, 
+				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))", 
+				null, 
+				"label_value ASC",
+				null
+		);
+		//Log.v(TAG, "ROW COUNT:"+c.getCount());
+		
+		return c;
+	}*/
 	
 	@Override
 	public SeriesAdapterData getData() {
@@ -75,7 +157,8 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 				break;
 		}
 		
-		Cursor c = dbAdapter.getDatabase().query(
+		Cursor c = this.getCursor(db_date_format);
+		/*Cursor c = dbAdapter.getDatabase().query(
 				"result r " +
 				"LEFT JOIN note n ON (" +
 					"strftime('"+db_date_format+"', datetime(n.timestamp / 1000, 'unixepoch')) = strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))" +
@@ -94,7 +177,7 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 				null, 
 				"label_value ASC",
 				null
-		);
+		);*/
 		//Log.v(TAG, "ROW COUNT:"+c.getCount());
 		
 		String rLabelValue = "";
@@ -118,7 +201,7 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 				rLabelValue = c.getString(c.getColumnIndex("label_value"));
 				rTimestamp = c.getLong(c.getColumnIndex("timestamp"));
 				rValue = c.getDouble(c.getColumnIndex("value"));
-				rHasNotes = c.getInt(c.getColumnIndex("has_notes")) > 0;
+				//rHasNotes = c.getInt(c.getColumnIndex("has_notes")) > 0;
 				
 				Calendar tmpCal = Calendar.getInstance();
 				tmpCal.setTimeInMillis(rTimestamp);
@@ -156,6 +239,11 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 				e.printStackTrace();
 			}
 			
+			Calendar nextCal = Calendar.getInstance();
+			nextCal.setTimeInMillis(runningCal.getTimeInMillis());
+			nextCal.add(this.groupBy, 1);
+			rHasNotes = this.noteBetween(runningCal.getTimeInMillis(), nextCal.getTimeInMillis());
+			
 			String labelString = labelDateFormatter.format(runningCal.getTime());
 			if(rowCal.getTimeInMillis() == runningCal.getTimeInMillis()) {
 				resultValues.add(
@@ -167,7 +255,8 @@ public class ScaleSeriesDataAdapter implements SeriesDataAdapter {
 			} else {
 				resultValues.add(
 						new Label<Date>(labelString, runningCal.getTime()), 
-						new Value(null, null, false)
+						//new Value(null, null, false)
+						new Value(null, null, rHasNotes)
 				);
 			}
 			

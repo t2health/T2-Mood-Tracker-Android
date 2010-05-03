@@ -120,15 +120,26 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         this.stopService(serviceIntent);
         this.startService(serviceIntent);
         
-        
-        // Bring up the health tips.
-        if(!sharedPrefs.getBoolean("hide_startup_tips", false)) {
-        	Intent i = new Intent(this, StartupTipsActivity.class);
-        	i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-        	this.startActivity(i);
+        if(savedInstanceState == null) {
+	        // Bring up the health tips.
+	        if(!sharedPrefs.getBoolean("hide_startup_tips", false)) {
+	        	Intent i = new Intent(this, StartupTipsActivity.class);
+	        	i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+	        	this.startActivity(i);
+	        }
         }
 	}
 	
+	
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean("alreadyRunning", true);
+		super.onSaveInstanceState(outState);
+	}
+
+
+
 	private void initAdapterData() {
 		this.dbHelper.open();
 		groupList = currentGroup.getGroups();

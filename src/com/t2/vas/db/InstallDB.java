@@ -116,7 +116,7 @@ public class InstallDB {
 		Random rand = new Random();
 		for(int i = 0; i < scales.size(); i++) {
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.DAY_OF_MONTH, resultCount*-1);
+			cal.add(Calendar.DAY_OF_MONTH, (resultCount + 1)*-1);
 			
 			Scale tmpScale = scales.get(i);
 			int prevValue = 50;
@@ -126,13 +126,13 @@ public class InstallDB {
 				cal.add(Calendar.DAY_OF_MONTH, 1);
 				
 				// Skip a day 10% of the time
-				if(rand.nextInt(11) < 2) {
+				if(j > 0 && j < resultCount && rand.nextInt(11) < 2) {
 					continue;
 				}
 				int value = prevValue + 10 - rand.nextInt(21);
 				value = (value < 0)?0:value;
 				value = (value > 100)?100:value;
-				Log.v(TAG, "V:"+value);
+				//Log.v(TAG, "V:"+value);
 				
 				c = new ContentValues();
 				c.put("group_id", tmpScale.group_id);

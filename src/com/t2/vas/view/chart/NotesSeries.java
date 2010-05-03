@@ -23,6 +23,6 @@ public class NotesSeries extends Series {
 		}
 		
 		Rect bounds = v.getBounds();
-		return new SeriesDrawable(new Rect(bounds.left, 0, bounds.right, 10));
+		return new SeriesDrawable(new Rect(bounds.left, 0, bounds.right, bounds.width()));
 	}
 }

@@ -64,7 +64,9 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         }
         
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
+        listView.addFooterView(li.inflate(R.layout.form_activity_submit_button, null));
         listView.setAdapter(scaleAdapter);
+        
         
         ((TextView)mainView.findViewById(R.id.title)).setText(group.title);
         ((Button)mainView.findViewById(R.id.submitButton)).setOnClickListener(this);

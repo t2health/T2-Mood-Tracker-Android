@@ -10,6 +10,7 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Note extends Table {
+	private static final String TAG = Note.class.getName();
 	public long timestamp;
 	public String note;
 	
@@ -114,6 +115,10 @@ public class Note extends Table {
 			}
 			whereSt = whereSt.substring(0, whereSt.length() - 4);
 		}
+		/*Log.v(TAG, "w:"+whereSt);
+		for(int i = 0; i < whereValuesArray.length; i++) {
+			Log.v(TAG, "  v:"+whereValuesArray[i]);
+		}*/
 		
 		return ((Note)dbAdapter.getTable("note")).select(
 				whereSt, 

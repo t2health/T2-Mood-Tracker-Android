@@ -16,8 +16,10 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 
-public class Chart extends View {
+public class Chart extends View implements OnLongClickListener, OnClickListener {
 	private static final String TAG = "VAS";
 	protected ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 	protected LinkedHashMap<String, Series> seriesList = new LinkedHashMap<String, Series>();
@@ -34,6 +36,9 @@ public class Chart extends View {
 	private boolean yHilightSnap = true;
 	private String yHilightDrawableLabel = "";
 	private int yHilightSeriesIndex = -1;
+	private boolean eventMoving = false;
+	private MotionEvent lastEvent = null;
+	private ChartEventListener chartEventListener;
 	
 	public Chart(Context context) {
 		super(context);
@@ -47,6 +52,8 @@ public class Chart extends View {
 	
 	private void init() {
 		this.setMinimumHeight(100);
+		this.setOnLongClickListener(this);
+		this.setOnClickListener(this);
 	}
 	
 	public void setDropShadowEnabled(boolean dropShadowEnabled) {
@@ -411,24 +418,66 @@ public class Chart extends View {
 		
 	}
 
+
+
+	@Override
+	public void onClick(View v) {
+		if(this.eventMoving) {
+			return;
+		}
+		
+		//Log.v(TAG, "click "+"LX:"+this.lastEvent.getX()+" LY:"+this.lastEvent.getY());
+		if(isShowYHilight()) {
+			this.moveYHilightTo((int)this.lastEvent.getX());
+			this.invalidate();
+		}
+		
+		if(this.chartEventListener != null) {
+			this.chartEventListener.onChartClick(this, this.lastEvent);
+		}
+	}
+	
+	@Override
+	public boolean onLongClick(View v) {
+		if(this.eventMoving) {
+			return false;
+		}
+		
+		//Log.v(TAG, "longclick "+"LX:"+this.lastEvent.getX()+" LY:"+this.lastEvent.getY());
+		if(isShowYHilight()) {
+			this.moveYHilightTo((int)this.lastEvent.getX());
+			this.invalidate();
+		}
+		
+		if(this.chartEventListener != null) {
+			this.chartEventListener.onChartLongClick(this, this.lastEvent);
+		}
+		
+		return true;
+	}
+	
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		this.lastEvent = event;
+		//Log.v(TAG, "event "+"LX:"+this.lastEvent.getX()+" LY:"+this.lastEvent.getY());
+		
 		if(event.getAction() == MotionEvent.ACTION_MOVE) {
+			this.eventMoving = true;
 			if(isShowYHilight()) {
 				this.moveYHilightTo((int)event.getX());
-			}
-			
-		} else if(event.getHistorySize() < 3 && event.getAction() == MotionEvent.ACTION_UP) {
-			/*if(dispatchClickToSeriesDrawable(event)) {
-				Log.v(TAG, "Dispatched");
-			} else */if(isShowYHilight()) {
-				this.moveYHilightTo((int)event.getX());
+				this.invalidate();
+				return true;
 			}
 		}
-				
-		this.invalidate();
-		return true;
+		
+		boolean ret = super.onTouchEvent(event);
+		
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			this.eventMoving = false;			
+		}
+		
+		return ret;
 	}
 	
 
@@ -524,5 +573,19 @@ public class Chart extends View {
 		// register the series index and label for the hilight.
 		yHilightSeriesIndex = seriesIndex;
 		yHilightDrawableLabel = firstSeries.getLabels().get(seriesIndex).getLabelString();
+	}
+	
+	public void setChartEventListener(ChartEventListener c) {
+		this.chartEventListener = c;
+	}
+	
+	public ChartEventListener getChartEventListenter() {
+		return this.chartEventListener;
+	}
+	
+	
+	public interface ChartEventListener {
+		public boolean onChartLongClick(Chart c, MotionEvent event);
+		public boolean onChartClick(Chart c, MotionEvent event);
 	}
 }

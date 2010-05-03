@@ -36,17 +36,17 @@ public abstract class AbsTable {
 	}
 	
 	protected void openForThis() {
-		/*if(!this.dbAdapter.isOpen()) {
+		if(!this.dbAdapter.isOpen()) {
 			openForThis = true;
 			this.dbAdapter.open();
-		}*/
+		}
 	}
 	
 	protected void closeForThis() {
-		/*if(this.openForThis) {
+		if(this.openForThis) {
 			this.dbAdapter.close();
 			this.openForThis = false;
-		}*/
+		}
 	}
 	
 	public long insert(ContentValues v) {
@@ -118,7 +118,7 @@ public abstract class AbsTable {
 		
 		Cursor c = this.dbAdapter.getDatabase().query("`"+this.getTableName()+"`", null, whereClause, whereArgs, groupBy, having, orderBy, limit);
 		
-		this.closeForThis();
+		//this.closeForThis();
 		return c;
 	}
 	
