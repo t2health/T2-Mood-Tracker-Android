@@ -9,7 +9,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:scaleType="centerCrop" />
- -->
+  -->
 	<LinearLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
@@ -22,13 +22,35 @@
 			android:layout_marginTop="10dp"
 			android:orientation="vertical">
 			
-			<include layout="@layout/main_activity_group_selector" />
+			<LinearLayout
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+				
+				<TextView
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/activity_main_spinner_label" />
+					
+				<Spinner
+					android:id="@+id/groupSelector"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:prompt="@string/activity_main_spinner_label" />
+			</LinearLayout>
 		</LinearLayout>
 		
-		<ListView
-			android:id="@+id/activityList"
+		<LinearLayout
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent">
-		</ListView>
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0">
+			
+			<ListView
+				android:id="@+id/activityList"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+			</ListView>
+		</LinearLayout>
 	</LinearLayout>
 </FrameLayout>
