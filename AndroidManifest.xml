@@ -67,9 +67,8 @@
 	   	
 	   	<activity 
 	    	android:name=".activity.StartupTipsActivity" 
-	    	android:label="@string/activity_help" 
 	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop" android:label="@string/activity_startup_tips">
 	   	</activity>
 	   	
 	   	<activity 

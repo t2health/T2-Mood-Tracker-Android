@@ -103,9 +103,7 @@
 	<string name="activity_startup_tips">Health Tip</string>
 	<string name="activity_startup_tips_hide">Hide Startup Tips</string>
 	<string-array name="startup_tips">
-		<item>This is startup tip #1</item>
-		<item>This is startup tip #2</item>
-		<item>This is startup tip #3</item>
+		<item>Daily excersise (about 10 minutes a day) can greatly reduce stress levels.</item>
 	</string-array>
 	
 	<string name="group1">Depression</string>
