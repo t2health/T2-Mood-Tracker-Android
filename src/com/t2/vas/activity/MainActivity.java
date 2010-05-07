@@ -101,28 +101,28 @@ public class MainActivity extends BaseActivity implements OnItemSelectedListener
         activityItem.put("activityId", FORM_ACTIVITY);
         activityItem.put("text1", this.getString(R.string.activity_form));
         activityItem.put("text2", this.getString(R.string.activity_form_desc));
-        activityItem.put("image1", android.R.drawable.ic_menu_sort_by_size+"");
+        activityItem.put("image1", R.drawable.ic_menu_sort_by_size+"");
         activityList.add(activityItem);
         
         activityItem = new HashMap<String, Object>();
         activityItem.put("activityId", RESULTS_ACTIVITY);
         activityItem.put("text1", this.getString(R.string.activity_results));
         activityItem.put("text2", this.getString(R.string.activity_results_desc));
-        activityItem.put("image1", android.R.drawable.ic_menu_slideshow+"");
+        activityItem.put("image1", R.drawable.ic_menu_slideshow+"");
         activityList.add(activityItem);
         
         activityItem = new HashMap<String, Object>();
         activityItem.put("activityId", NOTES_ACTIVITY);
         activityItem.put("text1", this.getString(R.string.activity_note_list));
         activityItem.put("text2", this.getString(R.string.activity_note_list_desc));
-        activityItem.put("image1", android.R.drawable.ic_menu_agenda+"");
+        activityItem.put("image1", R.drawable.ic_menu_agenda+"");
         activityList.add(activityItem);
         
         activityItem = new HashMap<String, Object>();
         activityItem.put("activityId", REMINDER_ACTIVITY);
         activityItem.put("text1", this.getString(R.string.activity_reminder_preference));
         activityItem.put("text2", this.getString(R.string.activity_reminder_preference_desc));
-        activityItem.put("image1", android.R.drawable.ic_menu_recent_history+"");
+        activityItem.put("image1", R.drawable.ic_menu_recent_history+"");
         activityList.add(activityItem);
         
         activityListView = (ListView)this.findViewById(R.id.activityList);

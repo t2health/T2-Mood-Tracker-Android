@@ -4,7 +4,7 @@
 
 	<string name="activity_main">Telehealth Mood Tracker</string>
 	<string name="activity_main_help">ec vitae metus nec enim adipiscing varius. Cras eu nibh lacus. In rutrum sagittis volutpat. Aliquam erat volutpat. Sed congue condimentum vehicula. Sed turpis arcu, interdum quis consequat eu, fermentum non velit. Vivamus bibendum, urna ut tincidunt lobortis, justo neque pretium urna, at mollis est ligula eu sapien. Praesent lorem ligula, vehicula at tincidunt eget, gravida quis risus. Nam ac viverra enim. Aenean placerat tortor quis dui adipiscing nec fermentum sapien aliquam. Donec tincidunt dictum consectetur. Mauris orci erat, fermentum id pulvinar at, consequat et erat. Aliquam vitae dapibus orci. Maecenas tempor accumsan ullamcorper. Cras convallis nibh in nisl venenatis imperdiet. Duis consectetur mattis nibh quis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nibh sed quam convallis imperdiet nec quis turpis.</string>
-	<string name="activity_main_no_group_scales">The selected tracking target needs to have fields added to it. This can be done in "Preferences"</string>
+	<string name="activity_main_no_group_scales">The selected category needs to have rating scales added to it. This can be done in "Preferences"</string>
 	<string name="activity_main_spinner_label">Choose a category below.</string>
 	<string name="activity_main_replay_intro">Replay Introduction</string>
 	<string name="activity_main_form_used">You have already provided information for this group today. You can still mange your notes and review you results.</string>
@@ -12,15 +12,15 @@
 	<string name="activity_splash_screen_message">Press anywhere on the screen to skip this into.</string>
 	
 	<string name="activity_form">Form</string>
-	<string name="activity_form_desc">Take this measure.</string>
+	<string name="activity_form_desc">Provide ratings for this category.</string>
 	<string name="activity_form_submit">See my results!</string>
 	
 	<string name="activity_help">Help</string>
 	<string name="activity_preference">Preferences</string>
 	
 	<string name="activity_results">Results</string>
-	<string name="activity_results_desc">See the results of your form entries.</string>
-	<string name="activity_results_click_to_see_chart">Click a field in the list to see its chart.</string>
+	<string name="activity_results_desc">Track your ratings from previous entries.</string>
+	<string name="activity_results_click_to_see_chart">Click a rating scale in the list to see its chart.</string>
 	
 	<string name="activity_password">Password</string>
 	<string name="activity_password_unlock">Unlock</string>
@@ -54,20 +54,20 @@
 	<string name="activity_delete_group">Delete Category</string>
 	<string name="activity_group_list_add_group">Add Category</string>
 	<string name="activity_group_saved">The category has been saved.</string>
-	<string name="activity_delete_group_message">Are you sure you would like to delete this category and all of its fields?</string>
+	<string name="activity_delete_group_message">Are you sure you would like to delete this category and all of its rating scales?</string>
 	<string name="activity_group_deleted">The category was deleted.</string>
 	<string name="activity_settings_group_editor">Category Editor</string>
-	<string name="activity_group_immutable">This category and its fields cannot be modified.</string>
+	<string name="activity_group_immutable">This category and its rating scales cannot be modified.</string>
 	
-	<string name="activity_scale_list">Fields</string>
-	<string name="activity_scale">Add/Edit Field</string>
-	<string name="activity_delete_scale">Delete Field</string>
-    <string name="add_scale">Add Field</string>
-	<string name="scale_saved">The field has been saved.</string>
-	<string name="delete_scale_message">Are you sure you would like to delete this field and all of its measurements?</string>
-	<string name="scale_deleted">The field was deleted.</string>
-	<string name="min_label">Min Label</string>
-	<string name="max_label">Max Label</string>
+	<string name="activity_scale_list">Rating Scale</string>
+	<string name="activity_scale">Add/Edit Rating Scale</string>
+	<string name="activity_delete_scale">Delete Rating Scale</string>
+    <string name="add_scale">Add Rating Scale</string>
+	<string name="scale_saved">The rating scale has been saved.</string>
+	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
+	<string name="scale_deleted">The rating scale was deleted.</string>
+	<string name="min_label">Minamum Label</string>
+	<string name="max_label">Maxamum Label</string>
 	
     <string name="activity_reminder">Reminder</string>
     <string name="activity_reminder_preference_desc">Set if you should be reminded, and when, if you havn\'t taken a measure.</string>
@@ -82,8 +82,8 @@
     <string name="activity_reminder_preference_weekly">Weekly</string>
     <string name="activity_reminder_preference_monthly">Monthly</string>
     
-    <string name="notification_ticker">A tracking target needs to be taken.</string>
-	<string name="notification_title">A tracking target needs to be taken.</string>
+    <string name="notification_ticker">A category of rating scales needs to be taken.</string>
+	<string name="notification_title">A category of rating scales needs to be taken.</string>
 	<string name="notification_text">You will be returned to your current activity when finished.</string>
     
     <string name="activity_preference_general">General</string>
@@ -103,7 +103,40 @@
 	<string name="activity_startup_tips">Health Tip</string>
 	<string name="activity_startup_tips_hide">Hide Startup Tips</string>
 	<string-array name="startup_tips">
-		<item>Daily excersise (about 10 minutes a day) can greatly reduce stress levels.</item>
+		<item>The body is vulnerable to problems when it is not “maintained” properly.  Take timeout to relax or do enjoyable activities.</item>
+		<item>Put effort into maintaining positive relationships at work.  After deployment you still need someone to watch your back. </item>
+		<item>If you talk about your deployment at work, test the waters first.  You don\'t have to give all the details.</item>
+		<item>Blowing off steam is a bad idea:   anger creates more anger, and stress creates more stress.  Solve the problem.</item>
+		<item>Problems with drinking and drugs can be tough to work through on your own.   Talk to a chaplain or healh care professional.</item>
+		<item>Getting involved in your community and spending time with others can help you feel less alone,and allows you to give back to your community.</item>
+		<item>Talking about feelings, although uncomfortable, is an important step to getting past grief.</item>
+		<item>It’s common for depressed people to believe that nothing will help.  Today\'s treatments for depression are very effective. </item>
+		<item>If you\'re depressed avoid the urge to be alone. Be with other people. Confide in someone – it’s healthier than self-isolating. </item>
+		<item>Balance your life--don\'t let your day define your priorities, let your priorities define your day.</item>
+		<item>If you\'re feeling guilty about something remember that self-forgiveness means recognizing mistakes and accepting shortcomings.</item>
+		<item>Don\'t believe everything you think:  Challenge your negative thoughts.  Is there evidence to support the way you are perceiving the situation? </item>
+		<item>It\'s not the event that causes stress, it\'s how you interpret the event.  Changing your "all or nothing thinking" will allow you to reduce stress.  </item>
+		<item>If staying focused at work is a problem, jotting in a notebook or using a journal can be helpful</item>
+		<item>In some deployed settings it can be tough to schedule times to talk with loved ones .  Make a special effort to contact the family on important dates. </item>
+		<item>As you prepare for homecoming after deployment, it’s important to go slow, be patient, and allow several months to reestablish close family connections. </item>
+		<item>Lots of reassurance from both parents will help reduce the amount and intensity of children\'s negative reactions to deployment.</item>
+		<item>Toddlers will generally copy the attitude of the at-home parent. If the at-home parent is coping well, the child will tend to do well.</item>
+		<item>Dealing with deployment issues can be overwhelming.   Talk to family, or friends, or someone from the clergy.</item>
+		<item>One source of anger is fear.  The next time you get angry, ask yourself what made you afraid.  If you work on the fear, the anger will get better.</item>
+		<item>To break the habit of aggressive behavior, it is necessary to become aware of what triggers or sets off the anger.  </item>
+		<item>There is a difference between feelings and behavior – an individual may feel angry but the anger does not have to be acted on in an aggressive way. </item>
+		<item>There are often feelings behind anger that make the anger stronger like fear which can be based on embarrassment, powerlessness, frustration and hurt.</item>
+		<item>Try to avoid words like “should,” “shouldn’t,” “must,” “ought,” “always,” “have to,” or “need to”.  Statements including these words tend to increase anger.  </item>
+		<item>Like physical fitness, spiritual fitness must be tended to and practiced.  Veterans who have a spiritual practice report less severe and fewer PTSD symptoms.</item>
+		<item>If you are struggling with spiritual question, take the time to talk to someone you trust.</item>
+		<item>Participating in activities with family, friends, or a larger community adds  to your spiritual fitness by increasing your connection to other people. </item>
+		<item>The ability to make sense of a traumatic event in a way that ‘fits’ with one\'s previous beliefs  may lead to psychological or spiritual growth</item>
+		<item>Research shows that when people forgive others, they become less vengeful, and more generous and kind toward others.  </item>
+		<item>Acceptance is part of dealing with an injury.  Depending on the severity of the injury, this process can take between a couple of months and two years.  </item>
+		<item>Making sense of your injury may take days, weeks, or months. Give yourself time, but  try to identify how it can have a positive effect on your life. </item>
+		<item>If you are coping with an injury, remember to set some goals.  Goal-setting is important for both your physical recovery and for positive mental health.</item>
+		<item>Goals while recovering from an injury,  should be challenging enough to keep your interest but not so difficult as to require superhuman effort. </item>
+		<item>If you are struggling with chronic pain, don\'t give up.  Be open to trying different treatments or combinations of treatments until you find something that works for you. </item>
 	</string-array>
 	
 	<string name="group1">Depression</string>
