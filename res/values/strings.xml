@@ -11,7 +11,7 @@
 	
 	<string name="activity_splash_screen_message">Press anywhere on the screen to skip this into.</string>
 	
-	<string name="activity_form">Form</string>
+	<string name="activity_form">Rate Your Mood</string>
 	<string name="activity_form_desc">Provide ratings for this category.</string>
 	<string name="activity_form_submit">See my results!</string>
 	
@@ -71,7 +71,7 @@
 	
     <string name="activity_reminder">Reminder</string>
     <string name="activity_reminder_preference_desc">Set if you should be reminded, and when, if you havn\'t taken a measure.</string>
-    <string name="activity_reminder_next_form">Next Form</string>
+    <string name="activity_reminder_next_form">Next Category</string>
     <string name="activity_reminder_finish">Finish</string>
     
     <string name="activity_reminder_preference_message">Choose how long since your last entry you should be reminded to take this activity.</string>
