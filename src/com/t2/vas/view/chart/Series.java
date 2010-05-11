@@ -195,6 +195,10 @@ public abstract class Series {
 		this.dataAdapter = s;
 	}
 	
+	public SeriesDataAdapter getSeriesDataAdapter() {
+		return this.dataAdapter;
+	}
+	
 	public interface SeriesDataAdapter {
 		public SeriesAdapterData getData();
 	}

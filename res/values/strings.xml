@@ -21,6 +21,8 @@
 	<string name="activity_results">Results</string>
 	<string name="activity_results_desc">Track your ratings from previous entries.</string>
 	<string name="activity_results_click_to_see_chart">Click a rating scale in the list to see its chart.</string>
+	<string name="activity_results_share_menu">Share</string>
+	<string name="activity_results_share_subject">Telehealth Mood Tracker {0} Category</string>
 	
 	<string name="activity_password">Password</string>
 	<string name="activity_password_unlock">Unlock</string>
