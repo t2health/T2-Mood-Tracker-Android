@@ -101,7 +101,9 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
         notesListView.setOnItemClickListener(this);
         notesListView.setOnItemLongClickListener(this);
         
-        this.findViewById(R.id.addNote).setOnClickListener(this);
+        if(this.findViewById(R.id.addNote) != null) {
+        	this.findViewById(R.id.addNote).setOnClickListener(this);
+        }
         
         // Hide the no notes message if there are notes.
         if(notesListView.getCount() > 0) {
