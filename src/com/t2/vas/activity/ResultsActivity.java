@@ -6,9 +6,11 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 
 import com.t2.vas.Global;
+import com.t2.vas.GroupResultsSeriesDataAdapter;
+import com.t2.vas.NotesSeriesDataAdapter;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
-import com.t2.vas.ScaleSeriesDataAdapter;
+import com.t2.vas.ScaleResultsSeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
@@ -56,11 +58,12 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	private ListView keyListView;
 	private ScaleKeyAdapter keyListAdapter;
 	
-	private int resultsGroupBy = ScaleSeriesDataAdapter.GROUPBY_DAY;
+	private int resultsGroupBy = ScaleResultsSeriesDataAdapter.GROUPBY_DAY;
 	private ChartLayout currentChartLayout;
 	private FrameLayout chartsContainer;
 	private Animation chartInAnimation;
 	private AnimationSet flashAnimation;
+	private ChartLayout groupChartLayout;
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,14 +71,16 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         
+        this.setContentView(R.layout.results_activity);
+        
         activeGroupId = this.getIntent().getLongExtra("group_id", -1);
         
         ArrayList<Series> chartSeries = new ArrayList<Series>();
         layoutInflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
-        LinearLayout l = (LinearLayout)layoutInflater.inflate(R.layout.results_activity, null);
-        keyListView = (ListView)l.findViewById(R.id.list);
-        chartsContainer = (FrameLayout)l.findViewById(R.id.charts);
+        //LinearLayout l = (LinearLayout)layoutInflater.inflate(R.layout.results_activity, null);
+        keyListView = (ListView)this.findViewById(R.id.list);
+        chartsContainer = (FrameLayout)this.findViewById(R.id.charts);
         chartInAnimation = AnimationUtils.loadAnimation(this, R.anim.push_bottom_in);
         
         // Build the animation that let the user know they already have selected
@@ -94,7 +99,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         DBAdapter db = new DBAdapter(this, Global.Database.name, Global.Database.version);
         db.open();
         
-        // ensure the group privided exists.
+        // ensure the group provided exists.
         Group g = (Group)db.getTable("group").newInstance();
         g._id = activeGroupId;
         if(!g.load()) {
@@ -102,27 +107,28 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	return;
         }
         
+        
         // Create the chart for each scale.
         ArrayList<Scale> scales = g.getScales();
         int scaleCount = scales.size();
         for(int i = 0; i < scaleCount ; i++) {
         	Scale s = scales.get(i);
-        	NotesSeries notesSeries = new NotesSeries("Notes");
+        	//NotesSeries notesSeries = new NotesSeries("Notes");
         	LineSeries lineSeries = new LineSeries(s.max_label +" - "+ s.min_label);
         	
-        	lineSeries.setSeriesDataAdapter(new ScaleSeriesDataAdapter(
+        	lineSeries.setSeriesDataAdapter(new ScaleResultsSeriesDataAdapter(
         			db,
         			s._id,
         			resultsGroupBy,
         			Global.CHART_LABEL_DATE_FORMAT
         	));
         	
-        	notesSeries.setSeriesDataAdapter(new ScaleSeriesDataAdapter(
+        	/*notesSeries.setSeriesDataAdapter(new ScaleResultsSeriesDataAdapter(
         			db,
         			s._id,
         			resultsGroupBy,
         			Global.CHART_LABEL_DATE_FORMAT
-        	));
+        	));*/
         	
         	ChartLayout chartLayout = (ChartLayout)layoutInflater.inflate(R.layout.chart_layout, null);
         	chartLayout.setYMaxLabel(s.max_label);
@@ -130,50 +136,41 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         	chartLayout.setTag((Long)s._id);
         	
         	// Style the colors of the lines and points.
-        	float hue = i / (1.00f * scaleCount) * 360.00f;
-        	lineSeries.setFillColor(Color.HSVToColor(
-        			255, 
-        			new float[]{
-        				hue,
-        				1.0f,
-        				1.0f
-        			}
-        	));
-        	lineSeries.setStrokeColor(Color.HSVToColor(
-        			255, 
-        			new float[]{
-        				hue,
-        				1.0f,
-        				0.25f
-        			}
-        	));
-        	
-        	lineSeries.setLineFillColor(Color.HSVToColor(
-        			255, 
-        			new float[]{
-        				hue,
-        				0.65f,
-        				1.0f
-        			}
-        	));
-        	lineSeries.setLineStrokeColor(Color.HSVToColor(
-        			255, 
-        			new float[]{
-        				hue,
-        				0.5f,
-        				0.5f
-        			}
-        	));
-        	
+        	setLineSeriesColor(lineSeries, i+1, scaleCount+1);
         	
         	chartLayout.getChart().setChartEventListener(this);
         	
         	// Add the series and add the chart to the list of charts.
         	chartLayout.getChart().addSeries("main", lineSeries);
-        	chartLayout.getChart().addSeries("notes", notesSeries);
+        	//chartLayout.getChart().addSeries("notes", notesSeries);
         	//chartLayouts.add(chartLayout);
         	chartLayouts.put(s._id, chartLayout);
         }
+        
+        
+        // Create the chart for the group in general
+        NotesSeries notesSeries = new NotesSeries("Notes");
+        notesSeries.setSeriesDataAdapter(new GroupResultsSeriesDataAdapter(
+        		db,
+        		g._id,
+        		resultsGroupBy,
+        		Global.CHART_LABEL_DATE_FORMAT
+        ));
+        LineSeries lineSeries = new LineSeries("");
+        lineSeries.setSeriesDataAdapter(new GroupResultsSeriesDataAdapter(
+        		db,
+        		g._id,
+        		resultsGroupBy,
+        		Global.CHART_LABEL_DATE_FORMAT
+        ));
+        setLineSeriesColor(lineSeries, 0, scaleCount+1);
+        groupChartLayout = (ChartLayout)this.findViewById(R.id.groupChart);
+        groupChartLayout.setYMaxLabel(g.title);
+        groupChartLayout.getChart().setChartEventListener(this);
+        groupChartLayout.getChart().addSeries("notes", notesSeries);
+        groupChartLayout.getChart().addSeries("main", lineSeries);
+        this.currentChartLayout = groupChartLayout;
+        
         
         ArrayList<ChartLayout> chartLayoutsList = new ArrayList<ChartLayout>();
         chartLayoutsList.addAll(chartLayouts.values());
@@ -183,13 +180,12 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
         keyListView.setAdapter(keyListAdapter);
         keyListView.setOnItemClickListener(this);
         
-        this.setContentView(l);
+       // this.setContentView(l);
         
         this.findViewById(R.id.notesButton).setOnClickListener(this);
-        this.findViewById(R.id.notesButton).setVisibility(View.INVISIBLE);
-        
+        //this.findViewById(R.id.notesButton).setVisibility(View.INVISIBLE);
         this.findViewById(R.id.addNoteButton).setOnClickListener(this);
-        this.findViewById(R.id.addNoteButton).setVisibility(View.INVISIBLE);
+        //this.findViewById(R.id.addNoteButton).setVisibility(View.INVISIBLE);
         
         
         db.close();
@@ -209,6 +205,44 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	        int listFirstVisible = savedInstanceState.getInt("listFirstVisible");
 	        keyListView.setSelection(listFirstVisible);
         }
+	}
+	
+	private void setLineSeriesColor(LineSeries lineSeries, int currentIndex, int totalCount) {
+		// Style the colors of the lines and points.
+    	float hue = currentIndex / (1.00f * totalCount) * 360.00f;
+    	lineSeries.setFillColor(Color.HSVToColor(
+    			255, 
+    			new float[]{
+    				hue,
+    				1.0f,
+    				1.0f
+    			}
+    	));
+    	lineSeries.setStrokeColor(Color.HSVToColor(
+    			255, 
+    			new float[]{
+    				hue,
+    				1.0f,
+    				0.25f
+    			}
+    	));
+    	
+    	lineSeries.setLineFillColor(Color.HSVToColor(
+    			255, 
+    			new float[]{
+    				hue,
+    				0.65f,
+    				1.0f
+    			}
+    	));
+    	lineSeries.setLineStrokeColor(Color.HSVToColor(
+    			255, 
+    			new float[]{
+    				hue,
+    				0.5f,
+    				0.5f
+    			}
+    	));
 	}
 	
 	@Override
@@ -245,8 +279,8 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		
 		// Refresh current chart to show notes.
 		if(requestCode == NOTES_MANAGE) {
-			currentChartLayout.getChart().updateChart();
-			currentChartLayout.invalidate();
+			this.groupChartLayout.getChart().updateChart();
+			this.groupChartLayout.invalidate();
 		}
 	}
 
@@ -256,7 +290,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	}
 	
 	public void showChart(ChartLayout chartLayout, boolean animate) {
-		int chartBackgroundCount = 2;
+		int chartBackgroundCount = 1;
 		
 		// Flash the chart if it already selected
 		if(currentChartLayout != null && currentChartLayout.equals(chartLayout)) {
@@ -283,6 +317,17 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 		for(int i = 0; i < removeCount; i++) {
 			this.chartsContainer.removeViewAt(0);
 		}
+		
+		
+		// Fade the group chart down
+		AlphaAnimation aa = new AlphaAnimation(1.0f, 0.5f);
+		aa.setFillBefore(true);
+		aa.setFillAfter(true);
+		groupChartLayout.startAnimation(aa);
+		groupChartLayout.setShowLabels(false);
+		groupChartLayout.getChart().setDropShadowEnabled(false);
+		groupChartLayout.getChart().setShowYHilight(false);
+		
 		
 		// Progressivly fade out each view behind the current one
 		int childCount = chartsContainer.getChildCount();

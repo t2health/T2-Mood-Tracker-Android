@@ -12,7 +12,7 @@
 		
 		<TextView
 			android:id="@+id/max"
-			android:text="MAX"
+			android:text=""
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -40,16 +40,9 @@
 		
 		<TextView
 			android:id="@+id/min"
-			android:text="MIN"
+			android:text=""
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceLarge" /> 
 	</LinearLayout>
-	
-	<TableLayout
-		android:id="@+id/key"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:stretchColumns="*">
-	</TableLayout>
 </view>

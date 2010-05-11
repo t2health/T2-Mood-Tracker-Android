@@ -25,7 +25,7 @@ public class ChartLayout extends LinearLayout {
 	private TextView yMaxLabel;
 	private TextView yMinLabel;
 	private HorizontalScrollView scroll;
-	private TableLayout keyTable;
+	//private TableLayout keyTable;
 	private LinearLayout chartWrapper;
 	
 	private boolean showLabels = true;
@@ -45,7 +45,7 @@ public class ChartLayout extends LinearLayout {
 		chart = (Chart)this.findViewById(R.id.chart);
 		yMaxLabel = (TextView)this.findViewById(R.id.max);
 		yMinLabel = (TextView)this.findViewById(R.id.min);
-		keyTable = (TableLayout)this.findViewById(R.id.key);
+		//keyTable = (TableLayout)this.findViewById(R.id.key);
 		chartWrapper = (LinearLayout)this.findViewById(R.id.chartWrapper);
 	}
 	
