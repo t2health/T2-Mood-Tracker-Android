@@ -62,6 +62,17 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 		}
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if(this.notesCursor != null) {
+			this.notesCursor.close();
+		}
+		if(this.dbAdapter != null) {
+			this.dbAdapter.close();
+		}
+	}
+
 	private void showPasswordPrompt() {
 		String notesPassword = sharedPref.getString("notes_password", null);
 		
