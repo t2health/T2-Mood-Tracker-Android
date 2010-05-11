@@ -115,6 +115,9 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
         if(this.findViewById(R.id.addNote) != null) {
         	this.findViewById(R.id.addNote).setOnClickListener(this);
         }
+        if(this.findViewById(R.id.addNoteButton) != null) {
+        	this.findViewById(R.id.addNoteButton).setOnClickListener(this);
+        }
         
         // Hide the no notes message if there are notes.
         if(notesListView.getCount() > 0) {
@@ -186,8 +189,15 @@ public class NotesActivity extends BaseActivity implements OnItemClickListener, 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
+			case R.id.addNoteButton:
 			case R.id.addNote:
 				Intent i = new Intent(this, NoteActivity.class);
+				i.putExtra("timestamp", 
+						this.getIntent().getLongExtra(
+								"start_timestamp", 
+								Calendar.getInstance().getTimeInMillis()
+						)
+				);
 				this.startActivityForResult(i, NOTE_ACTIVITY);
 				break;
 			case R.id.closeButton:

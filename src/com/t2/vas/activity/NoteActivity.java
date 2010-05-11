@@ -38,7 +38,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener, OnDat
 		// init the local variables;
 		Calendar cal = Calendar.getInstance();
 		Intent intent = this.getIntent();
-		long dateTimestamp = intent.getLongExtra("timstamp", cal.getTimeInMillis());
+		long dateTimestamp = intent.getLongExtra("timestamp", cal.getTimeInMillis());
 		
 		currentNote._id = intent.getLongExtra("noteId", -1);
 		

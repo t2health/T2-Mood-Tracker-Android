@@ -460,7 +460,7 @@ public class ResultsActivity extends BaseActivity implements OnItemClickListener
 	private void addNotesPressed() {
 		long[] range = getActiveChartTimeRange();
 		Intent i = new Intent(this, NoteActivity.class);
-		i.putExtra("timstamp", range[0]);
+		i.putExtra("timestamp", range[0]);
 		
 		this.startActivityForResult(i, NOTES_MANAGE);
 	}
