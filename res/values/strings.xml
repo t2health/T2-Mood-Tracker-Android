@@ -3,7 +3,7 @@
 	<string name="app_name">Telehealth Mood Tracker</string>
 
 	<string name="activity_main">Telehealth Mood Tracker</string>
-	<string name="activity_main_help">ec vitae metus nec enim adipiscing varius. Cras eu nibh lacus. In rutrum sagittis volutpat. Aliquam erat volutpat. Sed congue condimentum vehicula. Sed turpis arcu, interdum quis consequat eu, fermentum non velit. Vivamus bibendum, urna ut tincidunt lobortis, justo neque pretium urna, at mollis est ligula eu sapien. Praesent lorem ligula, vehicula at tincidunt eget, gravida quis risus. Nam ac viverra enim. Aenean placerat tortor quis dui adipiscing nec fermentum sapien aliquam. Donec tincidunt dictum consectetur. Mauris orci erat, fermentum id pulvinar at, consequat et erat. Aliquam vitae dapibus orci. Maecenas tempor accumsan ullamcorper. Cras convallis nibh in nisl venenatis imperdiet. Duis consectetur mattis nibh quis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nibh sed quam convallis imperdiet nec quis turpis.</string>
+	<string name="activity_main_help">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
 	<string name="activity_main_no_group_scales">The selected category needs to have rating scales added to it. This can be done in "Preferences"</string>
 	<string name="activity_main_spinner_label">Choose a category below.</string>
 	<string name="activity_main_replay_intro">Replay Introduction</string>
@@ -72,7 +72,7 @@
 	<string name="max_label">Maxamum Label</string>
 	
     <string name="activity_reminder">Reminder</string>
-    <string name="activity_reminder_preference_desc">Set if you should be reminded, and when, if you havn\'t taken a measure.</string>
+    <string name="activity_reminder_preference_desc">Set a reminder to track your mood.</string>
     <string name="activity_reminder_next_form">Next Category</string>
     <string name="activity_reminder_finish">Finish</string>
     
