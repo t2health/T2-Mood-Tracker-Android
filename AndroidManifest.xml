@@ -162,7 +162,7 @@
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.NoteActivity"
-	    	android:label="@string/delete_note_title"
+	    	android:label="@string/add_edit_note_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
 	    	android:launchMode="singleTop"
