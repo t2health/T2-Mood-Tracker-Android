@@ -12,11 +12,11 @@ public class Result extends Table {
 	public long scale_id;
 	public long timestamp;
 	public int value;
-	
+
 	public Result(DBAdapter d) {
 		super(d);
 	}
-	
+
 	@Override
 	public String getTableName() {
 		return "result";
@@ -27,18 +27,22 @@ public class Result extends Table {
 		this.dbAdapter.getDatabase().execSQL("CREATE TABLE result (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, scale_id INTEGER NOT NULL, timestamp INTEGER NOT NULL, value INTEGER NOT NULL)");
 		// Create the index
 		this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE INDEX group_id_index ON result(group_id)" +
+		"");
+		this.dbAdapter.getDatabase().execSQL("" +
 				"CREATE INDEX result_scale_id_index ON result(scale_id)" +
 		"");
 		this.dbAdapter.getDatabase().execSQL("" +
 				"CREATE INDEX result_timestamp_index ON result(timestamp)" +
 		"");
+
 	}
 
 	@Override
 	public void onUpgrade(int oldVersion, int newVersion) {
-		
+
 	}
-	
+
 
 	public Cursor getNotes(long resultId) {
 		ContentValues v = new ContentValues();
@@ -53,7 +57,7 @@ public class Result extends Table {
 		v.put("scale_id", this.scale_id);
 		v.put("timestamp", this.timestamp);
 		v.put("value", this.value);
-		
+
 		return this.insert(v);
 	}
 
@@ -75,12 +79,36 @@ public class Result extends Table {
 		v.put("scale_id", this.scale_id);
 		v.put("timestamp", this.timestamp);
 		v.put("value", this.value);
-		
+
 		return this.update(v);
 	}
-	
+
 	@Override
 	public Result newInstance() {
 		return new Result(this.dbAdapter);
+	}
+
+	public long getEarliestTimestampSince(long groupId, long timestamp) {
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				"result",
+				new String[] {
+						"timestamp",
+				},
+				"group_id=? AND timestamp >= ?",
+				new String[] {
+						groupId+"",
+						timestamp+"",
+				},
+				null,
+				null,
+				"timestamp ASC",
+				"1"
+			);
+
+		c.moveToFirst();
+		Long newTimestamp = c.getLong(0);
+		c.close();
+
+		return newTimestamp;
 	}
 }

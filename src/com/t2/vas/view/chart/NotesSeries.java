@@ -11,17 +11,16 @@ public class NotesSeries extends Series {
 	public NotesSeries(String name) {
 		super(name);
 	}
-	
+
 	public NotesSeries(String name, ArrayList<Label> labels, ArrayList<Value> values) {
 		super(name, labels, values);
 	}
 
 	@Override
 	protected SeriesDrawable onLoadDrawable(Value v, int pos, int width, int height) {
-		if(!v.isHilight()) {
+		if(v.getValue() == null) {
 			return null;
 		}
-		
 		Rect bounds = v.getBounds();
 		return new SeriesDrawable(new Rect(bounds.left, 0, bounds.right, bounds.width()));
 	}

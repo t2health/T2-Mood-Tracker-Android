@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
 	xmlns:android="http://schemas.android.com/apk/res/android">
-	
-	<item 
-		android:id="@+id/settings" 
-		android:title="@string/menu_settings" 
+
+	<item
+		android:id="@+id/settings_title"
+		android:title="@string/settings_title"
 		android:icon="@android:drawable/ic_menu_manage">
 	</item>
-	<item 
-		android:id="@+id/help" 
-		android:title="@string/menu_help" 
-		android:icon="@android:drawable/ic_menu_help">
-	</item>
 	<item
-		android:id="@+id/tips"
-		android:title="@string/activity_startup_tips"
-		android:icon="@android:drawable/ic_menu_info_details">
+		android:id="@+id/help"
+		android:title="@string/help_title"
+		android:icon="@android:drawable/ic_menu_help">
 	</item>
 </menu>

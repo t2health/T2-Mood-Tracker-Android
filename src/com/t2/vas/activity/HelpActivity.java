@@ -4,41 +4,33 @@ import com.t2.vas.R;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class HelpActivity extends BaseActivity implements OnClickListener {
-	public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        Intent intent = this.getIntent();
-        
-        int messageId = intent.getIntExtra("string_resource_id", 0);
-        if(messageId == 0) {
-        	this.finish();
-        	return;
-        }
-        
-        String message = this.getString(messageId);
-        if(message == null) {
-        	this.finish();
-        	return;
-        }
-        
-        this.setContentView(R.layout.help_activity);
-        
-        ((TextView)this.findViewById(R.id.message)).setText(message);
-        ((Button)this.findViewById(R.id.closeButton)).setOnClickListener(this);
-	}
+public class HelpActivity extends ABSInfoActivity implements OnClickListener {
+	private static final String TAG = HelpActivity.class.getName();
 
-	@Override
-	public void onClick(View v) {
-		switch(v.getId()) {
-			case R.id.closeButton:
-				this.finish();
-				break;
-		}
+	public void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+
+       Intent intent = this.getIntent();
+
+       int messageId = intent.getIntExtra("help_string_resource_id", 0);
+       if(messageId == 0) {
+       	this.finish();
+       	return;
+       }
+
+       String content = this.getString(messageId);
+       if(content == null) {
+       	this.finish();
+       	return;
+       }
+
+       this.setContentResId(messageId);
 	}
 }

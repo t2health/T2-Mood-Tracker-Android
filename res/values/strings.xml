@@ -1,56 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Telehealth Mood Tracker</string>
+	<string name="app_name">T2 Mood Tracker</string>
 
-	<string name="activity_main">Telehealth Mood Tracker</string>
-	<string name="activity_main_help">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
-	<string name="activity_main_no_group_scales">The selected category needs to have rating scales added to it. This can be done in "Preferences"</string>
-	<string name="activity_main_spinner_label">Choose a category below.</string>
-	<string name="activity_main_replay_intro">Replay Introduction</string>
-	<string name="activity_main_form_used">You have already provided information for this group today. You can still mange your notes and review you results.</string>
-	
-	<string name="activity_splash_screen_message">Press anywhere on the screen to skip this into.</string>
-	
-	<string name="activity_form">Rate Your Mood</string>
-	<string name="activity_form_desc">Provide ratings for this category.</string>
-	<string name="activity_form_submit">See my results!</string>
-	
-	<string name="activity_help">Help</string>
-	<string name="activity_preference">Preferences</string>
-	
-	<string name="activity_results">Results</string>
-	<string name="activity_results_desc">Track your ratings from previous entries.</string>
-	<string name="activity_results_click_to_see_chart">Click a rating scale in the list to see its chart.</string>
-	<string name="activity_results_share_menu">Share</string>
-	<string name="activity_results_share_subject">Telehealth Mood Tracker {0} Category</string>
-	
-	<string name="activity_password">Password</string>
-	<string name="activity_password_unlock">Unlock</string>
-	<string name="activity_password_next">Next</string>
-	<string name="activity_password_set">Set</string>
-	<string name="activity_password_confirm_message">Enter the current password.</string>
-	<string name="activity_password_confirm_message_error">The password entered is not corrent. Enter the current password.</string>
-	<string name="activity_password_new_message1">Enter the new password.</string>
-	<string name="activity_password_new_message1_error">The passwords did not match. Enter the new password.</string>
-	<string name="activity_password_new_message2">Re-enter the new password.</string>
-	
-	<string name="activity_note_list">Notes</string>
-	<string name="activity_note_list_desc">Review notes corresponding to days of the month.</string>
-	<string name="activity_note_dialog_list">Notes for selected date</string>
-	<string name="activity_note">Add/Edit Note</string>
-	<string name="activity_delete_note">Delete Note</string>
-	<string name="activity_note_list_no_notes_message">You do not have any notes yet.</string>
-	<string name="activity_note_saved">The note has been saved.</string>
-	<string name="activity_note_delete_message">Are you sure you would like to delete this note?</string>
-	<string name="activity_note_deleted">The note was deleted.</string>
-	<string name="activity_note_list_add_note">Add Note</string>
-	<string name="activity_preference_password_protect_notes_title">Password Protect Notes</string>
-	<string name="activity_preference_password_protect_notes_description">Require a password to view notes.</string>
-	<string name="activity_note_unlocked_message">Notes have been unlocked for 1 hour.</string>
-	<string name="activity_preference_password_lock_now_title">Lock the notes screen now.</string>
-	<string name="activity_preference_password_lock_now_description">Force the notes screen require a password next time it is visited.</string>
-	<string name="activity_preference_notes_locked_message">Notes will require a password next time it is accessed.</string>
-	
+	<string name="splash_intro">Press the \"Start\" button to begin.</string>
+	<string name="splash_start_button">Start</string>
+
+	<string name="main_intro_title">Welcome to the T2 Mood Tracker</string>
+	<string name="main_into_text">With this app you can rate your moods, keep track of how you’re feeling over time, figure out how life events, therapies and medications are affecting your well-being, and accurately communicate all of this to your health care provider or therapist should you choose to do so.</string>
+	<string name="main_intro_intructions">Choose a category by moving the slider below.</string>
+	<string name="main_help"></string>
+
+	<string name="info_title">Info</string>
+	<string name="info_desc"></string>
+
+	<string name="form_title">Rate Your Mood</string>
+	<string name="form_desc">This is a good place to start. Provide ratings for this category by sliding the scales.</string>
+	<string name="form_help">Rating your mood is quick and easy.  Simply select a category you’d like to track.   For example, if you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the cursor to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph; the most recent point on the graph represents the average of the ten ratings you just made.  You will also see the average of all previous day’s ratings you have done for that category. You may rate yourself on any given scale only once a day.</string>
+	<string name="form_submit">See my results!</string>
+
+	<string name="results_title">Results</string>
+	<string name="results_desc">View your previous ratings on a series of charts.</string>
+	<string name="results_help">Results of your ratings are always shown in graphs.  You can view graphs that are made up of points representing the average of the ten ratings you made for each tracking category or you can view graphs of the individual ratings you made for each separate mood.  For example, you can view the average of all ten ratings you made as you tracked “Depression” or you can view each of your ten individual ratings like “Happy-Sad”.  </string>
+	<string name="results_choose_chart">Use the slider above to view a different chart.</string>
+	<string name="add_notes_popup">Add a note for today by clicking the + button.</string>
+
+	<string name="group_add_title">Add a custom category</string>
+	<string name="group_add_desc">Create a custom category to fit your needs. This new category will be available in the slider below.</string>
+
+	<string name="help_title">Help</string>
+	<string name="help_desc">Get additional information on how to use this app.</string>
+
+	<string name="send_anon_data_title">Send Anonymous Usage Data</string>
+	<string name="send_anon_data_desc"></string>
+
+	<string name="eula_title">License</string>
+	<string name="eula_accept">Accept</string>
+	<string name="eula_refuse">Refuse</string>
+
+	<string name="notes_title">Manage Notes</string>
+	<string name="notes_desc">Review/Edit notes associated with days of the month.</string>
+	<string name="notes_help">Making notes of events that might be related to your moods is important.  By touching the “Note” icon you can enter notes for the day of your rating.  You can also go back to earlier ratings and make a note for that day.  Make notes when you start, change or discontinue a medication or therapy, or note important events that occur each day.  As you review your ratings over time you may be able to find important patterns in how you are feeling and why.</string>
+	<string name="notes_dialog_title">Notes for selected date</string>
+	<string name="add_edit_note_title">Add/Edit Note</string>
+	<string name="delete_note_title">Delete Note</string>
+	<string name="no_notes_yet">You do not have any notes yet.</string>
+	<string name="note_saved">The note has been saved.</string>
+	<string name="note_delete_confirm">Are you sure you would like to delete this note?</string>
+	<string name="note_deleted">The note was deleted.</string>
+	<string name="add_note">Add Note</string>
+	<string name="password_protect_notes_title">Password Protect Notes</string>
+	<string name="password_protect_notes_desc">Require a password to view notes.</string>
+	<string name="notes_unlocked">Notes have been unlocked for 1 hour.</string>
+	<string name="lock_notes_now_title">Lock the notes screen now.</string>
+	<string name="lock_notes_now_desc">Force the notes screen require a password next time it is visited.</string>
+	<string name="notes_will_require_password">Notes will require a password next time it is accessed.</string>
+
+	<string name="clear_data_text">This will clear all the ratings you have provided for this category. Are you sure you would like to do this?</string>
+	<string name="clear_data_cleared_text">Ratings data has been clear for this category.</string>
+
+	<string name="reminder_title">Reminder</string>
+	<string name="reminder_desc">Set a reminder to track your mood.</string>
+	<string name="remind_time_title">Reminder Time</string>
+	<string name="remind_time_desc">The time at which you will be reminded to rate your mood.</string>
+
+	<string name="settings_title">Settings</string>
+	<string name="settings_desc">Adjust how the app should operate.</string>
+	<string name="settings_notes_locked">Notes will require a password next time it is accessed.</string>
+
+	<string name="about_title">About T2 Mood Tracker</string>
+	<string name="about_desc"></string>
+	<string name="about_text">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
+
+	<string name="delete_category_title">Delete</string>
+	<string name="delete_category_desc">Remove this category, associated scales and ratings.</string>
+	<string name="edit_category_title">Edit</string>
+	<string name="edit_category_desc">Change the name of this Category.</string>
+	<string name="manage_scales_title">Manage Scales.</string>
+	<string name="manage_scales_desc">List and modify this category\'s scales.</string>
+	<string name="clear_data_title">Clear Data</string>
+	<string name="clear_data_desc">Remove all the rating associated with this category.</string>
+
+	<string name="frequency_title">Frequency</string>
+	<string name="frequency_desc">How often you should be reminded to rate your mood.</string>
+	<string-array name="frequency_entries">
+		<item>Daily</item>
+		<!-- <item>Weekly</item> -->
+		<item>Monthly</item>
+	</string-array>
+	<string-array name="frequency_entries_values">
+		<item>DAILY</item>
+		<!-- <item>WEEKLY</item> -->
+		<item>MONTHLY</item>
+	</string-array>
+	<string name="frequency_entries_values_default">DAILY</string>
+
+	<string name="last_rated_label">Last Rated: </string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="save">Save</string>
+	<string name="cancel">Cancel</string>
+	<string name="delete">Delete</string>
+	<string name="close">Close</string>
+
+	<string name="group">Category</string>
+	<string name="average_for">Average for</string>
+	<string name="manage_scales">Manage Scales</string>
+	<string name="edit_group">Edit Category</string>
+	<string name="manage_group">Manage Category</string>
+
+
+ 	<string name="password_title">Password</string>
+ 	<string name="password_unlock">Unlock</string>
+	<string name="password_next">Next</string>
+	<string name="password_set">Set</string>
+	<string name="password_confirm_message">Enter the current password.</string>
+	<string name="password_confirm_message_error">The password entered is not correct. Enter the current password.</string>
+	<string name="password_new_message1">Enter the new password.</string>
+	<string name="password_new_message1_error">The passwords did not match. Enter the new password.</string>
+	<string name="password_new_message2">Re-enter the new password.</string>
+
 	<string name="activity_group_list">Categories</string>
 	<string name="activity_group">Add/Edit Category</string>
 	<string name="activity_delete_group">Delete Category</string>
@@ -60,7 +128,7 @@
 	<string name="activity_group_deleted">The category was deleted.</string>
 	<string name="activity_settings_group_editor">Category Editor</string>
 	<string name="activity_group_immutable">This category and its rating scales cannot be modified.</string>
-	
+
 	<string name="activity_scale_list">Rating Scale</string>
 	<string name="activity_scale">Add/Edit Rating Scale</string>
 	<string name="activity_delete_scale">Delete Rating Scale</string>
@@ -68,14 +136,14 @@
 	<string name="scale_saved">The rating scale has been saved.</string>
 	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
 	<string name="scale_deleted">The rating scale was deleted.</string>
-	<string name="min_label">Minamum Label</string>
-	<string name="max_label">Maxamum Label</string>
-	
+	<string name="min_label">Minimum Label</string>
+	<string name="max_label">Maximum Label</string>
+
     <string name="activity_reminder">Reminder</string>
     <string name="activity_reminder_preference_desc">Set a reminder to track your mood.</string>
     <string name="activity_reminder_next_form">Next Category</string>
     <string name="activity_reminder_finish">Finish</string>
-    
+
     <string name="activity_reminder_preference_message">Choose how long since your last entry you should be reminded to take this activity.</string>
     <string name="activity_reminder_preference">Reminder</string>
     <string name="activity_reminder_preference_never">Never</string>
@@ -83,34 +151,25 @@
     <string name="activity_reminder_preference_daily">Daily</string>
     <string name="activity_reminder_preference_weekly">Weekly</string>
     <string name="activity_reminder_preference_monthly">Monthly</string>
-    
+
     <string name="notification_ticker">A category of rating scales needs to be taken.</string>
 	<string name="notification_title">A category of rating scales needs to be taken.</string>
 	<string name="notification_text">You will be returned to your current activity when finished.</string>
-    
+
     <string name="activity_preference_general">General</string>
     <string name="activity_preference_security">Security</string>
     <string name="activity_preference_change_password">Change Password</string>
-    
-	<string name="menu_help">Help</string>
-	<string name="menu_settings">Preferences</string>
-	
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="save">Save</string>
-	<string name="cancel">Cancel</string>
-	<string name="delete">Delete</string>
-	<string name="close">Close</string>
-	
+
+
 	<string name="activity_startup_tips">Health Tip</string>
-	<string name="activity_startup_tips_hide">Hide Startup Tips</string>
+	<string name="activity_startup_tips_show">Show Startup Tips</string>
 	<string-array name="startup_tips">
 		<item>The body is vulnerable to problems when it is not “maintained” properly.  Take timeout to relax or do enjoyable activities.</item>
 		<item>Put effort into maintaining positive relationships at work.  After deployment you still need someone to watch your back. </item>
-		<item>If you talk about your deployment at work, test the waters first.  You don\'t have to give all the details.</item>
+		<!-- <item>If you talk about your deployment at work, test the waters first.  You don\'t have to give all the details.</item> -->
 		<item>Blowing off steam is a bad idea:   anger creates more anger, and stress creates more stress.  Solve the problem.</item>
-		<item>Problems with drinking and drugs can be tough to work through on your own.   Talk to a chaplain or healh care professional.</item>
-		<item>Getting involved in your community and spending time with others can help you feel less alone,and allows you to give back to your community.</item>
+		<item>Problems with drinking and drugs can be tough to work through on your own.   Talk to a chaplain or health care professional.</item>
+		<item>Getting involved in your community and spending time with others can help you feel less alone and allows you to give back to your community.</item>
 		<item>Talking about feelings, although uncomfortable, is an important step to getting past grief.</item>
 		<item>It’s common for depressed people to believe that nothing will help.  Today\'s treatments for depression are very effective. </item>
 		<item>If you\'re depressed avoid the urge to be alone. Be with other people. Confide in someone – it’s healthier than self-isolating. </item>
@@ -119,54 +178,54 @@
 		<item>Don\'t believe everything you think:  Challenge your negative thoughts.  Is there evidence to support the way you are perceiving the situation? </item>
 		<item>It\'s not the event that causes stress, it\'s how you interpret the event.  Changing your "all or nothing thinking" will allow you to reduce stress.  </item>
 		<item>If staying focused at work is a problem, jotting in a notebook or using a journal can be helpful</item>
-		<item>In some deployed settings it can be tough to schedule times to talk with loved ones .  Make a special effort to contact the family on important dates. </item>
-		<item>As you prepare for homecoming after deployment, it’s important to go slow, be patient, and allow several months to reestablish close family connections. </item>
-		<item>Lots of reassurance from both parents will help reduce the amount and intensity of children\'s negative reactions to deployment.</item>
-		<item>Toddlers will generally copy the attitude of the at-home parent. If the at-home parent is coping well, the child will tend to do well.</item>
-		<item>Dealing with deployment issues can be overwhelming.   Talk to family, or friends, or someone from the clergy.</item>
+		<!-- <item>In some deployed settings it can be tough to schedule times to talk with loved ones .  Make a special effort to contact the family on important dates. </item> -->
+		<!-- <item>As you prepare for homecoming after deployment, it’s important to go slow, be patient, and allow several months to reestablish close family connections. </item> -->
+		<!-- <item>Lots of reassurance from both parents will help reduce the amount and intensity of children\'s negative reactions to deployment.</item> -->
+		<!-- <item>Toddlers will generally copy the attitude of the at-home parent. If the at-home parent is coping well, the child will tend to do well.</item> -->
+		<!-- <item>Dealing with deployment issues can be overwhelming.   Talk to family, or friends, or someone from the clergy.</item> -->
 		<item>One source of anger is fear.  The next time you get angry, ask yourself what made you afraid.  If you work on the fear, the anger will get better.</item>
 		<item>To break the habit of aggressive behavior, it is necessary to become aware of what triggers or sets off the anger.  </item>
 		<item>There is a difference between feelings and behavior – an individual may feel angry but the anger does not have to be acted on in an aggressive way. </item>
 		<item>There are often feelings behind anger that make the anger stronger like fear which can be based on embarrassment, powerlessness, frustration and hurt.</item>
 		<item>Try to avoid words like “should,” “shouldn’t,” “must,” “ought,” “always,” “have to,” or “need to”.  Statements including these words tend to increase anger.  </item>
-		<item>Like physical fitness, spiritual fitness must be tended to and practiced.  Veterans who have a spiritual practice report less severe and fewer PTSD symptoms.</item>
+		<!-- <item>Like physical fitness, spiritual fitness must be tended to and practiced.  Veterans who have a spiritual practice report less severe and fewer PTSD symptoms.</item> -->
 		<item>If you are struggling with spiritual question, take the time to talk to someone you trust.</item>
 		<item>Participating in activities with family, friends, or a larger community adds  to your spiritual fitness by increasing your connection to other people. </item>
 		<item>The ability to make sense of a traumatic event in a way that ‘fits’ with one\'s previous beliefs  may lead to psychological or spiritual growth</item>
 		<item>Research shows that when people forgive others, they become less vengeful, and more generous and kind toward others.  </item>
-		<item>Acceptance is part of dealing with an injury.  Depending on the severity of the injury, this process can take between a couple of months and two years.  </item>
-		<item>Making sense of your injury may take days, weeks, or months. Give yourself time, but  try to identify how it can have a positive effect on your life. </item>
+		<!-- <item>Acceptance is part of dealing with an injury.  Depending on the severity of the injury, this process can take between a couple of months and two years.  </item> -->
+		<!-- <item>Making sense of your injury may take days, weeks, or months. Give yourself time, but  try to identify how it can have a positive effect on your life. </item> -->
 		<item>If you are coping with an injury, remember to set some goals.  Goal-setting is important for both your physical recovery and for positive mental health.</item>
-		<item>Goals while recovering from an injury,  should be challenging enough to keep your interest but not so difficult as to require superhuman effort. </item>
+		<!-- <item>Goals while recovering from an injury,  should be challenging enough to keep your interest but not so difficult as to require superhuman effort. </item> -->
 		<item>If you are struggling with chronic pain, don\'t give up.  Be open to trying different treatments or combinations of treatments until you find something that works for you. </item>
 	</string-array>
-	
+
 	<string name="group1">Depression</string>
 	<string-array name="group1_min">
 		<item>Depressed</item>
-		<item>Joyless</item>
-		<item>Fatigued</item>
+		<item>Worthless</item>
+		<item>Tired</item>
 		<item>Sleepy</item>
-		<item>Isolated</item>
+		<item>Lonely</item>
 		<item>Hopeless</item>
 		<item>Distracted</item>
 		<item>Slow</item>
 		<item>Restless</item>
-		<item>Destructive</item>
+		<item>Unsafe</item>
 	</string-array>
 	<string-array name="group1_max">
 		<item>Happy</item>
-		<item>Joyful</item>
+		<item>Valuable</item>
 		<item>Energetic</item>
 		<item>Alert</item>
 		<item>Involved</item>
 		<item>Hopeful</item>
 		<item>Focused</item>
-		<item>Fast</item>
+		<item>Speedy</item>
 		<item>Relaxed</item>
-		<item>Creative</item>
+		<item>Safe</item>
 	</string-array>
-	
+
 	<string name="group2">Anxiety</string>
 	<string-array name="group2_min">
 		<item>Worried</item>
@@ -175,7 +234,7 @@
 		<item>Sleepless</item>
 		<item>Distracted</item>
 		<item>Irritable</item>
-		<item>Nervous</item>
+		<item>Unsafe</item>
 		<item>Fearful</item>
 		<item>Panicked</item>
 		<item>Anxious</item>
@@ -187,39 +246,39 @@
 		<item>Rested</item>
 		<item>Focused</item>
 		<item>Cheerful</item>
-		<item>Brave</item>
+		<item>Safe</item>
 		<item>Fearless</item>
 		<item>Content</item>
 		<item>Peaceful</item>
 	</string-array>
-	
-	<string name="group3">Post-traumatic Stress</string>
+
+	<string name="group3">PTS (Post-traumatic Stress)</string>
 	<string-array name="group3_min">
 		<item>Avoiding</item>
 		<item>Fearful</item>
-		<item>Anxious</item>
+		<item>Angry</item>
 		<item>Jumpy</item>
 		<item>Guarded</item>
 		<item>Numb</item>
 		<item>Hyper </item>
-		<item>Isolated</item>
+		<item>Withdrawn</item>
 		<item>Bored</item>
 		<item>Hopeless</item>
 	</string-array>
 	<string-array name="group3_max">
 		<item>Welcoming</item>
-		<item>Fearless</item>
-		<item>Peaceful</item>
-		<item>Laid-back</item>
-		<item>Easy-going</item>
+		<item>Safe</item>
+		<item>Content </item>
+		<item>Relaxed</item>
+		<item>Trusting</item>
 		<item>Responsive</item>
 		<item>Calm</item>
-		<item>Involved</item>
+		<item>Social</item>
 		<item>Interested</item>
 		<item>Hopeful</item>
 	</string-array>
-	
-	<string name="group4">Brain Injury</string>
+
+	<string name="group4">Head Injury</string>
 	<string-array name="group4_min">
 		<item>Confused</item>
 		<item>Forgetful</item>
@@ -235,16 +294,16 @@
 	<string-array name="group4_max">
 		<item>Alert</item>
 		<item>Sharp</item>
-		<item>Stable</item>
+		<item>Balanced</item>
 		<item>Attentive</item>
-		<item>Even</item>
+		<item>Stable</item>
 		<item>No Headache</item>
 		<item>Cheerful</item>
 		<item>Organized</item>
 		<item>Thoughtful</item>
 		<item>Happy</item>
 	</string-array>
-	
+
 	<string name="group5">Stress</string>
 	<string-array name="group5_min">
 		<item>Stressed</item>
@@ -254,7 +313,7 @@
 		<item>Restless</item>
 		<item>Moody</item>
 		<item>Irritable</item>
-		<item>Fatigued</item>
+		<item>Tired</item>
 		<item>Distracted</item>
 		<item>Hopeless</item>
 	</string-array>
@@ -264,13 +323,13 @@
 		<item>Content</item>
 		<item>Social</item>
 		<item>Peaceful</item>
-		<item>Even</item>
+		<item>Light Hearted</item>
 		<item>Cheerful</item>
 		<item>Energetic</item>
 		<item>Focused</item>
 		<item>Hopeful</item>
 	</string-array>
-	
+
 	<string name="group6">General Well-Being</string>
 	<string-array name="group6_min">
 		<item>Sad</item>
@@ -279,7 +338,7 @@
 		<item>Tense</item>
 		<item>Pessimistic</item>
 		<item>Hopeless</item>
-		<item>Alone</item>
+		<item>Lonely</item>
 		<item>Unsafe</item>
 		<item>Unloved</item>
 		<item>Angry</item>
@@ -296,6 +355,6 @@
 		<item>Loved</item>
 		<item>Content</item>
 	</string-array>
-	
-	
+
+
 </resources>

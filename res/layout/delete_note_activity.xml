@@ -4,17 +4,17 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
-	
+
 	<TextView
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/activity_note_delete_message" />
-	
+		android:text="@string/note_delete_confirm" />
+
 	<TableLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:stretchColumns="0,1,2">
-	
+
 		<TableRow>
 			<Button
 				android:id="@+id/yesButton"
@@ -26,6 +26,6 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:text="@string/no" />
-		</TableRow>		
+		</TableRow>
 	</TableLayout>
 </LinearLayout>

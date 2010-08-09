@@ -5,18 +5,20 @@ import com.t2.vas.R;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 public class NotesDialogActivity extends NotesActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		View addButton = this.findViewById(R.id.addNote);
-		
+
+		View addButton = this.findViewById(ADD_NOTES_HEADER_ID);
+
 		if(addButton == null) {
 			return;
 		}
-		
-		((ViewGroup)addButton.getParent()).removeView(addButton);
+
+		((ListView)this.findViewById(R.id.list)).removeHeaderView(addButton);
+
 		this.findViewById(R.id.dialogButtons).setVisibility(View.VISIBLE);
 	}
 }

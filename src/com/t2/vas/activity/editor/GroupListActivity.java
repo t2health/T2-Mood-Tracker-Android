@@ -17,11 +17,11 @@ import android.widget.AdapterView.OnItemLongClickListener;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
-import com.t2.vas.activity.BaseActivity;
+import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
-public class GroupListActivity extends BaseActivity implements OnItemClickListener, OnItemLongClickListener {
+public class GroupListActivity extends ABSActivity implements OnItemClickListener {
 	private static final String TAG = GroupListActivity.class.getName();
 	private DBAdapter dbAdapter;
 	private ArrayList<Group> groupList = new ArrayList<Group>();
@@ -31,60 +31,59 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         this.setContentView(R.layout.group_list_activity);
-        
+
         immutableToast = Toast.makeText(this, R.string.activity_group_immutable, 5000);
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
-        
+
         initAdapterData();
-        
+
         adapter = new ArrayAdapter<String>(
-        		this, 
-        		android.R.layout.simple_list_item_1, 
+        		this,
+        		android.R.layout.simple_list_item_1,
         		groupListString
 		);
-        
+
         LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
         ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.activity_group_list_add_group);
         ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);
-        
+
         ListView listView = (ListView)this.findViewById(R.id.list);
         listView.addHeaderView(addViewItem);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
-        listView.setOnItemLongClickListener(this);
-        
+
         dbAdapter.close();
 	}
-	
+
 	private void initAdapterData() {
 		groupList = ((Group)dbAdapter.getTable("group")).getGroups();
-		
+
 		// Convert the group list to an array
         groupListString.clear();
         for(int i = 0; i < groupList.size(); i++) {
         	groupListString.add(groupList.get(i).title);
         }
-        
+
         if(adapter != null) {
         	adapter.notifyDataSetChanged();
         }
 	}
-	
+
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		dbAdapter.open();
 		initAdapterData();
 		dbAdapter.close();
-		
+
 		if(data == null) {
 			return;
 		}
-		
+
 		// This group was just added, bring up the add scale interface.
 		String mode = data.getStringExtra("mode");
 		long group_id = data.getLongExtra("group_id", -1);
-		
+
 		if(mode.equals("insert") && group_id > 0) {
 			Intent i = new Intent(this, ScaleListActivity.class);
 			i.putExtra("group_id", group_id);
@@ -99,48 +98,42 @@ public class GroupListActivity extends BaseActivity implements OnItemClickListen
 			this.startActivityForResult(new Intent(this, GroupActivity.class), 123457890);
 			return;
 		}
-		
+
 		// Load the scale list
 		Group group = groupList.get(arg2 - 1);
-		
-		// Enforce the immutable nature of this group.
-		if(group.immutable > 0) {
-			immutableToast.show();
-			return;
-		}
-		
+
 		// All the user to see the scales
-		Intent i = new Intent(this, ScaleListActivity.class);
+		Intent i = new Intent(this, EditGroupActivity.class);
 		if(group != null) {
 			i.putExtra("group_id", group._id);
 		}
 		this.startActivity(i);
 	}
-	
 
-	@Override
+
+	/*@Override
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// The add group button was pressed
 		if(arg2 == 0) {
 			this.startActivityForResult(new Intent(this, GroupActivity.class), 123457890);
 			return false;
 		}
-		
+
 		// Load the add/edit group activity.
 		Group group = groupList.get(arg2 - 1);
-		
+
 		// Enforce the immutable nature of this group.
 		if(group.immutable > 0) {
 			immutableToast.show();
 			return false;
 		}
-		
-		// Allow the user to edit this group. 
+
+		// Allow the user to edit this group.
 		Intent i = new Intent(this, GroupActivity.class);
 		if(group != null) {
 			i.putExtra("group_id", group._id);
 		}
 		this.startActivityForResult(i, 1234567890);
 		return false;
-	}
+	}*/
 }

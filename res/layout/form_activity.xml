@@ -1,25 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:t2="http://schemas.android.com/apk/res/com.t2.vas"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center">
-    
-    <TextView
-    	android:id="@+id/title"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:text="TITLE"
-    	android:textSize="20dp"
-    	android:textStyle="bold"
-    />
-    
-    <view
-    	class="com.t2.vas.view.VASListView"
-    	android:id="@+id/list"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_weight="1.0">
-    </view>
-</LinearLayout>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:orientation="vertical"
+			android:paddingLeft="10dip"
+			android:paddingRight="10dip"
+			android:paddingTop="5dip">
+
+			<!-- Title bar -->
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="30dip"
+				android:gravity="center"
+				android:background="#FF0099FF">
+
+				<TextView
+					android:id="@+id/title"
+					android:layout_width="wrap_content"
+					android:layout_height="fill_parent"
+					android:gravity="center"
+					android:text="@string/form_title"
+					android:textColor="#FFFFFFFF"
+				 	android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			 	<TextView
+			 		android:layout_width="wrap_content"
+			 		android:layout_height="fill_parent"
+			 		android:gravity="center"
+					android:text=" - "
+					android:textColor="#FFFFFFFF"
+				 	android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			 	<TextView
+			 		android:id="@+id/categoryTitle"
+			 		android:layout_width="wrap_content"
+			 		android:layout_height="fill_parent"
+			 		android:gravity="center"
+					android:text="Category Name"
+					android:textColor="#FFFFFFFF"
+				 	android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			</LinearLayout>
+
+			<!-- Main center content -->
+			    <view
+			    	class="com.t2.vas.view.VASListView"
+			    	android:id="@+id/list"
+			    	android:layout_width="fill_parent"
+			    	android:layout_height="wrap_content"
+			    	android:cacheColorHint="#00000000" />
+			    	<!-- cacheColorHint make the list background transparent while scrolling. -->
+
+	    	</LinearLayout>
+
+	</LinearLayout>
+
+
+	<!--  Left side buttons -->
+	<include
+		layout="@layout/global_button_bar" />
+
+</FrameLayout>

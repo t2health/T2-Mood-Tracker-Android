@@ -13,7 +13,7 @@ public class Note extends Table {
 	private static final String TAG = Note.class.getName();
 	public long timestamp;
 	public String note;
-	
+
 	public Note(DBAdapter d) {
 		super(d);
 	}
@@ -34,7 +34,7 @@ public class Note extends Table {
 				"	timestamp INTEGER NOT NULL, " +
 				"	note TEXT NOT NULL" +
 				")");
-		
+
 		// Create the index
 		this.dbAdapter.getDatabase().execSQL("" +
 				"CREATE INDEX note_timestamp_index ON note(timestamp)" +
@@ -43,7 +43,7 @@ public class Note extends Table {
 
 	@Override
 	public void onUpgrade(int oldVersion, int newVersion) {
-		
+
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class Note extends Table {
 		ContentValues v = new ContentValues();
 		v.put("timestamp", this.timestamp);
 		v.put("note", this.note);
-		
+
 		return this.insert(v);
 	}
 
@@ -69,7 +69,7 @@ public class Note extends Table {
 		v.put("_id", this._id);
 		v.put("timestamp", this.timestamp);
 		v.put("note", this.note);
-		
+
 		return this.update(v);
 	}
 
@@ -81,20 +81,20 @@ public class Note extends Table {
 	public ArrayList<Note> getNotes(String orderBy) {
 		ArrayList<Note> notes = new ArrayList<Note>();
 		Cursor c = this.select(null, "timestamp DESC");
-		
+
 		while(c.moveToNext()) {
 			Note n = (Note)this.getDBAdapter().getTable("note").newInstance();
 			n.load(c);
 			notes.add(n);
 		}
-		
+
         return notes;
 	}
-	
+
 	public Cursor queryForNotes(long startTimestamp, long endTimestamp, String orderBy) {
 		ArrayList<String> whereValues = new ArrayList<String>();
 		ArrayList<String> whereConditions = new ArrayList<String>();
-		
+
 		if(startTimestamp >= 0) {
 			whereConditions.add("timestamp >= ?");
 			whereValues.add(startTimestamp+"");
@@ -103,13 +103,13 @@ public class Note extends Table {
 			whereConditions.add("timestamp < ?");
 			whereValues.add(endTimestamp+"");
 		}
-		
+
 		String[] whereValuesArray = null;
 		String whereSt = null;
 		if(whereConditions.size() > 0) {
 			whereValuesArray = whereValues.toArray(new String[whereValues.size()]);
 			whereSt = "";
-			
+
 			for(int i = 0; i < whereConditions.size(); i++) {
 				whereSt += whereConditions.get(i)+ " AND ";
 			}
@@ -119,11 +119,37 @@ public class Note extends Table {
 		for(int i = 0; i < whereValuesArray.length; i++) {
 			Log.v(TAG, "  v:"+whereValuesArray[i]);
 		}*/
-		
+
 		return ((Note)dbAdapter.getTable("note")).select(
-				whereSt, 
-				whereValuesArray, 
+				whereSt,
+				whereValuesArray,
 				orderBy
 		);
+	}
+
+	public Long getEarliestTimestampSince(long timestamp) {
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				"note",
+				new String[] {
+						"timestamp",
+				},
+				"timestamp >= ?",
+				new String[] {
+						timestamp+"",
+				},
+				null,
+				null,
+				"timestamp ASC",
+				"1"
+			);
+
+		if(c.moveToFirst()) {
+			Long newTimestamp = c.getLong(0);
+			c.close();
+
+			return newTimestamp;
+		}
+
+		return null;
 	}
 }

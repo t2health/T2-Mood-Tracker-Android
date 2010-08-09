@@ -13,51 +13,51 @@ import android.widget.Toast;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
-import com.t2.vas.activity.BaseActivity;
+import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
-public class GroupActivity extends BaseActivity implements OnClickListener {
+public class GroupActivity extends ABSActivity implements OnClickListener {
 	private DBAdapter dbAdapter;
 	private Group currentGroup;
 	private Toast toastPopup;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         // init global variables.
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.activity_group_saved, 2000);
-        
+
 		Intent intent = this.getIntent();
-		
+
 		currentGroup._id = intent.getLongExtra("group_id", -1);
-		
+
 		// Load the note from the DB
 		if(currentGroup._id > 0) {
 			currentGroup.load();
 		}
-		
+
 		dbAdapter.close();
-		
+
         this.setContentView(R.layout.group_activity);
         this.findViewById(R.id.cancelButton).setOnClickListener(this);
 		this.findViewById(R.id.saveButton).setOnClickListener(this);
-		this.findViewById(R.id.deleteButton).setOnClickListener(this);
-		
-		
-		
+		//this.findViewById(R.id.deleteButton).setOnClickListener(this);
+
+
+
 		// Set the note text
 		((TextView)this.findViewById(R.id.title)).setText(currentGroup.title);
-		
-		// This is a new note, remove the delete button.
+
+		/*// This is a new group, remove the delete button.
 		if(currentGroup._id <= 0) {
 			((ViewGroup)this.findViewById(R.id.deleteButton).getParent()).removeView(
 					this.findViewById(R.id.deleteButton)
 			);
-		}
-		
+		}*/
+
 		// Focus on the text box will result in the keyboard appearing.
 		InputMethodManager imm = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.showSoftInput(this.findViewById(R.id.title), 0);
@@ -66,25 +66,26 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		Intent i;
 		String mode;
-		
+
 		switch(v.getId()) {
-			// Start the delete intent
+			/*// Start the delete intent
 			case R.id.deleteButton:
-				Intent i = new Intent(this, DeleteGroupActivity.class);
+				i = new Intent(this, DeleteGroupActivity.class);
 				i.putExtra("mode", "delete");
 				i.putExtra("group_id", currentGroup._id);
-				
+
 				this.startActivity(i);
 				this.finish();
 				break;
-				
+*/
 			// exit this activity
 			case R.id.cancelButton:
 				this.setResult(Activity.RESULT_CANCELED);
 				this.finish();
 				break;
-				
+
 			// save the note and exit this activity
 			case R.id.saveButton:
 				if(currentGroup._id > 0) {
@@ -92,18 +93,19 @@ public class GroupActivity extends BaseActivity implements OnClickListener {
 				} else {
 					this.getIntent().putExtra("mode", "insert");
 				}
-				
+
 				dbAdapter.open();
-				currentGroup.title = ((TextView)this.findViewById(R.id.title)).getText().toString();
+				currentGroup.title = ((TextView)this.findViewById(R.id.title)).getText().toString().trim();
 				currentGroup.save();
 				dbAdapter.close();
-				
+
 				toastPopup.show();
-				
-				this.getIntent().putExtra("group_id", currentGroup._id);
-				this.setResult(Activity.RESULT_OK, this.getIntent());
+
+				i = new Intent();
+				i.putExtra("group_id", currentGroup._id);
+				this.setResult(Activity.RESULT_OK, i);
 				this.finish();
 				break;
-		}		
+		}
 	}
 }

@@ -4,32 +4,43 @@
 
 	<PreferenceCategory
 		android:title="@string/activity_preference_general">
-		
+
 		<Preference
 			android:title="@string/activity_settings_group_editor"
 			android:key="group_editor" />
-			
+
+		<Preference
+			android:title="@string/reminder_title"
+			android:summary="@string/reminder_desc"
+			android:key="reminder_settings" />
+
 		<CheckBoxPreference
-			android:title="@string/activity_startup_tips_hide"
-			android:key="hide_startup_tips" />
+			android:title="@string/activity_startup_tips_show"
+			android:key="show_startup_tips"
+			android:defaultValue="true" />
+
+		<CheckBoxPreference
+			android:key="send_anon_data"
+			android:title="@string/send_anon_data_title"
+			android:defaultValue="true" />
 	</PreferenceCategory>
-	
+
 	<PreferenceCategory
 		android:title="@string/activity_preference_security">
-		
+
 		<CheckBoxPreference
 			android:key="password_protect_notes"
-			android:title="@string/activity_preference_password_protect_notes_title"
+			android:title="@string/password_protect_notes_title"
 			android:defaultValue="false"
-			android:summary="@string/activity_preference_password_protect_notes_description"
+			android:summary="@string/password_protect_notes_desc"
 			android:shouldDisableView="true" />
-		
+
 		<Preference
-			android:title="@string/activity_preference_password_lock_now_title"
-			android:summary="@string/activity_preference_password_lock_now_description"
+			android:title="@string/lock_notes_now_title"
+			android:summary="@string/lock_notes_now_desc"
 			android:key="lock_notes_now"
 			android:dependency="password_protect_notes" />
-			
+
 		<Preference
 			android:title="@string/activity_preference_change_password"
 			android:key="change_password"

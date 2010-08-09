@@ -18,91 +18,63 @@ import com.t2.vas.view.chart.SeriesAdapterData;
 import com.t2.vas.view.chart.Value;
 import com.t2.vas.view.chart.Series.SeriesDataAdapter;
 
-public class GroupResultsSeriesDataAdapter extends ResultsSeriesDataAdapter {
+public class GroupResultsSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 	private static final String TAG = GroupResultsSeriesDataAdapter.class.getName();
 	protected long groupId;
 
-	public GroupResultsSeriesDataAdapter(DBAdapter dbAdapter, long groupId, int groupBy, String labelFormat) {
-		super(dbAdapter, groupBy, labelFormat);
+	public GroupResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long groupId, int groupBy, String labelFormat) {
+		super(dbAdapter, startTime, groupBy, labelFormat);
 		this.groupId = groupId;
 	}
-	
-	/*private boolean noteBetween(long startTimestamp, long endTimestamp) {
-		//Log.v(TAG, "S:"+startTimestamp+" E:"+endTimestamp);
-		Cursor c = dbAdapter.getDatabase().query(
-				"note", 
-				new String[]{
-						"_id"
-				}, 
-				"timestamp >= ? AND timestamp < ?", 
-				new String[]{
-						startTimestamp+"",
-						endTimestamp+""
-				},
-				null, 
-				null, 
-				null,
-				"1"
-		);
-		
-		if(c.moveToNext()) {
-			c.close();
-			return true;
-		}
-		
-		c.close();
-		return false;
-	}*/
-	
-	
-	
+
+
 	@Override
-	protected Cursor getCursor(String db_date_format) {
+	protected Cursor getCursor(long startTime, String db_date_format) {
 		Cursor c = dbAdapter.getDatabase().query(
 				"result r ",
 				new String[]{
-					"strftime('"+db_date_format+"', datetime(MIN(r.timestamp) / 1000, 'unixepoch')) label_value", 
+					"MIN(strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch', 'localtime'))) label_value",
 					"MIN(r.timestamp) timestamp",
 					"AVG(r.value) value",
-				}, 
-				"group_id=?", 
+				},
+				"group_id=? AND timestamp >= ?",
 				new String[]{
-					this.groupId+""
-				}, 
-				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))", 
-				null, 
+					this.groupId+"",
+					startTime+"",
+				},
+				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch', 'localtime'))",
+				null,
 				"label_value ASC",
 				null
 		);
-		
 		return c;
 	}
 
-	@Override
+	/*@Override
 	protected boolean shouldHilight(long startTime, long endTime) {
 		//Log.v(TAG, "S:"+startTimestamp+" E:"+endTimestamp);
 		Cursor c = dbAdapter.getDatabase().query(
-				"note", 
+				"note",
 				new String[]{
 						"_id"
-				}, 
-				"timestamp >= ? AND timestamp < ?", 
+				},
+				"timestamp >= ? AND timestamp < ?",
 				new String[]{
 						startTime+"",
 						endTime+""
 				},
-				null, 
-				null, 
+				null,
+				null,
 				null,
 				"1"
 		);
-		
+
 		if(c.moveToNext()) {
 			c.close();
 			return true;
 		}
-		
+
 		c.close();
 		return false;
-	}
+	}*/
 }

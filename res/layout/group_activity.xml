@@ -4,33 +4,33 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
-	
+
 	<EditText
 		android:id="@+id/title"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
-		
+
 	<TableLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:stretchColumns="*">
-	
+
 		<TableRow>
 			<Button
 				android:id="@+id/saveButton"
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:text="@string/save" />
-			<Button
+			<!-- <Button
 				android:id="@+id/deleteButton"
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
-				android:text="@string/delete" />
+				android:text="@string/delete" /> -->
 			<Button
 				android:id="@+id/cancelButton"
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:text="@string/cancel" />
-		</TableRow>		
+		</TableRow>
 	</TableLayout>
 </LinearLayout>

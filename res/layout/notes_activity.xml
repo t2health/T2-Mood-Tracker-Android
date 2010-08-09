@@ -4,88 +4,45 @@
 	android:layout_width="wrap_content"
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
-	
-	<!-- The Add Note Button -->
-	<LinearLayout
-		android:id="@+id/addNote"
-		xmlns:android="http://schemas.android.com/apk/res/android" 
-		android:paddingTop="2dip"
-		android:paddingBottom="2dip"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:minHeight="?android:attr/listPreferredItemHeight">
-		
-		<ImageView
-			android:id="@+id/image1"
-			android:layout_width="wrap_content"
-			android:layout_height="fill_parent"
-	        android:layout_marginLeft="6dip"
-	        android:layout_marginTop="6dip"
-	        android:src="@android:drawable/ic_menu_add" />
-	        
-	   	<TextView android:id="@+id/text1"
-			android:layout_width="wrap_content"
-			android:layout_height="fill_parent"
-	        android:layout_marginLeft="6dip"
-	        android:layout_marginTop="6dip"
-			android:textAppearance="?android:attr/textAppearanceLarge"
-			android:gravity="center_vertical"
-			android:text="@string/activity_note_list_add_note" /> 
-	</LinearLayout>
-	
-	
+
 	<FrameLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1.0">
-		
+
 		<TextView
 			android:id="@+id/noNotesMessage"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
-			android:text="@string/activity_note_list_no_notes_message" />
-		
+			android:text="@string/no_notes_yet" />
+
 		<ListView
 			android:id="@+id/list"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent">
 		</ListView>
 	</FrameLayout>
-	
-	
-	<TableLayout
+
+	<LinearLayout
 		android:id="@+id/dialogButtons"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:stretchColumns="*"
 		android:visibility="gone">
-		
-		<TableRow>
-			<LinearLayout
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent">
-				
-				<ImageButton
-					android:id="@+id/addNoteButton"
-					android:src="@android:drawable/ic_menu_add"
-					android:scaleType="fitCenter"
-					android:layout_width="50dip"
-					android:layout_height="50dip" />
-				
-			</LinearLayout>
-			
-			<LinearLayout
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent">
-				
-				<Button
-					android:id="@+id/closeButton"
-					android:text="@string/close"
-					android:layout_width="fill_parent"
-					android:layout_height="fill_parent" />
-				
-			</LinearLayout>
-		</TableRow>
-	
-	</TableLayout>
+
+		<Button
+			android:id="@+id/addNoteButton"
+			android:text="@string/add_note"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+		 />
+
+		<Button
+			android:id="@+id/closeButton"
+			android:text="@string/close"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+		 />
+	</LinearLayout>
 </LinearLayout>

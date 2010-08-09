@@ -1,168 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.t2.vas"
-	android:versionCode="1"
-	android:versionName="1.0">
-	
-    <application 
-    	android:icon="@drawable/icon" 
+	android:versionCode="2"
+	android:versionName="2.0">
+
+    <application
+    	android:icon="@drawable/icon"
     	android:label="@string/app_name">
-        
+
         <service
-        	android:name=".ReminderService" />
-        
-        <activity 
-        	android:label="@string/activity_main" 
+        	android:name=".ReminderService">
+			<intent-filter>
+				<action
+					android:name="com.t2.vas.ReminderService">
+				</action>
+			</intent-filter>
+		</service>
+
+		<receiver android:name=".BootReceiver">
+			<intent-filter>
+				<action
+					android:name ="android.intent.action.BOOT_COMPLETED">
+				</action>
+			</intent-filter>
+		</receiver>
+
+         <activity
+        	android:label="@string/app_name"
         	android:name=".activity.SplashScreen"
-        	android:configChanges="keyboardHidden|orientation">
-        	
+        	android:configChanges="keyboardHidden|orientation"
+    		android:theme="@style/CustomTheme"
+    		android:screenOrientation="landscape">
+
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
-        
+
 		</activity>
 
-		<activity 
-        	android:label="@string/activity_main" 
-        	android:launchMode="singleTop" 
-        	android:name=".activity.MainActivity"
-        	android:excludeFromRecents="true">
+    	<activity
+        	android:label="@string/app_name"
+        	android:launchMode="singleTop"
+        	android:name=".activity.MainActivity2"
+        	android:excludeFromRecents="true"
+    		android:theme="@style/CustomTheme"
+    		android:screenOrientation="landscape">
+
+        	<intent-filter>
+        		<action android:name="com.t2.vas.MainActivity2" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
         </activity>
 
-	    <activity 
-	    	android:label="@string/activity_form"
-	    	android:launchMode="singleTop" 
-	    	android:name=".activity.FormActivity" 
-	    	android:excludeFromRecents="true">
+	    <activity
+	    	android:label="@string/form_title"
+	    	android:launchMode="singleTop"
+	    	android:name=".activity.FormActivity"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@style/CustomTheme"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.FormActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	
-	   	<activity 
-	    	android:label="@string/activity_results"
-	    	android:launchMode="singleTop" 
-	    	android:name=".activity.ResultsActivity" 
-	    	android:excludeFromRecents="true">
+
+	   	<activity
+	    	android:label="@string/results_title"
+	    	android:launchMode="singleTop"
+	    	android:name=".activity.ResultsActivity"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@style/CustomTheme"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.ResultsActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	
-	    <activity 
-	    	android:launchMode="singleTop" 
-	    	android:name=".activity.preference.MainPreferenceActivity" 
-	    	android:label="@string/activity_preference" 
-	    	android:excludeFromRecents="true">
+
+
+	   	<activity
+	    	android:name=".activity.InfoActivity"
+	    	android:label="@string/info_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@style/Theme.Dialog.NoTitle"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.InfoActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	
-	   	<activity 
-	    	android:label="@string/activity_form"
-	    	android:launchMode="singleTop" 
-	    	android:name=".activity.FormActivity" 
-	    	android:excludeFromRecents="true">
+
+	   	<activity
+	    	android:name=".activity.HelpActivity"
+	    	android:label="@string/help_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.HelpActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	
-	   	<activity 
-	    	android:name=".activity.HelpActivity" 
-	    	android:label="@string/activity_help" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+
+	   	<activity
+	    	android:name=".activity.AboutActivity"
+	    	android:label="@string/about_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.AboutActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	
-	   	<activity 
-	    	android:name=".activity.StartupTipsActivity" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop" android:label="@string/activity_startup_tips">
+
+	   	<activity
+	    	android:name=".activity.ReminderServiceActivity"
+	    	android:label="@string/activity_reminder"
+	    	android:excludeFromRecents="true"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	
-	   	<activity 
-	    	android:name=".activity.ReminderActivity" 
-	    	android:label="@string/activity_reminder" 
-	    	android:excludeFromRecents="true" 
-	    	android:launchMode="singleTop">
+
+	   	<activity
+	    	android:name=".activity.PasswordActivity"
+	    	android:label="@string/password_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	
-	   	<activity 
-	    	android:name=".activity.ReminderPreferenceActivity" 
-	    	android:label="@string/activity_reminder_preference" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
-	   	</activity>
-	   	
-	   	<activity 
-	    	android:name=".activity.PasswordActivity" 
-	    	android:label="@string/activity_password" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
-	   	</activity>
-	   	
+
 	   	<!-- Notes Activities -->
-	    <activity 
-	    	android:name=".activity.NotesActivity" 
-	    	android:label="@string/activity_note_list" 
-	    	android:excludeFromRecents="true" 
-	    	android:launchMode="singleTop">
+	    <activity
+	    	android:name=".activity.NotesActivity"
+	    	android:label="@string/notes_title"
+	    	android:excludeFromRecents="true"
+	    	android:launchMode="singleTop"
+	    	android:theme="@android:style/Theme"
+    		android:screenOrientation="landscape">
+
+    		<intent-filter>
+	    		<action android:name="com.t2.vas.NotesActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.NotesDialogActivity" 
-	    	android:label="@string/activity_note_dialog_list" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.NotesDialogActivity"
+	    	android:label="@string/notes_dialog_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.NoteActivity" 
-	    	android:label="@string/activity_note" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.NoteActivity"
+	    	android:label="@string/delete_note_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.DeleteNoteActivity" 
-	    	android:label="@string/activity_delete_note" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.DeleteNoteActivity"
+	    	android:label="@string/delete_note_title"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	
+
+
+
+	    <activity
+	    	android:launchMode="singleTop"
+	    	android:name=".activity.preference.MainPreferenceActivity"
+	    	android:label="@string/settings_title"
+	    	android:excludeFromRecents="true"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.Settings" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+	   	</activity>
+
+  		    <activity
+	    	android:launchMode="singleTop"
+	    	android:name=".activity.preference.Reminder"
+	    	android:label="@string/reminder_title"
+	    	android:excludeFromRecents="true"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.Settings.Reminder" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+	   	</activity>
+
 	   	<!-- Group Editor Activities -->
-	   	<activity 
-	    	android:name=".activity.editor.GroupListActivity" 
-	    	android:label="@string/activity_group_list" 
-	    	android:excludeFromRecents="true" 
-	    	android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.editor.GroupListActivity"
+	    	android:label="@string/activity_group_list"
+	    	android:excludeFromRecents="true"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.editor.GroupActivity" 
-	    	android:label="@string/activity_group" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.editor.EditGroupActivity"
+	    	android:label="@string/activity_group"
+	    	android:excludeFromRecents="true"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.editor.EditGroupActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.editor.DeleteGroupActivity" 
-	    	android:label="@string/activity_delete_group" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.editor.ClearDataActivity"
+	    	android:label="@string/clear_data_title"
+	    	android:excludeFromRecents="true"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape"
+    		android:theme="@android:style/Theme.Dialog">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.editor.ClearDataActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	
+	   	<activity
+	    	android:name=".activity.editor.GroupActivity"
+	    	android:label="@string/activity_group"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
+
+	    	<intent-filter>
+	    		<action android:name="com.t2.vas.editor.GroupActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+	   	</activity>
+	   	<activity
+	    	android:name=".activity.editor.DeleteGroupActivity"
+	    	android:label="@string/activity_delete_group"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
+
+    		<intent-filter>
+	    		<action android:name="com.t2.vas.editor.DeleteGroupActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+	   	</activity>
+
 	   	<!-- Scale Editor Activities -->
-	   	<activity 
-	    	android:name=".activity.editor.ScaleListActivity" 
-	    	android:label="@string/activity_scale_list" 
-	    	android:excludeFromRecents="true" 
-	    	android:launchMode="singleTask">
+	   	<activity
+	    	android:name=".activity.editor.ScaleListActivity"
+	    	android:label="@string/activity_scale_list"
+	    	android:excludeFromRecents="true"
+	    	android:launchMode="singleTask"
+    		android:screenOrientation="landscape">
+
+    		<intent-filter>
+	    		<action android:name="com.t2.vas.editor.ScaleListActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.editor.ScaleActivity" 
-	    	android:label="@string/activity_scale" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.editor.ScaleActivity"
+	    	android:label="@string/activity_scale"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	<activity 
-	    	android:name=".activity.editor.DeleteScaleActivity" 
-	    	android:label="@string/activity_delete_scale" 
-	    	android:excludeFromRecents="true" 
-	    	android:theme="@android:style/Theme.Dialog" android:launchMode="singleTop">
+	   	<activity
+	    	android:name=".activity.editor.DeleteScaleActivity"
+	    	android:label="@string/activity_delete_scale"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
 	   	</activity>
-	   	
-	   	
    	</application>
-   	
+
     <uses-sdk android:minSdkVersion="5" />
-    
-	
+
+
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-</manifest> 
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+</manifest>

@@ -13,6 +13,7 @@ import com.t2.vas.db.tables.Scale;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,63 +23,80 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AbsListView.OnScrollListener;
 
-public class FormActivity extends BaseActivity implements OnClickListener, OnLongClickListener {
+public class FormActivity extends ABSActivity implements OnClickListener, OnLongClickListener, OnScrollListener {
 	private static final String TAG = FormActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
 	private String submitButtonText;
 	private ListView listView;
-	
+	private Button submitButton;
+	private boolean showSkipButton;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
+
+        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        this.setContentView(R.layout.form_activity);
+
         Intent intent = this.getIntent();
         this.activeGroupId = intent.getLongExtra("group_id", -1);
         this.submitButtonText = intent.getStringExtra("submit_button_text");
-        
+        this.showSkipButton = intent.getBooleanExtra("show_skip_button", false);
+
         if(this.activeGroupId < 0) {
         	this.finish();
         }
-        
-        
-        LayoutInflater li = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ViewGroup mainView = (ViewGroup)li.inflate(R.layout.form_activity, null);
-        listView = (ListView)mainView.findViewById(R.id.list);
-        
+
+
+
+        listView = (ListView)this.findViewById(R.id.list);
+
         DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
-        
+
         Group group = ((Group)dbHelper.getTable("group")).newInstance();
         group._id = this.activeGroupId;
         if(!group.load()) {
         	this.finish();
         	return;
         }
-        
+
+        ((TextView)this.findViewById(R.id.categoryTitle)).setText(group.title);
+
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
-        listView.addFooterView(li.inflate(R.layout.form_activity_submit_button, null));
+        listView.addFooterView(
+        		View.inflate(this, R.layout.form_activity_submit_button, null)
+		);
         listView.setAdapter(scaleAdapter);
-        
-        
-        ((TextView)mainView.findViewById(R.id.title)).setText(group.title);
-        ((Button)mainView.findViewById(R.id.submitButton)).setOnClickListener(this);
-        ((Button)mainView.findViewById(R.id.submitButton)).setOnLongClickListener(this);
+        listView.setOnScrollListener(this);
+
+
+        submitButton = (Button)this.findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(this);
+        submitButton.setOnLongClickListener(this);
         if(this.submitButtonText != null) {
-        	((Button)mainView.findViewById(R.id.submitButton)).setText(this.submitButtonText);
+        	submitButton.setText(this.submitButtonText);
         }
-        
-        
+
+        Button skipButton = (Button)this.findViewById(R.id.skipButton);
+        skipButton.setOnClickListener(this);
+        if(this.showSkipButton) {
+        	skipButton.setVisibility(View.VISIBLE);
+        }
+
         dbHelper.close();
-        setContentView(mainView);
-        
+
+
         // Restore some of the data
         if(savedInstanceState != null) {
         	// Restore the positions of the scales
@@ -88,13 +106,13 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 	        		this.scaleAdapter.setProgressValueAt(i, scaleValues[i]);
 	        	}
 	        }
-	        
+
 	        // Remember the scroll position
 	        int listFirstVisible = savedInstanceState.getInt("listFirstVisible");
         	listView.setSelection(listFirstVisible);
         }
     }
-    
+
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -104,10 +122,10 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
         	scaleValues[i] = this.scaleAdapter.getProgressValuesAt(i);
 		}
 		outState.putIntArray("scaleValues", scaleValues);
-		
+
 		// Remember the list's scroll position.
 		outState.putInt("listFirstVisible", listView.getFirstVisiblePosition());
-		
+
 		super.onSaveInstanceState(outState);
 	}
 
@@ -117,31 +135,38 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
-		case R.id.submitButton:
-			DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
-	        dbHelper.open();
-			
-	        for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
-	        	//Log.v(TAG, "ADD RESULT");
-	        	Scale s = this.scaleAdapter.getItem(i);
-	        	int value = this.scaleAdapter.getProgressValuesAt(i);
-	        	
-	        	Result r = (Result)dbHelper.getTable("result").newInstance();
-				
-				r.group_id = this.activeGroupId;
-				r.scale_id = s._id;
-				r.timestamp = Calendar.getInstance().getTimeInMillis();
-				r.value = value;
-				
-				r.save();
-	        }
-			
-			dbHelper.close();
-			
-			this.setResult(Activity.RESULT_OK);
-			this.finish();
-			break;
+			case R.id.skipButton:
+				this.setResult(Activity.RESULT_CANCELED);
+				this.finish();
+				return;
+
+			case R.id.submitButton:
+				DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
+		        dbHelper.open();
+
+		        long currentTime = Calendar.getInstance().getTimeInMillis();
+		        for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
+		        	Scale s = this.scaleAdapter.getItem(i);
+		        	int value = this.scaleAdapter.getProgressValuesAt(i);
+
+		        	Result r = (Result)dbHelper.getTable("result").newInstance();
+
+					r.group_id = this.activeGroupId;
+					r.scale_id = s._id;
+					r.timestamp = currentTime;
+					r.value = value;
+
+					r.save();
+		        }
+
+				dbHelper.close();
+
+				this.setResult(Activity.RESULT_OK);
+				this.finish();
+				return;
 		}
+
+		super.onClick(v);
 	}
 
 	@Override
@@ -152,7 +177,30 @@ public class FormActivity extends BaseActivity implements OnClickListener, OnLon
 			this.finish();
 			return true;
 		}
-		
+
 		return false;
 	}
+
+
+	@Override
+	public int getHelpResId() {
+		return R.string.form_help;
+	}
+
+
+	@Override
+	public void onScroll(AbsListView arg0, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+		int lastVisiblePos = firstVisibleItem + visibleItemCount;
+
+		if(lastVisiblePos >= totalItemCount && this.submitButton != null) {
+			this.submitButton.setEnabled(true);
+		}
+	}
+
+
+	@Override
+	public void onScrollStateChanged(AbsListView arg0, int arg1) {
+
+	}
+
 }

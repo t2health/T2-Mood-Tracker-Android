@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<CheckBoxPreference
+		android:key="reminders_enabled"
+		android:title="Enable Reminders"
+		android:summary="Allow the application to remind you to rate your mood." />
+
+	<ListPreference
+		android:key="remind_freq"
+		android:dependency="reminders_enabled"
+		android:title="@string/frequency_title"
+		android:summary="@string/frequency_desc"
+		android:dialogTitle="Frequency"
+		android:entries="@array/frequency_entries"
+		android:entryValues="@array/frequency_entries_values"
+		android:defaultValue="@string/frequency_entries_values_default" />
+
+	<com.t2.vas.TimePickerPreference
+		android:key="remind_time"
+		android:dependency="reminders_enabled"
+		android:title="@string/remind_time_title"
+		android:summary="@string/remind_time_desc"
+		android:defaultValue="16:00"
+	/>
+
+</PreferenceScreen>

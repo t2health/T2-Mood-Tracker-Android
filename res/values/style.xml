@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="CustomGallery">
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:spacing">0dip</item>
+        <item name="android:unselectedAlpha">1.0</item>
+        <item name="android:background">#FF006677</item>
+    </style>
+
 	<style name="VASSeekBar">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/progress_bar_horizontal</item>
