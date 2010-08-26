@@ -5,6 +5,7 @@ import java.util.Calendar;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ScaleAdapter;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
@@ -47,7 +48,8 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
         //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         this.setContentView(R.layout.form_activity);
-
+        VASAnalytics.onEvent(VASAnalytics.EVENT_FORM_ACTIVITY);
+        
         Intent intent = this.getIntent();
         this.activeGroupId = intent.getLongExtra("group_id", -1);
         this.submitButtonText = intent.getStringExtra("submit_button_text");

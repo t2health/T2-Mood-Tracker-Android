@@ -2,6 +2,7 @@ package com.t2.vas.activity.preference;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.PasswordActivity;
 import com.t2.vas.activity.editor.GroupListActivity;
 
@@ -23,6 +24,7 @@ import android.widget.Toast;
 public class Reminder extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VASAnalytics.onEvent(VASAnalytics.EVENT_REMINDER_ACTIVITY);
         addPreferencesFromResource(R.xml.reminder_preference);
     }
 }

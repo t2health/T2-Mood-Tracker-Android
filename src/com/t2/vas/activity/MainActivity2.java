@@ -46,6 +46,7 @@ import com.t2.vas.Global;
 import com.t2.vas.GroupResultsSeriesDataAdapter;
 import com.t2.vas.R;
 import com.t2.vas.ScaleResultsSeriesDataAdapter;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.editor.ScaleListActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
@@ -93,7 +94,8 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 
         this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         this.setContentView(R.layout.main_activity2);
-
+        VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
+        
         layoutInflater = this.getLayoutInflater();
         dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbHelper.open();
@@ -189,13 +191,13 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		this.aOnPageView();
 		HashMap<String, Object> ob = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
 
 		int layoutResId = (Integer)ob.get("layoutResId");
 		ViewGroup v = (ViewGroup)this.layoutInflater.inflate(layoutResId, null);
 
 		if(layoutResId == R.layout.main_activity2_group_task) {
+			VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_SELECTED);
 			dbHelper.open();
 			Group group = ((Group)this.dbHelper.getTable("group")).newInstance();
 			group._id = this.getSelectedGroupId();
@@ -244,9 +246,11 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
         	dbHelper.close();
 
 		} else if(layoutResId == R.layout.main_activity2_add_group_task) {
+			VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_GROUP_SELECTED);
 			v.findViewById(R.id.addGroupButton).setOnClickListener(this);
 
 		} else if(layoutResId == R.layout.main_activity2_intro_task) {
+			VASAnalytics.onEvent(VASAnalytics.EVENT_INTRO_SELECTED);
 			v.findViewById(R.id.aboutButton).setOnClickListener(this);
 		}
 
@@ -343,14 +347,7 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 				this.startActivityForResult(i, ADD_GROUP_ACTIVITY);
 				return;
 
-			/*case R.id.manageScalesButton:
-				i = new Intent(this, ScaleListActivity.class);
-				i.putExtra("group_id", this.getSelectedGroupId());
-				this.startActivityForResult(i, MANAGE_SCALES_ACTIVITY);
-				return;
-*/
 			case R.id.aboutButton:
-				this.aOnEvent(Global.EVENT_TAGS.CLICK_ABOUT_APP);
 				i = new Intent(this, AboutActivity.class);
 				this.startActivityForResult(i, ABOUT_ACTIVITY);
 				return;

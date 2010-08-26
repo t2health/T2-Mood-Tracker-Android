@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class InfoActivity extends ABSActivity implements OnItemClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VASAnalytics.onEvent(VASAnalytics.EVENT_INFO_ACTIVITY);
 
         this.setContentView(R.layout.info_activity);
 

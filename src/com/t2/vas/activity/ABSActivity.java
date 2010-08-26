@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.flurry.android.FlurryAgent;
+import com.nullwire.trace.ExceptionHandler;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.Eula;
+import com.t2.vas.VASAnalytics;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,14 +36,20 @@ public class ABSActivity extends Activity implements OnClickListener {
 	/*public static final int NOTES_ACTIVITY = 348;
 	public static final int REMINDER_ACTIVITY = 349;*/
 
-	private SharedPreferences sharedPref;
+	private static SharedPreferences sharedPref;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(Global.REMOTE_STACK_TRACE_URL != null && Global.REMOTE_STACK_TRACE_URL.length() > 0) {
+        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
+        }
+        
         Eula.show(this);
 
-        this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        
+        VASAnalytics.onPageView();
 	}
 
 	@Override
@@ -62,13 +70,11 @@ public class ABSActivity extends Activity implements OnClickListener {
 		this.initGlobalButtons();
 	}
 
-
-
 	@Override
 	protected void onStart() {
 		super.onStart();
 
-		if(this.sharedPref.getBoolean("send_anon_data", true)) {
+		if(sharedPref.getBoolean("send_anon_data", true)) {
 			FlurryAgent.onStartSession(this, Global.FLURRY_KEY);
 		}
 	}
@@ -77,38 +83,12 @@ public class ABSActivity extends Activity implements OnClickListener {
 	protected void onStop() {
 		super.onStop();
 
-		if(this.sharedPref.getBoolean("send_anon_data", true)) {
+		if(sharedPref.getBoolean("send_anon_data", true)) {
 			FlurryAgent.onEndSession(this);
 		}
 	}
+	
 
-	protected void aOnEvent(String event) {
-		if(this.sharedPref.getBoolean("send_anon_data", true)) {
-			FlurryAgent.onEvent(event);
-		}
-	}
-
-	protected void aOnEvent(String event, Bundle parameters) {
-		HashMap<String,String> params = new HashMap<String,String>();
-		for(String key: parameters.keySet()) {
-			Object val = parameters.get(key);
-			params.put(key, val+"");
-		}
-
-		this.aOnEvent(event, params);
-	}
-
-	protected void aOnEvent(String event, Map<String,String> parameters) {
-		if(this.sharedPref.getBoolean("send_anon_data", true)) {
-			FlurryAgent.onEvent(event, parameters);
-		}
-	}
-
-	protected void aOnPageView() {
-		if(this.sharedPref.getBoolean("send_anon_data", true)) {
-			FlurryAgent.onPageView();
-		}
-	}
 
 	public void initGlobalButtons() {
 		View v;
@@ -145,12 +125,12 @@ public class ABSActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.infoButton:
-				//this.tagEvent(Global.EVENT_TAGS.CLICK_INFO_BUTTON);
+				VASAnalytics.onEvent(VASAnalytics.EVENT_INFO_ACTIVITY);
 				this.startActivity(INFO_ACTIVITY);
 				break;
 
 			case R.id.t2_logo:
-				//this.tagEvent(Global.EVENT_TAGS.CLICK_T2_LOGO);
+				VASAnalytics.onEvent(VASAnalytics.EVENT_WEBSITE_BUTTON_PRESSED);
 				this.startActivity(T2_WEBSITE_ACTIVITY);
 				break;
 /*

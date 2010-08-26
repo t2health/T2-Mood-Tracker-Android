@@ -7,6 +7,7 @@ import java.util.Calendar;
 import com.t2.vas.Global;
 import com.t2.vas.NotesCursorAdapter;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Note;
 
@@ -46,6 +47,7 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		VASAnalytics.onEvent(VASAnalytics.EVENT_NOTES_ACTIVITY);
 
 		// Init global main variables.
 		notesUnlockToast = Toast.makeText(this, R.string.notes_unlocked, 6000);

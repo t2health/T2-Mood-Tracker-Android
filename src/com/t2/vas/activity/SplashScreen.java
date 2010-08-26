@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,11 +46,15 @@ public class SplashScreen extends ABSActivity implements OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		this.setContentView(R.layout.splash_screen);
+		VASAnalytics.onEvent(VASAnalytics.EVENT_SPLASH_ACTIVITY);
 		this.findViewById(R.id.nextButton).setOnClickListener(this);
 
 		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
+		VASAnalytics.init(Global.ANALYTICS_KEY, this.sharedPref.getBoolean("send_anon_data", true));
+		VASAnalytics.setDebugEnabled(true);
 		ReminderServiceActivity.cancelReminderNotification(this);
 
 		Toast toast = Toast.makeText(this, R.string.splash_intro, Toast.LENGTH_LONG);

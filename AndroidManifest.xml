@@ -218,7 +218,8 @@
 	    	android:label="@string/activity_group"
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+    		android:screenOrientation="landscape"
+    		android:theme="@style/CustomTheme">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.editor.EditGroupActivity" />

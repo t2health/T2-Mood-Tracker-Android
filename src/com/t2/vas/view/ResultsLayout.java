@@ -12,6 +12,8 @@ import com.t2.vas.GroupResultsSeriesDataAdapter;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
 import com.t2.vas.ScaleResultsSeriesDataAdapter;
+import com.t2.vas.VASAnalytics;
+import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.activity.NoteActivity;
 import com.t2.vas.activity.NotesDialogActivity;
 import com.t2.vas.db.DBAdapter;
@@ -256,6 +258,8 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 
 		this.chartsContainer.addView(chartLayout);
 		this.chartsContainer.showNext();
+
+		VASAnalytics.onEvent(VASAnalytics.EVENT_SCALE_SELECTED);
 	}
 
 
@@ -265,7 +269,7 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 		if(chartLayout == null) {
 			return null;
 		}
-
+		
 		Calendar cal = Calendar.getInstance();
 		Date tmpDate;
 		long startTimestamp = -1;
@@ -283,7 +287,7 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 				endTimestamp = cal.getTimeInMillis();
 			}
 		}
-
+		
 		return new long[]{
 			startTimestamp,
 			endTimestamp
@@ -304,8 +308,5 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 		if(!this.initialized) {
 			return;
 		}
-
 	}
-
-
 }

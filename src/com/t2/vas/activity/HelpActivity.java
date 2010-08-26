@@ -1,6 +1,7 @@
 package com.t2.vas.activity;
 
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +17,8 @@ public class HelpActivity extends ABSInfoActivity implements OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-
+       VASAnalytics.onEvent(VASAnalytics.EVENT_HELP_ACTIVITY);
+       
        Intent intent = this.getIntent();
 
        int messageId = intent.getIntExtra("help_string_resource_id", 0);

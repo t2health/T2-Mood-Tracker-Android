@@ -2,6 +2,7 @@ package com.t2.vas.activity;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Note;
 
@@ -20,6 +21,7 @@ public class DeleteNoteActivity extends ABSActivity implements OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		VASAnalytics.onEvent(VASAnalytics.EVENT_DELETE_NOTE_ACTIVITY);
 
 		this.setContentView(R.layout.delete_note_activity);
 

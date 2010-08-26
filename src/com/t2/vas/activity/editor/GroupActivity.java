@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
@@ -24,7 +25,8 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_ACTIVITY);
+        
         // init global variables.
 		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();

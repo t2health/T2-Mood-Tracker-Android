@@ -2,6 +2,7 @@ package com.t2.vas.activity.editor;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
@@ -21,6 +22,7 @@ public class DeleteGroupActivity extends ABSActivity implements OnClickListener 
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		VASAnalytics.onEvent(VASAnalytics.EVENT_DELETE_GROUP_ACTIVITY);
 
 		this.setContentView(R.layout.delete_group_activity);
 

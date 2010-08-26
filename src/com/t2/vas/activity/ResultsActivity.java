@@ -18,6 +18,7 @@ import com.t2.vas.GroupNotesSeriesDataAdapter;
 import com.t2.vas.R;
 import com.t2.vas.ScaleKeyAdapter;
 import com.t2.vas.ScaleResultsSeriesDataAdapter;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
@@ -106,6 +107,7 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.results_activity);
+        VASAnalytics.onEvent(VASAnalytics.EVENT_RESULTS_ACTIVITY);
 
         this.findViewById(R.id.addNoteButton).setOnClickListener(this);
         this.findViewById(R.id.notesButton).setOnClickListener(this);
@@ -243,7 +245,6 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 		Intent i = new Intent(this, NoteActivity.class);
 		i.putExtra("timestamp", range[0]);
 
-		this.aOnEvent(Global.EVENT_TAGS.CLICK_ADD_NOTE, i.getExtras());
 		this.startActivityForResult(i, NOTES_MANAGE);
 	}
 
@@ -255,7 +256,6 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 		i.putExtra("start_timestamp", range[0]);
 		i.putExtra("end_timestamp", range[1]);
 
-		this.aOnEvent(Global.EVENT_TAGS.CLICK_VIEW_NOTES, i.getExtras());
 		this.startActivityForResult(i, NOTES_MANAGE);
 	}
 
@@ -268,7 +268,7 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		this.aOnPageView();
+		VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_SELECTED);
 		resultsAnimator.showAt(arg2);
 	}
 
@@ -289,6 +289,4 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 
 		return super.onKeyDown(keyCode, event);
 	}
-
-
 }

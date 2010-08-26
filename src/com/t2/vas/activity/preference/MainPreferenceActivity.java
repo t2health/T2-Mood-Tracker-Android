@@ -2,6 +2,7 @@ package com.t2.vas.activity.preference;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.PasswordActivity;
 import com.t2.vas.activity.editor.GroupListActivity;
 
@@ -32,6 +33,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VASAnalytics.onEvent(VASAnalytics.EVENT_SETTINGS_ACTIVITY);
 
         this.notesLockedToast = Toast.makeText(this, R.string.settings_notes_locked, 3000);
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -48,6 +50,8 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
         screen.findPreference("lock_notes_now").setOnPreferenceClickListener(this);
 
         screen.findPreference("reminder_settings").setOnPreferenceClickListener(this);
+        
+        screen.findPreference("send_anon_data").setOnPreferenceChangeListener(this);
     }
 
 
@@ -169,6 +173,15 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 					this.startActivityForResult(i, REQUEST_PASSWORD_UNSET);
 					return false;
 				}
+			}
+			
+		// Enable/disable analytics.
+		} else if(preference.getKey().equals("send_anon_data")) {
+			Boolean isChecked = (Boolean)newValue;
+			if(isChecked) {
+				VASAnalytics.setEnabled(true);
+			} else {
+				VASAnalytics.setEnabled(false);
 			}
 		}
 
