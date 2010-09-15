@@ -14,13 +14,13 @@
 	<string name="info_desc"></string>
 
 	<string name="form_title">Rate Your Mood</string>
-	<string name="form_desc">This is a good place to start. Provide ratings for this category by sliding the scales.</string>
-	<string name="form_help">Rating your mood is quick and easy.  Simply select a category you’d like to track.   For example, if you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the cursor to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph; the most recent point on the graph represents the average of the ten ratings you just made.  You will also see the average of all previous day’s ratings you have done for that category. You may rate yourself on any given scale only once a day.</string>
+	<string name="form_desc">Rate yourself by sliding the pointers to a place that represents how you are feeling.</string>
+	<string name="form_help">Rating your mood is quick and easy.  Simply select a category you’d like to track.   If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
 	<string name="form_submit">See my results!</string>
 
 	<string name="results_title">Results</string>
-	<string name="results_desc">View your previous ratings on a series of charts.</string>
-	<string name="results_help">Results of your ratings are always shown in graphs.  You can view graphs that are made up of points representing the average of the ten ratings you made for each tracking category or you can view graphs of the individual ratings you made for each separate mood.  For example, you can view the average of all ten ratings you made as you tracked “Depression” or you can view each of your ten individual ratings like “Happy-Sad”.  </string>
+	<string name="results_desc">View graphs of your previous ratings</string>
+	<string name="results_help">Results of your ratings are always displayed by graphed lines. The RED line is made up of points representing the average of the ten ratings you made for each tracking category.  The individual ratings you made for each separate mood are displayed on top of the average line in different colors so you can compare your average rating with each individual rating.  For example, you can view the average of all ten ratings you made as you tracked “Depression” and you can view each of your ten individual ratings like “Happy-Sad”.  The lower your line on the X axis, the more “negative” your rating.  By moving the VERTICLE line on each graph with your finger you can see the dates of each recorded rating.  The small black squares at the top of the graph are Note Indicators and indicate the dates you made notes.  You can read your past notes by moving the vertical line to each Note Indicator and click the notes check in the upper right hand corner.</string>
 	<string name="results_choose_chart">Use the slider above to view a different chart.</string>
 	<string name="add_notes_popup">Add a note for today by clicking the + button.</string>
 
@@ -31,14 +31,14 @@
 	<string name="help_desc">Get additional information on how to use this app.</string>
 
 	<string name="send_anon_data_title">Send Anonymous Usage Data</string>
-	<string name="send_anon_data_desc"></string>
+	<string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
 
 	<string name="eula_title">License</string>
 	<string name="eula_accept">Accept</string>
 	<string name="eula_refuse">Refuse</string>
 
 	<string name="notes_title">Manage Notes</string>
-	<string name="notes_desc">Review/Edit notes associated with days of the month.</string>
+	<string name="notes_desc">Review/Edit/Delete notes associated with days of the month.</string>
 	<string name="notes_help">Making notes of events that might be related to your moods is important.  By touching the “Note” icon you can enter notes for the day of your rating.  You can also go back to earlier ratings and make a note for that day.  Make notes when you start, change or discontinue a medication or therapy, or note important events that occur each day.  As you review your ratings over time you may be able to find important patterns in how you are feeling and why.</string>
 	<string name="notes_dialog_title">Notes for selected date</string>
 	<string name="add_edit_note_title">Add/Edit Note</string>
@@ -81,7 +81,7 @@
 	<string name="clear_data_desc">Remove all the rating associated with this category.</string>
 
 	<string name="frequency_title">Frequency</string>
-	<string name="frequency_desc">How often you should be reminded to rate your mood.</string>
+	<string name="frequency_desc">How often would you like to be reminded to rate your mood?</string>
 	<string-array name="frequency_entries">
 		<item>Daily</item>
 		<!-- <item>Weekly</item> -->
@@ -127,6 +127,7 @@
 	<string name="activity_delete_group_message">Are you sure you would like to delete this category and all of its rating scales?</string>
 	<string name="activity_group_deleted">The category was deleted.</string>
 	<string name="activity_settings_group_editor">Category Editor</string>
+	<string name="activity_settings_group_editor_desc">Add a category or delete all data from any category.</string>
 	<string name="activity_group_immutable">This category and its rating scales cannot be modified.</string>
 
 	<string name="activity_scale_list">Rating Scale</string>
@@ -163,6 +164,8 @@
 
 	<string name="activity_startup_tips">Health Tip</string>
 	<string name="activity_startup_tips_show">Show Startup Tips</string>
+	<string name="activity_startup_tips_show_desc_on">Turn Startup Tips Off</string>
+	<string name="activity_startup_tips_show_desc_off">Turn Startup Tips On</string>
 	<string-array name="startup_tips">
 		<item>The body is vulnerable to problems when it is not “maintained” properly.  Take timeout to relax or do enjoyable activities.</item>
 		<item>Put effort into maintaining positive relationships at work.  After deployment you still need someone to watch your back. </item>

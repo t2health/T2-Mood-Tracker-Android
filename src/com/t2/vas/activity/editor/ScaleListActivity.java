@@ -66,14 +66,26 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
         listView.setOnItemLongClickListener(this);
 	}
 
-	public void onAttachedToWindow() {
+	
+	/*public void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
 		// Start the add activity if no scales are present.
         if(scaleList.size() < 1) {
         	startAddActivity(currentGroup._id);
         }
+	}*/
+
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		
+		// Start the add activity if no scales are present.
+        if(scaleList.size() < 1) {
+        	startAddActivity(currentGroup._id);
+        }
 	}
+
 
 	private void startAddActivity(long groupId) {
 		Intent i = new Intent(this, ScaleActivity.class);

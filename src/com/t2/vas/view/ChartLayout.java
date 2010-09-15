@@ -2,10 +2,9 @@ package com.t2.vas.view;
 
 import java.util.ArrayList;
 
+import com.t2.chart.widget.Chart;
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.chart.Chart;
-import com.t2.vas.view.chart.Series;
 
 import android.content.Context;
 import android.inputmethodservice.Keyboard.Row;

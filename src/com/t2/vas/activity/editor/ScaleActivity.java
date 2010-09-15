@@ -56,7 +56,7 @@ public class ScaleActivity extends ABSActivity implements OnClickListener {
 		this.findViewById(R.id.deleteButton).setOnClickListener(this);
 
 
-		// Set the note text
+		// Set the label text
 		((TextView)this.findViewById(R.id.maxLabel)).setText(currentScale.max_label);
 		((TextView)this.findViewById(R.id.minLabel)).setText(currentScale.min_label);
 

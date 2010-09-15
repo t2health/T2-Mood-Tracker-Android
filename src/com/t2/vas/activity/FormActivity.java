@@ -85,7 +85,6 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
 
         submitButton = (Button)this.findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
-        submitButton.setOnLongClickListener(this);
         if(this.submitButtonText != null) {
         	submitButton.setText(this.submitButtonText);
         }

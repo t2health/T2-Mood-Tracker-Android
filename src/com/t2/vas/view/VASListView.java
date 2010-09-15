@@ -116,7 +116,8 @@ public class VASListView extends ListView {
 
 		this.getLocationOnScreen(pos);
 
-		MotionEvent newEvent = MotionEvent.obtainNoHistory(event);
+//		MotionEvent newEvent = MotionEvent.obtainNoHistory(event);
+		MotionEvent newEvent = MotionEvent.obtain(event);
 		newEvent.setLocation(event.getX() + pos[0], event.getY() + pos[1]);
 
 		try {
@@ -141,7 +142,8 @@ public class VASListView extends ListView {
 
 		this.getLocationOnScreen(pos);
 
-		MotionEvent newEvent = MotionEvent.obtainNoHistory(event);
+//		MotionEvent newEvent = MotionEvent.obtainNoHistory(event);
+		MotionEvent newEvent = MotionEvent.obtain(event);
 		newEvent.setLocation(event.getX() + pos[0], event.getY() + pos[1]);
 
 		//Log.v(TAG, "dispatch");

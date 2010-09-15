@@ -10,11 +10,11 @@ import java.util.HashMap;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.t2.chart.Label;
+import com.t2.chart.SeriesAdapterData;
+import com.t2.chart.Value;
+import com.t2.chart.Series.SeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
-import com.t2.vas.view.chart.Label;
-import com.t2.vas.view.chart.SeriesAdapterData;
-import com.t2.vas.view.chart.Value;
-import com.t2.vas.view.chart.Series.SeriesDataAdapter;
 
 public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 	private static final String TAG = AbsResultsSeriesDataAdapter.class.getName();
@@ -139,6 +139,7 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 				c.getColumnIndex("value"),
 		};
 		long lastTime = 0;
+		
 		while(c.moveToNext()) {
 			tmpSDR = new SeriesDataRow(
 				c.getString(columnIndexes[0]),
@@ -198,6 +199,14 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 				);
 			}
 			runningCalendar.add(this.groupBy, 1);
+		}
+		
+		if(resultValues.size() == 1) {
+			resultValues.add(
+						0,
+						new Label<Date>("", Calendar.getInstance().getTime()),
+						new Value(0.00, null, false)
+			);
 		}
 
 		return resultValues;

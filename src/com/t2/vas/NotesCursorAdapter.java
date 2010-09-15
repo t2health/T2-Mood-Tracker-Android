@@ -36,13 +36,6 @@ public class NotesCursorAdapter extends SimpleCursorAdapter {
 
 	
 	@Override
-	public View newView(Context context, Cursor cursor, ViewGroup parent) {
-		View v = super.newView(context, cursor, parent);
-		v.setTag(new Long(cursor.getLong(cursor.getColumnIndex("_id"))));
-		return v;
-	}
-	
-	@Override
 	public void setViewText(TextView v, String text) {
 		super.setViewText(v, text);
 		

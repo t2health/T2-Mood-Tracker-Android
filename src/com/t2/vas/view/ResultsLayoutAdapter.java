@@ -12,10 +12,6 @@ import com.t2.vas.ScaleResultsSeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.chart.Chart;
-import com.t2.vas.view.chart.LineSeries;
-import com.t2.vas.view.chart.NotesSeries;
-import com.t2.vas.view.chart.Chart.ChartEventListener;
 
 import android.content.Context;
 import android.graphics.Color;

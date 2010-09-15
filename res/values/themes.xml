@@ -14,6 +14,10 @@
 	<style name="CustomTheme.Title.NoBackground">
 		<item name="android:windowBackground">@null</item>
 	</style>
+	
+	<style name="CustomTheme.NoBackground">
+		<item name="android:windowBackground">@null</item>
+	</style>
 
 	<style name="CustomTheme.NoBackground">
 		<item name="android:windowBackground">@null</item>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.t2.vas"
-	android:versionCode="2"
-	android:versionName="2.0">
+	android:versionCode="4"
+	android:versionName="2.0.2">
 
     <application
     	android:icon="@drawable/icon"
@@ -219,7 +219,7 @@
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"
     		android:screenOrientation="landscape"
-    		android:theme="@style/CustomTheme">
+    		android:theme="@style/CustomTheme.NoBackground">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.editor.EditGroupActivity" />
@@ -297,10 +297,11 @@
 	   	</activity>
    	</application>
 
-    <uses-sdk android:minSdkVersion="5" />
+    <uses-sdk android:minSdkVersion="3" />
 
 
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+
 </manifest>

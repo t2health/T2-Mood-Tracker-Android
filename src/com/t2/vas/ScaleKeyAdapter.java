@@ -2,8 +2,8 @@ package com.t2.vas;
 
 import java.util.ArrayList;
 
+import com.t2.chart.KeyBoxData;
 import com.t2.vas.view.ChartLayout;
-import com.t2.vas.view.chart.KeyBoxData;
 
 import android.content.Context;
 import android.content.res.TypedArray;

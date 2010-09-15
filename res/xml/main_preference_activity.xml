@@ -7,6 +7,7 @@
 
 		<Preference
 			android:title="@string/activity_settings_group_editor"
+			android:summary="@string/activity_settings_group_editor_desc"
 			android:key="group_editor" />
 
 		<Preference
@@ -16,12 +17,15 @@
 
 		<CheckBoxPreference
 			android:title="@string/activity_startup_tips_show"
+			android:summaryOn="@string/activity_startup_tips_show_desc_on"
+			android:summaryOff="@string/activity_startup_tips_show_desc_off"
 			android:key="show_startup_tips"
 			android:defaultValue="true" />
 
 		<CheckBoxPreference
 			android:key="send_anon_data"
 			android:title="@string/send_anon_data_title"
+			android:summary="@string/send_anon_data_desc"
 			android:defaultValue="true" />
 	</PreferenceCategory>
 

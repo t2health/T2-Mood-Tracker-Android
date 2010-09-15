@@ -11,11 +11,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.t2.chart.Label;
+import com.t2.chart.Value;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.AbsTable;
 import com.t2.vas.db.Table;
-import com.t2.vas.view.chart.Label;
-import com.t2.vas.view.chart.Value;
 
 public class Scale extends Table {
 	private static final String TAG = Scale.class.getName();

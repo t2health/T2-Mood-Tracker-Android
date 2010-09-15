@@ -10,13 +10,6 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.gesture.Gesture;
-import android.gesture.GestureLibraries;
-import android.gesture.GestureLibrary;
-import android.gesture.GestureOverlayView;
-import android.gesture.Prediction;
-import android.gesture.GestureOverlayView.OnGestureListener;
-import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -53,9 +46,6 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.view.ChartLayout;
 import com.t2.vas.view.VASGallerySimpleAdapter;
-import com.t2.vas.view.chart.Chart;
-import com.t2.vas.view.chart.ChartBitmapFactory;
-import com.t2.vas.view.chart.LineSeries;
 
 public class MainActivity2 extends ABSActivity implements OnItemSelectedListener, OnClickListener, OnItemClickListener {
 	private static final String TAG = MainActivity2.class.getName();
@@ -92,7 +82,7 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        //this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         this.setContentView(R.layout.main_activity2);
         VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
         

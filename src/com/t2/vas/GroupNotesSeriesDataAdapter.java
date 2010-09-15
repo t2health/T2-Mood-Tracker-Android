@@ -12,11 +12,6 @@ import android.util.Log;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.db.tables.Scale.ResultValues;
-import com.t2.vas.view.chart.Label;
-import com.t2.vas.view.chart.Series;
-import com.t2.vas.view.chart.SeriesAdapterData;
-import com.t2.vas.view.chart.Value;
-import com.t2.vas.view.chart.Series.SeriesDataAdapter;
 
 public class GroupNotesSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 	private static final String TAG = GroupNotesSeriesDataAdapter.class.getName();

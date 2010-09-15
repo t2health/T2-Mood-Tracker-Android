@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import com.t2.chart.LineSeries;
+import com.t2.chart.NotesSeries;
+import com.t2.chart.widget.Chart;
+import com.t2.chart.widget.Chart.ChartEventListener;
 import com.t2.vas.Global;
 import com.t2.vas.GroupNotesSeriesDataAdapter;
 import com.t2.vas.GroupResultsSeriesDataAdapter;
@@ -21,11 +25,6 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.chart.Chart;
-import com.t2.vas.view.chart.LineSeries;
-import com.t2.vas.view.chart.NotesSeries;
-import com.t2.vas.view.chart.Series;
-import com.t2.vas.view.chart.Chart.ChartEventListener;
 
 import android.content.Context;
 import android.content.Intent;

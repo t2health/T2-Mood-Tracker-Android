@@ -184,11 +184,12 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Long noteId = arg3;
+		/*Long noteId = arg3;
 		//Long noteId = (Long)arg1.getTag();
 		if(noteId == null || noteId <= 0) {
 			return;
-		}
+		}*/
+		long noteId = arg3;
 
 		Intent i = new Intent(this, NoteActivity.class);
 		i.putExtra("noteId", noteId);
