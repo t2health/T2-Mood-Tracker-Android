@@ -105,7 +105,7 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
     	this.taskAnimimator.setVisibility(View.VISIBLE);
 	}
 
-	private boolean groupListChanged() {
+	/*private boolean groupListChanged() {
 		this.dbHelper.open();
 		ArrayList<Group> newGroupList = currentGroup.getGroupsOrderByLastResult();
 		this.dbHelper.close();
@@ -129,7 +129,7 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 		}
 
 		return true;
-	}
+	}*/
 
 	protected void initAdapterData() {
 		DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
@@ -392,13 +392,18 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 		}
 
 		// re-init the group data.
-		if(this.groupListChanged()) {
+		long selGroupId = this.getSelectedGroupId();
+		this.initAdapterData();
+		if(selGroupId > 0) {
+			this.groupGallery.setSelection(this.getGalleryIndexForGroupId(selGroupId));
+		}
+		/*if(this.groupListChanged()) {
 			long selGroupId = this.getSelectedGroupId();
 			this.initAdapterData();
 			if(selGroupId > 0) {
 				this.groupGallery.setSelection(this.getGalleryIndexForGroupId(selGroupId));
 			}
-		}
+		}*/
 
 
 		if(data != null) {
