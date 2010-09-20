@@ -29,6 +29,7 @@ public class ReminderService extends Service {
 
 	private Timer timer = new Timer();
 	private SharedPreferences sharedPref;
+	private static boolean isRunning = false;
 //	private static final int UPDATE_INTERVAL = 360000; // Check every hour
 //	private static final int UPDATE_INTERVAL = 120000; // Check every 2 minutes
 
@@ -49,8 +50,38 @@ public class ReminderService extends Service {
 		this.stopService();
 	}
 
+	public static void stopRunning(Context c) {
+		Log.v(TAG, "Stopping reminder service.");
+		Intent i = new Intent();
+		i.setAction("com.t2.vas.ReminderService");
+		c.stopService(i);
+	}
+	
+	public static void startRunning(Context c) {
+		startRunning(c, true);
+	}
+	
+	public static void startRunning(Context c, boolean checkPref) {
+		boolean enabled = true;
+		if(checkPref) {
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(c);
+			enabled = pref.getBoolean("reminders_enabled", false);
+		}
+		
+		if(enabled) {
+			Log.v(TAG, "Starting reminder service.");
+			Intent i = new Intent();
+			i.setAction("com.t2.vas.ReminderService");
+			c.startService(i);
+		}
+	}
+	
+	private static boolean isRunning() {
+		return isRunning;
+	}
+	
 	private void startService() {
-		Log.v(TAG, "START SERVICE");
+//		Log.v(TAG, "START SERVICE");
 		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		if(!this.sharedPref.getBoolean("reminders_enabled", false)) {
 			return;
@@ -90,6 +121,7 @@ public class ReminderService extends Service {
 
 		Log.v(TAG, "Will check for groups needing rating at:"+ checkTimeCal.getTime());
 
+		isRunning = true;
 //		checkTimeCal = Calendar.getInstance(); // TEST!! NOW
 		timer.schedule(checkTask, checkTimeCal.getTime(), period);
 	}
@@ -98,6 +130,7 @@ public class ReminderService extends Service {
 		if(this.timer != null) {
 			this.timer.cancel();
 		}
+		isRunning = false;
 	}
 
 	private class CheckTask extends TimerTask {
