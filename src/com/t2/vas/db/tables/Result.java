@@ -105,10 +105,14 @@ public class Result extends Table {
 				"1"
 			);
 
-		c.moveToFirst();
-		Long newTimestamp = c.getLong(0);
+		if(c.moveToFirst()) {
+			Long newTimestamp = c.getLong(0);
+			c.close();
+
+			return newTimestamp;
+		}
 		c.close();
 
-		return newTimestamp;
+		return -1;
 	}
 }

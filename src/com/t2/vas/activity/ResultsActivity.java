@@ -121,6 +121,9 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
         currentGroup = ((Group)dbHelper.getTable("group")).newInstance();
         groupList = currentGroup.getGroupsWithResults();
 
+        if(groupList.size() == 0) {
+        	this.finish();
+        }
 
         // Configure the group gallery
         groupGallery = (Gallery)this.findViewById(R.id.galleryList);
@@ -141,14 +144,11 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
             	this,
             	groupAdapterList,
             	R.layout.main_activity2_gallery_list_item,
-//            	android.R.layout.simple_list_item_1,
             	new String[]{
             			"text1",
-//            			"text2",
             	},
             	new int[] {
             			R.id.text1,
-//            			R.id.text2,
             	}
         ));
 
@@ -206,7 +206,11 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 
 	private long getSelectedGroupId() {
 		HashMap<String, Object> ob = (HashMap<String, Object>)this.groupGallery.getSelectedItem();
-		return (Long)ob.get("groupId");
+		Long val = (Long)ob.get("groupId");
+		if(val == null) {
+			return -1;
+		}
+		return val;
 	}
 
 

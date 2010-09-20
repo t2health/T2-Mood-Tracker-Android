@@ -113,7 +113,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 	public boolean onPreferenceClick(Preference preference) {
 		String prefKey = preference.getKey();
 		String current_password = sharedPref.getString("notes_password", null);
-		Log.v(TAG, "Current password:"+current_password);
+//		Log.v(TAG, "Current password:"+current_password);
 
 		if(prefKey.equals("group_editor")) {
 			Intent i = new Intent(this, GroupListActivity.class);

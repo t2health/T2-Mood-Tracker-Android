@@ -115,6 +115,7 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 
 
         notesListView = ((ListView)this.findViewById(R.id.list));
+        notesListView.setAdapter(null);
 
         View headerView = View.inflate(this, R.layout.simple_list_item_3, null);
         ((ImageView)headerView.findViewById(R.id.image1)).setImageResource(R.drawable.add_blue);

@@ -15,6 +15,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -43,6 +44,7 @@ public class PasswordActivity extends Activity implements android.view.View.OnCl
 
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.password_activity);
 
         Intent intent = this.getIntent();
         CURRENT_MODE = intent.getIntExtra("mode", -1);
@@ -50,17 +52,20 @@ public class PasswordActivity extends Activity implements android.view.View.OnCl
 
         inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        viewConfirmPassword = inflater.inflate(R.layout.password_activity, null);
-        viewSetPassword1 = inflater.inflate(R.layout.password_activity, null);
-        viewSetPassword2 = inflater.inflate(R.layout.password_activity, null);
+        viewConfirmPassword = inflater.inflate(R.layout.password_widget, null);
+        viewSetPassword1 = inflater.inflate(R.layout.password_widget, null);
+        viewSetPassword2 = inflater.inflate(R.layout.password_widget, null);
 
-        viewConfirmPassword.findViewById(R.id.positiveButton).setOnClickListener(this);
+        this.findViewById(R.id.positiveButton).setOnClickListener(this);
+        this.findViewById(R.id.negativeButton).setOnClickListener(this);
+        
+        /*viewConfirmPassword.findViewById(R.id.positiveButton).setOnClickListener(this);
         viewConfirmPassword.findViewById(R.id.negativeButton).setOnClickListener(this);
 
         viewSetPassword1.findViewById(R.id.positiveButton).setOnClickListener(this);
         viewSetPassword1.findViewById(R.id.negativeButton).setOnClickListener(this);
         viewSetPassword2.findViewById(R.id.positiveButton).setOnClickListener(this);
-        viewSetPassword2.findViewById(R.id.negativeButton).setOnClickListener(this);
+        viewSetPassword2.findViewById(R.id.negativeButton).setOnClickListener(this);*/
 
         if(CURRENT_MODE < 0) {
         	this.finish();
@@ -178,20 +183,20 @@ public class PasswordActivity extends Activity implements android.view.View.OnCl
 		switch(id) {
 			case INTERFACE_CONFIRM_PASSWORD:
 				((TextView)vi.findViewById(R.id.text1)).setText(R.string.password_confirm_message);
-				((Button)vi.findViewById(R.id.positiveButton)).setText(R.string.password_unlock);
-				this.setContentView(vi);
+				((Button)this.findViewById(R.id.positiveButton)).setText(R.string.password_unlock);
+				this.setWrapperView(vi);
 				break;
 
 			case INTERFACE_NEW_PASSWORD1:
 				((TextView)vi.findViewById(R.id.text1)).setText(R.string.password_new_message1);
-				((Button)vi.findViewById(R.id.positiveButton)).setText(R.string.password_next);
-				this.setContentView(vi);
+				((Button)this.findViewById(R.id.positiveButton)).setText(R.string.password_next);
+				this.setWrapperView(vi);
 				break;
 
 			case INTERFACE_NEW_PASSWORD2:
 				((TextView)vi.findViewById(R.id.text1)).setText(R.string.password_new_message2);
-				((Button)vi.findViewById(R.id.positiveButton)).setText(R.string.password_set);
-				this.setContentView(vi);
+				((Button)this.findViewById(R.id.positiveButton)).setText(R.string.password_set);
+				this.setWrapperView(vi);
 				break;
 		}
 
@@ -210,5 +215,11 @@ public class PasswordActivity extends Activity implements android.view.View.OnCl
 				return viewSetPassword2;
 		}
 		return null;
+	}
+	
+	private void setWrapperView(View v) {
+		ViewGroup ww = (ViewGroup)this.findViewById(R.id.widgetWrapper);
+		ww.removeAllViews();
+		ww.addView(v);
 	}
 }
