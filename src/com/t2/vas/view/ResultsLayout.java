@@ -125,6 +125,7 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
         	chartLayout.setYMaxLabel(s.max_label);
         	chartLayout.setYMinLabel(s.min_label);
         	chartLayout.setTag((Long)s._id);
+        	chartLayout.setMaxYValue(100);
 
         	// Style the colors of the lines and points.
         	setLineSeriesColor(lineSeries, i+1, scaleCount+1);

@@ -29,6 +29,7 @@ public class ChartLayout extends LinearLayout {
 	private LinearLayout chartWrapper;
 
 	private boolean showLabels = true;
+	private double maxYValue = 0;
 
 	public ChartLayout(Context context) {
 		super(context);
@@ -91,5 +92,9 @@ public class ChartLayout extends LinearLayout {
 
 	public Scale getScale() {
 		return scale;
+	}
+	
+	public void setMaxYValue(double d) {
+		this.chart.setMaxYValue(d);
 	}
 }
