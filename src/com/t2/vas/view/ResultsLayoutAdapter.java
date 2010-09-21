@@ -25,11 +25,13 @@ public class ResultsLayoutAdapter extends ArrayAdapter<Group> {
 	private Context context;
 	private LayoutInflater layoutInflater;
 	ArrayList<ResultsLayout> viewCache = new ArrayList<ResultsLayout>();
+	private DBAdapter dbAdapter;
 
-	public ResultsLayoutAdapter(Context context, List<Group> objects) {
+	public ResultsLayoutAdapter(Context context, DBAdapter dbAdapter, List<Group> objects) {
 		super(context, 0, 0, objects);
 
 		this.context = context;
+		this.dbAdapter = dbAdapter;
 		this.layoutInflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -48,7 +50,7 @@ public class ResultsLayoutAdapter extends ArrayAdapter<Group> {
 		Group activeGroup = this.getItem(position);
 		ResultsLayout resultsLayout = (ResultsLayout)this.layoutInflater.inflate(R.layout.results_layout, null);
 
-		resultsLayout.init(activeGroup);
+		resultsLayout.init(activeGroup, this.dbAdapter);
 
 		this.viewCache.add(resultsLayout);
 

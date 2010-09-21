@@ -280,6 +280,22 @@
 			</intent-filter>
 	   	</activity>
 	   	<activity
+	    	android:name=".activity.editor.AddScaleGateway"
+	    	android:label="@string/activity_scale_gateway"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
+	   	</activity>
+	   	<activity
+	    	android:name=".activity.editor.CopyScale"
+	    	android:label="@string/activity_copy_scale"
+	    	android:excludeFromRecents="true"
+	    	android:theme="@android:style/Theme.Dialog"
+	    	android:launchMode="singleTop"
+    		android:screenOrientation="landscape">
+	   	</activity>
+	   	<activity
 	    	android:name=".activity.editor.ScaleActivity"
 	    	android:label="@string/activity_scale"
 	    	android:excludeFromRecents="true"

@@ -15,7 +15,6 @@ import com.t2.vas.db.tables.Group;
 public class ClearDataActivity extends ABSActivity {
 
 	private long groupId;
-	private DBAdapter dbAdapter;
 	private Group group;
 
 	@Override
@@ -28,15 +27,12 @@ public class ClearDataActivity extends ABSActivity {
 			this.finish();
 		}
 
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		this.group = ((Group)dbAdapter.getTable("group")).newInstance();
         this.group._id = this.groupId;
 
         if(!this.group.load()) {
-        	dbAdapter.close();
         	this.finish();
         }
-        dbAdapter.close();
 
 
 		this.setContentView(R.layout.clear_data_activity);
@@ -49,9 +45,7 @@ public class ClearDataActivity extends ABSActivity {
 	public void onClick(View v) {
 		switch(v.getId()) {
 		case R.id.yesButton:
-			this.dbAdapter.open();
 			this.group.clearResults();
-			this.dbAdapter.close();
 
 			Toast t = Toast.makeText(this, R.string.clear_data_cleared_text, Toast.LENGTH_LONG);
 			t.show();

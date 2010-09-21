@@ -63,10 +63,7 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
 
         listView = (ListView)this.findViewById(R.id.list);
 
-        DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
-        dbHelper.open();
-
-        Group group = ((Group)dbHelper.getTable("group")).newInstance();
+        Group group = ((Group)dbAdapter.getTable("group")).newInstance();
         group._id = this.activeGroupId;
         if(!group.load()) {
         	this.finish();
@@ -94,9 +91,6 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
         if(this.showSkipButton) {
         	skipButton.setVisibility(View.VISIBLE);
         }
-
-        dbHelper.close();
-
 
         // Restore some of the data
         if(savedInstanceState != null) {
@@ -142,15 +136,12 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
 				return;
 
 			case R.id.submitButton:
-				DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
-		        dbHelper.open();
-
 		        long currentTime = Calendar.getInstance().getTimeInMillis();
 		        for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
 		        	Scale s = this.scaleAdapter.getItem(i);
 		        	int value = this.scaleAdapter.getProgressValuesAt(i);
 
-		        	Result r = (Result)dbHelper.getTable("result").newInstance();
+		        	Result r = (Result)dbAdapter.getTable("result").newInstance();
 
 					r.group_id = this.activeGroupId;
 					r.scale_id = s._id;
@@ -159,8 +150,6 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
 
 					r.save();
 		        }
-
-				dbHelper.close();
 
 				this.setResult(Activity.RESULT_OK);
 				this.finish();

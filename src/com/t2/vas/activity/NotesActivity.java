@@ -37,7 +37,6 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 	protected static final int ADD_NOTES_HEADER_ID = 345987;
 
 	private NotesCursorAdapter notesAdapter;
-	private DBAdapter dbAdapter;
 	private ListView notesListView;
 	private static final String NOTE_DATE_FORMAT = "EEEE MMMM, d yyyy";
 	private Cursor notesCursor;
@@ -47,6 +46,7 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		VASAnalytics.onEvent(VASAnalytics.EVENT_NOTES_ACTIVITY);
 
 		// Init global main variables.
@@ -67,17 +67,6 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 		}
 	}
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-		if(this.notesCursor != null) {
-			this.notesCursor.close();
-		}
-		if(this.dbAdapter != null) {
-			this.dbAdapter.close();
-		}
-	}
-
 	private void showPasswordPrompt() {
 		String notesPassword = sharedPref.getString("notes_password", null);
 
@@ -94,9 +83,8 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 		long endTimestamp = intent.getLongExtra("end_timestamp", -1);
 
 		// Init global main variables.
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
-
 		this.notesCursor = ((Note)dbAdapter.getTable("note")).queryForNotes(startTimestamp, endTimestamp, "timestamp DESC");
+		this.startManagingCursor(this.notesCursor);
         this.notesAdapter = new NotesCursorAdapter(
         		this,
         		android.R.layout.simple_list_item_2,

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,8 @@ import com.t2.vas.db.tables.Group;
 
 public class EditGroupActivity extends ABSActivity implements OnItemClickListener {
 	private static final String TAG = EditGroupActivity.class.getName();
-	private DBAdapter dbAdapter;
+	private static final int DELETE_ACTIVITY = 342;
+	
 	private Group currentGroup;
 	private ArrayList<HashMap<String, Object>> items;
 
@@ -40,15 +42,12 @@ public class EditGroupActivity extends ABSActivity implements OnItemClickListene
         	this.finish();
         }
 
-        dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
         currentGroup._id = groupId;
 
         if(!currentGroup.load()) {
-        	dbAdapter.close();
         	this.finish();
         }
-        dbAdapter.close();
 
 
         this.setContentView(R.layout.edit_group_activity);
@@ -106,6 +105,20 @@ public class EditGroupActivity extends ABSActivity implements OnItemClickListene
         list.setOnItemClickListener(this);
 	}
 
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(requestCode == DELETE_ACTIVITY && resultCode == Activity.RESULT_OK) {
+			this.setResult(Activity.RESULT_OK);
+			this.finish();
+		}
+	}
+
+
+
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		HashMap<String, Object> item = this.items.get(arg2);
@@ -114,7 +127,12 @@ public class EditGroupActivity extends ABSActivity implements OnItemClickListene
 		Intent i = new Intent();
 		i.setAction(action);
 		i.putExtra("group_id", this.currentGroup._id);
-		this.startActivity(i);
+		
+		if(action.equals("com.t2.vas.editor.DeleteGroupActivity")) {
+			this.startActivityForResult(i, DELETE_ACTIVITY);
+		} else {
+			this.startActivity(i);
+		}
 	}
 
 

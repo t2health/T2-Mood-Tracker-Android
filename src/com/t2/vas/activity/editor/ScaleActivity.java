@@ -17,11 +17,11 @@ import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.db.DBAdapter;
+import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
 public class ScaleActivity extends ABSActivity implements OnClickListener {
 	private static final String TAG = ScaleActivity.class.getName();
-	private DBAdapter dbAdapter;
 	private Scale currentScale;
 	private Toast toastPopup;
 
@@ -30,7 +30,6 @@ public class ScaleActivity extends ABSActivity implements OnClickListener {
         VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_EDIT_SCALE_ACTIVITY);
 
         // init global variables.
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentScale = ((Scale)dbAdapter.getTable("scale")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.scale_saved, 2000);
 
@@ -47,8 +46,6 @@ public class ScaleActivity extends ABSActivity implements OnClickListener {
 		if(currentScale.group_id < 0) {
 			this.finish();
 		}
-
-		dbAdapter.close();
 
         this.setContentView(R.layout.scale_activity);
         this.findViewById(R.id.cancelButton).setOnClickListener(this);
@@ -92,12 +89,17 @@ public class ScaleActivity extends ABSActivity implements OnClickListener {
 
 			// save the note and exit this activity
 			case R.id.saveButton:
-				dbAdapter.open();
+				/*// If we are adding a new scale, clear the group results.
+				if(currentScale._id > 0) {
+					Group g = new Group(this.dbAdapter);
+					g._id = this.currentScale.group_id;
+					g.clearResults();
+				}*/
+				
 				currentScale.max_label = ((TextView)this.findViewById(R.id.maxLabel)).getText().toString().trim();
 				currentScale.min_label = ((TextView)this.findViewById(R.id.minLabel)).getText().toString().trim();
 				currentScale.save();
 				Log.v(TAG, "save scale:"+currentScale._id);
-				dbAdapter.close();
 
 				toastPopup.show();
 

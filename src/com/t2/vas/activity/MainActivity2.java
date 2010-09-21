@@ -50,7 +50,6 @@ import com.t2.vas.view.VASGallerySimpleAdapter;
 public class MainActivity2 extends ABSActivity implements OnItemSelectedListener, OnClickListener, OnItemClickListener {
 	private static final String TAG = MainActivity2.class.getName();
 
-	private DBAdapter dbHelper;
 	private Group currentGroup;
 	private Gallery groupGallery;
 	private ArrayList<Group> groupList;
@@ -82,21 +81,16 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         this.setContentView(R.layout.main_activity2);
         VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
         
         layoutInflater = this.getLayoutInflater();
-        dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
-        dbHelper.open();
 
-        currentGroup = ((Group)dbHelper.getTable("group")).newInstance();
+        currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
 
         groupGallery = (Gallery)this.findViewById(R.id.galleryList);
         groupGallery.setOnItemSelectedListener(this);
         groupGallery.setCallbackDuringFling(false);
-
-        dbHelper.close();
 
         // Init the list of items.
         this.initAdapterData();
@@ -105,41 +99,10 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
     	this.taskAnimimator.setVisibility(View.VISIBLE);
 	}
 
-	/*private boolean groupListChanged() {
-		this.dbHelper.open();
-		ArrayList<Group> newGroupList = currentGroup.getGroupsOrderByLastResult();
-		this.dbHelper.close();
-
-		if(newGroupList.size() != this.groupList.size()) {
-			return true;
-		}
-
-		int matchCount = 0;
-		for(int i = 0; i < newGroupList.size(); i++) {
-			for(int j = 0; j < this.groupList.size(); j++) {
-				if(newGroupList.get(i)._id == this.groupList.get(j)._id) {
-					matchCount++;
-					break;
-				}
-			}
-		}
-
-		if(matchCount == newGroupList.size()) {
-			return false;
-		}
-
-		return true;
-	}*/
 
 	protected void initAdapterData() {
-		DBAdapter dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
-        dbHelper.open();
-
-        Group currentGroup = ((Group)dbHelper.getTable("group")).newInstance();
+        Group currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
         groupList = currentGroup.getGroupsOrderByLastResult();
-
-        dbHelper.close();
-
 
         groupAdapterList = new ArrayList<HashMap<String,Object>>();
         HashMap<String, Object> groupItem;
@@ -188,8 +151,8 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 
 		if(layoutResId == R.layout.main_activity2_group_task) {
 			VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_SELECTED);
-			dbHelper.open();
-			Group group = ((Group)this.dbHelper.getTable("group")).newInstance();
+//			dbAdapter.open();
+			Group group = ((Group)this.dbAdapter.getTable("group")).newInstance();
 			group._id = this.getSelectedGroupId();
 			group.load();
 
@@ -233,7 +196,7 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
         	if(!group.hasResults()) {
         		resultsButton.setEnabled(false);
         	}
-        	dbHelper.close();
+//        	dbAdapter.close();
 
 		} else if(layoutResId == R.layout.main_activity2_add_group_task) {
 			VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_GROUP_SELECTED);
@@ -411,14 +374,11 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 			if(groupId > 0 && (requestCode == ADD_GROUP_ACTIVITY || requestCode == RESULTS_ACTIVITY)) {
 				// re-init the group data.
 				//this.initAdapterData();
-				dbHelper.open();
 
 				//Log.v(TAG, "GroupID:"+groupId);
-				Group group = ((Group)this.dbHelper.getTable("group")).newInstance();
+				Group group = ((Group)this.dbAdapter.getTable("group")).newInstance();
 				group._id = groupId;
 				group.load();
-
-				dbHelper.close();
 
 				// Set the selected group.
 				int index = getGalleryIndexForGroupId(groupId);

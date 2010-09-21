@@ -137,7 +137,7 @@ public class ReminderService extends Service {
 		private final String TAG = CheckTask.class.getName();
 
 		Context context;
-		private DBAdapter dbHelper;
+		private DBAdapter dbAdapter;
 
 		private SharedPreferences sharedPref;
 
@@ -145,15 +145,15 @@ public class ReminderService extends Service {
 		public CheckTask(Context c, SharedPreferences sharedPref) {
 			this.context = c;
 			this.sharedPref = sharedPref;
-			this.dbHelper = new DBAdapter(this.context, Global.Database.name, Global.Database.version);
+			this.dbAdapter = new DBAdapter(this.context, Global.Database.name, Global.Database.version);
 		}
 
 		@Override
 		public void run() {
 			Log.v(TAG, "Checking to see if groups need to be updated.");
 
-			dbHelper.open();
-			Group groupTable = ((Group)dbHelper.getTable("group")).newInstance();
+			dbAdapter.open();
+			Group groupTable = ((Group)dbAdapter.getTable("group")).newInstance();
 			ArrayList<Group> groups = groupTable.getGroups();
 			ArrayList<Group> reminderGroups = new ArrayList<Group>();
 			String freq = this.sharedPref.getString("remind_freq", "DAILY");
@@ -184,7 +184,7 @@ public class ReminderService extends Service {
 				}
 			}
 
-			dbHelper.close();
+			dbAdapter.close();
 
 			ReminderServiceActivity.cancelReminderNotification(this.context);
 			if(reminderGroups.size() <= 0) {

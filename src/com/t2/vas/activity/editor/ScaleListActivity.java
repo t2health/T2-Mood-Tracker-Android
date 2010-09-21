@@ -23,12 +23,18 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
 public class ScaleListActivity extends ABSActivity implements OnItemClickListener, OnItemLongClickListener {
-	private DBAdapter dbAdapter;
 	private Group currentGroup;
 	private ArrayList<Scale> scaleList;
 	private ArrayAdapter<String> adapter;
 	private ArrayList<String> scaleListString = new ArrayList<String>();
+	
+//	private static final int START_SCALE_ACTIVITY = 16876;
+//	private static final int START_SCALE_GATEWAY_ACTIVITY = 16875;
 
+	private static final int SCALE_GATEWAY_ACTIVITY = 236;
+	private static final int SCALE_ACTIVITY = 237;
+	
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VASAnalytics.onEvent(VASAnalytics.EVENT_SCALE_LIST_ACTIVITY);
@@ -36,8 +42,6 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
         this.setContentView(R.layout.scale_list_activity);
 
         Intent intent = this.getIntent();
-
-        dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 
         currentGroup = (Group)dbAdapter.getTable("group");
         currentGroup._id = intent.getLongExtra("group_id", -1);
@@ -67,15 +71,6 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
 	}
 
 	
-	/*public void onAttachedToWindow() {
-		super.onAttachedToWindow();
-
-		// Start the add activity if no scales are present.
-        if(scaleList.size() < 1) {
-        	startAddActivity(currentGroup._id);
-        }
-	}*/
-
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -88,15 +83,15 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
 
 
 	private void startAddActivity(long groupId) {
-		Intent i = new Intent(this, ScaleActivity.class);
+		Intent i = new Intent(this, AddScaleGateway.class);
 		i.putExtra("group_id", currentGroup._id);
-		this.startActivityForResult(i, 123457890);
+		this.startActivityForResult(i, SCALE_GATEWAY_ACTIVITY);
 	}
 
 	private void startEditActivity(long scaleId) {
 		Intent i = new Intent(this, ScaleActivity.class);
 		i.putExtra("scale_id", scaleId);
-		this.startActivityForResult(i, 123457890);
+		this.startActivityForResult(i, SCALE_ACTIVITY);
 	}
 
 	private void initAdapterData() {
@@ -113,7 +108,21 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
-		initAdapterData();
+		if(requestCode == SCALE_GATEWAY_ACTIVITY && data != null) {
+			int id = data.getIntExtra("action", 0);
+			if(id == AddScaleGateway.ADD_SCALE_ACTIVITY) {
+				Intent i = new Intent(this, ScaleActivity.class);
+				i.putExtra("group_id", currentGroup._id);
+				this.startActivityForResult(i, SCALE_ACTIVITY);
+				
+			} else if(id == AddScaleGateway.COPY_SCALE_ACTIVITY) {
+				Intent i = new Intent(this, CopyScale.class);
+				i.putExtra("group_id", currentGroup._id);
+				this.startActivityForResult(i, SCALE_ACTIVITY);
+			}
+		} else {
+			initAdapterData();
+		}
 	}
 
 	@Override

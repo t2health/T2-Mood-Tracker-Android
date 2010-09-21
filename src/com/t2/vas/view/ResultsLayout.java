@@ -77,14 +77,14 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 		super(context, attrs);
 	}
 
-	public void init(Group activeGroup) {
+	public void init(Group activeGroup, DBAdapter db) {
         layoutInflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         keyListView = (Gallery)this.findViewById(R.id.list);
         chartsContainer = (ViewAnimator)this.findViewById(R.id.chartsAnimator);
         chartsContainer.setAnimateFirstView(false);
 
-        DBAdapter db = new DBAdapter(this.getContext(), Global.Database.name, Global.Database.version);
-        db.open();
+//        DBAdapter db = new DBAdapter(this.getContext(), Global.Database.name, Global.Database.version);
+//        db.open();
 
         // Determine from which data to pull data.
         Calendar startTimeCal = Calendar.getInstance();
@@ -180,7 +180,6 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
                 keyListView.setOnItemSelectedListener(this);
         keyListView.setCallbackDuringFling(false);
 
-        db.close();
         this.initialized  = true;
         //Log.v(TAG, "END INIT");
 	}

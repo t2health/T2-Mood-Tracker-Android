@@ -24,7 +24,8 @@ import com.t2.vas.db.tables.Group;
 
 public class GroupListActivity extends ABSActivity implements OnItemClickListener {
 	private static final String TAG = GroupListActivity.class.getName();
-	private DBAdapter dbAdapter;
+	private static final int EDIT_GROUP_ACTIVITY = 234;
+	
 	private ArrayList<Group> groupList = new ArrayList<Group>();
 	private ArrayAdapter<String> adapter;
 	private ArrayList<String> groupListString = new ArrayList<String>();
@@ -37,7 +38,6 @@ public class GroupListActivity extends ABSActivity implements OnItemClickListene
         this.setContentView(R.layout.group_list_activity);
 
         immutableToast = Toast.makeText(this, R.string.activity_group_immutable, 5000);
-        dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 
         initAdapterData();
 
@@ -55,8 +55,6 @@ public class GroupListActivity extends ABSActivity implements OnItemClickListene
         listView.addHeaderView(addViewItem);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
-
-        dbAdapter.close();
 	}
 
 	private void initAdapterData() {
@@ -74,9 +72,7 @@ public class GroupListActivity extends ABSActivity implements OnItemClickListene
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
-		dbAdapter.open();
 		initAdapterData();
-		dbAdapter.close();
 
 		if(data == null) {
 			return;
@@ -109,33 +105,6 @@ public class GroupListActivity extends ABSActivity implements OnItemClickListene
 		if(group != null) {
 			i.putExtra("group_id", group._id);
 		}
-		this.startActivity(i);
+		this.startActivityForResult(i, EDIT_GROUP_ACTIVITY);
 	}
-
-
-	/*@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// The add group button was pressed
-		if(arg2 == 0) {
-			this.startActivityForResult(new Intent(this, GroupActivity.class), 123457890);
-			return false;
-		}
-
-		// Load the add/edit group activity.
-		Group group = groupList.get(arg2 - 1);
-
-		// Enforce the immutable nature of this group.
-		if(group.immutable > 0) {
-			immutableToast.show();
-			return false;
-		}
-
-		// Allow the user to edit this group.
-		Intent i = new Intent(this, GroupActivity.class);
-		if(group != null) {
-			i.putExtra("group_id", group._id);
-		}
-		this.startActivityForResult(i, 1234567890);
-		return false;
-	}*/
 }

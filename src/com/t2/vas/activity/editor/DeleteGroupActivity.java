@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DeleteGroupActivity extends ABSActivity implements OnClickListener {
-	private DBAdapter dbAdapter;
 	private Group currentGroup;
 	private Toast toastPopup;
 
@@ -26,7 +25,6 @@ public class DeleteGroupActivity extends ABSActivity implements OnClickListener 
 
 		this.setContentView(R.layout.delete_group_activity);
 
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.activity_group_deleted, 2000);
 
@@ -46,8 +44,6 @@ public class DeleteGroupActivity extends ABSActivity implements OnClickListener 
 
 		((Button)this.findViewById(R.id.yesButton)).setOnClickListener(this);
 		((Button)this.findViewById(R.id.noButton)).setOnClickListener(this);
-
-		dbAdapter.close();
 	}
 
 	@Override
@@ -55,12 +51,11 @@ public class DeleteGroupActivity extends ABSActivity implements OnClickListener 
 		switch(v.getId()) {
 			case R.id.yesButton:
 
-				dbAdapter.open();
 				currentGroup.delete();
-				dbAdapter.close();
 
 				toastPopup.show();
 
+				this.setResult(Activity.RESULT_OK);
 				this.finish();
 
 				break;

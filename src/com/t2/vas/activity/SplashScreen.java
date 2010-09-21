@@ -1,53 +1,28 @@
 package com.t2.vas.activity;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ReminderService;
 import com.t2.vas.VASAnalytics;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class SplashScreen extends ABSActivity implements OnClickListener {
 	private static final String TAG = SplashScreen.class.getName();
-	private SharedPreferences sharedPref;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
 		// Start the reminder service if we need to.
 		ReminderService.startRunning(this);
@@ -60,6 +35,7 @@ public class SplashScreen extends ABSActivity implements OnClickListener {
 		
 
 		VASAnalytics.init(Global.ANALYTICS_KEY, this.sharedPref.getBoolean("send_anon_data", true));
+		VASAnalytics.setEnabled(!Global.DEV_MODE);
 		VASAnalytics.setDebugEnabled(true);
 		ReminderServiceActivity.cancelReminderNotification(this);
 

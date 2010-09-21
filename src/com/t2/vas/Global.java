@@ -7,10 +7,10 @@ public class Global {
 		public static final boolean CREATE_FAKE_DATA = false;
 	}
 
+	public static final boolean DEV_MODE = true;
 	public static final String FLURRY_KEY = "AI6NAUCMM6QCZYHLV9B4";
 	public static final String ANALYTICS_KEY = FLURRY_KEY;
 	public static final String CHART_LABEL_DATE_FORMAT = "MMM d";
-//	public static final String SHARED_PREFERENCES_NAME = "VAS";
 
 	public static final String REMOTE_STACK_TRACE_URL = "http://www2.tee2.org/trace/report.php";
 }

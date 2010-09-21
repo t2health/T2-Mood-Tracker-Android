@@ -67,10 +67,10 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 		}
 
 		boolean openForThis = false;
-		if(!this.dbAdapter.isOpen()) {
+		/*if(!this.dbAdapter.isOpen()) {
 			this.dbAdapter.open();
 			openForThis = true;
-		}
+		}*/
 
 		SimpleDateFormat labelDateFormatter = new SimpleDateFormat(labelFormat);
 		String labelFormat = "";

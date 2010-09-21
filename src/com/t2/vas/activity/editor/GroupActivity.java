@@ -19,7 +19,6 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class GroupActivity extends ABSActivity implements OnClickListener {
-	private DBAdapter dbAdapter;
 	private Group currentGroup;
 	private Toast toastPopup;
 
@@ -28,7 +27,6 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
         VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_ACTIVITY);
         
         // init global variables.
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.activity_group_saved, 2000);
 
@@ -40,8 +38,6 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 		if(currentGroup._id > 0) {
 			currentGroup.load();
 		}
-
-		dbAdapter.close();
 
         this.setContentView(R.layout.group_activity);
         this.findViewById(R.id.cancelButton).setOnClickListener(this);
@@ -96,10 +92,8 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 					this.getIntent().putExtra("mode", "insert");
 				}
 
-				dbAdapter.open();
 				currentGroup.title = ((TextView)this.findViewById(R.id.title)).getText().toString().trim();
 				currentGroup.save();
-				dbAdapter.close();
 
 				toastPopup.show();
 

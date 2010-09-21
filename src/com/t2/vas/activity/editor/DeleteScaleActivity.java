@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DeleteScaleActivity extends ABSActivity implements OnClickListener {
-	private DBAdapter dbAdapter;
 	private Scale currentScale;
 	private Toast toastPopup;
 
@@ -26,7 +25,6 @@ public class DeleteScaleActivity extends ABSActivity implements OnClickListener 
 		
 		this.setContentView(R.layout.delete_group_activity);
 
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentScale = ((Scale)dbAdapter.getTable("scale")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.scale_deleted, 2000);
 
@@ -46,8 +44,6 @@ public class DeleteScaleActivity extends ABSActivity implements OnClickListener 
 
 		((Button)this.findViewById(R.id.yesButton)).setOnClickListener(this);
 		((Button)this.findViewById(R.id.noButton)).setOnClickListener(this);
-
-		dbAdapter.close();
 	}
 
 	@Override
@@ -55,9 +51,7 @@ public class DeleteScaleActivity extends ABSActivity implements OnClickListener 
 		switch(v.getId()) {
 			case R.id.yesButton:
 
-				dbAdapter.open();
 				currentScale.delete();
-				dbAdapter.close();
 
 				toastPopup.show();
 

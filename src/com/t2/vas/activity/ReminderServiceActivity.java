@@ -122,7 +122,6 @@ public class ReminderServiceActivity extends ABSActivity {
 
 	public static ArrayList<Group> getRemindableGroups(DBAdapter dbAdapter) {
 		ArrayList<Group> groupReminders = new ArrayList<Group>();
-		dbAdapter.open();
 
 		ArrayList<Group> groups = ((Group)dbAdapter.getTable("group")).getGroups();
 		for(int i = 0; i < groups.size(); i++) {

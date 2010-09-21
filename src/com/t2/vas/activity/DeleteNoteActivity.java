@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DeleteNoteActivity extends ABSActivity implements OnClickListener {
-	private DBAdapter dbAdapter;
 	private Note currentNote;
 	private Toast toastPopup;
 
@@ -25,7 +24,6 @@ public class DeleteNoteActivity extends ABSActivity implements OnClickListener {
 
 		this.setContentView(R.layout.delete_note_activity);
 
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.note_deleted, 2000);
 
@@ -45,8 +43,6 @@ public class DeleteNoteActivity extends ABSActivity implements OnClickListener {
 
 		((Button)this.findViewById(R.id.yesButton)).setOnClickListener(this);
 		((Button)this.findViewById(R.id.noButton)).setOnClickListener(this);
-
-		dbAdapter.close();
 	}
 
 	@Override
@@ -54,9 +50,7 @@ public class DeleteNoteActivity extends ABSActivity implements OnClickListener {
 		switch(v.getId()) {
 			case R.id.yesButton:
 
-				dbAdapter.open();
 				currentNote.delete();
-				dbAdapter.close();
 
 				toastPopup.show();
 

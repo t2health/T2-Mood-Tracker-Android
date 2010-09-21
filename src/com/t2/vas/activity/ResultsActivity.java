@@ -85,7 +85,7 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 	private AnimationSet flashAnimation;
 	private ChartLayout groupChartLayout;
 	private Group activeGroup;
-	private DBAdapter dbHelper;
+//	private DBAdapter dbAdapter;
 	private Group currentGroup;
 	private ResultsAnimator resultsAnimator;
 	private ArrayList<Group> groupList;
@@ -115,10 +115,7 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
         resultsAnimator = (ResultsAnimator)this.findViewById(R.id.resultsAnimator);
 
         // get a list of the current list of groups
-        dbHelper = new DBAdapter(this, Global.Database.name, Global.Database.version);
-        dbHelper.open();
-
-        currentGroup = ((Group)dbHelper.getTable("group")).newInstance();
+        currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
         groupList = currentGroup.getGroupsWithResults();
 
         if(groupList.size() == 0) {
@@ -156,11 +153,9 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 
         resultsAnimator.setAdapter(new ResultsLayoutAdapter(
         		this,
+        		this.dbAdapter,
         		groupList
         ));
-
-        dbHelper.close();
-
 
         // Tell the flipper to start at a specific index.
         int startIndex = 0;

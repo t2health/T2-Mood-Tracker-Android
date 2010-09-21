@@ -9,6 +9,7 @@ import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.Eula;
 import com.t2.vas.VASAnalytics;
+import com.t2.vas.db.DBAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,13 +37,19 @@ public class ABSActivity extends Activity implements OnClickListener {
 	/*public static final int NOTES_ACTIVITY = 348;
 	public static final int REMINDER_ACTIVITY = 349;*/
 
-	private static SharedPreferences sharedPref;
+	protected SharedPreferences sharedPref;
+	protected DBAdapter dbAdapter;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
+        dbAdapter.open();
 
-        if(Global.REMOTE_STACK_TRACE_URL != null && Global.REMOTE_STACK_TRACE_URL.length() > 0) {
-        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
+        if(!Global.DEV_MODE) { 
+	        if(Global.REMOTE_STACK_TRACE_URL != null && Global.REMOTE_STACK_TRACE_URL.length() > 0) {
+	        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
+	        }
         }
         
         Eula.show(this);
@@ -69,13 +76,17 @@ public class ABSActivity extends Activity implements OnClickListener {
 		super.setContentView(view);
 		this.initGlobalButtons();
 	}
-
+	
 	@Override
 	protected void onStart() {
 		super.onStart();
-
+		
 		if(sharedPref.getBoolean("send_anon_data", true)) {
 			FlurryAgent.onStartSession(this, Global.FLURRY_KEY);
+		}
+		
+		if(!this.dbAdapter.isOpen()) {
+			this.dbAdapter.open();
 		}
 	}
 
@@ -88,8 +99,13 @@ public class ABSActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		this.dbAdapter.close();
+	}
 
-
+	
 	public void initGlobalButtons() {
 		View v;
 

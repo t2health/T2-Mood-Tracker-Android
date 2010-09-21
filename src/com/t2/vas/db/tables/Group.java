@@ -90,14 +90,33 @@ public class Group extends Table {
 		return new Group(this.dbAdapter);
 	}
 
-	public ArrayList<Group> getGroups() {
+	public Cursor getGroupsWithScalesCursor() {
 		ContentValues v = new ContentValues();
-
-		ArrayList<Group> groups = new ArrayList<Group>();
-		Cursor c = this.getDBAdapter().getTable("group").select(
+		
+		return this.getDBAdapter().getDatabase().query(
+				"`group` g, `scale` s", 
+				new String[] {
+						"g.*",
+				},
+				"g._id=s.group_id", 
+				null, 
+				"g._id", 
+				"COUNT(*) > 0", 
+				"g.title"
+		);
+	}
+	
+	public Cursor getGroupsCursor() {
+		ContentValues v = new ContentValues();
+		return this.getDBAdapter().getTable("group").select(
 				v,
 				"title ASC"
 		);
+	}
+	
+	public ArrayList<Group> getGroups() {
+		ArrayList<Group> groups = new ArrayList<Group>();
+		Cursor c = this.getGroupsCursor();
 
 		while(c.moveToNext()) {
 			Group group = (Group)this.getDBAdapter().getTable("group").newInstance();
@@ -191,12 +210,32 @@ public class Group extends Table {
 		return false;
 	}
 
-	public ArrayList<Scale> getScales() {
+	public Cursor getNamedScalesCursor() {
+		return this.getDBAdapter().getDatabase().query(
+				"scale", 
+				new String[] {
+					"_id",
+					"min_label || ' ' || max_label title",	
+				}, 
+				"group_id=?", 
+				new String[] {
+						this._id+"",
+				}, 
+				null, 
+				null, 
+				"title"
+		);
+	}
+	
+	public Cursor getScalesCursor() {
 		ContentValues v = new ContentValues();
 		v.put("group_id", this._id+"");
-
+		return this.getDBAdapter().getTable("scale").select(v, "weight ASC");
+	}
+	
+	public ArrayList<Scale> getScales() {
 		ArrayList<Scale> scales = new ArrayList<Scale>();
-		Cursor c = this.getDBAdapter().getTable("scale").select(v, "weight ASC");
+		Cursor c = this.getScalesCursor();
 		while(c.moveToNext()) {
 			Scale scale = (Scale)this.getDBAdapter().getTable("scale").newInstance();
 			scale.load(c);
@@ -243,8 +282,17 @@ public class Group extends Table {
 
 
 		if(c.moveToNext()) {
-			return c.getLong(c.getColumnIndex("timestamp"));
+			Long ts = c.getLong(c.getColumnIndex("timestamp"));
+			c.close();
+			if(ts != null) {
+				return ts;
+			} else {
+				return -1;
+			}
 		}
+		
+		c.close();
+		
 		return -1;
 	}
 

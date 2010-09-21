@@ -24,7 +24,6 @@ import android.widget.Toast;
 import android.widget.DatePicker.OnDateChangedListener;
 
 public class NoteActivity extends ABSActivity implements OnClickListener, OnDateChangedListener {
-	private DBAdapter dbAdapter;
 	private Note currentNote;
 	private Toast toastPopup;
 
@@ -33,7 +32,6 @@ public class NoteActivity extends ABSActivity implements OnClickListener, OnDate
 		VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_EDIT_NOTE_ACTIVITY);
 
 		// init global variables.
-		dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
 		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();
 		toastPopup = Toast.makeText(this, R.string.note_saved, 2000);
 
@@ -54,7 +52,6 @@ public class NoteActivity extends ABSActivity implements OnClickListener, OnDate
 			currentNote.timestamp = cal.getTimeInMillis();
 		}
 
-		dbAdapter.close();
 		cal.setTimeInMillis(currentNote.timestamp);
 
 		// Init the view
@@ -115,11 +112,9 @@ public class NoteActivity extends ABSActivity implements OnClickListener, OnDate
 					dp.getDayOfMonth()
 				);
 
-				dbAdapter.open();
 				currentNote.note = ((TextView)this.findViewById(R.id.note)).getText().toString();
 				currentNote.timestamp = cal.getTimeInMillis();
 				currentNote.save();
-				dbAdapter.close();
 
 				toastPopup.show();
 

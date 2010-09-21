@@ -134,11 +134,16 @@
 	<string name="activity_scale">Add/Edit Rating Scale</string>
 	<string name="activity_delete_scale">Delete Rating Scale</string>
     <string name="add_scale">Add Rating Scale</string>
+    <string name="activity_scale_gateway">Add Rating Scale</string>
+    <string name="activity_copy_scale">Copy a Rating Scale</string>
 	<string name="scale_saved">The rating scale has been saved.</string>
 	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
 	<string name="scale_deleted">The rating scale was deleted.</string>
 	<string name="min_label">Minimum Label</string>
 	<string name="max_label">Maximum Label</string>
+	
+	<string name="activity_gateway_add_existing">Copy a Scale from an existing Category.</string>
+	<string name="activity_gateway_add_custom">Create a new scale.</string>
 
     <string name="activity_reminder">Reminder</string>
     <string name="activity_reminder_preference_desc">Set a reminder to track your mood.</string>
