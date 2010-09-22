@@ -105,7 +105,6 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 
         ViewGroup globalBar = (ViewGroup)this.findViewById(R.id.globalButtonBar);
         if(globalBar != null) {
-	        globalBar.removeView(globalBar.findViewById(R.id.reminderButton));
 	        globalBar.removeView(globalBar.findViewById(R.id.notesButton));
         }
 
