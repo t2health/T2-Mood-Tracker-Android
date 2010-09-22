@@ -30,22 +30,32 @@ public class GroupGallery extends Gallery {
 
 	@Override
 	public void setSelection(int position, boolean animate) {
-//		Log.v(TAG, "Set selectionA."+position);
-		if(!this.selector.isRunning()) {
-			this.selector = new SelectedViewSelector();
-			this.selector.execute(this.getSelectedView());
-		}
+		this.privateSetSelection(position);
 		super.setSelection(position, animate);
 	}
 
 	@Override
 	public void setSelection(int position) {
-//		Log.v(TAG, "Set selectionB."+position);
-		if(!this.selector.isRunning()) {
-			this.selector = new SelectedViewSelector();
-			this.selector.execute(this.getSelectedView());
-		}
+		this.privateSetSelection(position);
 		super.setSelection(position);
+	}
+	
+	private void privateSetSelection(int position) {
+		if(position == this.getSelectedItemPosition() && position != 0) {
+			this.hilightSelectedView();
+		} else {
+			if(!this.selector.isRunning()) {
+				this.selector = new SelectedViewSelector();
+				this.selector.execute(this.getSelectedView());
+			}
+		}
+	}
+	
+	private void hilightSelectedView() {
+		if(getSelectedView() != null) {
+			getSelectedView().performClick();
+			getSelectedView().setSelected(true);
+		}
 	}
 	
 	
@@ -64,7 +74,7 @@ public class GroupGallery extends Gallery {
 			View currSelView = params[0];
 			View selView;
 			while(true) {
-//				Log.v(TAG, "Checking for selected view change.");
+				Log.v(TAG, "Checking for selected view change.");
 				selView = getSelectedView();
 				if(selView != currSelView) {
 					break;
@@ -84,7 +94,7 @@ public class GroupGallery extends Gallery {
 				loopCount++;
 			}
 			
-//			Log.v(TAG, "Selecting the newly selected view.");
+			Log.v(TAG, "Selecting the newly selected view.");
 			selectGroupIndexHandler.sendEmptyMessage(1);
 			
 			this.isRunning = false;
@@ -99,11 +109,7 @@ public class GroupGallery extends Gallery {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			
-	        if(getSelectedView() != null) {
-//	        	Log.v(TAG, "CHANGE BG!");
-	        	getSelectedView().performClick();
-	        	getSelectedView().setSelected(true);
-	        }
+			hilightSelectedView();
 		}
 	}
 

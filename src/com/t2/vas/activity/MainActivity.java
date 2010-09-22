@@ -52,13 +52,13 @@ import com.t2.vas.view.ChartLayout;
 import com.t2.vas.view.GroupGallery;
 import com.t2.vas.view.VASGallerySimpleAdapter;
 
-public class MainActivity2 extends ABSActivity implements OnItemSelectedListener, OnClickListener, OnItemClickListener {
-	private static final String TAG = MainActivity2.class.getName();
+public class MainActivity extends ABSActivity implements OnItemSelectedListener, OnClickListener, OnItemClickListener {
+	private static final String TAG = MainActivity.class.getName();
 
 	private Group currentGroup;
 	private GroupGallery groupGallery;
 	private ArrayList<Group> groupList;
-	private ArrayList<HashMap<String, Object>> groupAdapterList;
+	private ArrayList<HashMap<String, Object>> groupAdapterList = new ArrayList<HashMap<String,Object>>();
 
 	private Animation categoryTasksInAnimaton;
 
@@ -88,7 +88,7 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.main_activity2);
+        this.setContentView(R.layout.main_activity);
         VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
         
         layoutInflater = this.getLayoutInflater();
@@ -98,6 +98,19 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
         groupGallery = (GroupGallery)this.findViewById(R.id.galleryList);
         groupGallery.setCallbackDuringFling(false);
         
+        this.galleryAdapter = new VASGallerySimpleAdapter(
+            	this,
+            	groupAdapterList,
+            	R.layout.main_activity_gallery_list_item,
+            	new String[]{
+            			"text1",
+            	},
+            	new int[] {
+            			R.id.text1,
+            	}
+        );
+        groupGallery.setAdapter(this.galleryAdapter);
+
         // Init the list of items.
         this.initAdapterData();
         
@@ -112,35 +125,37 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 	
 
 
-	protected void initAdapterData() {
+	private void initAdapterData() {
         Group currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
         groupList = currentGroup.getGroupsOrderByLastResult();
 
-        groupAdapterList = new ArrayList<HashMap<String,Object>>();
+        groupAdapterList.clear();
+//        groupAdapterList = new ArrayList<HashMap<String,Object>>();
         HashMap<String, Object> groupItem;
 
         groupItem = new HashMap<String, Object>();
-        groupItem.put("layoutResId", R.layout.main_activity2_intro_task);
+        groupItem.put("layoutResId", R.layout.main_activity_intro_task);
     	groupItem.put("text1", "Introduction");
     	groupAdapterList.add(groupItem);
 
         for(int i = 0; i < groupList.size(); i++) {
         	groupItem = new HashMap<String, Object>();
-        	groupItem.put("layoutResId", R.layout.main_activity2_group_task);
+        	groupItem.put("layoutResId", R.layout.main_activity_group_task);
         	groupItem.put("groupId", groupList.get(i)._id);
         	groupItem.put("text1", groupList.get(i).title);
         	groupAdapterList.add(groupItem);
         }
 
         groupItem = new HashMap<String, Object>();
-        groupItem.put("layoutResId", R.layout.main_activity2_add_group_task);
+        groupItem.put("layoutResId", R.layout.main_activity_add_group_task);
     	groupItem.put("text1", "Add Custom");
     	groupAdapterList.add(groupItem);
 
-    	this.galleryAdapter = new VASGallerySimpleAdapter(
+    	this.galleryAdapter.notifyDataSetChanged();
+    	/*this.galleryAdapter = new VASGallerySimpleAdapter(
             	this,
             	groupAdapterList,
-            	R.layout.main_activity2_gallery_list_item,
+            	R.layout.main_activity_gallery_list_item,
             	new String[]{
             			"text1",
             	},
@@ -148,17 +163,18 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
             			R.id.text1,
             	}
         );
-        groupGallery.setAdapter(this.galleryAdapter);
+        groupGallery.setAdapter(this.galleryAdapter);*/
 	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		boolean addAndAnimateTask = false;
 		HashMap<String, Object> ob = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
 
 		int layoutResId = (Integer)ob.get("layoutResId");
 		ViewGroup v = (ViewGroup)this.layoutInflater.inflate(layoutResId, null);
 
-		if(layoutResId == R.layout.main_activity2_group_task) {
+		if(layoutResId == R.layout.main_activity_group_task) {
 			VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_SELECTED);
 //			dbAdapter.open();
 			Group group = ((Group)this.dbAdapter.getTable("group")).newInstance();
@@ -205,25 +221,32 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
         	if(!group.hasResults()) {
         		resultsButton.setEnabled(false);
         	}
+        	
+        	addAndAnimateTask = true;
 //        	dbAdapter.close();
-
-		} else if(layoutResId == R.layout.main_activity2_add_group_task) {
-			VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_GROUP_SELECTED);
-			v.findViewById(R.id.addGroupButton).setOnClickListener(this);
-
-		} else if(layoutResId == R.layout.main_activity2_intro_task) {
-			VASAnalytics.onEvent(VASAnalytics.EVENT_INTRO_SELECTED);
-			v.findViewById(R.id.aboutButton).setOnClickListener(this);
+		} else if(this.previousSelectedIndex != this.groupGallery.getSelectedItemPosition()) {
+			if(layoutResId == R.layout.main_activity_add_group_task) {
+				VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_GROUP_SELECTED);
+				v.findViewById(R.id.addGroupButton).setOnClickListener(this);
+	
+			} else if(layoutResId == R.layout.main_activity_intro_task) {
+				VASAnalytics.onEvent(VASAnalytics.EVENT_INTRO_SELECTED);
+				v.findViewById(R.id.aboutButton).setOnClickListener(this);
+			}
+			addAndAnimateTask = true;
 		}
+		Log.v(TAG, "PIS:"+ this.previousSelectedIndex+" != "+this.groupGallery.getSelectedItemPosition());
 
-		this.taskAnimimator.addView(v);
-
-		this.taskAnimimator.showNext();
-		if(this.taskAnimimator.getChildCount() > 1) {
-			this.taskAnimimator.removeViewAt(0);
+		if(addAndAnimateTask) {
+			this.taskAnimimator.addView(v);
+	
+			this.taskAnimimator.showNext();
+			if(this.taskAnimimator.getChildCount() > 1) {
+				this.taskAnimimator.removeViewAt(0);
+			}
+	
+			this.previousSelectedIndex = arg2;
 		}
-
-		this.previousSelectedIndex  = arg2;
 	}
 
 	/*private BitmapDrawable averageChart(Group group, int width, int height) {
@@ -355,8 +378,6 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//this.galleryAdapter.notifyDataSetChanged();
-
 		// If the user is coming form the form activity, star the results activity.
 		if(requestCode == FORM_ACTIVITY && resultCode == Activity.RESULT_OK) {
 			this.startResultsActivity();
@@ -368,21 +389,21 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 		this.initAdapterData();
 		if(selGroupId > 0) {
 			this.groupGallery.setSelection(this.getGalleryIndexForGroupId(selGroupId));
-		}
-		/*if(this.groupListChanged()) {
-			long selGroupId = this.getSelectedGroupId();
-			this.initAdapterData();
-			if(selGroupId > 0) {
-				this.groupGallery.setSelection(this.getGalleryIndexForGroupId(selGroupId));
+		} else {
+			int index = 0;
+			if(this.groupGallery.getSelectedItemPosition() > 0) {
+				index = this.groupAdapterList.size() - 1;
 			}
-		}*/
+			
+			this.groupGallery.setSelection(index);
+		}
 
 
 		if(data != null) {
 			Long groupId = data.getLongExtra("group_id", 0);
 			if(groupId > 0 && (requestCode == ADD_GROUP_ACTIVITY || requestCode == RESULTS_ACTIVITY)) {
 				// re-init the group data.
-				//this.initAdapterData();
+				this.initAdapterData();
 
 				//Log.v(TAG, "GroupID:"+groupId);
 				Group group = ((Group)this.dbAdapter.getTable("group")).newInstance();

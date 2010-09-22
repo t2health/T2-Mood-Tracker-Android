@@ -28,9 +28,7 @@
          <activity
         	android:label="@string/app_name"
         	android:name=".activity.SplashScreen"
-        	android:configChanges="keyboardHidden|orientation"
-    		android:theme="@style/CustomTheme"
-    		android:screenOrientation="landscape">
+    		android:theme="@style/CustomTheme">
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -42,13 +40,12 @@
     	<activity
         	android:label="@string/app_name"
         	android:launchMode="singleTop"
-        	android:name=".activity.MainActivity2"
+        	android:name=".activity.MainActivity"
         	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme"
-    		android:screenOrientation="landscape">
+    		android:theme="@style/CustomTheme">
 
         	<intent-filter>
-        		<action android:name="com.t2.vas.MainActivity2" />
+        		<action android:name="com.t2.vas.MainActivity" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
         </activity>
@@ -58,8 +55,7 @@
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.FormActivity"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme"
-    		android:screenOrientation="landscape">
+	    	android:theme="@style/CustomTheme">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.FormActivity" />
@@ -72,8 +68,7 @@
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.ResultsActivity"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme"
-    		android:screenOrientation="landscape">
+	    	android:theme="@style/CustomTheme">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.ResultsActivity" />
@@ -86,8 +81,7 @@
 	    	android:name=".activity.InfoActivity"
 	    	android:label="@string/info_title"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/Theme.Dialog.NoTitle"
-    		android:screenOrientation="landscape">
+	    	android:theme="@style/Theme.Dialog.NoTitle">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.InfoActivity" />
@@ -99,8 +93,7 @@
 	    	android:name=".activity.HelpActivity"
 	    	android:label="@string/help_title"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-    		android:screenOrientation="landscape">
+	    	android:theme="@android:style/Theme.Dialog">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.HelpActivity" />
@@ -112,8 +105,7 @@
 	    	android:name=".activity.AboutActivity"
 	    	android:label="@string/about_title"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-    		android:screenOrientation="landscape">
+	    	android:theme="@android:style/Theme.Dialog">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.AboutActivity" />
@@ -125,8 +117,7 @@
 	    	android:name=".activity.ReminderServiceActivity"
 	    	android:label="@string/activity_reminder"
 	    	android:excludeFromRecents="true"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 
 	   	<activity
@@ -134,8 +125,7 @@
 	    	android:label="@string/password_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 
 	   	<!-- Notes Activities -->
@@ -144,8 +134,7 @@
 	    	android:label="@string/notes_title"
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"
-	    	android:theme="@android:style/Theme"
-    		android:screenOrientation="landscape">
+	    	android:theme="@android:style/Theme">
 
     		<intent-filter>
 	    		<action android:name="com.t2.vas.NotesActivity" />
@@ -157,24 +146,21 @@
 	    	android:label="@string/notes_dialog_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.NoteActivity"
 	    	android:label="@string/add_edit_note_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.DeleteNoteActivity"
 	    	android:label="@string/delete_note_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 
 
@@ -183,8 +169,7 @@
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.preference.MainPreferenceActivity"
 	    	android:label="@string/settings_title"
-	    	android:excludeFromRecents="true"
-    		android:screenOrientation="landscape">
+	    	android:excludeFromRecents="true">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.Settings" />
@@ -192,12 +177,11 @@
 			</intent-filter>
 	   	</activity>
 
-  		    <activity
+	    <activity
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.preference.Reminder"
 	    	android:label="@string/reminder_title"
-	    	android:excludeFromRecents="true"
-    		android:screenOrientation="landscape">
+	    	android:excludeFromRecents="true">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.Settings.Reminder" />
@@ -210,15 +194,13 @@
 	    	android:name=".activity.editor.GroupListActivity"
 	    	android:label="@string/activity_group_list"
 	    	android:excludeFromRecents="true"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.editor.EditGroupActivity"
 	    	android:label="@string/activity_group"
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape"
     		android:theme="@style/CustomTheme.NoBackground">
 
 	    	<intent-filter>
@@ -231,7 +213,6 @@
 	    	android:label="@string/clear_data_title"
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape"
     		android:theme="@android:style/Theme.Dialog">
 
 	    	<intent-filter>
@@ -244,8 +225,7 @@
 	    	android:label="@string/activity_group"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 
 	    	<intent-filter>
 	    		<action android:name="com.t2.vas.editor.GroupActivity" />
@@ -257,8 +237,7 @@
 	    	android:label="@string/activity_delete_group"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 
     		<intent-filter>
 	    		<action android:name="com.t2.vas.editor.DeleteGroupActivity" />
@@ -271,8 +250,7 @@
 	    	android:name=".activity.editor.ScaleListActivity"
 	    	android:label="@string/activity_scale_list"
 	    	android:excludeFromRecents="true"
-	    	android:launchMode="singleTask"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTask">
 
     		<intent-filter>
 	    		<action android:name="com.t2.vas.editor.ScaleListActivity" />
@@ -284,32 +262,28 @@
 	    	android:label="@string/activity_scale_gateway"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.editor.CopyScale"
 	    	android:label="@string/activity_copy_scale"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.editor.ScaleActivity"
 	    	android:label="@string/activity_scale"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.editor.DeleteScaleActivity"
 	    	android:label="@string/activity_delete_scale"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop"
-    		android:screenOrientation="landscape">
+	    	android:launchMode="singleTop">
 	   	</activity>
    	</application>
 

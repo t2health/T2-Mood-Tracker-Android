@@ -172,7 +172,7 @@ public class ABSActivity extends Activity implements OnClickListener {
 
 			case T2_WEBSITE_ACTIVITY:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.t2health.org"));
-				this.startActivity(i);
+				this.startActivityForResult(i, T2_WEBSITE_ACTIVITY);
 
 
 			/*case NOTES_ACTIVITY:

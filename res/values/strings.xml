@@ -4,6 +4,7 @@
 
 	<string name="splash_intro">Press the \"Start\" button to begin.</string>
 	<string name="splash_start_button">Start</string>
+	<string name="splash_health_tip_label">Health Tip: </string>
 
 	<string name="main_intro_title">Welcome to the T2 Mood Tracker</string>
 	<string name="main_into_text">With this app you can rate your moods, keep track of how you’re feeling over time, figure out how life events, therapies and medications are affecting your well-being, and accurately communicate all of this to your health care provider or therapist should you choose to do so.</string>

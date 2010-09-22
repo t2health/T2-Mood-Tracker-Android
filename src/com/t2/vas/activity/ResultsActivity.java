@@ -139,7 +139,7 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
         groupGallery.setAdapter(new VASGallerySimpleAdapter(
             	this,
             	groupAdapterList,
-            	R.layout.main_activity2_gallery_list_item,
+            	R.layout.main_activity_gallery_list_item,
             	new String[]{
             			"text1",
             	},

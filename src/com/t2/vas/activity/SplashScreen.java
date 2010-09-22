@@ -40,7 +40,7 @@ public class SplashScreen extends ABSActivity implements OnClickListener {
 		ReminderServiceActivity.cancelReminderNotification(this);
 
 		Toast toast = Toast.makeText(this, R.string.splash_intro, Toast.LENGTH_LONG);
-		toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
 		toast.show();
 
 		if(this.sharedPref.getBoolean("show_startup_tips", true)) {
@@ -57,7 +57,7 @@ public class SplashScreen extends ABSActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
-		Intent i = new Intent(this, MainActivity2.class);
+		Intent i = new Intent(this, MainActivity.class);
 
 		switch(arg0.getId()) {
 			case R.id.nextButton:

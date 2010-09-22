@@ -1,5 +1,6 @@
 package com.t2.vas.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,7 @@ Log.v(TAG, "SET CONTENT:"+content);
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.closeButton:
+				this.setResult(Activity.RESULT_OK);
 				this.finish();
 				return;
 		}
