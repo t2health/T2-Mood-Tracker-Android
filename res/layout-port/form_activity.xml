@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:orientation="vertical"
+			android:paddingTop="5dip">
+
+			<!-- Title bar -->
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:background="#FF0099FF">
+
+			 	<TextView
+			 		android:id="@+id/categoryTitle"
+			 		android:layout_width="wrap_content"
+			 		android:layout_height="fill_parent"
+			 		android:gravity="center"
+					android:text="Category Name"
+					android:textColor="#FFFFFFFF"
+				 	android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			</LinearLayout>
+
+			<!-- Main center content -->
+			    <view
+			    	class="com.t2.vas.view.VASListView"
+			    	android:id="@+id/list"
+			    	android:layout_width="fill_parent"
+			    	android:layout_height="wrap_content"
+			    	android:cacheColorHint="#00000000" />
+			    	<!-- cacheColorHint make the list background transparent while scrolling. -->
+
+	    	</LinearLayout>
+
+	</LinearLayout>
+
+
+	<!--  Left side buttons -->
+	<include
+		layout="@layout/global_button_bar" />
+
+</FrameLayout>
