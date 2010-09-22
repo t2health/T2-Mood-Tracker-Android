@@ -18,7 +18,7 @@
 
 
     <!-- When the window does not have focus. -->
-    
+    <!-- 
     <item android:drawable="@drawable/gallery_selected_default" 
         android:state_selected="true"
         android:state_window_focused="false"
@@ -28,10 +28,9 @@
         android:state_selected="false"
         android:state_window_focused="false"
         />
-    
+     -->
     
     <!-- When the window does have focus. -->
-        
     <item android:drawable="@drawable/gallery_selected_pressed" 
         android:state_selected="true"
         android:state_pressed="true"

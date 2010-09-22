@@ -4,10 +4,10 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:paddingTop="10dip"
-	android:layoutAnimation="@anim/layout_gallery_slide_in">
+	android:paddingTop="10dip">
 
-	<Gallery
+	<view
+		class="com.t2.vas.view.GroupGallery"
 		android:id="@+id/galleryList"
 		android:layout_width="fill_parent"
 		android:layout_height="40dip"

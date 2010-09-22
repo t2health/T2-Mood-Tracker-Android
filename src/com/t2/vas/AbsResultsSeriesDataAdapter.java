@@ -132,7 +132,7 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 		HashMap<Long, SeriesDataRow> rows = new HashMap<Long, SeriesDataRow>();
 		Calendar rowCal = Calendar.getInstance();
 		Cursor c = this.getCursor(this.startTime, db_date_format);
-		Log.v(TAG, "Row Count:"+c.getCount());
+//		Log.v(TAG, "Row Count:"+c.getCount());
 		int[] columnIndexes = new int[]{
 				c.getColumnIndex("label_value"),
 				c.getColumnIndex("timestamp"),

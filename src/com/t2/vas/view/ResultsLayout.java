@@ -104,7 +104,7 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
         startTimeCal.setTimeInMillis(startTime);
 
 
-        Log.v(TAG, "GROUP BY:"+resultsGroupBy);
+//        Log.v(TAG, "GROUP BY:"+resultsGroupBy);
         // Create the chart for each scale.
         ArrayList<Scale> scales = activeGroup.getScales();
         int scaleCount = scales.size();

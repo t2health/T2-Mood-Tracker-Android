@@ -52,8 +52,7 @@
 		<!-- The group selector -->
 		<LinearLayout
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layoutAnimation="@anim/layout_slide_from_bottom">
+			android:layout_height="wrap_content">
 
 			<include layout="@layout/group_list_gallery" />
 		</LinearLayout>

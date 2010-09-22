@@ -1,6 +1,7 @@
 package com.t2.vas.activity;
 
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -10,9 +11,12 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.Display;
@@ -45,13 +49,14 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.view.ChartLayout;
+import com.t2.vas.view.GroupGallery;
 import com.t2.vas.view.VASGallerySimpleAdapter;
 
 public class MainActivity2 extends ABSActivity implements OnItemSelectedListener, OnClickListener, OnItemClickListener {
 	private static final String TAG = MainActivity2.class.getName();
 
 	private Group currentGroup;
-	private Gallery groupGallery;
+	private GroupGallery groupGallery;
 	private ArrayList<Group> groupList;
 	private ArrayList<HashMap<String, Object>> groupAdapterList;
 
@@ -77,7 +82,9 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 	private Timer slideToastTimer;
 
 	private Animation flashAnimation;
-
+	
+//	private SelectGroupIndexHandler selectGroupIndexHandler = new SelectGroupIndexHandler();
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -88,16 +95,21 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 
         currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
 
-        groupGallery = (Gallery)this.findViewById(R.id.galleryList);
-        groupGallery.setOnItemSelectedListener(this);
+        groupGallery = (GroupGallery)this.findViewById(R.id.galleryList);
         groupGallery.setCallbackDuringFling(false);
-
+        
         // Init the list of items.
         this.initAdapterData();
-
+        
+        groupGallery.setOnItemSelectedListener(this);
+        groupGallery.dispatchSetSelected(true);
+        groupGallery.setSelection(0);
+        
     	this.taskAnimimator = (ViewAnimator)this.findViewById(R.id.taskAnimator);
     	this.taskAnimimator.setVisibility(View.VISIBLE);
 	}
+	
+	
 
 
 	protected void initAdapterData() {
@@ -129,14 +141,11 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
             	this,
             	groupAdapterList,
             	R.layout.main_activity2_gallery_list_item,
-//            	android.R.layout.simple_list_item_1,
             	new String[]{
             			"text1",
-//            			"text2",
             	},
             	new int[] {
             			R.id.text1,
-//            			R.id.text2,
             	}
         );
         groupGallery.setAdapter(this.galleryAdapter);
@@ -411,11 +420,6 @@ public class MainActivity2 extends ABSActivity implements OnItemSelectedListener
 		}
 		return -1;
 	}
-
-	/*@Override
-	public int getHelpResId() {
-		return R.string.main_help;
-	}*/
 
 	private void startResultsActivity() {
 		Intent i = new Intent();

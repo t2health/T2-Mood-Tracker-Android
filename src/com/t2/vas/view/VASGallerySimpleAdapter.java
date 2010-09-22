@@ -29,6 +29,9 @@ public class VASGallerySimpleAdapter extends SimpleAdapter {
 		View v = super.getView(position, convertView, parent);
 
 		v.setBackgroundResource(mGalleryItemBackground);
+		if(position == 0) {
+			v.setSelected(true);
+		}
 		return v;
 	}
 
