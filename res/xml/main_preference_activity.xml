@@ -5,11 +5,11 @@
 	<PreferenceCategory
 		android:title="@string/activity_preference_general">
 
-		<Preference
+		<!-- <Preference
 			android:title="@string/activity_settings_group_editor"
 			android:summary="@string/activity_settings_group_editor_desc"
 			android:key="group_editor" />
-
+ 		-->
 		<Preference
 			android:title="@string/reminder_title"
 			android:summary="@string/reminder_desc"

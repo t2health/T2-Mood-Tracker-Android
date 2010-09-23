@@ -43,7 +43,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:inAnimation="@anim/select_group"
-				android:outAnimation="@anim/fade_out" />
+				android:outAnimation="@anim/deselect_group" />
 		</LinearLayout>
 
 		<!--  Group selecor -->

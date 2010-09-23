@@ -34,6 +34,7 @@ public class ABSActivity extends Activity implements OnClickListener {
 	public static final int MANAGE_SCALES_ACTIVITY = 349;
 	public static final int ABOUT_ACTIVITY = 350;
 	public static final int T2_WEBSITE_ACTIVITY = 351;
+	public static final int EDIT_GROUP_ACTIVITY = 352;
 	/*public static final int NOTES_ACTIVITY = 348;
 	public static final int REMINDER_ACTIVITY = 349;*/
 

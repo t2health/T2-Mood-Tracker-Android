@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -98,7 +99,7 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
         groupGallery = (GroupGallery)this.findViewById(R.id.galleryList);
         groupGallery.setCallbackDuringFling(false);
         
-        this.galleryAdapter = new VASGallerySimpleAdapter(
+       /* this.galleryAdapter = new VASGallerySimpleAdapter(
             	this,
             	groupAdapterList,
             	R.layout.main_activity_gallery_list_item,
@@ -109,7 +110,7 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
             			R.id.text1,
             	}
         );
-        groupGallery.setAdapter(this.galleryAdapter);
+        groupGallery.setAdapter(this.galleryAdapter);*/
 
         // Init the list of items.
         this.initAdapterData();
@@ -151,8 +152,9 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
     	groupItem.put("text1", "Add Custom");
     	groupAdapterList.add(groupItem);
 
-    	this.galleryAdapter.notifyDataSetChanged();
-    	/*this.galleryAdapter = new VASGallerySimpleAdapter(
+//    	this.galleryAdapter.notifyDataSetChanged();
+    	
+    	this.galleryAdapter = new VASGallerySimpleAdapter(
             	this,
             	groupAdapterList,
             	R.layout.main_activity_gallery_list_item,
@@ -163,20 +165,19 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
             			R.id.text1,
             	}
         );
-        groupGallery.setAdapter(this.galleryAdapter);*/
+        groupGallery.setAdapter(this.galleryAdapter);
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		boolean addAndAnimateTask = false;
-		HashMap<String, Object> ob = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
+	private void showGroupGalleryItem(int arg2, boolean animate) {
+//		Log.v(TAG, "Selected!");
+		HashMap<String, Object> ob = (HashMap<String, Object>) this.groupGallery.getItemAtPosition(arg2);
 
 		int layoutResId = (Integer)ob.get("layoutResId");
 		ViewGroup v = (ViewGroup)this.layoutInflater.inflate(layoutResId, null);
 
 		if(layoutResId == R.layout.main_activity_group_task) {
 			VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_SELECTED);
-//			dbAdapter.open();
+
 			Group group = ((Group)this.dbAdapter.getTable("group")).newInstance();
 			group._id = this.getSelectedGroupId();
 			group.load();
@@ -217,35 +218,58 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
         		//editGroupButton.setVisibility(View.GONE);
         		manageScalesButton.setVisibility(View.GONE);
         	}*/
+        	
+        	if(!group.hasScales()) {
+        		formButton.setEnabled(false);
+        	}
 
         	if(!group.hasResults()) {
         		resultsButton.setEnabled(false);
         	}
         	
-        	addAndAnimateTask = true;
-//        	dbAdapter.close();
-		} else if(this.previousSelectedIndex != this.groupGallery.getSelectedItemPosition()) {
-			if(layoutResId == R.layout.main_activity_add_group_task) {
-				VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_GROUP_SELECTED);
-				v.findViewById(R.id.addGroupButton).setOnClickListener(this);
-	
-			} else if(layoutResId == R.layout.main_activity_intro_task) {
-				VASAnalytics.onEvent(VASAnalytics.EVENT_INTRO_SELECTED);
-				v.findViewById(R.id.aboutButton).setOnClickListener(this);
-			}
-			addAndAnimateTask = true;
-		}
-		Log.v(TAG, "PIS:"+ this.previousSelectedIndex+" != "+this.groupGallery.getSelectedItemPosition());
+		} else if(layoutResId == R.layout.main_activity_add_group_task) {
+			VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_GROUP_SELECTED);
+			v.findViewById(R.id.addGroupButton).setOnClickListener(this);
 
-		if(addAndAnimateTask) {
-			this.taskAnimimator.addView(v);
-	
+		} else if(layoutResId == R.layout.main_activity_intro_task) {
+			VASAnalytics.onEvent(VASAnalytics.EVENT_INTRO_SELECTED);
+			v.findViewById(R.id.aboutButton).setOnClickListener(this);
+		}
+
+		
+		this.taskAnimimator.addView(v);
+
+//		this.taskAnimimator.showNext();
+		// Show the next view.
+		if(animate) {
+			Log.v(TAG, "Do animate");
+			
+			this.taskAnimimator.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.select_group));
+			this.taskAnimimator.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.deselect_group));
+			
 			this.taskAnimimator.showNext();
-			if(this.taskAnimimator.getChildCount() > 1) {
-				this.taskAnimimator.removeViewAt(0);
-			}
+		} else {
+			Log.v(TAG, "Don't animate");
+			
+			this.taskAnimimator.setInAnimation(new AlphaAnimation(1.0f, 1.0f));
+			this.taskAnimimator.setOutAnimation(new AlphaAnimation(1.0f, 1.0f));
+			
+			this.taskAnimimator.showNext();
+		}
+		
+		if(this.taskAnimimator.getChildCount() > 1) {
+			this.taskAnimimator.removeViewAt(0);
+		}
+
+		this.previousSelectedIndex = arg2;
+	}
 	
-			this.previousSelectedIndex = arg2;
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		if(this.previousSelectedIndex == arg2) {
+			showGroupGalleryItem(arg2, false);
+		} else {
+			showGroupGalleryItem(arg2, true);
 		}
 	}
 
@@ -329,7 +353,7 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
 			case R.id.editGroupButton:
 				i.setAction("com.t2.vas.editor.EditGroupActivity");
 				i.putExtra("group_id", this.getSelectedGroupId());
-				this.startActivityForResult(i, ADD_GROUP_ACTIVITY);
+				this.startActivityForResult(i, EDIT_GROUP_ACTIVITY);
 				return;
 
 			case R.id.aboutButton:
@@ -375,59 +399,79 @@ public class MainActivity extends ABSActivity implements OnItemSelectedListener,
 		//Log.v(TAG, "Click "+ arg2);
 	}
 
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// If the user is coming form the form activity, star the results activity.
+		// If the user is coming form the form activity, start the results activity.
 		if(requestCode == FORM_ACTIVITY && resultCode == Activity.RESULT_OK) {
 			this.startResultsActivity();
 			return;
 		}
 
-		// re-init the group data.
-		long selGroupId = this.getSelectedGroupId();
-		this.initAdapterData();
-		if(selGroupId > 0) {
-			this.groupGallery.setSelection(this.getGalleryIndexForGroupId(selGroupId));
-		} else {
-			int index = 0;
-			if(this.groupGallery.getSelectedItemPosition() > 0) {
-				index = this.groupAdapterList.size() - 1;
-			}
-			
-			this.groupGallery.setSelection(index);
-		}
-
-
+		long retGroupId = 0;
+		int retGroupIndex = -1;
 		if(data != null) {
-			Long groupId = data.getLongExtra("group_id", 0);
-			if(groupId > 0 && (requestCode == ADD_GROUP_ACTIVITY || requestCode == RESULTS_ACTIVITY)) {
-				// re-init the group data.
-				this.initAdapterData();
-
-				//Log.v(TAG, "GroupID:"+groupId);
-				Group group = ((Group)this.dbAdapter.getTable("group")).newInstance();
-				group._id = groupId;
-				group.load();
-
-				// Set the selected group.
-				int index = getGalleryIndexForGroupId(groupId);
-				//Log.v(TAG, "GroupID index:"+index);
-				if(index >= 0) {
-					this.groupGallery.setSelection(index);
-				}
-
-				// Start the scales area.
-				if(requestCode == ADD_GROUP_ACTIVITY && group.getScales().size() == 0) {
-					Intent intent = new Intent(this, ScaleListActivity.class);
-					intent.putExtra("group_id", groupId);
-					this.startActivityForResult(intent, requestCode);
-				}
-			}
-
+			retGroupId = data.getLongExtra("group_id", 0);
 		}
-
-		super.onActivityResult(requestCode, resultCode, data);
+		
+		long selGroupId = this.getSelectedGroupId();
+		int selIndex = this.groupGallery.getSelectedItemPosition();
+		
+		this.initAdapterData();
+		
+		retGroupIndex = this.getGalleryIndexForGroupId(retGroupId);
+		int selGroupIndex = this.getGalleryIndexForGroupId(selGroupId);
+		
+		this.groupGallery.setSelection(Gallery.INVALID_POSITION);
+		
+		if(requestCode == EDIT_GROUP_ACTIVITY) {
+			// Re-select the group.
+			if(selGroupIndex >= 0) {
+				Log.v(TAG, "Sel group after edit.");
+				this.groupGallery.setSelection(selGroupIndex);
+				
+				return;
+				/*if(this.previousSelectedIndex == selGroupIndex) {
+					showGroupGalleryItem
+				}*/
+				
+			// This group was deleted, select the last selected index.
+			} else {
+				if(selIndex > this.groupGallery.getCount()) {
+					selIndex = this.groupGallery.getCount() -1;
+				}
+				Log.v(TAG, "Group was deleted, sel "+ selIndex);
+				this.groupGallery.setSelection(selIndex);
+				return;
+			}
+		}
+		
+		if(requestCode == ADD_GROUP_ACTIVITY) {
+			// A new group was added, select it.
+			if(retGroupIndex >= 0) {
+				Log.v(TAG, "New group added.");
+				this.groupGallery.setSelection(retGroupIndex);
+				return;
+			} else {
+				Log.v(TAG, "Add group cancelled.");
+				this.groupGallery.setSelection(this.groupGallery.getCount() - 1);
+				return;
+			}
+		}
+		
+		// We are returning from some other activity.
+		if(retGroupIndex >= 0) {
+			Log.v(TAG, "Group id returned from activity.");
+			this.previousSelectedIndex = retGroupIndex;
+			this.groupGallery.setSelection(retGroupIndex);
+			return;
+		}
+		
+		// We are returning from some other activity.
+		if(selGroupIndex >= 0) {
+			Log.v(TAG, "Selecting the previously selected group.");
+			this.groupGallery.setSelection(selGroupIndex);
+			return;
+		}
 	}
 
 	private int getGalleryIndexForGroupId(long groupId) {

@@ -188,6 +188,10 @@ public class Group extends Table {
 		return newGroups;
 	}
 
+	public boolean hasScales() {
+		return this.getScales().size() > 0;
+	}
+	
 	public boolean hasResults() {
 		Cursor hasResultsCursor = this.getDBAdapter().getDatabase().query(
 				"result",

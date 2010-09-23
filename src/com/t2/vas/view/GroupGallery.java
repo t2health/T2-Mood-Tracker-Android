@@ -40,8 +40,8 @@ public class GroupGallery extends Gallery {
 		super.setSelection(position);
 	}
 	
-	private void privateSetSelection(int position) {
-		if(position == this.getSelectedItemPosition() && position != 0) {
+	private void privateSetSelection(int newPosition) {
+		if(newPosition == this.getSelectedItemPosition() && newPosition != 0) {
 			this.hilightSelectedView();
 		} else {
 			if(!this.selector.isRunning()) {
@@ -74,7 +74,7 @@ public class GroupGallery extends Gallery {
 			View currSelView = params[0];
 			View selView;
 			while(true) {
-				Log.v(TAG, "Checking for selected view change.");
+//				Log.v(TAG, "Checking for selected view change.");
 				selView = getSelectedView();
 				if(selView != currSelView) {
 					break;
@@ -94,7 +94,7 @@ public class GroupGallery extends Gallery {
 				loopCount++;
 			}
 			
-			Log.v(TAG, "Selecting the newly selected view.");
+//			Log.v(TAG, "Selecting the newly selected view.");
 			selectGroupIndexHandler.sendEmptyMessage(1);
 			
 			this.isRunning = false;

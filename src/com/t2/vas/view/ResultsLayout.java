@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -133,11 +134,14 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
         	// Add the series and add the chart to the list of charts.
         	chartLayout.getChart().setChartEventListener(this);
         	chartLayout.getChart().addSeries("main", lineSeries);
+        	chartLayout.getChart().setOption(Chart.OPTION_STATIC_POINT_SPACING, 15);
+        	chartLayout.getChart().setOption(Chart.OPTION_STATIC_POINT_WIDTH, 15);
         	chartLayouts.put(s._id, chartLayout);
         }
 
         // Create the chart for the group in general
         NotesSeries notesSeries = new NotesSeries("Notes");
+        notesSeries.setImageResource(R.drawable.notes_blue, this.getContext());
         notesSeries.setSeriesDataAdapter(new GroupNotesSeriesDataAdapter(
         		db,
         		startTimeCal.getTimeInMillis(),
@@ -170,6 +174,8 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
         groupChartLayout.setShowLabels(false);
 		groupChartLayout.getChart().setDropShadowEnabled(false);
 		groupChartLayout.getChart().setShowYHilight(false);
+		groupChartLayout.getChart().setOption(Chart.OPTION_STATIC_POINT_SPACING, 15);
+		groupChartLayout.getChart().setOption(Chart.OPTION_STATIC_POINT_WIDTH, 15);
         this.currentChartLayout = groupChartLayout;
 
 
@@ -248,8 +254,13 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 			currentChartLayout.setShowLabels(false);
 			currentChartLayout.getChart().setDropShadowEnabled(false);
 			currentChartLayout.getChart().setShowYHilight(false);
+			
+			chartLayout.getChart().setChartContainer(currentChartLayout.getChart().getChartContainer());
+			chartLayout.getChart().updateChart();
+			chartLayout.getChart().moveYHilightTo(currentChartLayout.getChart().getYHilightBounds().left);
 		}
 
+		// Make sure this chart layout isn't connected to a parent view.
 		ViewGroup parent = (ViewGroup)chartLayout.getParent();
 		if(parent != null) {
 			parent.removeView(chartLayout);

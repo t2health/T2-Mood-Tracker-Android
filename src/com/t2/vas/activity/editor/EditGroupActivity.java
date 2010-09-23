@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -28,6 +29,7 @@ import com.t2.vas.db.tables.Group;
 public class EditGroupActivity extends ABSActivity implements OnItemClickListener {
 	private static final String TAG = EditGroupActivity.class.getName();
 	private static final int DELETE_ACTIVITY = 342;
+	private static final int OTHER_ACTIVITY = 23;
 	
 	private Group currentGroup;
 	private ArrayList<HashMap<String, Object>> items;
@@ -115,6 +117,9 @@ public class EditGroupActivity extends ABSActivity implements OnItemClickListene
 			this.setResult(Activity.RESULT_OK);
 			this.finish();
 		}
+		
+		this.currentGroup.load();
+		((TextView)this.findViewById(R.id.groupName).findViewById(android.R.id.text1)).setText(this.currentGroup.title);
 	}
 
 
@@ -131,7 +136,7 @@ public class EditGroupActivity extends ABSActivity implements OnItemClickListene
 		if(action.equals("com.t2.vas.editor.DeleteGroupActivity")) {
 			this.startActivityForResult(i, DELETE_ACTIVITY);
 		} else {
-			this.startActivity(i);
+			this.startActivityForResult(i, OTHER_ACTIVITY);
 		}
 	}
 

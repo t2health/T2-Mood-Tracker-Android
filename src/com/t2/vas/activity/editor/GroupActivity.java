@@ -61,6 +61,18 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 		imm.showSoftInput(this.findViewById(R.id.title), 0);
 		((TextView)this.findViewById(R.id.title)).requestFocus();
 	}
+	
+	
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Intent i = new Intent();
+		i.putExtra("group_id", currentGroup._id);
+		this.setResult(Activity.RESULT_OK, i);
+		this.finish();
+	}
+
+
 
 	@Override
 	public void onClick(View v) {
@@ -68,16 +80,6 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 		String mode;
 
 		switch(v.getId()) {
-			/*// Start the delete intent
-			case R.id.deleteButton:
-				i = new Intent(this, DeleteGroupActivity.class);
-				i.putExtra("mode", "delete");
-				i.putExtra("group_id", currentGroup._id);
-
-				this.startActivity(i);
-				this.finish();
-				break;
-*/
 			// exit this activity
 			case R.id.cancelButton:
 				this.setResult(Activity.RESULT_CANCELED);
@@ -86,9 +88,11 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 
 			// save the note and exit this activity
 			case R.id.saveButton:
+				boolean newGroup = false;
 				if(currentGroup._id > 0) {
 					this.getIntent().putExtra("mode", "update");
 				} else {
+					newGroup = true;
 					this.getIntent().putExtra("mode", "insert");
 				}
 
@@ -96,11 +100,18 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 				currentGroup.save();
 
 				toastPopup.show();
-
-				i = new Intent();
-				i.putExtra("group_id", currentGroup._id);
-				this.setResult(Activity.RESULT_OK, i);
-				this.finish();
+				
+				if(newGroup) {
+					Intent intent = new Intent(this, ScaleListActivity.class);
+					intent.putExtra("group_id", currentGroup._id);
+					this.startActivityForResult(intent, MANAGE_SCALES_ACTIVITY);
+				} else {
+					i = new Intent();
+					i.putExtra("group_id", currentGroup._id);
+					this.setResult(Activity.RESULT_OK, i);
+					this.finish();
+				}
+				
 				break;
 		}
 	}

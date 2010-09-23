@@ -44,9 +44,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:visibility="invisible"
-				android:layout_weight="1.0"
-				android:inAnimation="@anim/select_group"
-				android:outAnimation="@anim/fade_out" />
+				android:layout_weight="1.0" />
 		</LinearLayout>
 
 		<!-- The group selector -->

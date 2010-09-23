@@ -45,7 +45,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
         passwordProtectNotesPref.setOnPreferenceClickListener(this);
         passwordProtectNotesPref.setOnPreferenceChangeListener(this);
 
-        screen.findPreference("group_editor").setOnPreferenceClickListener(this);
+//        screen.findPreference("group_editor").setOnPreferenceClickListener(this);
         screen.findPreference("change_password").setOnPreferenceClickListener(this);
         screen.findPreference("lock_notes_now").setOnPreferenceClickListener(this);
 
@@ -115,13 +115,13 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 		String current_password = sharedPref.getString("notes_password", null);
 //		Log.v(TAG, "Current password:"+current_password);
 
-		if(prefKey.equals("group_editor")) {
+		/*if(prefKey.equals("group_editor")) {
 			Intent i = new Intent(this, GroupListActivity.class);
 			this.startActivity(i);
 			return true;
 
 
-		} else if(prefKey.equals("change_password")) {
+		} else */if(prefKey.equals("change_password")) {
 			Intent i = new Intent(this, PasswordActivity.class);
 			i.putExtra("mode", PasswordActivity.MODE_UPDATE);
 			i.putExtra("current_password", current_password);
