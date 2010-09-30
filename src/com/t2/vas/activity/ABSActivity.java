@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.flurry.android.FlurryAgent;
 import com.nullwire.trace.ExceptionHandler;
+import com.t2.vas.Analytics;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.Eula;
@@ -82,9 +83,10 @@ public class ABSActivity extends Activity implements OnClickListener {
 	protected void onStart() {
 		super.onStart();
 		
-		if(sharedPref.getBoolean("send_anon_data", true)) {
+		Analytics.onStartSession(this);
+		/*if(sharedPref.getBoolean("send_anon_data", true)) {
 			FlurryAgent.onStartSession(this, Global.FLURRY_KEY);
-		}
+		}*/
 		
 		if(!this.dbAdapter.isOpen()) {
 			this.dbAdapter.open();
@@ -95,9 +97,10 @@ public class ABSActivity extends Activity implements OnClickListener {
 	protected void onStop() {
 		super.onStop();
 
-		if(sharedPref.getBoolean("send_anon_data", true)) {
+		Analytics.onEndSession(this);
+		/*if(sharedPref.getBoolean("send_anon_data", true)) {
 			FlurryAgent.onEndSession(this);
-		}
+		}*/
 	}
 	
 	@Override

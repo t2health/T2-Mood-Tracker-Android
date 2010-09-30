@@ -4,10 +4,10 @@ public class Global {
 	public static class Database {
 		public static final String name = "VAS_DATA";
 		public static final int version = 1;
-		public static final boolean CREATE_FAKE_DATA = true;
+		public static final boolean CREATE_FAKE_DATA = false;
 	}
 
-	public static final boolean DEV_MODE = true;
+	public static final boolean DEV_MODE = false;
 	public static final String FLURRY_KEY = "AI6NAUCMM6QCZYHLV9B4";
 	public static final String ANALYTICS_KEY = FLURRY_KEY;
 	public static final String CHART_LABEL_DATE_FORMAT = "MMM d";

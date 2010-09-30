@@ -125,7 +125,9 @@ public class VASListView extends ListView {
 			if(th != null && th.onTouchEventFromParent(newEvent)) {
 				return true;
 			}
-		} catch(ClassCastException cce) {}
+		} catch(ClassCastException cce) {
+			return false;
+		}
 
 		return false;
 	}
@@ -163,7 +165,9 @@ public class VASListView extends ListView {
 				for(int i = 0; i < childViewGroup.getChildCount(); i++) {
 					children.add(childViewGroup.getChildAt(i));
 				}
-			} catch (ClassCastException cce) {}
+			} catch (ClassCastException cce) {
+				Log.v(TAG, "Caught an exception.");
+			}
 
 
 			child.getGlobalVisibleRect(rect);
@@ -173,7 +177,9 @@ public class VASListView extends ListView {
 					if(th.onTouchEventFromParent(newEvent)) {
 						return child;
 					}
-				} catch(ClassCastException cce) {}
+				} catch(ClassCastException cce) {
+					Log.v(TAG, "Caught an exception.");
+				}
 			}
 			currentIndex++;
 		}

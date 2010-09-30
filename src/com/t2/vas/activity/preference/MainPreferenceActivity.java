@@ -146,7 +146,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 	@Override
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		String current_password = sharedPref.getString("notes_password", null);
-		Log.v(TAG, "Current password:"+current_password);
+//		Log.v(TAG, "Current password:"+current_password);
 
 		if(preference.getKey().equals("password_protect_notes")) {
 			Boolean isChecked = (Boolean)newValue;
@@ -185,6 +185,6 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 			}
 		}
 
-		return false;
+		return true;
 	}
 }

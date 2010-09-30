@@ -3,6 +3,7 @@ package com.t2.vas;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,14 +15,23 @@ public class Analytics {
 	private static String apiKey;
 	private static boolean enabled = true;
 	private static boolean debugModeEnabled = false;
+	private static boolean sessionStarted = false;
 	
 	public static void init(String key, boolean en) {
 		apiKey = key;
 		enabled = en;
+		
+		if(debugModeEnabled) {
+			Log.v(TAG, "Init analytics. enabled:"+en);
+		}
 	}
 	
 	public static void setEnabled(boolean en) {
 		enabled = en;
+		
+		if(debugModeEnabled) {
+			Log.v(TAG, "Analytics setEnabled:"+en);
+		}
 	}
 	
 	public static boolean isEnabled() {
@@ -38,6 +48,25 @@ public class Analytics {
 				enabled;
 	}
 
+	public static void onStartSession(Context context) {
+		if(analyticsEnabled()) {
+			if(debugModeEnabled) {
+				Log.v(TAG, "Analytics start session.");
+			}
+			sessionStarted = true;
+			FlurryAgent.onStartSession(context, Global.FLURRY_KEY);
+		}
+	}
+	
+	public static void onEndSession(Context context) {
+		if(sessionStarted) {
+			if(debugModeEnabled) {
+				Log.v(TAG, "Analytics end session.");
+			}
+			FlurryAgent.onEndSession(context);
+		}
+	}
+	
 	public static void onEvent(String event, String key, String value) {
 		HashMap<String,String> params = new HashMap<String,String>();
 		params.put(key, value);
@@ -59,6 +88,7 @@ public class Analytics {
 			if(debugModeEnabled) {
 				Log.v(TAG, "onEvent:"+event);
 			}
+			
 			FlurryAgent.onEvent(event);
 		}
 	}
