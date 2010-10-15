@@ -176,6 +176,7 @@ public class ResultsLayout extends LinearLayout implements ChartEventListener, O
 		groupChartLayout.getChart().setShowYHilight(false);
 		groupChartLayout.getChart().setOption(Chart.OPTION_STATIC_POINT_SPACING, 15);
 		groupChartLayout.getChart().setOption(Chart.OPTION_STATIC_POINT_WIDTH, 15);
+		groupChartLayout.setMaxYValue(100);
         this.currentChartLayout = groupChartLayout;
 
 

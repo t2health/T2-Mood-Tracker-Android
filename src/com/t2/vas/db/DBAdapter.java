@@ -53,6 +53,9 @@ public class DBAdapter extends SQLiteOpenHelper {
 	
 	public SQLiteDatabase getDatabase() {
 		//Log.v(TAG, "GETDATABASE");
+		if(!this.isOpen()) {
+			this.open();
+		}
 		return this.database;
 	}
 	

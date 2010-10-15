@@ -149,6 +149,8 @@ public class Note extends Table {
 
 			return newTimestamp;
 		}
+		
+		c.close();
 
 		return null;
 	}

@@ -309,4 +309,32 @@ public class Group extends Table {
 				}
 		);
 	}
+	
+	public long[] getResultsTimestampRange() {
+		Cursor c = this.dbAdapter.getDatabase().query(
+				"result", 
+				new String[]{
+						"MIN(timestamp)",
+						"MAX(timestamp)"
+				}, 
+				"group_id=?", 
+				new String[] {
+						this._id+""
+				}, 
+				null,
+				null,
+				null
+		);
+		
+		long[] range = new long[]{};
+		if(c.moveToFirst()) {
+			range = new long[] {
+					c.getLong(0),
+					c.getLong(0),
+			};
+		}
+		c.close();
+		
+		return range;
+	}
 }

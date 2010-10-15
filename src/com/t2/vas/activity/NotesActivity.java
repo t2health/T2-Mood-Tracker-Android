@@ -52,11 +52,12 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 		// Init global main variables.
 		notesUnlockToast = Toast.makeText(this, R.string.notes_unlocked, 6000);
 		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		this.setContentView(R.layout.notes_activity);
-
-		this.findViewById(R.id.addNoteButton).setOnClickListener(this);
-		this.findViewById(R.id.closeButton).setOnClickListener(this);
-
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
 		Calendar cal = Calendar.getInstance();
 		long nowTime = cal.getTimeInMillis();
 		long relockTime = sharedPref.getLong("notes_relock_time", nowTime);
@@ -66,6 +67,7 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 			this.initInterface();
 		}
 	}
+
 
 	private void showPasswordPrompt() {
 		String notesPassword = sharedPref.getString("notes_password", null);
@@ -78,6 +80,12 @@ public class NotesActivity extends ABSActivity implements OnItemClickListener, O
 	}
 
 	private void initInterface() {
+		this.setContentView(R.layout.notes_activity);
+
+		this.findViewById(R.id.addNoteButton).setOnClickListener(this);
+		this.findViewById(R.id.closeButton).setOnClickListener(this);
+		
+		
 		Intent intent = this.getIntent();
 		long startTimestamp = intent.getLongExtra("start_timestamp", -1);
 		long endTimestamp = intent.getLongExtra("end_timestamp", -1);

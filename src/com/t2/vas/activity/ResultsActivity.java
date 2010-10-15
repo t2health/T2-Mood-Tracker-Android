@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.TimerTask;
 
 import com.t2.chart.widget.Chart;
+import com.t2.vas.DataExport;
 import com.t2.vas.Global;
 import com.t2.vas.GroupResultsSeriesDataAdapter;
 import com.t2.vas.GroupNotesSeriesDataAdapter;
@@ -46,6 +47,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -178,9 +180,20 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
         toast = Toast.makeText(this, R.string.add_notes_popup, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP, 0, 0);
         toast.show();
+        
+        
+        // Allow exporting of data.
+        if(Global.EXPERIMENTAL_FEATURES_ENABLED) {
+        	this.findViewById(R.id.infoButton).setOnLongClickListener(new OnLongClickListener(){
+				@Override
+				public boolean onLongClick(View v) {
+					Group g = groupList.get(resultsAnimator.getCurrentItemIndex());
+					DataExport.share(v.getContext(), g._id);
+					return false;
+				}
+        	});
+        }
 	}
-
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -189,14 +202,16 @@ public class ResultsActivity extends ABSActivity implements OnClickListener, OnI
 		}
 
 		Log.v(TAG, "REFRESH");
-		Chart chart = (Chart)this.resultsAnimator.getCurrentView().findViewById(R.id.groupChart).findViewById(R.id.chart);
-		chart.updateChart();
+		View v = this.resultsAnimator.getCurrentView();
+		if(v != null) {
+			View groupChart = v.findViewById(R.id.groupChart);
+			Chart chart = (Chart)groupChart.findViewById(R.id.chart);
+			chart.updateChart();
+		}
 
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-
-
 
 	private long getSelectedGroupId() {
 		HashMap<String, Object> ob = (HashMap<String, Object>)this.groupGallery.getSelectedItem();
