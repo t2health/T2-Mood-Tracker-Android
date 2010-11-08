@@ -180,7 +180,9 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 			Boolean isChecked = (Boolean)newValue;
 			if(isChecked) {
 				VASAnalytics.setEnabled(true);
+				VASAnalytics.onEvent(VASAnalytics.EVENT_SETTING_ANALYTICS_ENABLED);
 			} else {
+				VASAnalytics.onEvent(VASAnalytics.EVENT_SETTING_ANALYTICS_DISABLED);
 				VASAnalytics.setEnabled(false);
 			}
 		}
