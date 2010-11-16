@@ -17,14 +17,14 @@ public class GroupResultsSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 	private static final String TAG = GroupResultsSeriesDataAdapter.class.getName();
 	protected long groupId;
 
-	public GroupResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long groupId, int groupBy, String labelFormat) {
-		super(dbAdapter, startTime, groupBy, labelFormat);
+	public GroupResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long endTime, long groupId, int groupBy, String labelFormat) {
+		super(dbAdapter, startTime, endTime, groupBy, labelFormat);
 		this.groupId = groupId;
 	}
 
 
 	@Override
-	protected Cursor getCursor(long startTime, String db_date_format) {
+	protected Cursor getCursor(long startTime, long endTime, String db_date_format) {
 		Cursor c = dbAdapter.getDatabase().query(
 				"result r ",
 				new String[]{
@@ -32,10 +32,11 @@ public class GroupResultsSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 					"MIN(r.timestamp) timestamp",
 					"AVG(r.value) value",
 				},
-				"group_id=? AND timestamp >= ?",
+				"group_id=? AND timestamp >= ? AND timestamp < ?",
 				new String[]{
 					this.groupId+"",
 					startTime+"",
+					endTime+"",
 				},
 				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch', 'localtime'))",
 				null,

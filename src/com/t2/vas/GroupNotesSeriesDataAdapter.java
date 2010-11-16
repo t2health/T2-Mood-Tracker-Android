@@ -16,12 +16,12 @@ import com.t2.vas.db.tables.Scale.ResultValues;
 public class GroupNotesSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 	private static final String TAG = GroupNotesSeriesDataAdapter.class.getName();
 
-	public GroupNotesSeriesDataAdapter(DBAdapter dbAdapter, long startTime, int groupBy, String labelFormat) {
-		super(dbAdapter, startTime, groupBy, labelFormat);
+	public GroupNotesSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long endTime, int groupBy, String labelFormat) {
+		super(dbAdapter, startTime, endTime, groupBy, labelFormat);
 	}
 
 	@Override
-	protected Cursor getCursor(long startTime, String db_date_format) {
+	protected Cursor getCursor(long startTime, long endTime, String db_date_format) {
 		super.debugMode = 1;
 		Cursor c = dbAdapter.getDatabase().query(
 				"note r ",
@@ -30,9 +30,10 @@ public class GroupNotesSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 					"MIN(r.timestamp) timestamp",
 					"100 value",
 				},
-				"timestamp >= ?",
+				"timestamp >= ? AND timestamp < ?",
 				new String[] {
-						startTime+""
+						startTime+"",
+						endTime+""
 				},
 				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))",
 				null,

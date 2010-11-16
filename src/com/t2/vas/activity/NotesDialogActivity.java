@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-public class NotesDialogActivity extends NotesActivity {
+public class NotesDialogActivity extends NotesList {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		View addButton = this.findViewById(ADD_NOTES_HEADER_ID);
+		/*View addButton = this.findViewById(ADD_NOTES_HEADER_ID);
 
 		if(addButton == null) {
 			return;
@@ -19,6 +19,6 @@ public class NotesDialogActivity extends NotesActivity {
 
 		((ListView)this.findViewById(R.id.list)).removeHeaderView(addButton);
 
-		this.findViewById(R.id.dialogButtons).setVisibility(View.VISIBLE);
+		this.findViewById(R.id.dialogButtons).setVisibility(View.VISIBLE);*/
 	}
 }

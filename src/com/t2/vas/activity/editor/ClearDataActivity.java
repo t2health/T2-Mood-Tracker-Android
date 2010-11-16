@@ -13,6 +13,7 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class ClearDataActivity extends ABSActivity {
+	public static final String EXTRA_GROUP_ID = "group_id";
 
 	private long groupId;
 	private Group group;
@@ -22,7 +23,7 @@ public class ClearDataActivity extends ABSActivity {
 		super.onCreate(savedInstanceState);
 		VASAnalytics.onEvent(VASAnalytics.EVENT_CLEAR_DATA_ACTIVITY);
 
-		this.groupId = this.getIntent().getLongExtra("group_id", 0);
+		this.groupId = this.getIntent().getLongExtra(EXTRA_GROUP_ID, 0);
 		if(this.groupId <= 0) {
 			this.finish();
 		}

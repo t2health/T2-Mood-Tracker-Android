@@ -58,6 +58,7 @@ public class DataExport {
 				ScaleResultsSeriesDataAdapter srsda = new ScaleResultsSeriesDataAdapter(
 						dbAdapter, 
 						range[0], 
+						range[1],
 						currentScale._id, 
 						ScaleResultsSeriesDataAdapter.GROUPBY_DAY, 
 						Global.CHART_LABEL_DATE_FORMAT

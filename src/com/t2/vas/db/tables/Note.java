@@ -127,11 +127,12 @@ public class Note extends Table {
 		);
 	}
 
-	public Long getEarliestTimestampSince(long timestamp) {
+	public long getEarliestTimestampSince(long timestamp) {
+		Log.v(TAG, "Since:"+timestamp);
 		Cursor c = this.getDBAdapter().getDatabase().query(
 				"note",
 				new String[] {
-						"timestamp",
+						"MIN(timestamp)",
 				},
 				"timestamp >= ?",
 				new String[] {
@@ -139,12 +140,37 @@ public class Note extends Table {
 				},
 				null,
 				null,
-				"timestamp ASC",
-				"1"
-			);
-
+				null
+		);
+		
 		if(c.moveToFirst()) {
-			Long newTimestamp = c.getLong(0);
+			long newTimestamp = c.getLong(0);
+			c.close();
+			Log.v(TAG, "Long:"+newTimestamp);
+
+			return newTimestamp;
+		}
+		
+		c.close();
+
+		return -1;
+	}
+	
+	public long getMostRecentTimestamp() {
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				"note",
+				new String[] {
+						"MAX(timestamp)",
+				},
+				null,
+				null,
+				null,
+				null,
+				null
+		);
+		
+		if(c.moveToFirst()) {
+			long newTimestamp = c.getLong(0);
 			c.close();
 
 			return newTimestamp;
@@ -152,6 +178,6 @@ public class Note extends Table {
 		
 		c.close();
 
-		return null;
+		return -1;
 	}
 }

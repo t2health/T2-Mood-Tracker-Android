@@ -3,6 +3,7 @@ package com.t2.vas.activity.editor;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -18,15 +20,19 @@ import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
+import com.t2.vas.activity.CustomTitle;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
-public class ScaleListActivity extends ABSActivity implements OnItemClickListener, OnItemLongClickListener {
+public class ScaleListActivity extends CustomTitle implements OnItemClickListener {
+	public static final String EXTRA_GROUP_ID = "group_id";
+	
 	private Group currentGroup;
-	private ArrayList<Scale> scaleList;
-	private ArrayAdapter<String> adapter;
-	private ArrayList<String> scaleListString = new ArrayList<String>();
+
+	private Cursor scalesCursor;
+
+	private SimpleCursorAdapter scalesAdapter;
 	
 //	private static final int START_SCALE_ACTIVITY = 16876;
 //	private static final int START_SCALE_GATEWAY_ACTIVITY = 16875;
@@ -41,17 +47,39 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
 
         this.setContentView(R.layout.scale_list_activity);
 
+        this.setExtraButtonImage(R.drawable.add_blue);
         Intent intent = this.getIntent();
 
         currentGroup = (Group)dbAdapter.getTable("group");
-        currentGroup._id = intent.getLongExtra("group_id", -1);
+        currentGroup._id = intent.getLongExtra(EXTRA_GROUP_ID, -1);
 
         if(currentGroup._id < 0 || !currentGroup.load()) {
         	this.finish();
         	return;
         }
 
-        initAdapterData();
+        
+        scalesCursor = currentGroup.getScalesCursor();
+        this.startManagingCursor(scalesCursor);
+        scalesAdapter = new SimpleCursorAdapter(
+        		this, 
+        		R.layout.list_item_2_inline, 
+        		scalesCursor, 
+        		new String[] {
+        				"min_label",
+        				"max_label",
+        		},
+        		new int[] {
+        				R.id.text1,
+        				R.id.text2
+        		}
+		);
+        
+        ListView listView = (ListView)this.findViewById(R.id.list);
+        listView.setEmptyView(this.findViewById(R.id.empty_list));
+        listView.setAdapter(scalesAdapter);
+        listView.setOnItemClickListener(this);
+        /*initAdapterData();
 
         adapter = new ArrayAdapter<String>(
         		this,
@@ -59,30 +87,28 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
         		scaleListString
         );
 
-        LinearLayout addViewItem = (LinearLayout)ListView.inflate(this, R.layout.simple_list_item_3, null);
-        ((TextView)addViewItem.findViewById(R.id.text1)).setText(R.string.add_scale);
-        ((ImageView)addViewItem.findViewById(R.id.image1)).setImageResource(android.R.drawable.ic_menu_add);
-
         ListView listView = (ListView)this.findViewById(R.id.list);
-        listView.addHeaderView(addViewItem);
+        listView.setEmptyView(this.findViewById(R.id.empty_list));
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-        listView.setOnItemLongClickListener(this);
+        listView.setOnItemClickListener(this);*/
 	}
-
 	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		
 		// Start the add activity if no scales are present.
-        if(scaleList.size() < 1) {
-        	startAddActivity(currentGroup._id);
+        if(scalesCursor.getCount() < 1) {
+        	startAddActivity();
         }
 	}
 
+	@Override
+	public void onExtraButtonPressed() {
+		startAddActivity();
+	}
 
-	private void startAddActivity(long groupId) {
+	private void startAddActivity() {
 		Intent i = new Intent(this, AddScaleGateway.class);
 		i.putExtra("group_id", currentGroup._id);
 		this.startActivityForResult(i, SCALE_GATEWAY_ACTIVITY);
@@ -94,7 +120,7 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
 		this.startActivityForResult(i, SCALE_ACTIVITY);
 	}
 
-	private void initAdapterData() {
+	/*private void initAdapterData() {
 		scaleList = currentGroup.getScales();
 
 		scaleListString.clear();
@@ -105,9 +131,12 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
         if(adapter != null) {
         	adapter.notifyDataSetChanged();
         }
-	}
+	}*/
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		this.scalesCursor.requery();
+		this.scalesAdapter.notifyDataSetChanged();
+		
 		if(requestCode == SCALE_GATEWAY_ACTIVITY && data != null) {
 			int id = data.getIntExtra("action", 0);
 			if(id == AddScaleGateway.ADD_SCALE_ACTIVITY) {
@@ -120,28 +149,11 @@ public class ScaleListActivity extends ABSActivity implements OnItemClickListene
 				i.putExtra("group_id", currentGroup._id);
 				this.startActivityForResult(i, SCALE_ACTIVITY);
 			}
-		} else {
-			initAdapterData();
 		}
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Intent i;
-
-		// The add scale button was pressed
-		if(arg2 == 0) {
-			this.startAddActivity(currentGroup._id);
-			return;
-		}
-
-		// Load the edit scale activity.
-		startEditActivity(this.scaleList.get(arg2 - 1)._id);
-	}
-
-	@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		onItemClick(arg0, arg1, arg2, arg3);
-		return false;
+		startEditActivity(arg3);
 	}
 }

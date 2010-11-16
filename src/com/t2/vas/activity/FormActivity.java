@@ -31,7 +31,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
-public class FormActivity extends ABSActivity implements OnClickListener, OnLongClickListener, OnScrollListener {
+public class FormActivity extends CustomTitle implements OnClickListener, OnLongClickListener, OnScrollListener {
+	public static final String EXTRA_GROUP_ID = "group_id";
+	
 	private static final String TAG = FormActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
@@ -59,8 +61,6 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
         	this.finish();
         }
 
-
-
         listView = (ListView)this.findViewById(R.id.list);
 
         Group group = ((Group)dbAdapter.getTable("group")).newInstance();
@@ -69,8 +69,8 @@ public class FormActivity extends ABSActivity implements OnClickListener, OnLong
         	this.finish();
         	return;
         }
-
-        ((TextView)this.findViewById(R.id.categoryTitle)).setText(group.title);
+        
+        this.setTitle(group.title);
 
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
         listView.addFooterView(

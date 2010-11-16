@@ -24,6 +24,7 @@ import android.widget.Toast;
 import android.widget.DatePicker.OnDateChangedListener;
 
 public class NoteActivity extends ABSActivity implements OnClickListener, OnDateChangedListener {
+	public static final String EXTRA_NOTE_ID = "noteId";
 	private Note currentNote;
 	private Toast toastPopup;
 
@@ -40,7 +41,7 @@ public class NoteActivity extends ABSActivity implements OnClickListener, OnDate
 		Intent intent = this.getIntent();
 		long dateTimestamp = intent.getLongExtra("timestamp", cal.getTimeInMillis());
 
-		currentNote._id = intent.getLongExtra("noteId", -1);
+		currentNote._id = intent.getLongExtra(EXTRA_NOTE_ID, -1);
 
 		// Load the note from the DB
 		if(currentNote._id > 0) {
@@ -90,7 +91,7 @@ public class NoteActivity extends ABSActivity implements OnClickListener, OnDate
 			// Start the delete intent
 			case R.id.deleteButton:
 				Intent i = new Intent(this, DeleteNoteActivity.class);
-				i.putExtra("noteId", currentNote._id);
+				i.putExtra(EXTRA_NOTE_ID, currentNote._id);
 				this.startActivity(i);
 				this.finish();
 				break;
@@ -118,7 +119,7 @@ public class NoteActivity extends ABSActivity implements OnClickListener, OnDate
 
 				toastPopup.show();
 
-				this.getIntent().putExtra("noteId", currentNote._id);
+				this.getIntent().putExtra(EXTRA_NOTE_ID, currentNote._id);
 				this.setResult(Activity.RESULT_OK, this.getIntent());
 				this.finish();
 				break;

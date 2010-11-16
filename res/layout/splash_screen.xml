@@ -19,8 +19,8 @@
 			android:layout_weight="1.0"
 			android:gravity="center_vertical">
 			<ImageView
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_height="125dip"
 				android:src="@drawable/logo" />
 		</LinearLayout>
 
@@ -31,35 +31,22 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:gravity="left|center_vertical"
-			android:paddingLeft="20dip"
-			android:paddingRight="20dip">
+			android:paddingLeft="10dip"
+			android:paddingRight="10dip">
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="fill_parent"
 				android:text="@string/splash_health_tip_label"
-				android:textStyle="bold"
-				android:textAppearance="?android:attr/textAppearanceMedium" />
+				android:textColor="#FFFFFFFF"
+				android:paddingRight="5dip" />
 
 			<TextView
 				android:id="@+id/introText"
 				android:layout_width="wrap_content"
-				android:layout_height="fill_parent" />
-		</LinearLayout>
-
-		<!-- Intro text -->
-		<!-- <LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layoutAnimation="@anim/layout_splash_text_fade_in">
-
-			<TextView
-				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
-				android:gravity="center"
-				android:text="@string/splash_intro" />
-
-		</LinearLayout> -->
+				android:textColor="#FFFFFFFF" />
+		</LinearLayout>
 	</LinearLayout>
 
 	<LinearLayout

@@ -18,13 +18,13 @@ public class ScaleResultsSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 
 	protected long scaleId;
 
-	public ScaleResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long scaleId, int groupBy, String labelFormat) {
-		super(dbAdapter, startTime, groupBy, labelFormat);
+	public ScaleResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long endTime, long scaleId, int groupBy, String labelFormat) {
+		super(dbAdapter, startTime, endTime, groupBy, labelFormat);
 		this.scaleId = scaleId;
 	}
 
 	@Override
-	protected Cursor getCursor(long startTime, String db_date_format) {
+	protected Cursor getCursor(long startTime, long endTime, String db_date_format) {
 		Cursor c = dbAdapter.getDatabase().query(
 				"result r ",
 				new String[]{
@@ -32,10 +32,11 @@ public class ScaleResultsSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 					"MIN(r.timestamp) timestamp",
 					"AVG(r.value) value",
 				},
-				"scale_id=? AND timestamp >= ?",
+				"scale_id=? AND timestamp >= ? AND timestamp < ?",
 				new String[]{
 					this.scaleId+"",
-					startTime+""
+					startTime+"",
+					endTime+"",
 				},
 				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch', 'localtime'))",
 				null,

@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DeleteGroupActivity extends ABSActivity implements OnClickListener {
+	public static final String EXTRA_GROUP_ID = "group_id";
+	
 	private Group currentGroup;
 	private Toast toastPopup;
 
@@ -30,7 +32,7 @@ public class DeleteGroupActivity extends ABSActivity implements OnClickListener 
 
 		// init the local variables;
 		Intent intent = this.getIntent();
-		long currentGroupId = intent.getLongExtra("group_id", -1);
+		long currentGroupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
 
 		if(currentGroupId < 0) {
 			this.finish();

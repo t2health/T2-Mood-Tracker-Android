@@ -11,8 +11,28 @@
 	<string name="main_intro_intructions">Choose a category by moving the slider below.</string>
 	<string name="main_help"></string>
 
+	<string name="introduction_title">Introduction</string>
+	<string name="introduction_desc">A quick desc of this item.</string>
+	<string name="introduction_content">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
+
+	<string name="notes_list_title">Notes</string>
+	<string name="notes_list_desc">A quick desc of this item.</string>
+	<string name="notes_list_no_notes">You don\'t currently have any notes to display.</string>
+
+	<string name="show_all_groups">Show hidden groups</string>
+	<string name="hide_some_groups">Don\'t show hidden groups</string>
+
+	<string name="group_details_title">Group Details</string>
+
 	<string name="info_title">Info</string>
 	<string name="info_desc"></string>
+	
+	<string name="hide_from_main_title">Hide in Main List</string>
+	<string name="hide_from_main_desc">Prevent this category from showing in the main list.</string>
+	<string name="show_in_main_title">Show in Main List</string>
+	<string name="show_in_main_desc">Show the item in the main list.</string>
+	
+	<string name="show_hidden_groups">Show Hidden Groups</string>
 
 	<string name="form_title">Rate Your Mood</string>
 	<string name="form_desc">Rate yourself by sliding the pointers to a place that represents how you are feeling.</string>
@@ -24,6 +44,9 @@
 	<string name="results_help">Results of your ratings are always displayed by graphed lines. The RED line is made up of points representing the average of the ten ratings you made for each tracking category.  The individual ratings you made for each separate mood are displayed on top of the average line in different colors so you can compare your average rating with each individual rating.  For example, you can view the average of all ten ratings you made as you tracked “Depression” and you can view each of your ten individual ratings like “Happy-Sad”.  The lower your line on the X axis, the more “negative” your rating.  By moving the VERTICLE line on each graph with your finger you can see the dates of each recorded rating.  The small black squares at the top of the graph are Note Indicators and indicate the dates you made notes.  You can read your past notes by moving the vertical line to each Note Indicator and click the notes check in the upper right hand corner.</string>
 	<string name="results_choose_chart">Use the slider above to view a different chart.</string>
 	<string name="add_notes_popup">Add a note for today by clicking the + button.</string>
+
+	<string name="share_title">Share Results</string>
+	<string name="share_desc">Share your results with others.</string>
 
 	<string name="group_add_title">Add a custom category</string>
 	<string name="group_add_desc">Create a custom category to fit your needs. This new category will be available in the slider below.</string>
@@ -102,6 +125,7 @@
 	<string name="cancel">Cancel</string>
 	<string name="delete">Delete</string>
 	<string name="close">Close</string>
+	<string name="never">Never</string>
 
 	<string name="group">Category</string>
 	<string name="average_for">Average for</string>

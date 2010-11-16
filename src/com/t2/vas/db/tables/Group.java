@@ -16,6 +16,7 @@ public class Group extends Table {
 	public long group_id;
 	public String title;
 	public int immutable = 0;
+	public int visible = 1;
 
 	public Group(DBAdapter d) {
 		super(d);
@@ -28,7 +29,7 @@ public class Group extends Table {
 
 	@Override
 	public void onCreate() {
-		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, immutable INTEGER NOT NULL)");
+		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, immutable INTEGER NOT NULL, visible INTEGER NOT NULL)");
 	}
 
 	@Override
@@ -41,6 +42,7 @@ public class Group extends Table {
 		ContentValues v = new ContentValues();
 		v.put("title", this.title);
 		v.put("immutable", this.immutable);
+		v.put("visible", this.visible);
 
 		return this.insert(v);
 	}
@@ -50,6 +52,7 @@ public class Group extends Table {
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		this.title = c.getString(c.getColumnIndex("title"));
 		this.immutable = c.getInt(c.getColumnIndex("immutable"));
+		this.visible = c.getInt(c.getColumnIndex("visible"));
 		return true;
 	}
 
@@ -59,6 +62,7 @@ public class Group extends Table {
 		v.put("_id", this._id);
 		v.put("title", this.title);
 		v.put("immutable", this.immutable);
+		v.put("visible", this.visible);
 
 		return this.update(v);
 	}
@@ -173,6 +177,42 @@ public class Group extends Table {
 		c.close();
 
 		return groups;
+	}
+	
+	public Cursor getAllGroupsOrderByLastResultCursor() {
+		ContentValues v = new ContentValues();
+
+		ArrayList<Group> groups = new ArrayList<Group>();
+		return this.getDBAdapter().getDatabase().query(
+				"`group` g",
+				new String[]{
+						"g.*",
+						"(SELECT MAX(timestamp) FROM result WHERE group_id=g._id) last_result",
+				},
+				null,
+				null,
+				null,
+				null,
+				"last_result DESC, g.title ASC"
+		);
+	}
+	
+	public Cursor getVisibleGroupsOrderByLastResultCursor() {
+		ContentValues v = new ContentValues();
+
+		ArrayList<Group> groups = new ArrayList<Group>();
+		return this.getDBAdapter().getDatabase().query(
+				"`group` g",
+				new String[]{
+						"g.*",
+						"(SELECT MAX(timestamp) FROM result WHERE group_id=g._id) last_result",
+				},
+				"visible=1",
+				null,
+				null,
+				null,
+				"last_result DESC, g.title ASC"
+		);
 	}
 
 	public ArrayList<Group> getGroupsWithResults() {

@@ -10,6 +10,7 @@ import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.Eula;
 import com.t2.vas.VASAnalytics;
+import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.db.DBAdapter;
 
 import android.app.Activity;
@@ -19,6 +20,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -36,11 +40,17 @@ public class ABSActivity extends Activity implements OnClickListener {
 	public static final int ABOUT_ACTIVITY = 350;
 	public static final int T2_WEBSITE_ACTIVITY = 351;
 	public static final int EDIT_GROUP_ACTIVITY = 352;
+	public static final int DELETE_GROUP_ACTIVITY = 353;
+	public static final int GROUP_DETAILS_ACTIVITY = 354;
 	/*public static final int NOTES_ACTIVITY = 348;
 	public static final int REMINDER_ACTIVITY = 349;*/
+	
+	private static final int HELP_MENU_ITEM = 123456;
 
 	protected SharedPreferences sharedPref;
 	protected DBAdapter dbAdapter;
+
+	private MenuItem helpMenuItem;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +94,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 		super.onStart();
 		
 		Analytics.onStartSession(this);
-		/*if(sharedPref.getBoolean("send_anon_data", true)) {
-			FlurryAgent.onStartSession(this, Global.FLURRY_KEY);
-		}*/
 		
 		if(!this.dbAdapter.isOpen()) {
 			this.dbAdapter.open();
@@ -98,9 +105,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 		super.onStop();
 
 		Analytics.onEndSession(this);
-		/*if(sharedPref.getBoolean("send_anon_data", true)) {
-			FlurryAgent.onEndSession(this);
-		}*/
 	}
 	
 	@Override
@@ -128,17 +132,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 		if(v != null) {
 			v.setOnClickListener(this);
 		}
-
-/*
-		v = this.findViewById(R.id.globalButtonBar).findViewById(R.id.notesButton);
-		if(v != null) {
-			v.setOnClickListener(this);
-		}
-
-		v = this.findViewById(R.id.globalButtonBar).findViewById(R.id.reminderButton);
-		if(v != null) {
-			v.setOnClickListener(this);
-		}*/
 	}
 
 	@Override
@@ -153,14 +146,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 				VASAnalytics.onEvent(VASAnalytics.EVENT_WEBSITE_BUTTON_PRESSED);
 				this.startActivity(T2_WEBSITE_ACTIVITY);
 				break;
-/*
-			case R.id.notesButton:
-				this.startActivity(NOTES_ACTIVITY);
-				break;
-
-			case R.id.reminderButton:
-				this.startActivity(REMINDER_ACTIVITY);
-				break;*/
 		}
 	}
 
@@ -189,6 +174,48 @@ public class ABSActivity extends Activity implements OnClickListener {
 				this.startActivityForResult(i, REMINDER_ACTIVITY);
 				break;*/
 		}
+	}
+	
+	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.global, menu);
+		
+		if(this.getHelpResId() > -1) {
+			MenuItem mi = menu.add(Menu.NONE, HELP_MENU_ITEM, Menu.NONE, R.string.help_title);
+			mi.setIcon(R.drawable.help_default);
+		}
+		return true;
+	}
+	
+	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
+		
+		switch(item.getItemId()) {
+			case R.id.settingsButton:
+				startSettingsActivity();
+				return true;
+			case HELP_MENU_ITEM:
+				i = new Intent(this, WebViewActivity.class);
+				i.putExtra(WebViewActivity.EXTRA_TITLE_ID, R.string.help_title);
+				i.putExtra(WebViewActivity.EXTRA_CONTENT_ID, this.getHelpResId());
+				i.putExtra(WebViewActivity.EXTRA_BACK_BUTTON_TEXT, "back");
+				this.startActivity(i);
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+		
+	}
+	
+	protected void startSettingsActivity() {
+		Intent i = new Intent(this, MainPreferenceActivity.class);
+		i.putExtra(com.t2.vas.activity.preference.CustomTitle.EXTRA_BACK_BUTTON_TEXT, "blah");
+		this.startActivity(i);
 	}
 
 	public int getHelpResId() {

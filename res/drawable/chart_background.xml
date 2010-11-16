@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- <gradient
-		android:type="radial" 
-		android:startColor="#FF888888"
-		android:endColor="#00000000"
-		android:gradientRadius="300"
-		android:centerX="0.25"
-		android:centerY="0.25" />
-		 -->
 	<gradient
-		android:startColor="#FF356aa2"
-		android:centerColor="#FF80b6ec"
+		android:startColor="@color/chart_gradient_start"
+		android:centerColor="@color/chart_gradient_center"
 		android:centerY="0.5"
-		android:endColor="#FF356aa2"
+		android:endColor="@color/chart_gradient_end"
 		android:angle="90"
 	/>
 </shape>

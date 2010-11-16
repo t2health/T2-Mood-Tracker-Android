@@ -1,85 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
 
 	<LinearLayout
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:orientation="vertical">
-
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1.0"
-			android:orientation="vertical"
-			android:paddingLeft="10dip"
-			android:paddingRight="10dip"
-			android:paddingTop="5dip">
-
-			<!-- Title bar -->
-			<FrameLayout
-				android:id="@+id/titleBar"
-				android:layout_width="fill_parent"
-				android:layout_height="30dip"
-				android:gravity="center_vertical"
-				android:background="#FF0099FF">
-
-				<TextView
-					android:id="@+id/title"
-					android:layout_width="fill_parent"
-					android:layout_height="fill_parent"
-					android:gravity="center"
-					android:text="@string/results_title"
-					android:textColor="#FFFFFFFF"
-				 	android:textAppearance="?android:attr/textAppearanceMedium" />
-			</FrameLayout>
-
-			<!-- Main center content -->
-			<view
-				class="com.t2.vas.view.ResultsAnimator"
-				android:id="@+id/resultsAnimator"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:inAnimation="@anim/select_group"
-				android:outAnimation="@anim/deselect_group" />
-		</LinearLayout>
-
-		<!--  Group selecor -->
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content">
-
-			<include layout="@layout/group_list_gallery" />
-		</LinearLayout>
-	</LinearLayout>
-
-
-	<!--  Left side buttons -->
-	<include
-		layout="@layout/global_button_bar" />
-
-	<!--  The notes buttons -->
-	<LinearLayout
-		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="top|right"
-		android:paddingRight="5dip"
-		android:paddingTop="0dip">
-
-		<ImageButton
-			android:id="@+id/addNoteButton"
-			android:layout_width="60dip"
-			android:layout_height="50dip"
-			android:src="@drawable/add_blue"
-			android:scaleType="fitCenter" />
-
-		<ImageButton
-			android:id="@+id/notesButton"
-			android:layout_width="60dip"
-			android:layout_height="50dip"
-			android:src="@drawable/notes_blue"
-			android:scaleType="fitCenter" />
+		android:layout_weight="1.0">
+		
+		<include layout="@layout/results_activity_charts" />
 	</LinearLayout>
-</FrameLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="175dip">
+		
+		<include layout="@layout/results_activity_key_list" />
+	</LinearLayout>
+</LinearLayout>

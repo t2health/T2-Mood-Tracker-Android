@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="CustomTheme" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+	<style name="CustomTheme2" parent="@android:style/Theme.Light">
+		<item name="android:windowTitleSize">48dip</item>
+		
+		<item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
 		<item name="android:windowBackground">@drawable/background</item>
-
-		<!-- Gallery attributes -->
-        <item name="android:galleryItemBackground">@drawable/gallery_item_background</item>
-	</style>
-
-	<style name="CustomTheme.Title">
-		<item name="android:windowNoTitle">false</item>
-	</style>
-
-	<style name="CustomTheme.Title.NoBackground">
-		<item name="android:windowBackground">@null</item>
+		
+		<item name="android:listViewStyle">@style/Widget.ListView</item>
+		<item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparator</item>  
 	</style>
 	
-	<style name="CustomTheme.NoBackground">
-		<item name="android:windowBackground">@null</item>
+	<style name="CustomTheme2SolidBG" parent="@style/CustomTheme2">
+		<item name="android:windowBackground">@drawable/screen_background_light</item>
 	</style>
-
-	<style name="CustomTheme.NoBackground">
-		<item name="android:windowBackground">@null</item>
+	
+	<style name="CustomTheme2Dialog" parent="@android:style/Theme.Dialog">
+		<item name="android:windowTitleSize">48dip</item>
 	</style>
-
-	<style name="Theme.Dialog.NoTitle" parent="@android:style/Theme.Dialog">
+	
+	<style name="CustomTheme2NoTitle" parent="CustomTheme2">
 		<item name="android:windowNoTitle">true</item>
 	</style>
 </resources>

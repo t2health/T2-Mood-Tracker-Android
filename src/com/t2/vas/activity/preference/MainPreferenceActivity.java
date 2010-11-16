@@ -21,7 +21,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MainPreferenceActivity extends PreferenceActivity implements OnPreferenceClickListener, OnPreferenceChangeListener {
+public class MainPreferenceActivity extends CustomTitle implements OnPreferenceClickListener, OnPreferenceChangeListener {
 	private static final String TAG = MainPreferenceActivity.class.getName();
 	private static final int REQUEST_PASSWORD_SET = 34;
 	private static final int REQUEST_PASSWORD_UNSET = 35;
@@ -31,7 +31,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 	private CheckBoxPreference passwordProtectNotesPref;
 	private Toast notesLockedToast;
 
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VASAnalytics.onEvent(VASAnalytics.EVENT_SETTINGS_ACTIVITY);
 
@@ -49,7 +49,7 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
         screen.findPreference("change_password").setOnPreferenceClickListener(this);
         screen.findPreference("lock_notes_now").setOnPreferenceClickListener(this);
 
-        screen.findPreference("reminder_settings").setOnPreferenceClickListener(this);
+        //screen.findPreference("reminder_settings").setOnPreferenceClickListener(this);
         
         screen.findPreference("send_anon_data").setOnPreferenceChangeListener(this);
     }
@@ -132,11 +132,11 @@ public class MainPreferenceActivity extends PreferenceActivity implements OnPref
 			this.sharedPref.edit().putLong("notes_relock_time", 0).commit();
 			notesLockedToast.show();
 
-		} else if(prefKey.equals("reminder_settings")) {
+		}/* else if(prefKey.equals("reminder_settings")) {
 			Intent i = new Intent();
 			i.setAction("com.t2.vas.Settings.Reminder");
 			this.startActivity(i);
-		}
+		}*/
 
 
 		return false;

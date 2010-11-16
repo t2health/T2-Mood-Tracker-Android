@@ -90,14 +90,14 @@ public class DBAdapter extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		/*this.onDrop(db);
-		this.onCreate(db);*/
-		/*Log.v(TAG, "ON UPGRADE");
-		Set<String> keys = this.tables.keySet();
-		
-		for(String key: keys) {
-			this.tables.get(key).onUpgrade(oldVersion, newVersion);
-		}*/
+		if(oldVersion < 2 && newVersion >= 2) {
+			this.dbUpgradeVersion2(db);
+		}
+	}
+	
+	private void dbUpgradeVersion2(SQLiteDatabase db) {
+		db.execSQL("ALTER TABLE `group` ADD COLUMN `visible` INTEGER;");
+		db.execSQL("UPDATE `group` SET `visible`=1;");
 	}
 	
 	public void onDrop(SQLiteDatabase db) {

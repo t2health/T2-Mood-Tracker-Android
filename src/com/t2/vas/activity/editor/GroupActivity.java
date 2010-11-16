@@ -19,6 +19,8 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class GroupActivity extends ABSActivity implements OnClickListener {
+	public static final String EXTRA_GROUP_ID = "group_id";
+	
 	private Group currentGroup;
 	private Toast toastPopup;
 
@@ -32,7 +34,7 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 
 		Intent intent = this.getIntent();
 
-		currentGroup._id = intent.getLongExtra("group_id", -1);
+		currentGroup._id = intent.getLongExtra(EXTRA_GROUP_ID, -1);
 
 		// Load the note from the DB
 		if(currentGroup._id > 0) {
@@ -58,19 +60,19 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 
 		// Focus on the text box will result in the keyboard appearing.
 		InputMethodManager imm = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.showSoftInput(this.findViewById(R.id.title), 0);
-		((TextView)this.findViewById(R.id.title)).requestFocus();
+		//imm.showSoftInput(this.findViewById(R.id.title), 0);
+		//((TextView)this.findViewById(R.id.title)).requestFocus();
 	}
 	
 	
 
-	@Override
+	/*@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Intent i = new Intent();
 		i.putExtra("group_id", currentGroup._id);
 		this.setResult(Activity.RESULT_OK, i);
 		this.finish();
-	}
+	}*/
 
 
 
@@ -89,12 +91,12 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 			// save the note and exit this activity
 			case R.id.saveButton:
 				boolean newGroup = false;
-				if(currentGroup._id > 0) {
+				/*if(currentGroup._id > 0) {
 					this.getIntent().putExtra("mode", "update");
 				} else {
 					newGroup = true;
 					this.getIntent().putExtra("mode", "insert");
-				}
+				}*/
 
 				currentGroup.title = ((TextView)this.findViewById(R.id.title)).getText().toString().trim();
 				currentGroup.save();
@@ -103,11 +105,12 @@ public class GroupActivity extends ABSActivity implements OnClickListener {
 				
 				if(newGroup) {
 					Intent intent = new Intent(this, ScaleListActivity.class);
-					intent.putExtra("group_id", currentGroup._id);
-					this.startActivityForResult(intent, MANAGE_SCALES_ACTIVITY);
+					intent.putExtra(EXTRA_GROUP_ID, currentGroup._id);
+					//this.startActivityForResult(intent, MANAGE_SCALES_ACTIVITY);
+					this.startActivity(intent);
 				} else {
 					i = new Intent();
-					i.putExtra("group_id", currentGroup._id);
+					i.putExtra(EXTRA_GROUP_ID, currentGroup._id);
 					this.setResult(Activity.RESULT_OK, i);
 					this.finish();
 				}

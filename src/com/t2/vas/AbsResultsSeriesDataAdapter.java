@@ -30,6 +30,8 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 
 	private long startTime;
 
+	private long endTime;
+
 	public static final int GROUPBY_YEAR = Calendar.YEAR;
 	public static final int GROUPBY_MONTH = Calendar.MONTH;
 	public static final int GROUPBY_WEEK = Calendar.WEEK_OF_YEAR;
@@ -40,14 +42,15 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 	public static final int ORDERBY_DESC = 14;
 
 
-	public AbsResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, int groupBy, String labelFormat) {
+	public AbsResultsSeriesDataAdapter(DBAdapter dbAdapter, long startTime, long endTime, int groupBy, String labelFormat) {
 		this.dbAdapter = dbAdapter;
 		this.startTime = startTime;
+		this.endTime = endTime;
 		this.groupBy = groupBy;
 		this.labelFormat = labelFormat;
 	}
 
-	protected abstract Cursor getCursor(long startTime, String db_date_format);
+	protected abstract Cursor getCursor(long startTime, long endTime, String db_date_format);
 
 	private Calendar setCalendarPrecision(Calendar c, int[] calendarFields) {
 		Calendar outCalendar = Calendar.getInstance();
@@ -131,7 +134,7 @@ public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {
 		//Log.v(TAG, "Load Data start");
 		HashMap<Long, SeriesDataRow> rows = new HashMap<Long, SeriesDataRow>();
 		Calendar rowCal = Calendar.getInstance();
-		Cursor c = this.getCursor(this.startTime, db_date_format);
+		Cursor c = this.getCursor(this.startTime, this.endTime, db_date_format);
 //		Log.v(TAG, "Row Count:"+c.getCount());
 		int[] columnIndexes = new int[]{
 				c.getColumnIndex("label_value"),

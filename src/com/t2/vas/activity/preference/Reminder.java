@@ -22,9 +22,10 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.util.Log;
 import android.widget.Toast;
 
-public class Reminder extends PreferenceActivity implements OnPreferenceChangeListener {
-	protected void onCreate(Bundle savedInstanceState) {
+public class Reminder extends CustomTitle implements OnPreferenceChangeListener {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         VASAnalytics.onEvent(VASAnalytics.EVENT_REMINDER_ACTIVITY);
         addPreferencesFromResource(R.xml.reminder_preference);
         

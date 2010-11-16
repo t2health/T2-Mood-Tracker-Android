@@ -92,7 +92,7 @@ public class Result extends Table {
 		Cursor c = this.getDBAdapter().getDatabase().query(
 				"result",
 				new String[] {
-						"timestamp",
+						"MIN(timestamp)",
 				},
 				"group_id=? AND timestamp >= ?",
 				new String[] {
@@ -101,12 +101,37 @@ public class Result extends Table {
 				},
 				null,
 				null,
-				"timestamp ASC",
-				"1"
-			);
+				null
+		);
 
 		if(c.moveToFirst()) {
-			Long newTimestamp = c.getLong(0);
+			long newTimestamp = c.getLong(0);
+			c.close();
+
+			return newTimestamp;
+		}
+		c.close();
+
+		return -1;
+	}
+	
+	public long getMostRecentTimestamp(long groupId) {
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				"result",
+				new String[] {
+						"MAX(timestamp)",
+				},
+				"group_id=?",
+				new String[] {
+						groupId+"",
+				},
+				null,
+				null,
+				null
+		);
+
+		if(c.moveToFirst()) {
+			long newTimestamp = c.getLong(0);
 			c.close();
 
 			return newTimestamp;
