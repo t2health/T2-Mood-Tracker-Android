@@ -1,12 +1,11 @@
 package com.t2.vas.view;
 
-import com.t2.vas.FromParentTouchHandler;
-
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
+
+import com.t2.vas.FromParentTouchHandler;
 
 public class VASSeekBar extends SeekBar implements FromParentTouchHandler {
 	private static final String TAG = VASSeekBar.class.getName();

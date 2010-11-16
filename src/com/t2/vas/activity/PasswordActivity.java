@@ -1,25 +1,18 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.R;
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.t2.vas.R;
 
 public class PasswordActivity extends Activity implements android.view.View.OnClickListener {
 	private static final String TAG = PasswordActivity.class.getName();

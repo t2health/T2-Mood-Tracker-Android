@@ -1,26 +1,13 @@
 package com.t2.vas.activity.preference;
 
-import com.t2.vas.Global;
+import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceScreen;
+
 import com.t2.vas.R;
 import com.t2.vas.ReminderService;
 import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.PasswordActivity;
-import com.t2.vas.activity.editor.GroupListActivity;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.util.Log;
-import android.widget.Toast;
 
 public class Reminder extends CustomTitle implements OnPreferenceChangeListener {
 	public void onCreate(Bundle savedInstanceState) {

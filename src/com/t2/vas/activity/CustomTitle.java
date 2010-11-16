@@ -1,17 +1,15 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.R;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.t2.vas.R;
 
 public class CustomTitle extends ABSActivity {
 	public static final String EXTRA_BACK_BUTTON_TEXT = "previousActivityName";

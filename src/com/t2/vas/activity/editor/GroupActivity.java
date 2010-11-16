@@ -5,17 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class GroupActivity extends ABSActivity implements OnClickListener {

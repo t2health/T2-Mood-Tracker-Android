@@ -3,13 +3,13 @@ package com.t2.vas.view;
 import java.util.List;
 import java.util.Map;
 
-import com.t2.vas.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
+
+import com.t2.vas.R;
 
 public class VASGallerySimpleAdapter extends SimpleAdapter {
 

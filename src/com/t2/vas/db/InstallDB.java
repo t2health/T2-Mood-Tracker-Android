@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import android.content.ContentValues;
+import android.content.res.Resources;
+import android.util.Log;
+
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
-
-import android.content.ContentValues;
-import android.content.res.Resources;
-import android.util.Log;
 
 public class InstallDB {
 	private static final String TAG = InstallDB.class.getName();

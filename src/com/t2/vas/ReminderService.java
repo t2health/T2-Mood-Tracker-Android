@@ -8,14 +8,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.t2.vas.activity.ReminderServiceActivity;
-import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.GroupReminder;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +15,10 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import com.t2.vas.activity.ReminderServiceActivity;
+import com.t2.vas.db.DBAdapter;
+import com.t2.vas.db.tables.Group;
 
 public class ReminderService extends Service {
 	private static final String TAG = ReminderService.class.getName();

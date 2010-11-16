@@ -2,12 +2,9 @@ package com.t2.vas.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Adapter;
 import android.widget.ViewAnimator;
-import android.widget.ViewFlipper;
 
 public class ResultsAnimator extends ViewAnimator {
 	private static final String TAG = ResultsAnimator.class.getName();

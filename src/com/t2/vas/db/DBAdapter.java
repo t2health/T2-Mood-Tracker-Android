@@ -3,17 +3,16 @@ package com.t2.vas.db;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.GroupReminder;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DBAdapter extends SQLiteOpenHelper {
 	private static final String TAG = DBAdapter.class.getName();

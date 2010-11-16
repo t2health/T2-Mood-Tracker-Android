@@ -1,23 +1,15 @@
 package com.t2.vas.view;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.t2.chart.widget.Chart;
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Scale;
-
-import android.content.Context;
-import android.inputmethodservice.Keyboard.Row;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 public class ChartLayout extends LinearLayout {
 	private static final String TAG = "VAS";

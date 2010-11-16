@@ -2,28 +2,21 @@ package com.t2.vas.activity.editor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class EditGroupActivity extends ABSActivity implements OnItemClickListener {

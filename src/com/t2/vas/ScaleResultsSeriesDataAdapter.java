@@ -1,17 +1,8 @@
 package com.t2.vas;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Scale;
-import com.t2.vas.db.tables.Scale.ResultValues;
 
 public class ScaleResultsSeriesDataAdapter extends AbsResultsSeriesDataAdapter {
 	private static final String TAG = ScaleResultsSeriesDataAdapter.class.getName();

@@ -2,34 +2,23 @@ package com.t2.vas.activity;
 
 import java.util.Calendar;
 
-import com.t2.vas.Global;
-import com.t2.vas.R;
-import com.t2.vas.ScaleAdapter;
-import com.t2.vas.VASAnalytics;
-import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Result;
-import com.t2.vas.db.tables.Scale;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.AbsListView;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.Button;
+import android.widget.ListView;
+
+import com.t2.vas.R;
+import com.t2.vas.ScaleAdapter;
+import com.t2.vas.VASAnalytics;
+import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.Result;
+import com.t2.vas.db.tables.Scale;
 
 public class FormActivity extends CustomTitle implements OnClickListener, OnLongClickListener, OnScrollListener {
 	public static final String EXTRA_GROUP_ID = "group_id";

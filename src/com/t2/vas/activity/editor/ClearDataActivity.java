@@ -1,15 +1,12 @@
 package com.t2.vas.activity.editor;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class ClearDataActivity extends ABSActivity {

@@ -1,19 +1,16 @@
 package com.t2.vas;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.t2.chart.Label;
+import com.t2.chart.Series.SeriesDataAdapter;
 import com.t2.chart.SeriesAdapterData;
 import com.t2.chart.Value;
-import com.t2.chart.Series.SeriesDataAdapter;
 import com.t2.vas.db.DBAdapter;
 
 public abstract class AbsResultsSeriesDataAdapter implements SeriesDataAdapter {

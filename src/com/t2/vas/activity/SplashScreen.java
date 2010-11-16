@@ -2,19 +2,18 @@ package com.t2.vas.activity;
 
 import java.util.Random;
 
-import com.t2.vas.Global;
-import com.t2.vas.R;
-import com.t2.vas.ReminderService;
-import com.t2.vas.VASAnalytics;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.t2.vas.Global;
+import com.t2.vas.R;
+import com.t2.vas.ReminderService;
+import com.t2.vas.VASAnalytics;
 
 public class SplashScreen extends ABSActivity implements OnClickListener {
 	private static final String TAG = SplashScreen.class.getName();

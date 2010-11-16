@@ -1,29 +1,18 @@
 package com.t2.vas.activity.editor;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.activity.CustomTitle;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Scale;
 
 public class ScaleListActivity extends CustomTitle implements OnItemClickListener {
 	public static final String EXTRA_GROUP_ID = "group_id";

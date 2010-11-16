@@ -1,12 +1,11 @@
 package com.t2.vas.activity;
 
 
-import com.t2.vas.R;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.WebView;
+
+import com.t2.vas.R;
 
 public class WebViewActivity extends CustomTitle {
 	public static final String EXTRA_TITLE = "title";

@@ -2,8 +2,6 @@ package com.t2.vas.view;
 
 import java.util.ArrayList;
 
-import com.t2.vas.FromParentTouchHandler;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -12,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.t2.vas.FromParentTouchHandler;
 
 public class VASListView extends ListView {
 	private static final String TAG = VASListView.class.getName();

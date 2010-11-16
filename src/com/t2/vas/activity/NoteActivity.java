@@ -2,26 +2,22 @@ package com.t2.vas.activity;
 
 import java.util.Calendar;
 
-import com.t2.vas.Global;
-import com.t2.vas.R;
-import com.t2.vas.VASAnalytics;
-import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Note;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
+import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.DatePicker.OnDateChangedListener;
+
+import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
+import com.t2.vas.db.tables.Note;
 
 public class NoteActivity extends ABSActivity implements OnClickListener, OnDateChangedListener {
 	public static final String EXTRA_NOTE_ID = "noteId";

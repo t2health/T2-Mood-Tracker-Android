@@ -3,14 +3,6 @@ package com.t2.vas.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.t2.vas.R;
-import com.t2.vas.activity.editor.ClearDataActivity;
-import com.t2.vas.activity.editor.DeleteGroupActivity;
-import com.t2.vas.activity.editor.GroupActivity;
-import com.t2.vas.activity.editor.ScaleListActivity;
-import com.t2.vas.db.tables.Group;
-import com.t2.vas.view.SimpleAdapterEnableable;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +12,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.t2.vas.R;
+import com.t2.vas.activity.editor.ClearDataActivity;
+import com.t2.vas.activity.editor.DeleteGroupActivity;
+import com.t2.vas.activity.editor.GroupActivity;
+import com.t2.vas.activity.editor.ScaleListActivity;
+import com.t2.vas.db.tables.Group;
+import com.t2.vas.view.SimpleAdapterEnableable;
 
 public class GroupDetails extends CustomTitle implements OnItemClickListener {
 	public static final String EXTRA_GROUP_ID = "groupId";

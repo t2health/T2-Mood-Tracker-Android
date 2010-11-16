@@ -2,9 +2,7 @@ package com.t2.vas.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.t2.vas.R;

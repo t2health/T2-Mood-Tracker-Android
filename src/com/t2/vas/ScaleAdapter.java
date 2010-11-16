@@ -2,15 +2,15 @@ package com.t2.vas;
 
 import java.util.ArrayList;
 
-import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.SliderWidget;
-import com.t2.vas.view.SliderWidget.OnSliderWidgetChangeListener;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+
+import com.t2.vas.db.tables.Scale;
+import com.t2.vas.view.SliderWidget;
+import com.t2.vas.view.SliderWidget.OnSliderWidgetChangeListener;
 
 public class ScaleAdapter extends ArrayAdapter<Scale> implements OnSliderWidgetChangeListener {
 	private static final String TAG = ScaleAdapter.class.getName();

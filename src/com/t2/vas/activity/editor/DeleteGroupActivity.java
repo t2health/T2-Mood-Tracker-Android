@@ -1,12 +1,5 @@
 package com.t2.vas.activity.editor;
 
-import com.t2.vas.Global;
-import com.t2.vas.R;
-import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSActivity;
-import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Group;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.t2.vas.R;
+import com.t2.vas.VASAnalytics;
+import com.t2.vas.activity.ABSActivity;
+import com.t2.vas.db.tables.Group;
 
 public class DeleteGroupActivity extends ABSActivity implements OnClickListener {
 	public static final String EXTRA_GROUP_ID = "group_id";

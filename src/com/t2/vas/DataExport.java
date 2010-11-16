@@ -4,16 +4,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
 import com.t2.chart.Label;
 import com.t2.chart.SeriesAdapterData;
 import com.t2.chart.Value;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
-
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 
 public class DataExport {
 	public static final void share(Context context, long groupId) {

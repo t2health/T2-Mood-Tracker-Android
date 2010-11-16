@@ -2,12 +2,11 @@ package com.t2.vas.db;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 public abstract class AbsTable {
 	private static final String TAG = AbsTable.class.getName();

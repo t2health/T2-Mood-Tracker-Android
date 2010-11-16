@@ -5,8 +5,6 @@ import java.util.Calendar;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 

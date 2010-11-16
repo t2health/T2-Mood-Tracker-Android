@@ -1,10 +1,10 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.R;
-import com.t2.vas.db.tables.Group;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.t2.vas.R;
+import com.t2.vas.db.tables.Group;
 
 public class ShareActivity extends CustomTitle {
 	public static final String EXTRA_GROUP_ID = "groupId";

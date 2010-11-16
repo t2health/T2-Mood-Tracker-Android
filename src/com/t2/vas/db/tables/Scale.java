@@ -1,20 +1,13 @@
 package com.t2.vas.db.tables;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedHashMap;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.t2.chart.Label;
 import com.t2.chart.Value;
 import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.AbsTable;
 import com.t2.vas.db.Table;
 
 public class Scale extends Table {

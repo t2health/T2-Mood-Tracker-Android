@@ -1,74 +1,32 @@
 package com.t2.vas.activity;
 
 import java.text.SimpleDateFormat;
-
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import 	android.widget.ToggleButton;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Gallery;
-import android.widget.ImageView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewAnimator;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.t2.vas.Global;
-import com.t2.vas.GroupResultsSeriesDataAdapter;
 import com.t2.vas.R;
-import com.t2.vas.ScaleResultsSeriesDataAdapter;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.editor.GroupActivity;
-import com.t2.vas.activity.editor.ScaleListActivity;
 import com.t2.vas.activity.preference.Reminder;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.ChartLayout;
-import com.t2.vas.view.GroupGallery;
-import com.t2.vas.view.SeparatedListAdapter;
-import com.t2.vas.view.StaticListView;
-import com.t2.vas.view.VASGallerySimpleAdapter;
 
 public class MainActivity extends CustomTitle implements OnItemClickListener {
 	private static final String TAG = MainActivity.class.getName();

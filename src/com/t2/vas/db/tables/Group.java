@@ -1,11 +1,9 @@
 package com.t2.vas.db.tables;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;

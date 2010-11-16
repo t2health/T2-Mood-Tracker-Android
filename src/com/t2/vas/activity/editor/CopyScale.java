@@ -8,10 +8,8 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.SimpleCursorTreeAdapter;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.activity.ABSActivity;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
