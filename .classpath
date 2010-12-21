@@ -6,6 +6,5 @@
 	<classpathentry kind="lib" path="jars/FlurryAgent.jar"/>
 	<classpathentry kind="lib" path="jars/trace.jar"/>
 	<classpathentry kind="src" path="Chart_src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Chart"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
