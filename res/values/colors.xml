@@ -19,4 +19,5 @@
 	<color name="chart_gradient_start">#FF356aa2</color>
 	<color name="chart_gradient_center">#FF80b6ec</color>
 	<color name="chart_gradient_end">#FF356aa2</color>
+	<color name="chart_text">#FFFFFFFF</color>
 </resources>

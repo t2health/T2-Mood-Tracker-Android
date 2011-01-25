@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
@@ -374,5 +375,26 @@ public class Group extends Table {
 		c.close();
 		
 		return range;
+	}
+	
+	public Cursor getResults(long startTime, long endTime) {
+		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
+		return this.getDBAdapter().getDatabase().query(
+				"result",
+				new String[]{
+						"timestamp",
+						"value",
+				},
+				"group_id=? AND timestamp >= ? AND timestamp < ?",
+				new String[]{
+						this._id+"",
+						startTime+"",
+						endTime+""
+				},
+				null,
+				null,
+				null,
+				null
+		);
 	}
 }

@@ -32,8 +32,9 @@
 	</style>
 	
     <style name="Widget.ListView" parent="@android:style/Widget.ListView">
-    	<item name="android:background">#FFFFFFFF</item>
-    	<item name="android:cacheColorHint">#00FFFFFF</item>
+    	<!-- <item name="android:background">@color/translucentLight</item>-->
+    	<item name="android:cacheColorHint">#00000000</item>
+    	<!-- <item name="android:divider">#00000000</item>-->
         <!-- <item name="android:listSelector">@android:drawable/list_selector_background</item>
         <item name="android:cacheColorHint">?android:attr/colorBackgroundCacheHint</item>
         <item name="android:divider">@android:drawable/divider_horizontal_dark_opaque</item> -->
@@ -50,5 +51,16 @@
     	<item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
     	<!-- <item name="android:textSize">20sp</item>
         <item name="android:gravity">center_vertical</item> -->
+    </style>
+    
+    <style name="TextAppearance.Small" parent="@android:style/TextAppearance.Small">
+    	<item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+    
+    <style name="divider">
+    	<item name="android:layout_height">2dip</item>
+    	<item name="android:layout_marginTop">10dip</item>
+    	<item name="android:layout_marginBottom">10dip</item>
+    	<item name="android:background">@android:drawable/divider_horizontal_bright</item>
     </style>
 </resources>

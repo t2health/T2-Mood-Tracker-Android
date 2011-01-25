@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:padding="5dip">
 	
 	<TextView
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/activity_delete_group_message" />
 	
-	<TableLayout
+	<LinearLayout
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:stretchColumns="0,1,2">
-	
-		<TableRow>
-			<Button
-				android:id="@+id/yesButton"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:text="@string/yes" />
-			<Button
-				android:id="@+id/noButton"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:text="@string/no" />
-		</TableRow>		
-	</TableLayout>
+		android:layout_height="wrap_content">
+		<Button
+			android:id="@+id/yesButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="@string/yes" />
+		<Button
+			android:id="@+id/noButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="@string/no" />		
+	</LinearLayout>
 </LinearLayout>

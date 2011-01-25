@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+	
+	<ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0">
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/question1"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="@android:style/TextAppearance.Medium" />
+			<EditText
+				android:id="@+id/answer1"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:imeOptions="actionNext" />
+			
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="2dip"
+				style="@style/divider" />
+				
+			<TextView
+				android:id="@+id/question2"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="@android:style/TextAppearance.Medium" />
+			<EditText
+				android:id="@+id/answer2"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:imeOptions="actionGo" />
+		</LinearLayout>
+	</ScrollView>
+	
+	
+	<Button	
+		android:id="@+id/cancelButton"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/cancel" />
+</LinearLayout>

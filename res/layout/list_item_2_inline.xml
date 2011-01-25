@@ -18,8 +18,9 @@
 		android:id="@+id/text2"
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
+		android:layout_weight="1.0"
 		android:lines="1"
 		android:paddingLeft="15dip"
-		android:gravity="center_vertical"
+		android:gravity="right|center_vertical"
 		android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>

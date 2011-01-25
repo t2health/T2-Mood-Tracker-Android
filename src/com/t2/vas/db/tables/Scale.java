@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
-import com.t2.chart.Label;
-import com.t2.chart.Value;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
@@ -148,262 +147,42 @@ public class Scale extends Table {
 		return notes.toArray(new Note[notes.size()]);
 	}
 	
-	/*
-	public ResultValues getResultValues(int group_by, String labelFormat) {
-		SimpleDateFormat labelDateFormatter = new SimpleDateFormat(labelFormat);
-		String formatter_date_format = "";
-		String db_date_format = "";
-		
-		// Determine the label format to use.
-		switch(group_by) {
-			case Scale.GROUPBY_HOUR:
-				formatter_date_format = "yyyy-MM-dd HH";
-				db_date_format = "%Y-%m-%d %H";
-				break;
-			case Scale.GROUPBY_MONTH:
-				formatter_date_format = "yyyy-MM";
-				db_date_format = "%Y-%m";
-				break;
-			case Scale.GROUPBY_WEEK:
-				formatter_date_format = "yyyy-ww";
-				db_date_format = "%Y-%W";
-				break;
-			case Scale.GROUPBY_YEAR:
-				formatter_date_format = "yyyy";
-				db_date_format = "%Y";
-				break;
-			case Scale.GROUPBY_DAY:
-			default:
-				formatter_date_format = "yyyy-MM-dd";
-				db_date_format = "%Y-%m-%d";
-				break;
-		}
-		
-		Cursor c = this.getDBAdapter().getDatabase().query(
-				"result r " +
-				"LEFT JOIN note n ON (" +
-					"strftime('"+db_date_format+"', datetime(n.timestamp / 1000, 'unixepoch')) = strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))" +
-				")",
+	public Cursor getResults(long startTime, long endTime) {
+		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
+		return this.getDBAdapter().getDatabase().query(
+				"result",
 				new String[]{
-					"strftime('"+db_date_format+"', datetime(MIN(r.timestamp) / 1000, 'unixepoch')) label_value", 
-					"MIN(r.timestamp) timestamp",
-					"AVG(r.value) value",
-					"COUNT(n._id) has_notes",
-				}, 
-				"scale_id=?", 
+						"timestamp",
+						"value",
+				},
+				"scale_id=? AND timestamp >= ? AND timestamp < ?",
 				new String[]{
-					this._id+""
-				}, 
-				"strftime('"+db_date_format+"', datetime(r.timestamp / 1000, 'unixepoch'))", 
-				null, 
-				"label_value ASC",
+						this._id+"",
+						startTime+"",
+						endTime+""
+				},
+				null,
+				null,
+				null,
 				null
 		);
-		Log.v(TAG, "ROW COUNT:"+c.getCount());
-		
-		String rLabelValue = "";
-		long rTimestamp = 0;
-		double rValue = 0.00;
-		boolean rHasNotes = false;
-		
-		ResultValues resultValues = new ResultValues();
-		SimpleDateFormat groupByDateFormatter = new SimpleDateFormat(formatter_date_format);
-		Date tmpDate;
-		Calendar runningCal = null;
-		Calendar rowCal = Calendar.getInstance();
-		boolean loadNext = true;
-		while(true) {
-			if(loadNext) {
-				if(!c.moveToNext()) {
-					break;
-				}
-				
-				rLabelValue = c.getString(c.getColumnIndex("label_value"));
-				rTimestamp = c.getLong(c.getColumnIndex("timestamp"));
-				rValue = c.getDouble(c.getColumnIndex("value"));
-				rHasNotes = c.getInt(c.getColumnIndex("has_notes")) > 0;
-				
-				Calendar tmpCal = Calendar.getInstance();
-				tmpCal.setTimeInMillis(rTimestamp);
-				//Log.v(TAG, "DATE:"+groupByDateFormatter.format(tmpCal.getTime()));
-				//Log.v(TAG, "DATE:"+rLabelValue);
-				//Log.v(TAG, "  .");
-				//Log.v(TAG, "TIMESTAMP:"+rTimestamp);
-				
-				//Log.v(TAG, "VAL:"+rValue);
-				//Log.v(TAG, "HN:"+rHasNotes);
-				
-				if(runningCal == null) {
-					runningCal = Calendar.getInstance();
-					runningCal.setTimeInMillis(rTimestamp);
-				}
-			}
-			loadNext = false;
-			
-			
-			try {
-				rowCal.setTimeInMillis(rTimestamp);
-				tmpDate = rowCal.getTime();
-				rowCal.setTime(
-						groupByDateFormatter.parse(groupByDateFormatter.format(tmpDate))
-				);
-				
-				tmpDate = runningCal.getTime();
-				runningCal.setTime(
-						groupByDateFormatter.parse(groupByDateFormatter.format(tmpDate))
-				);
-				//Log.v(TAG, groupByDateFormatter.format(rowCal.getTime())+", "+ groupByDateFormatter.format(runningCal.getTime()));
-				//Log.v(TAG, rowCal.getTimeInMillis()+", "+ runningCal.getTimeInMillis());
-				
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			String labelString = labelDateFormatter.format(runningCal.getTime());
-			if(rowCal.getTimeInMillis() == runningCal.getTimeInMillis()) {
-				//Log.v(TAG, "DD");
-				resultValues.values.add(new Value(rValue, null, rHasNotes));
-				resultValues.labels.add(new Label<Date>(labelString, runningCal.getTime()));
-				
-				loadNext = true;
-			} else {
-				//Log.v(TAG, "EE");
-				resultValues.values.add(new Value(null, null, false));
-				resultValues.labels.add(new Label<Date>(labelString, runningCal.getTime()));
-			}
-			
-			runningCal.add(group_by, 1);
-		}
-		
-		return resultValues;
-	}*/
+	}
 	
-	/*public ResultValues getResultValues2(int group_by, String labelFormat) {
-		Result[] results = this.getResults();
-		String date_format;
-		Calendar resultsAxisCal;
-		SimpleDateFormat groupByDateFormatter;
-		SimpleDateFormat labelDateFormatter = new SimpleDateFormat(labelFormat);
-		
-		if(results.length <= 0) {
-			return new ResultValues();
-		}
-		
-		// Determine the label format to use.
-		switch(group_by) {
-			case Scale.GROUPBY_DAY:
-				date_format = Scale.GROUPBY_DAY_FORMAT;
-				break;
-			case Scale.GROUPBY_HOUR:
-				date_format = Scale.GROUPBY_HOUR_FORMAT;
-				break;
-			case Scale.GROUPBY_MONTH:
-				date_format = Scale.GROUPBY_MONTH_FORMAT;
-				break;
-			case Scale.GROUPBY_WEEK:
-				date_format = Scale.GROUPBY_WEEK_FORMAT;
-				break;
-			case Scale.GROUPBY_YEAR:
-				date_format = Scale.GROUPBY_YEAR_FORMAT;
-				break;
-			default:
-				date_format = Scale.GROUPBY_DAY_FORMAT;
-				break;
-		}
-		
-		// Determine the first axis label
-		resultsAxisCal = Calendar.getInstance();
-		groupByDateFormatter = new SimpleDateFormat(date_format);
-		resultsAxisCal.setTimeInMillis(results[0].timestamp);
-		try {
-			resultsAxisCal.setTime(
-				groupByDateFormatter.parse(
-						groupByDateFormatter.format(resultsAxisCal.getTime())
-				)
-			);
-		} catch (ParseException e) {}
-		
-		
-		// Build the results, values and labels
-		ResultValues resultValues = new ResultValues();
-		int currentResultIndex = 0;
-		long currentTime = resultsAxisCal.getTimeInMillis();
-		long nextTime = 0;
-		while(true) {
-			// Drop out of the loop if there are not any more results to process.
-			if(currentResultIndex >= results.length) {
-				break;
-			}
-			
-			Double value = null;
-			ArrayList<Result> resultsList = new ArrayList<Result>();
-			
-			// Add the label.
-			resultValues.labels.add(
-					new Label<Date>(
-						labelDateFormatter.format(resultsAxisCal.getTime()),
-						resultsAxisCal.getTime()
-					)
-			);
-			//resultValues.results.add(resultsList);
-			
-			// Group the results together.
-			currentTime = resultsAxisCal.getTimeInMillis();
-			resultsAxisCal.add(group_by, 1);
-			nextTime = resultsAxisCal.getTimeInMillis();
-			
-			for(; currentResultIndex < results.length; currentResultIndex++) {
-				Result currentResult = results[currentResultIndex];
-				
-				// Group this result into this time group
-				if(currentResult.timestamp >= currentTime && currentResult.timestamp < nextTime) {
-					resultsList.add(currentResult);
-				} else {
-					break;
-				}
-			}
-			
-			// Average the results in this group and use the value
-			if(resultsList.size() > 0) {
-				value = 0.00;
-				for(int i = 0; i < resultsList.size(); i++) {
-					value += resultsList.get(i).value;
-				}
-				value /= resultsList.size();
-			}
-			
-			
-			// append the value to the values list. yes this can take a null value.
-			// nulls are result groups where nothing was recorded.
-			resultValues.values.add(
-					new Value<ArrayList<Result>>(
-						value,
-						resultsList
-					)
-			);
-			
-			
-			// Check if there are notes in the result range
-			if(resultsList.size() > 0) {
-				long startTimestamp = currentTime;
-				long endTimestamp = nextTime;
-				
-				Log.v(TAG, "TS:"+startTimestamp+","+endTimestamp);
-				
-				Cursor c = ((Note)this.getDBAdapter().getTable("note")).queryForNotes(startTimestamp, endTimestamp, "timestamp DESC");
-				if(c.getCount() > 0) {
-					Log.v(TAG, "HAS NOTES");
-					resultValues.values.get(resultValues.values.size() - 1).setHilight(true);
-				}
-				c.close();
-			}
-		}
-		
-		return resultValues;
-	}*/
-	
-	public class ResultValues {
-		public ArrayList<Value> values = new ArrayList<Value>();
-		public ArrayList<Label> labels = new ArrayList<Label>();
+	public Cursor getUniqueScalesCursor() {
+		return this.getDBAdapter().getDatabase().query(
+				"scale", 
+				new String[] {
+						"MIN(_id) _id",
+						"MIN(group_id) group_id",
+						"MIN(max_label) max_label",
+						"MIN(min_label) min_label",
+						"MIN(weight) weight",
+				},
+				null, 
+				null, 
+				"min_label || max_label", 
+				null, 
+				"min_label || max_label"
+		);
 	}
 }

@@ -1,0 +1,44 @@
+package com.t2.vas.activity.preference;
+
+import com.nullwire.trace.ExceptionHandler;
+import com.t2.vas.Analytics;
+import com.t2.vas.Global;
+import com.t2.vas.VASAnalytics;
+import com.t2.vas.activity.ABSActivity;
+
+import android.os.Bundle;
+import android.preference.PreferenceActivity;
+
+public class ABSPreferenceActivity extends PreferenceActivity {
+	private static final String TAG = ABSActivity.class.getName();
+
+	public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        if(!Global.DEV_MODE) { 
+	        if(Global.REMOTE_STACK_TRACE_URL != null && Global.REMOTE_STACK_TRACE_URL.length() > 0) {
+	        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
+	        }
+        }
+        
+        VASAnalytics.onPageView();
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		Analytics.onStartSession(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+
+		Analytics.onEndSession(this);
+	}
+	
+	public int getHelpResId() {
+		return -1;
+	}
+}

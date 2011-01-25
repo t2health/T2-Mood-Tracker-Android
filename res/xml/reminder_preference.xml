@@ -7,16 +7,15 @@
 		android:title="Enable Reminders"
 		android:summary="Allow the application to remind you to rate your mood." />
 
-	<ListPreference
-		android:key="remind_freq"
+	<com.t2.vas.ListPreferenceMultiSelect
 		android:dependency="reminders_enabled"
-		android:title="@string/frequency_title"
-		android:summary="@string/frequency_desc"
-		android:dialogTitle="Frequency"
-		android:entries="@array/frequency_entries"
-		android:entryValues="@array/frequency_entries_values"
-		android:defaultValue="@string/frequency_entries_values_default" />
-
+		android:key="reminders_dow"
+		android:title="@string/days_to_remind_title"
+		android:summary="@string/days_to_remind_desc"
+		android:entries="@array/days_of_the_week"
+		android:entryValues="@array/days_of_the_week_values"
+		android:defaultValue="1OV=I=XseparatorX=I=VO2OV=I=XseparatorX=I=VO3OV=I=XseparatorX=I=VO4OV=I=XseparatorX=I=VO5OV=I=XseparatorX=I=VO6OV=I=XseparatorX=I=VO7" />
+		
 	<com.t2.vas.TimePickerPreference
 		android:key="remind_time"
 		android:dependency="reminders_enabled"

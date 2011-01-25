@@ -1,118 +1,337 @@
 package com.t2.vas.activity.editor;
 
-import android.app.Activity;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Adapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 
 import com.t2.vas.R;
-import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSActivity;
+import com.t2.vas.activity.ABSNavigation;
 import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.Scale;
+import com.t2.vas.view.SeparatedListAdapter;
 
-public class GroupActivity extends ABSActivity implements OnClickListener {
+public class GroupActivity extends ABSNavigation implements
+		OnItemClickListener, DialogInterface.OnClickListener {
+	public static final String TAG = GroupActivity.class.getSimpleName();
+
 	public static final String EXTRA_GROUP_ID = "group_id";
-	
-	private Group currentGroup;
-	private Toast toastPopup;
+	private static final int DELETE_GROUP = 1453;
+	private Group group;
+	private ListView listView;
+	private SeparatedListAdapter listAdapter;
+	private SimpleAdapter generalAdapter;
+	private SimpleCursorAdapter scaleAdapter;
+	private Cursor scalesCursor;
 
-	public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        VASAnalytics.onEvent(VASAnalytics.EVENT_GROUP_ACTIVITY);
-        
-        // init global variables.
-		currentGroup = ((Group)dbAdapter.getTable("group")).newInstance();
-		toastPopup = Toast.makeText(this, R.string.activity_group_saved, 2000);
+	private AlertDialog addDialog;
+	private ViewGroup addScaleLayout;
+	private AlertDialog editDialog;
 
-		Intent intent = this.getIntent();
+	private EditText addMinLabel;
+	private EditText addMaxLabel;
+	private long editScaleId;
 
-		currentGroup._id = intent.getLongExtra(EXTRA_GROUP_ID, -1);
+	private EditText renameEditText;
 
-		// Load the note from the DB
-		if(currentGroup._id > 0) {
-			currentGroup.load();
-		}
+	private AlertDialog renameDialog;
+	private AlertDialog deleteGroupDialog;
 
-        this.setContentView(R.layout.group_activity);
-        this.findViewById(R.id.cancelButton).setOnClickListener(this);
-		this.findViewById(R.id.saveButton).setOnClickListener(this);
-		//this.findViewById(R.id.deleteButton).setOnClickListener(this);
+	private AlertDialog addGatewayDialog;
 
+	private AlertDialog deleteScaleDialog;
 
+	private ViewGroup editScaleLayout;
 
-		// Set the note text
-		((TextView)this.findViewById(R.id.title)).setText(currentGroup.title);
+	private EditText editMinLabel;
 
-		/*// This is a new group, remove the delete button.
-		if(currentGroup._id <= 0) {
-			((ViewGroup)this.findViewById(R.id.deleteButton).getParent()).removeView(
-					this.findViewById(R.id.deleteButton)
-			);
-		}*/
+	private EditText editMaxLabel;
 
-		// Focus on the text box will result in the keyboard appearing.
-		InputMethodManager imm = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
-		//imm.showSoftInput(this.findViewById(R.id.title), 0);
-		//((TextView)this.findViewById(R.id.title)).requestFocus();
-	}
-	
-	
+	private AlertDialog copyDialog;
 
-	/*@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Intent i = new Intent();
-		i.putExtra("group_id", currentGroup._id);
-		this.setResult(Activity.RESULT_OK, i);
-		this.finish();
-	}*/
+	private SimpleCursorAdapter copyScalesAdapter;
 
+	private Cursor copyScalesCursor;
 
+	private static final int ADD_SCALE_ACTIVITY = 365;
 
 	@Override
-	public void onClick(View v) {
-		Intent i;
-		String mode;
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-		switch(v.getId()) {
-			// exit this activity
-			case R.id.cancelButton:
-				this.setResult(Activity.RESULT_CANCELED);
-				this.finish();
-				break;
-
-			// save the note and exit this activity
-			case R.id.saveButton:
-				boolean newGroup = false;
-				/*if(currentGroup._id > 0) {
-					this.getIntent().putExtra("mode", "update");
-				} else {
-					newGroup = true;
-					this.getIntent().putExtra("mode", "insert");
-				}*/
-
-				currentGroup.title = ((TextView)this.findViewById(R.id.title)).getText().toString().trim();
-				currentGroup.save();
-
-				toastPopup.show();
-				
-				if(newGroup) {
-					Intent intent = new Intent(this, ScaleListActivity.class);
-					intent.putExtra(EXTRA_GROUP_ID, currentGroup._id);
-					//this.startActivityForResult(intent, MANAGE_SCALES_ACTIVITY);
-					this.startActivity(intent);
-				} else {
-					i = new Intent();
-					i.putExtra(EXTRA_GROUP_ID, currentGroup._id);
-					this.setResult(Activity.RESULT_OK, i);
-					this.finish();
+		copyScalesCursor = new Scale(dbAdapter).getUniqueScalesCursor();
+		this.startManagingCursor(copyScalesCursor);
+		copyScalesAdapter = new SimpleCursorAdapter(
+				this, 
+				R.layout.list_item_2_inline, 
+				copyScalesCursor,
+				new String[] {
+						"max_label",
+						"min_label",
+				}, 
+				new int[] {
+						R.id.text1,
+						R.id.text2,
 				}
-				
-				break;
+		);
+
+		addScaleLayout = (ViewGroup) this.getLayoutInflater().inflate(
+				R.layout.add_edit_scale_activity, null);
+		addMinLabel = (EditText) addScaleLayout.findViewById(R.id.minLabel);
+		addMaxLabel = (EditText) addScaleLayout.findViewById(R.id.maxLabel);
+
+		editScaleLayout = (ViewGroup) this.getLayoutInflater().inflate(
+				R.layout.add_edit_scale_activity, null);
+		editMinLabel = (EditText) editScaleLayout.findViewById(R.id.minLabel);
+		editMaxLabel = (EditText) editScaleLayout.findViewById(R.id.maxLabel);
+
+		renameEditText = new EditText(this);
+		renameDialog = new AlertDialog.Builder(this)
+				.setTitle(R.string.group_rename).setView(renameEditText)
+				.setPositiveButton(R.string.save, this)
+				.setNegativeButton(R.string.cancel, this).create();
+		deleteGroupDialog = new AlertDialog.Builder(this)
+				.setTitle(R.string.delete)
+				.setMessage(R.string.delete_category_desc)
+				.setPositiveButton(R.string.yes, this)
+				.setNegativeButton(R.string.no, this).create();
+		deleteScaleDialog = new AlertDialog.Builder(this)
+				.setTitle(R.string.delete)
+				.setMessage(R.string.delete_scale_message)
+				.setPositiveButton(R.string.yes, this)
+				.setNegativeButton(R.string.no, this).create();
+		addGatewayDialog = new AlertDialog.Builder(this)
+				.setTitle(R.string.add_scale)
+				.setItems(R.array.add_scale_gateway_options, this)
+				.setNegativeButton(R.string.cancel, this).create();
+		addDialog = new AlertDialog.Builder(this).setTitle(R.string.add_scale)
+				.setPositiveButton(R.string.save, this)
+				.setNegativeButton(R.string.cancel, this)
+				.setView(addScaleLayout).create();
+		editDialog = new AlertDialog.Builder(this)
+				.setTitle(R.string.edit_scale).setView(editScaleLayout)
+				.setPositiveButton(R.string.save, this)
+				.setNegativeButton(R.string.cancel, this).create();
+		copyDialog = new AlertDialog.Builder(this)
+				.setTitle(R.string.copy_scale)
+				.setNegativeButton(R.string.cancel, this)
+				.setAdapter(copyScalesAdapter, this)
+				.create();
+
+		group = new Group(dbAdapter);
+		group._id = this.getIntent().getLongExtra(EXTRA_GROUP_ID, 0);
+		if (!group.load()) {
+			this.finish();
+			return;
 		}
+
+		this.setContentView(R.layout.list_layout);
+		this.setTitle(group.title);
+		this.setRightButtonImage(R.drawable.add_default);
+
+		listView = (ListView) this.findViewById(R.id.list);
+
+		ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
+		HashMap<String, Object> item;
+
+		item = new HashMap<String, Object>();
+		item.put("id", "rename");
+		item.put("title", "Rename");
+		items.add(item);
+
+		item = new HashMap<String, Object>();
+		item.put("id", "delete");
+		item.put("title", "Delete");
+		items.add(item);
+
+		generalAdapter = new SimpleAdapter(this, items, R.layout.list_item_1,
+				new String[] { "title", }, new int[] { R.id.text1, });
+
+		scalesCursor = group.getScalesCursor();
+		this.startManagingCursor(scalesCursor);
+		scaleAdapter = new SimpleCursorAdapter(
+				this,
+				R.layout.list_item_2_stacked_delete, 
+				scalesCursor,
+				new String[] { 
+						"max_label", 
+						"min_label", 
+						"_id", 
+				}, 
+				new int[] {
+						R.id.text1, 
+						R.id.text2, 
+						R.id.deleteButton, 
+				}
+		);
+		scaleAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+			@Override
+			public boolean setViewValue(View view, Cursor cursor,
+					int columnIndex) {
+				if (view.getId() == R.id.deleteButton) {
+					final long id = cursor.getLong(columnIndex);
+					view.setFocusable(false);
+
+					view.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							onScaleDeleteButtonPressed(id);
+						}
+					});
+					return true;
+				}
+				return false;
+			}
+		});
+
+		listAdapter = new SeparatedListAdapter(this);
+		listAdapter.addSection("General", generalAdapter);
+		listAdapter.addSection("Scales", scaleAdapter);
+
+		listView.setAdapter(listAdapter);
+		listView.setOnItemClickListener(this);
+	}
+
+	private void onScaleDeleteButtonPressed(long scaleId) {
+		editScaleId = scaleId;
+		deleteScaleDialog.show();
+	}
+
+	@Override
+	protected void onRightButtonPresed() {
+		addGatewayDialog.show();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		Adapter adapter = listAdapter.getAdapterForItem(arg2);
+
+		if (adapter == generalAdapter) {
+			HashMap<String, Object> data = (HashMap<String, Object>) arg0
+					.getItemAtPosition(arg2);
+			String itemId = (String) data.get("id");
+
+			if (itemId.equals("rename")) {
+				renameEditText.setText(group.title);
+				renameDialog.show();
+				return;
+
+			} else if (itemId.equals("delete")) {
+				deleteGroupDialog.show();
+				return;
+			}
+
+		} else if (adapter == scaleAdapter) {
+			long id = listAdapter.getItemId(arg2);
+
+			editScaleId = id;
+			Scale scale = new Scale(dbAdapter);
+			scale._id = id;
+			scale.load();
+
+			editScaleId = id;
+			editMinLabel.setText(scale.min_label);
+			editMaxLabel.setText(scale.max_label);
+			editMinLabel.requestFocus();
+			editDialog.show();
+		}
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		Log.v(TAG, "CLICK!");
+		
+		if (dialog == addDialog) {
+			if (which == AlertDialog.BUTTON_POSITIVE) {
+				Scale scale = new Scale(dbAdapter);
+				scale.min_label = addMinLabel.getText().toString();
+				scale.max_label = addMaxLabel.getText().toString();
+				scale.group_id = group._id;
+
+				scale.save();
+			}
+
+		} else if (dialog == editDialog) {
+			if (which == AlertDialog.BUTTON_POSITIVE) {
+				Scale scale = new Scale(dbAdapter);
+				scale._id = editScaleId;
+				scale.load();
+				scale.min_label = editMinLabel.getText().toString();
+				scale.max_label = editMaxLabel.getText().toString();
+				scale.group_id = group._id;
+
+				scale.save();
+			}
+
+		} else if (dialog == renameDialog) {
+			if (which == AlertDialog.BUTTON_POSITIVE) {
+				group.title = renameEditText.getText().toString();
+				group.save();
+				setTitle(group.title);
+			}
+
+		} else if (dialog == deleteGroupDialog) {
+			if (which == AlertDialog.BUTTON_POSITIVE) {
+				group.delete();
+				this.finish();
+				return;
+			}
+
+		} else if (dialog == deleteScaleDialog) {
+			if (which == AlertDialog.BUTTON_POSITIVE) {
+				Scale scale = new Scale(dbAdapter);
+				scale._id = editScaleId;
+				scale.delete();
+			}
+
+		} else if (dialog == addGatewayDialog) {
+			addGatewayDialog.dismiss();
+
+			if (which == 0) {
+				copyDialog.show();
+				
+			} else if (which == 1) {
+				addMinLabel.setText("");
+				addMaxLabel.setText("");
+				addMinLabel.requestFocus();
+				addDialog.show();
+			}
+			
+		} else if(dialog == copyDialog) {
+			Log.v(TAG, "SEL:"+which);
+			if(which >= 0) {
+				long id = copyScalesAdapter.getItemId(which);
+				Log.v(TAG, "SEL ID:"+id);
+				Log.v(TAG, "id:"+id);
+				Scale scale = new Scale(dbAdapter);
+				scale._id = id;
+				scale.load();
+				scale.group_id = group._id;
+				scale._id = 0;
+				scale.insert();
+			}
+		}
+
+		scalesCursor.requery();
+		listAdapter.notifyDataSetChanged();
 	}
 }

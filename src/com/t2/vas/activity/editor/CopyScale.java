@@ -1,6 +1,7 @@
 package com.t2.vas.activity.editor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,9 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 
 public class CopyScale extends ABSActivity implements OnChildClickListener {
+	public static final String EXTRA_GROUP_ID = "group_id";
+	public static final String EXTRA_SCALE_ID = "scale_id";
+	
 	private long groupId;
 
 	@Override
@@ -21,15 +25,18 @@ public class CopyScale extends ABSActivity implements OnChildClickListener {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.copy_scale);
         
-        this.groupId = this.getIntent().getLongExtra("group_id", 0);
+        this.groupId = this.getIntent().getLongExtra(EXTRA_GROUP_ID, -1);
         if(this.groupId <= 0) {
         	this.finish();
+        	return;
         }
         
         Group group = new Group(this.dbAdapter);
         Cursor groupCursor = group.getGroupsWithScalesCursor();
 		this.startManagingCursor(groupCursor);
         
+		this.findViewById(R.id.cancelButton).setOnClickListener(this);
+		
 		ExpandableListView elv = (ExpandableListView)this.findViewById(R.id.list);
 		MySimpleCursorTreeAdapter scta = new MySimpleCursorTreeAdapter(
 				this,
@@ -54,6 +61,20 @@ public class CopyScale extends ABSActivity implements OnChildClickListener {
 		elv.setOnChildClickListener(this);
 	}
 	
+	
+	
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.cancelButton) {
+			this.setResult(RESULT_CANCELED);
+			this.finish();
+			return;
+		}
+		super.onClick(v);
+	}
+
+
+
 	@Override
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {
@@ -66,6 +87,9 @@ public class CopyScale extends ABSActivity implements OnChildClickListener {
 		scale.group_id = this.groupId;
 		scale.save();
 		
+		Intent i = new Intent();
+		i.putExtra(EXTRA_SCALE_ID, scale._id);
+		this.setResult(RESULT_OK, i);
 		this.finish();
 		
 		return false;

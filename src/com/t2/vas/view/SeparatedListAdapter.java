@@ -1,5 +1,6 @@
 package com.t2.vas.view;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -16,16 +17,36 @@ public class SeparatedListAdapter extends BaseAdapter {
 	public final Map<String,Adapter> sections = new LinkedHashMap<String,Adapter>();
 	public final ArrayAdapter<String> headers;
 	public final static int TYPE_SECTION_HEADER = 0;
+	public final Map<Adapter,Boolean> enabledSection = new HashMap<Adapter,Boolean>();
 
 	public SeparatedListAdapter(Context context) {
 		headers = new ArrayAdapter<String>(context, R.layout.list_header);
 	}
 
 	public void addSection(String section, Adapter adapter) {
+		this.addSection(section, adapter, true);
+	}
+	
+	public void addSection(String section, Adapter adapter, boolean enabled) {
 		this.headers.add(section);
 		this.sections.put(section, adapter);
+		this.enabledSection.put(adapter, enabled);
 	}
+	
+	public Adapter getAdapterForItem(int position) {
+		for(Object section : this.sections.keySet()) {
+			Adapter adapter = sections.get(section);
+			int size = adapter.getCount() + 1;
 
+			// check if position inside this section
+			if(position < size) return adapter;
+
+			// otherwise jump into next section
+			position -= size;
+		}
+		return null;
+	}
+	
 	public Object getItem(int position) {
 		for(Object section : this.sections.keySet()) {
 			Adapter adapter = sections.get(section);
@@ -79,7 +100,15 @@ public class SeparatedListAdapter extends BaseAdapter {
 	}
 
 	public boolean isEnabled(int position) {
-		return (getItemViewType(position) != TYPE_SECTION_HEADER);
+		if(getItemViewType(position) == TYPE_SECTION_HEADER) {
+			return false;
+		}
+		
+		Adapter a = getAdapterForItem(position);
+		if(enabledSection.get(a)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -102,7 +131,18 @@ public class SeparatedListAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return position;
+		for(Object section : this.sections.keySet()) {
+			Adapter adapter = sections.get(section);
+			int size = adapter.getCount() + 1;
+
+			// check if position inside this section
+			if(position == 0) return -1;
+			if(position < size) return adapter.getItemId(position - 1);
+
+			// otherwise jump into next section
+			position -= size;
+		}
+		return -1;
 	}
 
 }

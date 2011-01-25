@@ -1,11 +1,18 @@
 package com.t2.vas.activity;
 
+import java.util.List;
+
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +42,7 @@ public class ABSActivity extends Activity implements OnClickListener {
 	public static final int EDIT_GROUP_ACTIVITY = 352;
 	public static final int DELETE_GROUP_ACTIVITY = 353;
 	public static final int GROUP_DETAILS_ACTIVITY = 354;
+	public static final int NOTE_ACTIVITY = 355;
 	/*public static final int NOTES_ACTIVITY = 348;
 	public static final int REMINDER_ACTIVITY = 349;*/
 	
@@ -92,7 +100,7 @@ public class ABSActivity extends Activity implements OnClickListener {
 			this.dbAdapter.open();
 		}
 	}
-
+	
 	@Override
 	protected void onStop() {
 		super.onStop();
@@ -155,17 +163,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 			case T2_WEBSITE_ACTIVITY:
 				i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.t2health.org"));
 				this.startActivityForResult(i, T2_WEBSITE_ACTIVITY);
-
-
-			/*case NOTES_ACTIVITY:
-				i.setAction("com.t2.vas.NotesActivity");
-				this.startActivityForResult(i, NOTES_ACTIVITY);
-				break;
-
-			case REMINDER_ACTIVITY:
-				i.setAction("com.t2.vas.ReminderPreferenceActivity");
-				this.startActivityForResult(i, REMINDER_ACTIVITY);
-				break;*/
 		}
 	}
 	
@@ -190,9 +187,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 		Intent i;
 		
 		switch(item.getItemId()) {
-			case R.id.settingsButton:
-				startSettingsActivity();
-				return true;
 			case HELP_MENU_ITEM:
 				i = new Intent(this, WebViewActivity.class);
 				i.putExtra(WebViewActivity.EXTRA_TITLE_ID, R.string.help_title);
@@ -205,12 +199,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 		
 	}
 	
-	protected void startSettingsActivity() {
-		Intent i = new Intent(this, MainPreferenceActivity.class);
-		i.putExtra(com.t2.vas.activity.preference.CustomTitle.EXTRA_BACK_BUTTON_TEXT, "blah");
-		this.startActivity(i);
-	}
-
 	public int getHelpResId() {
 		return -1;
 	}

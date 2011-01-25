@@ -45,6 +45,10 @@ public abstract class Table extends AbsTable {
 		}
 		return this.load();
 	}
+	
+	public void empty() {
+		this.dbAdapter.getDatabase().execSQL("DELETE FROM `"+ this.getTableName()+"`");
+	}
 
 	@Override
 	public abstract String getTableName();

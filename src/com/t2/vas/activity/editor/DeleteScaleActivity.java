@@ -14,6 +14,8 @@ import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.db.tables.Scale;
 
 public class DeleteScaleActivity extends ABSActivity implements OnClickListener {
+	public static final String EXTRA_SCALE_ID = "scale_id";
+	
 	private Scale currentScale;
 	private Toast toastPopup;
 
@@ -28,7 +30,7 @@ public class DeleteScaleActivity extends ABSActivity implements OnClickListener 
 
 		// init the local variables;
 		Intent intent = this.getIntent();
-		long currentScaleId = intent.getLongExtra("scale_id", -1);
+		long currentScaleId = intent.getLongExtra(EXTRA_SCALE_ID, -1);
 
 		if(currentScaleId < 0) {
 			this.finish();

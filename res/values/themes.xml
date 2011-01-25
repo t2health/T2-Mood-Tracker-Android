@@ -10,9 +10,9 @@
 		<item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparator</item>  
 	</style>
 	
-	<style name="CustomTheme2SolidBG" parent="@style/CustomTheme2">
-		<item name="android:windowBackground">@drawable/screen_background_light</item>
-	</style>
+	<!-- <style name="CustomTheme2SolidBG" parent="@style/CustomTheme2">
+		<item name="android:windowBackground">@drawable/background</item>
+	</style>-->
 	
 	<style name="CustomTheme2Dialog" parent="@android:style/Theme.Dialog">
 		<item name="android:windowTitleSize">48dip</item>

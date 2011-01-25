@@ -5,6 +5,7 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -20,32 +21,35 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
-public class FormActivity extends CustomTitle implements OnClickListener, OnLongClickListener, OnScrollListener {
+public class FormActivity extends ABSNavigation implements OnClickListener/*, OnLongClickListener, OnScrollListener*/ {
 	public static final String EXTRA_GROUP_ID = "group_id";
 	
 	private static final String TAG = FormActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
-	private String submitButtonText;
+	//private String submitButtonText;
 	private ListView listView;
-	private Button submitButton;
-	private boolean showSkipButton;
+	//private Button submitButton;
+	//private boolean showSkipButton;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        
         //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         this.setContentView(R.layout.form_activity);
+        
+        this.setRightButtonText("Save");
         VASAnalytics.onEvent(VASAnalytics.EVENT_FORM_ACTIVITY);
         
         Intent intent = this.getIntent();
-        this.activeGroupId = intent.getLongExtra("group_id", -1);
-        this.submitButtonText = intent.getStringExtra("submit_button_text");
-        this.showSkipButton = intent.getBooleanExtra("show_skip_button", false);
-
+        this.activeGroupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
+        //this.submitButtonText = intent.getStringExtra("submit_button_text");
+        //this.showSkipButton = intent.getBooleanExtra("show_skip_button", false);
+        
         if(this.activeGroupId < 0) {
         	this.finish();
         }
@@ -62,14 +66,14 @@ public class FormActivity extends CustomTitle implements OnClickListener, OnLong
         this.setTitle(group.title);
 
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
-        listView.addFooterView(
+        /*listView.addFooterView(
         		View.inflate(this, R.layout.form_activity_submit_button, null)
-		);
+		);*/
         listView.setAdapter(scaleAdapter);
-        listView.setOnScrollListener(this);
+        //listView.setOnScrollListener(this);
 
 
-        submitButton = (Button)this.findViewById(R.id.submitButton);
+        /*submitButton = (Button)this.findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
         if(this.submitButtonText != null) {
         	submitButton.setText(this.submitButtonText);
@@ -79,7 +83,7 @@ public class FormActivity extends CustomTitle implements OnClickListener, OnLong
         skipButton.setOnClickListener(this);
         if(this.showSkipButton) {
         	skipButton.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         // Restore some of the data
         if(savedInstanceState != null) {
@@ -125,20 +129,7 @@ public class FormActivity extends CustomTitle implements OnClickListener, OnLong
 				return;
 
 			case R.id.submitButton:
-		        long currentTime = Calendar.getInstance().getTimeInMillis();
-		        for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
-		        	Scale s = this.scaleAdapter.getItem(i);
-		        	int value = this.scaleAdapter.getProgressValuesAt(i);
-
-		        	Result r = (Result)dbAdapter.getTable("result").newInstance();
-
-					r.group_id = this.activeGroupId;
-					r.scale_id = s._id;
-					r.timestamp = currentTime;
-					r.value = value;
-
-					r.save();
-		        }
+		        this.saveResults();
 
 				this.setResult(Activity.RESULT_OK);
 				this.finish();
@@ -147,8 +138,35 @@ public class FormActivity extends CustomTitle implements OnClickListener, OnLong
 
 		super.onClick(v);
 	}
+	
+	
 
 	@Override
+	protected void onRightButtonPresed() {
+		this.saveResults();
+		this.setResult(Activity.RESULT_OK);
+		this.finish();
+	}
+	
+	private void saveResults() {
+		long currentTime = Calendar.getInstance().getTimeInMillis();
+        for(int i = 0; i < this.scaleAdapter.getCount(); i++) {
+        	Scale s = this.scaleAdapter.getItem(i);
+        	int value = this.scaleAdapter.getProgressValuesAt(i);
+
+        	Result r = (Result)dbAdapter.getTable("result").newInstance();
+
+			r.group_id = this.activeGroupId;
+			r.scale_id = s._id;
+			r.timestamp = currentTime;
+			r.value = value;
+
+			r.save();
+        }
+	}
+
+
+	/*@Override
 	public boolean onLongClick(View v) {
 		switch(v.getId()) {
 		case R.id.submitButton:
@@ -158,7 +176,7 @@ public class FormActivity extends CustomTitle implements OnClickListener, OnLong
 		}
 
 		return false;
-	}
+	}*/
 
 
 	@Override
@@ -167,19 +185,19 @@ public class FormActivity extends CustomTitle implements OnClickListener, OnLong
 	}
 
 
-	@Override
+	/*@Override
 	public void onScroll(AbsListView arg0, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 		int lastVisiblePos = firstVisibleItem + visibleItemCount;
 
 		if(lastVisiblePos >= totalItemCount && this.submitButton != null) {
 			this.submitButton.setEnabled(true);
 		}
-	}
+	}*/
 
 
-	@Override
+	/*@Override
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
 
-	}
+	}*/
 
 }

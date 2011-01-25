@@ -12,26 +12,25 @@ public class StaticListView extends ListView {
 
 	public StaticListView(Context context) {
 		super(context);
-		this.setVerticalScrollBarEnabled(false);
-		this.setHorizontalScrollBarEnabled(false);
-		this.setCacheColorHint(Color.argb(0, 255, 255, 255));
-//		this.setDividerHeight(0);
+		this.init();
 	}
 	
 	public StaticListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.setVerticalScrollBarEnabled(false);
-		this.setHorizontalScrollBarEnabled(false);
-		this.setCacheColorHint(Color.argb(0, 255, 255, 255));
-//		this.setDividerHeight(0);
+		this.init();
 	}
 	
 	public StaticListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		this.init();
+	}
+	
+	private void init() {
 		this.setVerticalScrollBarEnabled(false);
 		this.setHorizontalScrollBarEnabled(false);
-		this.setCacheColorHint(Color.argb(0, 255, 255, 255));
-//		this.setDividerHeight(0);
+		this.setVerticalFadingEdgeEnabled(false);
+		this.setHorizontalFadingEdgeEnabled(false);
+		this.setCacheColorHint(Color.TRANSPARENT);
 	}
 
 	@Override
@@ -40,7 +39,8 @@ public class StaticListView extends ListView {
 		
 		// here I assume that height's being calculated for one-child only, seen it in ListView's source which is actually a bad idea
         int childHeight = getMeasuredHeight() - (getListPaddingTop() + getListPaddingBottom() +  getVerticalFadingEdgeLength() * 2);
-
+        childHeight += getDividerHeight();
+        
         int fullHeight = getListPaddingTop() + getListPaddingBottom() + childHeight*(getCount());
 
         setMeasuredDimension(getMeasuredWidth(), fullHeight);

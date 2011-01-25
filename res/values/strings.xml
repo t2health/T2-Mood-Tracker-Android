@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">T2 Mood Tracker</string>
+	<string name="back_button">Back</string>
+	
+	<string name="note_details_title">Note Details</string>
+	<string name="rate_title">Rate</string>
+	<string name="results_title">Results</string>
+	<string name="settings_title">Settings</string>
+
+	<string name="graph_results_title">Graph Results</string>
+	<string name="view_notes_title">View Notes</string>
+	
+	<string name="feedback_title">Feedback</string>
+	<string name="tell_a_friend_title">Tell a Friend</string>
 
 	<string name="splash_intro">Press the \"Start\" button to begin.</string>
 	<string name="splash_start_button">Start</string>
 	<string name="splash_health_tip_label">Health Tip: </string>
+
+	<string name="security_title">Security</string>
+	<string name="security_desc">Force the use of a password when loading the app.</string>
+	<string name="security_enabled">Security Enabled</string>
+	<string name="security_pin">Pin</string>
+	<string name="question1">Question 1</string>
+	<string name="question2">Question 2</string>
+	<string name="answer1">Answer 1</string>
+	<string name="answer2">Answer 2</string>
+	<string name="forgot_pin">Forgot Pin</string>
 
 	<string name="main_intro_title">Welcome to the T2 Mood Tracker</string>
 	<string name="main_into_text">With this app you can rate your moods, keep track of how you’re feeling over time, figure out how life events, therapies and medications are affecting your well-being, and accurately communicate all of this to your health care provider or therapist should you choose to do so.</string>
@@ -39,7 +61,6 @@
 	<string name="form_help">Rating your mood is quick and easy.  Simply select a category you’d like to track.   If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
 	<string name="form_submit">See my results!</string>
 
-	<string name="results_title">Results</string>
 	<string name="results_desc">View graphs of your previous ratings</string>
 	<string name="results_help">Results of your ratings are always displayed by graphed lines. The RED line is made up of points representing the average of the ten ratings you made for each tracking category.  The individual ratings you made for each separate mood are displayed on top of the average line in different colors so you can compare your average rating with each individual rating.  For example, you can view the average of all ten ratings you made as you tracked “Depression” and you can view each of your ten individual ratings like “Happy-Sad”.  The lower your line on the X axis, the more “negative” your rating.  By moving the VERTICLE line on each graph with your finger you can see the dates of each recorded rating.  The small black squares at the top of the graph are Note Indicators and indicate the dates you made notes.  You can read your past notes by moving the vertical line to each Note Indicator and click the notes check in the upper right hand corner.</string>
 	<string name="results_choose_chart">Use the slider above to view a different chart.</string>
@@ -50,6 +71,7 @@
 
 	<string name="group_add_title">Add a custom category</string>
 	<string name="group_add_desc">Create a custom category to fit your needs. This new category will be available in the slider below.</string>
+	<string name="group_rename">Rename</string>
 
 	<string name="help_title">Help</string>
 	<string name="help_desc">Get additional information on how to use this app.</string>
@@ -79,15 +101,8 @@
 	<string name="lock_notes_now_desc">Force the notes screen require a password next time it is visited.</string>
 	<string name="notes_will_require_password">Notes will require a password next time it is accessed.</string>
 
-	<string name="clear_data_text">This will clear all the ratings you have provided for this category. Are you sure you would like to do this?</string>
-	<string name="clear_data_cleared_text">Ratings data has been clear for this category.</string>
+	
 
-	<string name="reminder_title">Reminder</string>
-	<string name="reminder_desc">Set a reminder to track your mood.</string>
-	<string name="remind_time_title">Reminder Time</string>
-	<string name="remind_time_desc">The time at which you will be reminded to rate your mood.</string>
-
-	<string name="settings_title">Settings</string>
 	<string name="settings_desc">Adjust how the app should operate.</string>
 	<string name="settings_notes_locked">Notes will require a password next time it is accessed.</string>
 
@@ -101,8 +116,12 @@
 	<string name="edit_category_desc">Change the name of this Category.</string>
 	<string name="manage_scales_title">Manage Scales.</string>
 	<string name="manage_scales_desc">List and modify this category\'s scales.</string>
-	<string name="clear_data_title">Clear Data</string>
-	<string name="clear_data_desc">Remove all the rating associated with this category.</string>
+	
+	<string name="clear_data_title">Clear Result Data</string>
+	<string name="clear_data_desc">Remove all the ratings associated with this category.</string>
+	<string name="clear_data_button">Clear Result Data</string>
+	<string name="clear_data_confirm">This will clear all the ratings data you have provided for the selected categories. Are you sure you would like to do this?</string>
+	<string name="clear_data_cleared_text">Ratings data has been clear for the selected categories.</string>
 
 	<string name="frequency_title">Frequency</string>
 	<string name="frequency_desc">How often would you like to be reminded to rate your mood?</string>
@@ -151,16 +170,18 @@
 	<string name="activity_group_saved">The category has been saved.</string>
 	<string name="activity_delete_group_message">Are you sure you would like to delete this category and all of its rating scales?</string>
 	<string name="activity_group_deleted">The category was deleted.</string>
-	<string name="activity_settings_group_editor">Category Editor</string>
-	<string name="activity_settings_group_editor_desc">Add a category or delete all data from any category.</string>
-	<string name="activity_group_immutable">This category and its rating scales cannot be modified.</string>
+	<string name="group_immutable_message">This category and its rating scales cannot be modified.</string>
+	
+	<string name="group_editor_title">Category Editor</string>
+	<string name="group_editor_desc">Add a category or delete all data from any category.</string>
 
 	<string name="activity_scale_list">Rating Scale</string>
 	<string name="activity_scale">Add/Edit Rating Scale</string>
 	<string name="activity_delete_scale">Delete Rating Scale</string>
     <string name="add_scale">Add Rating Scale</string>
+    <string name="edit_scale">Edit Rating Scale</string>
     <string name="activity_scale_gateway">Add Rating Scale</string>
-    <string name="activity_copy_scale">Copy a Rating Scale</string>
+    <string name="copy_scale">Copy a Rating Scale</string>
 	<string name="scale_saved">The rating scale has been saved.</string>
 	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
 	<string name="scale_deleted">The rating scale was deleted.</string>
@@ -170,8 +191,12 @@
 	<string name="activity_gateway_add_existing">Copy a Scale from an existing Category.</string>
 	<string name="activity_gateway_add_custom">Create a new scale.</string>
 
-    <string name="activity_reminder">Reminder</string>
-    <string name="activity_reminder_preference_desc">Set a reminder to track your mood.</string>
+    <string name="reminders_title">Reminder</string>
+    <string name="reminders_desc">Set a reminder to track your mood.</string>
+    
+	<string name="remind_time_title">Reminder Time</string>
+	<string name="remind_time_desc">The time at which you will be reminded to rate your mood.</string>
+    
     <string name="activity_reminder_next_form">Next Category</string>
     <string name="activity_reminder_finish">Finish</string>
 
@@ -187,10 +212,12 @@
 	<string name="notification_title">A category of rating scales needs to be taken.</string>
 	<string name="notification_text">You will be returned to your current activity when finished.</string>
 
-    <string name="activity_preference_general">General</string>
+    <string name="settings_general">General</string>
     <string name="activity_preference_security">Security</string>
     <string name="activity_preference_change_password">Change Password</string>
 
+	<string name="days_to_remind_title">Days to Remind</string>
+	<string name="days_to_remind_desc">The days of the week to remind.</string>
 
 	<string name="activity_startup_tips">Health Tip</string>
 	<string name="activity_startup_tips_show">Show Startup Tips</string>

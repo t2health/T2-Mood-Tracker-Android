@@ -7,7 +7,7 @@ import android.webkit.WebView;
 
 import com.t2.vas.R;
 
-public class WebViewActivity extends CustomTitle {
+public class WebViewActivity extends ABSNavigation {
 	public static final String EXTRA_TITLE = "title";
 	public static final String EXTRA_CONTENT = "content";
 	

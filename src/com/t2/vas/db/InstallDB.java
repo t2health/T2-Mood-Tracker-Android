@@ -11,12 +11,95 @@ import android.util.Log;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.GroupReminder;
+import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
 public class InstallDB {
 	private static final String TAG = InstallDB.class.getName();
 
+	public static void onCreate(DBAdapter dbAdapter, boolean generateFake) {
+		// Install the first group of scales
+		//boolean generateFake = Global.Database.CREATE_FAKE_DATA;
+		//Group group = (Group)dbAdapter.getTable("group");
+		//Scale scale = (Scale)dbAdapter.getTable("scale");
+		new Group(dbAdapter).empty();
+		new GroupReminder(dbAdapter).empty();
+		new Note(dbAdapter).empty();
+		new Result(dbAdapter).empty();
+		new Scale(dbAdapter).empty();
+
+		Resources res = dbAdapter.getContext().getResources();
+		createGroupAndScales(
+				dbAdapter,
+				res.getString(R.string.group1),
+				res.getStringArray(R.array.group1_min),
+				res.getStringArray(R.array.group1_max),
+				generateFake
+		);
+
+		createGroupAndScales(
+				dbAdapter,
+				res.getString(R.string.group2),
+				res.getStringArray(R.array.group2_min),
+				res.getStringArray(R.array.group2_max),
+				generateFake
+		);
+
+		createGroupAndScales(
+				dbAdapter,
+				res.getString(R.string.group3),
+				res.getStringArray(R.array.group3_min),
+				res.getStringArray(R.array.group3_max),
+				generateFake
+		);
+
+		/*createGroupAndScales(
+				dbAdapter,
+				res.getString(R.string.group4),
+				res.getStringArray(R.array.group4_min),
+				res.getStringArray(R.array.group4_max),
+				generateFake
+		);
+
+		createGroupAndScales(
+				dbAdapter,
+				res.getString(R.string.group5),
+				res.getStringArray(R.array.group5_min),
+				res.getStringArray(R.array.group5_max),
+				generateFake
+		);
+
+		createGroupAndScales(
+				dbAdapter,
+				res.getString(R.string.group6),
+				res.getStringArray(R.array.group6_min),
+				res.getStringArray(R.array.group6_max),
+				generateFake
+		);*/
+		
+		// Add a bunch of fake notes.
+		if(generateFake) {
+			Log.v(TAG, "Generating Notes");
+			int daysOfResults = 600;
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DAY_OF_YEAR, daysOfResults*-1);
+			
+			for(int i = 0; i < daysOfResults; ++i) {
+				cal.set(Calendar.HOUR_OF_DAY, i % 24);
+				cal.set(Calendar.MINUTE, i % 60);
+				
+				Note note = new Note(dbAdapter);
+				note.note = "Test Note "+i;
+				note.timestamp = cal.getTimeInMillis();
+				note.save();
+				
+				cal.add(Calendar.DAY_OF_YEAR, 1);
+			}
+		}
+	}
+	
 	private static ArrayList<Scale> createGroupAndScales(DBAdapter dbAdapter, String groupName, String[] minValues, String[] maxValues, boolean generateFake) {
 		ArrayList<Scale> scales = new ArrayList<Scale>();
 
@@ -51,89 +134,32 @@ public class InstallDB {
 		return scales;
 	}
 
-	public static void onCreate(DBAdapter dbAdapter) {
-
-		// Install the first group of scales
-		boolean generateFake = Global.Database.CREATE_FAKE_DATA;
-		Group group = (Group)dbAdapter.getTable("group");
-		Scale scale = (Scale)dbAdapter.getTable("scale");
-
-		Resources res = dbAdapter.getContext().getResources();
-		createGroupAndScales(
-				dbAdapter,
-				res.getString(R.string.group1),
-				res.getStringArray(R.array.group1_min),
-				res.getStringArray(R.array.group1_max),
-				generateFake
-		);
-
-		createGroupAndScales(
-				dbAdapter,
-				res.getString(R.string.group2),
-				res.getStringArray(R.array.group2_min),
-				res.getStringArray(R.array.group2_max),
-				generateFake
-		);
-
-		createGroupAndScales(
-				dbAdapter,
-				res.getString(R.string.group3),
-				res.getStringArray(R.array.group3_min),
-				res.getStringArray(R.array.group3_max),
-				generateFake
-		);
-
-		createGroupAndScales(
-				dbAdapter,
-				res.getString(R.string.group4),
-				res.getStringArray(R.array.group4_min),
-				res.getStringArray(R.array.group4_max),
-				generateFake
-		);
-
-		createGroupAndScales(
-				dbAdapter,
-				res.getString(R.string.group5),
-				res.getStringArray(R.array.group5_min),
-				res.getStringArray(R.array.group5_max),
-				generateFake
-		);
-
-		createGroupAndScales(
-				dbAdapter,
-				res.getString(R.string.group6),
-				res.getStringArray(R.array.group6_min),
-				res.getStringArray(R.array.group6_max),
-				generateFake
-		);
-	}
-
-	private static void generateFakeData(DBAdapter dbAdapter, ArrayList<Scale> scales) {
+	public static void generateFakeData(DBAdapter dbAdapter, ArrayList<Scale> scales) {
 		// Create bogus data for the generated scales
 		//Log.v(TAG, "Generating results");
 		Result result = ((Result)dbAdapter.getTable("result")).newInstance();
 		ContentValues c = new ContentValues();
-		int resultCount = 20;
+		int daysOfResults = 60;
 		Random rand = new Random();
 
-		boolean[] skipRecord = new boolean[resultCount];
+		boolean[] skipRecord = new boolean[daysOfResults];
 		for(int i = 0; i < skipRecord.length; i++) {
 			skipRecord[i] = false;
 		}
 
 		for(int i = 0; i < scales.size(); i++) {
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.DAY_OF_MONTH, (resultCount + 1)*-1);
+			cal.add(Calendar.DAY_OF_YEAR, (daysOfResults + 1)*-1);
 
 			Scale tmpScale = scales.get(i);
 			int prevValue = 50;
 
 			//Log.v(TAG, "Scale:"+tmpScale._id);
-			for(int j = 0; j < resultCount; j++) {
-				cal.add(Calendar.DAY_OF_MONTH, 1);
+			for(int j = 0; j < daysOfResults; j++) {
+				cal.add(Calendar.DAY_OF_YEAR, 1);
 
 				// Skip a day 10% of the time
-				if(skipRecord[j] || (j > 0 && j < resultCount-1 && rand.nextInt(11) < 2)) {
+				if(skipRecord[j] || (j > 0 && j < daysOfResults-1 && rand.nextInt(11) < 2)) {
 					if(i == 0) {
 						skipRecord[j] = true;
 					}

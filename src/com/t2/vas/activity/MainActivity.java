@@ -1,162 +1,184 @@
 package com.t2.vas.activity;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.t2.vas.ArraysExtra;
 import com.t2.vas.Global;
+import com.t2.vas.MathExtra;
 import com.t2.vas.R;
+import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.editor.GroupActivity;
+import com.t2.vas.activity.ABSResultsActivity.KeyItem;
+import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.activity.preference.Reminder;
+import com.t2.vas.data.GroupResultsDataProvider;
+import com.t2.vas.db.InstallDB;
 import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.Note;
+import com.t2.vas.view.SeparatedListAdapter;
 
-public class MainActivity extends CustomTitle implements OnItemClickListener {
+public class MainActivity extends ABSNavigation implements OnItemClickListener {
 	private static final String TAG = MainActivity.class.getName();
-	private ListView groupListView;
-	private Cursor groupListCursor;
-	private ListView mainCommandsList;
-
-	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Global.LONG_DATE_FORMAT);
-	private SimpleCursorAdapter groupListAdapter;
-	private boolean isFirstRun = true;
-	private ArrayList<HashMap<String, String>> mainItems;
+	private static final int HELP_SETTINGS_ITEM = 235;
 	
-	private static final int ITEM_REMINDER = 9587;
-	private static final int ITEM_NOTES = 9588;
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Global.NOTES_LONG_DATE_FORMAT);
+	private SimpleAdapter rateGroupListAdapter;
+	private ListView listView;
+	private SeparatedListAdapter listAdapter;
+
+	private GroupResultsDataProvider groupDataProvider;
+
+	private long todayStartTime;
+	private long todayEndTime;
+	private Cursor groupsCursor;
+	private ArrayList<HashMap<String, Object>> groupsDataList;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.main_activity);
+        // Init today's start and end times.
+        Calendar cal = Calendar.getInstance();
+        MathExtra.roundTime(cal, Calendar.DAY_OF_MONTH);
+        todayStartTime = cal.getTimeInMillis();
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        todayEndTime = cal.getTimeInMillis();
+        
+        groupDataProvider = new GroupResultsDataProvider(this.dbAdapter);
+        this.setContentView(R.layout.list_layout);
         VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
         
-        this.setExtraButtonImage(R.drawable.info_blue);
-        
-        this.findViewById(R.id.addGroupButton).setOnClickListener(this);
-        this.findViewById(R.id.showAllGroupsButton).setOnClickListener(this);
-        this.findViewById(R.id.hideSomeGroupsButton).setOnClickListener(this);
-        
-        // Init the groups and the show/hide buttons.
-        if(this.sharedPref.getBoolean("showAllGroupsInMain", false)) {
-        	this.showAllGroups();
-        } else {
-        	this.hideSomeGroups();
-        }
-        
-        
-        
-        
-        this.isFirstRun = this.sharedPref.getBoolean("isFirstRun", true);
-        
-        // Build the main items.
-        mainItems = new ArrayList<HashMap<String,String>>();
-        HashMap<String,String> mainItem;
-        
-        mainItem = new HashMap<String,String>();
-        mainItem.put("text1", this.getString(R.string.notes_list_title));
-        mainItem.put("text2", this.getString(R.string.notes_list_desc));
-        mainItem.put("action", "notes");
-        mainItems.add(mainItem);
-        
-        mainItem = new HashMap<String,String>();
-        mainItem.put("text1", this.getString(R.string.reminder_title));
-        mainItem.put("text2", this.getString(R.string.reminder_desc));
-        mainItem.put("action", "reminder");
-        mainItems.add(mainItem);
-        
-        mainItem = new HashMap<String,String>();
-        mainItem.put("text1", this.getString(R.string.introduction_title));
-        mainItem.put("text2", this.getString(R.string.introduction_desc));
-        mainItem.put("action", "intro");
-        mainItems.add(mainItem);
-        
-        
-        SimpleAdapter mainCommandsAdapter = new SimpleAdapter(
-        		this,
-        		mainItems,
-        		R.layout.list_item_2_indicator,
-        		new String[] {
-        				"text1",
-        				"text2",
-        		},
-        		new int[] {
-        				R.id.text1,
-        				R.id.text2,
-        		}
-        );
-        mainCommandsList = (ListView)this.findViewById(R.id.globalList);
-        mainCommandsList.setAdapter(mainCommandsAdapter);
-        mainCommandsList.setOnItemClickListener(this);
-        
+        this.setRightButtonText("Add Note");
         
         // Setup the group list adapter.
-        groupListAdapter = new SimpleCursorAdapter(
-        		this,
-        		R.layout.list_item_2_indicator,
-        		groupListCursor,
-        		new String[] {
-        				"title",
-        				"last_result",
-        		},
-        		new int[] {
-        				R.id.text1,
-        				R.id.text2,
-        		}
+        groupsDataList = new ArrayList<HashMap<String,Object>>();
+        updateGroupsDataList();
+        rateGroupListAdapter = new SimpleAdapter(
+        	this,
+        	groupsDataList,
+        	R.layout.list_item_1_image,
+        	new String[] {
+        			"title",
+        			"_id",
+        	},
+        	new int[] {
+        			R.id.text1,
+    				R.id.image1,
+        	}
         );
-        groupListAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+        rateGroupListAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
 			@Override
-			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				if(view.getId() == R.id.text2) {
-					long timestamp = cursor.getLong(columnIndex);
-					if(timestamp > 0) {
-						((TextView)view).setText(
-								simpleDateFormat.format(new Date(timestamp))
-						);
-					} else {
-						((TextView)view).setText(
-								getString(R.string.never)
-						);
-					}
+			public boolean setViewValue(View view, Object data,
+					String textRepresentation) {
+				
+				if(view.getId() == R.id.image1) {
+					long id = (Long)data;
+					LinkedHashMap<Long, Double> dataRes = groupDataProvider.getData(id, todayStartTime, todayEndTime);
+					ImageView imageView = (ImageView)view;
 					
+					if(dataRes != null && dataRes.size() > 0) {
+						imageView.setImageResource(R.drawable.check);
+					} else {
+						imageView.setImageResource(R.drawable.warning);
+					}
 					return true;
 				}
 				return false;
 			}
 		});
-        groupListView = (ListView) this.findViewById(R.id.groupList);
-        groupListView.setAdapter(groupListAdapter);
-        groupListView.setOnItemClickListener(this);
         
-        ((ScrollView)this.findViewById(R.id.scrollView)).scrollTo(0,0);
+        
+        listAdapter = new SeparatedListAdapter(this);
+        listAdapter.addSection(this.getString(R.string.rate_title), rateGroupListAdapter);
+        listAdapter.addSection(this.getString(R.string.results_title), new SimpleAdapter(
+        		this,
+        		this.getResultsItems(),
+        		R.layout.list_item_1_image,
+        		new String[] {
+        			"text1",
+        			"image1",
+        		},
+        		new int[] {
+        			R.id.text1,
+        			R.id.image1,
+        		}
+        ));
+        listAdapter.addSection(this.getString(R.string.settings_title), new SimpleAdapter(
+        		this,
+        		this.getSettingsItems(),
+        		R.layout.list_item_1_image,
+        		new String[] {
+        				"text1",
+        				//"image1",
+        		},
+        		new int[] {
+        				R.id.text1,
+        				//R.id.image1,
+        		}
+        ));
+        
+        listView = (ListView)this.findViewById(R.id.list);
+        listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(this);
 	}
 	
-	
+	private void updateGroupsDataList() {
+		groupsDataList.clear();
+		
+		List<Long> hiddenGids = SharedPref.getHiddenGroups(sharedPref);
+		
+		Cursor cursor = new Group(this.dbAdapter).getGroupsWithScalesCursor();
+		while(cursor.moveToNext()) {
+			Group group = new Group(dbAdapter);
+			group.load(cursor);
+			
+			HashMap<String,Object> data = new HashMap<String,Object>();
+			data.put("_id", group._id);
+			data.put("title", group.title);
+			
+			if(!hiddenGids.contains(group._id)) {
+				groupsDataList.add(data);
+			}
+		}
+		cursor.close();
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuItem mi1 = menu.add(Menu.NONE, ITEM_REMINDER, Menu.NONE, R.string.reminder_title);
-		mi1.setIcon(R.drawable.reminder_default);
-		
-		MenuItem mi2 = menu.add(Menu.NONE, ITEM_NOTES, Menu.NONE, R.string.notes_title);
-		mi2.setIcon(R.drawable.notes_default);
+		MenuItem mi = menu.add(Menu.NONE, HELP_SETTINGS_ITEM, Menu.NONE, R.string.settings_title);
+		mi.setIcon(R.drawable.settings_default);
 		
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -165,150 +187,242 @@ public class MainActivity extends CustomTitle implements OnItemClickListener {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent i;
-		
 		switch(item.getItemId()) {
-			case ITEM_REMINDER:
-				i = new Intent(this, Reminder.class);
-				i.putExtra(CustomTitle.EXTRA_BACK_BUTTON_TEXT, "Main");
-				this.startActivity(i);
-				return true;
-				
-			case ITEM_NOTES:
-				i = new Intent();
-				i.setAction("com.t2.vas.NotesList");
-				i.putExtra(CustomTitle.EXTRA_BACK_BUTTON_TEXT, "Main");
-				this.startActivity(i);
-				return true;
-		
-			default:
-				return super.onOptionsItemSelected(item);
+		case HELP_SETTINGS_ITEM:
+			startSettingsActivity();
 		}
-		
-		
+		return super.onOptionsItemSelected(item);
 	}
 
-
-
-	public void showAllGroups() {
-		this.findViewById(R.id.showAllGroupsButton).setVisibility(View.GONE);
-    	this.findViewById(R.id.hideSomeGroupsButton).setVisibility(View.VISIBLE);
-    	
-    	if(groupListCursor != null) {
-    		this.stopManagingCursor(groupListCursor);
-    		groupListCursor.close();
-    	}
-    	
-    	groupListCursor = new Group(this.dbAdapter).getAllGroupsOrderByLastResultCursor();
-    	this.startManagingCursor(groupListCursor);
-    	if(this.groupListAdapter != null) {
-    		this.groupListAdapter.changeCursor(groupListCursor);
-    		this.groupListAdapter.notifyDataSetChanged();
-    	}
-	}
-	
-	public void hideSomeGroups() {
-		this.findViewById(R.id.showAllGroupsButton).setVisibility(View.VISIBLE);
-    	this.findViewById(R.id.hideSomeGroupsButton).setVisibility(View.GONE);
-    	
-    	if(groupListCursor != null) {
-    		this.stopManagingCursor(groupListCursor);
-    		groupListCursor.close();
-    	}
-    	
-    	groupListCursor = new Group(this.dbAdapter).getVisibleGroupsOrderByLastResultCursor();
-    	this.startManagingCursor(groupListCursor);
-    	if(this.groupListAdapter != null) {
-    		this.groupListAdapter.changeCursor(groupListCursor);
-    		this.groupListAdapter.notifyDataSetChanged();
-    	}
-	}
-	
-	@Override
-	public void onExtraButtonPressed() {
-		//startSettingsActivity();
-		this.getWindow().openPanel(Window.FEATURE_OPTIONS_PANEL, new KeyEvent 
-				(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU)); 
-	}
-
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		if(arg0 == groupListView) {
-			startGroupDetailsActivity(arg3, false);
-			
-		} else if(arg0 == mainCommandsList) {
-			HashMap<String, String> data = mainItems.get(arg2);
-			if(data.get("action").equals("intro")) {
-				Intent i = new Intent(this, WebViewActivity.class);
-				i.putExtra(WebViewActivity.EXTRA_TITLE, getString(R.string.introduction_title));
-				i.putExtra(WebViewActivity.EXTRA_CONTENT, getString(R.string.introduction_content));
-				i.putExtra(CustomTitle.EXTRA_BACK_BUTTON_TEXT, "Main");
-				i.putExtra("groupId", arg3);
-				this.startActivity(i);
-				
-			} else if(data.get("action").equals("reminder")) {
-				Intent i = new Intent(this, Reminder.class);
-				i.putExtra(CustomTitle.EXTRA_BACK_BUTTON_TEXT, "Main");
-				this.startActivity(i);
-				
-			} else if(data.get("action").equals("notes")) {
-				Intent i = new Intent();
-				i.setAction("com.t2.vas.NotesList");
-				i.putExtra(CustomTitle.EXTRA_BACK_BUTTON_TEXT, "Main");
-				i.putExtra("groupId", arg3);
-				this.startActivity(i);
-			}
-		}
-	}
-	
-	private void startGroupDetailsActivity(long id, boolean startAddScales) {
-		Intent i = new Intent(this, GroupDetails.class);
-		i.putExtra(CustomTitle.EXTRA_BACK_BUTTON_TEXT, "Main");
-		i.putExtra(GroupDetails.EXTRA_GROUP_ID, id);
-		i.putExtra(GroupDetails.EXTRA_START_SCALES, startAddScales);
-		this.startActivityForResult(i, GROUP_DETAILS_ACTIVITY);
-	}
-
-	@Override
-	public void onClick(View v) {
-		Intent i;
-		switch(v.getId()) {
-			case R.id.addGroupButton:
-				i = new Intent(this, GroupActivity.class);
-				this.startActivityForResult(i, ADD_GROUP_ACTIVITY);
-				return;
-				
-			case R.id.showAllGroupsButton:
-				this.showAllGroups();
-				return;
-				
-			case R.id.hideSomeGroupsButton:
-				this.hideSomeGroups();
-				return;
-		}
-		
-		super.onClick(v);
+	protected void startSettingsActivity() {
+		Intent i = new Intent(this, MainPreferenceActivity.class);
+		i.putExtra(MainPreferenceActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+		this.startActivityForResult(i, 123);
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		groupListCursor.requery();
-		groupListAdapter.notifyDataSetChanged();
-		
-		if(requestCode == ADD_GROUP_ACTIVITY) {
-			if(data != null) {
-				long groupId = data.getLongExtra(GroupActivity.EXTRA_GROUP_ID, 0);
-				if(groupId > 0) {
-					startGroupDetailsActivity(groupId, true);
-				}
-			}
-			return;
-		}
-		
 		super.onActivityResult(requestCode, resultCode, data);
+		
+		updateGroupsDataList();
+		listAdapter.notifyDataSetChanged();
+		
+		if(requestCode == FORM_ACTIVITY || requestCode == NOTE_ACTIVITY) {
+			if(isNoteNecessaryForToday()) {
+				notifyNoteIsNecessary();
+			}
+		}
 	}
 
+	private void notifyNoteIsNecessary() {
+		Toast toast = Toast.makeText(this, "Your results are a little unusual today, please consider entering a note.", Toast.LENGTH_LONG);
+		toast.show();
+		
+		this.getRightButton().startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse_animation));
+		this.getRightButton().setPressed(true);
+	}
 
+	private boolean isNoteNecessaryForToday() {
+		Cursor cursor;
+		Calendar startCal = Calendar.getInstance();
+		MathExtra.roundTime(startCal, Calendar.DAY_OF_MONTH);
+		
+		Calendar startCalPast = Calendar.getInstance();
+		startCalPast.setTimeInMillis(startCal.getTimeInMillis());
+		startCalPast.add(Calendar.MONTH, -1);
+		
+		Calendar endCal = Calendar.getInstance();
+		endCal.setTimeInMillis(startCal.getTimeInMillis());
+		endCal.add(Calendar.DAY_OF_MONTH, 1);
+		
+		long startTime = startCal.getTimeInMillis();
+		long startTimePast = startCalPast.getTimeInMillis();
+		long endTime = endCal.getTimeInMillis();
+		
+		cursor = new Note(this.dbAdapter).queryForNotes(startTime, endTime, null);
+		int notesCount = cursor.getCount();
+		cursor.close();
+		
+		if(notesCount > 0) {
+			Log.v(TAG, "Notes exist for today.");
+			return false;
+		}
+		
+		cursor = new Group(this.dbAdapter).getGroupsCursor();
+		int colIndex = cursor.getColumnIndex("_id"); 
+		while(cursor.moveToNext()) {
+			long id = cursor.getLong(colIndex);
+			double mostRecentVal = -1;
+			
+			Collection<Double> vals = groupDataProvider.getData(id, startTime, endTime).values();
+			Double[] valsArr = vals.toArray(new Double[vals.size()]);
+			if(valsArr.length > 0 && valsArr[0] != null) {
+				mostRecentVal = valsArr[0];
+			}
+			
+			if(mostRecentVal < 0) {
+				continue;
+			}
+			
+			Collection<Double> values = groupDataProvider.getData(
+					id, 
+					startTimePast, 
+					endTime
+			).values();
+			
+			double[] doubleValues = ArraysExtra.toArray(
+					values.toArray(new Double[values.size()])
+			);
+			
+			double stdDev = MathExtra.stdDev(doubleValues);
+			double mean = MathExtra.mean(doubleValues);
+			double high = mean + stdDev;
+			double low = mean - stdDev;
+			
+			if(mostRecentVal > high || mostRecentVal < low) {
+				cursor.close();
+				return true;
+			}
+		}
+		cursor.close();
+		
+		return false;
+	}
+
+	private ArrayList<HashMap<String,Object>> getResultsItems() {
+		ArrayList<HashMap<String,Object>> items = new ArrayList<HashMap<String,Object>>();
+        HashMap<String,Object> item;
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.graph_results_title));
+        item.put("image1", R.drawable.linechart);
+        item.put("id", "graph_results");
+        items.add(item);
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.view_notes_title));
+        item.put("image1", R.drawable.notes);
+        item.put("id", "view_notes");
+        items.add(item);
+        
+        return items;
+	}
+	
+	private ArrayList<HashMap<String,Object>> getSettingsItems() {
+		ArrayList<HashMap<String,Object>> items = new ArrayList<HashMap<String,Object>>();
+        HashMap<String,Object> item;
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.about_title));
+        item.put("id", "about");
+        items.add(item);
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.feedback_title));
+        item.put("id", "feedback");
+        items.add(item);
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.help_title));
+        item.put("id", "help");
+        items.add(item);
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.settings_title));
+        item.put("id", "settings");
+        items.add(item);
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.tell_a_friend_title));
+        item.put("id", "tell_a_friend");
+        items.add(item);
+        
+        item = new HashMap<String,Object>();
+        item.put("text1", "Regenerate Data and Close");
+        item.put("id", "regenerate_data");
+        items.add(item);
+        
+        return items;
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		HashMap<String,Object> data = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
+		Adapter adapter = listAdapter.getAdapterForItem(arg2);
+		
+		if(adapter == rateGroupListAdapter) {
+			//startGroupFormActivity(adapter.getItemId(arg2-1));
+			startGroupFormActivity((Long)data.get("_id"));
+		} else {
+			String itemId = (String) data.get("id");
+			
+			if(itemId.equals("graph_results")) {
+				Intent i = new Intent(this, GroupResultsActivity.class);
+				i.putExtra(GroupResultsActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+				this.startActivityForResult(i, 123);
+				
+			} else if(itemId.equals("view_notes")) {
+				Intent i = new Intent(this, NotesList.class);
+				i.putExtra(NotesList.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+				this.startActivityForResult(i, 123);
+				return;
+				
+			} else if(itemId.equals("about")) {
+				Intent i = new Intent(this, WebViewActivity.class);
+				i.putExtra(WebViewActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+				i.putExtra(WebViewActivity.EXTRA_TITLE_ID, R.string.about_title);
+				i.putExtra(WebViewActivity.EXTRA_CONTENT_ID, R.string.about_text);
+				this.startActivityForResult(i, 123);
+				
+			} else if(itemId.equals("feedback")) {
+				Intent i = new Intent(android.content.Intent.ACTION_SEND);
+				i.setType("plain/text");
+				i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"robbie.vangorkom@tee2.org"});
+				i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Mood Tracker Feedback");
+				i.putExtra(android.content.Intent.EXTRA_TEXT, "The inital text for the email.");
+				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.feedback_title)), 123);
+				
+			} else if(itemId.equals("help")) {
+				Intent i = new Intent(this, WebViewActivity.class);
+				i.putExtra(WebViewActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+				i.putExtra(WebViewActivity.EXTRA_TITLE_ID, R.string.help_title);
+				i.putExtra(WebViewActivity.EXTRA_CONTENT_ID, R.string.help_desc);
+				this.startActivityForResult(i, 123);
+				
+			} else if(itemId.equals("settings")) {
+				startSettingsActivity();
+				return;
+				
+			} else if(itemId.equals("tell_a_friend")) {
+				Intent i = new Intent(android.content.Intent.ACTION_SEND);
+				i.setType("plain/text");
+				i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Mood Tracker");
+				i.putExtra(android.content.Intent.EXTRA_TEXT, "Check out this really cool app.");
+				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.feedback_title)), 123);
+			
+			} else if(itemId.equals("regenerate_data")) {
+				InstallDB.onCreate(dbAdapter, true);
+				
+				this.finish();
+			}
+		}
+	}
+	
+	
+	
+	@Override
+	protected void onRightButtonPresed() {
+		Intent i = new Intent(this, AddEditNoteActivity.class);
+		i.putExtra(AddEditNoteActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+		this.startActivityForResult(i, NOTE_ACTIVITY);
+	}
+
+	private void startGroupFormActivity(long id) {
+		Intent i = new Intent(this, FormActivity.class);
+		i.putExtra(FormActivity.EXTRA_GROUP_ID, id);
+		i.putExtra(FormActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+		this.startActivityForResult(i, FORM_ACTIVITY);
+	}
 
 	@Override
 	public int getHelpResId() {

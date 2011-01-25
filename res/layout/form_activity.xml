@@ -11,8 +11,8 @@
 	    	android:id="@+id/list"
 	    	android:layout_width="fill_parent"
 	    	android:layout_height="wrap_content"
-	    	android:cacheColorHint="#00000000"
-	    	android:background="#00000000" />
+			android:dividerHeight="0dip"
+			android:divider="#00000000" />
 	    	<!-- cacheColorHint make the list background transparent while scrolling. -->
 
 </FrameLayout>

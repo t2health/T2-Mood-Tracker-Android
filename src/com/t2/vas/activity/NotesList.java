@@ -5,12 +5,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -18,172 +20,64 @@ import android.widget.Toast;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.activity.preference.MainPreferenceActivity;
+import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Note;
+import com.t2.vas.view.SimpleCursorDateSectionAdapter;
 
-public class NotesList extends CustomTitle implements OnItemClickListener {
-	private static final int NOTE_ACTIVITY = 97;
-	private static final int PASSWORD_PROMPT = 98;
-	
+public class NotesList extends ABSNavigation implements OnItemClickListener {
 	private static final String TAG = NotesList.class.getSimpleName();
 	
-	private Cursor notesCursor;
-	private SimpleCursorAdapter notesAdapter;
+	private static final int NOTE_ACTIVITY = 97;
+	
+	private SimpleCursorDateSectionAdapter notesAdapter;
 	private ListView notesListView;
-	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Global.LONG_DATE_FORMAT);
-	private Toast notesUnlockToast;
+
+	private Cursor notesCursor;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		this.setContentView(R.layout.notes_list);
+		this.setContentView(R.layout.list_layout);
 		
-		this.setExtraButtonImage(R.drawable.add_blue);
-		notesUnlockToast = Toast.makeText(this, R.string.notes_unlocked, Toast.LENGTH_LONG);
+		this.setRightButtonImage(R.drawable.add_default);
+		
+		notesCursor = new Note(dbAdapter).queryForNotes(-1, -1, "timestamp DESC");
+		this.startManagingCursor(notesCursor);
+		notesAdapter = SimpleCursorDateSectionAdapter.buildNotesAdapter(
+				this, 
+				notesCursor,
+				new SimpleDateFormat(Global.NOTES_LONG_DATE_FORMAT),
+				new SimpleDateFormat(Global.NOTES_SECTION_DATE_FORMAT)
+		);
 		
 		notesListView = (ListView)this.findViewById(R.id.list);
-		notesListView.setEmptyView(findViewById(R.id.empty_list));
+		notesListView.setAdapter(notesAdapter);
+		//notesListView.setEmptyView(findViewById(R.id.empty_list));
 		notesListView.setOnItemClickListener(this);
 	}
 	
 	@Override
-	protected void onResume() {
-		super.onResume();
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		
-		Calendar cal = Calendar.getInstance();
-		long nowTime = cal.getTimeInMillis();
-		long relockTime = sharedPref.getLong("notes_relock_time", nowTime);
-		if(sharedPref.getBoolean("password_protect_notes", false) && relockTime <= nowTime) {
-			showPasswordPrompt();
-		} else {
-			this.initInterface();
-		}
+		notesCursor.requery();
+		notesAdapter.notifyDataSetChanged();
 	}
-	
+
 	@Override
-	public void onExtraButtonPressed() {
-		Intent i = new Intent(this, NoteActivity.class);
+	public void onRightButtonPresed() {
+		Intent i = new Intent(this, AddEditNoteActivity.class);
+		i.putExtra(AddEditNoteActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 		this.startActivityForResult(i, NOTE_ACTIVITY);
-	}
-
-	private void showPasswordPrompt() {
-		String notesPassword = sharedPref.getString("notes_password", null);
-
-		Intent i = new Intent(this, PasswordActivity.class);
-		i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-		i.putExtra("mode", PasswordActivity.MODE_UNLOCK);
-		i.putExtra("current_password", notesPassword);
-		this.startActivityForResult(i, PASSWORD_PROMPT);
-	}
-	
-	
-	
-
-
-	private void initInterface() {
-		Intent intent = this.getIntent();
-		long startTimestamp = intent.getLongExtra("start_timestamp", -1);
-		long endTimestamp = intent.getLongExtra("end_timestamp", -1);
-		
-		// Init global main variables.
-		
-		notesCursor = new Note(dbAdapter).queryForNotes(-1, -1, "timestamp DESC");
-		startManagingCursor(notesCursor);
-		
-		// Figure out where to focus the list.
-		int listStartPosition = 0;
-		while(notesCursor.moveToNext()) {
-			long ts = notesCursor.getLong(notesCursor.getColumnIndex("timestamp"));
-			if(ts >= startTimestamp) {
-				listStartPosition = notesCursor.getPosition();
-			}
-		}
-		if(listStartPosition < 0) {
-			listStartPosition = 0;
-		}
-		notesCursor.moveToFirst();
-		
-		
-		notesAdapter = new SimpleCursorAdapter(
-				this,
-				R.layout.list_item_2,
-				notesCursor,
-				new String[] {
-    				"note",
-        			"timestamp"
-        		},
-        		new int[] {
-        			R.id.text1,
-        			R.id.text2
-        		}
-		);
-		notesAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
-			@Override
-			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				if(view.getId() == R.id.text2) {
-					long timestamp = cursor.getLong(columnIndex);
-					if(timestamp > 0) {
-						((TextView)view).setText(
-								simpleDateFormat.format(new Date(timestamp))
-						);
-					} else {
-						((TextView)view).setText(
-								getString(R.string.never)
-						);
-					}
-					
-					return true;
-				}
-				return false;
-			}
-		});
-		
-		notesListView.setAdapter(notesAdapter);
-		notesListView.setSelection(listStartPosition);
-	}
-	
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data){
-		switch(requestCode) {
-			case NOTE_ACTIVITY:
-				notesCursor.requery();
-				notesAdapter.notifyDataSetChanged();
-				/*long noteId = -1;
-				if(data != null) {
-					noteId = data.getLongExtra("noteId", -1);
-				}
-
-				this.notesAdapter.getCursor().requery();
-				this.notesAdapter.notifyDataSetChanged();
-
-				// Select the note
-				if(noteId >= 0) {
-					this.selectNote(noteId);
-				}*/
-				break;
-
-			case PASSWORD_PROMPT:
-				if(resultCode == Activity.RESULT_OK) {
-					initInterface();
-
-					// Do not require a password to view notes for 1 hour.
-					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.HOUR, 1);
-					this.sharedPref.edit().putLong("notes_relock_time", cal.getTimeInMillis()).commit();
-
-					notesUnlockToast.show();
-				} else {
-					this.finish();
-					return;
-				}
-		}
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Intent i = new Intent(this, NoteActivity.class);
-		i.putExtra(NoteActivity.EXTRA_NOTE_ID, arg3);
+		Intent i = new Intent(this, AddEditNoteActivity.class);
+		i.putExtra(AddEditNoteActivity.EXTRA_NOTE_ID, arg3);
+		i.putExtra(AddEditNoteActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 		this.startActivityForResult(i, 123);
 	}
 }

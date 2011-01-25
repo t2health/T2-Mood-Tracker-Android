@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.t2.vas.Global;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.GroupReminder;
 import com.t2.vas.db.tables.Note;
@@ -84,7 +85,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 		}
 		
 		// Install the base and test data
-		InstallDB.onCreate(this);
+		InstallDB.onCreate(this, Global.Database.CREATE_FAKE_DATA);
 	}
 
 	@Override
