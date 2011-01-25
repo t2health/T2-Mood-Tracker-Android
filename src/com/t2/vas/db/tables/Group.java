@@ -80,11 +80,6 @@ public class Group extends Table {
 		cv.put("group_id", this._id);
 		r.delete(cv);
 
-		GroupReminder gr = (GroupReminder)this.dbAdapter.getTable("groupreminder");
-		cv = new ContentValues();
-		cv.put("group_id", this._id);
-		gr.delete(cv);
-
 		return super.delete();
 	}
 
@@ -288,23 +283,6 @@ public class Group extends Table {
 		c.close();
 
 		return scales;
-	}
-
-	public GroupReminder getReminder() {
-		GroupReminder gr = ((GroupReminder)this.dbAdapter.getTable("groupreminder")).newInstance();
-		gr.group_id = this._id;
-		gr.remind_mode = GroupReminder.REMIND_NEVER;
-
-		ContentValues whereConditions = new ContentValues();
-		whereConditions.put("group_id", this._id);
-
-		Cursor c = gr.select(whereConditions);
-		if(c.moveToNext()) {
-			gr.load(c);
-		}
-		c.close();
-
-		return gr;
 	}
 
 	public long getLatestResultTimestamp() {

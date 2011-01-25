@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.PasswordActivity;
 import com.t2.vas.activity.editor.GroupListActivity;
 
 public class MainPreferenceActivity extends ABSPreferenceNavigation implements OnPreferenceClickListener, OnPreferenceChangeListener {
@@ -90,35 +89,7 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 		String current_password = sharedPref.getString("notes_password", null);
 //		Log.v(TAG, "Current password:"+current_password);
 
-		if(preference.getKey().equals("password_protect_notes")) {
-			Boolean isChecked = (Boolean)newValue;
-
-			// Enabling password protection
-			if(isChecked) {
-				Log.v(TAG, "Checked, set a new password.");
-
-				// If password is not set, set one.
-				Intent i = new Intent(this, PasswordActivity.class);
-				i.putExtra("mode", PasswordActivity.MODE_SET);
-				i.putExtra("current_password", current_password);
-				this.startActivityForResult(i, REQUEST_PASSWORD_SET);
-				return false;
-
-			// Disabling password protection.
-			} else {
-
-				// Currently password protecting. prompt for current password.
-				if(current_password != null) {
-					Intent i = new Intent(this, PasswordActivity.class);
-					i.putExtra("mode", PasswordActivity.MODE_UNLOCK);
-					i.putExtra("current_password", current_password);
-					this.startActivityForResult(i, REQUEST_PASSWORD_UNSET);
-					return false;
-				}
-			}
-			
-		// Enable/disable analytics.
-		} else if(preference.getKey().equals("send_anon_data")) {
+		if(preference.getKey().equals("send_anon_data")) {
 			Boolean isChecked = (Boolean)newValue;
 			if(isChecked) {
 				VASAnalytics.setEnabled(true);

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CustomGallery">
-        <item name="android:fadingEdge">horizontal</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:spacing">0dip</item>
-        <item name="android:unselectedAlpha">1.0</item>
-        <item name="android:background">#FF006677</item>
-    </style>
-
 	<style name="VASSeekBar">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/progress_bar_horizontal</item>
@@ -19,12 +11,6 @@
         <item name="android:focusable">true</item>
 	</style>
 	
-	<style name="textAppearanceSectionHeader" parent="@android:style/TextAppearance.Medium">
-		<item name="android:textStyle">bold</item>
-		<item name="android:textColor">#FFFFFFFF</item>
-		<item name="android:gravity">center_vertical</item>
-	</style>
-	
 	<style name="TextAppearance.WindowTitle" parent="@android:style/TextAppearance.Medium">
 		<item name="android:textColor">#FFFFFFFF</item>
 		<item name="android:textStyle">bold</item>
@@ -32,12 +18,7 @@
 	</style>
 	
     <style name="Widget.ListView" parent="@android:style/Widget.ListView">
-    	<!-- <item name="android:background">@color/translucentLight</item>-->
     	<item name="android:cacheColorHint">#00000000</item>
-    	<!-- <item name="android:divider">#00000000</item>-->
-        <!-- <item name="android:listSelector">@android:drawable/list_selector_background</item>
-        <item name="android:cacheColorHint">?android:attr/colorBackgroundCacheHint</item>
-        <item name="android:divider">@android:drawable/divider_horizontal_dark_opaque</item> -->
     </style>
     
     <style name="WindowTitleBackground" parent="@android:style/WindowTitleBackground">

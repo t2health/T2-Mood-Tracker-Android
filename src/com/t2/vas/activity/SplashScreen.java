@@ -21,22 +21,16 @@ public class SplashScreen extends ABSActivity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-//		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		
 		// Start the reminder service if we need to.
 		ReminderService.startRunning(this);
-		
 		
 		this.setContentView(R.layout.splash_screen);
 		VASAnalytics.onEvent(VASAnalytics.EVENT_SPLASH_ACTIVITY);
 		this.findViewById(R.id.nextButton).setOnClickListener(this);
 
-		
-
 		VASAnalytics.init(Global.ANALYTICS_KEY, this.sharedPref.getBoolean("send_anon_data", true));
 		VASAnalytics.setEnabled(!Global.DEV_MODE);
 		VASAnalytics.setDebugEnabled(true);
-		ReminderServiceActivity.cancelReminderNotification(this);
 
 		Toast toast = Toast.makeText(this, R.string.splash_intro, Toast.LENGTH_LONG);
 		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -64,7 +58,5 @@ public class SplashScreen extends ABSActivity implements OnClickListener {
 				this.finish();
 				return;
 		}
-
-		super.onClick(arg0);
 	}
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import com.t2.vas.R;
 import com.t2.vas.activity.ABSNavigation;
 import com.t2.vas.db.tables.Group;
 
-public class ClearData extends ABSNavigation implements OnItemClickListener {
+public class ClearData extends ABSNavigation implements OnItemClickListener, OnClickListener {
 	private static final String TAG = ClearData.class.getSimpleName();
 	private ListView list;
 	private Button clearButton;
@@ -65,7 +66,6 @@ public class ClearData extends ABSNavigation implements OnItemClickListener {
 				onClearButtonPressed();
 				return;
 		}
-		super.onClick(v);
 	}
 	
 	private void clearData() {

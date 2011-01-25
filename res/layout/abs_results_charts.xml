@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:background="@color/chart_gradient_end">
+	
+	<FrameLayout
+		android:id="@+id/chartContainer"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0"
+		android:background="@drawable/chart_background">
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:gravity="center"
+			android:text="Toggle a key button below to see some charts."
+			android:textColor="@color/chart_text" />
+		<ViewSwitcher
+			android:id="@+id/chartSwitcher"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@drawable/chart_background">
+		</ViewSwitcher>
+	</FrameLayout>
+		
+	<!-- The month selector -->
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		
+		<Button
+			android:id="@+id/monthMinusButton"
+			android:layout_width="48dip"
+			android:layout_height="48dip"
+			android:text="-" />
+			
+		<TextView
+			android:id="@+id/monthName"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:text="Month Name"
+			android:textColor="@color/chart_text" />
+			
+		<Button
+			android:id="@+id/monthPlusButton"
+			android:layout_width="48dip"
+			android:layout_height="48dip"
+			android:text="+" />			
+	</LinearLayout>
+</LinearLayout>

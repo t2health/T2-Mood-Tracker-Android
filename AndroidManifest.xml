@@ -28,7 +28,7 @@
         <!-- <activity
         	android:label="@string/app_name"
         	android:name=".activity.SplashScreen"
-    		android:theme="@style/CustomTheme2NoTitle">
+    		android:theme="@style/CustomTheme">
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
         	android:launchMode="singleTop"
         	android:name=".activity.MainActivity"
         	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme2">
+    		android:theme="@style/CustomTheme">
 
         	<intent-filter>
         		<action android:name="com.t2.vas.MainActivity" />
@@ -57,23 +57,7 @@
         	android:launchMode="singleTop"
         	android:name=".activity.WebViewActivity"
         	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme2">
-        </activity>
-        
-        <activity
-        	android:label="@string/group_details_title"
-        	android:launchMode="singleTop"
-        	android:name=".activity.GroupDetails"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme2">
-        </activity>
-        
-        <activity
-        	android:label="@string/share_title"
-        	android:launchMode="singleTop"
-        	android:name=".activity.ShareActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme2">
+    		android:theme="@style/CustomTheme">
         </activity>
         
         <activity
@@ -81,12 +65,7 @@
         	android:launchMode="singleTop"
         	android:name=".activity.NotesList"
         	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme2">
-    		
-    		<intent-filter>
-	    		<action android:name="com.t2.vas.NotesList" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
+    		android:theme="@style/CustomTheme">
         </activity>
 
 	    <activity
@@ -94,7 +73,7 @@
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.FormActivity"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2">
+	    	android:theme="@style/CustomTheme">
 	   	</activity>
 
 	   	<activity
@@ -102,67 +81,39 @@
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.GroupResultsActivity"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2">
+	    	android:theme="@style/CustomTheme">
 	   	</activity>
 	   	<activity
 	    	android:label="@string/results_title"
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.ScaleResultsActivity"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2">
+	    	android:theme="@style/CustomTheme">
 	   	</activity>
-
-
-	   	<!-- <activity
-	    	android:name=".activity.ReminderServiceActivity"
-	    	android:label="@string/activity_reminder"
-	    	android:excludeFromRecents="true"
-	    	android:launchMode="singleTop">
-	   	</activity>-->
 
 	   	<activity
 	    	android:name=".activity.Unlock"
 	    	android:label="@string/security_title"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2"
+	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.ForgotPin"
 	    	android:label="@string/forgot_pin"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2"
+	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
 
 	   	<!-- Notes Activities -->
-	   	<!-- <activity
-	    	android:name=".activity.NotesList"
-	    	android:label="@string/notes_list_title"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2Dialog"
-	    	android:launchMode="singleTop">
-	    	
-	    	<intent-filter>
-	    		<action android:name="com.t2.vas.NotesListDialog" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-	   	</activity> -->
 	   	<activity
 	    	android:name=".activity.AddEditNoteActivity"
 	    	android:label="@string/add_edit_note_title"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2"
+	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
-	   	<activity
-	    	android:name=".activity.DeleteNoteActivity"
-	    	android:label="@string/delete_note_title"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop">
-	   	</activity>
-
 
 
 	    <activity
@@ -170,14 +121,14 @@
 	    	android:name=".activity.preference.MainPreferenceActivity"
 	    	android:label="@string/settings_title"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2">
+	    	android:theme="@style/CustomTheme">
 	   	</activity>
 
 	    <activity
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.preference.Reminder"
 	    	android:label="@string/reminders_title"
-	    	android:theme="@style/CustomTheme2"
+	    	android:theme="@style/CustomTheme"
 	    	android:excludeFromRecents="true">
 	   	</activity>
 	   	
@@ -185,7 +136,7 @@
 	    	android:launchMode="singleTop"
 	    	android:name=".activity.preference.Security"
 	    	android:label="@string/security_title"
-	    	android:theme="@style/CustomTheme2"
+	    	android:theme="@style/CustomTheme"
 	    	android:excludeFromRecents="true">
 	   	</activity>
 	   	
@@ -194,7 +145,7 @@
 	    	android:label="@string/clear_data_title"
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"
-    		android:theme="@style/CustomTheme2">
+    		android:theme="@style/CustomTheme">
 	   	</activity>
 
 	   	<!-- Group Editor Activities -->
@@ -202,72 +153,20 @@
 	    	android:name=".activity.editor.GroupListActivity"
 	    	android:label="@string/activity_group"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2"
+	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.editor.GroupActivity"
 	    	android:label="@string/activity_group"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme2"
-	    	android:launchMode="singleTop">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.editor.AddEditGroupActivity"
-	    	android:label="@string/activity_group"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.editor.DeleteGroupActivity"
-	    	android:label="@string/activity_delete_group"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop">
-
-    		<intent-filter>
-	    		<action android:name="com.t2.vas.editor.DeleteGroupActivity" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-	   	</activity>
-
-	   	<!-- Scale Editor Activities -->
-	   	<activity
-	    	android:name=".activity.editor.ScaleListActivity"
-	    	android:label="@string/activity_scale_list"
-	    	android:excludeFromRecents="true"
-	    	android:launchMode="singleTask"
-	    	android:theme="@style/CustomTheme2">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.editor.AddScaleGateway"
-	    	android:label="@string/activity_scale_gateway"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.editor.AddEditScaleActivity"
-	    	android:label="@string/activity_scale"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
-	    	android:launchMode="singleTop">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.editor.DeleteScaleActivity"
-	    	android:label="@string/activity_delete_scale"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@android:style/Theme.Dialog"
+	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
    	</application>
 
     <uses-sdk android:minSdkVersion="3" />
-
-
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
 </manifest>

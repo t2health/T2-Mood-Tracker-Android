@@ -178,7 +178,7 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuItem mi = menu.add(Menu.NONE, HELP_SETTINGS_ITEM, Menu.NONE, R.string.settings_title);
-		mi.setIcon(R.drawable.settings_default);
+		mi.setIcon(android.R.drawable.ic_menu_manage);
 		
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -337,10 +337,10 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
         item.put("id", "tell_a_friend");
         items.add(item);
         
-        item = new HashMap<String,Object>();
+        /*item = new HashMap<String,Object>();
         item.put("text1", "Regenerate Data and Close");
         item.put("id", "regenerate_data");
-        items.add(item);
+        items.add(item);*/
         
         return items;
 	}
@@ -351,7 +351,6 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 		Adapter adapter = listAdapter.getAdapterForItem(arg2);
 		
 		if(adapter == rateGroupListAdapter) {
-			//startGroupFormActivity(adapter.getItemId(arg2-1));
 			startGroupFormActivity((Long)data.get("_id"));
 		} else {
 			String itemId = (String) data.get("id");
@@ -407,8 +406,6 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 			}
 		}
 	}
-	
-	
 	
 	@Override
 	protected void onRightButtonPresed() {

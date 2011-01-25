@@ -5,8 +5,4 @@
 		<attr name="rightText" format="string" />
 		<attr name="progress" format="integer" />
 	</declare-styleable>
-
-    <declare-styleable name="CustomTheme">
-        <attr name="android:galleryItemBackground" />
-    </declare-styleable>
 </resources>

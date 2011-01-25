@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="CustomTheme2" parent="@android:style/Theme.Light">
+	<style name="CustomTheme" parent="@android:style/Theme.Light">
 		<item name="android:windowTitleSize">48dip</item>
 		
 		<item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
@@ -8,17 +8,5 @@
 		
 		<item name="android:listViewStyle">@style/Widget.ListView</item>
 		<item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparator</item>  
-	</style>
-	
-	<!-- <style name="CustomTheme2SolidBG" parent="@style/CustomTheme2">
-		<item name="android:windowBackground">@drawable/background</item>
-	</style>-->
-	
-	<style name="CustomTheme2Dialog" parent="@android:style/Theme.Dialog">
-		<item name="android:windowTitleSize">48dip</item>
-	</style>
-	
-	<style name="CustomTheme2NoTitle" parent="CustomTheme2">
-		<item name="android:windowNoTitle">true</item>
 	</style>
 </resources>

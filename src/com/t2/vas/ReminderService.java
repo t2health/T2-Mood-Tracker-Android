@@ -16,7 +16,6 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.t2.vas.activity.ReminderServiceActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
@@ -182,12 +181,12 @@ public class ReminderService extends Service {
 
 			dbAdapter.close();
 
-			ReminderServiceActivity.cancelReminderNotification(this.context);
+			/*ReminderServiceActivity.cancelReminderNotification(this.context);
 			if(reminderGroups.size() <= 0) {
 				return;
 			}
 
-			ReminderServiceActivity.showReminderNotification(this.context, reminderGroups);
+			ReminderServiceActivity.showReminderNotification(this.context, reminderGroups);*/
 		}
 
 	}

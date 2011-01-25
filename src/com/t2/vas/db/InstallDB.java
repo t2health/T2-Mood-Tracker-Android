@@ -11,7 +11,6 @@ import android.util.Log;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.GroupReminder;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
@@ -25,7 +24,6 @@ public class InstallDB {
 		//Group group = (Group)dbAdapter.getTable("group");
 		//Scale scale = (Scale)dbAdapter.getTable("scale");
 		new Group(dbAdapter).empty();
-		new GroupReminder(dbAdapter).empty();
 		new Note(dbAdapter).empty();
 		new Result(dbAdapter).empty();
 		new Scale(dbAdapter).empty();

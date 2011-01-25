@@ -55,7 +55,7 @@ public class GroupListActivity extends ABSNavigation implements OnItemClickListe
 		
 		this.hiddenGroupIds = SharedPref.getHiddenGroups(sharedPref);
 		
-		this.setRightButtonImage(R.drawable.add_default);
+		this.setRightButtonImage(android.R.drawable.ic_menu_add);
 		
 		Group group = new Group(dbAdapter);
 		groupsCursor = group.getGroupsCursor();

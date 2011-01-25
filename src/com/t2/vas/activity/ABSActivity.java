@@ -29,7 +29,7 @@ import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.db.DBAdapter;
 
-public class ABSActivity extends Activity implements OnClickListener {
+public class ABSActivity extends Activity {
 	private static final String TAG = ABSActivity.class.getName();
 
 	public static final int FORM_ACTIVITY = 345;
@@ -73,24 +73,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
-	public void setContentView(int layoutResID) {
-		super.setContentView(layoutResID);
-		this.initGlobalButtons();
-	}
-
-	@Override
-	public void setContentView(View view, LayoutParams params) {
-		super.setContentView(view, params);
-		this.initGlobalButtons();
-	}
-
-	@Override
-	public void setContentView(View view) {
-		super.setContentView(view);
-		this.initGlobalButtons();
-	}
-	
-	@Override
 	protected void onStart() {
 		super.onStart();
 		
@@ -112,42 +94,6 @@ public class ABSActivity extends Activity implements OnClickListener {
 	protected void onDestroy() {
 		super.onDestroy();
 		this.dbAdapter.close();
-	}
-
-	
-	public void initGlobalButtons() {
-		View v;
-
-		v = this.findViewById(R.id.t2_logo);
-		if(v != null) {
-			v.setOnClickListener(this);
-		}
-
-
-		View bar = this.findViewById(R.id.globalButtonBar);
-		if(bar == null) {
-			return;
-		}
-
-		v = this.findViewById(R.id.globalButtonBar).findViewById(R.id.infoButton);
-		if(v != null) {
-			v.setOnClickListener(this);
-		}
-	}
-
-	@Override
-	public void onClick(View v) {
-		switch(v.getId()) {
-			case R.id.infoButton:
-				VASAnalytics.onEvent(VASAnalytics.EVENT_INFO_ACTIVITY);
-				this.startActivity(INFO_ACTIVITY);
-				break;
-
-			case R.id.t2_logo:
-				VASAnalytics.onEvent(VASAnalytics.EVENT_WEBSITE_BUTTON_PRESSED);
-				this.startActivity(T2_WEBSITE_ACTIVITY);
-				break;
-		}
 	}
 
 	public void startActivity(int activityID) {
@@ -175,7 +121,7 @@ public class ABSActivity extends Activity implements OnClickListener {
 		
 		if(this.getHelpResId() > -1) {
 			MenuItem mi = menu.add(Menu.NONE, HELP_MENU_ITEM, Menu.NONE, R.string.help_title);
-			mi.setIcon(R.drawable.help_default);
+			mi.setIcon(android.R.drawable.ic_menu_help);
 		}
 		return true;
 	}

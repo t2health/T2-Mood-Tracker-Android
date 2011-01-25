@@ -7,10 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
 
-public class Unlock extends ABSCustomTitle implements OnKeyListener {
+public class Unlock extends ABSCustomTitle implements OnKeyListener, OnClickListener {
 	private static final int FORGOT_PIN_ACTIVITY = 235;
 	private EditText pinEditText;
 	private String lockPin;

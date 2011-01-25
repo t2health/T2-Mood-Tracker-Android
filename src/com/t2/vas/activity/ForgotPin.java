@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class ForgotPin extends ABSCustomTitle implements OnKeyListener, OnEditorActionListener {
+public class ForgotPin extends ABSCustomTitle implements OnKeyListener, OnEditorActionListener, OnClickListener {
 	private static final String TAG = ForgotPin.class.getSimpleName();
 	
 	private EditText answer1EditText;
@@ -65,7 +66,6 @@ public class ForgotPin extends ABSCustomTitle implements OnKeyListener, OnEditor
 			case R.id.cancelButton:
 				this.finish();
 		}
-		super.onClick(v);
 	}
 
 	private void checkForMatchedAnswers(View v) {

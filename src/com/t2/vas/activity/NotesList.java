@@ -41,7 +41,7 @@ public class NotesList extends ABSNavigation implements OnItemClickListener {
 		
 		this.setContentView(R.layout.list_layout);
 		
-		this.setRightButtonImage(R.drawable.add_default);
+		this.setRightButtonText(getString(R.string.add_note));
 		
 		notesCursor = new Note(dbAdapter).queryForNotes(-1, -1, "timestamp DESC");
 		this.startManagingCursor(notesCursor);

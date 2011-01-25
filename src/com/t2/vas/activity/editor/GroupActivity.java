@@ -146,7 +146,7 @@ public class GroupActivity extends ABSNavigation implements
 
 		this.setContentView(R.layout.list_layout);
 		this.setTitle(group.title);
-		this.setRightButtonImage(R.drawable.add_default);
+		this.setRightButtonImage(android.R.drawable.ic_menu_add);
 
 		listView = (ListView) this.findViewById(R.id.list);
 

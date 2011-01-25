@@ -21,24 +21,18 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
-public class FormActivity extends ABSNavigation implements OnClickListener/*, OnLongClickListener, OnScrollListener*/ {
+public class FormActivity extends ABSNavigation {
 	public static final String EXTRA_GROUP_ID = "group_id";
 	
 	private static final String TAG = FormActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
-	//private String submitButtonText;
 	private ListView listView;
-	//private Button submitButton;
-	//private boolean showSkipButton;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        
-        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         this.setContentView(R.layout.form_activity);
         
@@ -47,8 +41,6 @@ public class FormActivity extends ABSNavigation implements OnClickListener/*, On
         
         Intent intent = this.getIntent();
         this.activeGroupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
-        //this.submitButtonText = intent.getStringExtra("submit_button_text");
-        //this.showSkipButton = intent.getBooleanExtra("show_skip_button", false);
         
         if(this.activeGroupId < 0) {
         	this.finish();
@@ -66,24 +58,7 @@ public class FormActivity extends ABSNavigation implements OnClickListener/*, On
         this.setTitle(group.title);
 
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
-        /*listView.addFooterView(
-        		View.inflate(this, R.layout.form_activity_submit_button, null)
-		);*/
         listView.setAdapter(scaleAdapter);
-        //listView.setOnScrollListener(this);
-
-
-        /*submitButton = (Button)this.findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(this);
-        if(this.submitButtonText != null) {
-        	submitButton.setText(this.submitButtonText);
-        }
-
-        Button skipButton = (Button)this.findViewById(R.id.skipButton);
-        skipButton.setOnClickListener(this);
-        if(this.showSkipButton) {
-        	skipButton.setVisibility(View.VISIBLE);
-        }*/
 
         // Restore some of the data
         if(savedInstanceState != null) {
@@ -101,7 +76,6 @@ public class FormActivity extends ABSNavigation implements OnClickListener/*, On
         }
     }
 
-
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		// Remember the values of the scales.
@@ -116,30 +90,6 @@ public class FormActivity extends ABSNavigation implements OnClickListener/*, On
 
 		super.onSaveInstanceState(outState);
 	}
-
-
-
-
-	@Override
-	public void onClick(View v) {
-		switch(v.getId()) {
-			case R.id.skipButton:
-				this.setResult(Activity.RESULT_CANCELED);
-				this.finish();
-				return;
-
-			case R.id.submitButton:
-		        this.saveResults();
-
-				this.setResult(Activity.RESULT_OK);
-				this.finish();
-				return;
-		}
-
-		super.onClick(v);
-	}
-	
-	
 
 	@Override
 	protected void onRightButtonPresed() {
@@ -166,38 +116,8 @@ public class FormActivity extends ABSNavigation implements OnClickListener/*, On
 	}
 
 
-	/*@Override
-	public boolean onLongClick(View v) {
-		switch(v.getId()) {
-		case R.id.submitButton:
-			this.setResult(Activity.RESULT_OK);
-			this.finish();
-			return true;
-		}
-
-		return false;
-	}*/
-
-
 	@Override
 	public int getHelpResId() {
 		return R.string.form_help;
 	}
-
-
-	/*@Override
-	public void onScroll(AbsListView arg0, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-		int lastVisiblePos = firstVisibleItem + visibleItemCount;
-
-		if(lastVisiblePos >= totalItemCount && this.submitButton != null) {
-			this.submitButton.setEnabled(true);
-		}
-	}*/
-
-
-	/*@Override
-	public void onScrollStateChanged(AbsListView arg0, int arg1) {
-
-	}*/
-
 }
