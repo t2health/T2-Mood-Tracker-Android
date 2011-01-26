@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -65,10 +66,18 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 	private long todayEndTime;
 	private Cursor groupsCursor;
 	private ArrayList<HashMap<String, Object>> groupsDataList;
+	private Context thisContext;
+	private long previousRemindTime;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        thisContext = this;
+        previousRemindTime = Reminder.getPreviousRemindTimeSince(
+        		thisContext,
+        		Calendar.getInstance().getTimeInMillis()
+		);
+        
         // Init today's start and end times.
         Calendar cal = Calendar.getInstance();
         MathExtra.roundTime(cal, Calendar.DAY_OF_MONTH);
@@ -80,7 +89,7 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
         this.setContentView(R.layout.list_layout);
         VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
         
-        this.setRightButtonText("Add Note");
+        this.setRightButtonText(getString(R.string.add_note));
         
         // Setup the group list adapter.
         groupsDataList = new ArrayList<HashMap<String,Object>>();
@@ -104,15 +113,20 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 					String textRepresentation) {
 				
 				if(view.getId() == R.id.image1) {
-					long id = (Long)data;
-					LinkedHashMap<Long, Double> dataRes = groupDataProvider.getData(id, todayStartTime, todayEndTime);
 					ImageView imageView = (ImageView)view;
+					long id = (Long)data;
+					Group group = new Group(dbAdapter);
+					group._id = id;
+					long latestResultTimestamp = group.getLatestResultTimestamp();
 					
-					if(dataRes != null && dataRes.size() > 0) {
-						imageView.setImageResource(R.drawable.check);
-					} else {
+					// show the warning.
+					if(latestResultTimestamp < previousRemindTime) {
 						imageView.setImageResource(R.drawable.warning);
+					// show the checkbox.
+					} else {
+						imageView.setImageResource(R.drawable.check);
 					}
+					
 					return true;
 				}
 				return false;

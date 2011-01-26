@@ -3,8 +3,9 @@ package com.t2.vas.activity.preference;
 import android.content.Intent;
 
 import com.t2.vas.AppSecurityManager;
+import com.t2.vas.SharedPref;
 
-public class ABSSecurityPreference extends ABSPreferenceActivity {
+public abstract class ABSSecurityPreference extends ABSPreferenceActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -21,12 +22,12 @@ public class ABSSecurityPreference extends ABSPreferenceActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		AppSecurityManager.getInstance().onResume(this);
+		AppSecurityManager.getInstance().onResume(this, SharedPref.Security.isEnabled(sharedPref));
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		AppSecurityManager.getInstance().onPause(this);
+		AppSecurityManager.getInstance().onPause(this, SharedPref.Security.isEnabled(sharedPref));
 	}
 }

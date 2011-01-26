@@ -25,11 +25,12 @@ import com.t2.vas.Analytics;
 import com.t2.vas.Eula;
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.ReminderService;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.db.DBAdapter;
 
-public class ABSActivity extends Activity {
+public abstract class ABSActivity extends Activity {
 	private static final String TAG = ABSActivity.class.getName();
 
 	public static final int FORM_ACTIVITY = 345;
@@ -58,7 +59,8 @@ public class ABSActivity extends Activity {
         
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbAdapter.open();
-
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        
         if(!Global.DEV_MODE) { 
 	        if(Global.REMOTE_STACK_TRACE_URL != null && Global.REMOTE_STACK_TRACE_URL.length() > 0) {
 	        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
@@ -66,9 +68,6 @@ public class ABSActivity extends Activity {
         }
         
         Eula.show(this);
-
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        
         VASAnalytics.onPageView();
 	}
 

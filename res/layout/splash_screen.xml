@@ -1,86 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/splashWrapper"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:padding="5dip">
 
 	<LinearLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1.0"
-		android:orientation="vertical"
-		android:gravity="center">
-
-		<!-- Logo -->
-		<LinearLayout
+		android:gravity="center"
+		android:orientation="vertical">
+		<ImageView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1.0"
-			android:gravity="center_vertical">
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="125dip"
-				android:src="@drawable/logo" />
-		</LinearLayout>
-
-		<!--  Health Tips -->
-		<LinearLayout
-			android:id="@+id/healthTipWrapper"
+			android:src="@drawable/logo" />
+		<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1.0"
-			android:gravity="left|center_vertical"
-			android:paddingLeft="10dip"
-			android:paddingRight="10dip">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="fill_parent"
-				android:text="@string/splash_health_tip_label"
-				android:textColor="#FFFFFFFF"
-				android:paddingRight="5dip" />
-
-			<TextView
-				android:id="@+id/introText"
-				android:layout_width="wrap_content"
-				android:layout_height="fill_parent"
-				android:textColor="#FFFFFFFF" />
-		</LinearLayout>
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:gravity="center"
+			android:text="[Touch anywhere to continue]" />
 	</LinearLayout>
 
-	<LinearLayout
+	<TextView
+		android:id="@+id/startupTips"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_marginTop="10dip"
+		android:layout_marginBottom="10dip" />
 
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="fill_parent"
-			android:layout_weight="0.60"
-			android:gravity="left|center_vertical">
-
-			<ImageView
-				android:id="@+id/t2_logo"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:src="@drawable/t2_logo"
-				android:scaleType="fitStart" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="fill_parent"
-			android:layout_weight="0.40"
-			android:gravity="right|center_vertical">
-
-			<Button
-				android:id="@+id/nextButton"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:text="@string/splash_start_button" />
-
-		</LinearLayout>
-
-	</LinearLayout>
+	<CheckBox
+		android:id="@+id/showTipsCheckbox"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/show_tips_on_startup" />
 
 </LinearLayout>

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.t2.vas.R;
+import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigation;
 import com.t2.vas.activity.preference.ABSPreferenceNavigation;
@@ -105,6 +106,18 @@ public class GroupListActivity extends ABSNavigation implements OnItemClickListe
 		super.onActivityResult(requestCode, resultCode, data);
 		groupsCursor.requery();
 		groupsAdapter.notifyDataSetChanged();
+	}
+	
+	
+
+	@Override
+	protected void onBackButtonPressed() {
+		// restart the reminder service to account for the possible changes in 
+		// group visibility.
+		ReminderService.stopRunning(this);
+		ReminderService.startRunning(this);
+		
+		super.onBackButtonPressed();
 	}
 
 	@Override

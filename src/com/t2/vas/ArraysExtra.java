@@ -6,8 +6,12 @@ import java.util.Collection;
 import java.util.List;
 
 public class ArraysExtra {
-	public static final double[] toArray(Double[] arr) {
-		List<Double> arrList = Arrays.asList(arr);
+	public static final double[] toArray(Double[] vals) {
+		if(vals == null) {
+			return null;
+		}
+		
+		List<Double> arrList = Arrays.asList(vals);
 		arrList.remove(null);
 		
 		double[] out = new double[arrList.size()];
@@ -21,6 +25,10 @@ public class ArraysExtra {
 	}
 	
 	public static final String[] toStringArray(Object[] vals) {
+		if(vals == null) {
+			return null;
+		}
+		
 		String[] out = new String[vals.length];
 		for(int i = 0; i < vals.length; ++i) {
 			out[i] = vals[i].toString();
@@ -29,6 +37,10 @@ public class ArraysExtra {
 	}
 	
 	public static final Long[] toLongArray(String[] vals) {
+		if(vals == null) {
+			return null;
+		}
+		
 		ArrayList<Long> newVals = new ArrayList<Long>();
 		for(int i = 0; i < vals.length; ++i) {
 			try {
@@ -47,6 +59,10 @@ public class ArraysExtra {
 	}
 	
 	public static final Integer[] toIntegerArray(String[] vals) {
+		if(vals == null) {
+			return null;
+		}
+		
 		ArrayList<Integer> newVals = new ArrayList<Integer>();
 		for(int i = 0; i < vals.length; ++i) {
 			try {
@@ -65,6 +81,10 @@ public class ArraysExtra {
 	}
 	
 	public static final Double[] toDoubleArray(String[] vals) {
+		if(vals == null) {
+			return null;
+		}
+		
 		ArrayList<Double> newVals = new ArrayList<Double>();
 		for(int i = 0; i < vals.length; ++i) {
 			try {

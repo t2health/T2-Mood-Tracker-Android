@@ -3,8 +3,9 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:orientation="vertical">
-	
+	android:orientation="vertical"
+	android:padding="5dip">
+
 	<ScrollView
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -13,24 +14,51 @@
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:orientation="vertical">
-			
+
 			<TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:textAppearance="@android:style/TextAppearance.Medium"
-				android:text="@string/security_pin" />
+				android:text="@string/enter_your_pin" />
 			<EditText
 				android:id="@+id/pin"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:imeOptions="actionGo"
 				android:inputType="number" />
+				
+			<Button
+				android:id="@+id/forgotPinButton"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/forgot_pin" />
+				
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				style="@style/divider" />
+				
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1.0"
+				android:gravity="center_vertical"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/startupTips"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_marginTop="10dip"
+					android:layout_marginBottom="10dip" />
+	
+				<CheckBox
+					android:id="@+id/showTipsCheckbox"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/show_tips_on_startup" />
+			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
-	
-	<Button
-		android:id="@+id/forgotPinButton"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/forgot_pin" />
 </LinearLayout>

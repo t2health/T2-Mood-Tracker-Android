@@ -588,7 +588,8 @@ public abstract class ABSResultsActivity extends ABSNavigation implements OnClic
 		String[] idsStrArr = SharedPref.getValues(
 				sharedPref, 
 				KEY_NAME+keySuffix, 
-				","
+				",",
+				new String[0]
 		);
 		
 		return new ArrayList<Long>(

@@ -2,16 +2,22 @@ package com.t2.vas.activity.preference;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.view.View;
@@ -28,11 +34,14 @@ import android.widget.ToggleButton;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
+import com.t2.vas.ReminderData;
 import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 import com.t2.vas.TimePref;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSNavigation;
+import com.t2.vas.db.DBAdapter;
+import com.t2.vas.db.tables.Group;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public class Reminder extends ABSNavigation implements OnItemClickListener {
@@ -53,22 +62,9 @@ public class Reminder extends ABSNavigation implements OnItemClickListener {
         dateFormatter = new SimpleDateFormat(Global.REMINDER_TIME_FORMAT);
         
         times = SharedPref.getReminderTimes(sharedPref);
-        if(times.size() == 0) {
-			Calendar cal = Calendar.getInstance();
-
-			cal.set(0, 0, 0, 8, 0);
-			times.add(new TimePref(cal.getTimeInMillis(), false));
-			
-			cal.set(0, 0, 0, 12, 0);
-			times.add(new TimePref(cal.getTimeInMillis(), false));
-			
-			cal.set(0, 0, 0, 16, 0);
-			times.add(new TimePref(cal.getTimeInMillis(), false));
-		}
         
         enabledDays = SharedPref.getReminderEnabledDays(sharedPref);
         daysData = loadDaysOfWeek();
-        Log.v(TAG, "ED:"+enabledDays.toString());
         
         loadTimesData();
         
@@ -164,6 +160,15 @@ public class Reminder extends ABSNavigation implements OnItemClickListener {
         listView.setOnItemClickListener(this);
     }
 	
+	@Override
+	protected void onBackButtonPressed() {
+		// restart the reminder service to account for the possible change in times.
+		ReminderService.stopRunning(this);
+		ReminderService.startRunning(this);
+		
+		super.onBackButtonPressed();
+	}
+
 	private ArrayList<HashMap<String,Object>> loadDaysOfWeek() {
 		String[] dowNames = this.getResources().getStringArray(R.array.days_of_the_week);
 		int[] dowValues = this.getResources().getIntArray(R.array.days_of_the_week_values);
@@ -233,5 +238,125 @@ public class Reminder extends ABSNavigation implements OnItemClickListener {
 		}
 		
 		SharedPref.setReminderEnabledDays(sharedPref, enabledDays);
+	}
+	
+	public static ReminderData getReminderData(Context context) {
+		// initialize the high level variables.
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		DBAdapter dbAdapter = new DBAdapter(context, Global.Database.name, Global.Database.version);
+        dbAdapter.open();
+		
+        // Get the days and times enabled.
+		ArrayList<Integer> daysEnabled = SharedPref.getReminderEnabledDays(sharedPref);
+		ArrayList<TimePref> timesEnabled = SharedPref.getReminderTimes(sharedPref);
+		for(int i = timesEnabled.size() -1; i >= 0; --i) {
+			if(!timesEnabled.get(i).enabled) {
+				timesEnabled.remove(i);
+			}
+		}
+		
+		// Get the visible groups.
+		ArrayList<Long> hiddenGroups = SharedPref.getHiddenGroups(sharedPref);
+		ArrayList<Group> visibleGroups = new Group(dbAdapter).getGroups();
+		for(int i = visibleGroups.size() -1; i >= 0; --i) {
+			if(hiddenGroups.contains(visibleGroups.get(i)._id)) {
+				visibleGroups.remove(i);
+			}
+		}
+		
+		dbAdapter.close();
+		
+		// Return the data.
+		ReminderData data = new ReminderData();
+		data.daysEnabled = daysEnabled;
+		data.timesEnabled = timesEnabled;
+		data.visibleGroups = visibleGroups;
+		return data;
+	}
+	
+	public static long getNextRemindTime(Context context) {
+		return getNextRemindTimeSince(context, Calendar.getInstance().getTimeInMillis());
+	}
+	
+	public static long getNextRemindTimeSince(Context context, long timestampIn) {
+		long[] times = getRemindTimesSince(context, timestampIn);
+		if(times.length == 0) {
+			return -1;
+		}
+		
+		return times[0];
+	}
+	
+	public static long getPreviousRemindTimeSince(Context context, long timestampIn) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(timestampIn);
+		cal.add(Calendar.WEEK_OF_YEAR, -1);
+		
+		long[] times = getRemindTimesSince(context, cal.getTimeInMillis());
+		if(times.length == 0) {
+			return -1;
+		}
+		
+		long prevRemindTime = -1;
+		for(int i = 0; i < times.length; ++i) {
+			long time = times[i];
+			if(time < timestampIn) {
+				prevRemindTime = time;
+			} else {
+				break;
+			}
+		}
+		
+		return prevRemindTime;
+	}
+	
+	public static long[] getRemindTimesSince(Context context, long timestampIn) {
+		// Initialize
+		ArrayList<Long> remindTimestamps = new ArrayList<Long>();
+		ReminderData data = getReminderData(context);
+		ArrayList<Integer> daysEnabled = data.daysEnabled;
+		ArrayList<TimePref> timesEnabled = data.timesEnabled;
+		ArrayList<Group> visibleGroups = data.visibleGroups;
+		
+		// Check to see if there is any data that would 
+		if(visibleGroups.size() == 0 || timesEnabled.size() == 0 || daysEnabled.size() == 0) {
+			return new long[0];
+		}
+		
+		// determine the possible reminder times.
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(timestampIn);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		long currentTime = cal.getTimeInMillis();
+		int currentDow = cal.get(Calendar.DAY_OF_WEEK);
+		int numDaysInWeek = cal.getActualMaximum(Calendar.DAY_OF_WEEK);
+		for(int i = 0; i < daysEnabled.size(); ++i) {
+			int dow = daysEnabled.get(i);
+			cal.setTimeInMillis(currentTime);
+			cal.set(Calendar.DAY_OF_WEEK, dow);
+			if(dow < currentDow) {
+				cal.add(Calendar.DAY_OF_MONTH, numDaysInWeek);
+			}
+			
+			for(int j = 0; j < timesEnabled.size(); ++j) {
+				long timestamp = timesEnabled.get(j).time;
+				Calendar timeCal = Calendar.getInstance();
+				timeCal.setTimeInMillis(timestamp);
+				
+				cal.set(Calendar.HOUR_OF_DAY, timeCal.get(Calendar.HOUR_OF_DAY));
+				cal.set(Calendar.MINUTE, timeCal.get(Calendar.MINUTE));
+				
+				remindTimestamps.add(cal.getTimeInMillis());
+			}
+		}
+		
+		// convert to primative array, sort and return.
+		long[] times = new long[remindTimestamps.size()];
+		for(int i = 0; i < times.length; ++i) {
+			times[i] = remindTimestamps.get(i);
+		}
+		Arrays.sort(times);
+		return times;
 	}
 }

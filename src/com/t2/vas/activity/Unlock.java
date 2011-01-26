@@ -1,5 +1,7 @@
 package com.t2.vas.activity;
 
+import java.util.Random;
+
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 
@@ -9,9 +11,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.TextView;
 
-public class Unlock extends ABSCustomTitle implements OnKeyListener, OnClickListener {
+public class Unlock extends ABSStartupTips implements OnKeyListener, OnClickListener, OnCheckedChangeListener {
 	private static final int FORGOT_PIN_ACTIVITY = 235;
 	private EditText pinEditText;
 	private String lockPin;

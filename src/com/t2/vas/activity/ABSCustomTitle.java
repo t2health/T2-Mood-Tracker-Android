@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
-public class ABSCustomTitle extends ABSActivity {
+public abstract class ABSCustomTitle extends ABSActivity {
 	private boolean initialized = false;
 	
 	@Override

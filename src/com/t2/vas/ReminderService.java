@@ -3,11 +3,18 @@ package com.t2.vas;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -16,18 +23,21 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.t2.vas.activity.Startup;
+import com.t2.vas.activity.preference.Reminder;
+import com.t2.vas.data.GroupResultsDataProvider;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 
 public class ReminderService extends Service {
-	private static final String TAG = ReminderService.class.getName();
-
-	private Timer timer = new Timer();
-	private SharedPreferences sharedPref;
+	private static final String TAG = ReminderService.class.getSimpleName();
 	private static boolean isRunning = false;
-//	private static final int UPDATE_INTERVAL = 360000; // Check every hour
-//	private static final int UPDATE_INTERVAL = 120000; // Check every 2 minutes
-
+	
+	public static final int NOTIFICATION_ID = 230952309;
+	private Timer timer;
+	private NotificationManager notificationManager;
+	private Context thisContext;
+	
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -36,159 +46,143 @@ public class ReminderService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		this.startService();
+		thisContext = this;
+		isRunning = true;
+		
+		// Init the global variables.
+		notificationManager = (NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
+		
+		/* Schedule the first next reminder a few minutes.
+		 * This helps keep the load down on boot. 
+		 */
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				boolean scheduled = scheduleNextReminder();
+				/* if the next reminder could not be scheduled (probably 
+				 * because there is insufficient data to do so), then stop
+				 * the service. 
+				 */
+				if(!scheduled) {
+					Log.v(TAG, "Failed to schedule, stopping service.");
+					stopSelf();
+				} else {
+					Log.v(TAG, "Next reminder scheduled.");
+				}
+			}
+		}, 10000);
+		//300000
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		this.stopService();
+		
+		// Stop any pending reminders.
+		cancelNextReminder();
+		
+		// Hide the notification (if visible)
+		hideNotification();
+		
+		isRunning = false;
 	}
-
+	
+	private void cancelNextReminder() {
+		if(timer != null) {
+			timer.cancel();
+			timer.purge();
+		}
+		timer = null;
+	}
+	
+	private boolean scheduleNextReminder() {
+		// Ensure the timer is cancelled and nullified.
+		cancelNextReminder();
+		
+		// Get the next time a reminder should be shown.
+		long nextRemindTime = Reminder.getNextRemindTime(thisContext);
+		nextRemindTime = Reminder.getNextRemindTimeSince(
+				thisContext,
+				Calendar.getInstance().getTimeInMillis() - 86400000
+		);
+		Log.v(TAG, "Next remind time:"+ new Date(nextRemindTime));
+		
+		if(nextRemindTime == -1) {
+			return false;
+		}
+		
+		// Schedule a task to be run on a seperate thread.
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				// Show the notification.
+				showNotification();
+				
+				// Schedule the next notification.
+				//scheduleNextReminder();
+			}
+		}, new Date(nextRemindTime));
+		
+		return true;
+	}
+	
+	private void showNotification() {
+		// Build the notification and the status bar text.
+		Notification notification = new Notification(
+				R.drawable.icon,
+				getText(R.string.remind_notification_bar_text),
+				System.currentTimeMillis()
+		);
+		
+		notification.flags = Notification.FLAG_AUTO_CANCEL | Notification.FLAG_SHOW_LIGHTS;
+		
+		// Prepare the intent to load.
+		PendingIntent contentIntent = PendingIntent.getActivity(
+				this, 
+				0,
+				new Intent(this, Startup.class), 
+				0
+		);
+		
+		// Set the title and details of the notification.
+		notification.setLatestEventInfo(
+				this, 
+				getText(R.string.remind_notification_title), 
+				getText(R.string.remind_notification_desc), 
+				contentIntent
+		);
+		
+		// Show the notification.
+		notificationManager.notify(NOTIFICATION_ID, notification);
+	}
+	
+	private void hideNotification() {
+		notificationManager.cancel(NOTIFICATION_ID);
+	}
+	
 	public static void stopRunning(Context c) {
 		Log.v(TAG, "Stopping reminder service.");
-		Intent i = new Intent();
-		i.setAction("com.t2.vas.ReminderService");
-		c.stopService(i);
+		c.stopService(
+				new Intent(c, ReminderService.class)
+		);
 	}
 	
 	public static void startRunning(Context c) {
-		startRunning(c, true);
-	}
-	
-	public static void startRunning(Context c, boolean checkPref) {
-		boolean enabled = true;
-		if(checkPref) {
-		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(c);
-			enabled = pref.getBoolean("reminders_enabled", false);
-		}
-		
-		if(enabled) {
-			Log.v(TAG, "Starting reminder service.");
-			Intent i = new Intent();
-			i.setAction("com.t2.vas.ReminderService");
-			c.startService(i);
+		Log.v(TAG, "Starting reminder service.");
+		if(!isRunning) {
+			c.startService(
+					new Intent(c, ReminderService.class)
+			);
 		}
 	}
 	
-	private static boolean isRunning() {
+	public static boolean isRunning() {
 		return isRunning;
 	}
 	
-	private void startService() {
-//		Log.v(TAG, "START SERVICE");
-		this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		if(!this.sharedPref.getBoolean("reminders_enabled", false)) {
-			return;
-		}
-
-		TimerTask checkTask = new CheckTask(this, this.sharedPref);
-		String freq = this.sharedPref.getString("remind_freq", "DAILY");
-		String remindTimeStringDefault = "16:00";
-		String remindTimeString = this.sharedPref.getString("remind_time", remindTimeStringDefault);
-
-		// Parse the start time from preferenes.
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		Date remindTimeDate;
-		try {
-			remindTimeDate = sdf.parse(remindTimeString);
-		} catch (ParseException e) {
-			try {
-				remindTimeDate = sdf.parse(remindTimeStringDefault);
-			} catch (ParseException e1) {
-				return;
-			}
-		}
-
-		// Build the start time object.
-		Calendar checkTimeCal = Calendar.getInstance();
-		checkTimeCal.set(Calendar.HOUR_OF_DAY, remindTimeDate.getHours());
-		checkTimeCal.set(Calendar.MINUTE, remindTimeDate.getMinutes());
-		checkTimeCal.set(Calendar.SECOND, 0);
-
-		// Determine who often a check should be performed.
-		long period = 0;
-		if(freq.equals("WEEKLY")) {
-			period = 7 * 24 * 60 * 60 * 1000;
-		} else {
-			period = 24 * 60 * 60 * 1000;
-		}
-
-		Log.v(TAG, "Will check for groups needing rating at:"+ checkTimeCal.getTime());
-
-		isRunning = true;
-//		checkTimeCal = Calendar.getInstance(); // TEST!! NOW
-		timer.schedule(checkTask, checkTimeCal.getTime(), period);
+	public static void clearNotification(Context c) {
+		NotificationManager nm = (NotificationManager)c.getSystemService(NOTIFICATION_SERVICE);
+		nm.cancel(NOTIFICATION_ID);
 	}
-
-	private void stopService() {
-		if(this.timer != null) {
-			this.timer.cancel();
-		}
-		isRunning = false;
-	}
-
-	private class CheckTask extends TimerTask {
-		private final String TAG = CheckTask.class.getName();
-
-		Context context;
-		private DBAdapter dbAdapter;
-
-		private SharedPreferences sharedPref;
-
-
-		public CheckTask(Context c, SharedPreferences sharedPref) {
-			this.context = c;
-			this.sharedPref = sharedPref;
-			this.dbAdapter = new DBAdapter(this.context, Global.Database.name, Global.Database.version);
-		}
-
-		@Override
-		public void run() {
-			Log.v(TAG, "Checking to see if groups need to be updated.");
-
-			dbAdapter.open();
-			Group groupTable = ((Group)dbAdapter.getTable("group")).newInstance();
-			ArrayList<Group> groups = groupTable.getGroups();
-			ArrayList<Group> reminderGroups = new ArrayList<Group>();
-			String freq = this.sharedPref.getString("remind_freq", "DAILY");
-			Calendar nowCal = Calendar.getInstance();
-
-			for(int i = 0; i < groups.size(); i++) {
-				Group group = groups.get(i);
-				long lastResultTime = group.getLatestResultTimestamp();
-				Calendar lastResultCal = Calendar.getInstance();
-				lastResultCal.setTimeInMillis(lastResultTime);
-
-				if(freq.equals("WEEKLY")) {
-					long diffTime = nowCal.getTimeInMillis() - lastResultCal.getTimeInMillis();
-					// If this group hasn't been updated for 2 weeks, ignore it.
-					if(diffTime > (2 * 7 * 24 * 60 * 60 * 1000)) {
-						continue;
-					}
-
-					reminderGroups.add(group);
-				} else {
-					long diffTime = nowCal.getTimeInMillis() - lastResultCal.getTimeInMillis();
-					// If this group hasn't been updated for 7 days, ignore it.
-					if(diffTime > (7 * 24 * 60 * 60 * 1000)) {
-						continue;
-					}
-
-					reminderGroups.add(group);
-				}
-			}
-
-			dbAdapter.close();
-
-			/*ReminderServiceActivity.cancelReminderNotification(this.context);
-			if(reminderGroups.size() <= 0) {
-				return;
-			}
-
-			ReminderServiceActivity.showReminderNotification(this.context, reminderGroups);*/
-		}
-
-	}
-
 }

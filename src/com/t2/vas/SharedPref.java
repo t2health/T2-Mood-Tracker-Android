@@ -12,11 +12,20 @@ import android.util.Log;
 public class SharedPref {
 	private static final String TAG = SharedPref.class.getSimpleName();
 	
+	public static void setShowStartupTips(SharedPreferences sharedPref, boolean enabled) {
+		sharedPref.edit().putBoolean("show_startup_tips", enabled).commit();
+	}
+	
+	public static boolean getShowStartupTips(SharedPreferences sharedPref) {
+		return sharedPref.getBoolean("show_startup_tips", true);
+	}
+	
 	public static ArrayList<Long> getHiddenGroups(SharedPreferences sharedPref) {
 		return new ArrayList<Long>(Arrays.asList(ArraysExtra.toLongArray(getValues(
 				sharedPref,
 				"hiddenGroups",
-				","
+				",",
+				new String[0]
 		))));
 	}
 	
@@ -30,7 +39,19 @@ public class SharedPref {
 	}
 	
 	public static ArrayList<Integer> getReminderEnabledDays(SharedPreferences sharedPref) {
-		return new ArrayList<Integer>(Arrays.asList(ArraysExtra.toIntegerArray(getValues(sharedPref, "reminder_days", ","))));
+		String[] remindDaysStrArr = getValues(
+				sharedPref, 
+				"reminder_days", 
+				",",
+				null
+		);
+		
+		// Send back the default values;
+		if(remindDaysStrArr == null) {
+			remindDaysStrArr = new String[]{"1", "2", "3", "4", "5", "6", "7"};
+		}
+		
+		return new ArrayList<Integer>(Arrays.asList(ArraysExtra.toIntegerArray(remindDaysStrArr)));
 	}
 	
 	public static void setReminderEnabledDays(SharedPreferences sharedPref, List<Integer> days) {
@@ -43,17 +64,43 @@ public class SharedPref {
 	}
 	
 	public static ArrayList<TimePref> getReminderTimes(SharedPreferences sharedPref) {
-		Integer[] enabledArr = ArraysExtra.toIntegerArray(getValues(sharedPref, "reminder_times_enabled", ","));
-		Long[] timeArr = ArraysExtra.toLongArray(getValues(sharedPref, "reminder_times", ","));
+		Integer[] enabledArr = ArraysExtra.toIntegerArray(getValues(
+				sharedPref, 
+				"reminder_times_enabled", 
+				",",
+				null
+		));
+		Long[] timeArr = ArraysExtra.toLongArray(getValues(
+				sharedPref, 
+				"reminder_times", 
+				",",
+				null
+		));
 		List<TimePref> times = new ArrayList<TimePref>();
 		
-		for(int i = 0; i < timeArr.length; ++i) {
-			times.add(
-					new TimePref(
-						timeArr[i], 
-						enabledArr[i] > 0? true: false
-					)
-			);
+		// Set the default times with default enabled value.
+		if(enabledArr == null || timeArr == null) {
+			Calendar cal = Calendar.getInstance();
+
+			cal.set(0, 0, 0, 8, 0);
+			times.add(new TimePref(cal.getTimeInMillis(), false));
+			
+			cal.set(0, 0, 0, 12, 0);
+			times.add(new TimePref(cal.getTimeInMillis(), true));
+			
+			cal.set(0, 0, 0, 16, 0);
+			times.add(new TimePref(cal.getTimeInMillis(), false));
+			
+		// Set the values from the prefs.
+		} else {
+			for(int i = 0; i < timeArr.length; ++i) {
+				times.add(
+						new TimePref(
+							timeArr[i], 
+							enabledArr[i] > 0? true: false
+						)
+				);
+			}
 		}
 		
 		return new ArrayList<TimePref>(times);
@@ -84,8 +131,11 @@ public class SharedPref {
 		);
 	}
 	
-	public static String[] getValues(SharedPreferences sharedPref, String key, String separator) {
-		String dataStr = sharedPref.getString(key, "");
+	public static String[] getValues(SharedPreferences sharedPref, String key, String separator, String[] defaultValue) {
+		String dataStr = sharedPref.getString(key, "!<[NULLFOUND]>[");
+		if(dataStr.equals("!<[NULLFOUND]>[")) {
+			return defaultValue;
+		}
 		return dataStr.split(separator);
 	}
 	

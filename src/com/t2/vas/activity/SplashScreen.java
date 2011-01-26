@@ -1,62 +1,54 @@
 package com.t2.vas.activity;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.ReminderService;
+import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
 
-public class SplashScreen extends ABSActivity implements OnClickListener {
+public class SplashScreen extends ABSStartupTips implements OnClickListener {
 	private static final String TAG = SplashScreen.class.getName();
 
+	private TextView startupTipsView;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// Start the reminder service if we need to.
-		ReminderService.startRunning(this);
+		if(!showStartupTips) {
+			startMainActivity();
+			return;
+		}
 		
 		this.setContentView(R.layout.splash_screen);
-		VASAnalytics.onEvent(VASAnalytics.EVENT_SPLASH_ACTIVITY);
-		this.findViewById(R.id.nextButton).setOnClickListener(this);
-
-		VASAnalytics.init(Global.ANALYTICS_KEY, this.sharedPref.getBoolean("send_anon_data", true));
-		VASAnalytics.setEnabled(!Global.DEV_MODE);
-		VASAnalytics.setDebugEnabled(true);
-
-		Toast toast = Toast.makeText(this, R.string.splash_intro, Toast.LENGTH_LONG);
-		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-		toast.show();
-
-		if(this.sharedPref.getBoolean("show_startup_tips", true)) {
-			String[] startupTips = this.getResources().getStringArray(R.array.startup_tips);
-			Random random = new Random();
-
-			((TextView)this.findViewById(R.id.introText)).setText(
-					startupTips[random.nextInt(startupTips.length)]
-	        );
-		} else {
-			this.findViewById(R.id.healthTipWrapper).setVisibility(View.GONE);
-		}
+		this.findViewById(R.id.splashWrapper).setOnClickListener(this);
 	}
 
 	@Override
-	public void onClick(View arg0) {
-		Intent i = new Intent(this, MainActivity.class);
-
-		switch(arg0.getId()) {
-			case R.id.nextButton:
-				this.startActivity(i);
-				this.finish();
-				return;
+	public void onClick(View v) {
+		switch(v.getId()) {
+		case R.id.splashWrapper:
+			startMainActivity();
 		}
+	}
+
+	private void startMainActivity() {
+		Intent i = new Intent(this, MainActivity.class);
+		this.startActivity(i);
+		this.finish();
 	}
 }

@@ -18,6 +18,8 @@
 	<string name="splash_start_button">Start</string>
 	<string name="splash_health_tip_label">Health Tip: </string>
 
+	<string name="show_tips_on_startup">Show Tips on Startup</string>
+
 	<string name="security_title">Security</string>
 	<string name="security_desc">Force the use of a password when loading the app.</string>
 	<string name="security_enabled">Security Enabled</string>
@@ -27,6 +29,7 @@
 	<string name="answer1">Answer 1</string>
 	<string name="answer2">Answer 2</string>
 	<string name="forgot_pin">Forgot Pin</string>
+	<string name="enter_your_pin">Enter your pin</string>
 
 	<string name="main_intro_title">Welcome to the T2 Mood Tracker</string>
 	<string name="main_into_text">With this app you can rate your moods, keep track of how you’re feeling over time, figure out how life events, therapies and medications are affecting your well-being, and accurately communicate all of this to your health care provider or therapist should you choose to do so.</string>
@@ -43,6 +46,10 @@
 
 	<string name="show_all_groups">Show hidden groups</string>
 	<string name="hide_some_groups">Don\'t show hidden groups</string>
+
+	<string name="remind_notification_bar_text">Some Categories require your attention.</string>
+	<string name="remind_notification_title">T2 Mood Tracker</string>
+	<string name="remind_notification_desc">Some Categories require your attention.</string>
 
 	<string name="group_details_title">Group Details</string>
 

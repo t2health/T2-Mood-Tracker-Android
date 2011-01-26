@@ -48,18 +48,18 @@ public class AppSecurityManager {
 		}
 	}
 	
-	public void onResume(Activity activity) {
+	public void onResume(Activity activity, boolean isEnabled) {
 //		Log.d(TAG, "resume "+ statusCount +","+ hasFocus);
 		
 		// if the app is not unlocked, then load the unlock activity.
 		if(!unlocked) {
-			startUnlockActivity(activity);
+			startUnlockActivity(activity, isEnabled);
 		}
 		
 		++statusCount;
 	}
 
-	public void onPause(Activity activity) {
+	public void onPause(Activity activity, boolean isEnabled) {
 //		Log.d(TAG, "pause "+ statusCount +","+hasFocus);
 		
 		// An app has come over the top of this app. Lock the app.
@@ -70,8 +70,10 @@ public class AppSecurityManager {
 		--statusCount;
 	}
 	
-	private void startUnlockActivity(Activity activity) {
-		Intent i = new Intent(activity, Unlock.class);
-		activity.startActivityForResult(i, UNLOCK_ACTIVITY);
+	private void startUnlockActivity(Activity activity, boolean isEnabled) {
+		if(isEnabled) {
+			Intent i = new Intent(activity, Unlock.class);
+			activity.startActivityForResult(i, UNLOCK_ACTIVITY);
+		}
 	}
 }
