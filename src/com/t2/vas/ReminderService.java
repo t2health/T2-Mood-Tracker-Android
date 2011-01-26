@@ -70,7 +70,7 @@ public class ReminderService extends Service {
 					Log.v(TAG, "Next reminder scheduled.");
 				}
 			}
-		}, 10000);
+		}, 300000);
 		//300000
 	}
 
@@ -101,11 +101,11 @@ public class ReminderService extends Service {
 		
 		// Get the next time a reminder should be shown.
 		long nextRemindTime = ReminderActivity.getNextRemindTime(thisContext);
-		nextRemindTime = ReminderActivity.getNextRemindTimeSince(
+		/*nextRemindTime = ReminderActivity.getNextRemindTimeSince(
 				thisContext,
 				Calendar.getInstance().getTimeInMillis() - 86400000
 		);
-		Log.v(TAG, "Next remind time:"+ new Date(nextRemindTime));
+		Log.v(TAG, "Next remind time:"+ new Date(nextRemindTime));*/
 		
 		if(nextRemindTime == -1) {
 			return false;
@@ -120,7 +120,7 @@ public class ReminderService extends Service {
 				showNotification();
 				
 				// Schedule the next notification.
-				//scheduleNextReminder();
+				scheduleNextReminder();
 			}
 		}, new Date(nextRemindTime));
 		

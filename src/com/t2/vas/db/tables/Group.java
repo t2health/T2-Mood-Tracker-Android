@@ -317,6 +317,30 @@ public class Group extends Table {
 		return -1;
 	}
 
+	public int getResultsCount() {
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				"result",
+				new String[]{
+						"COUNT(*) cnt",
+				},
+				"group_id=?",
+				new String[]{
+						this._id+"",
+				},
+				null,
+				null,
+				null,
+				null
+		);
+		
+		int cnt = 0;
+		if(c.moveToFirst()) {
+			cnt = c.getInt(c.getColumnIndex("cnt"));
+		}
+		c.close();
+		return cnt;
+	}
+	
 	public void clearResults() {
 		this.dbAdapter.getDatabase().delete(
 				"result",

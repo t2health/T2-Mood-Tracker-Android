@@ -180,4 +180,28 @@ public class Note extends Table {
 
 		return -1;
 	}
+	
+	public int getCount() {
+		Cursor c = this.dbAdapter.getDatabase().query(
+				"note", 
+				new String[] {
+						"COUNT(*) cnt",
+				},
+				null,
+				null,
+				null,
+				null,
+				null
+		);
+		int cnt = 0;
+		if(c.moveToFirst()) {
+			cnt = c.getInt(c.getColumnIndex("cnt"));
+		}
+		c.close();
+		return cnt;
+	}
+	
+	public void clearAll() {
+		this.getDBAdapter().getDatabase().execSQL("DELETE FROM note");
+	}
 }
