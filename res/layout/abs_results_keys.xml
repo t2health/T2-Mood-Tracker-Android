@@ -15,7 +15,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
-			android:text="Groups" />
+			android:text="@string/groups_tab" />
 		
 		<view
 			class="com.t2.vas.view.ToggledButton"
@@ -23,7 +23,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
-			android:text="Notes" />
+			android:text="@string/notes_tab" />
 	</LinearLayout>
 	
 	<!-- The tab content -->

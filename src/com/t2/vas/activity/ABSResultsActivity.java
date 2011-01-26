@@ -186,7 +186,7 @@ public abstract class ABSResultsActivity extends ABSNavigation implements OnClic
 		keysList = (ListView) this.findViewById(R.id.keysList);
 		keysList.setAdapter(keysAdapter);
 		if(isKeyItemsClickable()) {
-			Log.v(TAG, "Clickable");
+			//Log.v(TAG, "Clickable");
 			keysList.setOnItemClickListener(this);
 		}
 		

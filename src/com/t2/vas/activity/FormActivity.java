@@ -36,7 +36,7 @@ public class FormActivity extends ABSNavigation {
 
         this.setContentView(R.layout.form_activity);
         
-        this.setRightButtonText("Save");
+        this.setRightButtonText(getString(R.string.save));
         VASAnalytics.onEvent(VASAnalytics.EVENT_FORM_ACTIVITY);
         
         Intent intent = this.getIntent();
@@ -48,7 +48,7 @@ public class FormActivity extends ABSNavigation {
 
         listView = (ListView)this.findViewById(R.id.list);
 
-        Group group = ((Group)dbAdapter.getTable("group")).newInstance();
+        Group group = new Group(dbAdapter);
         group._id = this.activeGroupId;
         if(!group.load()) {
         	this.finish();

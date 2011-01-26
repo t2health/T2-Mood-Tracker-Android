@@ -20,6 +20,15 @@
 
 	<string name="show_tips_on_startup">Show Tips on Startup</string>
 
+	<string name="general_group_operations">General</string>
+	<string name="scales_list">Scale</string>
+
+	<string name="times_list">Times</string>
+	<string name="days_list">Times</string>
+
+	<string name="groups_tab">Groups</string>
+	<string name="notes_tab">Groups</string>
+
 	<string name="security_title">Security</string>
 	<string name="security_desc">Force the use of a password when loading the app.</string>
 	<string name="security_enabled">Security Enabled</string>
@@ -422,6 +431,4 @@
 		<item>Loved</item>
 		<item>Content</item>
 	</string-array>
-
-
 </resources>

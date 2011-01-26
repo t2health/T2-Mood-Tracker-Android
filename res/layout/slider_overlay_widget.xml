@@ -29,7 +29,6 @@
 				android:id="@+id/minLabel"
 				android:layout_width="wrap_content"
 				android:layout_height="fill_parent"
-				android:text="MIN"
 				android:gravity="center"
 				android:textColor="#FFFFFFFF"
 				android:textStyle="bold" />
@@ -46,7 +45,6 @@
 				android:id="@+id/maxLabel"
 				android:layout_width="wrap_content"
 				android:layout_height="fill_parent"
-				android:text="MAX"
 				android:gravity="center"
 				android:textColor="#FFFFFFFF"
 				android:textStyle="bold" />

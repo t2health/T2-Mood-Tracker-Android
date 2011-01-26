@@ -204,8 +204,8 @@ public class GroupActivity extends ABSNavigation implements
 		});
 
 		listAdapter = new SeparatedListAdapter(this);
-		listAdapter.addSection("General", generalAdapter);
-		listAdapter.addSection("Scales", scaleAdapter);
+		listAdapter.addSection(getString(R.string.general_group_operations), generalAdapter);
+		listAdapter.addSection(getString(R.string.scales_list), scaleAdapter);
 
 		listView.setAdapter(listAdapter);
 		listView.setOnItemClickListener(this);

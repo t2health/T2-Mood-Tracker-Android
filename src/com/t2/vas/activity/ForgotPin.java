@@ -55,7 +55,7 @@ public class ForgotPin extends ABSCustomTitle implements OnKeyListener, OnEditor
 	
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		Log.v(TAG, "ACTION");
+		//Log.v(TAG, "ACTION");
 		checkForMatchedAnswers(v);
 		return false;
 	}

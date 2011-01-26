@@ -151,8 +151,8 @@ public class Reminder extends ABSNavigation implements OnItemClickListener {
 		});
         
         listAdapter = new SeparatedListAdapter(this);
-        listAdapter.addSection("Times", timesAdapter);
-        listAdapter.addSection("Days", dowAdapter, false);
+        listAdapter.addSection(getString(R.string.times_list), timesAdapter);
+        listAdapter.addSection(getString(R.string.days_list), dowAdapter, false);
         
         setContentView(R.layout.list_layout);
         ListView listView = (ListView)this.findViewById(R.id.list);
