@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<Preference
-		android:title="@string/group_editor_title"
+		android:title="@string/group_list_title"
 		android:key="group_editor" />
 
 	<Preference
@@ -21,7 +21,7 @@
 	<PreferenceCategory
 		android:title="@string/settings_general">
 		<CheckBoxPreference
-			android:title="@string/activity_startup_tips_show"
+			android:title="@string/show_tips_on_startup"
 			android:key="show_startup_tips"
 			android:defaultValue="true" />
 	

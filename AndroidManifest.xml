@@ -60,6 +60,14 @@
         </activity>
         
         <activity
+        	android:label="@string/help_title"
+        	android:launchMode="singleTop"
+        	android:name=".activity.HelpActivity"
+        	android:excludeFromRecents="true"
+    		android:theme="@style/CustomTheme">
+        </activity>
+        
+        <activity
         	android:label="@string/notes_list_title"
         	android:launchMode="singleTop"
         	android:name=".activity.NotesList"
@@ -108,7 +116,6 @@
 	   	<!-- Notes Activities -->
 	   	<activity
 	    	android:name=".activity.AddEditNoteActivity"
-	    	android:label="@string/add_edit_note_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
@@ -150,14 +157,13 @@
 	   	<!-- Group Editor Activities -->
 	   	<activity
 	    	android:name=".activity.editor.GroupListActivity"
-	    	android:label="@string/activity_group"
+	    	android:label="@string/group_list_title"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.editor.GroupActivity"
-	    	android:label="@string/activity_group"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">

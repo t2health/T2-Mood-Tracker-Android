@@ -46,7 +46,7 @@ public class GroupListActivity extends ABSNavigation implements OnItemClickListe
 		
 		addEditText = new EditText(this);
 		addGroupDialog = new AlertDialog.Builder(this)
-			.setTitle(R.string.activity_group)
+			.setTitle(R.string.add_group_title)
 			.setView(addEditText)
 			.setPositiveButton(R.string.save, this)
 			.setNegativeButton(R.string.cancel, this)
@@ -162,7 +162,5 @@ public class GroupListActivity extends ABSNavigation implements OnItemClickListe
 				groupsAdapter.notifyDataSetChanged();
 			}
 		}
-			
-			
 	}
 }

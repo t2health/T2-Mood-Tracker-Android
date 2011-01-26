@@ -27,7 +27,6 @@ import com.t2.vas.db.tables.Note;
 public class AddEditNoteActivity extends ABSNavigation implements OnClickListener, OnDateChangedListener {
 	public static final String EXTRA_NOTE_ID = "noteId";
 	private Note currentNote;
-	private Toast toastPopup;
 	private DatePicker datePicker;
 	private TimePicker timePicker;
 
@@ -37,7 +36,6 @@ public class AddEditNoteActivity extends ABSNavigation implements OnClickListene
 
 		// init global variables.
 		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();
-		toastPopup = Toast.makeText(this, R.string.note_saved, 2000);
 
 		// init the local variables;
 		Calendar cal = Calendar.getInstance();
@@ -49,9 +47,11 @@ public class AddEditNoteActivity extends ABSNavigation implements OnClickListene
 		// Load the note from the DB
 		if(currentNote._id > 0) {
 			currentNote.load();
+			this.setTitle(getString(R.string.edit_note_title));
 
 		// This is a new note, set the date.
 		} else {
+			this.setTitle(getString(R.string.add_note_title));
 			cal.setTimeInMillis(dateTimestamp);
 			currentNote.timestamp = cal.getTimeInMillis();
 		}
@@ -135,8 +135,6 @@ public class AddEditNoteActivity extends ABSNavigation implements OnClickListene
 		currentNote.note = ((TextView)this.findViewById(R.id.note)).getText().toString();
 		currentNote.timestamp = cal.getTimeInMillis();
 		currentNote.save();
-
-		toastPopup.show();
 
 		this.getIntent().putExtra(EXTRA_NOTE_ID, currentNote._id);
 		this.setResult(Activity.RESULT_OK, this.getIntent());

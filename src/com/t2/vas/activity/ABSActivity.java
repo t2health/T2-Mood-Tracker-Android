@@ -101,7 +101,7 @@ public abstract class ABSActivity extends Activity {
 		switch(activityID) {
 			case INFO_ACTIVITY:
 				i.setAction("com.t2.vas.InfoActivity");
-				i.putExtra("help_string_resource_id", this.getHelpResId());
+				i.putExtra("help_string_resource_id", this.getHelpTarget());
 				this.startActivityForResult(i, INFO_ACTIVITY);
 				break;
 
@@ -111,40 +111,29 @@ public abstract class ABSActivity extends Activity {
 		}
 	}
 	
-	
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.global, menu);
-		
-		if(this.getHelpResId() > -1) {
-			MenuItem mi = menu.add(Menu.NONE, HELP_MENU_ITEM, Menu.NONE, R.string.help_title);
-			mi.setIcon(android.R.drawable.ic_menu_help);
-		}
 		return true;
 	}
-	
-	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		
 		switch(item.getItemId()) {
-			case HELP_MENU_ITEM:
-				i = new Intent(this, WebViewActivity.class);
-				i.putExtra(WebViewActivity.EXTRA_TITLE_ID, R.string.help_title);
-				i.putExtra(WebViewActivity.EXTRA_CONTENT_ID, this.getHelpResId());
-				i.putExtra(WebViewActivity.EXTRA_BACK_BUTTON_TEXT, "back");
+			case R.id.help:
+				i = new Intent(this, HelpActivity.class);
+				i.putExtra(HelpActivity.EXTRA_TARGET, this.getHelpTarget());
+				i.putExtra(HelpActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 				this.startActivity(i);
 			default:
 				return super.onOptionsItemSelected(item);
 		}
-		
 	}
 	
-	public int getHelpResId() {
-		return -1;
+	public String getHelpTarget() {
+		return this.getClass().getSimpleName();
 	}
 }

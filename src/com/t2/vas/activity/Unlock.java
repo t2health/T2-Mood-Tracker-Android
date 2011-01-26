@@ -8,6 +8,7 @@ import com.t2.vas.SharedPref;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -67,6 +68,11 @@ public class Unlock extends ABSStartupTips implements OnKeyListener, OnClickList
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return true;
 	}
 	
 	public void onClick(View v) {

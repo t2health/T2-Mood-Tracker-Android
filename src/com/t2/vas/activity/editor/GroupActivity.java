@@ -106,12 +106,12 @@ public class GroupActivity extends ABSNavigation implements
 
 		renameEditText = new EditText(this);
 		renameDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.group_rename).setView(renameEditText)
+				.setTitle(R.string.edit_group_title).setView(renameEditText)
 				.setPositiveButton(R.string.save, this)
 				.setNegativeButton(R.string.cancel, this).create();
 		deleteGroupDialog = new AlertDialog.Builder(this)
 				.setTitle(R.string.delete)
-				.setMessage(R.string.delete_category_desc)
+				.setMessage(R.string.delete_category_confirm)
 				.setPositiveButton(R.string.yes, this)
 				.setNegativeButton(R.string.no, this).create();
 		deleteScaleDialog = new AlertDialog.Builder(this)

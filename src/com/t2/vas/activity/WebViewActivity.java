@@ -45,9 +45,10 @@ public class WebViewActivity extends ABSNavigation {
 		}
 		
 		this.setTitle(titleString);
-		this.setContentView(R.layout.webview_activity);
+		this.setContentView(R.layout.webview_layout);
 		
 		WebView wv = (WebView)this.findViewById(R.id.webview);
+		wv.setBackgroundColor(0); // make the bg transparent
 		wv.loadDataWithBaseURL("fake:/blah", contentString, "text/html", "utf-8", null);
 	}
 

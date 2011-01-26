@@ -6,6 +6,7 @@ import com.t2.vas.SharedPref;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -66,6 +67,11 @@ public class ForgotPin extends ABSCustomTitle implements OnKeyListener, OnEditor
 			case R.id.cancelButton:
 				this.finish();
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return true;
 	}
 
 	private void checkForMatchedAnswers(View v) {

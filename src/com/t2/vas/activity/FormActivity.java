@@ -114,10 +114,4 @@ public class FormActivity extends ABSNavigation {
 			r.save();
         }
 	}
-
-
-	@Override
-	public int getHelpResId() {
-		return R.string.form_help;
-	}
 }

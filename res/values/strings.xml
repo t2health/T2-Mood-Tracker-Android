@@ -1,34 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">T2 Mood Tracker</string>
+	
+	<!-- General String -->
 	<string name="back_button">Back</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="save">Save</string>
+	<string name="close">Close</string>
+	<string name="cancel">Cancel</string>
+	<string name="delete">Delete</string>
+	<string name="never">Never</string>
+	<string name="add_note">Add Note</string>
 	
-	<string name="note_details_title">Note Details</string>
-	<string name="rate_title">Rate</string>
+	<!-- Main screen sections -->
+	<string name="rate_section_title">Rate</string>
+	<string name="results_section_title">Results</string>
+		<string name="graph_results_title">Graph Results</string>
+		<string name="view_notes_title">View Notes</string>
+	<string name="general_section_title"> </string>
+		<string name="about_title">About T2 Mood Tracker</string>
+			<string name="about_text">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
+		<string name="feedback_title">Feedback</string>
+		<string name="tell_a_friend_title">Tell a Friend</string>
+	
+	<!-- Help -->
+	<string name="help_title">Help</string>	
+	
+	<!-- Rating form -->
+	<string name="form_title">Rate Your Mood</string>
+	<string name="form_help">Rating your mood is quick and easy.  Simply select a category you’d like to track. If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
+	
+	<!--  Graph results -->
 	<string name="results_title">Results</string>
-	<string name="settings_title">Settings</string>
-
-	<string name="graph_results_title">Graph Results</string>
-	<string name="view_notes_title">View Notes</string>
-	
-	<string name="feedback_title">Feedback</string>
-	<string name="tell_a_friend_title">Tell a Friend</string>
-
-	<string name="splash_intro">Press the \"Start\" button to begin.</string>
-	<string name="splash_start_button">Start</string>
-	<string name="splash_health_tip_label">Health Tip: </string>
-
-	<string name="show_tips_on_startup">Show Tips on Startup</string>
-
-	<string name="general_group_operations">General</string>
-	<string name="scales_list">Scale</string>
-
-	<string name="times_list">Times</string>
-	<string name="days_list">Times</string>
-
 	<string name="groups_tab">Groups</string>
-	<string name="notes_tab">Groups</string>
+	<string name="notes_tab">Notes</string>
+		
+	<!-- Notes -->
+	<string name="notes_list_title">Notes</string>
+	<string name="note_details_title">Note Details</string>
+	<string name="edit_note_title">Edit Note</string>
+	<string name="add_note_title">Add Note</string>
+	<string name="note_delete_confirm">Are you sure you would like to delete this note?</string>
+	
+	<!-- Settings -->
+	<string name="settings_title">Settings</string>
+	<string name="settings_general">General</string>
+	<string name="show_tips_on_startup">Show Tips on Startup</string>
+	<string name="send_anon_data_title">Send Anonymous Usage Data</string>
+	<string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
 
+	<!--  Group List -->
+	<string name="group_list_title">Category Editor</string>
+	<string name="add_group_title">Add Group</string>
+	
+	<!-- Group Editor -->
+	<string name="general_group_operations">General</string>
+	<string name="edit_group_title">Rename</string>
+	<string name="delete_category_confirm">Are you sure you want to remove this category, associated scales and ratings.</string>
+	<string name="group_immutable_message">This category and its rating scales cannot be modified.</string>
+	<string name="add_scale">Add Rating Scale</string>
+    <string name="edit_scale">Edit Rating Scale</string>
+    <string name="copy_scale">Copy a Rating Scale</string>
+	<string name="min_label">Minimum Label</string>
+	<string name="max_label">Maximum Label</string>
+	<string name="scale_saved">The rating scale has been saved.</string>
+	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
+	<string name="scales_list">Scales</string>
+	<string-array name="add_scale_gateway_options">
+		<item>Add Existing</item>
+		<item>Add Custom</item>
+	</string-array>
+	
+	<!-- Reminder -->
+	<string name="reminders_title">Reminder</string>
+	<string name="times_list">Times</string>
+	<string name="days_list">Days</string>
+	<string name="remind_notification_bar_text">Some Categories require your attention.</string>
+	<string name="remind_notification_title">T2 Mood Tracker</string>
+	<string name="remind_notification_desc">Some Categories require your attention.</string>
+	<!--  NOTE: Look in arrays.xml for the days of the week. -->
+	
+	<!-- Clear Data -->
+	<string name="clear_data_title">Clear Result Data</string>
+	<string name="clear_data_button">Clear Result Data</string>
+	<string name="clear_data_confirm">This will clear all the ratings data you have provided for the selected categories. Are you sure you would like to do this?</string>
+	<string name="clear_data_cleared_text">Ratings data has been clear for the selected categories.</string>
+	
+	<!-- Security -->
 	<string name="security_title">Security</string>
 	<string name="security_desc">Force the use of a password when loading the app.</string>
 	<string name="security_enabled">Security Enabled</string>
@@ -39,206 +98,13 @@
 	<string name="answer2">Answer 2</string>
 	<string name="forgot_pin">Forgot Pin</string>
 	<string name="enter_your_pin">Enter your pin</string>
-
-	<string name="main_intro_title">Welcome to the T2 Mood Tracker</string>
-	<string name="main_into_text">With this app you can rate your moods, keep track of how you’re feeling over time, figure out how life events, therapies and medications are affecting your well-being, and accurately communicate all of this to your health care provider or therapist should you choose to do so.</string>
-	<string name="main_intro_intructions">Choose a category by moving the slider below.</string>
-	<string name="main_help"></string>
-
-	<string name="introduction_title">Introduction</string>
-	<string name="introduction_desc">A quick desc of this item.</string>
-	<string name="introduction_content">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
-
-	<string name="notes_list_title">Notes</string>
-	<string name="notes_list_desc">A quick desc of this item.</string>
-	<string name="notes_list_no_notes">You don\'t currently have any notes to display.</string>
-
-	<string name="show_all_groups">Show hidden groups</string>
-	<string name="hide_some_groups">Don\'t show hidden groups</string>
-
-	<string name="remind_notification_bar_text">Some Categories require your attention.</string>
-	<string name="remind_notification_title">T2 Mood Tracker</string>
-	<string name="remind_notification_desc">Some Categories require your attention.</string>
-
-	<string name="group_details_title">Group Details</string>
-
-	<string name="info_title">Info</string>
-	<string name="info_desc"></string>
 	
-	<string name="hide_from_main_title">Hide in Main List</string>
-	<string name="hide_from_main_desc">Prevent this category from showing in the main list.</string>
-	<string name="show_in_main_title">Show in Main List</string>
-	<string name="show_in_main_desc">Show the item in the main list.</string>
-	
-	<string name="show_hidden_groups">Show Hidden Groups</string>
-
-	<string name="form_title">Rate Your Mood</string>
-	<string name="form_desc">Rate yourself by sliding the pointers to a place that represents how you are feeling.</string>
-	<string name="form_help">Rating your mood is quick and easy.  Simply select a category you’d like to track.   If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
-	<string name="form_submit">See my results!</string>
-
-	<string name="results_desc">View graphs of your previous ratings</string>
-	<string name="results_help">Results of your ratings are always displayed by graphed lines. The RED line is made up of points representing the average of the ten ratings you made for each tracking category.  The individual ratings you made for each separate mood are displayed on top of the average line in different colors so you can compare your average rating with each individual rating.  For example, you can view the average of all ten ratings you made as you tracked “Depression” and you can view each of your ten individual ratings like “Happy-Sad”.  The lower your line on the X axis, the more “negative” your rating.  By moving the VERTICLE line on each graph with your finger you can see the dates of each recorded rating.  The small black squares at the top of the graph are Note Indicators and indicate the dates you made notes.  You can read your past notes by moving the vertical line to each Note Indicator and click the notes check in the upper right hand corner.</string>
-	<string name="results_choose_chart">Use the slider above to view a different chart.</string>
-	<string name="add_notes_popup">Add a note for today by clicking the + button.</string>
-
-	<string name="share_title">Share Results</string>
-	<string name="share_desc">Share your results with others.</string>
-
-	<string name="group_add_title">Add a custom category</string>
-	<string name="group_add_desc">Create a custom category to fit your needs. This new category will be available in the slider below.</string>
-	<string name="group_rename">Rename</string>
-
-	<string name="help_title">Help</string>
-	<string name="help_desc">Get additional information on how to use this app.</string>
-
-	<string name="send_anon_data_title">Send Anonymous Usage Data</string>
-	<string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
-
+	<!-- EULA -->
 	<string name="eula_title">License</string>
 	<string name="eula_accept">Accept</string>
 	<string name="eula_refuse">Refuse</string>
 
-	<string name="notes_title">Manage Notes</string>
-	<string name="notes_desc">Review/Edit/Delete notes associated with days of the month.</string>
-	<string name="notes_help">Making notes of events that might be related to your moods is important.  By touching the “Note” icon you can enter notes for the day of your rating.  You can also go back to earlier ratings and make a note for that day.  Make notes when you start, change or discontinue a medication or therapy, or note important events that occur each day.  As you review your ratings over time you may be able to find important patterns in how you are feeling and why.</string>
-	<string name="notes_dialog_title">Notes for selected date</string>
-	<string name="add_edit_note_title">Add/Edit Note</string>
-	<string name="delete_note_title">Delete Note</string>
-	<string name="no_notes_yet">You do not have any notes yet.</string>
-	<string name="note_saved">The note has been saved.</string>
-	<string name="note_delete_confirm">Are you sure you would like to delete this note?</string>
-	<string name="note_deleted">The note was deleted.</string>
-	<string name="add_note">Add Note</string>
-	<string name="password_protect_notes_title">Password Protect Notes</string>
-	<string name="password_protect_notes_desc">Require a password to view notes.</string>
-	<string name="notes_unlocked">Notes have been unlocked for 1 hour.</string>
-	<string name="lock_notes_now_title">Lock the notes screen now.</string>
-	<string name="lock_notes_now_desc">Force the notes screen require a password next time it is visited.</string>
-	<string name="notes_will_require_password">Notes will require a password next time it is accessed.</string>
 
-	
-
-	<string name="settings_desc">Adjust how the app should operate.</string>
-	<string name="settings_notes_locked">Notes will require a password next time it is accessed.</string>
-
-	<string name="about_title">About T2 Mood Tracker</string>
-	<string name="about_desc"></string>
-	<string name="about_text">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
-
-	<string name="delete_category_title">Delete</string>
-	<string name="delete_category_desc">Remove this category, associated scales and ratings.</string>
-	<string name="edit_category_title">Edit</string>
-	<string name="edit_category_desc">Change the name of this Category.</string>
-	<string name="manage_scales_title">Manage Scales.</string>
-	<string name="manage_scales_desc">List and modify this category\'s scales.</string>
-	
-	<string name="clear_data_title">Clear Result Data</string>
-	<string name="clear_data_desc">Remove all the ratings associated with this category.</string>
-	<string name="clear_data_button">Clear Result Data</string>
-	<string name="clear_data_confirm">This will clear all the ratings data you have provided for the selected categories. Are you sure you would like to do this?</string>
-	<string name="clear_data_cleared_text">Ratings data has been clear for the selected categories.</string>
-
-	<string name="frequency_title">Frequency</string>
-	<string name="frequency_desc">How often would you like to be reminded to rate your mood?</string>
-	<string-array name="frequency_entries">
-		<item>Daily</item>
-		<!-- <item>Weekly</item> -->
-		<item>Monthly</item>
-	</string-array>
-	<string-array name="frequency_entries_values">
-		<item>DAILY</item>
-		<!-- <item>WEEKLY</item> -->
-		<item>MONTHLY</item>
-	</string-array>
-	<string name="frequency_entries_values_default">DAILY</string>
-
-	<string name="last_rated_label">Last Rated: </string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="save">Save</string>
-	<string name="cancel">Cancel</string>
-	<string name="delete">Delete</string>
-	<string name="close">Close</string>
-	<string name="never">Never</string>
-
-	<string name="group">Category</string>
-	<string name="average_for">Average for</string>
-	<string name="manage_scales">Manage Scales</string>
-	<string name="edit_group">Edit Category</string>
-	<string name="manage_group">Manage Category</string>
-
-
- 	<string name="password_title">Password</string>
- 	<string name="password_unlock">Unlock</string>
-	<string name="password_next">Next</string>
-	<string name="password_set">Set</string>
-	<string name="password_confirm_message">Enter the current password.</string>
-	<string name="password_confirm_message_error">The password entered is not correct. Enter the current password.</string>
-	<string name="password_new_message1">Enter the new password.</string>
-	<string name="password_new_message1_error">The passwords did not match. Enter the new password.</string>
-	<string name="password_new_message2">Re-enter the new password.</string>
-
-	<string name="activity_group_list">Categories</string>
-	<string name="activity_group">Add/Edit Category</string>
-	<string name="activity_delete_group">Delete Category</string>
-	<string name="activity_group_list_add_group">Add Category</string>
-	<string name="activity_group_saved">The category has been saved.</string>
-	<string name="activity_delete_group_message">Are you sure you would like to delete this category and all of its rating scales?</string>
-	<string name="activity_group_deleted">The category was deleted.</string>
-	<string name="group_immutable_message">This category and its rating scales cannot be modified.</string>
-	
-	<string name="group_editor_title">Category Editor</string>
-	<string name="group_editor_desc">Add a category or delete all data from any category.</string>
-
-	<string name="activity_scale_list">Rating Scale</string>
-	<string name="activity_scale">Add/Edit Rating Scale</string>
-	<string name="activity_delete_scale">Delete Rating Scale</string>
-    <string name="add_scale">Add Rating Scale</string>
-    <string name="edit_scale">Edit Rating Scale</string>
-    <string name="activity_scale_gateway">Add Rating Scale</string>
-    <string name="copy_scale">Copy a Rating Scale</string>
-	<string name="scale_saved">The rating scale has been saved.</string>
-	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
-	<string name="scale_deleted">The rating scale was deleted.</string>
-	<string name="min_label">Minimum Label</string>
-	<string name="max_label">Maximum Label</string>
-	
-	<string name="activity_gateway_add_existing">Copy a Scale from an existing Category.</string>
-	<string name="activity_gateway_add_custom">Create a new scale.</string>
-
-    <string name="reminders_title">Reminder</string>
-    <string name="reminders_desc">Set a reminder to track your mood.</string>
-    
-	<string name="remind_time_title">Reminder Time</string>
-	<string name="remind_time_desc">The time at which you will be reminded to rate your mood.</string>
-    
-    <string name="activity_reminder_next_form">Next Category</string>
-    <string name="activity_reminder_finish">Finish</string>
-
-    <string name="activity_reminder_preference_message">Choose how long since your last entry you should be reminded to take this activity.</string>
-    <string name="activity_reminder_preference">Reminder</string>
-    <string name="activity_reminder_preference_never">Never</string>
-    <string name="activity_reminder_preference_hourly">Hourly</string>
-    <string name="activity_reminder_preference_daily">Daily</string>
-    <string name="activity_reminder_preference_weekly">Weekly</string>
-    <string name="activity_reminder_preference_monthly">Monthly</string>
-
-    <string name="notification_ticker">A category of rating scales needs to be taken.</string>
-	<string name="notification_title">A category of rating scales needs to be taken.</string>
-	<string name="notification_text">You will be returned to your current activity when finished.</string>
-
-    <string name="settings_general">General</string>
-    <string name="activity_preference_security">Security</string>
-    <string name="activity_preference_change_password">Change Password</string>
-
-	<string name="days_to_remind_title">Days to Remind</string>
-	<string name="days_to_remind_desc">The days of the week to remind.</string>
-
-	<string name="activity_startup_tips">Health Tip</string>
-	<string name="activity_startup_tips_show">Show Startup Tips</string>
-	<string name="activity_startup_tips_show_desc_on">Turn Startup Tips Off</string>
-	<string name="activity_startup_tips_show_desc_off">Turn Startup Tips On</string>
 	<string-array name="startup_tips">
 		<item>The body is vulnerable to problems when it is not “maintained” properly.  Take timeout to relax or do enjoyable activities.</item>
 		<item>Put effort into maintaining positive relationships at work.  After deployment you still need someone to watch your back. </item>

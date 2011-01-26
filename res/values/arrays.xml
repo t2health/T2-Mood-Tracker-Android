@@ -18,10 +18,4 @@
 		<item>6</item>
 		<item>7</item>
 	</integer-array>
-	
-	
-	<string-array name="add_scale_gateway_options">
-		<item>Add Existing</item>
-		<item>Add Custom</item>
-	</string-array>
 </resources>

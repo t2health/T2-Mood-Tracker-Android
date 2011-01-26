@@ -135,8 +135,8 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
         
         
         listAdapter = new SeparatedListAdapter(this);
-        listAdapter.addSection(this.getString(R.string.rate_title), rateGroupListAdapter);
-        listAdapter.addSection(this.getString(R.string.results_title), new SimpleAdapter(
+        listAdapter.addSection(this.getString(R.string.rate_section_title), rateGroupListAdapter);
+        listAdapter.addSection(this.getString(R.string.results_section_title), new SimpleAdapter(
         		this,
         		this.getResultsItems(),
         		R.layout.list_item_1_image,
@@ -149,7 +149,7 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
         			R.id.image1,
         		}
         ));
-        listAdapter.addSection(this.getString(R.string.settings_title), new SimpleAdapter(
+        listAdapter.addSection(this.getString(R.string.general_section_title), new SimpleAdapter(
         		this,
         		this.getSettingsItems(),
         		R.layout.list_item_1_image,
@@ -396,10 +396,8 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.feedback_title)), 123);
 				
 			} else if(itemId.equals("help")) {
-				Intent i = new Intent(this, WebViewActivity.class);
-				i.putExtra(WebViewActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
-				i.putExtra(WebViewActivity.EXTRA_TITLE_ID, R.string.help_title);
-				i.putExtra(WebViewActivity.EXTRA_CONTENT_ID, R.string.help_desc);
+				Intent i = new Intent(this, HelpActivity.class);
+				i.putExtra(HelpActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 				this.startActivityForResult(i, 123);
 				
 			} else if(itemId.equals("settings")) {
@@ -433,10 +431,5 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 		i.putExtra(FormActivity.EXTRA_GROUP_ID, id);
 		i.putExtra(FormActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 		this.startActivityForResult(i, FORM_ACTIVITY);
-	}
-
-	@Override
-	public int getHelpResId() {
-		return R.string.introduction_content;
 	}
 }
