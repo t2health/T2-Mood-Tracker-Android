@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class Startup extends ABSActivity {
+public class StartupActivity extends ABSActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class Startup extends ABSActivity {
 		if(SharedPref.Security.isEnabled(sharedPref)) {
 			i = new Intent(this, MainActivity.class);
 		} else {
-			i = new Intent(this, SplashScreen.class);
+			i = new Intent(this, SplashScreenActivity.class);
 		}
 		
 		this.startActivity(i);

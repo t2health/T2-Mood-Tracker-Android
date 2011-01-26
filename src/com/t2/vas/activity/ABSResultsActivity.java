@@ -71,7 +71,7 @@ import com.t2.vas.view.OffsetGraphicalChartView;
 import com.t2.vas.view.SimpleCursorDateSectionAdapter;
 import com.t2.vas.view.ToggledButton;
 
-public abstract class ABSResultsActivity extends ABSNavigation implements OnClickListener, OnItemClickListener, GestureDetector.OnGestureListener {
+public abstract class ABSResultsActivity extends ABSNavigationActivity implements OnClickListener, OnItemClickListener, GestureDetector.OnGestureListener {
 	public static final String EXTRA_TIME_START = "timeStart";
 	public static final String EXTRA_CALENDAR_FIELD = "calendarField";
 	

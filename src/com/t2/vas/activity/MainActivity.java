@@ -44,14 +44,14 @@ import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSResultsActivity.KeyItem;
 import com.t2.vas.activity.preference.MainPreferenceActivity;
-import com.t2.vas.activity.preference.Reminder;
+import com.t2.vas.activity.preference.ReminderActivity;
 import com.t2.vas.data.GroupResultsDataProvider;
 import com.t2.vas.db.InstallDB;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.view.SeparatedListAdapter;
 
-public class MainActivity extends ABSNavigation implements OnItemClickListener {
+public class MainActivity extends ABSNavigationActivity implements OnItemClickListener {
 	private static final String TAG = MainActivity.class.getName();
 	private static final int HELP_SETTINGS_ITEM = 235;
 	
@@ -73,7 +73,7 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
         super.onCreate(savedInstanceState);
 
         thisContext = this;
-        previousRemindTime = Reminder.getPreviousRemindTimeSince(
+        previousRemindTime = ReminderActivity.getPreviousRemindTimeSince(
         		thisContext,
         		Calendar.getInstance().getTimeInMillis()
 		);
@@ -375,8 +375,8 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 				this.startActivityForResult(i, 123);
 				
 			} else if(itemId.equals("view_notes")) {
-				Intent i = new Intent(this, NotesList.class);
-				i.putExtra(NotesList.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+				Intent i = new Intent(this, NotesListActivity.class);
+				i.putExtra(NotesListActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 				this.startActivityForResult(i, 123);
 				return;
 				
@@ -427,9 +427,9 @@ public class MainActivity extends ABSNavigation implements OnItemClickListener {
 	}
 
 	private void startGroupFormActivity(long id) {
-		Intent i = new Intent(this, FormActivity.class);
-		i.putExtra(FormActivity.EXTRA_GROUP_ID, id);
-		i.putExtra(FormActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+		Intent i = new Intent(this, RateActivity.class);
+		i.putExtra(RateActivity.EXTRA_GROUP_ID, id);
+		i.putExtra(RateActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 		this.startActivityForResult(i, FORM_ACTIVITY);
 	}
 }

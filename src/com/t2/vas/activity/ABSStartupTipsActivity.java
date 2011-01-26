@@ -13,7 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
-public abstract class ABSStartupTips extends ABSCustomTitle implements OnCheckedChangeListener {
+public abstract class ABSStartupTipsActivity extends ABSCustomTitleActivity implements OnCheckedChangeListener {
 
 	private TextView startupTipsView;
 	protected boolean showStartupTips;

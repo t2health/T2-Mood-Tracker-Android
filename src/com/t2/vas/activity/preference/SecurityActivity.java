@@ -2,7 +2,7 @@ package com.t2.vas.activity.preference;
 
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
-import com.t2.vas.activity.ABSNavigation;
+import com.t2.vas.activity.ABSNavigationActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
-public class Security extends ABSNavigation implements OnCheckedChangeListener {
+public class SecurityActivity extends ABSNavigationActivity implements OnCheckedChangeListener {
 	private CheckBox enabledCheckbox;
 	private ViewGroup inputsContainer;
 	private EditText pinEditText;

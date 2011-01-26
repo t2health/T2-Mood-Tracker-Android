@@ -25,12 +25,12 @@ import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 import com.t2.vas.R;
-import com.t2.vas.activity.ABSNavigation;
+import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
 import com.t2.vas.view.SeparatedListAdapter;
 
-public class GroupActivity extends ABSNavigation implements
+public class GroupActivity extends ABSNavigationActivity implements
 		OnItemClickListener, DialogInterface.OnClickListener {
 	public static final String TAG = GroupActivity.class.getSimpleName();
 

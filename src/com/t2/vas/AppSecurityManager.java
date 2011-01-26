@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.t2.vas.activity.Unlock;
+import com.t2.vas.activity.UnlockActivity;
 
 public class AppSecurityManager {
 	private static final String TAG = AppSecurityManager.class.getSimpleName();
@@ -72,7 +72,7 @@ public class AppSecurityManager {
 	
 	private void startUnlockActivity(Activity activity, boolean isEnabled) {
 		if(isEnabled) {
-			Intent i = new Intent(activity, Unlock.class);
+			Intent i = new Intent(activity, UnlockActivity.class);
 			activity.startActivityForResult(i, UNLOCK_ACTIVITY);
 		}
 	}

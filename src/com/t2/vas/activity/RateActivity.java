@@ -21,10 +21,10 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
-public class FormActivity extends ABSNavigation {
+public class RateActivity extends ABSNavigationActivity {
 	public static final String EXTRA_GROUP_ID = "group_id";
 	
-	private static final String TAG = FormActivity.class.getName();
+	private static final String TAG = RateActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
 	private ListView listView;
@@ -34,7 +34,7 @@ public class FormActivity extends ABSNavigation {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.form_activity);
+        this.setContentView(R.layout.rate_activity);
         
         this.setRightButtonText(getString(R.string.save));
         VASAnalytics.onEvent(VASAnalytics.EVENT_FORM_ACTIVITY);

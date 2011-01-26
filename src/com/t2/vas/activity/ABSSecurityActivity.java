@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.t2.vas.AppSecurityManager;
 import com.t2.vas.SharedPref;
 
-public abstract class ABSSecurity extends ABSCustomTitle {
+public abstract class ABSSecurityActivity extends ABSCustomTitleActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);

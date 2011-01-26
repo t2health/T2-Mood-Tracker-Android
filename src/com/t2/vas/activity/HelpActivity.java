@@ -5,7 +5,7 @@ import com.t2.vas.R;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-public class HelpActivity extends ABSNavigation {
+public class HelpActivity extends ABSNavigationActivity {
 
 	public static final String EXTRA_TARGET = "target";
 	

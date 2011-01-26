@@ -17,7 +17,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Unlock extends ABSStartupTips implements OnKeyListener, OnClickListener, OnCheckedChangeListener {
+public class UnlockActivity extends ABSStartupTipsActivity implements OnKeyListener, OnClickListener, OnCheckedChangeListener {
 	private static final int FORGOT_PIN_ACTIVITY = 235;
 	private EditText pinEditText;
 	private String lockPin;
@@ -79,7 +79,7 @@ public class Unlock extends ABSStartupTips implements OnKeyListener, OnClickList
 		Intent i;
 		switch(v.getId()){
 			case R.id.forgotPinButton:
-				i = new Intent(this, ForgotPin.class);
+				i = new Intent(this, ForgotPinActivity.class);
 				//i.putExtra(ForgotPin.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 				this.startActivityForResult(i, FORGOT_PIN_ACTIVITY);
 				break;

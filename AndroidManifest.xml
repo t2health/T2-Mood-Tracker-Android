@@ -28,7 +28,7 @@
 		<activity
         	android:label="@string/app_name"
         	android:launchMode="singleTop"
-        	android:name=".activity.Startup"
+        	android:name=".activity.StartupActivity"
     		android:theme="@style/CustomTheme">
 
 			<intent-filter>
@@ -40,7 +40,7 @@
         <activity
         	android:label="@string/app_name"
         	android:launchMode="singleTop"
-        	android:name=".activity.SplashScreen"
+        	android:name=".activity.SplashScreenActivity"
     		android:theme="@style/CustomTheme">
 		</activity>
 
@@ -70,15 +70,15 @@
         <activity
         	android:label="@string/notes_list_title"
         	android:launchMode="singleTop"
-        	android:name=".activity.NotesList"
+        	android:name=".activity.NotesListActivity"
         	android:excludeFromRecents="true"
     		android:theme="@style/CustomTheme">
         </activity>
 
 	    <activity
-	    	android:label="@string/form_title"
+	    	android:label="@string/rate_title"
 	    	android:launchMode="singleTop"
-	    	android:name=".activity.FormActivity"
+	    	android:name=".activity.RateActivity"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme">
 	   	</activity>
@@ -99,14 +99,14 @@
 	   	</activity>
 
 	   	<activity
-	    	android:name=".activity.Unlock"
+	    	android:name=".activity.UnlockActivity"
 	    	android:label="@string/app_name"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme"
 	    	android:launchMode="singleTop">
 	   	</activity>
 	   	<activity
-	    	android:name=".activity.ForgotPin"
+	    	android:name=".activity.ForgotPinActivity"
 	    	android:label="@string/forgot_pin"
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme"
@@ -132,7 +132,7 @@
 
 	    <activity
 	    	android:launchMode="singleTop"
-	    	android:name=".activity.preference.Reminder"
+	    	android:name=".activity.preference.ReminderActivity"
 	    	android:label="@string/reminders_title"
 	    	android:theme="@style/CustomTheme"
 	    	android:excludeFromRecents="true">
@@ -140,14 +140,14 @@
 	   	
 	   	<activity
 	    	android:launchMode="singleTop"
-	    	android:name=".activity.preference.Security"
+	    	android:name=".activity.preference.SecurityActivity"
 	    	android:label="@string/security_title"
 	    	android:theme="@style/CustomTheme"
 	    	android:excludeFromRecents="true">
 	   	</activity>
 	   	
 	   	<activity
-	    	android:name=".activity.preference.ClearData"
+	    	android:name=".activity.preference.ClearDataActivity"
 	    	android:label="@string/clear_data_title"
 	    	android:excludeFromRecents="true"
 	    	android:launchMode="singleTop"

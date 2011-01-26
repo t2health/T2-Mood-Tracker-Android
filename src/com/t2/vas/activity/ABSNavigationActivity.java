@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.t2.vas.R;
 
-public abstract class ABSNavigation extends ABSSecurity {
+public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 	public static final String EXTRA_BACK_BUTTON_TEXT = "leftButtonText";
 	public static final String EXTRA_BACK_BUTTON_RESID = "leftButtonResId";
 	

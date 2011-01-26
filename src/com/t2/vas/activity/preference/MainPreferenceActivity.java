@@ -62,20 +62,20 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 			return true;
 			
 		} else if(prefKey.equals("reminders")) {
-			Intent i = new Intent(this, Reminder.class);
-			i.putExtra(Reminder.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+			Intent i = new Intent(this, ReminderActivity.class);
+			i.putExtra(ReminderActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
 			
 		} else if(prefKey.equals("clear_data")) {
-			Intent i = new Intent(this, ClearData.class);
-			i.putExtra(ClearData.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+			Intent i = new Intent(this, ClearDataActivity.class);
+			i.putExtra(ClearDataActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
 			
 		} else if(prefKey.equals("security")) {
-			Intent i = new Intent(this, Security.class);
-			i.putExtra(Security.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+			Intent i = new Intent(this, SecurityActivity.class);
+			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
 		}

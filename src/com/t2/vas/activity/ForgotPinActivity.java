@@ -14,8 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class ForgotPin extends ABSCustomTitle implements OnKeyListener, OnEditorActionListener, OnClickListener {
-	private static final String TAG = ForgotPin.class.getSimpleName();
+public class ForgotPinActivity extends ABSCustomTitleActivity implements OnKeyListener, OnEditorActionListener, OnClickListener {
+	private static final String TAG = ForgotPinActivity.class.getSimpleName();
 	
 	private EditText answer1EditText;
 	private EditText answer2EditText;

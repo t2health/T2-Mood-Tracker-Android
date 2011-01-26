@@ -25,11 +25,11 @@ import android.widget.ToggleButton;
 import com.t2.vas.R;
 import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
-import com.t2.vas.activity.ABSNavigation;
+import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.activity.preference.ABSPreferenceNavigation;
 import com.t2.vas.db.tables.Group;
 
-public class GroupListActivity extends ABSNavigation implements OnItemClickListener, android.content.DialogInterface.OnClickListener {
+public class GroupListActivity extends ABSNavigationActivity implements OnItemClickListener, android.content.DialogInterface.OnClickListener {
 	private static final String TAG = GroupListActivity.class.getSimpleName();
 	
 	private SimpleCursorAdapter groupsAdapter;

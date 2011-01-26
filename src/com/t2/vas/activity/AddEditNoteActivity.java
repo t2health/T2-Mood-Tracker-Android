@@ -24,7 +24,7 @@ import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.tables.Note;
 
-public class AddEditNoteActivity extends ABSNavigation implements OnClickListener, OnDateChangedListener {
+public class AddEditNoteActivity extends ABSNavigationActivity implements OnClickListener, OnDateChangedListener {
 	public static final String EXTRA_NOTE_ID = "noteId";
 	private Note currentNote;
 	private DatePicker datePicker;

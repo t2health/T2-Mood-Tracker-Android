@@ -28,7 +28,7 @@ import com.t2.vas.activity.ABSActivity;
 import com.t2.vas.activity.WebViewActivity;
 import com.t2.vas.db.DBAdapter;
 
-public abstract class ABSPreferenceNavigation extends ABSSecurityPreference {
+public abstract class ABSPreferenceNavigation extends ABSSecurityPreferenceActivity {
 	private static final String TAG = ABSPreferenceNavigation.class.getSimpleName();
 	
 	public static final String EXTRA_BACK_BUTTON_TEXT = "leftButtonText";

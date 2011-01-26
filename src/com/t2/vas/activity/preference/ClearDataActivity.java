@@ -17,11 +17,11 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.t2.vas.R;
-import com.t2.vas.activity.ABSNavigation;
+import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.db.tables.Group;
 
-public class ClearData extends ABSNavigation implements OnItemClickListener, OnClickListener {
-	private static final String TAG = ClearData.class.getSimpleName();
+public class ClearDataActivity extends ABSNavigationActivity implements OnItemClickListener, OnClickListener {
+	private static final String TAG = ClearDataActivity.class.getSimpleName();
 	private ListView list;
 	private Button clearButton;
 

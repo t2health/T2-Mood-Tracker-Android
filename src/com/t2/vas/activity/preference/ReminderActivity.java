@@ -39,13 +39,13 @@ import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 import com.t2.vas.TimePref;
 import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSNavigation;
+import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.view.SeparatedListAdapter;
 
-public class Reminder extends ABSNavigation implements OnItemClickListener {
-	private static final String TAG = Reminder.class.getSimpleName();
+public class ReminderActivity extends ABSNavigationActivity implements OnItemClickListener {
+	private static final String TAG = ReminderActivity.class.getSimpleName();
 	
 	private SimpleAdapter dowAdapter;
 	private ArrayList<HashMap<String, Object>> daysData;

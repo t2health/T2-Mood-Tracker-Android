@@ -21,8 +21,8 @@ import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
 
-public class SplashScreen extends ABSStartupTips implements OnClickListener {
-	private static final String TAG = SplashScreen.class.getName();
+public class SplashScreenActivity extends ABSStartupTipsActivity implements OnClickListener {
+	private static final String TAG = SplashScreenActivity.class.getName();
 
 	private TextView startupTipsView;
 	
@@ -34,7 +34,7 @@ public class SplashScreen extends ABSStartupTips implements OnClickListener {
 			return;
 		}
 		
-		this.setContentView(R.layout.splash_screen);
+		this.setContentView(R.layout.splash_screen_activity);
 		this.findViewById(R.id.splashWrapper).setOnClickListener(this);
 	}
 

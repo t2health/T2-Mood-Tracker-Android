@@ -23,8 +23,8 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.t2.vas.activity.Startup;
-import com.t2.vas.activity.preference.Reminder;
+import com.t2.vas.activity.StartupActivity;
+import com.t2.vas.activity.preference.ReminderActivity;
 import com.t2.vas.data.GroupResultsDataProvider;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
@@ -100,8 +100,8 @@ public class ReminderService extends Service {
 		cancelNextReminder();
 		
 		// Get the next time a reminder should be shown.
-		long nextRemindTime = Reminder.getNextRemindTime(thisContext);
-		nextRemindTime = Reminder.getNextRemindTimeSince(
+		long nextRemindTime = ReminderActivity.getNextRemindTime(thisContext);
+		nextRemindTime = ReminderActivity.getNextRemindTimeSince(
 				thisContext,
 				Calendar.getInstance().getTimeInMillis() - 86400000
 		);
@@ -141,7 +141,7 @@ public class ReminderService extends Service {
 		PendingIntent contentIntent = PendingIntent.getActivity(
 				this, 
 				0,
-				new Intent(this, Startup.class), 
+				new Intent(this, StartupActivity.class), 
 				0
 		);
 		
