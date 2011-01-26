@@ -54,6 +54,7 @@ public class NotesListActivity extends ABSNavigationActivity implements OnItemCl
 		
 		notesListView = (ListView)this.findViewById(R.id.list);
 		notesListView.setAdapter(notesAdapter);
+		notesListView.setFastScrollEnabled(true);
 		//notesListView.setEmptyView(findViewById(R.id.empty_list));
 		notesListView.setOnItemClickListener(this);
 	}

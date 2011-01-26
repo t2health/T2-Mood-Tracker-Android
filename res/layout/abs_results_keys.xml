@@ -41,7 +41,6 @@
 			android:id="@+id/notesList"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
-			android:visibility="invisible"
-			android:fastScrollEnabled="true" />
+			android:visibility="invisible" />
 	</FrameLayout>
 </LinearLayout>

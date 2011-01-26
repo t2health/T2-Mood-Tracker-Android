@@ -193,6 +193,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		notesList = (ListView) this.findViewById(R.id.notesList);
 		notesList.setAdapter(notesAdapter);
 		notesList.setOnItemClickListener(this);
+		notesList.setFastScrollEnabled(true);
 		
 		keysTabButton = (ToggledButton)this.findViewById(R.id.keysTabButton);
 		keysTabButton.setOnClickListener(this);
