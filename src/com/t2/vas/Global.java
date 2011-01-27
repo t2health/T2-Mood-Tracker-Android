@@ -19,6 +19,8 @@ public class Global {
 	public static final String NOTES_LONG_DATE_FORMAT = "MMM d, yyyy h:mm a";
 	public static final String NOTES_SECTION_DATE_FORMAT = "MMM, yyyy";
 	public static final String REMINDER_TIME_FORMAT = "h:mm a";
+	public static final String SHARE_TIME_FORMAT = "MMM d, yyyy";
+	public static final String EXPORT_TIME_FORMAT = "yyyy-mm-dd hh:mm:ss";
 
 	public static final String SHARE_SUBJECT = "Mood Tracker Data";
 	public static final String SHARE_MESSAGE = "";

@@ -53,7 +53,7 @@ public class InstallDB {
 				generateFake
 		);
 
-		/*createGroupAndScales(
+		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group4),
 				res.getStringArray(R.array.group4_min),
@@ -75,16 +75,22 @@ public class InstallDB {
 				res.getStringArray(R.array.group6_min),
 				res.getStringArray(R.array.group6_max),
 				generateFake
-		);*/
+		);
 		
 		// Add a bunch of fake notes.
 		if(generateFake) {
 			Log.v(TAG, "Generating Notes");
-			int daysOfResults = 600;
+			int daysOfResults = 2000;
+			Random rand = new Random();
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.DAY_OF_YEAR, daysOfResults*-1);
+			cal.add(Calendar.DAY_OF_MONTH, -2);
 			
-			for(int i = 0; i < daysOfResults; ++i) {
+			for(int i = daysOfResults; i >= 0; --i) {
+				// create a note 20% of the time.
+				if(rand.nextInt(10) < 8) {
+					continue;
+				}
+				
 				cal.set(Calendar.HOUR_OF_DAY, i % 24);
 				cal.set(Calendar.MINUTE, i % 60);
 				
@@ -137,13 +143,14 @@ public class InstallDB {
 		//Log.v(TAG, "Generating results");
 		Result result = ((Result)dbAdapter.getTable("result")).newInstance();
 		ContentValues c = new ContentValues();
-		int daysOfResults = 60;
+		int daysOfResults = 1000;
 		Random rand = new Random();
 
-		boolean[] skipRecord = new boolean[daysOfResults];
+		int skipDay = rand.nextInt(27) + 1;
+		/*boolean[] skipRecord = new boolean[daysOfResults];
 		for(int i = 0; i < skipRecord.length; i++) {
 			skipRecord[i] = false;
-		}
+		}*/
 
 		for(int i = 0; i < scales.size(); i++) {
 			Calendar cal = Calendar.getInstance();
@@ -156,13 +163,17 @@ public class InstallDB {
 			for(int j = 0; j < daysOfResults; j++) {
 				cal.add(Calendar.DAY_OF_YEAR, 1);
 
-				// Skip a day 10% of the time
+				// Skip a day every so often
+				if(cal.get(Calendar.DAY_OF_MONTH) % skipDay == 0) {
+					continue;
+				}
+				/*
 				if(skipRecord[j] || (j > 0 && j < daysOfResults-1 && rand.nextInt(11) < 2)) {
 					if(i == 0) {
 						skipRecord[j] = true;
 					}
 					continue;
-				}
+				}*/
 				int value = prevValue + 10 - rand.nextInt(21);
 				value = (value < 0)?0:value;
 				value = (value > 100)?100:value;

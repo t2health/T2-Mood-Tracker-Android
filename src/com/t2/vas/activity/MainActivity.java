@@ -318,6 +318,12 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         item.put("id", "view_notes");
         items.add(item);
         
+        item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.share_title));
+        item.put("image1", R.drawable.share);
+        item.put("id", "share");
+        items.add(item);
+        
         return items;
 	}
 	
@@ -377,7 +383,11 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				Intent i = new Intent(this, NotesListActivity.class);
 				i.putExtra(NotesListActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 				this.startActivityForResult(i, 123);
-				return;
+				
+			} else if(itemId.equals("share")) {
+				Intent i = new Intent(this, ShareActivity.class);
+				i.putExtra(ShareActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+				this.startActivityForResult(i, 123);
 				
 			} else if(itemId.equals("about")) {
 				Intent i = new Intent(this, WebViewActivity.class);

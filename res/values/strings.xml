@@ -33,6 +33,17 @@
 <a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
 <a href="http://t2health.org/apps/t2-mood-tracker">Click here to download the app for Android.</a>]]></string>
 	
+	<!-- Share -->
+	<string name="share_title">Share</string>
+	<string name="share_data_title">Share Data</string>
+	<string name="share_from_date">From Date:</string>
+	<string name="share_to_date">To Date:</string>
+	<string name="share_button">Share</string>
+	<string name="share_choose_date">Choose Date</string>
+	<string name="share_groups_header">Categories</string>
+	<string name="share_other_header">Other Data</string>
+	<string name="share_preparing_data">Preparing Share Data</string>
+	
 	<!-- Help -->
 	<string name="help_title">Help</string>	
 	

@@ -68,6 +68,14 @@
         </activity>
         
         <activity
+        	android:label="@string/share_title"
+        	android:launchMode="singleTop"
+        	android:name=".activity.ShareActivity"
+        	android:excludeFromRecents="true"
+    		android:theme="@style/CustomTheme">
+        </activity>
+        
+        <activity
         	android:label="@string/notes_list_title"
         	android:launchMode="singleTop"
         	android:name=".activity.NotesListActivity"
@@ -170,7 +178,7 @@
 	   	</activity>
    	</application>
 
-    <uses-sdk android:minSdkVersion="3" />
+    <uses-sdk android:minSdkVersion="4" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>

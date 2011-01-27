@@ -17,10 +17,7 @@ import com.t2.vas.R;
 
 public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 	public static final String EXTRA_BACK_BUTTON_TEXT = "leftButtonText";
-	public static final String EXTRA_BACK_BUTTON_RESID = "leftButtonResId";
-	
 	public static final String EXTRA_RIGHT_BUTTON_TEXT = "rightButtonText";
-	public static final String EXTRA_RIGHT_BUTTON_RESID = "leftButtonResId";
 	
 	private View leftButton;
 	private View rightButton;
@@ -120,16 +117,10 @@ public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 		Intent i = this.getIntent();
 		if(i.getStringExtra(EXTRA_BACK_BUTTON_TEXT) != null) {
 			this.setBackButtonText(i.getStringExtra(EXTRA_BACK_BUTTON_TEXT));
-			
-		} else if(i.getIntExtra(EXTRA_BACK_BUTTON_RESID, 0) != 0) {
-			this.setBackButtonImage(i.getIntExtra(EXTRA_BACK_BUTTON_RESID, 0));
 		}
 		
 		if(i.getStringExtra(EXTRA_RIGHT_BUTTON_TEXT) != null) {
 			this.setRightButtonText(i.getStringExtra(EXTRA_RIGHT_BUTTON_TEXT));
-			
-		} else if(i.getIntExtra(EXTRA_RIGHT_BUTTON_RESID, 0) != 0) {
-			this.setRightButtonImage(i.getIntExtra(EXTRA_RIGHT_BUTTON_RESID, 0));
 		}
 	}
 }
