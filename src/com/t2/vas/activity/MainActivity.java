@@ -229,8 +229,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 	}
 
 	private void notifyNoteIsNecessary() {
-		Toast toast = Toast.makeText(this, "Your results are a little unusual today, please consider entering a note.", Toast.LENGTH_LONG);
-		toast.show();
+		Toast.makeText(this, R.string.unusual_results_message, Toast.LENGTH_LONG).show();
 		
 		this.getRightButton().startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse_animation));
 		this.getRightButton().setPressed(true);
@@ -390,9 +389,9 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 			} else if(itemId.equals("feedback")) {
 				Intent i = new Intent(android.content.Intent.ACTION_SEND);
 				i.setType("plain/text");
-				i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"robbie.vangorkom@tee2.org"});
-				i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Mood Tracker Feedback");
-				i.putExtra(android.content.Intent.EXTRA_TEXT, "The inital text for the email.");
+				i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{getString(R.string.feedback_to)});
+				i.putExtra(android.content.Intent.EXTRA_SUBJECT, R.string.feedback_subject);
+				i.putExtra(android.content.Intent.EXTRA_TEXT, R.string.feedback_content);
 				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.feedback_title)), 123);
 				
 			} else if(itemId.equals("help")) {
@@ -406,10 +405,10 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				
 			} else if(itemId.equals("tell_a_friend")) {
 				Intent i = new Intent(android.content.Intent.ACTION_SEND);
-				i.setType("plain/text");
-				i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Mood Tracker");
-				i.putExtra(android.content.Intent.EXTRA_TEXT, "Check out this really cool app.");
-				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.feedback_title)), 123);
+				i.setType("text/html");
+				i.putExtra(android.content.Intent.EXTRA_SUBJECT, R.string.tell_a_friend_subject);
+				i.putExtra(android.content.Intent.EXTRA_TEXT, R.string.tell_a_friend_content);
+				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.tell_a_friend_title)), 123);
 			
 			} else if(itemId.equals("regenerate_data")) {
 				InstallDB.onCreate(dbAdapter, true);
