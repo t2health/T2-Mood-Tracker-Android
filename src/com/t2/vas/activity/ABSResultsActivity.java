@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -111,10 +112,13 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private DataProvider dataProvider;
 	private Cursor notesCursor;
 	private NotesDataProvider notesDataProvider;
+	private DisplayMetrics displayMetrics = new DisplayMetrics();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		
 		notesDataProvider = new NotesDataProvider(dbAdapter);
 		dataProvider = this.getDataProvider();
@@ -472,6 +476,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			seriesRenderer.setColor(item.color);
 			seriesRenderer.setPointStyle(PointStyle.CIRCLE);
 			seriesRenderer.setFillPoints(true);
+			seriesRenderer.setLineWidth(2 * displayMetrics.density);
 			
 			renderer.addSeriesRenderer(seriesRenderer);
 			dataSet.addSeries(series);

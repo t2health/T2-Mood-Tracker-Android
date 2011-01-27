@@ -99,7 +99,7 @@ public class InstallDB {
 				note.timestamp = cal.getTimeInMillis();
 				note.save();
 				
-				cal.add(Calendar.DAY_OF_YEAR, 1);
+				cal.add(Calendar.DAY_OF_YEAR, -1);
 			}
 		}
 	}
