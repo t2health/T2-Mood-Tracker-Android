@@ -62,6 +62,7 @@ import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.data.DataProvider;
+import com.t2.vas.data.NotesDataProvider;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
@@ -92,7 +93,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 
 	private ToggledButton keysTabButton;
 	private ToggledButton notesTabButton;
-	//private ViewGroup chartsContainer;
 
 	protected Calendar startCal;
 	protected Calendar endCal;
@@ -100,8 +100,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private TextView monthNameTextView;
 	
 	SimpleDateFormat monthNameFormatter = new SimpleDateFormat("MMMM, yyyy");
-	//private ViewGroup backgroundChartContainer;
-	//private ViewGroup foregroundChartContainer;
 	private ViewSwitcher chartSwitcher;
 	private Animation slideInFromLeftAnimation;
 	private Animation slideOutToRightAnimation;
@@ -109,15 +107,16 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private Animation slideOutToLeftAnimation;
 	private Animation fadeInAnimation;
 	private Animation fadeOutAnimation;
-	private Animation fadeNoneAnimation;
 	private GestureDetector gestureDetector;
 	private DataProvider dataProvider;
 	private Cursor notesCursor;
+	private NotesDataProvider notesDataProvider;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		notesDataProvider = new NotesDataProvider(dbAdapter);
 		dataProvider = this.getDataProvider();
 		gestureDetector = new GestureDetector(this, this);
 		
@@ -152,7 +151,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		this.slideOutToLeftAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
 		this.fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 		this.fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
-		this.fadeNoneAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_none);
 		
 		// Set the month name.
 		this.monthNameTextView.setText(monthNameFormatter.format(startCal.getTime()));
@@ -239,6 +237,15 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		}
 		
 		return outPoints;
+	}
+	
+	private ArrayList<DataPoint> loadNotesData(long startTime, long endTime, int calendarGroupByField) {
+		ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
+		LinkedHashMap<Long, Double> data = notesDataProvider.getData(0, startTime, endTime);
+		for(Long key: data.keySet()) {
+			dataPoints.add(new DataPoint(key, data.get(key)));
+		}
+		return dataPoints;
 	}
 	
 	private ArrayList<Long> getDataPoints(long startTime, long endTime, int calendarGroupByField) {
@@ -434,6 +441,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		//Log.v(TAG, "StartCal:"+startCal.getTime() +" "+ startCal.get(Calendar.MILLISECOND));
 		//Log.v(TAG, "EndCal:"+endCal.getTime() +" "+ endCal.get(Calendar.MILLISECOND));
 		
+		// Build the data series for each enabled key.
 		ArrayList<DataPoint> dataPoints = null;
 		long startTime = startCal.getTimeInMillis();
 		long endTime = endCal.getTimeInMillis();
@@ -446,6 +454,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			
 			XYSeries series = new XYSeries(item.title1);
 			
+			// Get the data points
 			dataPoints = loadData(keyItems.get(i), startTime, endTime, calendarField);
 			//Log.v(TAG, "DataPoints:"+dataPoints.size());
 			for(int j = 0; j < dataPoints.size(); ++j) {
@@ -472,16 +481,19 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		chartSwitcher.setInAnimation(null);
 		chartSwitcher.setOutAnimation(null);
 		
+		// only contine making the chart if there is data in the series.
 		if(dataSet.getSeriesCount() > 0) {
-			Calendar cal = Calendar.getInstance();
-			cal.setTimeInMillis(dataPoints.get(0).time);
+			
+			// Make the renderer for the weekend blocks
+			Calendar weekendCal = Calendar.getInstance();
+			weekendCal.setTimeInMillis(dataPoints.get(0).time);
 			
 			Calendar weekCal = Calendar.getInstance();
 			weekCal.setTimeInMillis(startCal.getTimeInMillis());
 			int dow = weekCal.get(Calendar.DAY_OF_WEEK);
 			weekCal.add(Calendar.DAY_OF_MONTH, 7 - dow + 2);
 			
-			int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+			int lastDayOfMonth = weekendCal.getActualMaximum(Calendar.DAY_OF_MONTH);
 			int firstMondayOfMonth = weekCal.get(Calendar.DAY_OF_MONTH);
 			
 			renderer.setShowGrid(false);
@@ -496,17 +508,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			renderer.setXAxisMin(1.00);
 			renderer.setXAxisMax(lastDayOfMonth);
 			
-			/*// Mark mondays in the X-axis
-			for(int i = 0; i < dataPoints.size(); ++i) {
-				Calendar c = Calendar.getInstance();
-				c.setTimeInMillis(dataPoints.get(i).time);
-				
-				if(c.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
-					renderer.addTextLabel(c.get(calendarField), "M");
-				}
-			}*/
-			
-			// Add the weekend backgrounds.
+			// Add the weekend background colors.
 			for(int i = firstMondayOfMonth-18; i < lastDayOfMonth; i+=7) {
 				int xStart = i;
 				int xEnd = i+2;
@@ -534,6 +536,31 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 				dataSet.addSeries(weekSeries);
 			}
 			
+			// Add an indicator showing where each note exists.
+			ArrayList<DataPoint> notesPoints = loadNotesData(startTime, endTime, calendarField);
+			for(int i = 0; i < notesPoints.size(); ++i) {
+				DataPoint dp = notesPoints.get(i);
+				Calendar tmpCal = Calendar.getInstance();
+				tmpCal.setTimeInMillis(dp.time);
+				
+				// Create the series
+				XYSeries noteSeries = new XYSeries("note "+i);
+				noteSeries.add(tmpCal.get(calendarField), 100);
+				
+				// Create the renderer
+				XYSeriesRenderer noteRenderer = new XYSeriesRenderer();
+				noteRenderer.setColor(Color.WHITE);
+				noteRenderer.setPointStyle(PointStyle.TRIANGLE);
+				noteRenderer.setFillPoints(true);
+				noteRenderer.setLineWidth(0.0f);
+				
+				// Add the renderer and series.
+				renderer.addSeriesRenderer(noteRenderer);
+				dataSet.addSeries(noteSeries);
+			}
+			
+			
+			// Create the chart view.
 			OffsetGraphicalChartView chartView = new OffsetGraphicalChartView(this, chart);
 			if(chartSwitcher.getChildCount() > 1) {
 				chartSwitcher.removeViewAt(0);
@@ -565,6 +592,8 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			}
 			
 			chartSwitcher.showNext();
+		
+		// Fade out the existing chart to the instructions are visible.
 		} else {
 			chartSwitcher.startAnimation(fadeOutAnimation);
 			chartSwitcher.setVisibility(View.INVISIBLE);

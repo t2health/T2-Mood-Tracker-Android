@@ -181,6 +181,21 @@ public class Note extends Table {
 		return -1;
 	}
 	
+	public Cursor getNotesCursor(long startTime, long endTime) {
+		return this.dbAdapter.getDatabase().query(
+				"note", 
+				null,
+				"timestamp >= ? AND timestamp < ?",
+				new String[] {
+						startTime+"",
+						endTime+"",
+				},
+				null,
+				null,
+				null
+		);
+	}
+	
 	public int getCount() {
 		Cursor c = this.dbAdapter.getDatabase().query(
 				"note", 

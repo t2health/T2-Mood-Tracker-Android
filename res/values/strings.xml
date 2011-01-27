@@ -25,7 +25,7 @@
 		<string name="tell_a_friend_title">Tell a Friend</string>
 	<string name="unusual_results_message">Your results are a little unusual today, please consider entering a note.</string>
 	
-	<string name="feedback_to">robbie.vangorkom@tee2.info</string>
+	<string name="feedback_to">moodtracker@tee2.info</string>
 	<string name="feedback_subject">Feedback on T2 Mood Tracker App</string>
 	<string name="feedback_content"><![CDATA[Please feel free to send your feedback on this application to the team at the National Center for Telehealth & Technology (T2).]]></string>
 	<string name="tell_a_friend_subject">Check out this app for monitoring your mood!</string>
