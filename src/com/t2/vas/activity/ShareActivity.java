@@ -313,6 +313,7 @@ public class ShareActivity extends ABSNavigationActivity implements OnClickListe
 		
 		// Start the progress dialog.
 		progressDialog.show();
+		attachementUris.clear();
 		
 		// Run the export on a separate thread.
 		new Thread(new Runnable() {
@@ -393,7 +394,6 @@ public class ShareActivity extends ABSNavigationActivity implements OnClickListe
 					int timeIndex = cursor.getColumnIndex("timestamp");
 					int valueIndex = cursor.getColumnIndex("value");
 					while(cursor.moveToNext()) {
-						writer.write(",");
 						writer.write(",");
 						writer.write("\""+ exportFormatter.format(new Date(cursor.getLong(timeIndex))) +"\"");
 						writer.write(",");

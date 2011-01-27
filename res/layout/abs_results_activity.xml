@@ -14,6 +14,6 @@
 	<include 
 		layout="@layout/abs_results_keys"
 		android:layout_width="fill_parent"
-		android:layout_height="240dip" />
+		android:layout_height="250dip" />
 
 </LinearLayout>
