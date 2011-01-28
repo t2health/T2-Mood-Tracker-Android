@@ -3,7 +3,6 @@ package com.t2.vas;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 
 public class BootReceiver extends BroadcastReceiver {
 	@Override

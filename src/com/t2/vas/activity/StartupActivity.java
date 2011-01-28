@@ -1,11 +1,10 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.ReminderService;
-import com.t2.vas.SharedPref;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.t2.vas.ReminderService;
+import com.t2.vas.SharedPref;
 
 public class StartupActivity extends ABSActivity {
 

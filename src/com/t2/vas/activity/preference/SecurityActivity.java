@@ -1,24 +1,18 @@
 package com.t2.vas.activity.preference;
 
+import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.t2.vas.AppSecurityManager;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigationActivity;
-
-import android.content.Context;
-import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnKeyListener;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 
 public class SecurityActivity extends ABSNavigationActivity implements OnCheckedChangeListener {
 	private CheckBox enabledCheckbox;

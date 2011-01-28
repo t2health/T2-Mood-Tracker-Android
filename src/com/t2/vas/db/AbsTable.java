@@ -128,8 +128,6 @@ public abstract class AbsTable {
 	public abstract boolean update();
 	public abstract boolean delete();
 	
-	public abstract AbsTable newInstance();
-	
 	private static class QueryComponents {
 		public String whereClause = "";
 		public String[] whereArgs;

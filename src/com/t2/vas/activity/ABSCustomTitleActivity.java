@@ -1,12 +1,11 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.R;
-
-import android.content.Intent;
 import android.view.View;
-import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.TextView;
+
+import com.t2.vas.R;
 
 public abstract class ABSCustomTitleActivity extends ABSActivity {
 	private boolean initialized = false;

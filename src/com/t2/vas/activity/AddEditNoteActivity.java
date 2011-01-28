@@ -5,23 +5,19 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.t2.vas.R;
-import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.tables.Note;
 
 public class AddEditNoteActivity extends ABSNavigationActivity implements OnClickListener, OnDateChangedListener {
@@ -34,7 +30,7 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 		super.onCreate(savedInstanceState);
 
 		// init global variables.
-		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();
+		currentNote = new Note(this.dbAdapter);
 
 		// init the local variables;
 		Calendar cal = Calendar.getInstance();

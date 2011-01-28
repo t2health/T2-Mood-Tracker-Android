@@ -2,8 +2,6 @@ package com.t2.vas;
 
 import java.util.Calendar;
 
-import android.util.Log;
-
 public class MathExtra {
 	public static double mean(double[] values) {
 		double total = 0.0;

@@ -1,10 +1,7 @@
 package com.t2.vas.db.tables;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
@@ -18,12 +15,6 @@ public class Scale extends Table {
 	public String min_label;
 	public int weight = 0;
 
-	/*public static final int GROUPBY_YEAR = Calendar.YEAR;
-	public static final int GROUPBY_MONTH = Calendar.MONTH;
-	public static final int GROUPBY_WEEK = Calendar.WEEK_OF_YEAR;
-	public static final int GROUPBY_DAY = Calendar.DAY_OF_MONTH;
-	public static final int GROUPBY_HOUR = Calendar.HOUR_OF_DAY;*/
-	
 	public static final int ORDERBY_ASC = 13;
 	public static final int ORDERBY_DESC = 14;
 	
@@ -82,7 +73,7 @@ public class Scale extends Table {
 	
 	@Override
 	public boolean delete() {
-		Result r = (Result)this.dbAdapter.getTable("result");
+		Result r = new Result(this.dbAdapter);
 		ContentValues cv = new ContentValues();
 		cv.put("scale_id", this._id);
 		r.delete(cv);
@@ -90,63 +81,6 @@ public class Scale extends Table {
 		return super.delete();
 	}
 
-	@Override
-	public Scale newInstance() {
-		return new Scale(this.dbAdapter);
-	}
-	
-	public Result[] getResults() {
-		ContentValues v = new ContentValues();
-		v.put("scale_id", this._id+"");
-		
-		ArrayList<Result> results = new ArrayList<Result>();
-		Cursor c = this.getDBAdapter().getTable("result").select(v);
-
-		while(c.moveToNext()) {
-			
-			Result r = (Result)this.getDBAdapter().getTable("result").newInstance();
-			r.load(c);
-			results.add(r);
-		}
-		
-		return results.toArray(new Result[results.size()]);
-	}
-	
-	public Note[] getNotes() {
-		return this.getNotes(Scale.ORDERBY_ASC);
-	}
-	
-	public Note[] getNotes(int order) {
-		String orderBy;
-		
-		switch(order) {
-			case Scale.ORDERBY_DESC:
-				orderBy = "timestamp DESC";
-				break;
-			case Scale.ORDERBY_ASC:
-				orderBy = "timestamp ASC";
-				break;
-			default:
-				orderBy = "timestamp ASC";
-				break;
-		}
-		
-		ContentValues v = new ContentValues();
-		v.put("scale_id", this._id+"");
-		
-		ArrayList<Note> notes = new ArrayList<Note>();
-		Cursor c = this.getDBAdapter().getTable("note").select(v, orderBy);
-
-		while(c.moveToNext()) {
-			
-			Note n = (Note)this.getDBAdapter().getTable("note").newInstance();
-			n.load(c);
-			notes.add(n);
-		}
-		
-		return notes.toArray(new Note[notes.size()]);
-	}
-	
 	public Cursor getResults(long startTime, long endTime) {
 		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
 		return this.getDBAdapter().getDatabase().query(

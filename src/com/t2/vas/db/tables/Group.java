@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
@@ -70,22 +69,17 @@ public class Group extends Table {
 	public boolean delete() {
 		ContentValues cv;
 
-		Scale s = (Scale)this.dbAdapter.getTable("scale");
+		Scale s = new Scale(this.dbAdapter);
 		cv = new ContentValues();
 		cv.put("group_id", this._id);
 		s.delete(cv);
 
-		Result r = (Result)this.dbAdapter.getTable("result");
+		Result r = new Result(dbAdapter);
 		cv = new ContentValues();
 		cv.put("group_id", this._id);
 		r.delete(cv);
 
 		return super.delete();
-	}
-
-	@Override
-	public Group newInstance() {
-		return new Group(this.dbAdapter);
 	}
 
 	public Cursor getGroupsWithScalesCursor() {
@@ -106,7 +100,7 @@ public class Group extends Table {
 	
 	public Cursor getGroupsCursor() {
 		ContentValues v = new ContentValues();
-		return this.getDBAdapter().getTable("group").select(
+		return this.select(
 				v,
 				"title ASC"
 		);
@@ -117,7 +111,7 @@ public class Group extends Table {
 		Cursor c = this.getGroupsCursor();
 
 		while(c.moveToNext()) {
-			Group group = (Group)this.getDBAdapter().getTable("group").newInstance();
+			Group group = new Group(this.dbAdapter);
 			group.load(c);
 			groups.add(group);
 		}
@@ -126,156 +120,17 @@ public class Group extends Table {
 		return groups;
 	}
 
-	public ArrayList<Group> getMutableGroups() {
-		ContentValues v = new ContentValues();
-		v.put("immutable", 0);
-
-		ArrayList<Group> groups = new ArrayList<Group>();
-		Cursor c = this.getDBAdapter().getTable("group").select(
-				v,
-				"title ASC"
-		);
-
-		while(c.moveToNext()) {
-			Group group = (Group)this.getDBAdapter().getTable("group").newInstance();
-			group.load(c);
-			groups.add(group);
-		}
-		c.close();
-
-		return groups;
-	}
-
-	public ArrayList<Group> getGroupsOrderByLastResult() {
-		ContentValues v = new ContentValues();
-
-		ArrayList<Group> groups = new ArrayList<Group>();
-		Cursor c = this.getDBAdapter().getDatabase().query(
-				"`group` g",
-				new String[]{
-						"g.*",
-						"(SELECT MAX(timestamp) FROM result WHERE group_id=g._id) last_result",
-				},
-				null,
-				null,
-				null,
-				null,
-				"last_result DESC, g.title ASC"
-		);
-
-		while(c.moveToNext()) {
-			Group group = (Group)this.getDBAdapter().getTable("group").newInstance();
-			group.load(c);
-			groups.add(group);
-		}
-		c.close();
-
-		return groups;
-	}
-	
-	public Cursor getAllGroupsOrderByLastResultCursor() {
-		ContentValues v = new ContentValues();
-
-		ArrayList<Group> groups = new ArrayList<Group>();
-		return this.getDBAdapter().getDatabase().query(
-				"`group` g",
-				new String[]{
-						"g.*",
-						"(SELECT MAX(timestamp) FROM result WHERE group_id=g._id) last_result",
-				},
-				null,
-				null,
-				null,
-				null,
-				"last_result DESC, g.title ASC"
-		);
-	}
-	
-	public Cursor getVisibleGroupsOrderByLastResultCursor() {
-		ContentValues v = new ContentValues();
-
-		ArrayList<Group> groups = new ArrayList<Group>();
-		return this.getDBAdapter().getDatabase().query(
-				"`group` g",
-				new String[]{
-						"g.*",
-						"(SELECT MAX(timestamp) FROM result WHERE group_id=g._id) last_result",
-				},
-				"visible=1",
-				null,
-				null,
-				null,
-				"last_result DESC, g.title ASC"
-		);
-	}
-
-	public ArrayList<Group> getGroupsWithResults() {
-		ArrayList<Group> groups = this.getGroupsOrderByLastResult();
-		ArrayList<Group> newGroups = new ArrayList<Group>();
-
-		for(int i = 0; i < groups.size(); i++) {
-			if(groups.get(i).hasResults()) {
-				newGroups.add(groups.get(i));
-			}
-		}
-
-		return newGroups;
-	}
-
-	public boolean hasScales() {
-		return this.getScales().size() > 0;
-	}
-	
-	public boolean hasResults() {
-		Cursor hasResultsCursor = this.getDBAdapter().getDatabase().query(
-				"result",
-				null,
-				"group_id=?",
-				new String[]{
-						this._id+"",
-				},
-				null,
-				null,
-				null,
-				"1"
-		);
-
-		if(hasResultsCursor.moveToFirst()) {
-			hasResultsCursor.close();
-			return true;
-		}
-		hasResultsCursor.close();
-		return false;
-	}
-
-	public Cursor getNamedScalesCursor() {
-		return this.getDBAdapter().getDatabase().query(
-				"scale", 
-				new String[] {
-					"_id",
-					"min_label || ' ' || max_label title",	
-				}, 
-				"group_id=?", 
-				new String[] {
-						this._id+"",
-				}, 
-				null, 
-				null, 
-				"title"
-		);
-	}
-	
 	public Cursor getScalesCursor() {
 		ContentValues v = new ContentValues();
 		v.put("group_id", this._id+"");
-		return this.getDBAdapter().getTable("scale").select(v, "weight ASC");
+		return new Scale(this.dbAdapter).select(v, "weight ASC");
 	}
 	
 	public ArrayList<Scale> getScales() {
 		ArrayList<Scale> scales = new ArrayList<Scale>();
 		Cursor c = this.getScalesCursor();
 		while(c.moveToNext()) {
-			Scale scale = (Scale)this.getDBAdapter().getTable("scale").newInstance();
+			Scale scale = new Scale(this.dbAdapter);
 			scale.load(c);
 
 			scales.add(scale);
@@ -283,38 +138,6 @@ public class Group extends Table {
 		c.close();
 
 		return scales;
-	}
-
-	public long getLatestResultTimestamp() {
-		Cursor c = this.dbAdapter.getDatabase().query(
-				"result",
-				new String[] {
-						"MAX(timestamp) timestamp",
-				},
-				"group_id=?",
-				new String[] {
-					this._id+""
-				},
-				null,
-				null,
-				null,
-				null
-		);
-
-
-		if(c.moveToNext()) {
-			Long ts = c.getLong(c.getColumnIndex("timestamp"));
-			c.close();
-			if(ts != null) {
-				return ts;
-			} else {
-				return -1;
-			}
-		}
-		
-		c.close();
-		
-		return -1;
 	}
 
 	public int getResultsCount() {
@@ -349,34 +172,6 @@ public class Group extends Table {
 					this._id+"",
 				}
 		);
-	}
-	
-	public long[] getResultsTimestampRange() {
-		Cursor c = this.dbAdapter.getDatabase().query(
-				"result", 
-				new String[]{
-						"MIN(timestamp)",
-						"MAX(timestamp)"
-				}, 
-				"group_id=?", 
-				new String[] {
-						this._id+""
-				}, 
-				null,
-				null,
-				null
-		);
-		
-		long[] range = new long[]{};
-		if(c.moveToFirst()) {
-			range = new long[] {
-					c.getLong(0),
-					c.getLong(0),
-			};
-		}
-		c.close();
-		
-		return range;
 	}
 	
 	public Cursor getResults(long startTime, long endTime) {

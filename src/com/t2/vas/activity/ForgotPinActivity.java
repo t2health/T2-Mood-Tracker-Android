@@ -1,10 +1,6 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.R;
-import com.t2.vas.SharedPref;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -13,6 +9,9 @@ import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+
+import com.t2.vas.R;
+import com.t2.vas.SharedPref;
 
 public class ForgotPinActivity extends ABSCustomTitleActivity implements OnKeyListener, OnEditorActionListener, OnClickListener {
 	private static final String TAG = ForgotPinActivity.class.getSimpleName();

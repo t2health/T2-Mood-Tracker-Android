@@ -1,15 +1,15 @@
 package com.t2.vas.activity.preference;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
+
 import com.nullwire.trace.ExceptionHandler;
 import com.t2.vas.Analytics;
 import com.t2.vas.Global;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.activity.ABSActivity;
-
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 
 public abstract class ABSPreferenceActivity extends PreferenceActivity {
 	private static final String TAG = ABSActivity.class.getName();

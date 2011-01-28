@@ -1,9 +1,9 @@
 package com.t2.vas.activity;
 
-import com.t2.vas.R;
-
 import android.os.Bundle;
 import android.webkit.WebView;
+
+import com.t2.vas.R;
 
 public class HelpActivity extends ABSNavigationActivity {
 

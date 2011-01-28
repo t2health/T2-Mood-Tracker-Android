@@ -1,20 +1,15 @@
 package com.t2.vas.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.t2.vas.activity.ABSResultsActivity.KeyItem;
-import com.t2.vas.activity.ABSResultsActivity.KeyItemAdapter;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import com.t2.vas.data.DataProvider;
-import com.t2.vas.data.GroupResultsDataProvider;
 import com.t2.vas.data.ScaleResultsDataProvider;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
-
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.view.View;
 
 public class ScaleResultsActivity extends ABSResultsActivity {
 	public static final String EXTRA_GROUP_ID = "groupId";

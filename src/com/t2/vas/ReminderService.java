@@ -1,14 +1,6 @@
 package com.t2.vas;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,16 +10,11 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.t2.vas.activity.StartupActivity;
 import com.t2.vas.activity.preference.ReminderActivity;
-import com.t2.vas.data.GroupResultsDataProvider;
-import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Group;
 
 public class ReminderService extends Service {
 	private static final String TAG = ReminderService.class.getSimpleName();

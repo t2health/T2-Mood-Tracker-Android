@@ -31,19 +31,6 @@ public class Result extends Table {
 		this.dbAdapter.getDatabase().execSQL("" +
 				"CREATE INDEX result_scale_id_timestamp_index ON result(scale_id, timestamp)" +
 		"");
-		/*this.dbAdapter.getDatabase().execSQL("" +
-				"CREATE INDEX result_timestamp_index ON result(timestamp)" +
-		"");*/
-		/*this.dbAdapter.getDatabase().execSQL("" +
-				"CREATE INDEX group_id_index ON result(group_id)" +
-		"");
-		this.dbAdapter.getDatabase().execSQL("" +
-				"CREATE INDEX result_scale_id_index ON result(scale_id)" +
-		"");
-		this.dbAdapter.getDatabase().execSQL("" +
-				"CREATE INDEX result_timestamp_index ON result(timestamp)" +
-		"");*/
-
 	}
 
 	@Override
@@ -61,13 +48,6 @@ public class Result extends Table {
 					"CREATE INDEX result_scale_id_timestamp_index ON result(scale_id, timestamp)" +
 			"");
 		}
-	}
-
-
-	public Cursor getNotes(long resultId) {
-		ContentValues v = new ContentValues();
-		v.put("result_id", resultId+"");
-		return this.dbAdapter.getTable("note").select(v, "timestamp DESC");
 	}
 
 	@Override
@@ -101,63 +81,5 @@ public class Result extends Table {
 		v.put("value", this.value);
 
 		return this.update(v);
-	}
-
-	@Override
-	public Result newInstance() {
-		return new Result(this.dbAdapter);
-	}
-
-	public long getEarliestTimestampSince(long groupId, long timestamp) {
-		Cursor c = this.getDBAdapter().getDatabase().query(
-				"result",
-				new String[] {
-						"MIN(timestamp)",
-				},
-				"group_id=? AND timestamp >= ?",
-				new String[] {
-						groupId+"",
-						timestamp+"",
-				},
-				null,
-				null,
-				null
-		);
-
-		if(c.moveToFirst()) {
-			long newTimestamp = c.getLong(0);
-			c.close();
-
-			return newTimestamp;
-		}
-		c.close();
-
-		return -1;
-	}
-	
-	public long getMostRecentTimestamp(long groupId) {
-		Cursor c = this.getDBAdapter().getDatabase().query(
-				"result",
-				new String[] {
-						"MAX(timestamp)",
-				},
-				"group_id=?",
-				new String[] {
-						groupId+"",
-				},
-				null,
-				null,
-				null
-		);
-
-		if(c.moveToFirst()) {
-			long newTimestamp = c.getLong(0);
-			c.close();
-
-			return newTimestamp;
-		}
-		c.close();
-
-		return -1;
 	}
 }

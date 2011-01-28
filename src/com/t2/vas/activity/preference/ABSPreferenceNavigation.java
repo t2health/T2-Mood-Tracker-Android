@@ -1,32 +1,17 @@
 package com.t2.vas.activity.preference;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.nullwire.trace.ExceptionHandler;
-import com.t2.vas.Analytics;
-import com.t2.vas.Eula;
-import com.t2.vas.Global;
 import com.t2.vas.R;
-import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSActivity;
-import com.t2.vas.activity.WebViewActivity;
-import com.t2.vas.db.DBAdapter;
 
 public abstract class ABSPreferenceNavigation extends ABSSecurityPreferenceActivity {
 	private static final String TAG = ABSPreferenceNavigation.class.getSimpleName();

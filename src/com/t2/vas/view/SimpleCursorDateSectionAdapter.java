@@ -6,14 +6,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import com.t2.vas.R;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
 import android.widget.SectionIndexer;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import com.t2.vas.R;
 
 public class SimpleCursorDateSectionAdapter extends SimpleCursorAdapter implements
 		SectionIndexer {

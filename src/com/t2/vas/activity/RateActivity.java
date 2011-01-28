@@ -5,18 +5,10 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.t2.vas.R;
 import com.t2.vas.ScaleAdapter;
-import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
@@ -103,7 +95,7 @@ public class RateActivity extends ABSNavigationActivity {
         	Scale s = this.scaleAdapter.getItem(i);
         	int value = this.scaleAdapter.getProgressValuesAt(i);
 
-        	Result r = (Result)dbAdapter.getTable("result").newInstance();
+        	Result r = new Result(this.dbAdapter);
 
 			r.group_id = this.activeGroupId;
 			r.scale_id = s._id;

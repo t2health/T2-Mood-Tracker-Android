@@ -1,6 +1,5 @@
 package com.t2.vas.data;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import android.database.Cursor;

@@ -66,6 +66,4 @@ public abstract class Table extends AbsTable {
 
 	@Override
 	public abstract void onUpgrade(int oldVersion, int newVersion);
-
-	public abstract Table newInstance();
 }

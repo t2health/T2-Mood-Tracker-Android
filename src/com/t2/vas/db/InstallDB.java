@@ -8,7 +8,6 @@ import android.content.ContentValues;
 import android.content.res.Resources;
 import android.util.Log;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
@@ -108,12 +107,12 @@ public class InstallDB {
 		ArrayList<Scale> scales = new ArrayList<Scale>();
 
 		// Install the first group of scales
-		Group group = (Group)dbAdapter.getTable("group");
-		Scale scale = (Scale)dbAdapter.getTable("scale");
+		Group group = new Group(dbAdapter);
+		Scale scale = new Scale(dbAdapter);
 
 		// Create the group
 		Log.v(TAG, "Generating group");
-		group = group.newInstance();
+		group = new Group(dbAdapter);
 		group.title = groupName;
 		group.immutable = 1;
 		group.save();
@@ -122,7 +121,7 @@ public class InstallDB {
 		Log.v(TAG, "Generating scales");
 		int maxIndex = (minValues.length < maxValues.length)?minValues.length:maxValues.length;
 		for(int i = 0; i < maxIndex; i++) {
-			scale = scale.newInstance();
+			scale = new Scale(dbAdapter);
 			scale.group_id = group._id;
 			scale.max_label = maxValues[i];
 			scale.min_label = minValues[i];
@@ -141,7 +140,7 @@ public class InstallDB {
 	public static void generateFakeData(DBAdapter dbAdapter, ArrayList<Scale> scales) {
 		// Create bogus data for the generated scales
 		//Log.v(TAG, "Generating results");
-		Result result = ((Result)dbAdapter.getTable("result")).newInstance();
+		Result result = new Result(dbAdapter);
 		ContentValues c = new ContentValues();
 		int daysOfResults = 1000;
 		Random rand = new Random();

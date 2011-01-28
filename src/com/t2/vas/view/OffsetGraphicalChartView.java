@@ -1,17 +1,12 @@
 package com.t2.vas.view;
 
-import org.achartengine.GraphicalView;
 import org.achartengine.chart.AbstractChart;
-import org.achartengine.chart.XYChart;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 public class OffsetGraphicalChartView extends View {

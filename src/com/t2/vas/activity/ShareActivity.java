@@ -10,18 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.t2.vas.Global;
-import com.t2.vas.R;
-import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Note;
-import com.t2.vas.db.tables.Scale;
-import com.t2.vas.view.SeparatedListAdapter;
 
 import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,7 +22,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.util.SparseBooleanArray;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Adapter;
@@ -43,6 +32,13 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+
+import com.t2.vas.Global;
+import com.t2.vas.R;
+import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.Note;
+import com.t2.vas.db.tables.Scale;
+import com.t2.vas.view.SeparatedListAdapter;
 
 public class ShareActivity extends ABSNavigationActivity implements OnClickListener, OnItemClickListener {
 	private static final String TAG = ShareActivity.class.getSimpleName();

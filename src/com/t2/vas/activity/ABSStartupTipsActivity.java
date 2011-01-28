@@ -2,16 +2,15 @@ package com.t2.vas.activity;
 
 import java.util.Random;
 
-import com.t2.vas.R;
-import com.t2.vas.SharedPref;
-
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
+
+import com.t2.vas.R;
+import com.t2.vas.SharedPref;
 
 public abstract class ABSStartupTipsActivity extends ABSCustomTitleActivity implements OnCheckedChangeListener {
 

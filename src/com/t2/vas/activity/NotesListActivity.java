@@ -1,27 +1,17 @@
 package com.t2.vas.activity;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Adapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
-import com.t2.vas.activity.preference.MainPreferenceActivity;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.view.SimpleCursorDateSectionAdapter;
 
@@ -55,7 +45,6 @@ public class NotesListActivity extends ABSNavigationActivity implements OnItemCl
 		notesListView = (ListView)this.findViewById(R.id.list);
 		notesListView.setAdapter(notesAdapter);
 		notesListView.setFastScrollEnabled(true);
-		//notesListView.setEmptyView(findViewById(R.id.empty_list));
 		notesListView.setOnItemClickListener(this);
 	}
 	

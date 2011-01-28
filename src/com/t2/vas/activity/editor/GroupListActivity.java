@@ -1,17 +1,13 @@
 package com.t2.vas.activity.editor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CompoundButton;
@@ -26,7 +22,6 @@ import com.t2.vas.R;
 import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigationActivity;
-import com.t2.vas.activity.preference.ABSPreferenceNavigation;
 import com.t2.vas.db.tables.Group;
 
 public class GroupListActivity extends ABSNavigationActivity implements OnItemClickListener, android.content.DialogInterface.OnClickListener {

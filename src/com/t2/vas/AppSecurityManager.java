@@ -1,10 +1,7 @@
 package com.t2.vas;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.t2.vas.activity.UnlockActivity;
 

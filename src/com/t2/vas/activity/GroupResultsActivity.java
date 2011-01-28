@@ -1,50 +1,17 @@
 package com.t2.vas.activity;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-import android.widget.ViewAnimator;
 
-import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
-import com.t2.vas.VASAnalytics;
 import com.t2.vas.data.DataProvider;
 import com.t2.vas.data.GroupResultsDataProvider;
-import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Note;
-import com.t2.vas.db.tables.Result;
-import com.t2.vas.db.tables.Scale;
 
 public class GroupResultsActivity extends ABSResultsActivity {
 	private static final String TAG = "GroupResultsActivity";

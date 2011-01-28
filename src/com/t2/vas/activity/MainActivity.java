@@ -1,13 +1,9 @@
 package com.t2.vas.activity;
 
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.content.Context;
@@ -16,25 +12,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.t2.vas.ArraysExtra;
@@ -42,8 +27,6 @@ import com.t2.vas.Global;
 import com.t2.vas.MathExtra;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
-import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSResultsActivity.KeyItem;
 import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.activity.preference.ReminderActivity;
 import com.t2.vas.data.GroupResultsDataProvider;
@@ -54,9 +37,9 @@ import com.t2.vas.view.SeparatedListAdapter;
 
 public class MainActivity extends ABSNavigationActivity implements OnItemClickListener {
 	private static final String TAG = MainActivity.class.getName();
-	private static final int HELP_SETTINGS_ITEM = 235;
+	public static final int RATE_ACTIVITY = 345;
+	public static final int NOTE_ACTIVITY = 355;
 	
-	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Global.NOTES_LONG_DATE_FORMAT);
 	private SimpleAdapter rateGroupListAdapter;
 	private ListView listView;
 	private SeparatedListAdapter listAdapter;
@@ -201,25 +184,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		cursor.close();
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuItem mi = menu.add(Menu.NONE, HELP_SETTINGS_ITEM, Menu.NONE, R.string.settings_title);
-		mi.setIcon(android.R.drawable.ic_menu_manage);
-		
-		return super.onCreateOptionsMenu(menu);
-	}
-
-
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
-		case HELP_SETTINGS_ITEM:
-			startSettingsActivity();
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 	protected void startSettingsActivity() {
 		Intent i = new Intent(this, MainPreferenceActivity.class);
 		i.putExtra(MainPreferenceActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
@@ -234,7 +198,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		listAdapter.notifyDataSetChanged();
 		
 		
-		if(requestCode == FORM_ACTIVITY || requestCode == NOTE_ACTIVITY) {
+		if(requestCode == RATE_ACTIVITY || requestCode == NOTE_ACTIVITY) {
 			if(isNoteNecessaryForToday()) {
 				notifyNoteIsNecessary();
 			}
@@ -330,11 +294,13 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         item.put("id", "view_notes");
         items.add(item);
         
-        item = new HashMap<String,Object>();
-        item.put("text1", this.getString(R.string.share_title));
-        item.put("image1", R.drawable.share);
-        item.put("id", "share");
-        items.add(item);
+        if(Global.UNLOCK_HIDDEN_FEATURES) {
+	        item = new HashMap<String,Object>();
+	        item.put("text1", this.getString(R.string.share_title));
+	        item.put("image1", R.drawable.share);
+	        item.put("id", "share");
+	        items.add(item);
+        }
         
         return items;
 	}
@@ -451,6 +417,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		Intent i = new Intent(this, RateActivity.class);
 		i.putExtra(RateActivity.EXTRA_GROUP_ID, id);
 		i.putExtra(RateActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
-		this.startActivityForResult(i, FORM_ACTIVITY);
+		this.startActivityForResult(i, RATE_ACTIVITY);
 	}
 }

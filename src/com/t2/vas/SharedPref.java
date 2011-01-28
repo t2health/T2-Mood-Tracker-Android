@@ -7,7 +7,6 @@ import java.util.List;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.util.Log;
 
 public class SharedPref {
 	private static final String TAG = SharedPref.class.getSimpleName();
