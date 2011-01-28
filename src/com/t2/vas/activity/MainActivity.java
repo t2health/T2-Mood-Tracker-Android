@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -411,8 +412,8 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				Intent i = new Intent(android.content.Intent.ACTION_SEND);
 				i.setType("plain/text");
 				i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{getString(R.string.feedback_to)});
-				i.putExtra(android.content.Intent.EXTRA_SUBJECT, R.string.feedback_subject);
-				i.putExtra(android.content.Intent.EXTRA_TEXT, R.string.feedback_content);
+				i.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.feedback_subject));
+				i.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(getString(R.string.feedback_content)));
 				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.feedback_title)), 123);
 				
 			} else if(itemId.equals("help")) {
@@ -427,8 +428,8 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 			} else if(itemId.equals("tell_a_friend")) {
 				Intent i = new Intent(android.content.Intent.ACTION_SEND);
 				i.setType("text/html");
-				i.putExtra(android.content.Intent.EXTRA_SUBJECT, R.string.tell_a_friend_subject);
-				i.putExtra(android.content.Intent.EXTRA_TEXT, R.string.tell_a_friend_content);
+				i.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.tell_a_friend_subject));
+				i.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(getString(R.string.tell_a_friend_content)));
 				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.tell_a_friend_title)), 123);
 			
 			} else if(itemId.equals("regenerate_data")) {
