@@ -18,8 +18,8 @@
 		android:title="@string/security_title"
 		android:key="security" />
 
-	<PreferenceCategory
-		android:title="@string/settings_general">
+	<!-- <PreferenceCategory
+		android:title="@string/settings_general"> -->
 		<CheckBoxPreference
 			android:title="@string/show_tips_on_startup"
 			android:key="show_startup_tips"
@@ -30,5 +30,5 @@
 			android:title="@string/send_anon_data_title"
 			android:summary="@string/send_anon_data_desc"
 			android:defaultValue="true" />
-	</PreferenceCategory>
+	<!-- </PreferenceCategory>-->
 </PreferenceScreen>

@@ -70,6 +70,10 @@ public class AppSecurityManager {
 		--statusCount;
 	}
 	
+	public void setUnlocked(boolean b) {
+		unlocked = b;
+	}
+	
 	private void startUnlockActivity(Activity activity, boolean isEnabled) {
 		if(isEnabled) {
 			Intent i = new Intent(activity, UnlockActivity.class);

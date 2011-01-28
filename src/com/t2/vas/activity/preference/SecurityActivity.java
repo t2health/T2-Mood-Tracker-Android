@@ -1,5 +1,6 @@
 package com.t2.vas.activity.preference;
 
+import com.t2.vas.AppSecurityManager;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigationActivity;
@@ -83,14 +84,8 @@ public class SecurityActivity extends ABSNavigationActivity implements OnChecked
 				q2, 
 				a2
 		);
-		/*Editor editor = sharedPref.edit();
-		editor.putBoolean("security_enabled", enabled);
-		editor.putString("security_pin", pin);
-		editor.putString("security_question1", q1);
-		editor.putString("security_answer1", a1);
-		editor.putString("security_question2", q2);
-		editor.putString("security_answer2", a2);
-		editor.commit();*/
+		
+		AppSecurityManager.getInstance().setUnlocked(true);
 		
 		super.onBackButtonPressed();
 	}

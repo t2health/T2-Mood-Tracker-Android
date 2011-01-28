@@ -24,6 +24,7 @@ public class NotesDataProvider extends DataProvider {
 		while(cursor.moveToNext()) {
 			data.put(cursor.getLong(timeIndex), 100.0);
 		}
+		cursor.close();
 		
 		return data;
 	}

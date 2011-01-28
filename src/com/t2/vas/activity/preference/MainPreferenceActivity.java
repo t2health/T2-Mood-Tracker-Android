@@ -20,12 +20,7 @@ import com.t2.vas.activity.editor.GroupListActivity;
 
 public class MainPreferenceActivity extends ABSPreferenceNavigation implements OnPreferenceClickListener, OnPreferenceChangeListener {
 	private static final String TAG = MainPreferenceActivity.class.getName();
-	private static final int REQUEST_PASSWORD_SET = 34;
-	private static final int REQUEST_PASSWORD_UNSET = 35;
-	private static final int REQUEST_PASSWORD_UPDATE = 36;
-
 	private SharedPreferences sharedPref;
-	private Toast notesLockedToast;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +36,6 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
         screen.findPreference("send_anon_data").setOnPreferenceChangeListener(this);
     }
 
-
-	private void setPassword(String password) {
-		if(password == null || password.trim().length() <= 0) {
-			sharedPref.edit().remove("notes_password").commit();
-		} else {
-			sharedPref.edit().putString("notes_password", password).commit();
-		}
-	}
-	
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		String prefKey = preference.getKey();
@@ -86,7 +72,6 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 	@Override
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		String current_password = sharedPref.getString("notes_password", null);
-//		Log.v(TAG, "Current password:"+current_password);
 
 		if(preference.getKey().equals("send_anon_data")) {
 			Boolean isChecked = (Boolean)newValue;

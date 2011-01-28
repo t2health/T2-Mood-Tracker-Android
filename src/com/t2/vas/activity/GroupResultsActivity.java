@@ -97,4 +97,9 @@ public class GroupResultsActivity extends ABSResultsActivity {
 	protected DataProvider getDataProvider() {
 		return new GroupResultsDataProvider(this.dbAdapter);
 	}
+
+	@Override
+	protected boolean isKeyItemsClickable() {
+		return true;
+	}
 }

@@ -186,11 +186,9 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		
 		keysAdapter = new KeyItemAdapter(this, getKeyItemViewType(), keyItems);
 		
-		
 		keysList = (ListView) this.findViewById(R.id.keysList);
 		keysList.setAdapter(keysAdapter);
 		if(isKeyItemsClickable()) {
-			//Log.v(TAG, "Clickable");
 			keysList.setOnItemClickListener(this);
 		}
 		
@@ -306,9 +304,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		return dataPoints;
 	}
 	
-	protected boolean isKeyItemsClickable() {
-		return true;
-	}
+	protected abstract boolean isKeyItemsClickable();
 
 	protected int getKeyColor(int currentIndex, int totalCount) {
 		float hue = currentIndex / (1.00f * totalCount) * 360.00f;
