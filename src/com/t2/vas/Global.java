@@ -7,7 +7,7 @@ import android.os.Environment;
 public class Global {
 	public static class Database {
 		public static final String name = "VAS_DATA";
-		public static final int version = 2;
+		public static final int version = 3;
 		public static final boolean CREATE_FAKE_DATA = true;
 	}
 

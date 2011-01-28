@@ -113,6 +113,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private Cursor notesCursor;
 	private NotesDataProvider notesDataProvider;
 	private DisplayMetrics displayMetrics = new DisplayMetrics();
+	private DataPointCache dataPointCache;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +121,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		
+		dataPointCache = new DataPointCache();
 		notesDataProvider = new NotesDataProvider(dbAdapter);
 		dataProvider = this.getDataProvider();
 		gestureDetector = new GestureDetector(this, this);
@@ -210,8 +212,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		showKeysTab();
 	}
 	
-	
-	
 	protected abstract String getSettingSuffix();
 	
 	protected abstract ArrayList<KeyItem> getKeyItems();
@@ -221,9 +221,17 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	protected abstract DataProvider getDataProvider();
 	
 	private ArrayList<DataPoint> loadData(KeyItem item, long startTime, long endTime, int calendarGroupByField) {
+		// try to retrieve the data from cache
+		String cacheKey = "key-"+item.id;
+		ArrayList<DataPoint> outPoints = dataPointCache.getCache(cacheKey, startTime, endTime, calendarGroupByField);
+		if(outPoints != null) {
+			return outPoints;
+		}
+
+		// rebuild the cache.
+		outPoints = new ArrayList<DataPoint>();
 		ArrayList<Long> xValues = getDataPoints(startTime, endTime, calendarGroupByField);
 		LinkedHashMap<Long,DataPoint> points = new LinkedHashMap<Long, DataPoint>();
-		ArrayList<DataPoint> outPoints = new ArrayList<DataPoint>();
 		
 		for(int i = 0; i < xValues.size(); ++i) {
 			DataPoint dp = new DataPoint(xValues.get(i), 50);
@@ -240,15 +248,29 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			}
 		}
 		
+		// set the cache
+		dataPointCache.setCache(cacheKey, outPoints, startTime, endTime, calendarGroupByField);
+		
 		return outPoints;
 	}
 	
 	private ArrayList<DataPoint> loadNotesData(long startTime, long endTime, int calendarGroupByField) {
-		ArrayList<DataPoint> dataPoints = new ArrayList<DataPoint>();
+		String cacheKey = "notes";
+		ArrayList<DataPoint> dataPoints = dataPointCache.getCache(cacheKey, startTime, endTime, calendarGroupByField);
+		if(dataPoints != null) {
+			return dataPoints;
+		}
+		
+		// rebuild the notes 
+		dataPoints = new ArrayList<DataPoint>();
 		LinkedHashMap<Long, Double> data = notesDataProvider.getData(0, startTime, endTime);
 		for(Long key: data.keySet()) {
 			dataPoints.add(new DataPoint(key, data.get(key)));
 		}
+		
+		// set the cache
+		dataPointCache.setCache(cacheKey, dataPoints, startTime, endTime, calendarGroupByField);
+		
 		return dataPoints;
 	}
 	
@@ -282,50 +304,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		}
 		
 		return dataPoints;
-	}
-	
-	private class DataPoint {
-		public final long time;
-		private double valueSum = 0.00;
-		private int count = 0;
-		public double minValue = 0.00;
-		public double maxValue = 0.00;
-		private ArrayList<Double> values = new ArrayList<Double>();
-		private double defaultValue = 0.00;
-		
-		public DataPoint(long time, double defaultValue) {
-			this.time = time;
-			this.defaultValue = defaultValue;
-		}
-		
-		public void addValue(double val) {
-			values.add(val);
-			valueSum += val;
-			++count;
-			
-			if(val > maxValue || count == 1) {
-				maxValue = val;
-			}
-			
-			if(val < minValue || count == 1) {
-				minValue = val;
-			}
-		}
-		
-		public double getAverageValue() {
-			if(valueSum == 0 && count == 0) {
-				return defaultValue;
-			}
-			return valueSum / count;
-		}
-		
-		public double[] getValues() {
-			double[] out = new double[values.size()];
-			for(int i = 0; i < values.size(); ++i) {
-				out[i] = values.get(i);
-			}
-			return out;
-		}
 	}
 	
 	protected boolean isKeyItemsClickable() {
@@ -563,7 +541,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 				renderer.addSeriesRenderer(noteRenderer);
 				dataSet.addSeries(noteSeries);
 			}
-			
 			
 			// Create the chart view.
 			OffsetGraphicalChartView chartView = new OffsetGraphicalChartView(this, chart);

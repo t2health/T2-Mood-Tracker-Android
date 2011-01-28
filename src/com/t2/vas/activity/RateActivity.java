@@ -37,7 +37,6 @@ public class RateActivity extends ABSNavigationActivity {
         this.setContentView(R.layout.rate_activity);
         
         this.setRightButtonText(getString(R.string.save));
-        VASAnalytics.onEvent(VASAnalytics.EVENT_FORM_ACTIVITY);
         
         Intent intent = this.getIntent();
         this.activeGroupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);

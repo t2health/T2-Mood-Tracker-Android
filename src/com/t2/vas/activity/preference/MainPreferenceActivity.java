@@ -29,7 +29,6 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VASAnalytics.onEvent(VASAnalytics.EVENT_SETTINGS_ACTIVITY);
 
         addPreferencesFromResource(R.xml.main_preference_activity);
 

@@ -60,7 +60,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 	private ListView listView;
 	private SeparatedListAdapter listAdapter;
 
-	private GroupResultsDataProvider groupDataProvider;
+	private GroupResultsDataProvider groupResultsDataProv;
 
 	private long todayStartTime;
 	private long todayEndTime;
@@ -68,6 +68,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 	private ArrayList<HashMap<String, Object>> groupsDataList;
 	private Context thisContext;
 	private long previousRemindTime;
+	private long nextRemindTime;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,11 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         		thisContext,
         		Calendar.getInstance().getTimeInMillis()
 		);
+        nextRemindTime = ReminderActivity.getNextRemindTimeSince(
+        		thisContext,
+        		Calendar.getInstance().getTimeInMillis()
+		);
+        
         
         // Init today's start and end times.
         Calendar cal = Calendar.getInstance();
@@ -85,22 +91,23 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         cal.add(Calendar.DAY_OF_MONTH, 1);
         todayEndTime = cal.getTimeInMillis();
         
-        groupDataProvider = new GroupResultsDataProvider(this.dbAdapter);
+        groupResultsDataProv = new GroupResultsDataProvider(this.dbAdapter);
         this.setContentView(R.layout.list_layout);
-        VASAnalytics.onEvent(VASAnalytics.EVENT_MAIN_ACTIVITY);
         
         this.setRightButtonText(getString(R.string.add_note));
         
         // Setup the group list adapter.
         groupsDataList = new ArrayList<HashMap<String,Object>>();
         updateGroupsDataList();
+        
+        
         rateGroupListAdapter = new SimpleAdapter(
         	this,
         	groupsDataList,
         	R.layout.list_item_1_image,
         	new String[] {
         			"title",
-        			"_id",
+        			"showWarning",
         	},
         	new int[] {
         			R.id.text1,
@@ -114,13 +121,9 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				
 				if(view.getId() == R.id.image1) {
 					ImageView imageView = (ImageView)view;
-					long id = (Long)data;
-					Group group = new Group(dbAdapter);
-					group._id = id;
-					long latestResultTimestamp = group.getLatestResultTimestamp();
-					
+
 					// show the warning.
-					if(latestResultTimestamp < previousRemindTime) {
+					if((Boolean)data) {
 						imageView.setImageResource(R.drawable.warning);
 					// show the checkbox.
 					} else {
@@ -178,13 +181,21 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 			Group group = new Group(dbAdapter);
 			group.load(cursor);
 			
+			if(hiddenGids.contains(group._id)) {
+				continue;
+			}
+			
+			
+			Cursor resCursor = group.getResults(previousRemindTime, nextRemindTime);
+			int resCount = resCursor.getCount();
+			resCursor.close();
+			
 			HashMap<String,Object> data = new HashMap<String,Object>();
 			data.put("_id", group._id);
 			data.put("title", group.title);
+			data.put("showWarning", resCount == 0);
 			
-			if(!hiddenGids.contains(group._id)) {
-				groupsDataList.add(data);
-			}
+			groupsDataList.add(data);
 		}
 		cursor.close();
 	}
@@ -221,6 +232,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		updateGroupsDataList();
 		listAdapter.notifyDataSetChanged();
 		
+		
 		if(requestCode == FORM_ACTIVITY || requestCode == NOTE_ACTIVITY) {
 			if(isNoteNecessaryForToday()) {
 				notifyNoteIsNecessary();
@@ -256,6 +268,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		int notesCount = cursor.getCount();
 		cursor.close();
 		
+		
 		if(notesCount > 0) {
 			Log.v(TAG, "Notes exist for today.");
 			return false;
@@ -267,17 +280,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 			long id = cursor.getLong(colIndex);
 			double mostRecentVal = -1;
 			
-			Collection<Double> vals = groupDataProvider.getData(id, startTime, endTime).values();
-			Double[] valsArr = vals.toArray(new Double[vals.size()]);
-			if(valsArr.length > 0 && valsArr[0] != null) {
-				mostRecentVal = valsArr[0];
-			}
-			
-			if(mostRecentVal < 0) {
-				continue;
-			}
-			
-			Collection<Double> values = groupDataProvider.getData(
+			Collection<Double> values = groupResultsDataProv.getData(
 					id, 
 					startTimePast, 
 					endTime
@@ -286,6 +289,14 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 			double[] doubleValues = ArraysExtra.toArray(
 					values.toArray(new Double[values.size()])
 			);
+			
+			if(doubleValues.length > 0) {
+				mostRecentVal = doubleValues[0];
+			}
+			
+			if(mostRecentVal < 0) {
+				continue;
+			}
 			
 			double stdDev = MathExtra.stdDev(doubleValues);
 			double mean = MathExtra.mean(doubleValues);

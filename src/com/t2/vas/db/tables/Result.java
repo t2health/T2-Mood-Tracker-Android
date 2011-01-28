@@ -26,6 +26,15 @@ public class Result extends Table {
 		this.dbAdapter.getDatabase().execSQL("CREATE TABLE result (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, scale_id INTEGER NOT NULL, timestamp INTEGER NOT NULL, value INTEGER NOT NULL)");
 		// Create the index
 		this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE INDEX group_id_timestamp_index ON result(group_id, timestamp)" +
+		"");
+		this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE INDEX result_scale_id_timestamp_index ON result(scale_id, timestamp)" +
+		"");
+		/*this.dbAdapter.getDatabase().execSQL("" +
+				"CREATE INDEX result_timestamp_index ON result(timestamp)" +
+		"");*/
+		/*this.dbAdapter.getDatabase().execSQL("" +
 				"CREATE INDEX group_id_index ON result(group_id)" +
 		"");
 		this.dbAdapter.getDatabase().execSQL("" +
@@ -33,13 +42,25 @@ public class Result extends Table {
 		"");
 		this.dbAdapter.getDatabase().execSQL("" +
 				"CREATE INDEX result_timestamp_index ON result(timestamp)" +
-		"");
+		"");*/
 
 	}
 
 	@Override
 	public void onUpgrade(int oldVersion, int newVersion) {
-
+		if(newVersion > 2) {
+			this.dbAdapter.getDatabase().execSQL("DROP INDEX result_timestamp_index");
+			this.dbAdapter.getDatabase().execSQL("DROP INDEX group_id_index");
+			this.dbAdapter.getDatabase().execSQL("DROP INDEX result_scale_id_index");
+			this.dbAdapter.getDatabase().execSQL("DROP INDEX result_timestamp_index");
+			
+			this.dbAdapter.getDatabase().execSQL("" +
+					"CREATE INDEX group_id_timestamp_index ON result(group_id, timestamp)" +
+			"");
+			this.dbAdapter.getDatabase().execSQL("" +
+					"CREATE INDEX result_scale_id_timestamp_index ON result(scale_id, timestamp)" +
+			"");
+		}
 	}
 
 

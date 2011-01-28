@@ -69,6 +69,7 @@ public abstract class ABSActivity extends Activity {
         
         Eula.show(this);
         VASAnalytics.onPageView();
+        VASAnalytics.onEvent(this.getClass().getSimpleName());
 	}
 
 	@Override

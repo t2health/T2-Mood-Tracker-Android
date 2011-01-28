@@ -32,7 +32,6 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		VASAnalytics.onEvent(VASAnalytics.EVENT_ADD_EDIT_NOTE_ACTIVITY);
 
 		// init global variables.
 		currentNote = ((Note)dbAdapter.getTable("note")).newInstance();

@@ -28,6 +28,7 @@ public abstract class ABSPreferenceActivity extends PreferenceActivity {
         }
         
         VASAnalytics.onPageView();
+        VASAnalytics.onEvent(this.getClass().getName());
 	}
 	
 	@Override
@@ -42,9 +43,5 @@ public abstract class ABSPreferenceActivity extends PreferenceActivity {
 		super.onStop();
 
 		Analytics.onEndSession(this);
-	}
-	
-	public int getHelpResId() {
-		return -1;
 	}
 }
