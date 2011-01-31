@@ -9,6 +9,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -333,6 +334,11 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         items.add(item);
         
         item = new HashMap<String,Object>();
+        item.put("text1", this.getString(R.string.rate_app_title));
+        item.put("id", "rate_app");
+        items.add(item);
+
+        item = new HashMap<String,Object>();
         item.put("text1", this.getString(R.string.settings_title));
         item.put("id", "settings");
         items.add(item);
@@ -397,7 +403,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				
 			} else if(itemId.equals("settings")) {
 				startSettingsActivity();
-				return;
 				
 			} else if(itemId.equals("tell_a_friend")) {
 				Intent i = new Intent(android.content.Intent.ACTION_SEND);
@@ -406,6 +411,11 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				i.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(getString(R.string.tell_a_friend_content)));
 				this.startActivityForResult(Intent.createChooser(i, this.getString(R.string.tell_a_friend_title)), 123);
 			
+			} else if(itemId.equals("rate_app")) {
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse("market://details?id="+this.getPackageName()));
+				this.startActivityForResult(i, 123);
+				
 			} else if(itemId.equals("regenerate_data")) {
 				InstallDB.onCreate(dbAdapter, true);
 				

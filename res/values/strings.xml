@@ -21,6 +21,7 @@
 	<string name="general_section_title"> </string>
 		<string name="about_title">About T2 Mood Tracker</string>
 			<string name="about_text">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
+		<string name="rate_app_title">Rate App</string>
 		<string name="feedback_title">Feedback</string>
 		<string name="tell_a_friend_title">Tell a Friend</string>
 	<string name="unusual_results_message">Your results are a little unusual today, please consider entering a note.</string>
