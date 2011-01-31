@@ -166,7 +166,7 @@ public class VASListView extends ListView {
 					children.add(childViewGroup.getChildAt(i));
 				}
 			} catch (ClassCastException cce) {
-				Log.v(TAG, "Caught an exception.");
+				//Log.v(TAG, "Caught an exception.");
 			}
 
 
@@ -178,7 +178,7 @@ public class VASListView extends ListView {
 						return child;
 					}
 				} catch(ClassCastException cce) {
-					Log.v(TAG, "Caught an exception.");
+					//Log.v(TAG, "Caught an exception.");
 				}
 			}
 			currentIndex++;

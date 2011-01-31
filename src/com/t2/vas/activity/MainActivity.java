@@ -178,7 +178,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				continue;
 			}
 			
-			
 			Cursor resCursor = group.getResults(previousRemindTime, nextRemindTime);
 			int resCount = resCursor.getCount();
 			resCursor.close();
@@ -206,9 +205,8 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		updateGroupsDataList();
 		listAdapter.notifyDataSetChanged();
 		
-		
 		if(requestCode == RATE_ACTIVITY || requestCode == NOTE_ACTIVITY) {
-			if(isNoteNecessaryForToday()) {
+			if(resultCode == RESULT_OK && isNoteNecessaryForToday()) {
 				notifyNoteIsNecessary();
 			}
 		}
@@ -223,67 +221,68 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 
 	private boolean isNoteNecessaryForToday() {
 		Cursor cursor;
-		Calendar startCal = Calendar.getInstance();
-		MathExtra.roundTime(startCal, Calendar.DAY_OF_MONTH);
+		Calendar dataSampleStartCal = Calendar.getInstance();
+		dataSampleStartCal.setTimeInMillis(todayStartTime);
+		dataSampleStartCal.add(Calendar.MONTH, -1);
+		long dataSampleStartTime = dataSampleStartCal.getTimeInMillis();
 		
-		Calendar startCalPast = Calendar.getInstance();
-		startCalPast.setTimeInMillis(startCal.getTimeInMillis());
-		startCalPast.add(Calendar.MONTH, -1);
-		
-		Calendar endCal = Calendar.getInstance();
-		endCal.setTimeInMillis(startCal.getTimeInMillis());
-		endCal.add(Calendar.DAY_OF_MONTH, 1);
-		
-		long startTime = startCal.getTimeInMillis();
-		long startTimePast = startCalPast.getTimeInMillis();
-		long endTime = endCal.getTimeInMillis();
-		
-		cursor = new Note(this.dbAdapter).queryForNotes(startTime, endTime, null);
+		cursor = new Note(this.dbAdapter).queryForNotes(todayStartTime, todayEndTime, null);
 		int notesCount = cursor.getCount();
 		cursor.close();
 		
 		
 		if(notesCount > 0) {
-			Log.v(TAG, "Notes exist for today.");
 			return false;
 		}
 		
-		cursor = new Group(this.dbAdapter).getGroupsCursor();
-		int colIndex = cursor.getColumnIndex("_id"); 
-		while(cursor.moveToNext()) {
-			long id = cursor.getLong(colIndex);
+		for(int i = 0; i < groupsDataList.size(); ++i) {
+			HashMap<String,Object> data = groupsDataList.get(i);
+			long id = (Long)data.get("_id");
 			double mostRecentVal = -1;
 			
 			Collection<Double> values = groupResultsDataProv.getData(
 					id, 
-					startTimePast, 
-					endTime
+					dataSampleStartTime, 
+					todayEndTime
 			).values();
 			
+			Collection<Double> todayValues = groupResultsDataProv.getData(
+					id, 
+					todayStartTime, 
+					todayEndTime
+			).values();
+			
+			double[] doubleTodayValues = ArraysExtra.toArray(
+					todayValues.toArray(new Double[todayValues.size()])
+			);			
 			double[] doubleValues = ArraysExtra.toArray(
 					values.toArray(new Double[values.size()])
 			);
 			
-			if(doubleValues.length > 0) {
-				mostRecentVal = doubleValues[0];
+			if(doubleTodayValues.length > 0) {
+				mostRecentVal = doubleTodayValues[doubleTodayValues.length-1];
 			}
 			
 			if(mostRecentVal < 0) {
 				continue;
 			}
-			
 			double stdDev = MathExtra.stdDev(doubleValues);
 			double mean = MathExtra.mean(doubleValues);
 			double high = mean + stdDev;
 			double low = mean - stdDev;
 			
+			Log.v(TAG, "title:"+data.get("title"));
+			Log.v(TAG, "mrv:"+mostRecentVal);
+			Log.v(TAG, "stddev:"+stdDev);
+			Log.v(TAG, "mean:"+mean);
+			Log.v(TAG, "high:"+high);
+			Log.v(TAG, "low:"+low);
+			
 			if(mostRecentVal > high || mostRecentVal < low) {
-				cursor.close();
+				Log.v(TAG, data.get("title").toString());
 				return true;
 			}
 		}
-		cursor.close();
-		
 		return false;
 	}
 
