@@ -145,8 +145,7 @@ public class ReminderService extends Service {
 		// Build the notification and the status bar text.
 		Notification notification = new Notification(
 				R.drawable.icon,
-				//getText(R.string.remind_notification_bar_text),
-				"",
+				getText(R.string.remind_notification_bar_text),
 				System.currentTimeMillis()
 		);
 		
