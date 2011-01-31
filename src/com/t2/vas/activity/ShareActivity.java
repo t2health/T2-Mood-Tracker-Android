@@ -147,12 +147,6 @@ public class ShareActivity extends ABSNavigationActivity implements OnClickListe
 						android.R.id.text1,
 				}
 		);
-		groupsAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
-			@Override
-			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				return false;
-			}
-		});
 		
 		// Setup the other clear items.
 		ArrayList<HashMap<String,Object>> otherDataItems = new ArrayList<HashMap<String,Object>>();

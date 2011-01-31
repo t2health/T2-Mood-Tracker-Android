@@ -10,7 +10,9 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 
 import com.t2.vas.activity.StartupActivity;
@@ -25,6 +27,31 @@ public class ReminderService extends Service {
 	private NotificationManager notificationManager;
 	private Context thisContext;
 	
+	private static final int SCHEDULE_NEXT_REMINDER = 434;
+	private static final int CANCEL_NEXT_REMINDER = 435;
+	private static final int SHOW_NOTIFICATION = 436;
+	private static final int HIDE_NOTIFICATION = 437;
+	
+	private Handler opsHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch(msg.what) {
+			case SCHEDULE_NEXT_REMINDER:
+				scheduleNextReminder();
+				break;
+			case CANCEL_NEXT_REMINDER:
+				cancelNextReminder();
+				break;
+			case SHOW_NOTIFICATION:
+				showNotification();
+				break;
+			case HIDE_NOTIFICATION:
+				hideNotification();
+				break;
+			}
+		}
+	};
+	
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -33,37 +60,23 @@ public class ReminderService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+//		Log.v(TAG, "onCreate");
+		
 		thisContext = this;
 		isRunning = true;
 		
 		// Init the global variables.
 		notificationManager = (NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
 		
-		/* Schedule the first next reminder a few minutes.
-		 * This helps keep the load down on boot. 
-		 */
-		new Timer().schedule(new TimerTask() {
-			@Override
-			public void run() {
-				boolean scheduled = scheduleNextReminder();
-				/* if the next reminder could not be scheduled (probably 
-				 * because there is insufficient data to do so), then stop
-				 * the service. 
-				 */
-				if(!scheduled) {
-					Log.v(TAG, "Failed to schedule, stopping service.");
-					stopSelf();
-				} else {
-					Log.v(TAG, "Next reminder scheduled.");
-				}
-			}
-		}, 300000);
-		//300000
+		if(!scheduleNextReminder()) {
+			this.stopSelf();
+		}
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+//		Log.v(TAG, "onDestroy");
 		
 		// Stop any pending reminders.
 		cancelNextReminder();
@@ -75,6 +88,7 @@ public class ReminderService extends Service {
 	}
 	
 	private void cancelNextReminder() {
+//		Log.v(TAG, "cancelNextReminder");
 		if(timer != null) {
 			timer.cancel();
 			timer.purge();
@@ -83,6 +97,7 @@ public class ReminderService extends Service {
 	}
 	
 	private boolean scheduleNextReminder() {
+//		Log.v(TAG, "scheduleNextReminder");
 		// Ensure the timer is cancelled and nullified.
 		cancelNextReminder();
 		
@@ -98,16 +113,26 @@ public class ReminderService extends Service {
 			return false;
 		}
 		
+//		Log.v(TAG, "date:"+ new Date(nextRemindTime));
+		
 		// Schedule a task to be run on a seperate thread.
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				// Show the notification.
+				opsHandler.sendEmptyMessage(HIDE_NOTIFICATION);
+				opsHandler.sendEmptyMessage(SHOW_NOTIFICATION);
+				
+				// Schedule the next notification.
+				opsHandler.sendEmptyMessage(SCHEDULE_NEXT_REMINDER);
+				/*
+				
+				hideNotification();
 				showNotification();
 				
 				// Schedule the next notification.
-				scheduleNextReminder();
+				scheduleNextReminder();*/
 			}
 		}, new Date(nextRemindTime));
 		
@@ -115,12 +140,17 @@ public class ReminderService extends Service {
 	}
 	
 	private void showNotification() {
+//		Log.v(TAG, "showNotification");
+		
 		// Build the notification and the status bar text.
 		Notification notification = new Notification(
 				R.drawable.icon,
-				getText(R.string.remind_notification_bar_text),
+				//getText(R.string.remind_notification_bar_text),
+				"",
 				System.currentTimeMillis()
 		);
+		
+		
 		
 		notification.flags = Notification.FLAG_AUTO_CANCEL | Notification.FLAG_SHOW_LIGHTS;
 		
@@ -145,18 +175,19 @@ public class ReminderService extends Service {
 	}
 	
 	private void hideNotification() {
+//		Log.v(TAG, "hideNotification");
 		notificationManager.cancel(NOTIFICATION_ID);
 	}
 	
 	public static void stopRunning(Context c) {
-		Log.v(TAG, "Stopping reminder service.");
+//		Log.v(TAG, "stopRunning");
 		c.stopService(
 				new Intent(c, ReminderService.class)
 		);
 	}
 	
 	public static void startRunning(Context c) {
-		Log.v(TAG, "Starting reminder service.");
+//		Log.v(TAG, "startRunning");
 		if(!isRunning) {
 			c.startService(
 					new Intent(c, ReminderService.class)
@@ -164,11 +195,25 @@ public class ReminderService extends Service {
 		}
 	}
 	
+	public static void restart(final Context c) {
+		stopRunning(c);
+		
+		// Delay the start to allow the stop to complete. Otherwise it won't start.
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				startRunning(c);
+			}
+		}, 3000);
+	}
+	
 	public static boolean isRunning() {
+//		Log.v(TAG, "isRunning");
 		return isRunning;
 	}
 	
 	public static void clearNotification(Context c) {
+//		Log.v(TAG, "clearNotification");
 		NotificationManager nm = (NotificationManager)c.getSystemService(NOTIFICATION_SERVICE);
 		nm.cancel(NOTIFICATION_ID);
 	}

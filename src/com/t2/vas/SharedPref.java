@@ -11,6 +11,11 @@ import android.content.SharedPreferences.Editor;
 public class SharedPref {
 	private static final String TAG = SharedPref.class.getSimpleName();
 	
+	
+	public static boolean getSendAnnonData(SharedPreferences sharedPref) {
+		return sharedPref.getBoolean("send_anon_data", true);
+	}
+	
 	public static void setShowStartupTips(SharedPreferences sharedPref, boolean enabled) {
 		sharedPref.edit().putBoolean("show_startup_tips", enabled).commit();
 	}

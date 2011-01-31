@@ -53,7 +53,8 @@
 	
 	<!--  Graph results -->
 	<string name="results_title">Results</string>
-	<string name="groups_tab">Groups</string>
+	<string name="groups_tab">Categories</string>
+	<string name="scales_tab">Scales</string>
 	<string name="notes_tab">Notes</string>
 		
 	<!-- Notes -->

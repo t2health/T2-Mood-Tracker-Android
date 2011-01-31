@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.t2.vas.R;
 import com.t2.vas.data.DataProvider;
 import com.t2.vas.data.ScaleResultsDataProvider;
 import com.t2.vas.db.tables.Group;
@@ -75,5 +76,10 @@ public class ScaleResultsActivity extends ABSResultsActivity {
 	@Override
 	protected DataProvider getDataProvider() {
 		return new ScaleResultsDataProvider(this.dbAdapter);
+	}
+
+	@Override
+	protected String getKeyTabText() {
+		return getString(R.string.scales_tab);
 	}
 }

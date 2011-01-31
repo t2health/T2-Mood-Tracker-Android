@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -150,14 +152,16 @@ public class ReminderActivity extends ABSNavigationActivity implements OnItemCli
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(this);
     }
+
+	
 	
 	@Override
 	protected void onBackButtonPressed() {
-		// restart the reminder service to account for the possible change in times.
-		ReminderService.stopRunning(this);
-		ReminderService.startRunning(this);
-		
 		super.onBackButtonPressed();
+		
+		// restart the reminder service to account for the possible change in times.
+		ReminderService.restart(this);
+		ReminderService.clearNotification(this);
 	}
 
 	private ArrayList<HashMap<String,Object>> loadDaysOfWeek() {
@@ -322,14 +326,17 @@ public class ReminderActivity extends ABSNavigationActivity implements OnItemCli
 		long currentTime = cal.getTimeInMillis();
 		int currentDow = cal.get(Calendar.DAY_OF_WEEK);
 		int numDaysInWeek = cal.getActualMaximum(Calendar.DAY_OF_WEEK);
+		// for each day of the week that is enabled.
 		for(int i = 0; i < daysEnabled.size(); ++i) {
 			int dow = daysEnabled.get(i);
 			cal.setTimeInMillis(currentTime);
 			cal.set(Calendar.DAY_OF_WEEK, dow);
+			// if the dow is less than today, then add a week to it.
 			if(dow < currentDow) {
 				cal.add(Calendar.DAY_OF_MONTH, numDaysInWeek);
 			}
 			
+			// for each time that is enabled.
 			for(int j = 0; j < timesEnabled.size(); ++j) {
 				long timestamp = timesEnabled.get(j).time;
 				Calendar timeCal = Calendar.getInstance();
@@ -337,12 +344,14 @@ public class ReminderActivity extends ABSNavigationActivity implements OnItemCli
 				
 				cal.set(Calendar.HOUR_OF_DAY, timeCal.get(Calendar.HOUR_OF_DAY));
 				cal.set(Calendar.MINUTE, timeCal.get(Calendar.MINUTE));
-				
-				remindTimestamps.add(cal.getTimeInMillis());
+				long listtimestamp = cal.getTimeInMillis();
+				if(listtimestamp > timestampIn) {
+					remindTimestamps.add(cal.getTimeInMillis());
+				}
 			}
 		}
 		
-		// convert to primative array, sort and return.
+		// convert to primitive array, sort and return.
 		long[] times = new long[remindTimestamps.size()];
 		for(int i = 0; i < times.length; ++i) {
 			times[i] = remindTimestamps.get(i);

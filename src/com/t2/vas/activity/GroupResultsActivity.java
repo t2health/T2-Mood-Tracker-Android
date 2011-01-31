@@ -69,4 +69,9 @@ public class GroupResultsActivity extends ABSResultsActivity {
 	protected boolean isKeyItemsClickable() {
 		return true;
 	}
+
+	@Override
+	protected String getKeyTabText() {
+		return getString(R.string.groups_tab);
+	}
 }

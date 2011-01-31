@@ -15,9 +15,6 @@ public class StartupActivity extends ABSActivity {
 		// Start the reminder service if it isn't already.
 		ReminderService.startRunning(this);
 		
-		// Clear the reminder notification (if visible)
-		ReminderService.clearNotification(this);
-		
 		Intent i;
 		if(SharedPref.Security.isEnabled(sharedPref)) {
 			i = new Intent(this, MainActivity.class);

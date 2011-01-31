@@ -26,6 +26,7 @@ import com.t2.vas.ArraysExtra;
 import com.t2.vas.Global;
 import com.t2.vas.MathExtra;
 import com.t2.vas.R;
+import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.activity.preference.ReminderActivity;
@@ -155,6 +156,14 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         listView.setOnItemClickListener(this);
 	}
 	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		// Clear the reminder notification (if visible)
+		ReminderService.clearNotification(this);
+	}
+
 	private void updateGroupsDataList() {
 		groupsDataList.clear();
 		

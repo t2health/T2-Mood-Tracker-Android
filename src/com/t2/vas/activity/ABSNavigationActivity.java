@@ -1,6 +1,8 @@
 package com.t2.vas.activity;
 
 import android.content.Intent;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageButton;
 import com.t2.vas.R;
 
 public abstract class ABSNavigationActivity extends ABSSecurityActivity {
+	private static final String TAG = ABSNavigationActivity.class.getSimpleName();
 	public static final String EXTRA_BACK_BUTTON_TEXT = "leftButtonText";
 	public static final String EXTRA_RIGHT_BUTTON_TEXT = "rightButtonText";
 	
@@ -116,5 +119,14 @@ public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 		if(i.getStringExtra(EXTRA_RIGHT_BUTTON_TEXT) != null) {
 			this.setRightButtonText(i.getStringExtra(EXTRA_RIGHT_BUTTON_TEXT));
 		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			this.onBackButtonPressed();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

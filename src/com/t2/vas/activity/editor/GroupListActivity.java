@@ -1,5 +1,6 @@
 package com.t2.vas.activity.editor;
 
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -71,7 +72,13 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 		groupsAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
 			@Override
 			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				if(view.getId() == R.id.toggleButton) {
+				int viewId = view.getId();
+				
+				if(viewId == R.id.text1) {
+					int immutable = cursor.getInt(cursor.getColumnIndex("immutable"));
+					view.setEnabled(!(immutable > 0));
+					
+				} else if(viewId == R.id.toggleButton) {
 					final long id = cursor.getLong(columnIndex);
 					
 					ToggleButton tb = (ToggleButton)view;

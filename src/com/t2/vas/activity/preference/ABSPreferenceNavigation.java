@@ -2,6 +2,8 @@ package com.t2.vas.activity.preference;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -70,7 +72,15 @@ public abstract class ABSPreferenceNavigation extends ABSSecurityPreferenceActiv
 		}
 	}
 	
-	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			this.onBackButtonPressed();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
 	protected void setBackButtonText(String s) {
 		if(!initialized) {
 			return;

@@ -65,8 +65,6 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 
 	@Override
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		String current_password = sharedPref.getString("notes_password", null);
-
 		if(preference.getKey().equals("send_anon_data")) {
 			Boolean isChecked = (Boolean)newValue;
 			if(isChecked) {

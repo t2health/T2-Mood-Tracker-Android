@@ -64,6 +64,10 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private static final int DIRECTION_NONE = 0;
 	private static final int DIRECTION_NEXT = 1;
 
+	private static final int KEYS_TAB = 1;
+	private static final int NOTES_TAB = 2;
+	private int selectedTab = 0;
+	
 	private ListView keysList;
 	private ListView notesList;
 
@@ -179,6 +183,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		
 		keysTabButton = (ToggledButton)this.findViewById(R.id.keysTabButton);
 		keysTabButton.setOnClickListener(this);
+		keysTabButton.setText(getKeyTabText());
 		
 		notesTabButton = (ToggledButton)this.findViewById(R.id.notesTabButton);
 		notesTabButton.setOnClickListener(this);
@@ -187,8 +192,28 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		this.findViewById(R.id.monthPlusButton).setOnClickListener(this);
 		
 		generateChart(DIRECTION_NEXT);
-		showKeysTab();
+		
+		if(savedInstanceState != null) {
+			int selTab = savedInstanceState.getInt("selectedTab");
+			if(selTab == NOTES_TAB)  {
+				showNotesTab();
+			} else {
+				showKeysTab();
+			}
+		} else {
+			showKeysTab();
+		}
 	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("selectedTab", selectedTab);
+	}
+
+
+
+	protected abstract String getKeyTabText();
 	
 	protected abstract String getSettingSuffix();
 	
@@ -300,6 +325,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	}
 	
 	protected final void showKeysTab() {
+		selectedTab = KEYS_TAB;
 		keysTabButton.setChecked(true);
 		notesTabButton.setChecked(false);
 		
@@ -308,6 +334,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	}
 	
 	protected final void showNotesTab() {
+		selectedTab = NOTES_TAB;
 		keysTabButton.setChecked(false);
 		notesTabButton.setChecked(true);
 		
