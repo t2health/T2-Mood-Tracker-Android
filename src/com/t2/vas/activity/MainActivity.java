@@ -24,6 +24,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.t2.vas.ArraysExtra;
+import com.t2.vas.DBInstallData;
 import com.t2.vas.Global;
 import com.t2.vas.MathExtra;
 import com.t2.vas.R;
@@ -32,7 +33,6 @@ import com.t2.vas.SharedPref;
 import com.t2.vas.activity.preference.MainPreferenceActivity;
 import com.t2.vas.activity.preference.ReminderActivity;
 import com.t2.vas.data.GroupResultsDataProvider;
-import com.t2.vas.db.InstallDB;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.view.SeparatedListAdapter;
@@ -417,7 +417,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				this.startActivityForResult(i, 123);
 				
 			} else if(itemId.equals("regenerate_data")) {
-				InstallDB.onCreate(dbAdapter, true);
+				DBInstallData.install(this, dbAdapter);
 				
 				this.finish();
 			}

@@ -1,23 +1,35 @@
-package com.t2.vas.db;
+package com.t2.vas;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-import android.content.ContentValues;
-import android.content.res.Resources;
-import android.util.Log;
-
-import com.t2.vas.R;
+import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
-public class InstallDB {
-	private static final String TAG = InstallDB.class.getName();
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
 
-	public static void onCreate(DBAdapter dbAdapter, boolean generateFake) {
+public class DBInstallData {
+	private static final String TAG = DBInstallData.class.getSimpleName();
+	
+	public static void install(Context context, DBAdapter dbAdapter) {
+		new Group(dbAdapter).onCreate();
+		new Scale(dbAdapter).onCreate();
+		new Result(dbAdapter).onCreate();
+		new Note(dbAdapter).onCreate();
+		
+		if(Global.Database.CREATE_FAKE_DATA) {
+			installFakeData(dbAdapter, true);
+		}
+	}
+	
+	private static void installFakeData(DBAdapter dbAdapter, boolean generateFake) {
 		// Install the first group of scales
 		//boolean generateFake = Global.Database.CREATE_FAKE_DATA;
 		//Group group = (Group)dbAdapter.getTable("group");

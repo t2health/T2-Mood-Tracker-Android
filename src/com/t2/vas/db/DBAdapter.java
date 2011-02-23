@@ -1,25 +1,16 @@
 package com.t2.vas.db;
 
-import java.util.LinkedHashMap;
-import java.util.Set;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.t2.vas.Global;
-import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Note;
-import com.t2.vas.db.tables.Result;
-import com.t2.vas.db.tables.Scale;
-
 public class DBAdapter extends SQLiteOpenHelper {
 	private static final String TAG = DBAdapter.class.getName();
 	private Context context;
-	private LinkedHashMap<String,AbsTable> tables = new LinkedHashMap<String,AbsTable>();
-	
+	//private ArrayList<AbsTable> tables = new ArrayList<AbsTable>();
 	private SQLiteDatabase database;
+	private OnDatabaseCreatedListener createListener;
 	
 	public DBAdapter(Context c, String dbName, int dbVersion) {
 		super(c, dbName, null, dbVersion);
@@ -28,19 +19,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 	}
 	
 	private void init() {
-		AbsTable t;
 		
-		t = new Group(this);
-		this.tables.put(t.getTableName(), t);
-		
-		t = new Scale(this);
-		this.tables.put(t.getTableName(), t);
-		
-		t = new Result(this);
-		this.tables.put(t.getTableName(), t);
-		
-		t = new Note(this);
-		this.tables.put(t.getTableName(), t);
 	}
 	
 	public Context getContext() {
@@ -73,15 +52,13 @@ public class DBAdapter extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		this.database = db;
 		
-		//Log.v(TAG, "ON CREATE");
-		Set<String> keys = this.tables.keySet();
+		/*for(int i = 0; i < this.tables.size(); ++i) {
+			this.tables.get(i).onCreate();
+		}*/
 		
-		for(String key: keys) {
-			this.tables.get(key).onCreate();
+		if(this.createListener != null) {
+			this.createListener.onDatabaseCreated();
 		}
-		
-		// Install the base and test data
-		InstallDB.onCreate(this, Global.Database.CREATE_FAKE_DATA);
 	}
 
 	@Override
@@ -96,14 +73,12 @@ public class DBAdapter extends SQLiteOpenHelper {
 		db.execSQL("UPDATE `group` SET `visible`=1;");
 	}
 	
-	public void onDrop(SQLiteDatabase db) {
+	/*public void onDrop(SQLiteDatabase db) {
 		//Log.v(TAG, "ON UPGRADE");
-		Set<String> keys = this.tables.keySet();
-		
-		for(String key: keys) {
-			this.tables.get(key).onDrop();
+		for(int i = 0; i < this.tables.size(); ++i) {
+			this.tables.get(i).onDrop();
 		}
-	}
+	}*/
 	
 	public static ContentValues buildContentValues(String[] keys, String[] values) {
 		ContentValues v = new ContentValues();
@@ -111,5 +86,13 @@ public class DBAdapter extends SQLiteOpenHelper {
 			v.put(keys[i], values[i]);
 		}
 		return v;
+	}
+	
+	public void setOnCreateListener(OnDatabaseCreatedListener l) {
+		this.createListener = l;
+	}
+	
+	public interface OnDatabaseCreatedListener {
+		public void onDatabaseCreated();
 	}
 }

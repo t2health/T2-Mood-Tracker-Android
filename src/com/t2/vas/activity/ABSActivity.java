@@ -11,14 +11,16 @@ import android.view.MenuItem;
 
 import com.nullwire.trace.ExceptionHandler;
 import com.t2.vas.Analytics;
+import com.t2.vas.DBInstallData;
 import com.t2.vas.Eula;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.DBAdapter;
+import com.t2.vas.db.DBAdapter.OnDatabaseCreatedListener;
 
-public abstract class ABSActivity extends Activity {
+public abstract class ABSActivity extends Activity implements OnDatabaseCreatedListener {
 	private static final String TAG = ABSActivity.class.getName();
 
 	protected SharedPreferences sharedPref;
@@ -28,6 +30,7 @@ public abstract class ABSActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
+        dbAdapter.setOnCreateListener(this);
         dbAdapter.open();
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
@@ -94,5 +97,10 @@ public abstract class ABSActivity extends Activity {
 	
 	public String getHelpTarget() {
 		return this.getClass().getSimpleName();
+	}
+
+	@Override
+	public void onDatabaseCreated() {
+		DBInstallData.install(this, dbAdapter);
 	}
 }
