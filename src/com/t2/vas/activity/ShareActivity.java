@@ -32,6 +32,7 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
@@ -178,15 +179,15 @@ public class ShareActivity extends ABSNavigationActivity implements OnClickListe
 
 		
 		// Set form item default values
-		onFromDateSet(
-				cal.get(Calendar.YEAR),
-				cal.get(Calendar.MONTH),
-				cal.getActualMinimum(Calendar.DAY_OF_MONTH)
-		);
 		onToDateSet(
 				cal.get(Calendar.YEAR),
 				cal.get(Calendar.MONTH),
 				cal.get(Calendar.DAY_OF_MONTH)
+		);
+		onFromDateSet(
+				cal.get(Calendar.YEAR),
+				cal.get(Calendar.MONTH),
+				cal.getActualMinimum(Calendar.DAY_OF_MONTH)
 		);
 	}
 
@@ -256,6 +257,10 @@ public class ShareActivity extends ABSNavigationActivity implements OnClickListe
 	
 	private void setShareButtonEnabled() {
 		shareButton.setEnabled(isFormDataValid());
+		
+		if(fromTime > toTime) {
+			Toast.makeText(this, R.string.share_dates_offset_bad, Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	private boolean isFormDataValid() {

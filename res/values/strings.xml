@@ -44,6 +44,7 @@
 	<string name="share_groups_header">Categories</string>
 	<string name="share_other_header">Other Data</string>
 	<string name="share_preparing_data">Preparing Share Data</string>
+	<string name="share_dates_offset_bad">The start date entered is later than your end date. This should be fixed.</string>
 	
 	<!-- Help -->
 	<string name="help_title">Help</string>	
