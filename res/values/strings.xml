@@ -51,6 +51,7 @@
 	<!-- Rating form -->
 	<string name="rate_title">Rate Your Mood</string>
 	<string name="rate_help">Rating your mood is quick and easy.  Simply select a category you’d like to track. If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
+	<string name="scroll_to_see_more_scales">Scroll the list to see more rating scales.</string>
 	
 	<!--  Graph results -->
 	<string name="results_title">Results</string>

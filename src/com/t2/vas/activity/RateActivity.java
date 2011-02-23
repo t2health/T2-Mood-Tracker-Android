@@ -5,6 +5,10 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.AbsListView;
+import android.widget.Toast;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
 import com.t2.vas.R;
@@ -13,13 +17,14 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
 
-public class RateActivity extends ABSNavigationActivity {
+public class RateActivity extends ABSNavigationActivity implements OnScrollListener {
 	public static final String EXTRA_GROUP_ID = "group_id";
 	
 	private static final String TAG = RateActivity.class.getName();
 	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
 	private ListView listView;
+	private boolean allItemsViewed = false;
 
     /** Called when the activity is first created. */
     @Override
@@ -50,6 +55,7 @@ public class RateActivity extends ABSNavigationActivity {
 
         scaleAdapter = new ScaleAdapter(this, R.layout.slider_overlay_widget, group.getScales());
         listView.setAdapter(scaleAdapter);
+        listView.setOnScrollListener(this);
 
         // Restore some of the data
         if(savedInstanceState != null) {
@@ -84,9 +90,18 @@ public class RateActivity extends ABSNavigationActivity {
 
 	@Override
 	protected void onRightButtonPresed() {
+		Log.v(TAG, "LVP:"+listView.getLastVisiblePosition());
+		if(!allItemsViewed || !isLastItemVisible()) {
+			Toast.makeText(this, R.string.scroll_to_see_more_scales, Toast.LENGTH_LONG).show();
+			return;
+		}
 		this.saveResults();
 		this.setResult(Activity.RESULT_OK);
 		this.finish();
+	}
+	
+	private boolean isLastItemVisible() {
+		return listView.getLastVisiblePosition() == listView.getCount()-1;
 	}
 	
 	private void saveResults() {
@@ -104,5 +119,18 @@ public class RateActivity extends ABSNavigationActivity {
 
 			r.save();
         }
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		if(!allItemsViewed) {
+			allItemsViewed = isLastItemVisible();
+		}
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		
 	}
 }
