@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.t2.vas.R;
 import com.t2.vas.db.tables.Note;
@@ -117,8 +118,14 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 	
 	@Override
 	protected void onRightButtonPresed() {
+		String noteText = ((TextView)this.findViewById(R.id.note)).getText().toString().trim();
 		Calendar cal = Calendar.getInstance();
 
+		if(noteText.length() <= 0) {
+			Toast.makeText(this, R.string.provide_note_text_message, Toast.LENGTH_LONG).show();
+			return;
+		}
+		
 		cal.set(
 			datePicker.getYear(),
 			datePicker.getMonth(),
@@ -127,7 +134,7 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 			timePicker.getCurrentMinute()
 		);
 
-		currentNote.note = ((TextView)this.findViewById(R.id.note)).getText().toString();
+		currentNote.note = noteText;
 		currentNote.timestamp = cal.getTimeInMillis();
 		currentNote.save();
 

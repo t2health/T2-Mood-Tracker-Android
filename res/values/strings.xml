@@ -64,6 +64,7 @@
 	<string name="edit_note_title">Edit Note</string>
 	<string name="add_note_title">Add Note</string>
 	<string name="note_delete_confirm">Are you sure you would like to delete this note?</string>
+	<string name="provide_note_text_message">Please provide some details about this note.</string>
 	
 	<!-- Settings -->
 	<string name="settings_title">Settings</string>
@@ -87,6 +88,7 @@
 	<string name="min_label">Minimum Label</string>
 	<string name="max_label">Maximum Label</string>
 	<string name="scale_saved">The rating scale has been saved.</string>
+	<string name="provide_scale_min_max">Please provide a min/max scale label.</string>
 	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
 	<string name="scales_list">Scales</string>
 	<string-array name="add_scale_gateway_options">

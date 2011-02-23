@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.t2.vas.R;
 import com.t2.vas.activity.ABSNavigationActivity;
@@ -257,9 +258,12 @@ public class GroupActivity extends ABSNavigationActivity implements
 		
 		if (dialog == addDialog) {
 			if (which == AlertDialog.BUTTON_POSITIVE) {
+				String minLabel = addMinLabel.getText().toString().trim();
+				String maxLabel = addMaxLabel.getText().toString().trim();
+				
 				Scale scale = new Scale(dbAdapter);
-				scale.min_label = addMinLabel.getText().toString();
-				scale.max_label = addMaxLabel.getText().toString();
+				scale.min_label = minLabel;
+				scale.max_label = maxLabel;
 				scale.group_id = group._id;
 
 				scale.save();

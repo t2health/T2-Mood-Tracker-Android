@@ -22,7 +22,7 @@
 		<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/max_label"
+			android:text="@string/min_label"
 			android:textAppearance="?android:attr/textAppearanceMediumInverse" />
 		<EditText
 			android:id="@+id/minLabel"
