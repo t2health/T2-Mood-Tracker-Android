@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CompoundButton;
@@ -41,6 +42,7 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 		super.onCreate(savedInstanceState);
 		
 		addEditText = new EditText(this);
+		addEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		addGroupDialog = new AlertDialog.Builder(this)
 			.setTitle(R.string.add_group_title)
 			.setView(addEditText)
@@ -158,7 +160,7 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 		if(dialog == addGroupDialog) {
 			if(which == AlertDialog.BUTTON_POSITIVE) {
 				Group g = new Group(dbAdapter);
-				g.title = addEditText.getText().toString();
+				g.title = addEditText.getText().toString().trim().replace('\n', ' ');
 				g.save();
 				groupsCursor.requery();
 				groupsAdapter.notifyDataSetChanged();

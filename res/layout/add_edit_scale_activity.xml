@@ -28,6 +28,6 @@
 			android:id="@+id/minLabel"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:imeOptions="actionNext" />
+			android:imeOptions="actionDone" />
 	</LinearLayout>
 </ScrollView>

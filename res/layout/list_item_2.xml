@@ -15,14 +15,14 @@
 			android:id="@+id/text1"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:lines="1"
+			android:singleLine="true"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
 			
 		<TextView
 			android:id="@+id/text2"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:lines="1"
+			android:singleLine="true"
 			android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
 </LinearLayout>

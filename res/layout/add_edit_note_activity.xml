@@ -20,7 +20,6 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:gravity="top"
-				android:singleLine="true"
 				android:imeOptions="actionDone"
 				android:layout_marginTop="10dip" />
 		

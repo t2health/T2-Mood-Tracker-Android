@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -101,6 +102,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 		editMaxLabel = (EditText) editScaleLayout.findViewById(R.id.maxLabel);
 
 		renameEditText = new EditText(this);
+		renameEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		renameDialog = new AlertDialog.Builder(this)
 				.setTitle(R.string.edit_group_title).setView(renameEditText)
 				.setPositiveButton(R.string.save, this)
@@ -258,8 +260,8 @@ public class GroupActivity extends ABSNavigationActivity implements
 		
 		if (dialog == addDialog) {
 			if (which == AlertDialog.BUTTON_POSITIVE) {
-				String minLabel = addMinLabel.getText().toString().trim();
-				String maxLabel = addMaxLabel.getText().toString().trim();
+				String minLabel = addMinLabel.getText().toString().trim().replace('\n', ' ');
+				String maxLabel = addMaxLabel.getText().toString().trim().replace('\n', ' ');
 				
 				Scale scale = new Scale(dbAdapter);
 				scale.min_label = minLabel;
@@ -274,8 +276,8 @@ public class GroupActivity extends ABSNavigationActivity implements
 				Scale scale = new Scale(dbAdapter);
 				scale._id = editScaleId;
 				scale.load();
-				scale.min_label = editMinLabel.getText().toString();
-				scale.max_label = editMaxLabel.getText().toString();
+				scale.min_label = editMinLabel.getText().toString().trim().replace('\n', ' ');
+				scale.max_label = editMaxLabel.getText().toString().trim().replace('\n', ' ');
 				scale.group_id = group._id;
 
 				scale.save();
@@ -283,7 +285,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		} else if (dialog == renameDialog) {
 			if (which == AlertDialog.BUTTON_POSITIVE) {
-				group.title = renameEditText.getText().toString();
+				group.title = renameEditText.getText().toString().trim().replace('\n', ' ');
 				group.save();
 				setTitle(group.title);
 			}

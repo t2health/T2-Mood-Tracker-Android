@@ -10,7 +10,7 @@
 		android:id="@+id/text1"
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
-		android:lines="1"
+		android:singleLine="true"
 		android:gravity="center_vertical"
 		android:textAppearance="?android:attr/textAppearanceMedium" />
 	
@@ -19,7 +19,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
 		android:layout_weight="1.0"
-		android:lines="1"
+		android:singleLine="true"
 		android:paddingLeft="15dip"
 		android:gravity="right|center_vertical"
 		android:textAppearance="?android:attr/textAppearanceMedium" />
