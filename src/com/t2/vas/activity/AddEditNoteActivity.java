@@ -80,11 +80,11 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 
 		// This is a new note, remove the delete button.
 		if(currentNote._id <= 0) {
-			((ViewGroup)this.findViewById(R.id.deleteButton).getParent()).removeView(
-					this.findViewById(R.id.deleteButton)
-			);
+			this.findViewById(R.id.deleteButton).setVisibility(View.GONE);
 		// This is an existing note, don't show the keyboard by default.
 		} else {
+			this.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
+			
 			// Hide the keyboard unless the user chooses a text view.
 			getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		}
