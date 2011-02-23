@@ -28,10 +28,12 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.t2.vas.Global;
@@ -166,6 +168,19 @@ public class ShareActivity extends ABSNavigationActivity implements OnClickListe
 						android.R.id.text1,
 				}
 		);
+		// Manually binding the title to the text, this resolves a bug in android 2.1 and below.
+		otherItemsAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+			@Override
+			public boolean setViewValue(View view, Object data,
+					String textRepresentation) {
+				if(view.getId() == android.R.id.text1) {
+					((TextView)view).setText(data.toString());
+					return true;
+				}
+				
+				return false;
+			}
+		});
 		
 		// init the list adapter
 		listAdapter = new SeparatedListAdapter(this);
