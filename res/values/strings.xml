@@ -132,8 +132,8 @@
 	<!--  NOTE: Look in arrays.xml for the days of the week. -->
 	
 	<!-- Clear Data -->
-	<string name="clear_data_title">Clear Result Data</string>
-	<string name="clear_data_button">Clear Result Data</string>
+	<string name="clear_data_title">Clear Data</string>
+	<string name="clear_data_button">Clear Data</string>
 	<string name="clear_data_groups_confirm">Your have chosen to clear _#_ ratings data. Are you sure you would like to do this?</string>
 	<string name="clear_data_notes_confirm">You have chosen to clear _#_ notes. Are you sure you would like to do this?</string>
 	<string name="clear_data_groups_cleared_text">_#_ ratings have been cleared.</string>
