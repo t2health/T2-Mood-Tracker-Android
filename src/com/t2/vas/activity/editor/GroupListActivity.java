@@ -125,7 +125,7 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 	}
 
 	@Override
-	protected void onRightButtonPresed() {
+	protected void onRightButtonPressed() {
 		addEditText.setText("");
 		addGroupDialog.show();
 	}

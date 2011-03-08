@@ -1,13 +1,18 @@
 package com.t2.vas.activity.editor;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import java.util.HashMap;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -15,11 +20,16 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CheckedTextView;
 
 import com.t2.vas.R;
 import com.t2.vas.activity.ABSNavigationActivity;
@@ -28,7 +38,7 @@ import com.t2.vas.db.tables.Scale;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public class GroupActivity extends ABSNavigationActivity implements
-		OnItemClickListener, DialogInterface.OnClickListener {
+		OnItemClickListener, DialogInterface.OnClickListener, OnCheckedChangeListener {
 	public static final String TAG = GroupActivity.class.getSimpleName();
 
 	public static final String EXTRA_GROUP_ID = "group_id";
@@ -36,7 +46,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 	private Group group;
 	private ListView listView;
 	private SeparatedListAdapter listAdapter;
-	private SimpleAdapter generalAdapter;
+	private ItemsAdapter generalAdapter;
 	private SimpleCursorAdapter scaleAdapter;
 	private Cursor scalesCursor;
 
@@ -69,6 +79,8 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 	private Cursor copyScalesCursor;
 
+	private CheckedTextView isInverseCheckbox;
+
 	private static final int ADD_SCALE_ACTIVITY = 365;
 
 	@Override
@@ -91,6 +103,8 @@ public class GroupActivity extends ABSNavigationActivity implements
 				}
 		);
 
+		isInverseCheckbox = (CheckedTextView)getLayoutInflater().inflate(android.R.layout.simple_list_item_checked, null);
+		
 		addScaleLayout = (ViewGroup) this.getLayoutInflater().inflate(
 				R.layout.add_edit_scale_activity, null);
 		addMinLabel = (EditText) addScaleLayout.findViewById(R.id.minLabel);
@@ -134,7 +148,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 				.setNegativeButton(R.string.cancel, this)
 				.setAdapter(copyScalesAdapter, this)
 				.create();
-
+		
 		group = new Group(dbAdapter);
 		group._id = this.getIntent().getLongExtra(EXTRA_GROUP_ID, 0);
 		if (!group.load()) {
@@ -153,15 +167,20 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		item = new HashMap<String, Object>();
 		item.put("id", "rename");
-		item.put("title", "Rename");
+		item.put("title", getString(R.string.rename));
 		items.add(item);
 
 		item = new HashMap<String, Object>();
 		item.put("id", "delete");
-		item.put("title", "Delete");
+		item.put("title", getString(R.string.delete));
+		items.add(item);
+		
+		item = new HashMap<String, Object>();
+		item.put("id", "inverseData");
+		item.put("title", getString(R.string.is_desirable));
 		items.add(item);
 
-		generalAdapter = new SimpleAdapter(this, items, R.layout.list_item_1,
+		generalAdapter = new ItemsAdapter(this, items, R.layout.list_item_1,
 				new String[] { "title", }, new int[] { R.id.text1, });
 
 		scalesCursor = group.getScalesCursor();
@@ -215,7 +234,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 	}
 
 	@Override
-	protected void onRightButtonPresed() {
+	protected void onRightButtonPressed() {
 		addGatewayDialog.show();
 	}
 
@@ -235,6 +254,15 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 			} else if (itemId.equals("delete")) {
 				deleteGroupDialog.show();
+				return;
+			
+			} else if(itemId.equals("inverseData")) {
+				CheckedTextView ctv = (CheckedTextView)arg1.findViewById(R.id.text1);
+				group.inverseResults = !ctv.isChecked();
+				group.save();
+				
+				listAdapter.notifyDataSetChanged();
+				listAdapter.notifyDataSetInvalidated();
 				return;
 			}
 
@@ -256,8 +284,6 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		Log.v(TAG, "CLICK!");
-		
 		if (dialog == addDialog) {
 			if (which == AlertDialog.BUTTON_POSITIVE) {
 				String minLabel = addMinLabel.getText().toString().trim().replace('\n', ' ');
@@ -334,5 +360,44 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		scalesCursor.requery();
 		listAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	private class ItemsAdapter extends SimpleAdapter {
+
+		private LayoutInflater layoutInflater;
+		private int defaultLayout;
+
+		public ItemsAdapter(Context context,
+				List<? extends Map<String, ?>> data, int resource,
+				String[] from, int[] to) {
+			super(context, data, resource, from, to);
+			this.defaultLayout = resource;
+			this.layoutInflater = (LayoutInflater)context.getSystemService(LAYOUT_INFLATER_SERVICE);
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			HashMap<String,Object> item = (HashMap<String, Object>) this.getItem(position);
+			
+			View newView = convertView;
+			if(item.get("id").equals("inverseData")) {
+				newView = layoutInflater.inflate(R.layout.list_item_1_checked, null);
+				((CheckedTextView)newView.findViewById(R.id.text1)).setChecked(group.inverseResults);
+			} else {
+				newView = layoutInflater.inflate(defaultLayout, null);
+			}
+			((TextView)newView.findViewById(R.id.text1)).setText(item.get("title")+"");
+			
+			return newView;
+		}
+		
+		
 	}
 }

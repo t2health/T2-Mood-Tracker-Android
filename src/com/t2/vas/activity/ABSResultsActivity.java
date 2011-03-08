@@ -18,10 +18,12 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -56,6 +58,10 @@ import com.t2.vas.view.ToggledButton;
 public abstract class ABSResultsActivity extends ABSNavigationActivity implements OnClickListener, OnItemClickListener, GestureDetector.OnGestureListener {
 	public static final String EXTRA_TIME_START = "timeStart";
 	public static final String EXTRA_CALENDAR_FIELD = "calendarField";
+	public static final String EXTRA_REVERSE_DATA = "reverseData";
+	
+	private static final int ADD_EDIT_NOTE_ACTIVITY = 30958;
+	private static final String NOTES_CACHE = "notes";
 	
 	private static final String KEY_NAME = "results_visible_ids_";
 	private static final String TAG = "ABSResultsActivity";
@@ -98,6 +104,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private NotesDataProvider notesDataProvider;
 	private DisplayMetrics displayMetrics = new DisplayMetrics();
 	private DataPointCache dataPointCache;
+	protected boolean reverseLabels;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +122,9 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			startTime = Calendar.getInstance().getTimeInMillis();
 		}
 		
-		calendarField = this.getIntent().getIntExtra(EXTRA_CALENDAR_FIELD, Calendar.DAY_OF_MONTH);
+		Intent intent = this.getIntent();
+		this.calendarField = intent.getIntExtra(EXTRA_CALENDAR_FIELD, Calendar.DAY_OF_MONTH);
+		this.reverseLabels = intent.getBooleanExtra(EXTRA_REVERSE_DATA, false);
 		
 		// Set the time ranges.
 		startCal = Calendar.getInstance();
@@ -135,6 +144,10 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		//this.foregroundChartContainer = (ViewGroup) this.findViewById(R.id.foregroundChartContainer);
 		this.chartSwitcher = (ViewSwitcher) this.findViewById(R.id.chartSwitcher);
 		
+		// add extra button
+		this.setRightButtonText(getString(R.string.add_note));
+		
+		// init animations
 		this.slideInFromLeftAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
 		this.slideOutToRightAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
 		this.slideInFromRightAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
@@ -210,8 +223,25 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		super.onSaveInstanceState(outState);
 		outState.putInt("selectedTab", selectedTab);
 	}
+	
+	@Override
+	protected void onRightButtonPressed() {
+		this.startActivityForResult(new Intent(this, AddEditNoteActivity.class), ADD_EDIT_NOTE_ACTIVITY);
+	}
+	
+	
 
-
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == ADD_EDIT_NOTE_ACTIVITY) {
+			if(resultCode == RESULT_OK) {
+				dataPointCache.clearCache(NOTES_CACHE);
+				this.generateChart(DIRECTION_NONE);
+			}
+		} else {
+			super.onActivityResult(requestCode, resultCode, data);
+		}
+	}
 
 	protected abstract String getKeyTabText();
 	
@@ -247,7 +277,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			long roundedTime = MathExtra.roundTime(time, calendarGroupByField);
 			DataPoint dp = points.get(roundedTime);
 			if(dp != null) {
-				dp.addValue(data.get(time));
+				dp.addValue(getValue(item, data.get(time)));
 			}
 		}
 		
@@ -257,9 +287,12 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		return outPoints;
 	}
 	
+	protected double getValue(KeyItem item, double value) {
+		return value;
+	}
+	
 	private ArrayList<DataPoint> loadNotesData(long startTime, long endTime, int calendarGroupByField) {
-		String cacheKey = "notes";
-		ArrayList<DataPoint> dataPoints = dataPointCache.getCache(cacheKey, startTime, endTime, calendarGroupByField);
+		ArrayList<DataPoint> dataPoints = dataPointCache.getCache(NOTES_CACHE, startTime, endTime, calendarGroupByField);
 		if(dataPoints != null) {
 			return dataPoints;
 		}
@@ -272,7 +305,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		}
 		
 		// set the cache
-		dataPointCache.setCache(cacheKey, dataPoints, startTime, endTime, calendarGroupByField);
+		dataPointCache.setCache(NOTES_CACHE, dataPoints, startTime, endTime, calendarGroupByField);
 		
 		return dataPoints;
 	}
@@ -535,7 +568,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 				
 				// Create the renderer
 				XYSeriesRenderer noteRenderer = new XYSeriesRenderer();
-				noteRenderer.setColor(Color.WHITE);
+				noteRenderer.setColor(Color.YELLOW);
 				noteRenderer.setPointStyle(PointStyle.TRIANGLE);
 				noteRenderer.setFillPoints(true);
 				noteRenderer.setLineWidth(0.0f);
@@ -681,6 +714,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		public String title2;
 		public int color;
 		public boolean visible;
+		public boolean reverseData = false; 
 		
 		public KeyItem(long id, String title1, String title2) {
 			this.id = id;
@@ -731,11 +765,22 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			ToggleButton tb = (ToggleButton)convertView.findViewById(R.id.showKeyToggleButton);
 			View keyBox = convertView.findViewById(R.id.keyBox);
 			
-			if(tv1 != null) {
-				tv1.setText(item.title1);
-			}
-			if(tv2 != null) {
-				tv2.setText(item.title2);
+			boolean tv1Null = tv1 == null;
+			boolean tv2Null = tv2 == null;
+			if(reverseLabels && !tv1Null && !tv2Null) {
+				if(!tv1Null) {
+					tv1.setText(item.title2);
+				}
+				if(!tv2Null) {
+					tv2.setText(item.title1);
+				}
+			} else {
+				if(!tv1Null) {
+					tv1.setText(item.title1);
+				}
+				if(!tv2Null) {
+					tv2.setText(item.title2);
+				}				
 			}
 			
 			if(tb != null) {

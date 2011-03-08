@@ -30,6 +30,10 @@ public class DataPointCache {
 		));
 	}
 	
+	public void clearCache(String key) {
+		cache.remove(key);
+	}
+	
 	private class DataPointCacheEntry {
 		public long startTime;
 		public long endTime;

@@ -12,6 +12,8 @@
 	<string name="delete">Delete</string>
 	<string name="never">Never</string>
 	<string name="add_note">Add Note</string>
+	<string name="mood_tracker">Mood Tracker</string>
+	<string name="rename">Rename</string>
 	
 	<!-- Main screen sections -->
 	<string name="rate_section_title">Rate</string>
@@ -20,19 +22,41 @@
 		<string name="view_notes_title">View Notes</string>
 	<string name="general_section_title"> </string>
 		<string name="about_title">About T2 Mood Tracker</string>
-			<string name="about_text">Mood Tracker was developed by the National Center for Telehealth and Technology (T2) to provide a quick and easy way of tracking your moods and behavior on a regular basis.  You can view your ratings on easy to read graphs.  You can also make notes describing things that happened during the day that might have affected your moods.  This gives you a complete tool to look for patterns in how you are feeling over time.  You may share your ratings or keep them for your own use.</string>
+			<string name="about_text"><![CDATA[
+				<style type="text/css">
+				img {
+					width: 45%;
+				}
+				
+				img.last {
+					float: right;
+				}
+				</style>
+				<p>
+					<img class="last" src="file:///android_asset/img/mt_logo.png" />
+					<img class="first" src="file:///android_asset/img/t2_logo.png" />
+				</p>
+				<p>T2 Mood Tracker was developed to help you track your emotional experience over time and to provide you with a tool to share this information with your health care provider.</p>  
+				<p>The app provides you with a quick and easy way of regularly tracking your moods and behavior.  Your mood ratings can be viewed on easy to read graphs. You can also make notes describing things that happened during the day that might have affected your moods.  This provides you and your health care provider with a complete tool to look for patterns in how you are feeling over time. It may help to evaluate the impact of daily events or the effects of treatment on your mood. </p>
+				<p>T2 Mood Tracker was developed by the National Center for Telehealth and Technology (T2) which is a component center of the Defense Centers of Excellence for Psychological Health and Traumatic Brain Injury (DCoE).  T2’s mission is to lead the development of telehealth and technology solutions for Psychological Health and Traumatic Brain Injury to improve the lives of our Nation’s Warriors, Veterans and their Families.</p>
+				
+			]]></string>
 		<string name="rate_app_title">Rate App</string>
 		<string name="feedback_title">Feedback</string>
 		<string name="tell_a_friend_title">Tell a Friend</string>
 	<string name="unusual_results_message">Your results are a little unusual today, please consider entering a note.</string>
 	
-	<string name="feedback_to">moodtracker@tee2.info</string>
+	<string name="feedback_to">moodtracker@t2health.org</string>
 	<string name="feedback_subject">Feedback on T2 Mood Tracker App</string>
 	<string name="feedback_content"><![CDATA[]]></string>
 	<string name="tell_a_friend_subject">Check out this app for monitoring your mood!</string>
 	<string name="tell_a_friend_content"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
 <a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
 <a href="https://market.android.com/details?id=com.t2.vas">Click here to download the app for Android.</a>]]></string>
+	
+	<string name="tip_title">Tip</string>
+	<string name="touch_anywhere_to_continue">Touch anywhere to continue</string>
+	<string name="is_desirable">Is a desirable trait?</string>
 	
 	<!-- Share -->
 	<string name="share_title">Share</string>
@@ -76,8 +100,8 @@
 	<string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
 
 	<!--  Group List -->
-	<string name="group_list_title">Category Editor</string>
-	<string name="add_group_title">Add Group</string>
+	<string name="group_list_title">Add/Edit Rating Categories</string>
+	<string name="add_group_title">Add Rating Category</string>
 	
 	<!-- Group Editor -->
 	<string name="general_group_operations">General</string>
@@ -87,12 +111,12 @@
 	<string name="add_scale">Add Rating Scale</string>
     <string name="edit_scale">Edit Rating Scale</string>
     <string name="copy_scale">Copy a Rating Scale</string>
-	<string name="min_label">Minimum Label</string>
-	<string name="max_label">Maximum Label</string>
+	<string name="min_label">Undesirable Trait</string>
+	<string name="max_label">Desirable Trait</string>
 	<string name="scale_saved">The rating scale has been saved.</string>
 	<string name="provide_scale_min_max">Please provide a min/max scale label.</string>
 	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
-	<string name="scales_list">Scales</string>
+	<string name="scales_list">Rating Scales</string>
 	<string-array name="add_scale_gateway_options">
 		<item>Add Existing</item>
 		<item>Add Custom</item>
@@ -171,161 +195,5 @@
 		<item>If you are coping with an injury, remember to set some goals.  Goal-setting is important for both your physical recovery and for positive mental health.</item>
 		<!-- <item>Goals while recovering from an injury,  should be challenging enough to keep your interest but not so difficult as to require superhuman effort. </item> -->
 		<item>If you are struggling with chronic pain, don\'t give up.  Be open to trying different treatments or combinations of treatments until you find something that works for you. </item>
-	</string-array>
-
-	<string name="group1">Depression</string>
-	<string-array name="group1_min">
-		<item>Depressed</item>
-		<item>Worthless</item>
-		<item>Tired</item>
-		<item>Sleepy</item>
-		<item>Lonely</item>
-		<item>Hopeless</item>
-		<item>Distracted</item>
-		<item>Slow</item>
-		<item>Restless</item>
-		<item>Unsafe</item>
-	</string-array>
-	<string-array name="group1_max">
-		<item>Happy</item>
-		<item>Valuable</item>
-		<item>Energetic</item>
-		<item>Alert</item>
-		<item>Involved</item>
-		<item>Hopeful</item>
-		<item>Focused</item>
-		<item>Speedy</item>
-		<item>Relaxed</item>
-		<item>Safe</item>
-	</string-array>
-
-	<string name="group2">Anxiety</string>
-	<string-array name="group2_min">
-		<item>Worried</item>
-		<item>Pressured</item>
-		<item>Tense</item>
-		<item>Sleepless</item>
-		<item>Distracted</item>
-		<item>Irritable</item>
-		<item>Unsafe</item>
-		<item>Fearful</item>
-		<item>Panicked</item>
-		<item>Anxious</item>
-	</string-array>
-	<string-array name="group2_max">
-		<item>Untroubled</item>
-		<item>Calm</item>
-		<item>Relaxed</item>
-		<item>Rested</item>
-		<item>Focused</item>
-		<item>Cheerful</item>
-		<item>Safe</item>
-		<item>Fearless</item>
-		<item>Content</item>
-		<item>Peaceful</item>
-	</string-array>
-
-	<string name="group3">PTS (Post-traumatic Stress)</string>
-	<string-array name="group3_min">
-		<item>Avoiding</item>
-		<item>Fearful</item>
-		<item>Angry</item>
-		<item>Jumpy</item>
-		<item>Guarded</item>
-		<item>Numb</item>
-		<item>Hyper </item>
-		<item>Withdrawn</item>
-		<item>Bored</item>
-		<item>Hopeless</item>
-	</string-array>
-	<string-array name="group3_max">
-		<item>Welcoming</item>
-		<item>Safe</item>
-		<item>Content </item>
-		<item>Relaxed</item>
-		<item>Trusting</item>
-		<item>Responsive</item>
-		<item>Calm</item>
-		<item>Social</item>
-		<item>Interested</item>
-		<item>Hopeful</item>
-	</string-array>
-
-	<string name="group4">Head Injury</string>
-	<string-array name="group4_min">
-		<item>Confused</item>
-		<item>Forgetful</item>
-		<item>Dizzy</item>
-		<item>Distracted</item>
-		<item>Moody</item>
-		<item>Headache</item>
-		<item>Irritable</item>
-		<item>Disorganized</item>
-		<item>Impulsive</item>
-		<item>Depressed</item>
-	</string-array>
-	<string-array name="group4_max">
-		<item>Alert</item>
-		<item>Sharp</item>
-		<item>Balanced</item>
-		<item>Attentive</item>
-		<item>Stable</item>
-		<item>No Headache</item>
-		<item>Cheerful</item>
-		<item>Organized</item>
-		<item>Thoughtful</item>
-		<item>Happy</item>
-	</string-array>
-
-	<string name="group5">Stress</string>
-	<string-array name="group5_min">
-		<item>Stressed</item>
-		<item>Pressured</item>
-		<item>Angry</item>
-		<item>Withdrawn</item>
-		<item>Restless</item>
-		<item>Moody</item>
-		<item>Irritable</item>
-		<item>Tired</item>
-		<item>Distracted</item>
-		<item>Hopeless</item>
-	</string-array>
-	<string-array name="group5_max">
-		<item>Relaxed</item>
-		<item>Calm</item>
-		<item>Content</item>
-		<item>Social</item>
-		<item>Peaceful</item>
-		<item>Light Hearted</item>
-		<item>Cheerful</item>
-		<item>Energetic</item>
-		<item>Focused</item>
-		<item>Hopeful</item>
-	</string-array>
-
-	<string name="group6">General Well-Being</string>
-	<string-array name="group6_min">
-		<item>Sad</item>
-		<item>Tired</item>
-		<item>Worried</item>
-		<item>Tense</item>
-		<item>Pessimistic</item>
-		<item>Hopeless</item>
-		<item>Lonely</item>
-		<item>Unsafe</item>
-		<item>Unloved</item>
-		<item>Angry</item>
-	</string-array>
-	<string-array name="group6_max">
-		<item>Happy</item>
-		<item>Energetic</item>
-		<item>Calm</item>
-		<item>Relaxed</item>
-		<item>Optimistic</item>
-		<item>Hopeful</item>
-		<item>Connected</item>
-		<item>Safe</item>
-		<item>Loved</item>
-		<item>Content</item>
 	</string-array>
 </resources>

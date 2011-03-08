@@ -43,6 +43,7 @@ public class DBInstallData {
 		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group1),
+				res.getInteger(R.integer.group1_reverse),
 				res.getStringArray(R.array.group1_min),
 				res.getStringArray(R.array.group1_max),
 				generateFake
@@ -51,6 +52,7 @@ public class DBInstallData {
 		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group2),
+				res.getInteger(R.integer.group2_reverse),
 				res.getStringArray(R.array.group2_min),
 				res.getStringArray(R.array.group2_max),
 				generateFake
@@ -59,6 +61,7 @@ public class DBInstallData {
 		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group3),
+				res.getInteger(R.integer.group3_reverse),
 				res.getStringArray(R.array.group3_min),
 				res.getStringArray(R.array.group3_max),
 				generateFake
@@ -67,6 +70,7 @@ public class DBInstallData {
 		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group4),
+				res.getInteger(R.integer.group4_reverse),
 				res.getStringArray(R.array.group4_min),
 				res.getStringArray(R.array.group4_max),
 				generateFake
@@ -75,6 +79,7 @@ public class DBInstallData {
 		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group5),
+				res.getInteger(R.integer.group5_reverse),
 				res.getStringArray(R.array.group5_min),
 				res.getStringArray(R.array.group5_max),
 				generateFake
@@ -83,6 +88,7 @@ public class DBInstallData {
 		createGroupAndScales(
 				dbAdapter,
 				res.getString(R.string.group6),
+				res.getInteger(R.integer.group6_reverse),
 				res.getStringArray(R.array.group6_min),
 				res.getStringArray(R.array.group6_max),
 				generateFake
@@ -115,7 +121,7 @@ public class DBInstallData {
 		}
 	}
 	
-	private static ArrayList<Scale> createGroupAndScales(DBAdapter dbAdapter, String groupName, String[] minValues, String[] maxValues, boolean generateFake) {
+	private static ArrayList<Scale> createGroupAndScales(DBAdapter dbAdapter, String groupName, int isReverseData, String[] minValues, String[] maxValues, boolean generateFake) {
 		ArrayList<Scale> scales = new ArrayList<Scale>();
 
 		// Install the first group of scales
@@ -127,6 +133,7 @@ public class DBInstallData {
 		group = new Group(dbAdapter);
 		group.title = groupName;
 		group.immutable = 1;
+		group.inverseResults = isReverseData > 0?true:false;
 		group.save();
 
 		// Create the scales

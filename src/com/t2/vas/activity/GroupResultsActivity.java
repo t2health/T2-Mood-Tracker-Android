@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.View;
 
 import com.t2.vas.R;
@@ -17,8 +18,21 @@ public class GroupResultsActivity extends ABSResultsActivity {
 	private static final String TAG = "GroupResultsActivity";
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
 	protected String getSettingSuffix() {
 		return "group";
+	}
+	
+	@Override
+	protected double getValue(KeyItem item, double value) {
+		if(item.reverseData) {
+			return value;
+		}
+		return 100 - value;
 	}
 
 	@Override
@@ -32,11 +46,13 @@ public class GroupResultsActivity extends ABSResultsActivity {
 			group.load(cursor);
 			
 			if(!hiddenGids.contains(group._id)) {
-				items.add(new KeyItem(
+				KeyItem item = new KeyItem(
 						group._id,
 						group.title,
 						null
-				));
+				);
+				item.reverseData = group.inverseResults;
+				items.add(item);
 			}
 		}
 		cursor.close();

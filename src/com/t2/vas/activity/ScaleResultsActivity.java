@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.t2.vas.R;
+import com.t2.vas.activity.ABSResultsActivity.KeyItem;
 import com.t2.vas.data.DataProvider;
 import com.t2.vas.data.ScaleResultsDataProvider;
 import com.t2.vas.db.tables.Group;
@@ -15,7 +16,8 @@ import com.t2.vas.db.tables.Scale;
 public class ScaleResultsActivity extends ABSResultsActivity {
 	public static final String EXTRA_GROUP_ID = "groupId";
 	private long groupId;
-
+	private Group group;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Intent intent = this.getIntent();
@@ -27,10 +29,24 @@ public class ScaleResultsActivity extends ABSResultsActivity {
 		
 		super.onCreate(savedInstanceState);
 		
-		Group group = new Group(dbAdapter);
+		group = new Group(this.dbAdapter);
 		group._id = groupId;
-		group.load();
+		if(!group.load()) {
+			finish();
+			return;
+		}
+		
+		this.reverseLabels = !group.inverseResults;
+		
 		this.setTitle(group.title);
+	}
+	
+	@Override
+	protected double getValue(KeyItem item, double value) {
+		if(!this.reverseLabels) {
+			return value;
+		}
+		return 100 - value;
 	}
 
 	@Override
@@ -40,7 +56,7 @@ public class ScaleResultsActivity extends ABSResultsActivity {
 
 	@Override
 	protected ArrayList<KeyItem> getKeyItems() {
-		Group group = new Group(this.dbAdapter);
+		group = new Group(this.dbAdapter);
 		group._id = groupId;
 		group.load();
 		

@@ -57,7 +57,7 @@ public class NotesListActivity extends ABSNavigationActivity implements OnItemCl
 	}
 
 	@Override
-	public void onRightButtonPresed() {
+	public void onRightButtonPressed() {
 		Intent i = new Intent(this, AddEditNoteActivity.class);
 		i.putExtra(AddEditNoteActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 		this.startActivityForResult(i, NOTE_ACTIVITY);

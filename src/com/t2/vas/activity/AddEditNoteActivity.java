@@ -117,7 +117,7 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 	}
 	
 	@Override
-	protected void onRightButtonPresed() {
+	protected void onRightButtonPressed() {
 		String noteText = ((TextView)this.findViewById(R.id.note)).getText().toString().trim().replace('\n', ' ');
 		Calendar cal = Calendar.getInstance();
 

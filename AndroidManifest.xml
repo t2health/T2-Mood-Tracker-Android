@@ -30,7 +30,7 @@
         	android:label="@string/app_name"
         	android:launchMode="singleTask"
         	android:name=".activity.StartupActivity"
-    		android:theme="@style/CustomTheme">
+    		android:theme="@style/CustomThemeBlank">
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
         <activity
         	android:label="@string/app_name"
         	android:name=".activity.SplashScreenActivity"
-    		android:theme="@style/CustomTheme">
+    		android:theme="@style/CustomThemeNoTitle">
 		</activity>
 
     	<activity
@@ -97,12 +97,12 @@
 	    	android:excludeFromRecents="true"
 	    	android:theme="@style/CustomTheme">
 	   	</activity>
-
+	   	
 	   	<activity
 	    	android:name=".activity.UnlockActivity"
 	    	android:label="@string/app_name"
 	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
+	    	android:theme="@style/CustomThemeNoTitle">
 	   	</activity>
 	   	<activity
 	    	android:name=".activity.ForgotPinActivity"

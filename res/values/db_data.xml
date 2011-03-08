@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="group1">Depression</string>
+	<integer name="group1_reverse">0</integer>
+	<string-array name="group1_min">
+		<item>Depressed</item>
+		<item>Worthless</item>
+		<item>Tired</item>
+		<item>Sleepy</item>
+		<item>Lonely</item>
+		<item>Hopeless</item>
+		<item>Distracted</item>
+		<item>Slow</item>
+		<item>Restless</item>
+		<item>Unsafe</item>
+	</string-array>
+	<string-array name="group1_max">
+		<item>Happy</item>
+		<item>Valuable</item>
+		<item>Energetic</item>
+		<item>Alert</item>
+		<item>Involved</item>
+		<item>Hopeful</item>
+		<item>Focused</item>
+		<item>Speedy</item>
+		<item>Relaxed</item>
+		<item>Safe</item>
+	</string-array>
+
+	<string name="group2">Anxiety</string>
+	<integer name="group2_reverse">0</integer>
+	<string-array name="group2_min">
+		<item>Worried</item>
+		<item>Pressured</item>
+		<item>Tense</item>
+		<item>Sleepless</item>
+		<item>Distracted</item>
+		<item>Irritable</item>
+		<item>Unsafe</item>
+		<item>Fearful</item>
+		<item>Panicked</item>
+		<item>Anxious</item>
+	</string-array>
+	<string-array name="group2_max">
+		<item>Untroubled</item>
+		<item>Calm</item>
+		<item>Relaxed</item>
+		<item>Rested</item>
+		<item>Focused</item>
+		<item>Cheerful</item>
+		<item>Safe</item>
+		<item>Fearless</item>
+		<item>Content</item>
+		<item>Peaceful</item>
+	</string-array>
+
+	<string name="group3">PTS (Post-traumatic Stress)</string>
+	<integer name="group3_reverse">0</integer>
+	<string-array name="group3_min">
+		<item>Avoiding</item>
+		<item>Fearful</item>
+		<item>Angry</item>
+		<item>Jumpy</item>
+		<item>Guarded</item>
+		<item>Numb</item>
+		<item>Hyper </item>
+		<item>Withdrawn</item>
+		<item>Bored</item>
+		<item>Hopeless</item>
+	</string-array>
+	<string-array name="group3_max">
+		<item>Welcoming</item>
+		<item>Safe</item>
+		<item>Content </item>
+		<item>Relaxed</item>
+		<item>Trusting</item>
+		<item>Responsive</item>
+		<item>Calm</item>
+		<item>Social</item>
+		<item>Interested</item>
+		<item>Hopeful</item>
+	</string-array>
+
+	<string name="group4">Head Injury</string>
+	<integer name="group4_reverse">0</integer>
+	<string-array name="group4_min">
+		<item>Confused</item>
+		<item>Forgetful</item>
+		<item>Dizzy</item>
+		<item>Distracted</item>
+		<item>Moody</item>
+		<item>Headache</item>
+		<item>Irritable</item>
+		<item>Disorganized</item>
+		<item>Impulsive</item>
+		<item>Depressed</item>
+	</string-array>
+	<string-array name="group4_max">
+		<item>Alert</item>
+		<item>Sharp</item>
+		<item>Balanced</item>
+		<item>Attentive</item>
+		<item>Stable</item>
+		<item>No Headache</item>
+		<item>Cheerful</item>
+		<item>Organized</item>
+		<item>Thoughtful</item>
+		<item>Happy</item>
+	</string-array>
+
+	<string name="group5">Stress</string>
+	<integer name="group5_reverse">0</integer>
+	<string-array name="group5_min">
+		<item>Stressed</item>
+		<item>Pressured</item>
+		<item>Angry</item>
+		<item>Withdrawn</item>
+		<item>Restless</item>
+		<item>Moody</item>
+		<item>Irritable</item>
+		<item>Tired</item>
+		<item>Distracted</item>
+		<item>Hopeless</item>
+	</string-array>
+	<string-array name="group5_max">
+		<item>Relaxed</item>
+		<item>Calm</item>
+		<item>Content</item>
+		<item>Social</item>
+		<item>Peaceful</item>
+		<item>Light Hearted</item>
+		<item>Cheerful</item>
+		<item>Energetic</item>
+		<item>Focused</item>
+		<item>Hopeful</item>
+	</string-array>
+
+	<string name="group6">General Well-Being</string>
+	<integer name="group6_reverse">1</integer>
+	<string-array name="group6_min">
+		<item>Sad</item>
+		<item>Tired</item>
+		<item>Worried</item>
+		<item>Tense</item>
+		<item>Pessimistic</item>
+		<item>Hopeless</item>
+		<item>Lonely</item>
+		<item>Unsafe</item>
+		<item>Unloved</item>
+		<item>Angry</item>
+	</string-array>
+	<string-array name="group6_max">
+		<item>Happy</item>
+		<item>Energetic</item>
+		<item>Calm</item>
+		<item>Relaxed</item>
+		<item>Optimistic</item>
+		<item>Hopeful</item>
+		<item>Connected</item>
+		<item>Safe</item>
+		<item>Loved</item>
+		<item>Content</item>
+	</string-array>
+</resources>

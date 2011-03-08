@@ -89,7 +89,7 @@ public class RateActivity extends ABSNavigationActivity implements OnScrollListe
 	}
 
 	@Override
-	protected void onRightButtonPresed() {
+	protected void onRightButtonPressed() {
 		Log.v(TAG, "LVP:"+listView.getLastVisiblePosition());
 		if(!allItemsViewed || !isLastItemVisible()) {
 			Toast.makeText(this, R.string.scroll_to_see_more_scales, Toast.LENGTH_LONG).show();

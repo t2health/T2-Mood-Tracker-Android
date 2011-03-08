@@ -67,8 +67,12 @@ public class AppSecurityManager {
 		--statusCount;
 	}
 	
-	public void setUnlocked(boolean b) {
+	public void setIsUnlocked(boolean b) {
 		unlocked = b;
+	}
+	
+	public boolean getIsUnlocked() {
+		return this.unlocked;
 	}
 	
 	private void startUnlockActivity(Activity activity, boolean isEnabled) {

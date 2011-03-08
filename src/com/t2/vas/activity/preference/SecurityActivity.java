@@ -79,7 +79,7 @@ public class SecurityActivity extends ABSNavigationActivity implements OnChecked
 				a2
 		);
 		
-		AppSecurityManager.getInstance().setUnlocked(true);
+		AppSecurityManager.getInstance().setIsUnlocked(true);
 		
 		super.onBackButtonPressed();
 	}

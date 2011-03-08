@@ -23,7 +23,7 @@
     
     <style name="WindowTitleBackground" parent="@android:style/WindowTitleBackground">
     	<item name="android:layout_margin">0dip</item>
-    	<item name="android:background">@drawable/chart_background</item>
+    	<item name="android:background">@drawable/title_background</item>
     </style>
     
     <style name="Widget.TextView.ListSeparator" parent="@android:style/Widget.TextView.ListSeparator.White">

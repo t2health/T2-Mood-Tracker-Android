@@ -9,12 +9,13 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Group extends Table {
+	public static final String FIELD_INVERSE_RESULTS = "inverse_results";
+	
 	private static final String TAG = Group.class.getName();
 
-	public long group_id;
 	public String title;
 	public int immutable = 0;
-	public int visible = 1;
+	public boolean inverseResults = false;
 
 	public Group(DBAdapter d) {
 		super(d);
@@ -27,12 +28,14 @@ public class Group extends Table {
 
 	@Override
 	public void onCreate() {
-		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, immutable INTEGER NOT NULL, visible INTEGER NOT NULL)");
+		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, immutable INTEGER NOT NULL, "+ FIELD_INVERSE_RESULTS +" INTEGER NOT NULL)");
 	}
 
 	@Override
 	public void onUpgrade(int oldVersion, int newVersion) {
-
+		if(oldVersion == 1 && newVersion == 2) {
+			this.dbAdapter.getDatabase().execSQL("ALTER TABLE `group` ADD COLUMN ("+ FIELD_INVERSE_RESULTS +" INTEGER NOT NULL)");
+		}
 	}
 
 	@Override
@@ -40,7 +43,7 @@ public class Group extends Table {
 		ContentValues v = new ContentValues();
 		v.put("title", this.title);
 		v.put("immutable", this.immutable);
-		v.put("visible", this.visible);
+		v.put(FIELD_INVERSE_RESULTS, this.inverseResults?1:0);
 
 		return this.insert(v);
 	}
@@ -50,7 +53,7 @@ public class Group extends Table {
 		this._id = c.getLong(c.getColumnIndex("_id"));
 		this.title = c.getString(c.getColumnIndex("title"));
 		this.immutable = c.getInt(c.getColumnIndex("immutable"));
-		this.visible = c.getInt(c.getColumnIndex("visible"));
+		this.inverseResults = c.getInt(c.getColumnIndex(FIELD_INVERSE_RESULTS))>0?true:false;
 		return true;
 	}
 
@@ -60,7 +63,7 @@ public class Group extends Table {
 		v.put("_id", this._id);
 		v.put("title", this.title);
 		v.put("immutable", this.immutable);
-		v.put("visible", this.visible);
+		v.put(FIELD_INVERSE_RESULTS, this.inverseResults?1:0);
 
 		return this.update(v);
 	}

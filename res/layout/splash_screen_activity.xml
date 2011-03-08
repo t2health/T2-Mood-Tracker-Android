@@ -5,7 +5,8 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
-	android:padding="5dip">
+	android:padding="5dip"
+	android:background="#FF000000">
 
 	<LinearLayout
 		android:layout_width="fill_parent"
@@ -16,27 +17,35 @@
 		<ImageView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:scaleType="fitCenter"
 			android:src="@drawable/logo" />
 		<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceSmall"
 			android:gravity="center"
-			android:text="[Touch anywhere to continue]" />
+			android:text="@string/touch_anywhere_to_continue"
+			android:textColor="#FFFFFFFF" />
 	</LinearLayout>
 
 	<TextView
 		android:id="@+id/startupTips"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textAppearance="?android:attr/textAppearanceSmall"
 		android:layout_marginTop="10dip"
-		android:layout_marginBottom="10dip" />
+		android:layout_marginBottom="10dip"
+		android:textColor="#FFFFFFFF" />
 
 	<CheckBox
 		android:id="@+id/showTipsCheckbox"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/show_tips_on_startup" />
+		android:text="@string/show_tips_on_startup"
+		android:textColor="#FFFFFFFF" />
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/t2_logo" />
 
 </LinearLayout>

@@ -35,7 +35,7 @@
 			android:id="@+id/monthMinusButton"
 			android:layout_width="48dip"
 			android:layout_height="48dip"
-			android:text="-" />
+			android:text="&lt;" />
 			
 		<TextView
 			android:id="@+id/monthName"
@@ -50,6 +50,6 @@
 			android:id="@+id/monthPlusButton"
 			android:layout_width="48dip"
 			android:layout_height="48dip"
-			android:text="+" />			
+			android:text="&gt;" />			
 	</LinearLayout>
 </LinearLayout>

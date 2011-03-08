@@ -67,7 +67,7 @@ public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				onRightButtonPresed();
+				onRightButtonPressed();
 			}
 		});
 		
@@ -86,7 +86,7 @@ public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				onRightButtonPresed();
+				onRightButtonPressed();
 			}
 		});
 		
@@ -95,7 +95,7 @@ public abstract class ABSNavigationActivity extends ABSSecurityActivity {
 		((ViewGroup)this.findViewById(R.id.rightButtonContainer)).addView(b, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 	}
 	
-	protected void onRightButtonPresed() {
+	protected void onRightButtonPressed() {
 		
 	}
 	
