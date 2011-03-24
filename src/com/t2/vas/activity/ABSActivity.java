@@ -3,6 +3,7 @@ package com.t2.vas.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -19,8 +20,9 @@ import com.t2.vas.SharedPref;
 import com.t2.vas.VASAnalytics;
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.DBAdapter.OnDatabaseCreatedListener;
+import com.t2.vas.db.DBAdapter.OnDatabaseUpdatedListener;
 
-public abstract class ABSActivity extends Activity implements OnDatabaseCreatedListener {
+public abstract class ABSActivity extends Activity implements OnDatabaseCreatedListener, OnDatabaseUpdatedListener {
 	private static final String TAG = ABSActivity.class.getName();
 
 	protected SharedPreferences sharedPref;
@@ -31,6 +33,7 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
         
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbAdapter.setOnCreateListener(this);
+        dbAdapter.setOnUpdatedListener(this);
         dbAdapter.open();
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
@@ -100,7 +103,14 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
 	}
 
 	@Override
-	public void onDatabaseCreated() {
-		DBInstallData.install(this, dbAdapter);
+	public void onDatabaseCreated(SQLiteDatabase db) {
+		DBInstallData.install(this, this.dbAdapter, db);
 	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		DBInstallData.update(this, this.dbAdapter, db, oldVersion, newVersion);
+	}
+	
+	
 }

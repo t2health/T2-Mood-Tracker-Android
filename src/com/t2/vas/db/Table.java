@@ -2,6 +2,7 @@ package com.t2.vas.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public abstract class Table extends AbsTable {
 	private static final String TAG = "TABLE";
@@ -62,8 +63,8 @@ public abstract class Table extends AbsTable {
 	public abstract boolean update();
 
 	@Override
-	public abstract void onCreate();
+	public abstract void onCreate(SQLiteDatabase database);
 
 	@Override
-	public abstract void onUpgrade(int oldVersion, int newVersion);
+	public abstract void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion);
 }

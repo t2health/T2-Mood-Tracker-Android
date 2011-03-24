@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
@@ -23,9 +24,9 @@ public class Note extends Table {
 	}
 
 	@Override
-	public void onCreate() {
+	public void onCreate(SQLiteDatabase database) {
 		// Create the table
-		this.dbAdapter.getDatabase().execSQL("" +
+		database.execSQL("" +
 				"CREATE TABLE " +
 				"	note " +
 				"(" +
@@ -35,13 +36,13 @@ public class Note extends Table {
 				")");
 
 		// Create the index
-		this.dbAdapter.getDatabase().execSQL("" +
+		database.execSQL("" +
 				"CREATE INDEX note_timestamp_index ON note(timestamp)" +
 		"");
 	}
 
 	@Override
-	public void onUpgrade(int oldVersion, int newVersion) {
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 
 	}
 

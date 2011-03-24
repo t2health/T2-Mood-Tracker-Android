@@ -13,20 +13,28 @@ import com.t2.vas.db.tables.Scale;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class DBInstallData {
 	private static final String TAG = DBInstallData.class.getSimpleName();
 	
-	public static void install(Context context, DBAdapter dbAdapter) {
-		new Group(dbAdapter).onCreate();
-		new Scale(dbAdapter).onCreate();
-		new Result(dbAdapter).onCreate();
-		new Note(dbAdapter).onCreate();
+	public static void install(Context context, DBAdapter dbAdapter, SQLiteDatabase db) {
+		new Group(dbAdapter).onCreate(db);
+		new Scale(dbAdapter).onCreate(db);
+		new Result(dbAdapter).onCreate(db);
+		new Note(dbAdapter).onCreate(db);
 		
 		if(Global.Database.CREATE_FAKE_DATA) {
 			installFakeData(dbAdapter, true);
 		}
+	}
+	
+	public static void update(Context c, DBAdapter dbAdapter, SQLiteDatabase db, int oldVersion, int newVersion) {
+		new Group(dbAdapter).onUpgrade(db, oldVersion, newVersion);
+		new Scale(dbAdapter).onUpgrade(db, oldVersion, newVersion);
+		new Result(dbAdapter).onUpgrade(db, oldVersion, newVersion);
+		new Note(dbAdapter).onUpgrade(db, oldVersion, newVersion);
 	}
 	
 	private static void installFakeData(DBAdapter dbAdapter, boolean generateFake) {

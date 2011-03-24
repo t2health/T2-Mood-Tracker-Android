@@ -7,6 +7,7 @@ import java.util.Set;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public abstract class AbsTable {
 	private static final String TAG = AbsTable.class.getName();
@@ -19,8 +20,8 @@ public abstract class AbsTable {
 	}
 
 	public abstract String getTableName();
-	public abstract void onCreate();
-	public abstract void onUpgrade(int oldVersion, int newVersion);
+	public abstract void onCreate(SQLiteDatabase database);
+	public abstract void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion);
 	
 	public void onDrop() {
 		this.dbAdapter.getDatabase().execSQL("DROP TABLE IF EXISTS`"+this.getTableName()+"`");

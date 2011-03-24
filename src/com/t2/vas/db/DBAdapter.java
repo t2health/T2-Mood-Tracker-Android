@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBAdapter extends SQLiteOpenHelper {
 	private static final String TAG = DBAdapter.class.getName();
 	private Context context;
-	//private ArrayList<AbsTable> tables = new ArrayList<AbsTable>();
 	private SQLiteDatabase database;
 	private OnDatabaseCreatedListener createListener;
+	private OnDatabaseUpdatedListener onUpgradeListner;
 	
 	public DBAdapter(Context c, String dbName, int dbVersion) {
 		super(c, dbName, null, dbVersion);
@@ -28,9 +28,9 @@ public class DBAdapter extends SQLiteOpenHelper {
 	
 	public SQLiteDatabase getDatabase() {
 		//Log.v(TAG, "GETDATABASE");
-		if(!this.isOpen()) {
+		/*if(!this.isOpen()) {
 			this.open();
-		}
+		}*/
 		return this.database;
 	}
 	
@@ -52,33 +52,17 @@ public class DBAdapter extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		this.database = db;
 		
-		/*for(int i = 0; i < this.tables.size(); ++i) {
-			this.tables.get(i).onCreate();
-		}*/
-		
 		if(this.createListener != null) {
-			this.createListener.onDatabaseCreated();
+			this.createListener.onDatabaseCreated(db);
 		}
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		if(oldVersion < 2 && newVersion >= 2) {
-			this.dbUpgradeVersion2(db);
+		if(this.onUpgradeListner != null) {
+			this.onUpgradeListner.onUpgrade(db, oldVersion, newVersion);
 		}
 	}
-	
-	private void dbUpgradeVersion2(SQLiteDatabase db) {
-		db.execSQL("ALTER TABLE `group` ADD COLUMN `visible` INTEGER;");
-		db.execSQL("UPDATE `group` SET `visible`=1;");
-	}
-	
-	/*public void onDrop(SQLiteDatabase db) {
-		//Log.v(TAG, "ON UPGRADE");
-		for(int i = 0; i < this.tables.size(); ++i) {
-			this.tables.get(i).onDrop();
-		}
-	}*/
 	
 	public static ContentValues buildContentValues(String[] keys, String[] values) {
 		ContentValues v = new ContentValues();
@@ -92,7 +76,15 @@ public class DBAdapter extends SQLiteOpenHelper {
 		this.createListener = l;
 	}
 	
+	public void setOnUpdatedListener(OnDatabaseUpdatedListener l) {
+		this.onUpgradeListner = l;
+	}
+	
 	public interface OnDatabaseCreatedListener {
-		public void onDatabaseCreated();
+		public void onDatabaseCreated(SQLiteDatabase db);
+	}
+	
+	public interface OnDatabaseUpdatedListener {
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion);
 	}
 }

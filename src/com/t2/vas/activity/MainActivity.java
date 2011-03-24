@@ -416,10 +416,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 				i.setData(Uri.parse("market://details?id="+this.getPackageName()));
 				this.startActivityForResult(i, 123);
 				
-			} else if(itemId.equals("regenerate_data")) {
-				DBInstallData.install(this, dbAdapter);
-				
-				this.finish();
 			}
 		}
 	}

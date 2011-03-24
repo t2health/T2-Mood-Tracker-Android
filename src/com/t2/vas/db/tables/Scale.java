@@ -2,6 +2,7 @@ package com.t2.vas.db.tables;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
@@ -28,12 +29,12 @@ public class Scale extends Table {
 	}
 
 	@Override
-	public void onCreate() {
-		this.dbAdapter.getDatabase().execSQL("CREATE TABLE scale (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, min_label TEXT NOT NULL, max_label TEXT NOT NULL, weight INTEGER NOT NULL)");
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL("CREATE TABLE scale (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, min_label TEXT NOT NULL, max_label TEXT NOT NULL, weight INTEGER NOT NULL)");
 	}
 
 	@Override
-	public void onUpgrade(int oldVersion, int newVersion) {
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		
 	}
 	
