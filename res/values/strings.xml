@@ -83,6 +83,8 @@
 	<string name="groups_tab">Categories</string>
 	<string name="scales_tab">Scales</string>
 	<string name="notes_tab">Notes</string>
+	<string name="chart_high">Hi</string>
+	<string name="chart_low">Lo</string>
 		
 	<!-- Notes -->
 	<string name="notes_list_title">Notes</string>

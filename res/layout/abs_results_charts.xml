@@ -18,12 +18,40 @@
 			android:gravity="center"
 			android:text="Toggle a key button below to see some charts."
 			android:textColor="@color/chart_text" />
-		<ViewSwitcher
-			android:id="@+id/chartSwitcher"
+			
+		<LinearLayout
+			android:id="@+id/chartWrapper"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:background="@drawable/chart_background">
-		</ViewSwitcher>
+			android:layout_height="fill_parent">
+			
+			<FrameLayout
+				android:layout_width="wrap_content"
+				android:layout_height="fill_parent"
+				android:orientation="vertical">
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="top|left"
+					android:textAppearance="@android:style/TextAppearance.Small"
+					android:textColor="#FFFFFFFF"
+					android:text="@string/chart_high" />
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="bottom|left"
+					android:textAppearance="@android:style/TextAppearance.Small"
+					android:textColor="#FFFFFFFF"
+					android:paddingBottom="5dip"
+					android:text="@string/chart_low" />
+			</FrameLayout>
+			
+			<ViewSwitcher
+				android:id="@+id/chartSwitcher"
+				android:layout_width="wrap_content"
+				android:layout_height="fill_parent"
+				android:background="@drawable/chart_background" />
+		</LinearLayout>
 	</FrameLayout>
 		
 	<!-- The month selector -->

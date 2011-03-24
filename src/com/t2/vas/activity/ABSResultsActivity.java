@@ -105,6 +105,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private DisplayMetrics displayMetrics = new DisplayMetrics();
 	private DataPointCache dataPointCache;
 	protected boolean reverseLabels;
+	private ViewGroup chartWrapper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -143,6 +144,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		//this.backgroundChartContainer = (ViewGroup) this.findViewById(R.id.backgroundChartContainer);
 		//this.foregroundChartContainer = (ViewGroup) this.findViewById(R.id.foregroundChartContainer);
 		this.chartSwitcher = (ViewSwitcher) this.findViewById(R.id.chartSwitcher);
+		this.chartWrapper = (ViewGroup) this.findViewById(R.id.chartWrapper);
 		
 		// add extra button
 		this.setRightButtonText(getString(R.string.add_note));
@@ -586,9 +588,9 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			
 			// Make the switcher appear.
 			chartSwitcher.addView(chartView, LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
-			if(chartSwitcher.getVisibility() == View.INVISIBLE) {
-				chartSwitcher.setVisibility(View.VISIBLE);
-				chartSwitcher.startAnimation(fadeInAnimation);
+			if(chartWrapper.getVisibility() == View.INVISIBLE) {
+				chartWrapper.setVisibility(View.VISIBLE);
+				chartWrapper.startAnimation(fadeInAnimation);
 			}
 			
 			// Set the chart transition animation.
@@ -613,8 +615,9 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		
 		// Fade out the existing chart to the instructions are visible.
 		} else {
-			chartSwitcher.startAnimation(fadeOutAnimation);
-			chartSwitcher.setVisibility(View.INVISIBLE);
+			chartWrapper.setVisibility(View.INVISIBLE);
+			chartWrapper.startAnimation(fadeOutAnimation);
+			
 			chartSwitcher.removeAllViews();
 		}
 	}
