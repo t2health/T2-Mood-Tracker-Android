@@ -230,8 +230,14 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	
 	@Override
 	protected void onRightButtonPressed() {
+		long noteTimestamp = startCal.getTimeInMillis();
+		Calendar nowCal = Calendar.getInstance();
+		if(nowCal.get(Calendar.MONTH) == startCal.get(Calendar.MONTH)) {
+			noteTimestamp = nowCal.getTimeInMillis();
+		}
+		
 		Intent i = new Intent(this, AddEditNoteActivity.class);
-		i.putExtra(AddEditNoteActivity.EXTRA_TIMESTAMP, startCal.getTimeInMillis());
+		i.putExtra(AddEditNoteActivity.EXTRA_TIMESTAMP, noteTimestamp);
 		this.startActivityForResult(i, ADD_EDIT_NOTE_ACTIVITY);
 	}
 	
