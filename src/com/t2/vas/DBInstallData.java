@@ -24,10 +24,6 @@ public class DBInstallData {
 		new Scale(dbAdapter).onCreate(db);
 		new Result(dbAdapter).onCreate(db);
 		new Note(dbAdapter).onCreate(db);
-		
-		if(Global.Database.CREATE_FAKE_DATA) {
-			installFakeData(dbAdapter, true);
-		}
 	}
 	
 	public static void update(Context c, DBAdapter dbAdapter, SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -37,7 +33,7 @@ public class DBInstallData {
 		new Note(dbAdapter).onUpgrade(db, oldVersion, newVersion);
 	}
 	
-	private static void installFakeData(DBAdapter dbAdapter, boolean generateFake) {
+	public static void createInitialData(DBAdapter dbAdapter, boolean generateFakeResults) {
 		// Install the first group of scales
 		//boolean generateFake = Global.Database.CREATE_FAKE_DATA;
 		//Group group = (Group)dbAdapter.getTable("group");
@@ -54,7 +50,7 @@ public class DBInstallData {
 				res.getInteger(R.integer.group1_reverse),
 				res.getStringArray(R.array.group1_min),
 				res.getStringArray(R.array.group1_max),
-				generateFake
+				generateFakeResults
 		);
 
 		createGroupAndScales(
@@ -63,7 +59,7 @@ public class DBInstallData {
 				res.getInteger(R.integer.group2_reverse),
 				res.getStringArray(R.array.group2_min),
 				res.getStringArray(R.array.group2_max),
-				generateFake
+				generateFakeResults
 		);
 
 		createGroupAndScales(
@@ -72,7 +68,7 @@ public class DBInstallData {
 				res.getInteger(R.integer.group3_reverse),
 				res.getStringArray(R.array.group3_min),
 				res.getStringArray(R.array.group3_max),
-				generateFake
+				generateFakeResults
 		);
 
 		createGroupAndScales(
@@ -81,7 +77,7 @@ public class DBInstallData {
 				res.getInteger(R.integer.group4_reverse),
 				res.getStringArray(R.array.group4_min),
 				res.getStringArray(R.array.group4_max),
-				generateFake
+				generateFakeResults
 		);
 
 		createGroupAndScales(
@@ -90,7 +86,7 @@ public class DBInstallData {
 				res.getInteger(R.integer.group5_reverse),
 				res.getStringArray(R.array.group5_min),
 				res.getStringArray(R.array.group5_max),
-				generateFake
+				generateFakeResults
 		);
 
 		createGroupAndScales(
@@ -99,11 +95,11 @@ public class DBInstallData {
 				res.getInteger(R.integer.group6_reverse),
 				res.getStringArray(R.array.group6_min),
 				res.getStringArray(R.array.group6_max),
-				generateFake
+				generateFakeResults
 		);
 		
 		// Add a bunch of fake notes.
-		if(generateFake) {
+		if(generateFakeResults) {
 			Log.v(TAG, "Generating Notes");
 			int daysOfResults = 2000;
 			Random rand = new Random();

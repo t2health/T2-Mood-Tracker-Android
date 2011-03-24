@@ -105,6 +105,7 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
 	@Override
 	public void onDatabaseCreated(SQLiteDatabase db) {
 		DBInstallData.install(this, this.dbAdapter, db);
+		DBInstallData.createInitialData(dbAdapter, Global.Database.CREATE_FAKE_DATA);
 	}
 
 	@Override
