@@ -48,7 +48,7 @@
 	
 	<string name="feedback_to">moodtracker@t2health.org</string>
 	<string name="feedback_subject">Feedback on T2 Mood Tracker App</string>
-	<string name="feedback_content"><![CDATA[]]></string>
+	<string name="feedback_content"><![CDATA[Please feel free to send your feedback on this application to the team at the National Center for Telehealth & Technology (T2).]]></string>
 	<string name="tell_a_friend_subject">Check out this app for monitoring your mood!</string>
 	<string name="tell_a_friend_content"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
 <a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />

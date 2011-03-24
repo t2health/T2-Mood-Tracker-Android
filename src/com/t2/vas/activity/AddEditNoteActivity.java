@@ -23,6 +23,7 @@ import com.t2.vas.db.tables.Note;
 
 public class AddEditNoteActivity extends ABSNavigationActivity implements OnClickListener, OnDateChangedListener {
 	public static final String EXTRA_NOTE_ID = "noteId";
+	public static final String EXTRA_TIMESTAMP = "timestamp";
 	private Note currentNote;
 	private DatePicker datePicker;
 	private TimePicker timePicker;
@@ -36,7 +37,7 @@ public class AddEditNoteActivity extends ABSNavigationActivity implements OnClic
 		// init the local variables;
 		Calendar cal = Calendar.getInstance();
 		Intent intent = this.getIntent();
-		long dateTimestamp = intent.getLongExtra("timestamp", cal.getTimeInMillis());
+		long dateTimestamp = intent.getLongExtra(EXTRA_TIMESTAMP, cal.getTimeInMillis());
 
 		currentNote._id = intent.getLongExtra(EXTRA_NOTE_ID, -1);
 

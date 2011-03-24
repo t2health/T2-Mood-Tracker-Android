@@ -106,6 +106,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private DataPointCache dataPointCache;
 	protected boolean reverseLabels;
 	private ViewGroup chartWrapper;
+	private ViewGroup chartLabels;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -145,6 +146,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		//this.foregroundChartContainer = (ViewGroup) this.findViewById(R.id.foregroundChartContainer);
 		this.chartSwitcher = (ViewSwitcher) this.findViewById(R.id.chartSwitcher);
 		this.chartWrapper = (ViewGroup) this.findViewById(R.id.chartWrapper);
+		this.chartLabels = (ViewGroup) this.findViewById(R.id.chartLabels);
 		
 		// add extra button
 		this.setRightButtonText(getString(R.string.add_note));
@@ -228,7 +230,9 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	
 	@Override
 	protected void onRightButtonPressed() {
-		this.startActivityForResult(new Intent(this, AddEditNoteActivity.class), ADD_EDIT_NOTE_ACTIVITY);
+		Intent i = new Intent(this, AddEditNoteActivity.class);
+		i.putExtra(AddEditNoteActivity.EXTRA_TIMESTAMP, startCal.getTimeInMillis());
+		this.startActivityForResult(i, ADD_EDIT_NOTE_ACTIVITY);
 	}
 	
 	
@@ -591,6 +595,8 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 			if(chartWrapper.getVisibility() == View.INVISIBLE) {
 				chartWrapper.setVisibility(View.VISIBLE);
 				chartWrapper.startAnimation(fadeInAnimation);
+				
+				chartLabels.setVisibility(View.VISIBLE);
 			}
 			
 			// Set the chart transition animation.
@@ -615,6 +621,8 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		
 		// Fade out the existing chart to the instructions are visible.
 		} else {
+			chartLabels.setVisibility(View.INVISIBLE);
+			
 			chartWrapper.setVisibility(View.INVISIBLE);
 			chartWrapper.startAnimation(fadeOutAnimation);
 			
