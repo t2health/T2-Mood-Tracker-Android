@@ -30,6 +30,14 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(!Global.DEV_MODE) { 
+	        if(SharedPref.getSendAnnonData(sharedPref) && 
+	        		Global.REMOTE_STACK_TRACE_URL != null && 
+	        		Global.REMOTE_STACK_TRACE_URL.length() > 0) {
+	        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
+	        }
+        }
         
         dbAdapter = new DBAdapter(this, Global.Database.name, Global.Database.version);
         dbAdapter.setOnCreateListener(this);
@@ -38,14 +46,6 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         Eula.show(this);
-        
-        if(!Global.DEV_MODE) { 
-	        if(SharedPref.getSendAnnonData(sharedPref) && 
-	        		Global.REMOTE_STACK_TRACE_URL != null && 
-	        		Global.REMOTE_STACK_TRACE_URL.length() > 0) {
-	        	ExceptionHandler.register(this, Global.REMOTE_STACK_TRACE_URL);
-	        }
-        }
         
         VASAnalytics.setEnabled(SharedPref.getSendAnnonData(sharedPref));
         VASAnalytics.onPageView();
