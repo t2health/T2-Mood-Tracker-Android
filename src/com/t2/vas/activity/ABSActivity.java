@@ -47,7 +47,8 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
 
         Eula.show(this);
         
-        VASAnalytics.setEnabled(SharedPref.getSendAnnonData(sharedPref));
+        VASAnalytics.init(Global.FLURRY_KEY, SharedPref.getSendAnnonData(sharedPref));
+        VASAnalytics.setDebugEnabled(true);
         VASAnalytics.onPageView();
         VASAnalytics.onEvent(this.getClass().getSimpleName());
 	}
