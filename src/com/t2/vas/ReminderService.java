@@ -188,9 +188,13 @@ public class ReminderService extends Service {
 	public static void startRunning(Context c) {
 //		Log.v(TAG, "startRunning");
 		if(!isRunning) {
-			c.startService(
-					new Intent(c, ReminderService.class)
-			);
+			try {
+				c.startService(
+						new Intent(c, ReminderService.class)
+				);
+			} catch (Exception e) {
+				isRunning = false;
+			}
 		}
 	}
 	

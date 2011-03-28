@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.t2.vas.AppSecurityManager;
+import com.t2.vas.Global;
 import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 
@@ -13,6 +14,13 @@ public class StartupActivity extends ABSActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		// update the database if the original update didn't take.
+		// NOt sure why this happens, but this is a hack to fix the problem.
+		try {
+			this.onUpgrade(this.dbAdapter.getDatabase(), Global.Database.version - 1, Global.Database.version);
+		} catch (Exception e) {
+		}
+		
 		// Start the reminder service if it isn't already.
 		ReminderService.startRunning(this);
 		
