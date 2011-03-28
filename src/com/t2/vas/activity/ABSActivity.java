@@ -31,6 +31,7 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         if(!Global.DEV_MODE) { 
 	        if(SharedPref.getSendAnnonData(sharedPref) && 
 	        		Global.REMOTE_STACK_TRACE_URL != null && 
@@ -43,7 +44,6 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
         dbAdapter.setOnCreateListener(this);
         dbAdapter.setOnUpdatedListener(this);
         dbAdapter.open();
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         Eula.show(this);
         
