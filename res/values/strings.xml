@@ -15,8 +15,8 @@
 	<string name="mood_tracker">Mood Tracker</string>
 	<string name="rename">Rename</string>
 	
-	<string name="import_title">Import data from SDCard</string>
-	<string name="export_title">Export data to SDCard</string>
+	<string name="import_title">Import data from sdcard</string>
+	<string name="export_title">Export data to sdcard</string>
 	
 	<!-- Main screen sections -->
 	<string name="rate_section_title">Rate</string>
