@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.t2.vas.R;
-import com.t2.vas.activity.ABSResultsActivity.KeyItem;
 import com.t2.vas.data.DataProvider;
 import com.t2.vas.data.ScaleResultsDataProvider;
 import com.t2.vas.db.tables.Group;

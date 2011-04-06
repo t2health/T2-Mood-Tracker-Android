@@ -71,6 +71,27 @@
         </activity>
         
         <activity
+        	android:label="@string/export_title"
+        	android:name=".activity.ExportActivity"
+        	android:excludeFromRecents="true"
+    		android:theme="@style/CustomTheme">
+        </activity>
+        
+        <activity
+        	android:label="@string/import_title"
+        	android:name=".activity.ImportActivity"
+        	android:excludeFromRecents="true"
+    		android:theme="@style/CustomTheme">
+        </activity>
+        
+        <activity
+        	android:label="@string/choose_file_title"
+        	android:name=".activity.FileListActivity"
+        	android:excludeFromRecents="true"
+    		android:theme="@style/CustomTheme">
+        </activity>
+        
+        <activity
         	android:label="@string/notes_list_title"
         	android:name=".activity.NotesListActivity"
         	android:excludeFromRecents="true"

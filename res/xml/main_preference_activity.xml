@@ -19,7 +19,18 @@
 		android:key="security" />
 
 	<!-- <PreferenceCategory
-		android:title="@string/settings_general"> -->
+		android:title="@string/import_export">-->
+		<Preference
+			android:title="@string/import_title"
+			android:key="import" />
+		
+		<Preference
+			android:title="@string/export_title"
+			android:key="export" />
+	<!-- </PreferenceCategory>
+
+	<PreferenceCategory
+		android:title="@string/settings_general">-->
 		<CheckBoxPreference
 			android:title="@string/show_tips_on_startup"
 			android:key="show_startup_tips"

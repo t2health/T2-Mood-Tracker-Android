@@ -1,6 +1,5 @@
 package com.t2.vas.activity.editor;
 
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.AlertDialog;

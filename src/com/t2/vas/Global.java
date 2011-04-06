@@ -1,5 +1,9 @@
 package com.t2.vas;
 
+import java.io.File;
+
+import android.os.Environment;
+
 
 public class Global {
 	public static class Database {
@@ -18,4 +22,6 @@ public class Global {
 	public static final String SHARE_TIME_FORMAT = "MMM d, yyyy";
 	public static final String EXPORT_TIME_FORMAT = "yyyy-mm-dd hh:mm:ss";
 	public static final String REMOTE_STACK_TRACE_URL = "http://www2.tee2.org/trace/report.php";
+	
+	public static final File EXPORT_DIR = new File(Environment.getExternalStorageDirectory(), "T2MoodTracker");
 }

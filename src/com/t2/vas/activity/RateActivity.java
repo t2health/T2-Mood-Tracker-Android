@@ -3,13 +3,12 @@ package com.t2.vas.activity;
 import java.util.Calendar;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.AbsListView;
-import android.widget.Toast;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.t2.vas.R;
 import com.t2.vas.ScaleAdapter;
@@ -21,10 +20,10 @@ public class RateActivity extends ABSNavigationActivity implements OnScrollListe
 	public static final String EXTRA_GROUP_ID = "group_id";
 	
 	private static final String TAG = RateActivity.class.getName();
-	private long activeGroupId = 1;
 	private ScaleAdapter scaleAdapter;
 	private ListView listView;
 	private boolean allItemsViewed = false;
+	private Group group;
 
     /** Called when the activity is first created. */
     @Override
@@ -35,21 +34,14 @@ public class RateActivity extends ABSNavigationActivity implements OnScrollListe
         
         this.setRightButtonText(getString(R.string.save));
         
-        Intent intent = this.getIntent();
-        this.activeGroupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
-        
-        if(this.activeGroupId < 0) {
-        	this.finish();
-        }
-
-        listView = (ListView)this.findViewById(R.id.list);
-
-        Group group = new Group(dbAdapter);
-        group._id = this.activeGroupId;
+        group = new Group(dbAdapter);
+        group._id = getIntent().getLongExtra(EXTRA_GROUP_ID, -1);
         if(!group.load()) {
         	this.finish();
         	return;
         }
+
+        listView = (ListView)this.findViewById(R.id.list);
         
         this.setTitle(group.title);
 
@@ -112,7 +104,7 @@ public class RateActivity extends ABSNavigationActivity implements OnScrollListe
 
         	Result r = new Result(this.dbAdapter);
 
-			r.group_id = this.activeGroupId;
+			r.group_id = group._id;
 			r.scale_id = s._id;
 			r.timestamp = currentTime;
 			r.value = value;

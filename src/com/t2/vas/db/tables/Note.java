@@ -10,7 +10,10 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Note extends Table {
-	private static final String TAG = Note.class.getName();
+	public static final String TABLE_NAME = "note";
+	public static final String FIELD_TIMESTAMP = "timestamp";
+	public static final String FIELD_NOTE = "note";
+	
 	public long timestamp;
 	public String note;
 
@@ -20,25 +23,24 @@ public class Note extends Table {
 
 	@Override
 	public String getTableName() {
-		return "note";
+		return TABLE_NAME;
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
 		// Create the table
-		database.execSQL("" +
-				"CREATE TABLE " +
-				"	note " +
-				"(" +
-				"	_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-				"	timestamp INTEGER NOT NULL, " +
-				"	note TEXT NOT NULL" +
-				")");
+		database.execSQL(
+				"CREATE TABLE "+ quote(Note.TABLE_NAME) +"(" +
+					quote(FIELD_ID)+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+					quote(FIELD_TIMESTAMP)+" INTEGER NOT NULL, " +
+					quote(FIELD_NOTE)+" TEXT NOT NULL" +
+				")"
+		);
 
 		// Create the index
-		database.execSQL("" +
-				"CREATE INDEX note_timestamp_index ON note(timestamp)" +
-		"");
+		database.execSQL(
+				"CREATE INDEX note_timestamp_index ON "+ quote(Note.TABLE_NAME) +"("+ quote(FIELD_TIMESTAMP) +")"
+		);
 	}
 
 	@Override
@@ -49,26 +51,25 @@ public class Note extends Table {
 	@Override
 	public long insert() {
 		ContentValues v = new ContentValues();
-		v.put("timestamp", this.timestamp);
-		v.put("note", this.note);
+		v.put(quote(FIELD_TIMESTAMP), this.timestamp);
+		v.put(quote(FIELD_NOTE), this.note);
 
 		return this.insert(v);
 	}
 
 	@Override
 	public boolean load(Cursor c) {
-		this._id = c.getLong(c.getColumnIndex("_id"));
-		this.timestamp = c.getLong(c.getColumnIndex("timestamp"));
-		this.note = c.getString(c.getColumnIndex("note"));
+		this._id = c.getLong(c.getColumnIndex(FIELD_ID));
+		this.timestamp = c.getLong(c.getColumnIndex(FIELD_TIMESTAMP));
+		this.note = c.getString(c.getColumnIndex(FIELD_NOTE));
 		return true;
 	}
 
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
-		v.put("_id", this._id);
-		v.put("timestamp", this.timestamp);
-		v.put("note", this.note);
+		v.put(quote(FIELD_TIMESTAMP), this.timestamp);
+		v.put(quote(FIELD_NOTE), this.note);
 
 		return this.update(v);
 	}
@@ -78,11 +79,11 @@ public class Note extends Table {
 		ArrayList<String> whereConditions = new ArrayList<String>();
 
 		if(startTimestamp >= 0) {
-			whereConditions.add("timestamp >= ?");
+			whereConditions.add(quote(FIELD_TIMESTAMP)+" >= ?");
 			whereValues.add(startTimestamp+"");
 		}
 		if(endTimestamp >= 0) {
-			whereConditions.add("timestamp < ?");
+			whereConditions.add(quote(FIELD_TIMESTAMP)+" < ?");
 			whereValues.add(endTimestamp+"");
 		}
 
@@ -107,9 +108,9 @@ public class Note extends Table {
 	
 	public Cursor getNotesCursor(long startTime, long endTime) {
 		return this.dbAdapter.getDatabase().query(
-				"note", 
+				quote(Note.TABLE_NAME), 
 				null,
-				"timestamp >= ? AND timestamp < ?",
+				quote(FIELD_TIMESTAMP)+" >= ? AND "+ quote(FIELD_TIMESTAMP)+" < ?",
 				new String[] {
 						startTime+"",
 						endTime+"",
@@ -122,7 +123,7 @@ public class Note extends Table {
 	
 	public int getCount() {
 		Cursor c = this.dbAdapter.getDatabase().query(
-				"note", 
+				quote(Note.TABLE_NAME), 
 				new String[] {
 						"COUNT(*) cnt",
 				},
@@ -141,6 +142,27 @@ public class Note extends Table {
 	}
 	
 	public void clearAll() {
-		this.getDBAdapter().getDatabase().execSQL("DELETE FROM note");
+		this.getDBAdapter().getDatabase().execSQL("DELETE FROM "+quote(Note.TABLE_NAME));
+	}
+	
+	public boolean exists(long timestamp, String note) {
+		Cursor c = this.dbAdapter.getDatabase().query(
+				quote(Note.TABLE_NAME), 
+				new String[] {
+					"COUNT(*)",
+				}, 
+				 quote(Note.FIELD_TIMESTAMP) +"=? AND "+ quote(Note.FIELD_NOTE)+"=?" , 
+				new String[] {
+					timestamp+"",
+					note,
+				}, 
+				null, 
+				null, 
+				null
+		);
+		c.moveToFirst();
+		int cnt = c.getInt(0);
+		c.close();
+		return cnt > 0;
 	}
 }

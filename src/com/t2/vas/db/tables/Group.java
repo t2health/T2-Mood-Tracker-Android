@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Group extends Table {
+	public static final String TABLE_NAME = "group";
+	public static final String FIELD_TITLE = "title";
+	public static final String FIELD_IMMUTABLE = "immutable";
 	public static final String FIELD_INVERSE_RESULTS = "inverse_results";
 	
 	private static final String TAG = Group.class.getSimpleName();
@@ -25,37 +27,43 @@ public class Group extends Table {
 
 	@Override
 	public String getTableName() {
-		return "group";
+		return TABLE_NAME;
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		this.dbAdapter.getDatabase().execSQL("CREATE TABLE `group` (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, immutable INTEGER NOT NULL, "+ FIELD_INVERSE_RESULTS +" INTEGER NOT NULL)");
+		this.dbAdapter.getDatabase().execSQL(
+				"CREATE TABLE "+ quote(Group.TABLE_NAME) +"(" +
+						quote(FIELD_ID)+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+						quote(FIELD_TITLE)+" TEXT NOT NULL, " +
+						quote(FIELD_IMMUTABLE)+" INTEGER NOT NULL, "+ 
+						quote(FIELD_INVERSE_RESULTS)+" INTEGER NOT NULL" +
+				")"
+		);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		if(newVersion == 3) {
-			database.execSQL("ALTER TABLE `group` ADD COLUMN "+ FIELD_INVERSE_RESULTS +" INTEGER DEFAULT 0");
-			database.execSQL("UPDATE `group` SET "+ FIELD_INVERSE_RESULTS +"=1 WHERE title LIKE('General Well-Being')");
+			database.execSQL("ALTER TABLE "+ quote(Group.TABLE_NAME) +" ADD COLUMN "+ FIELD_INVERSE_RESULTS +" INTEGER DEFAULT 0");
+			database.execSQL("UPDATE "+ quote(Group.TABLE_NAME) +" SET "+ FIELD_INVERSE_RESULTS +"=1 WHERE "+ quote(FIELD_TITLE) +" LIKE('General Well-Being')");
 		}
 	}
 
 	@Override
 	public long insert() {
 		ContentValues v = new ContentValues();
-		v.put("title", this.title);
-		v.put("immutable", this.immutable);
-		v.put(FIELD_INVERSE_RESULTS, this.inverseResults?1:0);
-
+		v.put(quote(FIELD_TITLE), this.title);
+		v.put(quote(FIELD_IMMUTABLE), this.immutable);
+		v.put(quote(FIELD_INVERSE_RESULTS), this.inverseResults?1:0);
 		return this.insert(v);
 	}
 
 	@Override
 	public boolean load(Cursor c) {
-		this._id = c.getLong(c.getColumnIndex("_id"));
-		this.title = c.getString(c.getColumnIndex("title"));
-		this.immutable = c.getInt(c.getColumnIndex("immutable"));
+		this._id = c.getLong(c.getColumnIndex(FIELD_ID));
+		this.title = c.getString(c.getColumnIndex(FIELD_TITLE));
+		this.immutable = c.getInt(c.getColumnIndex(FIELD_IMMUTABLE));
 		this.inverseResults = c.getInt(c.getColumnIndex(FIELD_INVERSE_RESULTS))>0?true:false;
 		return true;
 	}
@@ -63,11 +71,9 @@ public class Group extends Table {
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
-		v.put("_id", this._id);
-		v.put("title", this.title);
-		v.put("immutable", this.immutable);
-		v.put(FIELD_INVERSE_RESULTS, this.inverseResults?1:0);
-
+		v.put(quote(FIELD_TITLE), this.title);
+		v.put(quote(FIELD_IMMUTABLE), this.immutable);
+		v.put(quote(FIELD_INVERSE_RESULTS), this.inverseResults?1:0);
 		return this.update(v);
 	}
 
@@ -77,30 +83,26 @@ public class Group extends Table {
 
 		Scale s = new Scale(this.dbAdapter);
 		cv = new ContentValues();
-		cv.put("group_id", this._id);
+		cv.put(quote(Scale.FIELD_GROUP_ID), this._id);
 		s.delete(cv);
 
 		Result r = new Result(dbAdapter);
 		cv = new ContentValues();
-		cv.put("group_id", this._id);
+		cv.put(quote(Result.FIELD_GROUP_ID), this._id);
 		r.delete(cv);
 
 		return super.delete();
 	}
 
 	public Cursor getGroupsWithScalesCursor() {
-		ContentValues v = new ContentValues();
-		
-		return this.getDBAdapter().getDatabase().query(
-				"`group` g, `scale` s", 
-				new String[] {
-						"g.*",
-				},
-				"g._id=s.group_id", 
+		return this.dbAdapter.getDatabase().query(
+				quote(Group.TABLE_NAME), 
 				null, 
-				"g._id", 
-				"COUNT(*) > 0", 
-				"g.title"
+				quote(Group.FIELD_ID) +" IN(SELECT DISTINCT("+quote(Scale.FIELD_GROUP_ID)+") FROM "+ quote(Scale.TABLE_NAME) +")", 
+				null, 
+				null, 
+				null, 
+				quote(Group.FIELD_TITLE)
 		);
 	}
 	
@@ -108,7 +110,7 @@ public class Group extends Table {
 		ContentValues v = new ContentValues();
 		return this.select(
 				v,
-				"title ASC"
+				quote(Group.FIELD_TITLE)+" ASC"
 		);
 	}
 	
@@ -128,8 +130,8 @@ public class Group extends Table {
 
 	public Cursor getScalesCursor() {
 		ContentValues v = new ContentValues();
-		v.put("group_id", this._id+"");
-		return new Scale(this.dbAdapter).select(v, "weight ASC");
+		v.put(quote(Scale.FIELD_GROUP_ID), this._id+"");
+		return new Scale(this.dbAdapter).select(v, quote(Scale.FIELD_WEIGHT)+" ASC");
 	}
 	
 	public ArrayList<Scale> getScales() {
@@ -148,11 +150,11 @@ public class Group extends Table {
 
 	public int getResultsCount() {
 		Cursor c = this.getDBAdapter().getDatabase().query(
-				"result",
+				quote(Result.TABLE_NAME),
 				new String[]{
 						"COUNT(*) cnt",
 				},
-				"group_id=?",
+				quote(Result.FIELD_GROUP_ID)+"=?",
 				new String[]{
 						this._id+"",
 				},
@@ -172,8 +174,8 @@ public class Group extends Table {
 	
 	public void clearResults() {
 		this.dbAdapter.getDatabase().delete(
-				"result",
-				"group_id=?",
+				quote(Result.TABLE_NAME),
+				quote(Result.FIELD_GROUP_ID)+"=?",
 				new String[] {
 					this._id+"",
 				}
@@ -181,14 +183,13 @@ public class Group extends Table {
 	}
 	
 	public Cursor getResults(long startTime, long endTime) {
-		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
 		return this.getDBAdapter().getDatabase().query(
-				"result",
+				quote(Result.TABLE_NAME),
 				new String[]{
-						"timestamp",
-						"value",
+						quote(Result.FIELD_TIMESTAMP),
+						quote(Result.FIELD_VALUE),
 				},
-				"group_id=? AND timestamp >= ? AND timestamp < ?",
+				quote(Result.FIELD_GROUP_ID)+"=? AND "+ quote(Result.FIELD_TIMESTAMP)+" >= ? AND "+ quote(Result.FIELD_TIMESTAMP)+" < ?",
 				new String[]{
 						this._id+"",
 						startTime+"",
@@ -199,5 +200,108 @@ public class Group extends Table {
 				null,
 				null
 		);
+	}
+	
+	public long getIdByName(String name) {
+		Cursor c = this.getDBAdapter().getDatabase().query(
+				quote(Group.TABLE_NAME), 
+				new String[] {
+					"_id",
+				}, 
+				quote(Group.FIELD_TITLE)+"=?", 
+				new String[] {
+					name
+				}, 
+				null, 
+				null, 
+				null
+		);
+		if(!c.moveToFirst()) {
+			c.close();
+			return -1;
+		}
+		
+		if(c.getCount() > 1) {
+			c.close();
+			return -1;
+		}
+		
+		long id = c.getLong(0);
+		c.close();
+		return id;
+	}
+	
+	public long getScaleId(String minLabel, String maxLabel) {
+		Cursor c = this.dbAdapter.getDatabase().query(
+				quote(Scale.TABLE_NAME), 
+				new String[] {
+					quote(Scale.FIELD_ID)
+				}, 
+				quote(Scale.FIELD_GROUP_ID)+"=? AND "+ quote(Scale.FIELD_MIN_LABEL)+"=? AND "+ quote(Scale.FIELD_MAX_LABEL)+"=?", 
+				new String[] {
+					this._id+"",
+					minLabel,
+					maxLabel,
+				}, 
+				null, 
+				null, 
+				null
+		);
+		
+		if(!c.moveToFirst()) {
+			c.close();
+			return -1;
+		}
+		
+		if(c.getCount() > 1) {
+			c.close();
+			return -1;
+		}
+		
+		long id = c.getLong(0);
+		c.close();
+		return id;
+	}
+	
+	public int getScalesCount() {
+		Cursor c = this.dbAdapter.getDatabase().query(
+				quote(Scale.TABLE_NAME), 
+				new String[] {
+					"COUNT(*)",
+				}, 
+				quote(Scale.FIELD_GROUP_ID)+"=?", 
+				new String[] {
+					this._id+""
+				}, 
+				null, 
+				null, 
+				null
+		);
+		c.moveToFirst();
+		int cnt = c.getInt(0);
+		c.close();
+		return cnt;
+	}
+	
+	public boolean resultExists(long timestamp, int value) {
+		Cursor c = this.dbAdapter.getDatabase().query(
+				quote(Result.TABLE_NAME), 
+				new String[] {
+					"COUNT(*)",
+				}, 
+				quote(Result.FIELD_GROUP_ID)+"=? AND "+ quote(Result.FIELD_TIMESTAMP) +"=? AND "+ quote(Result.FIELD_VALUE)+"=?" , 
+				new String[] {
+					this._id+"",
+					timestamp+"",
+					value+"",
+				}, 
+				null, 
+				null, 
+				null
+		);
+		c.moveToFirst();
+		int cnt = c.getInt(0);
+		c.close();
+		return cnt > 0;
 	}
 }

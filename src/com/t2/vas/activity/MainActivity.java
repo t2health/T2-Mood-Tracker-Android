@@ -24,7 +24,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.t2.vas.ArraysExtra;
-import com.t2.vas.DBInstallData;
+import com.t2.vas.Eula;
 import com.t2.vas.Global;
 import com.t2.vas.MathExtra;
 import com.t2.vas.R;
@@ -58,7 +58,10 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
+        // show the eula if it hasn't been shown
+        Eula.show(this);
+        
         thisContext = this;
         previousRemindTime = ReminderActivity.getPreviousRemindTimeSince(
         		thisContext,

@@ -14,6 +14,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.t2.vas.R;
+import com.t2.vas.db.tables.Note;
 
 public class SimpleCursorDateSectionAdapter extends SimpleCursorAdapter implements
 		SectionIndexer {
@@ -98,8 +99,8 @@ public class SimpleCursorDateSectionAdapter extends SimpleCursorAdapter implemen
 				R.layout.list_item_2,
 				notesCursor,
 				new String[] {
-    				"note",
-        			"timestamp"
+    				Note.FIELD_NOTE,
+        			Note.FIELD_TIMESTAMP,
         		},
         		new int[] {
         			R.id.text1,

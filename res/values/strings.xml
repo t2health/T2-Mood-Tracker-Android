@@ -15,6 +15,9 @@
 	<string name="mood_tracker">Mood Tracker</string>
 	<string name="rename">Rename</string>
 	
+	<string name="import_title">Import data from SDCard</string>
+	<string name="export_title">Export data to SDCard</string>
+	
 	<!-- Main screen sections -->
 	<string name="rate_section_title">Rate</string>
 	<string name="results_section_title">Results</string>
@@ -58,17 +61,33 @@
 	<string name="touch_anywhere_to_continue">Touch anywhere to continue</string>
 	<string name="is_desirable">Is a desirable trait?</string>
 	
-	<!-- Share -->
+	<!-- Export -->
 	<string name="share_title">Share</string>
-	<string name="share_data_title">Share Data</string>
-	<string name="share_from_date">From Date:</string>
-	<string name="share_to_date">To Date:</string>
 	<string name="share_button">Share</string>
-	<string name="share_choose_date">Choose Date</string>
-	<string name="share_groups_header">Categories</string>
-	<string name="share_other_header">Other Data</string>
-	<string name="share_preparing_data">Preparing Share Data</string>
-	<string name="share_dates_offset_bad">The start date entered is later than your end date. This should be fixed.</string>
+	<string name="share_data_title">Share Data</string>
+	<string name="share_progress_message">Preparing the data.</string>
+	
+	<string name="files_exported">The data has been exported to the "T2MoodTracker" folder on your sdcard.</string>
+	<string name="fail_to_export_files">Failed to export the data.</string>
+	
+	<string name="export_sdcard_not_mounted">The sdcard needs to be mounted to use this feature.</string>
+	<string name="export_from_date">From Date:</string>
+	<string name="export_to_date">To Date:</string>
+	<string name="export_button">Export</string>
+	<string name="export_choose_date">Choose Date</string>
+	<string name="export_groups_header">Categories</string>
+	<string name="export_other_header">Other Data</string>
+	<string name="export_preparing_data">Preparing Data</string>
+	<string name="export_dates_offset_bad">The start date entered is later than your end date. This should be fixed.</string>
+	<string name="export_progress_message">Exporting the data.</string>
+	
+	<!-- Import -->
+	<string name="choose_file_title">Choose File</string>
+	<string name="import_button">Import Selected Data</string>
+	<string name="import_not_valid_file">The selected file does not have the proper format.</string>
+	<string name="no_csv_files_found">You do not have any files available for import. Place csv files in the "T2MoodTracker" folder on your sdcard. Note: Mood tracker requires a specific format in order to import files. This format can be revealed by exporting existing data and inspecting the resultant file.</string>
+	<string name="import_complete">Import Complete</string>
+	<string name="import_progress_message">Reading data file</string>
 	
 	<!-- Help -->
 	<string name="help_title">Help</string>	

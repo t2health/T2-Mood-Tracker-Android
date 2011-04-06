@@ -8,6 +8,12 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Result extends Table {
+	public static final String TABLE_NAME = "result";
+	public static final String FIELD_GROUP_ID = "group_id";
+	public static final String FIELD_SCALE_ID = "scale_id";
+	public static final String FIELD_TIMESTAMP = "timestamp";
+	public static final String FIELD_VALUE = "value";
+	
 	public long group_id;
 	public long scale_id;
 	public long timestamp;
@@ -24,13 +30,22 @@ public class Result extends Table {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		database.execSQL("CREATE TABLE result (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, scale_id INTEGER NOT NULL, timestamp INTEGER NOT NULL, value INTEGER NOT NULL)");
+		database.execSQL(
+				"CREATE TABLE "+ quote(TABLE_NAME) +" (" +
+						quote(FIELD_ID)+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+						quote(FIELD_GROUP_ID)+" INTEGER NOT NULL, " +
+						quote(FIELD_SCALE_ID)+" INTEGER NOT NULL, " +
+						quote(FIELD_TIMESTAMP)+" INTEGER NOT NULL, " +
+						quote(FIELD_VALUE)+" INTEGER NOT NULL" +
+				")"
+		);
+		
 		// Create the index
 		database.execSQL(
-				"CREATE INDEX group_id_timestamp_index ON result(group_id, timestamp)"
+				"CREATE INDEX group_id_timestamp_index ON "+ quote(TABLE_NAME) +"("+ quote(FIELD_GROUP_ID) +", "+ quote(FIELD_TIMESTAMP) +")"
 		);
 		database.execSQL(
-				"CREATE INDEX result_scale_id_timestamp_index ON result(scale_id, timestamp)"
+				"CREATE INDEX result_scale_id_timestamp_index ON "+ quote(TABLE_NAME) +"("+ quote(FIELD_SCALE_ID) +", "+ quote(FIELD_TIMESTAMP) +")"
 		);
 	}
 
@@ -42,10 +57,10 @@ public class Result extends Table {
 			database.execSQL("DROP INDEX result_timestamp_index");
 			
 			database.execSQL(
-					"CREATE INDEX group_id_timestamp_index ON result(group_id, timestamp)"
+					"CREATE INDEX group_id_timestamp_index ON "+ quote(TABLE_NAME) +"("+ quote(FIELD_GROUP_ID) +", "+ quote(FIELD_TIMESTAMP) +")"
 			);
 			database.execSQL(
-					"CREATE INDEX result_scale_id_timestamp_index ON result(scale_id, timestamp)"
+					"CREATE INDEX result_scale_id_timestamp_index ON "+ quote(TABLE_NAME) +"("+ quote(FIELD_SCALE_ID) +", "+ quote(FIELD_TIMESTAMP) +")"
 			);
 		}
 	}
@@ -53,32 +68,31 @@ public class Result extends Table {
 	@Override
 	public long insert() {
 		ContentValues v = new ContentValues();
-		v.put("group_id", this.group_id);
-		v.put("scale_id", this.scale_id);
-		v.put("timestamp", this.timestamp);
-		v.put("value", this.value);
+		v.put(quote(FIELD_GROUP_ID), this.group_id);
+		v.put(quote(FIELD_SCALE_ID), this.scale_id);
+		v.put(quote(FIELD_TIMESTAMP), this.timestamp);
+		v.put(quote(FIELD_VALUE), this.value);
 
 		return this.insert(v);
 	}
 
 	@Override
 	public boolean load(Cursor c) {
-		this._id = c.getLong(c.getColumnIndex("_id"));
-		this.group_id = c.getLong(c.getColumnIndex("group_id"));
-		this.scale_id = c.getLong(c.getColumnIndex("scale_id"));
-		this.timestamp = c.getLong(c.getColumnIndex("timestamp"));
-		this.value = c.getInt(c.getColumnIndex("value"));
+		this._id = c.getLong(c.getColumnIndex(FIELD_ID));
+		this.group_id = c.getLong(c.getColumnIndex(FIELD_GROUP_ID));
+		this.scale_id = c.getLong(c.getColumnIndex(FIELD_SCALE_ID));
+		this.timestamp = c.getLong(c.getColumnIndex(FIELD_TIMESTAMP));
+		this.value = c.getInt(c.getColumnIndex(FIELD_VALUE));
 		return true;
 	}
 
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
-		v.put("_id", this._id);
-		v.put("group_id", this.group_id);
-		v.put("scale_id", this.scale_id);
-		v.put("timestamp", this.timestamp);
-		v.put("value", this.value);
+		v.put(quote(FIELD_GROUP_ID), this.group_id);
+		v.put(quote(FIELD_SCALE_ID), this.scale_id);
+		v.put(quote(FIELD_TIMESTAMP), this.timestamp);
+		v.put(quote(FIELD_VALUE), this.value);
 
 		return this.update(v);
 	}

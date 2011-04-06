@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import com.nullwire.trace.ExceptionHandler;
 import com.t2.vas.Analytics;
 import com.t2.vas.DBInstallData;
-import com.t2.vas.Eula;
 import com.t2.vas.Global;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
@@ -45,12 +44,12 @@ public abstract class ABSActivity extends Activity implements OnDatabaseCreatedL
         dbAdapter.setOnUpdatedListener(this);
         dbAdapter.open();
 
-        Eula.show(this);
-        
-        VASAnalytics.init(Global.FLURRY_KEY, SharedPref.getSendAnnonData(sharedPref));
-        VASAnalytics.setDebugEnabled(true);
-        VASAnalytics.onPageView();
-        VASAnalytics.onEvent(this.getClass().getSimpleName());
+        if(!Global.DEV_MODE) {
+	        VASAnalytics.init(Global.FLURRY_KEY, SharedPref.getSendAnnonData(sharedPref));
+	        VASAnalytics.setDebugEnabled(true);
+	        VASAnalytics.onPageView();
+	        VASAnalytics.onEvent(this.getClass().getSimpleName());
+        }
 	}
 
 	@Override

@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.Log;
 
 import com.t2.vas.activity.StartupActivity;
 import com.t2.vas.activity.preference.ReminderActivity;
@@ -61,6 +60,10 @@ public class ReminderService extends Service {
 	public void onCreate() {
 		super.onCreate();
 //		Log.v(TAG, "onCreate");
+		
+		// update the database if the original update didn't take.
+    	// NOt sure why this happens, but this is a hack to fix the problem.
+    	DBInstallData.forceInstallDatabase(this);
 		
 		thisContext = this;
 		isRunning = true;

@@ -35,6 +35,10 @@ public abstract class AbsTable {
 		return dbAdapter;
 	}
 	
+	protected static String quote(String s) {
+		return "`"+s+"`";
+	}
+	
 	protected void openForThis() {
 		if(!this.dbAdapter.isOpen()) {
 			openForThis = true;
@@ -56,23 +60,6 @@ public abstract class AbsTable {
 		
 		this.closeForThis();
 		return l;
-	}
-	
-	public boolean update(ContentValues values) {
-		ContentValues whereConditions = new ContentValues();
-		return this.update(values, whereConditions) > 0;
-	}
-	
-	public int update(ContentValues values, ContentValues whereConditions) {
-		this.openForThis();
-		
-		whereConditions.put("_id", values.getAsLong("_id"));
-		
-		QueryComponents qc = QueryComponents.factory(whereConditions);
-		int i = this.dbAdapter.getDatabase().update("`"+this.getTableName()+"`", values, qc.whereClause, qc.whereArgs);
-		
-		this.closeForThis();
-		return i;
 	}
 	
 	public long delete(ContentValues whereConditions) {
@@ -129,7 +116,7 @@ public abstract class AbsTable {
 	public abstract boolean update();
 	public abstract boolean delete();
 	
-	private static class QueryComponents {
+	protected static class QueryComponents {
 		public String whereClause = "";
 		public String[] whereArgs;
 		

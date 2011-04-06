@@ -4,20 +4,41 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-import com.t2.vas.db.DBAdapter;
-import com.t2.vas.db.tables.Group;
-import com.t2.vas.db.tables.Note;
-import com.t2.vas.db.tables.Result;
-import com.t2.vas.db.tables.Scale;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.t2.vas.db.DBAdapter;
+import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.Note;
+import com.t2.vas.db.tables.Result;
+import com.t2.vas.db.tables.Scale;
+
 public class DBInstallData {
 	private static final String TAG = DBInstallData.class.getSimpleName();
+	
+	public static void forceInstallDatabase(Context context) {
+		DBAdapter dbAdapter = null;
+		try {
+			dbAdapter = new DBAdapter(context, Global.Database.name, Global.Database.version);
+	        dbAdapter.open();
+		
+	        // update the database if the original update didn't take.
+	        // NOt sure why this happens, but this is a hack to fix the problem.
+			DBInstallData.install(context, dbAdapter, dbAdapter.getDatabase());
+    		DBInstallData.createInitialData(dbAdapter, Global.Database.CREATE_FAKE_DATA);
+    		
+    		DBInstallData.update(context, dbAdapter, dbAdapter.getDatabase(), Global.Database.version - 1, Global.Database.version);
+    		
+		} catch (Exception e) {
+		}
+		
+		if(dbAdapter != null) {
+			dbAdapter.close();
+		}
+	}
 	
 	public static void install(Context context, DBAdapter dbAdapter, SQLiteDatabase db) {
 		new Group(dbAdapter).onCreate(db);

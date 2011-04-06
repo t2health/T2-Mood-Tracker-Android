@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -240,7 +238,7 @@ public class ReminderActivity extends ABSNavigationActivity implements OnItemCli
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		DBAdapter dbAdapter = new DBAdapter(context, Global.Database.name, Global.Database.version);
         dbAdapter.open();
-		
+        
         // Get the days and times enabled.
 		ArrayList<Integer> daysEnabled = SharedPref.getReminderEnabledDays(sharedPref);
 		ArrayList<TimePref> timesEnabled = SharedPref.getReminderTimes(sharedPref);

@@ -18,13 +18,13 @@
 			<TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/share_from_date" />
+				android:text="@string/export_from_date" />
 				
 			<Button
 				android:id="@+id/fromDate"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/share_choose_date" />
+				android:text="@string/export_choose_date" />
 		</LinearLayout>
 		
 		<LinearLayout
@@ -36,13 +36,13 @@
 			<TextView
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/share_to_date" />
+				android:text="@string/export_to_date" />
 				
 			<Button
 				android:id="@+id/toDate"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/share_choose_date" />
+				android:text="@string/export_choose_date" />
 		</LinearLayout>
 	</LinearLayout>
 	
@@ -53,10 +53,10 @@
 		android:layout_weight="1.0" />
 	
 	<Button
-		android:id="@+id/shareButton"
+		android:id="@+id/finishButton"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/share_button"
+		android:text="@string/export_button"
 		android:enabled="false" />
 	
 </LinearLayout>

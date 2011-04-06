@@ -10,6 +10,8 @@ import android.preference.PreferenceScreen;
 
 import com.t2.vas.R;
 import com.t2.vas.VASAnalytics;
+import com.t2.vas.activity.ExportActivity;
+import com.t2.vas.activity.ImportActivity;
 import com.t2.vas.activity.editor.GroupListActivity;
 
 public class MainPreferenceActivity extends ABSPreferenceNavigation implements OnPreferenceClickListener, OnPreferenceChangeListener {
@@ -26,6 +28,8 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
         screen.findPreference("reminders").setOnPreferenceClickListener(this);
         screen.findPreference("clear_data").setOnPreferenceClickListener(this);
         screen.findPreference("security").setOnPreferenceClickListener(this);
+    	screen.findPreference("import").setOnPreferenceClickListener(this);
+        screen.findPreference("export").setOnPreferenceClickListener(this);
         
         screen.findPreference("send_anon_data").setOnPreferenceChangeListener(this);
     }
@@ -57,6 +61,19 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
+		
+		} else if(prefKey.equals("import")) {
+			Intent i = new Intent(this, ImportActivity.class);
+			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+			this.startActivity(i);
+			return true;
+		
+		} else if(prefKey.equals("export")) {
+			Intent i = new Intent(this, ExportActivity.class);
+			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
+			this.startActivity(i);
+			return true;
+			
 		}
 
 		return false;

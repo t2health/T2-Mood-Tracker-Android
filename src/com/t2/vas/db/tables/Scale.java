@@ -8,10 +8,13 @@ import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.Table;
 
 public class Scale extends Table {
-	private static final String TAG = Scale.class.getName();
+	public static final String TABLE_NAME = "scale";
+	public static final String FIELD_GROUP_ID = "group_id";
+	public static final String FIELD_MAX_LABEL = "max_label";
+	public static final String FIELD_MIN_LABEL = "min_label";
+	public static final String FIELD_WEIGHT = "weight";
 	
 	public long group_id;
-	public long scale_id;
 	public String max_label;
 	public String min_label;
 	public int weight = 0;
@@ -30,7 +33,15 @@ public class Scale extends Table {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		database.execSQL("CREATE TABLE scale (_id INTEGER PRIMARY KEY AUTOINCREMENT, group_id INTEGER NOT NULL, min_label TEXT NOT NULL, max_label TEXT NOT NULL, weight INTEGER NOT NULL)");
+		database.execSQL(
+				"CREATE TABLE scale (" +
+					quote(FIELD_ID)+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+					quote(FIELD_GROUP_ID)+" INTEGER NOT NULL, " +
+					quote(FIELD_MIN_LABEL)+" TEXT NOT NULL, " +
+					quote(FIELD_MAX_LABEL)+" TEXT NOT NULL, " +
+					quote(FIELD_WEIGHT)+" INTEGER NOT NULL" +
+				")"
+		);
 	}
 
 	@Override
@@ -42,32 +53,31 @@ public class Scale extends Table {
 	@Override
 	public long insert() {
 		ContentValues v = new ContentValues();
-		v.put("group_id", this.group_id);
-		v.put("max_label", this.max_label);
-		v.put("min_label", this.min_label);
-		v.put("weight", this.weight);
+		v.put(quote(FIELD_GROUP_ID), this.group_id);
+		v.put(quote(FIELD_MAX_LABEL), this.max_label);
+		v.put(quote(FIELD_MIN_LABEL), this.min_label);
+		v.put(quote(FIELD_WEIGHT), this.weight);
 		
 		return this.insert(v);
 	}
 
 	@Override
 	public boolean load(Cursor c) {
-		this._id = c.getLong(c.getColumnIndex("_id"));
-		this.group_id = c.getLong(c.getColumnIndex("group_id"));
-		this.max_label = c.getString(c.getColumnIndex("max_label"));
-		this.min_label = c.getString(c.getColumnIndex("min_label"));
-		this.weight = c.getInt(c.getColumnIndex("weight"));
+		this._id = c.getLong(c.getColumnIndex(FIELD_ID));
+		this.group_id = c.getLong(c.getColumnIndex(FIELD_GROUP_ID));
+		this.max_label = c.getString(c.getColumnIndex(FIELD_MAX_LABEL));
+		this.min_label = c.getString(c.getColumnIndex(FIELD_MIN_LABEL));
+		this.weight = c.getInt(c.getColumnIndex(FIELD_WEIGHT));
 		return true;
 	}
 
 	@Override
 	public boolean update() {
 		ContentValues v = new ContentValues();
-		v.put("_id", this._id);
-		v.put("group_id", this.group_id);
-		v.put("max_label", this.max_label);
-		v.put("min_label", this.min_label);
-		v.put("weight", this.weight);
+		v.put(quote(FIELD_GROUP_ID), this.group_id);
+		v.put(quote(FIELD_MAX_LABEL), this.max_label);
+		v.put(quote(FIELD_MIN_LABEL), this.min_label);
+		v.put(quote(FIELD_WEIGHT), this.weight);
 		
 		return this.update(v);
 	}
@@ -76,7 +86,7 @@ public class Scale extends Table {
 	public boolean delete() {
 		Result r = new Result(this.dbAdapter);
 		ContentValues cv = new ContentValues();
-		cv.put("scale_id", this._id);
+		cv.put(quote(Result.FIELD_SCALE_ID), this._id);
 		r.delete(cv);
 		
 		return super.delete();
@@ -85,12 +95,12 @@ public class Scale extends Table {
 	public Cursor getResults(long startTime, long endTime) {
 		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
 		return this.getDBAdapter().getDatabase().query(
-				"result",
+				quote(Result.TABLE_NAME),
 				new String[]{
-						"timestamp",
-						"value",
+						quote(Result.FIELD_TIMESTAMP),
+						quote(Result.FIELD_VALUE),
 				},
-				"scale_id=? AND timestamp >= ? AND timestamp < ?",
+				quote(Result.FIELD_SCALE_ID)+"=? AND "+ quote(Result.FIELD_TIMESTAMP) +" >= ? AND "+ quote(Result.FIELD_TIMESTAMP) +" < ?",
 				new String[]{
 						this._id+"",
 						startTime+"",
@@ -105,19 +115,19 @@ public class Scale extends Table {
 	
 	public Cursor getUniqueScalesCursor() {
 		return this.getDBAdapter().getDatabase().query(
-				"scale", 
+				quote(Scale.TABLE_NAME), 
 				new String[] {
-						"MIN(_id) _id",
-						"MIN(group_id) group_id",
-						"MIN(max_label) max_label",
-						"MIN(min_label) min_label",
-						"MIN(weight) weight",
+						"MIN("+quote(Scale.FIELD_ID)+") "+ quote(Scale.FIELD_ID),
+						"MIN("+quote(Scale.FIELD_GROUP_ID)+") "+ quote(Scale.FIELD_GROUP_ID),
+						"MIN("+quote(Scale.FIELD_MAX_LABEL)+") "+ quote(Scale.FIELD_MAX_LABEL),
+						"MIN("+quote(Scale.FIELD_MIN_LABEL)+") "+ quote(Scale.FIELD_MIN_LABEL),
+						"MIN("+quote(Scale.FIELD_WEIGHT)+") "+ quote(Scale.FIELD_WEIGHT)
 				},
 				null, 
 				null, 
-				"min_label || max_label", 
+				quote(Scale.FIELD_MIN_LABEL)+" || "+quote(Scale.FIELD_MAX_LABEL), 
 				null, 
-				"min_label || max_label"
+				quote(Scale.FIELD_MIN_LABEL)+" || "+quote(Scale.FIELD_MAX_LABEL)
 		);
 	}
 }
