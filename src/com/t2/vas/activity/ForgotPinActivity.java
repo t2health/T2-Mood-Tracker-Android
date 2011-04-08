@@ -14,8 +14,6 @@ import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 
 public class ForgotPinActivity extends ABSCustomTitleActivity implements OnKeyListener, OnEditorActionListener, OnClickListener {
-	private static final String TAG = ForgotPinActivity.class.getSimpleName();
-	
 	private EditText answer1EditText;
 	private EditText answer2EditText;
 	private String answer1;

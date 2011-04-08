@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAdapter extends SQLiteOpenHelper {
-	private static final String TAG = DBAdapter.class.getName();
 	private Context context;
 	private SQLiteDatabase database;
 	private OnDatabaseCreatedListener createListener;
@@ -27,17 +26,11 @@ public class DBAdapter extends SQLiteOpenHelper {
 	}
 	
 	public SQLiteDatabase getDatabase() {
-		//Log.v(TAG, "GETDATABASE");
-		/*if(!this.isOpen()) {
-			this.open();
-		}*/
 		return this.database;
 	}
 	
 	public DBAdapter open() {
-		//Log.v(TAG, "OPEN");
 		this.database = this.getWritableDatabase();
-		//Log.v(TAG, "OPEN DB:"+this.database);
 		return this;
 	}
 

@@ -9,9 +9,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class SharedPref {
-	private static final String TAG = SharedPref.class.getSimpleName();
-	
-	
 	public static boolean getSendAnnonData(SharedPreferences sharedPref) {
 		return sharedPref.getBoolean("send_anon_data", true);
 	}

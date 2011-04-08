@@ -8,7 +8,6 @@ import android.widget.SeekBar;
 import com.t2.vas.FromParentTouchHandler;
 
 public class VASSeekBar extends SeekBar implements FromParentTouchHandler {
-	private static final String TAG = VASSeekBar.class.getName();
 	private boolean eventFromParent = false;
 
 	public VASSeekBar(Context context) {
@@ -22,8 +21,6 @@ public class VASSeekBar extends SeekBar implements FromParentTouchHandler {
 	public VASSeekBar(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
-
-	
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -32,7 +29,6 @@ public class VASSeekBar extends SeekBar implements FromParentTouchHandler {
 		}
 		eventFromParent = false;
 		
-		//Log.v(TAG, "RECV");
 		return super.onTouchEvent(event);
 	}
 
@@ -41,6 +37,4 @@ public class VASSeekBar extends SeekBar implements FromParentTouchHandler {
 		eventFromParent = true;
 		return this.onTouchEvent(event);
 	}
-	
-	
 }

@@ -19,8 +19,6 @@ import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 
 public class SplashScreenActivity extends ABSActivity implements OnClickListener, OnCheckedChangeListener {
-	private static final String TAG = SplashScreenActivity.class.getName();
-
 	private TextView startupTipsView;
 	private Timer startTimer;
 	private Handler startHandler = new Handler() {

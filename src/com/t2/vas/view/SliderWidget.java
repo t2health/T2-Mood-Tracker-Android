@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.t2.vas.R;
 
 public class SliderWidget extends LinearLayout implements OnSeekBarChangeListener {
-	private static final String TAG = SliderWidget.class.getName();
-	
 	private TextView minLabel;
 	private TextView maxLabel;
 	private SeekBar slideBar;

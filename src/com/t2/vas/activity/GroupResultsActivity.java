@@ -15,8 +15,6 @@ import com.t2.vas.data.GroupResultsDataProvider;
 import com.t2.vas.db.tables.Group;
 
 public class GroupResultsActivity extends ABSResultsActivity {
-	private static final String TAG = "GroupResultsActivity";
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

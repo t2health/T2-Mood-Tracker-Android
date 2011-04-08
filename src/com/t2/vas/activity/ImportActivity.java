@@ -224,7 +224,6 @@ public class ImportActivity extends ABSImportExportActivity {
 	protected void onFinishButtonPressed() {
 		final ArrayList<String> importNames = new ArrayList<String>();
 		ArrayList<HashMap<String,Object>> groupItems = this.getSelectedGroupsItems();
-		HashMap<String,Object> item;
 		for(int i = 0; i < groupItems.size(); ++i) {
 			importNames.add(groupItems.get(i).get("title")+"");
 		}

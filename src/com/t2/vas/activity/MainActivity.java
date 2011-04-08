@@ -50,7 +50,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 
 	private long todayStartTime;
 	private long todayEndTime;
-	private Cursor groupsCursor;
 	private ArrayList<HashMap<String, Object>> groupsDataList;
 	private Context thisContext;
 	private long previousRemindTime;
@@ -361,6 +360,7 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		@SuppressWarnings("unchecked")
 		HashMap<String,Object> data = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
 		Adapter adapter = listAdapter.getAdapterForItem(arg2);
 		

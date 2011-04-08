@@ -63,7 +63,6 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	private static final String NOTES_CACHE = "notes";
 	
 	private static final String KEY_NAME = "results_visible_ids_";
-	private static final String TAG = "ABSResultsActivity";
 	
 	private static final int DIRECTION_PREVIOUS = -1;
 	private static final int DIRECTION_NONE = 0;

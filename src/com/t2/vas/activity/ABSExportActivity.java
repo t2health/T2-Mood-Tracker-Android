@@ -131,7 +131,6 @@ public abstract class ABSExportActivity extends ABSImportExportActivity {
 		final List<String> otherIds = new ArrayList<String>();
 		
 		ArrayList<HashMap<String,Object>> groupItems = this.getSelectedGroupsItems();
-		HashMap<String,Object> item;
 		for(int i = 0; i < groupItems.size(); ++i) {
 			groupIds.add((Long)groupItems.get(i).get(Group.FIELD_ID));
 		}

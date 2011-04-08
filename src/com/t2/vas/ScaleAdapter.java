@@ -13,7 +13,6 @@ import com.t2.vas.view.SliderWidget;
 import com.t2.vas.view.SliderWidget.OnSliderWidgetChangeListener;
 
 public class ScaleAdapter extends ArrayAdapter<Scale> implements OnSliderWidgetChangeListener {
-	private static final String TAG = ScaleAdapter.class.getName();
 	private ArrayList<Scale> items;
 	private LayoutInflater inflater;
 	private int layoutResId;

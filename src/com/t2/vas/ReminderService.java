@@ -18,7 +18,6 @@ import com.t2.vas.activity.StartupActivity;
 import com.t2.vas.activity.preference.ReminderActivity;
 
 public class ReminderService extends Service {
-	private static final String TAG = ReminderService.class.getSimpleName();
 	private static boolean isRunning = false;
 	
 	public static final int NOTIFICATION_ID = 230952309;

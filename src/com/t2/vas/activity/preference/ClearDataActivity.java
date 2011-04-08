@@ -23,7 +23,6 @@ import com.t2.vas.db.tables.Note;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public class ClearDataActivity extends ABSNavigationActivity implements OnItemClickListener, android.content.DialogInterface.OnClickListener {
-	private static final String TAG = ClearDataActivity.class.getSimpleName();
 	private ListView list;
 	private SeparatedListAdapter listAdapter;
 	private AlertDialog confirmGroupClearDialog;
@@ -129,6 +128,7 @@ public class ClearDataActivity extends ABSNavigationActivity implements OnItemCl
 			
 		// if an item from the other section was selected.
 		} else if(adapter == otherItemsAdapter) {
+			@SuppressWarnings("unchecked")
 			HashMap<String,Object> item = (HashMap<String, Object>) listAdapter.getItem(arg2);
 			String id = item.get("id").toString();
 			selectedOtherId = id;

@@ -22,8 +22,6 @@ import com.t2.vas.db.DBAdapter.OnDatabaseCreatedListener;
 import com.t2.vas.db.DBAdapter.OnDatabaseUpdatedListener;
 
 public abstract class ABSActivity extends Activity implements OnDatabaseCreatedListener, OnDatabaseUpdatedListener {
-	private static final String TAG = ABSActivity.class.getName();
-
 	protected SharedPreferences sharedPref;
 	protected DBAdapter dbAdapter;
 

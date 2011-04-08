@@ -13,8 +13,6 @@ import android.widget.ListView;
 import com.t2.vas.FromParentTouchHandler;
 
 public class VASListView extends ListView {
-	private static final String TAG = VASListView.class.getName();
-
 	private ArrayList<Float> historyX = new ArrayList<Float>();
 	private ArrayList<Float> historyY = new ArrayList<Float>();
 

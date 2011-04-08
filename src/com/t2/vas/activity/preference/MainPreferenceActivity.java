@@ -1,7 +1,6 @@
 package com.t2.vas.activity.preference;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -15,8 +14,6 @@ import com.t2.vas.activity.ImportActivity;
 import com.t2.vas.activity.editor.GroupListActivity;
 
 public class MainPreferenceActivity extends ABSPreferenceNavigation implements OnPreferenceClickListener, OnPreferenceChangeListener {
-	private static final String TAG = MainPreferenceActivity.class.getName();
-	private SharedPreferences sharedPref;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

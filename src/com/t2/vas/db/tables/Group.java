@@ -15,8 +15,6 @@ public class Group extends Table {
 	public static final String FIELD_IMMUTABLE = "immutable";
 	public static final String FIELD_INVERSE_RESULTS = "inverse_results";
 	
-	private static final String TAG = Group.class.getSimpleName();
-
 	public String title;
 	public int immutable = 0;
 	public boolean inverseResults = false;

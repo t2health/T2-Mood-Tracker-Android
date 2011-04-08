@@ -83,6 +83,7 @@ public class FileListActivity extends ABSNavigationActivity implements OnItemCli
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		@SuppressWarnings("unchecked")
 		HashMap<String,Object> item = (HashMap<String,Object>)arg0.getItemAtPosition(arg2);
 		File selectedFile = (File)item.get("file");
 		

@@ -16,8 +16,6 @@ import com.t2.vas.db.tables.Note;
 import com.t2.vas.view.SimpleCursorDateSectionAdapter;
 
 public class NotesListActivity extends ABSNavigationActivity implements OnItemClickListener {
-	private static final String TAG = NotesListActivity.class.getSimpleName();
-	
 	private static final int NOTE_ACTIVITY = 97;
 	
 	private SimpleCursorDateSectionAdapter notesAdapter;

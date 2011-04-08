@@ -6,7 +6,6 @@ import android.content.Intent;
 import com.t2.vas.activity.UnlockActivity;
 
 public class AppSecurityManager {
-	private static final String TAG = AppSecurityManager.class.getSimpleName();
 	private static final int UNLOCK_ACTIVITY = 9834;
 	
 	private static AppSecurityManager secMan;

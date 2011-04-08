@@ -13,7 +13,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.t2.vas.R;
 
 public class ShareActivity extends ABSExportActivity implements OnClickListener, OnItemClickListener {
-	private static final int SHARE_ACTIVITY = 34958;
 	private ArrayList<Uri> files;
 	
 	@Override

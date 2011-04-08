@@ -39,7 +39,6 @@ public class GroupActivity extends ABSNavigationActivity implements
 	public static final String TAG = GroupActivity.class.getSimpleName();
 
 	public static final String EXTRA_GROUP_ID = "group_id";
-	private static final int DELETE_GROUP = 1453;
 	private Group group;
 	private ListView listView;
 	private SeparatedListAdapter listAdapter;
@@ -76,10 +75,6 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 	private Cursor copyScalesCursor;
 
-	private CheckedTextView isInverseCheckbox;
-
-	private static final int ADD_SCALE_ACTIVITY = 365;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,8 +95,6 @@ public class GroupActivity extends ABSNavigationActivity implements
 				}
 		);
 
-		isInverseCheckbox = (CheckedTextView)getLayoutInflater().inflate(android.R.layout.simple_list_item_checked, null);
-		
 		addScaleLayout = (ViewGroup) this.getLayoutInflater().inflate(
 				R.layout.add_edit_scale_activity, null);
 		addMinLabel = (EditText) addScaleLayout.findViewById(R.id.minLabel);
@@ -240,6 +233,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 		Adapter adapter = listAdapter.getAdapterForItem(arg2);
 
 		if (adapter == generalAdapter) {
+			@SuppressWarnings("unchecked")
 			HashMap<String, Object> data = (HashMap<String, Object>) arg0
 					.getItemAtPosition(arg2);
 			String itemId = (String) data.get("id");
@@ -381,6 +375,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
+			@SuppressWarnings("unchecked")
 			HashMap<String,Object> item = (HashMap<String, Object>) this.getItem(position);
 			
 			View newView = convertView;

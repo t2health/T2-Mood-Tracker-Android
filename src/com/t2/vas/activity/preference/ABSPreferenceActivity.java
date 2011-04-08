@@ -9,11 +9,8 @@ import com.nullwire.trace.ExceptionHandler;
 import com.t2.vas.Analytics;
 import com.t2.vas.Global;
 import com.t2.vas.VASAnalytics;
-import com.t2.vas.activity.ABSActivity;
 
 public abstract class ABSPreferenceActivity extends PreferenceActivity {
-	private static final String TAG = ABSActivity.class.getName();
-
 	protected SharedPreferences sharedPref;
 	
 	public void onCreate(Bundle savedInstanceState) {

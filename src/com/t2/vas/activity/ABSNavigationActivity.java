@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import com.t2.vas.R;
 
 public abstract class ABSNavigationActivity extends ABSSecurityActivity {
-	private static final String TAG = ABSNavigationActivity.class.getSimpleName();
 	public static final String EXTRA_BACK_BUTTON_TEXT = "leftButtonText";
 	public static final String EXTRA_RIGHT_BUTTON_TEXT = "rightButtonText";
 	

@@ -36,8 +36,6 @@ import com.t2.vas.db.tables.Group;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public class ReminderActivity extends ABSNavigationActivity implements OnItemClickListener {
-	private static final String TAG = ReminderActivity.class.getSimpleName();
-	
 	private SimpleAdapter dowAdapter;
 	private ArrayList<HashMap<String, Object>> daysData;
 	private List<Integer> enabledDays;

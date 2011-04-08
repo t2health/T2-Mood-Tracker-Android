@@ -15,8 +15,6 @@ import android.widget.TextView;
 import com.t2.vas.R;
 
 public abstract class ABSPreferenceNavigation extends ABSSecurityPreferenceActivity {
-	private static final String TAG = ABSPreferenceNavigation.class.getSimpleName();
-	
 	public static final String EXTRA_BACK_BUTTON_TEXT = "leftButtonText";
 	public static final String EXTRA_BACK_BUTTON_RESID = "leftButtonResId";
 	

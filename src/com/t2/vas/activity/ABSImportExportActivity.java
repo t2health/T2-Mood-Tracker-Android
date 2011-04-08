@@ -10,7 +10,6 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +27,6 @@ import com.t2.vas.R;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public abstract class ABSImportExportActivity extends ABSNavigationActivity implements OnClickListener, OnItemClickListener {
-	private static final String TAG = ABSImportExportActivity.class.getSimpleName();
-	
 	private Button finishButton;
 	private DatePickerDialog fromDatePicker;
 	private DatePickerDialog toDatePicker;
@@ -160,6 +157,7 @@ public abstract class ABSImportExportActivity extends ABSNavigationActivity impl
 		setFinishButtonEnabled();
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected ArrayList<HashMap<String,Object>> getSelectedGroupsItems() {
 		ArrayList<HashMap<String,Object>> items = new ArrayList<HashMap<String,Object>>();
 		SparseBooleanArray checkedPositions = list.getCheckedItemPositions();
@@ -178,6 +176,7 @@ public abstract class ABSImportExportActivity extends ABSNavigationActivity impl
 		return items;
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected ArrayList<HashMap<String,Object>> getSelectedOtherItems() {
 		ArrayList<HashMap<String,Object>> items = new ArrayList<HashMap<String,Object>>();
 		SparseBooleanArray checkedPositions = list.getCheckedItemPositions();

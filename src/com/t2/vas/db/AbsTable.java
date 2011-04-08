@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public abstract class AbsTable {
-	private static final String TAG = AbsTable.class.getName();
 	protected DBAdapter dbAdapter;
 	protected HashMap<String, String> metaData = new HashMap<String, String>();
 	private boolean openForThis = false; 

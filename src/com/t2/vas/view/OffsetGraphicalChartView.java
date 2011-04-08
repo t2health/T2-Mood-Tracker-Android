@@ -1,28 +1,15 @@
 package com.t2.vas.view;
 
 import org.achartengine.chart.AbstractChart;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Handler;
 import android.view.View;
 
 public class OffsetGraphicalChartView extends View {
-	private static final String TAG = OffsetGraphicalChartView.class.getSimpleName();
-	  /** The chart to be drawn. */
 	  private AbstractChart mChart;
-	  /** The chart renderer. */
-	  private XYMultipleSeriesRenderer mRenderer;
-	  /** The view bounds. */
 	  private Rect mRect = new Rect();
-	  /** The user interface thread handler. */
-	  private Handler mHandler;
-	  /** The old x coordinate. */
-	  private float oldX;
-	  /** The old y coordinate. */
-	  private float oldY;
 	
 	public OffsetGraphicalChartView(Context context, AbstractChart chart) {
 	    super(context);

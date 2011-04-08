@@ -26,8 +26,6 @@ import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.db.tables.Group;
 
 public class GroupListActivity extends ABSNavigationActivity implements OnItemClickListener, android.content.DialogInterface.OnClickListener {
-	private static final String TAG = GroupListActivity.class.getSimpleName();
-	
 	private SimpleCursorAdapter groupsAdapter;
 	private ListView listView;
 	private Cursor groupsCursor;
