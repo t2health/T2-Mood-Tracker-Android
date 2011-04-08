@@ -324,8 +324,6 @@ public abstract class ABSImportExportActivity extends ABSNavigationActivity impl
 	protected ArrayList<HashMap<String,Object>> getOtherItems() {
 		ArrayList<HashMap<String,Object>> otherDataItems = new ArrayList<HashMap<String,Object>>();
 		HashMap<String,Object> item = new HashMap<String,Object>();
-		
-		item = new HashMap<String,Object>();
 		item.put("id", "notes");
 		item.put("title", getString(R.string.clear_data_notes));
 		otherDataItems.add(item);

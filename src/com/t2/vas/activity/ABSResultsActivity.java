@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.achartengine.chart.LineChart;
 import org.achartengine.chart.PointStyle;
@@ -283,11 +284,11 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		}
 		
 		HashMap<Long,Double> data = dataProvider.getData(item.id, startTime, endTime);
-		for(Long time: data.keySet()) {
-			long roundedTime = MathExtra.roundTime(time, calendarGroupByField);
+		for(Entry<Long,Double> entry: data.entrySet()) {
+			long roundedTime = MathExtra.roundTime(entry.getKey(), calendarGroupByField);
 			DataPoint dp = points.get(roundedTime);
 			if(dp != null) {
-				dp.addValue(getValue(item, data.get(time)));
+				dp.addValue(getValue(item, entry.getValue()));
 			}
 		}
 		
@@ -310,8 +311,8 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 		// rebuild the notes 
 		dataPoints = new ArrayList<DataPoint>();
 		LinkedHashMap<Long, Double> data = notesDataProvider.getData(0, startTime, endTime);
-		for(Long key: data.keySet()) {
-			dataPoints.add(new DataPoint(key, data.get(key)));
+		for(Entry<Long,Double> entry: data.entrySet()) {
+			dataPoints.add(new DataPoint(entry.getKey(), entry.getValue()));
 		}
 		
 		// set the cache
@@ -723,7 +724,7 @@ public abstract class ABSResultsActivity extends ABSNavigationActivity implement
 	}
 	
 	
-	class KeyItem {
+	static class KeyItem {
 		public long id;
 		public String title1;
 		public String title2;

@@ -19,9 +19,6 @@ public class Scale extends Table {
 	public String min_label;
 	public int weight = 0;
 
-	public static final int ORDERBY_ASC = 13;
-	public static final int ORDERBY_DESC = 14;
-	
 	public Scale(DBAdapter d) {
 		super(d);
 	}

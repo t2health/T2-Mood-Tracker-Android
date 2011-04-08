@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -42,16 +43,16 @@ public class SimpleCursorDateSectionAdapter extends SimpleCursorAdapter implemen
 			}
 		}
 		
-		ArrayList<String> sectionsList = new ArrayList<String>();
+		LinkedHashMap<String,Boolean> mappedSections = new LinkedHashMap<String,Boolean>();
 		int pos = c.getPosition();
 		while(c.moveToNext()) {
 			long timestamp = c.getLong(timestampColumnIndex);
 			Calendar cal = Calendar.getInstance();
 			cal.setTimeInMillis(timestamp);
 			String sectionStr = dateFormatter.format(cal.getTime());
-			
-			if(sectionToCursorPosMap.get(sectionStr) == null) {
-				sectionsList.add(sectionStr);
+		
+			if(mappedSections.get(sectionStr) == null) {
+				mappedSections.put(sectionStr, true);
 				sectionTimesList.add(cal.getTimeInMillis());
 				sectionToCursorPosMap.put(sectionToCursorPosMap.size(), c.getPosition());
 				sectionToCursorPosMapRev.put(c.getPosition(), sectionToCursorPosMap.size());
@@ -59,8 +60,7 @@ public class SimpleCursorDateSectionAdapter extends SimpleCursorAdapter implemen
 		}
 		c.moveToPosition(pos);
 		
-		this.sections = sectionsList.toArray(new String[sectionsList.size()]);
-		
+		this.sections = new ArrayList<String>(mappedSections.keySet()).toArray(new String[mappedSections.size()]);
 	}
 
 	@Override

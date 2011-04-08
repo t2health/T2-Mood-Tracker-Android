@@ -15,7 +15,6 @@ public class Global {
 	public static final boolean UNLOCK_HIDDEN_FEATURES = false;
 	public static final boolean DEV_MODE = false;
 	public static final String FLURRY_KEY = "AI6NAUCMM6QCZYHLV9B4";
-	public static final String ANALYTICS_KEY = FLURRY_KEY;
 	public static final String NOTES_LONG_DATE_FORMAT = "MMM d, yyyy h:mm a";
 	public static final String NOTES_SECTION_DATE_FORMAT = "MMM, yyyy";
 	public static final String REMINDER_TIME_FORMAT = "h:mm a";

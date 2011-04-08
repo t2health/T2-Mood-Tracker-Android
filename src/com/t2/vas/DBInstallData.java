@@ -33,6 +33,7 @@ public class DBInstallData {
     		DBInstallData.update(context, dbAdapter, dbAdapter.getDatabase(), Global.Database.version - 1, Global.Database.version);
     		
 		} catch (Exception e) {
+			// Ignore
 		}
 		
 		if(dbAdapter != null) {
@@ -149,13 +150,9 @@ public class DBInstallData {
 	private static ArrayList<Scale> createGroupAndScales(DBAdapter dbAdapter, String groupName, int isReverseData, String[] minValues, String[] maxValues, boolean generateFake) {
 		ArrayList<Scale> scales = new ArrayList<Scale>();
 
-		// Install the first group of scales
-		Group group = new Group(dbAdapter);
-		Scale scale = new Scale(dbAdapter);
-
 		// Create the group
 		Log.v(TAG, "Generating group");
-		group = new Group(dbAdapter);
+		Group group = new Group(dbAdapter);
 		group.title = groupName;
 		group.immutable = 1;
 		group.inverseResults = isReverseData > 0?true:false;
@@ -163,6 +160,7 @@ public class DBInstallData {
 
 		// Create the scales
 		Log.v(TAG, "Generating scales");
+		Scale scale = null;
 		int maxIndex = (minValues.length < maxValues.length)?minValues.length:maxValues.length;
 		for(int i = 0; i < maxIndex; i++) {
 			scale = new Scale(dbAdapter);
@@ -185,7 +183,7 @@ public class DBInstallData {
 		// Create bogus data for the generated scales
 		//Log.v(TAG, "Generating results");
 		Result result = new Result(dbAdapter);
-		ContentValues c = new ContentValues();
+		ContentValues c = null;
 		int daysOfResults = 1000;
 		Random rand = new Random();
 

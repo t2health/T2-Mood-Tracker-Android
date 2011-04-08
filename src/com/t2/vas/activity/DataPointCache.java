@@ -34,7 +34,7 @@ public class DataPointCache {
 		cache.remove(key);
 	}
 	
-	private class DataPointCacheEntry {
+	private static class DataPointCacheEntry {
 		public long startTime;
 		public long endTime;
 		public int calendarGroupByField;

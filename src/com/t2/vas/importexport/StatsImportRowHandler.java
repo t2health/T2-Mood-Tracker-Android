@@ -4,7 +4,6 @@ import com.t2.vas.importexport.ImportExport.ImportRowHandler;
 
 class StatsImportRowHandler implements ImportRowHandler {
 	public ImportFileStats fileStats;
-	int currentGroupIndex;
 	private GroupStat currentGroupStat;
 	private ScaleStat currentScaleStat;
 	
@@ -14,7 +13,6 @@ class StatsImportRowHandler implements ImportRowHandler {
 	
 	public void reset() {
 		fileStats = new ImportFileStats();
-		currentGroupIndex = -1;
 	}
 
 	@Override

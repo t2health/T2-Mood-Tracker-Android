@@ -161,7 +161,10 @@ public abstract class ABSExportActivity extends ABSImportExportActivity {
 				File outputFile = new File(exportDir, getExportFilename(fromTime, toTime));
 				
 				if(outputFile.exists()) {
-					outputFile.delete();
+					if(!outputFile.delete()) {
+						fileExportCompleteHandler.sendEmptyMessage(EXPORT_FAILED);
+						return;
+					}
 				}
 				
 				Log.v(TAG, "Export thread started");
