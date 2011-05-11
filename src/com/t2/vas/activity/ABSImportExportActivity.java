@@ -359,6 +359,6 @@ public abstract class ABSImportExportActivity extends ABSNavigationActivity impl
 	}
 	
 	protected void hideProgressDialog() {
-		this.progressDialog.dismiss();
+		this.progressDialog.hide();
 	}
 }
