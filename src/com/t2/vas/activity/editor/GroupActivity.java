@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,8 +26,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.t2.vas.R;
+import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Scale;
@@ -122,10 +123,10 @@ public class GroupActivity extends ABSNavigationActivity implements
 				.setPositiveButton(R.string.yes, this)
 				.setNegativeButton(R.string.no, this).create();
 		addGatewayDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.add_scale)
+				.setTitle(R.string.add_rating_scale)
 				.setItems(R.array.add_scale_gateway_options, this)
 				.setNegativeButton(R.string.cancel, this).create();
-		addDialog = new AlertDialog.Builder(this).setTitle(R.string.add_scale)
+		addDialog = new AlertDialog.Builder(this).setTitle(R.string.add_rating_scale)
 				.setPositiveButton(R.string.save, this)
 				.setNegativeButton(R.string.cancel, this)
 				.setView(addScaleLayout).create();
@@ -145,10 +146,10 @@ public class GroupActivity extends ABSNavigationActivity implements
 			this.finish();
 			return;
 		}
-
+		
 		this.setContentView(R.layout.list_layout);
 		this.setTitle(group.title);
-		this.setRightButtonImage(android.R.drawable.ic_menu_add);
+		this.setRightButtonText(getString(R.string.add_scale));
 
 		listView = (ListView) this.findViewById(R.id.list);
 
@@ -168,6 +169,11 @@ public class GroupActivity extends ABSNavigationActivity implements
 		item = new HashMap<String, Object>();
 		item.put("id", "inverseData");
 		item.put("title", getString(R.string.is_desirable));
+		items.add(item);
+		
+		item = new HashMap<String, Object>();
+		item.put("id", "visible");
+		item.put("title", getString(R.string.show_on_main));
 		items.add(item);
 
 		generalAdapter = new ItemsAdapter(this, items, R.layout.list_item_1,
@@ -194,6 +200,10 @@ public class GroupActivity extends ABSNavigationActivity implements
 			@Override
 			public boolean setViewValue(View view, Cursor cursor,
 					int columnIndex) {
+				if(group.immutable > 0) {
+					view.setEnabled(false);
+				}
+				
 				if (view.getId() == R.id.deleteButton) {
 					final long id = cursor.getLong(columnIndex);
 					view.setFocusable(false);
@@ -216,6 +226,11 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		listView.setAdapter(listAdapter);
 		listView.setOnItemClickListener(this);
+		
+		// disable certain components
+		if(group.immutable > 0) {
+			this.setRightButtonVisibility(View.GONE);
+		}
 	}
 
 	private void onScaleDeleteButtonPressed(long scaleId) {
@@ -232,44 +247,69 @@ public class GroupActivity extends ABSNavigationActivity implements
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Adapter adapter = listAdapter.getAdapterForItem(arg2);
 
-		if (adapter == generalAdapter) {
-			@SuppressWarnings("unchecked")
-			HashMap<String, Object> data = (HashMap<String, Object>) arg0
-					.getItemAtPosition(arg2);
+		boolean isGeneralAdapter = adapter == generalAdapter;
+		boolean isScaleAdapter = adapter == scaleAdapter;
+		boolean isMutable = group.immutable == 0;
+		
+		if(isGeneralAdapter) {
+			HashMap<String, Object> data = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
 			String itemId = (String) data.get("id");
-
-			if (itemId.equals("rename")) {
-				renameEditText.setText(group.title);
-				renameDialog.show();
-				return;
-
-			} else if (itemId.equals("delete")) {
-				deleteGroupDialog.show();
-				return;
 			
-			} else if(itemId.equals("inverseData")) {
-				CheckedTextView ctv = (CheckedTextView)arg1.findViewById(R.id.text1);
-				group.inverseResults = !ctv.isChecked();
-				group.save();
+			if(isMutable) {
+				if (itemId.equals("rename")) {
+					renameEditText.setText(group.title);
+					renameDialog.show();
+					return;
+	
+				} else if (itemId.equals("delete")) {
+					deleteGroupDialog.show();
+					return;
 				
-				listAdapter.notifyDataSetChanged();
-				listAdapter.notifyDataSetInvalidated();
-				return;
+				} else if(itemId.equals("inverseData")) {
+					CheckedTextView ctv = (CheckedTextView)arg1.findViewById(R.id.text1);
+					group.inverseResults = !ctv.isChecked();
+					group.save();
+					
+					listAdapter.notifyDataSetChanged();
+					listAdapter.notifyDataSetInvalidated();
+					return;
+				}
+			} else {
+				if(itemId.equals("visible")) {
+					CheckedTextView ctv = (CheckedTextView)arg1.findViewById(R.id.text1);
+					ArrayList<Long> hiddenGroupIds = SharedPref.getHiddenGroups(sharedPref);
+					if(ctv.isChecked()) {
+						hiddenGroupIds.add(group._id);
+					} else {
+						hiddenGroupIds.remove(group._id);
+					}
+					SharedPref.setHiddenGroups(sharedPref, hiddenGroupIds);
+					
+					listAdapter.notifyDataSetChanged();
+					listAdapter.notifyDataSetInvalidated();
+					return;
+				} else {
+					Toast.makeText(this, R.string.group_immutable_message, Toast.LENGTH_LONG).show();
+				}
 			}
+			
+		} else if(isScaleAdapter) {
+			if(isMutable) {
+				long id = listAdapter.getItemId(arg2);
 
-		} else if (adapter == scaleAdapter) {
-			long id = listAdapter.getItemId(arg2);
+				editScaleId = id;
+				Scale scale = new Scale(dbAdapter);
+				scale._id = id;
+				scale.load();
 
-			editScaleId = id;
-			Scale scale = new Scale(dbAdapter);
-			scale._id = id;
-			scale.load();
-
-			editScaleId = id;
-			editMinLabel.setText(scale.min_label);
-			editMaxLabel.setText(scale.max_label);
-			editMinLabel.requestFocus();
-			editDialog.show();
+				editScaleId = id;
+				editMinLabel.setText(scale.min_label);
+				editMaxLabel.setText(scale.max_label);
+				editMinLabel.requestFocus();
+				editDialog.show();
+			} else {
+				Toast.makeText(this, R.string.group_immutable_message, Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 
@@ -335,11 +375,11 @@ public class GroupActivity extends ABSNavigationActivity implements
 			}
 			
 		} else if(dialog == copyDialog) {
-			Log.v(TAG, "SEL:"+which);
+			//Log.v(TAG, "SEL:"+which);
 			if(which >= 0) {
 				long id = copyScalesAdapter.getItemId(which);
-				Log.v(TAG, "SEL ID:"+id);
-				Log.v(TAG, "id:"+id);
+				//Log.v(TAG, "SEL ID:"+id);
+				//Log.v(TAG, "id:"+id);
 				Scale scale = new Scale(dbAdapter);
 				scale._id = id;
 				scale.load();
@@ -382,14 +422,23 @@ public class GroupActivity extends ABSNavigationActivity implements
 			if(item.get("id").equals("inverseData")) {
 				newView = layoutInflater.inflate(R.layout.list_item_1_checked, null);
 				((CheckedTextView)newView.findViewById(R.id.text1)).setChecked(group.inverseResults);
+				
+			} else if(item.get("id").equals("visible")) {
+				List<Long> hiddenGroupIds = SharedPref.getHiddenGroups(sharedPref);
+				newView = layoutInflater.inflate(R.layout.list_item_1_checked, null);
+				((CheckedTextView)newView.findViewById(R.id.text1)).setChecked(!hiddenGroupIds.contains(group._id));
+				
 			} else {
 				newView = layoutInflater.inflate(defaultLayout, null);
 			}
+			
 			((TextView)newView.findViewById(R.id.text1)).setText(item.get("title")+"");
+			
+			if(group.immutable > 0 && !item.get("id").equals("visible")) {
+				((TextView)newView.findViewById(R.id.text1)).setEnabled(false);
+			}
 			
 			return newView;
 		}
-		
-		
 	}
 }

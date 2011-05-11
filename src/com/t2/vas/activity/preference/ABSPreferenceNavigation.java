@@ -27,26 +27,24 @@ public abstract class ABSPreferenceNavigation extends ABSSecurityPreferenceActiv
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public void setContentView(int layoutResID) {
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.setContentView(layoutResID);
 		this.initCustomTitle();
 	}
 
 	@Override
 	public void setContentView(View view, LayoutParams params) {
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.setContentView(view, params);
 		this.initCustomTitle();
 	}
 
 	@Override
 	public void setContentView(View view) {
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.setContentView(view);
 		this.initCustomTitle();
 	}

@@ -1,7 +1,5 @@
 package com.t2.vas.activity.editor;
 
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,17 +9,12 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.t2.vas.R;
 import com.t2.vas.ReminderService;
-import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigationActivity;
 import com.t2.vas.db.tables.Group;
 
@@ -29,7 +22,6 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 	private SimpleCursorAdapter groupsAdapter;
 	private ListView listView;
 	private Cursor groupsCursor;
-	private List<Long> hiddenGroupIds;
 
 	private EditText addEditText;
 	private AlertDialog addGroupDialog;
@@ -48,54 +40,22 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 			.create();
 		
 		this.setContentView(R.layout.list_layout);
-		
-		this.hiddenGroupIds = SharedPref.getHiddenGroups(sharedPref);
-		
-		this.setRightButtonImage(android.R.drawable.ic_menu_add);
+		this.setRightButtonText(getString(R.string.add));
 		
 		Group group = new Group(dbAdapter);
 		groupsCursor = group.getGroupsCursor();
 		groupsAdapter = new SimpleCursorAdapter(
 				this,
-				R.layout.list_item_1_toggle,
+				R.layout.list_item_1,
 				groupsCursor,
 				new String[] {
 						"title",
 						"_id",
 				},
 				new int[] {
-						R.id.text1,
-						R.id.toggleButton,
+						R.id.text1
 				}
 		);
-		groupsAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
-			@Override
-			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				int viewId = view.getId();
-				
-				if(viewId == R.id.text1) {
-					int immutable = cursor.getInt(cursor.getColumnIndex("immutable"));
-					view.setEnabled(!(immutable > 0));
-					
-				} else if(viewId == R.id.toggleButton) {
-					final long id = cursor.getLong(columnIndex);
-					
-					ToggleButton tb = (ToggleButton)view;
-					tb.setFocusable(false);
-					tb.setChecked(!hiddenGroupIds.contains(id));
-					
-					tb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-						@Override
-						public void onCheckedChanged(CompoundButton buttonView,
-								boolean isChecked) {
-							onGroupToggled(id, isChecked);
-						}});
-					return true;
-				}
-				
-				return false;
-			}
-		});
 		
 		listView = (ListView)this.findViewById(R.id.list);
 		listView.setOnItemClickListener(this);
@@ -127,25 +87,8 @@ public class GroupListActivity extends ABSNavigationActivity implements OnItemCl
 		addGroupDialog.show();
 	}
 	
-	private void onGroupToggled(long groupId, boolean isChecked) {
-		hiddenGroupIds.remove(groupId);
-		if(!isChecked) {
-			hiddenGroupIds.add(groupId);
-		}
-		SharedPref.setHiddenGroups(sharedPref, hiddenGroupIds);
-	}
-
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Group group = new Group(dbAdapter);
-		group._id = arg3;
-		group.load();
-		
-		if(group.immutable > 0) {
-			Toast.makeText(this, R.string.group_immutable_message, Toast.LENGTH_LONG).show();
-			return;
-		}
-		
 		Intent i = new Intent(this, GroupActivity.class);
 		i.putExtra(GroupActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 		i.putExtra(GroupActivity.EXTRA_GROUP_ID, arg3);

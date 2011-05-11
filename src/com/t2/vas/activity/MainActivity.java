@@ -6,7 +6,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,7 +16,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -35,10 +36,11 @@ import com.t2.vas.activity.preference.ReminderActivity;
 import com.t2.vas.data.GroupResultsDataProvider;
 import com.t2.vas.db.tables.Group;
 import com.t2.vas.db.tables.Note;
+import com.t2.vas.db.tables.Result;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public class MainActivity extends ABSNavigationActivity implements OnItemClickListener {
-	private static final String TAG = MainActivity.class.getName();
+	private static final String TAG = MainActivity.class.getSimpleName();
 	public static final int RATE_ACTIVITY = 345;
 	public static final int NOTE_ACTIVITY = 355;
 	
@@ -70,7 +72,6 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
         		thisContext,
         		Calendar.getInstance().getTimeInMillis()
 		);
-        
         
         // Init today's start and end times.
         Calendar cal = Calendar.getInstance();
@@ -165,30 +166,126 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 		
 		// Clear the reminder notification (if visible)
 		ReminderService.clearNotification(this);
+		
+		// can we show the unused categories dialog?
+		if(sharedPref.getBoolean("notify_unused_groups", true)) {
+			// only show the dialog once a week.
+			Calendar lastShownDialogCal = Calendar.getInstance();
+			lastShownDialogCal.add(Calendar.WEEK_OF_MONTH, -1);
+			long lastShownDialogTime = lastShownDialogCal.getTimeInMillis();
+			
+			// get the last time the dialog was shown.
+			long unUsedDialogLastShown = sharedPref.getLong("unUsedDialogLastShown", -1);
+			
+			// get the unused groups.
+			ArrayList<HashMap<String, Object>> unusedData = getUnusedGroupData();
+			
+			// if there are unused categories and its been a while since we've shown the dialog. show it.
+			if(unusedData.size() > 0 && unUsedDialogLastShown < lastShownDialogTime) {
+				// build the list of titles to show.
+				StringBuffer titleSb = new StringBuffer();
+				for(int i = 0; i < unusedData.size(); ++i) {
+					titleSb.append(unusedData.get(i).get("title"));
+					titleSb.append(", ");
+				}
+				titleSb.deleteCharAt(titleSb.length() - 1);
+				titleSb.deleteCharAt(titleSb.length() - 1);
+				
+				// build and show the dialog.
+				new AlertDialog.Builder(this)
+					.setTitle(R.string.unused_groups_title)
+					.setMessage(getString(R.string.unused_groups_desc).replace("{0}", titleSb.toString()))
+					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							hideUnusedGroups();
+							dialog.dismiss();
+						}
+					})
+					.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					})
+					.create()
+					.show();
+				sharedPref.edit().putLong("unUsedDialogLastShown", System.currentTimeMillis()).commit();
+			}
+		}
 	}
-
+	
+	private ArrayList<HashMap<String,Object>> getUnusedGroupData() {
+		Calendar lastUsedCal = Calendar.getInstance();
+		lastUsedCal.add(Calendar.WEEK_OF_MONTH, -1);
+		long lastUsedTime = lastUsedCal.getTimeInMillis();
+		
+		ArrayList<HashMap<String,Object>> unUsedGroupData = new ArrayList<HashMap<String,Object>>();
+		for(int i = 0; i < groupsDataList.size(); ++i) {
+			HashMap<String,Object> item = groupsDataList.get(i);
+			long latestResultTimestamp = (Long)item.get("latestResultTime");
+			if(latestResultTimestamp != -1 && latestResultTimestamp < lastUsedTime) {
+				unUsedGroupData.add(item);
+			}
+		}
+		
+		return unUsedGroupData;
+	}
+	
+	private void hideUnusedGroups() {
+		ArrayList<Long> hiddenGroups = SharedPref.getHiddenGroups(sharedPref);
+		ArrayList<HashMap<String, Object>> unusedGroupData = getUnusedGroupData();
+		
+		for(int i = 0; i < unusedGroupData.size(); ++i) {
+			hiddenGroups.add((Long)unusedGroupData.get(i).get("_id"));
+		}
+		
+		SharedPref.setHiddenGroups(sharedPref, hiddenGroups);
+		
+		updateGroupsDataList();
+		listAdapter.notifyDataSetChanged();
+	}
+	
 	private void updateGroupsDataList() {
 		groupsDataList.clear();
 		
 		List<Long> hiddenGids = SharedPref.getHiddenGroups(sharedPref);
+		
+		// get the time range for latest result timestamp.
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.WEEK_OF_MONTH, -2);
+		long latestResultRangeStart = cal.getTimeInMillis();
+		long latestResultRangeEnd = Calendar.getInstance().getTimeInMillis();
 		
 		Cursor cursor = new Group(this.dbAdapter).getGroupsWithScalesCursor();
 		while(cursor.moveToNext()) {
 			Group group = new Group(dbAdapter);
 			group.load(cursor);
 			
+			// if this group is hidden, don't work with it.
 			if(hiddenGids.contains(group._id)) {
 				continue;
 			}
 			
+			// get the most recent result timestamp.
+			Cursor latestResultCursor = group.getResults(latestResultRangeStart, latestResultRangeEnd);
+			long lastResultTime = -1;
+			if(latestResultCursor.moveToLast()) {
+				lastResultTime = latestResultCursor.getLong(latestResultCursor.getColumnIndex(Result.FIELD_TIMESTAMP));
+			}
+			latestResultCursor.close();
+			
+			// determine if a result was added withing the reminder period
 			Cursor resCursor = group.getResults(previousRemindTime, nextRemindTime);
 			int resCount = resCursor.getCount();
 			resCursor.close();
 			
+			// build the data object.
 			HashMap<String,Object> data = new HashMap<String,Object>();
 			data.put("_id", group._id);
 			data.put("title", group.title);
 			data.put("showWarning", resCount == 0);
+			data.put("latestResultTime", lastResultTime);
 			
 			groupsDataList.add(data);
 		}
@@ -218,8 +315,8 @@ public class MainActivity extends ABSNavigationActivity implements OnItemClickLi
 	private void notifyNoteIsNecessary() {
 		Toast.makeText(this, R.string.unusual_results_message, Toast.LENGTH_LONG).show();
 		
-		this.getRightButton().startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse_animation));
-		this.getRightButton().setPressed(true);
+		//this.getRightButton().startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse_animation));
+		//this.getRightButton().setPressed(true);
 	}
 
 	private boolean isNoteNecessaryForToday() {

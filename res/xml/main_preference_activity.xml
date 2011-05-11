@@ -2,24 +2,27 @@
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<Preference
-		android:title="@string/group_list_title"
-		android:key="group_editor" />
+	<PreferenceCategory
+		android:title="@string/settings_app_wide">
+		<Preference
+			android:title="@string/group_list_title"
+			android:key="group_editor" />
+	
+		<Preference
+			android:title="@string/reminders_title"
+			android:key="reminders" />
+	
+		<Preference
+			android:title="@string/clear_data_title"
+			android:key="clear_data" />
+	
+		<Preference
+			android:title="@string/security_title"
+			android:key="security" />
+	</PreferenceCategory>
 
-	<Preference
-		android:title="@string/reminders_title"
-		android:key="reminders" />
-
-	<Preference
-		android:title="@string/clear_data_title"
-		android:key="clear_data" />
-
-	<Preference
-		android:title="@string/security_title"
-		android:key="security" />
-
-	<!-- <PreferenceCategory
-		android:title="@string/import_export">-->
+	<PreferenceCategory
+		android:title="@string/settings_import_export">
 		<Preference
 			android:title="@string/import_title"
 			android:key="import" />
@@ -27,10 +30,15 @@
 		<Preference
 			android:title="@string/export_title"
 			android:key="export" />
-	<!-- </PreferenceCategory>
+	</PreferenceCategory>
 
 	<PreferenceCategory
-		android:title="@string/settings_general">-->
+		android:title="@string/settings_general">
+		<CheckBoxPreference
+			android:title="@string/notify_unused_groups"
+			android:key="notify_unused_groups"
+			android:defaultValue="true" />
+		
 		<CheckBoxPreference
 			android:title="@string/show_tips_on_startup"
 			android:key="show_startup_tips"
@@ -41,5 +49,5 @@
 			android:title="@string/send_anon_data_title"
 			android:summary="@string/send_anon_data_desc"
 			android:defaultValue="true" />
-	<!-- </PreferenceCategory>-->
+	</PreferenceCategory>
 </PreferenceScreen>

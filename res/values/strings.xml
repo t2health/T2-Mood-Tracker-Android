@@ -14,6 +14,7 @@
 	<string name="add_note">Add Note</string>
 	<string name="mood_tracker">Mood Tracker</string>
 	<string name="rename">Rename</string>
+	<string name="add">Add</string>
 	
 	<string name="import_title">Import data from sdcard</string>
 	<string name="export_title">Export data to sdcard</string>
@@ -60,6 +61,10 @@
 	<string name="tip_title">Tip</string>
 	<string name="touch_anywhere_to_continue">Touch anywhere to continue</string>
 	<string name="is_desirable">Is a desirable trait?</string>
+	<string name="show_on_main">Show on main screen?</string>
+	
+	<string name="unused_groups_title">Hide Unused Categories?</string>
+	<string name="unused_groups_desc">"You have some unused categories ({0}). Would you like to hide them now? This can be undone in settings."</string>
 	
 	<!-- Export -->
 	<string name="share_title">Share</string>
@@ -82,6 +87,11 @@
 	<string name="export_progress_message">Exporting the data.</string>
 	
 	<!-- Import -->
+	<string name="file_options_title">File Options</string>
+	<string name="delete_file_title">Delete File?</string>
+	<string name="delete_file_desc">Are you sure you would like to delete this file?</string>
+	<string name="delete_file_yes">Yes - Delete file</string>
+	<string name="delete_selected_file">Delete selected file</string>
 	<string name="choose_file_title">Choose File</string>
 	<string name="import_button">Import Selected Data</string>
 	<string name="import_not_valid_file">The selected file does not have the proper format.</string>
@@ -114,11 +124,15 @@
 	<string name="provide_note_text_message">Please provide some details about this note.</string>
 	
 	<!-- Settings -->
+	<string name="settings_app_wide">App-Wide Settings</string>
+	<string name="settings_import_export">Import/Export</string>
 	<string name="settings_title">Settings</string>
 	<string name="settings_general">General</string>
+	<string name="notify_unused_groups">Notify when Categories are unused</string>
 	<string name="show_tips_on_startup">Show Tips on Startup</string>
 	<string name="send_anon_data_title">Send Anonymous Usage Data</string>
 	<string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
+
 
 	<!--  Group List -->
 	<string name="group_list_title">Add/Edit Rating Categories</string>
@@ -129,7 +143,8 @@
 	<string name="edit_group_title">Rename</string>
 	<string name="delete_category_confirm">Are you sure you want to remove this category, associated scales and ratings.</string>
 	<string name="group_immutable_message">This category and its rating scales cannot be modified.</string>
-	<string name="add_scale">Add Rating Scale</string>
+	<string name="add_scale">Add Scale</string>
+	<string name="add_rating_scale">Add Rating Scale</string>
     <string name="edit_scale">Edit Rating Scale</string>
     <string name="copy_scale">Copy a Rating Scale</string>
 	<string name="min_label">Undesirable Trait</string>

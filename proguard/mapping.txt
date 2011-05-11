@@ -1,0 +1,1641 @@
+au.com.bytecode.opencsv.CSVParser -> a.a.a.a.c:
+    char separator -> a
+    char quotechar -> b
+    char escape -> c
+    boolean strictQuotes -> d
+    java.lang.String pending -> e
+    boolean inField -> f
+    boolean ignoreLeadingWhiteSpace -> g
+    boolean isPending() -> a
+    java.lang.String[] parseLineMulti(java.lang.String) -> a
+    boolean isAllWhiteSpace(java.lang.CharSequence) -> a
+au.com.bytecode.opencsv.CSVReader -> a.a.a.a.e:
+    java.io.BufferedReader br -> a
+    boolean hasNext -> b
+    au.com.bytecode.opencsv.CSVParser parser -> c
+    int skipLines -> d
+    boolean linesSkiped -> e
+    java.lang.String[] readNext() -> a
+    void close() -> close
+au.com.bytecode.opencsv.CSVWriter -> a.a.a.a.d:
+    java.io.Writer rawWriter -> a
+    java.io.PrintWriter pw -> b
+    char separator -> c
+    char quotechar -> d
+    char escapechar -> e
+    java.lang.String lineEnd -> f
+    au.com.bytecode.opencsv.ResultSetHelper resultService -> g
+    void writeNext(java.lang.String[]) -> a
+    java.lang.StringBuilder processLine(java.lang.String) -> a
+    void close() -> close
+au.com.bytecode.opencsv.ResultSetHelper -> a.a.a.a.b:
+au.com.bytecode.opencsv.ResultSetHelperService -> a.a.a.a.a:
+com.flurry.android.AdImage -> com.flurry.android.a:
+    long a -> a
+    int b -> b
+    int c -> c
+    java.lang.String d -> d
+    byte[] e -> e
+    void a(java.io.DataInput) -> a
+com.flurry.android.AppCircle -> com.flurry.android.ad:
+com.flurry.android.AppCircleCallback -> com.flurry.android.ac:
+com.flurry.android.CallbackEvent -> com.flurry.android.ag:
+    int a -> a
+    long b -> b
+    java.lang.String c -> c
+    void setMessage(java.lang.String) -> a
+com.flurry.android.CatalogActivity -> com.flurry.android.CatalogActivity:
+    java.lang.String a -> a
+    android.webkit.WebView b -> b
+    com.flurry.android.t c -> c
+    java.util.List d -> d
+    com.flurry.android.q e -> e
+    com.flurry.android.ag f -> f
+    void onCreate(android.os.Bundle) -> onCreate
+    void finish() -> finish
+    void onDestroy() -> onDestroy
+    void onClick(android.view.View) -> onClick
+    void a(com.flurry.android.u) -> a
+    com.flurry.android.ag a(com.flurry.android.CatalogActivity) -> a
+    long b(com.flurry.android.CatalogActivity) -> b
+    com.flurry.android.q c(com.flurry.android.CatalogActivity) -> c
+com.flurry.android.FlurryAgent -> com.flurry.android.v:
+    java.lang.String a -> a
+    java.lang.String kInsecureReportUrl -> b
+    java.lang.String kSecureReportUrl -> c
+    java.lang.String b -> d
+    java.lang.String c -> e
+    java.lang.String d -> f
+    java.lang.String e -> g
+    com.flurry.android.FlurryAgent f -> h
+    long g -> i
+    boolean h -> j
+    boolean i -> k
+    boolean j -> l
+    android.location.Criteria k -> m
+    boolean l -> n
+    com.flurry.android.AppCircle m -> o
+    android.os.Handler n -> p
+    java.io.File o -> q
+    boolean p -> r
+    boolean q -> s
+    long r -> t
+    java.util.Map s -> u
+    java.lang.String t -> v
+    java.lang.String u -> w
+    java.lang.String v -> x
+    boolean w -> y
+    java.util.List x -> z
+    android.location.LocationManager y -> A
+    java.lang.String z -> B
+    boolean A -> C
+    long B -> D
+    java.util.List C -> E
+    long D -> F
+    long E -> G
+    long F -> H
+    java.lang.String G -> I
+    java.lang.String H -> J
+    byte I -> K
+    java.lang.String J -> L
+    byte K -> M
+    java.lang.Long L -> N
+    int M -> O
+    android.location.Location N -> P
+    java.util.Map O -> Q
+    java.util.List P -> R
+    boolean Q -> S
+    int R -> T
+    java.util.List S -> U
+    int T -> V
+    com.flurry.android.q U -> W
+    java.lang.String V -> X
+    void a(java.lang.Throwable) -> a
+    void onStartSession(android.content.Context,java.lang.String) -> a
+    void onEndSession(android.content.Context) -> a
+    void onPageView() -> a
+    void onEvent(java.lang.String) -> a
+    com.flurry.android.q b() -> b
+    void b(android.content.Context,java.lang.String) -> b
+    void a(android.content.Context,boolean) -> a
+    void a(java.lang.Runnable) -> a
+    void h() -> f
+    void a$42701bee(java.lang.String) -> b
+    void a(java.lang.String,java.lang.String,java.lang.String) -> a
+    byte[] b(boolean) -> a
+    boolean a(byte[]) -> a
+    boolean a(byte[],java.lang.String) -> a
+    void a(java.io.DataInputStream) -> a
+    void c(boolean) -> b
+    void b(java.io.DataInputStream) -> b
+    void i() -> g
+    java.lang.String a(android.content.Context) -> b
+    android.location.Location b(android.content.Context) -> c
+    void j() -> h
+    void onLocationChanged(android.location.Location) -> onLocationChanged
+    void onProviderDisabled(java.lang.String) -> onProviderDisabled
+    void onProviderEnabled(java.lang.String) -> onProviderEnabled
+    void onStatusChanged(java.lang.String,int,android.os.Bundle) -> onStatusChanged
+    com.flurry.android.FlurryAgent e() -> c
+    boolean a(com.flurry.android.FlurryAgent) -> a
+    void a$220cd6b8(com.flurry.android.FlurryAgent) -> b
+    void a(com.flurry.android.FlurryAgent,android.content.Context,boolean) -> a
+    java.util.List b(com.flurry.android.FlurryAgent) -> c
+    void c(com.flurry.android.FlurryAgent) -> d
+    void d(com.flurry.android.FlurryAgent) -> e
+    void b$220cd6b8(com.flurry.android.FlurryAgent) -> f
+    long f() -> d
+    android.os.Handler e(com.flurry.android.FlurryAgent) -> g
+    boolean g() -> e
+    com.flurry.android.q f(com.flurry.android.FlurryAgent) -> h
+com.flurry.android.a -> com.flurry.android.s:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    long c -> c
+    long d -> d
+    long e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    android.os.Handler h -> h
+com.flurry.android.aa -> com.flurry.android.ah:
+    android.widget.TextView a -> a
+    com.flurry.android.z b -> b
+    void onFocusChange(android.view.View,boolean) -> onFocusChange
+com.flurry.android.ab -> com.flurry.android.am:
+    int a -> a
+    com.flurry.android.q b -> b
+    void run() -> run
+com.flurry.android.ac -> com.flurry.android.an:
+    java.lang.String a -> a
+    com.flurry.android.q b -> b
+    void run() -> run
+com.flurry.android.ad -> com.flurry.android.ao:
+    com.flurry.android.q a -> a
+    android.content.Context b -> b
+    java.lang.String c -> c
+    int d -> d
+    boolean e -> e
+    boolean f -> f
+    void a() -> a
+    android.widget.RelativeLayout$LayoutParams b() -> b
+    com.flurry.android.v c() -> c
+com.flurry.android.ae -> com.flurry.android.ap:
+    java.util.LinkedHashMap a -> a
+    int b -> b
+    java.lang.Object a(java.lang.Object) -> a
+    void a(java.lang.Object,java.lang.Object) -> a
+    int a() -> a
+    java.util.Collection b() -> b
+    java.util.Set c() -> c
+    int a(com.flurry.android.ae) -> a
+com.flurry.android.af -> com.flurry.android.ai:
+    java.util.List a -> a
+    android.os.Handler b -> b
+    android.os.Handler c -> c
+    int d -> d
+    java.lang.Runnable e -> e
+    void a() -> a
+    void b() -> b
+    void a(com.flurry.android.af) -> a
+com.flurry.android.ag -> com.flurry.android.aj:
+    java.lang.String a -> a
+    byte e -> e
+    com.flurry.android.s b -> b
+    long c -> c
+    java.util.List d -> d
+    void a(com.flurry.android.j) -> a
+    long a() -> a
+    void a(java.io.DataOutput) -> a
+    java.lang.String toString() -> toString
+com.flurry.android.ah -> com.flurry.android.ak:
+    boolean a -> a
+    int b -> b
+    boolean a(java.lang.String) -> a
+    int a(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    int a(java.lang.String,java.lang.String) -> a
+    int b(java.lang.String,java.lang.String,java.lang.Throwable) -> b
+    int b(java.lang.String,java.lang.String) -> b
+    int c(java.lang.String,java.lang.String,java.lang.Throwable) -> c
+    int c(java.lang.String,java.lang.String) -> c
+    int d(java.lang.String,java.lang.String) -> d
+com.flurry.android.ai -> com.flurry.android.al:
+com.flurry.android.aj -> com.flurry.android.ae:
+    java.lang.String a -> a
+    android.content.Context b -> b
+    com.flurry.android.ag c -> c
+    com.flurry.android.q d -> d
+    void run() -> run
+com.flurry.android.ak -> com.flurry.android.af:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    int c -> c
+com.flurry.android.b -> com.flurry.android.r:
+    com.flurry.android.FlurryAgent a -> a
+    void run() -> run
+com.flurry.android.c -> com.flurry.android.u:
+    boolean c -> b
+    android.content.Context a -> c
+    com.flurry.android.FlurryAgent b -> a
+    void run() -> run
+com.flurry.android.d -> com.flurry.android.t:
+    byte a -> a
+    java.lang.String b -> b
+    long c -> c
+    long r -> r
+    java.lang.String d -> d
+    int e -> e
+    int f -> f
+    java.lang.String g -> g
+    int h -> h
+    int i -> i
+    java.lang.String j -> j
+    int k -> k
+    int l -> l
+    java.lang.String s -> s
+    int t -> t
+    int u -> u
+    java.lang.String v -> v
+    int w -> w
+    int x -> x
+    java.lang.String y -> y
+    int z -> z
+    int A -> A
+    int B -> B
+    int C -> C
+    int m -> m
+    int n -> n
+    int o -> o
+    int p -> p
+    int D -> D
+    int E -> E
+    int F -> F
+    int G -> G
+    int H -> H
+    int I -> I
+    int J -> J
+    int K -> K
+    int q -> q
+    int L -> L
+    int M -> M
+    int N -> N
+    int O -> O
+    int P -> P
+    int Q -> Q
+    int R -> R
+    int S -> S
+    int T -> T
+    int U -> U
+    int V -> V
+    int W -> W
+    int X -> X
+    int Y -> Y
+    int Z -> Z
+    int aa -> aa
+    int ab -> ab
+    int ac -> ac
+    int ad -> ad
+    int ae -> ae
+    int af -> af
+    boolean ag -> ag
+    void c(java.io.DataInput) -> c
+    void a(java.io.DataInput) -> a
+    void b(java.io.DataInput) -> b
+    void a(java.io.DataOutput) -> a
+com.flurry.android.e -> com.flurry.android.x:
+    android.content.Context a -> a
+    boolean b -> b
+    com.flurry.android.FlurryAgent c -> c
+    void run() -> run
+com.flurry.android.f -> com.flurry.android.w:
+    java.lang.String a -> a
+    byte b -> b
+    byte c -> c
+    com.flurry.android.d d -> d
+    java.lang.String toString() -> toString
+com.flurry.android.g -> com.flurry.android.b:
+    java.lang.Thread$UncaughtExceptionHandler a -> a
+    void uncaughtException(java.lang.Thread,java.lang.Throwable) -> uncaughtException
+com.flurry.android.h -> com.flurry.android.c:
+    com.flurry.android.CatalogActivity a -> a
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.flurry.android.i -> com.flurry.android.d:
+    java.lang.String a(java.lang.String,int) -> a
+    java.lang.String a(java.lang.String) -> a
+    void a(java.io.Closeable) -> a
+    void a(android.content.Context,android.widget.ImageView,int,int) -> a
+    int a(android.content.Context,int) -> a
+com.flurry.android.j -> com.flurry.android.e:
+    byte a -> a
+    long b -> b
+    java.lang.String toString() -> toString
+com.flurry.android.k -> com.flurry.android.f:
+    int a -> a
+com.flurry.android.l -> com.flurry.android.g:
+    com.flurry.android.ae a -> a
+    boolean removeEldestEntry(java.util.Map$Entry) -> removeEldestEntry
+com.flurry.android.m -> com.flurry.android.h:
+com.flurry.android.n -> com.flurry.android.i:
+    java.lang.String a -> a
+    java.util.Map b -> b
+    long c -> c
+    boolean d -> d
+    long e -> e
+    byte[] f -> f
+    byte[] b() -> a
+com.flurry.android.o -> com.flurry.android.j:
+    com.flurry.android.c a -> a
+    void run() -> run
+com.flurry.android.p -> com.flurry.android.k:
+    java.util.List a -> a
+    void run() -> run
+com.flurry.android.q -> com.flurry.android.l:
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String a -> a
+    java.util.Random g -> g
+    int h -> h
+    java.lang.String b -> b
+    java.lang.String i -> i
+    java.lang.String j -> j
+    java.lang.String k -> k
+    java.lang.String l -> l
+    long m -> m
+    long n -> n
+    long o -> o
+    com.flurry.android.w p -> p
+    boolean q -> q
+    java.util.Map r -> r
+    android.os.Handler s -> s
+    boolean t -> t
+    java.util.Map u -> u
+    com.flurry.android.af v -> v
+    java.util.List w -> w
+    java.util.Map x -> x
+    com.flurry.android.AppCircleCallback y -> y
+    int z -> z
+    void a() -> a
+    void b() -> b
+    void a(java.util.Map,java.util.Map,java.util.Map,java.util.Map,java.util.Map,java.util.Map) -> a
+    long c() -> c
+    java.util.Set d() -> d
+    com.flurry.android.AdImage a(long) -> a
+    java.util.List e() -> e
+    com.flurry.android.ag b(long) -> b
+    void f() -> f
+    java.lang.String h() -> g
+    void a(java.lang.String) -> a
+    void a(android.content.Context,com.flurry.android.ag,java.lang.String) -> a
+    java.lang.String d(java.lang.String) -> b
+    void e(java.lang.String) -> c
+    java.util.List a(android.content.Context,java.util.List,java.lang.Long,int,boolean) -> a
+    long i() -> h
+    void onClick(android.view.View) -> onClick
+    java.lang.String a$2cdaa3d2(com.flurry.android.ag) -> a
+    java.lang.String a(byte[]) -> a
+    java.lang.String toString() -> toString
+    com.flurry.android.AdImage k() -> i
+    void a(java.lang.Runnable) -> a
+    void a(int) -> a
+    java.lang.String a(com.flurry.android.q,java.lang.String) -> a
+    void a(com.flurry.android.q,android.content.Context,java.lang.String) -> a
+    void b(com.flurry.android.q,java.lang.String) -> b
+com.flurry.android.r -> com.flurry.android.m:
+    com.flurry.android.af a -> a
+    void run() -> run
+com.flurry.android.s -> com.flurry.android.n:
+    long a -> a
+    long b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    long e -> e
+    java.lang.Long f -> f
+    byte[] g -> g
+    com.flurry.android.AdImage h -> h
+    void a(java.io.DataInput) -> a
+    void b(java.io.DataInput) -> b
+    java.lang.String toString() -> toString
+com.flurry.android.t -> com.flurry.android.o:
+    android.view.View a -> a
+    java.util.List b -> b
+    boolean c -> c
+    com.flurry.android.CatalogActivity d -> d
+    java.util.List a(android.content.Context) -> a
+    void a() -> a
+    void a(java.util.List) -> a
+    void a(java.util.List,boolean) -> a
+    java.util.List b() -> b
+com.flurry.android.u -> com.flurry.android.p:
+    com.flurry.android.ag a -> a
+    java.lang.String b -> b
+    java.util.List c -> c
+com.flurry.android.v -> com.flurry.android.q:
+    com.flurry.android.q a -> a
+    com.flurry.android.ag b -> b
+    java.lang.String c -> c
+    int d -> d
+    void a(android.content.Context,com.flurry.android.f,com.flurry.android.s,boolean) -> a
+    void a(java.lang.String) -> a
+    java.lang.String b(java.lang.String) -> b
+    com.flurry.android.ag a() -> a
+com.flurry.android.w -> com.flurry.android.ab:
+    android.content.Context a -> a
+    com.flurry.android.q b -> b
+    com.flurry.android.a c -> c
+    long d -> d
+    com.flurry.android.ae e -> e
+    com.flurry.android.ae f -> f
+    java.util.Map g -> g
+    java.util.Map h -> h
+    java.util.Map i -> i
+    java.util.Map j -> j
+    boolean k -> k
+    com.flurry.android.s[] a(java.lang.String) -> a
+    com.flurry.android.ak a(long) -> b
+    java.util.Set a() -> a
+    com.flurry.android.AdImage b(long) -> a
+    com.flurry.android.AdImage a$3dba2ef4() -> b
+    com.flurry.android.f b(java.lang.String) -> b
+    boolean b() -> c
+    com.flurry.android.d a(byte) -> a
+    void a(java.util.Map,java.util.Map,java.util.Map,java.util.Map,java.util.Map,java.util.Map) -> a
+    long c() -> d
+    void d() -> e
+    void a(java.io.File) -> a
+    void f() -> g
+    void e() -> f
+    void a(java.io.DataInputStream) -> a
+    void a(java.io.DataOutputStream) -> a
+    java.lang.String g() -> h
+    void a(int) -> a
+com.flurry.android.x -> com.flurry.android.aa:
+    java.lang.String a -> a
+    com.flurry.android.aj b -> b
+    void run() -> run
+com.flurry.android.y -> com.flurry.android.z:
+    long a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+com.flurry.android.z -> com.flurry.android.y:
+    android.text.SpannedString a -> a
+    android.text.SpannedString b -> b
+    android.text.SpannedString a(com.flurry.android.z) -> a
+    android.text.SpannedString b(com.flurry.android.z) -> b
+com.nullwire.trace.DefaultExceptionHandler -> com.a.a.a:
+    java.lang.Thread$UncaughtExceptionHandler defaultExceptionHandler -> a
+    void uncaughtException(java.lang.Thread,java.lang.Throwable) -> uncaughtException
+com.nullwire.trace.ExceptionHandler -> com.a.a.c:
+    java.lang.String TAG -> a
+    java.lang.String[] stackTraceFileList -> b
+    boolean register(android.content.Context) -> a
+    void register(android.content.Context,java.lang.String) -> a
+    java.lang.String[] searchForStackTraces() -> b
+    void submitStackTraces() -> a
+com.nullwire.trace.ExceptionHandler$1 -> com.a.a.d:
+    void run() -> run
+com.nullwire.trace.ExceptionHandler$2 -> com.a.a.b:
+    boolean accept(java.io.File,java.lang.String) -> accept
+com.nullwire.trace.G -> com.a.a.e:
+    java.lang.String FILES_PATH -> a
+    java.lang.String APP_VERSION -> b
+    java.lang.String APP_PACKAGE -> c
+    java.lang.String PHONE_MODEL -> d
+    java.lang.String ANDROID_VERSION -> e
+    java.lang.String URL -> f
+    java.lang.String TraceVersion -> g
+com.t2.vas.Analytics -> com.t2.vas.s:
+    java.lang.String TAG -> a
+    java.lang.String apiKey -> b
+    boolean enabled -> c
+    boolean debugModeEnabled -> d
+    boolean sessionStarted -> e
+    void init(java.lang.String,boolean) -> a
+    void setEnabled(boolean) -> a
+    void setDebugEnabled$1385ff() -> a
+    boolean analyticsEnabled() -> c
+    void onStartSession(android.content.Context) -> a
+    void onEndSession(android.content.Context) -> b
+    void onEvent(java.lang.String) -> a
+    void onPageView() -> b
+com.t2.vas.AppSecurityManager -> com.t2.vas.l:
+    com.t2.vas.AppSecurityManager secMan -> a
+    boolean unlocked -> b
+    int statusCount -> c
+    boolean hasFocus -> d
+    com.t2.vas.AppSecurityManager getInstance() -> a
+    void onActivityResult$6eb84b52(int,int) -> a
+    void onWindowFocusChanged(boolean) -> a
+    void onResume(android.app.Activity,boolean) -> a
+    void onPause$3ef676ad() -> b
+    void setIsUnlocked$1385ff() -> c
+com.t2.vas.ArraysExtra -> com.t2.vas.b:
+    double[] toArray(java.lang.Double[]) -> a
+    java.lang.String[] toStringArray(java.lang.Object[]) -> a
+    java.lang.Long[] toLongArray(java.lang.String[]) -> a
+    java.lang.Integer[] toIntegerArray(java.lang.String[]) -> b
+com.t2.vas.BootReceiver -> com.t2.vas.BootReceiver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.t2.vas.DBInstallData -> com.t2.vas.e:
+    java.lang.String TAG -> a
+    void forceInstallDatabase(android.content.Context) -> a
+    void install$13498a3(com.t2.vas.db.DBAdapter,android.database.sqlite.SQLiteDatabase) -> a
+    void update$799d647d$22d51fbb(com.t2.vas.db.DBAdapter,android.database.sqlite.SQLiteDatabase,int) -> a
+    void createInitialData$521382b2(com.t2.vas.db.DBAdapter) -> a
+    java.util.ArrayList createGroupAndScales$1577629(com.t2.vas.db.DBAdapter,java.lang.String,int,java.lang.String[],java.lang.String[]) -> a
+com.t2.vas.Eula -> com.t2.vas.m:
+    boolean show(android.app.Activity) -> a
+    java.lang.CharSequence readEula(android.app.Activity) -> b
+    void closeStream(java.io.Closeable) -> a
+com.t2.vas.Eula$1 -> com.t2.vas.k:
+    android.content.SharedPreferences val$preferences -> a
+    android.app.Activity val$activity -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.Eula$2 -> com.t2.vas.j:
+    android.app.Activity val$activity -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.Eula$3 -> com.t2.vas.i:
+    android.app.Activity val$activity -> a
+    void onCancel(android.content.DialogInterface) -> onCancel
+com.t2.vas.Global -> com.t2.vas.n:
+    java.io.File EXPORT_DIR -> a
+com.t2.vas.MathExtra -> com.t2.vas.r:
+    long roundTime(long,int) -> a
+com.t2.vas.ReminderData -> com.t2.vas.d:
+    java.util.ArrayList daysEnabled -> a
+    java.util.ArrayList timesEnabled -> b
+    java.util.ArrayList visibleGroups -> c
+com.t2.vas.ReminderService -> com.t2.vas.ReminderService:
+    boolean isRunning -> a
+    java.util.Timer timer -> b
+    android.app.NotificationManager notificationManager -> c
+    android.content.Context thisContext -> d
+    android.os.Handler opsHandler -> e
+    android.os.IBinder onBind(android.content.Intent) -> onBind
+    void onCreate() -> onCreate
+    void onDestroy() -> onDestroy
+    void cancelNextReminder() -> a
+    boolean scheduleNextReminder() -> b
+    void hideNotification() -> c
+    void stopRunning(android.content.Context) -> a
+    void startRunning(android.content.Context) -> b
+    void restart(android.content.Context) -> c
+    void clearNotification(android.content.Context) -> d
+    boolean access$0(com.t2.vas.ReminderService) -> a
+    void access$1(com.t2.vas.ReminderService) -> b
+    void access$2(com.t2.vas.ReminderService) -> c
+    void access$3(com.t2.vas.ReminderService) -> d
+    android.os.Handler access$4(com.t2.vas.ReminderService) -> e
+com.t2.vas.ReminderService$1 -> com.t2.vas.o:
+    com.t2.vas.ReminderService this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.t2.vas.ReminderService$2 -> com.t2.vas.p:
+    com.t2.vas.ReminderService this$0 -> a
+    void run() -> run
+com.t2.vas.ReminderService$3 -> com.t2.vas.q:
+    android.content.Context val$c -> a
+    void run() -> run
+com.t2.vas.ScaleAdapter -> com.t2.vas.g:
+    java.util.ArrayList items -> a
+    android.view.LayoutInflater inflater -> b
+    int layoutResId -> c
+    int[] values -> d
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void onProgressChanged$583ea110(com.t2.vas.view.SliderWidget,int) -> a
+    int getProgressValuesAt(int) -> a
+    void setProgressValueAt(int,int) -> a
+com.t2.vas.SharedPref -> com.t2.vas.c:
+    boolean getSendAnnonData(android.content.SharedPreferences) -> a
+    void setShowStartupTips(android.content.SharedPreferences,boolean) -> a
+    boolean getShowStartupTips(android.content.SharedPreferences) -> b
+    java.util.ArrayList getHiddenGroups(android.content.SharedPreferences) -> c
+    java.util.ArrayList getReminderEnabledDays(android.content.SharedPreferences) -> d
+    java.util.ArrayList getReminderTimes(android.content.SharedPreferences) -> e
+    void setReminderTimes(android.content.SharedPreferences,java.util.List) -> a
+    java.lang.String[] getValues(android.content.SharedPreferences,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void setValues(android.content.SharedPreferences,java.lang.String,java.lang.String,java.lang.String[]) -> b
+com.t2.vas.SharedPref$Security -> com.t2.vas.f:
+    boolean isEnabled(android.content.SharedPreferences) -> a
+    java.lang.String getPin(android.content.SharedPreferences) -> b
+    java.lang.String getQuestion1(android.content.SharedPreferences) -> c
+    java.lang.String getQuestion2(android.content.SharedPreferences) -> d
+    java.lang.String getAnswer1(android.content.SharedPreferences) -> e
+    java.lang.String getAnswer2(android.content.SharedPreferences) -> f
+    java.lang.String getQuestion(int,android.content.SharedPreferences) -> a
+    java.lang.String getAnswer(int,android.content.SharedPreferences) -> b
+    void setChallenge1(android.content.SharedPreferences,java.lang.String,java.lang.String) -> a
+    void setChallenge2(android.content.SharedPreferences,java.lang.String,java.lang.String) -> b
+    void setChallenge(int,android.content.SharedPreferences,java.lang.String,java.lang.String) -> a
+com.t2.vas.TimePref -> com.t2.vas.a:
+    long time -> a
+    boolean enabled -> b
+com.t2.vas.VASAnalytics -> com.t2.vas.h:
+com.t2.vas.activity.ABSActivity -> com.t2.vas.activity.ABSActivity:
+    android.content.SharedPreferences sharedPref -> a
+    com.t2.vas.db.DBAdapter dbAdapter -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onStop() -> onStop
+    void onDestroy() -> onDestroy
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void onDatabaseCreated(android.database.sqlite.SQLiteDatabase) -> a
+    void onUpgrade$621a88f2(android.database.sqlite.SQLiteDatabase,int) -> a
+com.t2.vas.activity.ABSCustomTitleActivity -> com.t2.vas.activity.ABSCustomTitleActivity:
+    boolean initialized -> c
+    void setContentView(int) -> setContentView
+    void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
+    void setContentView(android.view.View) -> setContentView
+    void setTitle(java.lang.CharSequence) -> setTitle
+    void setTitle(int) -> setTitle
+    void initCustomTitle() -> f
+    boolean isCustomTitleInitialized() -> g
+    void setCustomTitle(java.lang.CharSequence) -> a
+com.t2.vas.activity.ABSExportActivity -> com.t2.vas.activity.ABSExportActivity:
+    java.lang.String TAG -> c
+    java.util.ArrayList exportFileUris -> d
+    android.os.Handler fileExportCompleteHandler -> e
+    android.widget.SimpleAdapter getGroupsAdapter() -> a
+    android.widget.SimpleAdapter getOtherItemsAdapter() -> b
+    java.lang.String getFinishButtonText() -> d
+    void onDataExported(java.util.ArrayList) -> a
+    java.lang.String getExportFilename$1f965575() -> j
+    void onDataExportFailed() -> k
+    void onFinishButtonPressed() -> c
+    java.util.ArrayList access$0(com.t2.vas.activity.ABSExportActivity) -> a
+    android.os.Handler access$1(com.t2.vas.activity.ABSExportActivity) -> b
+    java.lang.String access$2() -> l
+com.t2.vas.activity.ABSExportActivity$1 -> com.t2.vas.activity.s:
+    com.t2.vas.activity.ABSExportActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.t2.vas.activity.ABSExportActivity$2 -> com.t2.vas.activity.r:
+    com.t2.vas.activity.ABSExportActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.ABSExportActivity$3 -> com.t2.vas.activity.q:
+    com.t2.vas.activity.ABSExportActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.ABSExportActivity$4 -> com.t2.vas.activity.p:
+    com.t2.vas.activity.ABSExportActivity this$0 -> a
+    java.util.List val$groupIds -> b
+    java.util.List val$otherIds -> c
+    void run() -> run
+com.t2.vas.activity.ABSImportExportActivity -> com.t2.vas.activity.ABSImportExportActivity:
+    android.widget.Button finishButton -> c
+    android.app.DatePickerDialog fromDatePicker -> d
+    android.app.DatePickerDialog toDatePicker -> e
+    long fromTime -> f
+    long toTime -> g
+    java.text.SimpleDateFormat dateFormatter -> h
+    android.widget.Button fromTimeButton -> i
+    android.widget.Button toTimeButton -> j
+    android.widget.SimpleAdapter groupsAdapter -> k
+    android.widget.SimpleAdapter otherItemsAdapter -> l
+    com.t2.vas.view.SeparatedListAdapter listAdapter -> m
+    android.widget.ListView list -> n
+    android.app.ProgressDialog progressDialog -> o
+    void onCreate(android.os.Bundle) -> onCreate
+    void onClick(android.view.View) -> onClick
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    java.util.ArrayList getSelectedGroupsItems() -> m
+    java.util.ArrayList getSelectedOtherItems() -> n
+    void updateFromDate(long) -> a
+    void updateToDate(long) -> b
+    void onFromDateSet(int,int,int) -> a
+    void onToDateSet(int,int,int) -> b
+    void setFinishButtonEnabled() -> j
+    java.lang.String getProgressMessage() -> e
+    java.lang.String getFinishButtonText() -> d
+    android.widget.SimpleAdapter getGroupsAdapter() -> a
+    android.widget.SimpleAdapter getOtherItemsAdapter() -> b
+    void onFinishButtonPressed() -> c
+    java.util.ArrayList getOtherItems() -> o
+    void notifyDataSetChanged() -> p
+    void initListAdapter() -> k
+    long getFromTime() -> q
+    long getToTime() -> r
+    void showProgressDialog() -> s
+    void hideProgressDialog() -> t
+    void access$0(com.t2.vas.activity.ABSImportExportActivity,int,int,int) -> a
+    void access$1(com.t2.vas.activity.ABSImportExportActivity,int,int,int) -> b
+com.t2.vas.activity.ABSImportExportActivity$1 -> com.t2.vas.activity.f:
+    com.t2.vas.activity.ABSImportExportActivity this$0 -> a
+    void onDateSet(android.widget.DatePicker,int,int,int) -> onDateSet
+com.t2.vas.activity.ABSImportExportActivity$2 -> com.t2.vas.activity.g:
+    com.t2.vas.activity.ABSImportExportActivity this$0 -> a
+    void onDateSet(android.widget.DatePicker,int,int,int) -> onDateSet
+com.t2.vas.activity.ABSNavigationActivity -> com.t2.vas.activity.ABSNavigationActivity:
+    android.view.View leftButton -> c
+    android.view.View rightButton -> d
+    void onBackButtonPressed() -> a_
+    void setRightButtonText(java.lang.String) -> a
+    void setRightButtonImage$13462e() -> h
+    void onRightButtonPressed() -> b_
+    android.view.View getRightButton() -> i
+    void initCustomTitle() -> f
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+com.t2.vas.activity.ABSNavigationActivity$1 -> com.t2.vas.activity.w:
+    com.t2.vas.activity.ABSNavigationActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.ABSNavigationActivity$3 -> com.t2.vas.activity.v:
+    com.t2.vas.activity.ABSNavigationActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.ABSNavigationActivity$4 -> com.t2.vas.activity.u:
+    com.t2.vas.activity.ABSNavigationActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.ABSResultsActivity -> com.t2.vas.activity.ABSResultsActivity:
+    int selectedTab -> f
+    android.widget.ListView keysList -> g
+    android.widget.ListView notesList -> h
+    java.util.ArrayList keyItems -> i
+    com.t2.vas.activity.ABSResultsActivity$KeyItemAdapter keysAdapter -> j
+    com.t2.vas.view.SimpleCursorDateSectionAdapter notesAdapter -> k
+    com.t2.vas.view.ToggledButton keysTabButton -> l
+    com.t2.vas.view.ToggledButton notesTabButton -> m
+    java.util.Calendar startCal -> c
+    java.util.Calendar endCal -> n
+    int calendarField -> d
+    android.widget.TextView monthNameTextView -> o
+    java.text.SimpleDateFormat monthNameFormatter -> p
+    android.widget.ViewSwitcher chartSwitcher -> q
+    android.view.animation.Animation slideInFromLeftAnimation -> r
+    android.view.animation.Animation slideOutToRightAnimation -> s
+    android.view.animation.Animation slideInFromRightAnimation -> t
+    android.view.animation.Animation slideOutToLeftAnimation -> u
+    android.view.animation.Animation fadeInAnimation -> v
+    android.view.animation.Animation fadeOutAnimation -> w
+    android.view.GestureDetector gestureDetector -> x
+    com.t2.vas.data.DataProvider dataProvider -> y
+    android.database.Cursor notesCursor -> z
+    com.t2.vas.data.NotesDataProvider notesDataProvider -> A
+    android.util.DisplayMetrics displayMetrics -> B
+    com.t2.vas.activity.DataPointCache dataPointCache -> C
+    boolean reverseLabels -> e
+    android.view.ViewGroup chartWrapper -> D
+    android.view.ViewGroup chartLabels -> E
+    void onCreate(android.os.Bundle) -> onCreate
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onRightButtonPressed() -> b_
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    java.lang.String getKeyTabText() -> c
+    java.lang.String getSettingSuffix() -> d
+    java.util.ArrayList getKeyItems() -> e
+    int getKeyItemViewType() -> j
+    com.t2.vas.data.DataProvider getDataProvider() -> k
+    double getValue(com.t2.vas.activity.ABSResultsActivity$KeyItem,double) -> a
+    java.util.ArrayList loadNotesData(long,long,int) -> a
+    java.util.ArrayList getDataPoints(long,long,int) -> b
+    boolean isKeyItemsClickable() -> l
+    void showKeysTab() -> m
+    void showNotesTab() -> n
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void onClick(android.view.View) -> onClick
+    void monthMinusButtonPressed() -> o
+    void monthPlusButtonPressed() -> p
+    void onKeysItemClicked$38706ea6(com.t2.vas.activity.ABSResultsActivity$KeyItem) -> a
+    void generateChart(int) -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    boolean onDown(android.view.MotionEvent) -> onDown
+    boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
+    void onLongPress(android.view.MotionEvent) -> onLongPress
+    boolean onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onScroll
+    void onShowPress(android.view.MotionEvent) -> onShowPress
+    boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
+    void access$0(com.t2.vas.activity.ABSResultsActivity) -> a
+com.t2.vas.activity.ABSResultsActivity$1 -> com.t2.vas.activity.n:
+    com.t2.vas.activity.ABSResultsActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.activity.ABSResultsActivity$KeyItem -> com.t2.vas.activity.e:
+    long id -> a
+    java.lang.String title1 -> b
+    java.lang.String title2 -> c
+    int color -> d
+    boolean visible -> e
+    boolean reverseData -> f
+com.t2.vas.activity.ABSResultsActivity$KeyItemAdapter -> com.t2.vas.activity.i:
+    android.view.LayoutInflater layoutInflater -> b
+    int layoutId -> c
+    com.t2.vas.activity.ABSResultsActivity this$0 -> a
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.t2.vas.activity.ABSResultsActivity$KeyItemAdapter$1 -> com.t2.vas.activity.t:
+    com.t2.vas.activity.ABSResultsActivity$KeyItemAdapter this$1 -> a
+    com.t2.vas.activity.ABSResultsActivity$KeyItem val$item -> b
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.t2.vas.activity.ABSSecurityActivity -> com.t2.vas.activity.ABSSecurityActivity:
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
+    void onResume() -> onResume
+    void onPause() -> onPause
+com.t2.vas.activity.ABSStartupTipsActivity -> com.t2.vas.activity.ABSStartupTipsActivity:
+    android.widget.TextView startupTipsView -> c
+    boolean showStartupTips -> d
+    java.lang.String[] startupTips -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPostCreate(android.os.Bundle) -> onPostCreate
+com.t2.vas.activity.AddEditNoteActivity -> com.t2.vas.activity.AddEditNoteActivity:
+    com.t2.vas.db.tables.Note currentNote -> c
+    android.widget.DatePicker datePicker -> d
+    android.widget.TimePicker timePicker -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onClick(android.view.View) -> onClick
+    void onRightButtonPressed() -> b_
+    void onDateChanged(android.widget.DatePicker,int,int,int) -> onDateChanged
+    com.t2.vas.db.tables.Note access$0(com.t2.vas.activity.AddEditNoteActivity) -> a
+com.t2.vas.activity.AddEditNoteActivity$1 -> com.t2.vas.activity.z:
+    com.t2.vas.activity.AddEditNoteActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.activity.AddEditNoteActivity$2 -> com.t2.vas.activity.y:
+    com.t2.vas.activity.AddEditNoteActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.activity.DataPoint -> com.t2.vas.activity.x:
+    long time -> a
+    double valueSum -> b
+    int count -> c
+    double minValue -> d
+    double maxValue -> e
+    java.util.ArrayList values -> f
+    double defaultValue -> g
+    void addValue(double) -> a
+    double getAverageValue() -> a
+    double[] getValues() -> b
+com.t2.vas.activity.DataPointCache -> com.t2.vas.activity.h:
+    java.util.HashMap cache -> a
+    java.util.ArrayList getCache(java.lang.String,long,long,int) -> a
+    void setCache(java.lang.String,java.util.ArrayList,long,long,int) -> a
+    void clearCache(java.lang.String) -> a
+com.t2.vas.activity.DataPointCache$DataPointCacheEntry -> com.t2.vas.activity.aa:
+    long startTime -> a
+    long endTime -> b
+    int calendarGroupByField -> c
+    java.util.ArrayList data -> d
+com.t2.vas.activity.ExportActivity -> com.t2.vas.activity.ExportActivity:
+    java.text.SimpleDateFormat dateFormat -> c
+    void onDataExported(java.util.ArrayList) -> a
+    java.lang.String getExportFilename$1f965575() -> j
+    java.lang.String getProgressMessage() -> e
+com.t2.vas.activity.FileListActivity -> com.t2.vas.activity.FileListActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+com.t2.vas.activity.FileListActivity$1 -> com.t2.vas.activity.c:
+    com.t2.vas.activity.FileListActivity this$0 -> a
+    boolean accept(java.io.File) -> accept
+com.t2.vas.activity.ForgotPinActivity -> com.t2.vas.activity.ForgotPinActivity:
+    android.widget.EditText answer1EditText -> c
+    android.widget.EditText answer2EditText -> d
+    java.lang.String answer1 -> e
+    java.lang.String answer2 -> f
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+    void onClick(android.view.View) -> onClick
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    void checkForMatchedAnswers(android.view.View) -> a
+    boolean responsesMatch(java.lang.String,java.lang.String) -> a
+com.t2.vas.activity.GroupResultsActivity -> com.t2.vas.activity.GroupResultsActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    java.lang.String getSettingSuffix() -> d
+    double getValue(com.t2.vas.activity.ABSResultsActivity$KeyItem,double) -> a
+    java.util.ArrayList getKeyItems() -> e
+    int getKeyItemViewType() -> j
+    void onKeysItemClicked$38706ea6(com.t2.vas.activity.ABSResultsActivity$KeyItem) -> a
+    com.t2.vas.data.DataProvider getDataProvider() -> k
+    boolean isKeyItemsClickable() -> l
+    java.lang.String getKeyTabText() -> c
+com.t2.vas.activity.HelpActivity -> com.t2.vas.activity.HelpActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+com.t2.vas.activity.ImportActivity -> com.t2.vas.activity.ImportActivity:
+    java.util.ArrayList groupItems -> c
+    java.util.ArrayList otherItems -> d
+    android.widget.SimpleAdapter groupsAdapter -> e
+    android.widget.SimpleAdapter otherAdapter -> f
+    java.io.File importFile -> g
+    com.t2.vas.importexport.ImportFileStats importFileStats -> h
+    android.os.Handler importHandler -> i
+    void onCreate(android.os.Bundle) -> onCreate
+    void startFileListActivity(java.io.File) -> a
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    android.widget.SimpleAdapter getGroupsAdapter() -> a
+    android.widget.SimpleAdapter getOtherItemsAdapter() -> b
+    void onFinishButtonPressed() -> c
+    java.lang.String getFinishButtonText() -> d
+    java.lang.String getProgressMessage() -> e
+    void access$0(com.t2.vas.activity.ImportActivity) -> a
+    void access$1(com.t2.vas.activity.ImportActivity) -> b
+    void access$2(com.t2.vas.activity.ImportActivity) -> c
+    java.io.File access$3(com.t2.vas.activity.ImportActivity) -> d
+    android.os.Handler access$4(com.t2.vas.activity.ImportActivity) -> e
+    void access$5(com.t2.vas.activity.ImportActivity,com.t2.vas.importexport.ImportFileStats) -> a
+    com.t2.vas.importexport.ImportFileStats access$6(com.t2.vas.activity.ImportActivity) -> f
+com.t2.vas.activity.ImportActivity$1 -> com.t2.vas.activity.o:
+    com.t2.vas.activity.ImportActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.t2.vas.activity.ImportActivity$2 -> com.t2.vas.activity.j:
+    com.t2.vas.activity.ImportActivity this$0 -> a
+    void run() -> run
+com.t2.vas.activity.ImportActivity$3 -> com.t2.vas.activity.k:
+    com.t2.vas.activity.ImportActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.ImportActivity$4 -> com.t2.vas.activity.l:
+    com.t2.vas.activity.ImportActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.ImportActivity$5 -> com.t2.vas.activity.m:
+    com.t2.vas.activity.ImportActivity this$0 -> a
+    java.util.ArrayList val$importNames -> b
+    boolean val$importNotes -> c
+    void run() -> run
+com.t2.vas.activity.MainActivity -> com.t2.vas.activity.MainActivity:
+    java.lang.String TAG -> c
+    android.widget.SimpleAdapter rateGroupListAdapter -> d
+    android.widget.ListView listView -> e
+    com.t2.vas.view.SeparatedListAdapter listAdapter -> f
+    com.t2.vas.data.GroupResultsDataProvider groupResultsDataProv -> g
+    long todayStartTime -> h
+    long todayEndTime -> i
+    java.util.ArrayList groupsDataList -> j
+    android.content.Context thisContext -> k
+    long previousRemindTime -> l
+    long nextRemindTime -> m
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void updateGroupsDataList() -> c
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void onRightButtonPressed() -> b_
+com.t2.vas.activity.MainActivity$1 -> com.t2.vas.activity.d:
+    com.t2.vas.activity.MainActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.NotesListActivity -> com.t2.vas.activity.NotesListActivity:
+    com.t2.vas.view.SimpleCursorDateSectionAdapter notesAdapter -> c
+    android.widget.ListView notesListView -> d
+    android.database.Cursor notesCursor -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onRightButtonPressed() -> b_
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.t2.vas.activity.RateActivity -> com.t2.vas.activity.RateActivity:
+    java.lang.String TAG -> c
+    com.t2.vas.ScaleAdapter scaleAdapter -> d
+    android.widget.ListView listView -> e
+    boolean allItemsViewed -> f
+    com.t2.vas.db.tables.Group group -> g
+    void onCreate(android.os.Bundle) -> onCreate
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onRightButtonPressed() -> b_
+    boolean isLastItemVisible() -> c
+    void saveResults() -> d
+    void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+    void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+com.t2.vas.activity.ScaleResultsActivity -> com.t2.vas.activity.ScaleResultsActivity:
+    long groupId -> f
+    com.t2.vas.db.tables.Group group -> g
+    void onCreate(android.os.Bundle) -> onCreate
+    double getValue(com.t2.vas.activity.ABSResultsActivity$KeyItem,double) -> a
+    java.lang.String getSettingSuffix() -> d
+    java.util.ArrayList getKeyItems() -> e
+    boolean isKeyItemsClickable() -> l
+    int getKeyItemViewType() -> j
+    void onKeysItemClicked$38706ea6(com.t2.vas.activity.ABSResultsActivity$KeyItem) -> a
+    com.t2.vas.data.DataProvider getDataProvider() -> k
+    java.lang.String getKeyTabText() -> c
+com.t2.vas.activity.ShareActivity -> com.t2.vas.activity.ShareActivity:
+    java.util.ArrayList files -> c
+    java.lang.String getFinishButtonText() -> d
+    java.lang.String getProgressMessage() -> e
+    java.lang.String getExportFilename$1f965575() -> j
+    void onDataExported(java.util.ArrayList) -> a
+    void onDestroy() -> onDestroy
+com.t2.vas.activity.SplashScreenActivity -> com.t2.vas.activity.SplashScreenActivity:
+    android.widget.TextView startupTipsView -> c
+    java.util.Timer startTimer -> d
+    android.os.Handler startHandler -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    void onClick(android.view.View) -> onClick
+    void startMainActivity() -> a
+    void access$0(com.t2.vas.activity.SplashScreenActivity) -> a
+    android.os.Handler access$1(com.t2.vas.activity.SplashScreenActivity) -> b
+com.t2.vas.activity.SplashScreenActivity$1 -> com.t2.vas.activity.b:
+    com.t2.vas.activity.SplashScreenActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.t2.vas.activity.SplashScreenActivity$2 -> com.t2.vas.activity.a:
+    com.t2.vas.activity.SplashScreenActivity this$0 -> a
+    void run() -> run
+com.t2.vas.activity.StartupActivity -> com.t2.vas.activity.StartupActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+com.t2.vas.activity.UnlockActivity -> com.t2.vas.activity.UnlockActivity:
+    android.widget.EditText pinEditText -> c
+    java.lang.String lockPin -> d
+    android.widget.TextView startupTipsView -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.WebViewActivity -> com.t2.vas.activity.WebViewActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+com.t2.vas.activity.editor.GroupActivity -> com.t2.vas.activity.editor.GroupActivity:
+    java.lang.String TAG -> c
+    com.t2.vas.db.tables.Group group -> d
+    android.widget.ListView listView -> e
+    com.t2.vas.view.SeparatedListAdapter listAdapter -> f
+    com.t2.vas.activity.editor.GroupActivity$ItemsAdapter generalAdapter -> g
+    android.widget.SimpleCursorAdapter scaleAdapter -> h
+    android.database.Cursor scalesCursor -> i
+    android.app.AlertDialog addDialog -> j
+    android.view.ViewGroup addScaleLayout -> k
+    android.app.AlertDialog editDialog -> l
+    android.widget.EditText addMinLabel -> m
+    android.widget.EditText addMaxLabel -> n
+    long editScaleId -> o
+    android.widget.EditText renameEditText -> p
+    android.app.AlertDialog renameDialog -> q
+    android.app.AlertDialog deleteGroupDialog -> r
+    android.app.AlertDialog addGatewayDialog -> s
+    android.app.AlertDialog deleteScaleDialog -> t
+    android.view.ViewGroup editScaleLayout -> u
+    android.widget.EditText editMinLabel -> v
+    android.widget.EditText editMaxLabel -> w
+    android.app.AlertDialog copyDialog -> x
+    android.widget.SimpleCursorAdapter copyScalesAdapter -> y
+    android.database.Cursor copyScalesCursor -> z
+    void onCreate(android.os.Bundle) -> onCreate
+    void onRightButtonPressed() -> b_
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void onClick(android.content.DialogInterface,int) -> onClick
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    com.t2.vas.db.tables.Group access$0(com.t2.vas.activity.editor.GroupActivity) -> a
+    void access$1(com.t2.vas.activity.editor.GroupActivity,long) -> a
+com.t2.vas.activity.editor.GroupActivity$1 -> com.t2.vas.activity.editor.a:
+    com.t2.vas.activity.editor.GroupActivity this$0 -> a
+    boolean setViewValue(android.view.View,android.database.Cursor,int) -> setViewValue
+com.t2.vas.activity.editor.GroupActivity$1$1 -> com.t2.vas.activity.editor.c:
+    com.t2.vas.activity.editor.GroupActivity$1 this$1 -> a
+    long val$id -> b
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.editor.GroupActivity$ItemsAdapter -> com.t2.vas.activity.editor.e:
+    android.view.LayoutInflater layoutInflater -> a
+    int defaultLayout -> b
+    com.t2.vas.activity.editor.GroupActivity this$0 -> c
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.t2.vas.activity.editor.GroupListActivity -> com.t2.vas.activity.editor.GroupListActivity:
+    android.widget.SimpleCursorAdapter groupsAdapter -> c
+    android.widget.ListView listView -> d
+    android.database.Cursor groupsCursor -> e
+    java.util.List hiddenGroupIds -> f
+    android.widget.EditText addEditText -> g
+    android.app.AlertDialog addGroupDialog -> h
+    void onCreate(android.os.Bundle) -> onCreate
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onBackButtonPressed() -> a_
+    void onRightButtonPressed() -> b_
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void onClick(android.content.DialogInterface,int) -> onClick
+    java.util.List access$0(com.t2.vas.activity.editor.GroupListActivity) -> a
+    void access$1(com.t2.vas.activity.editor.GroupListActivity,long,boolean) -> a
+com.t2.vas.activity.editor.GroupListActivity$1 -> com.t2.vas.activity.editor.d:
+    com.t2.vas.activity.editor.GroupListActivity this$0 -> a
+    boolean setViewValue(android.view.View,android.database.Cursor,int) -> setViewValue
+com.t2.vas.activity.editor.GroupListActivity$1$1 -> com.t2.vas.activity.editor.b:
+    com.t2.vas.activity.editor.GroupListActivity$1 this$1 -> a
+    long val$id -> b
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.t2.vas.activity.preference.ABSPreferenceActivity -> com.t2.vas.activity.preference.ABSPreferenceActivity:
+    android.content.SharedPreferences sharedPref -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onStop() -> onStop
+com.t2.vas.activity.preference.ABSPreferenceNavigation -> com.t2.vas.activity.preference.ABSPreferenceNavigation:
+    boolean initialized -> b
+    android.view.View leftButton -> c
+    android.view.View rightButton -> d
+    void onCreate(android.os.Bundle) -> onCreate
+    void setContentView(int) -> setContentView
+    void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
+    void setContentView(android.view.View) -> setContentView
+    void setTitle(java.lang.CharSequence) -> setTitle
+    void setTitle(int) -> setTitle
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    void initCustomTitle() -> a
+    void setCustomTitle(java.lang.CharSequence) -> a
+com.t2.vas.activity.preference.ABSPreferenceNavigation$1 -> com.t2.vas.activity.preference.c:
+    com.t2.vas.activity.preference.ABSPreferenceNavigation this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.preference.ABSPreferenceNavigation$2 -> com.t2.vas.activity.preference.d:
+    com.t2.vas.activity.preference.ABSPreferenceNavigation this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.preference.ABSPreferenceNavigation$3 -> com.t2.vas.activity.preference.a:
+    com.t2.vas.activity.preference.ABSPreferenceNavigation this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.preference.ABSPreferenceNavigation$4 -> com.t2.vas.activity.preference.b:
+    com.t2.vas.activity.preference.ABSPreferenceNavigation this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.t2.vas.activity.preference.ABSSecurityPreferenceActivity -> com.t2.vas.activity.preference.ABSSecurityPreferenceActivity:
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
+    void onResume() -> onResume
+    void onPause() -> onPause
+com.t2.vas.activity.preference.ClearDataActivity -> com.t2.vas.activity.preference.ClearDataActivity:
+    android.widget.ListView list -> c
+    com.t2.vas.view.SeparatedListAdapter listAdapter -> d
+    android.app.AlertDialog confirmGroupClearDialog -> e
+    android.app.AlertDialog confirmOtherClearDialog -> f
+    android.widget.SimpleCursorAdapter groupsAdapter -> g
+    android.widget.SimpleAdapter otherItemsAdapter -> h
+    java.lang.String clearedMessage -> i
+    long selectedGroupId -> j
+    java.lang.String selectedOtherId -> k
+    void onCreate(android.os.Bundle) -> onCreate
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.activity.preference.ClearDataActivity$1 -> com.t2.vas.activity.preference.h:
+    com.t2.vas.activity.preference.ClearDataActivity this$0 -> a
+    boolean setViewValue(android.view.View,android.database.Cursor,int) -> setViewValue
+com.t2.vas.activity.preference.MainPreferenceActivity -> com.t2.vas.activity.preference.MainPreferenceActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    boolean onPreferenceChange(android.preference.Preference,java.lang.Object) -> onPreferenceChange
+com.t2.vas.activity.preference.ReminderActivity -> com.t2.vas.activity.preference.ReminderActivity:
+    android.widget.SimpleAdapter dowAdapter -> c
+    java.util.ArrayList daysData -> d
+    java.util.List enabledDays -> e
+    com.t2.vas.view.SeparatedListAdapter listAdapter -> f
+    android.widget.SimpleAdapter timesAdapter -> g
+    java.util.List times -> h
+    java.util.ArrayList timesData -> i
+    java.text.SimpleDateFormat dateFormatter -> j
+    void onCreate(android.os.Bundle) -> onCreate
+    void onBackButtonPressed() -> a_
+    java.util.ArrayList loadDaysOfWeek() -> c
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void loadTimesData() -> d
+    com.t2.vas.ReminderData getReminderData(android.content.Context) -> a
+    long getNextRemindTimeSince(android.content.Context,long) -> a
+    long[] getRemindTimesSince(android.content.Context,long) -> b
+    java.text.SimpleDateFormat access$0(com.t2.vas.activity.preference.ReminderActivity) -> a
+    java.util.List access$1(com.t2.vas.activity.preference.ReminderActivity) -> b
+    void access$2(com.t2.vas.activity.preference.ReminderActivity,com.t2.vas.TimePref,boolean) -> a
+    java.util.List access$3(com.t2.vas.activity.preference.ReminderActivity) -> c
+    void access$4(com.t2.vas.activity.preference.ReminderActivity,int,boolean) -> a
+    android.content.SharedPreferences access$5(com.t2.vas.activity.preference.ReminderActivity) -> d
+    void access$6(com.t2.vas.activity.preference.ReminderActivity) -> e
+    com.t2.vas.view.SeparatedListAdapter access$7(com.t2.vas.activity.preference.ReminderActivity) -> f
+com.t2.vas.activity.preference.ReminderActivity$1 -> com.t2.vas.activity.preference.f:
+    com.t2.vas.activity.preference.ReminderActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.preference.ReminderActivity$1$1 -> com.t2.vas.activity.preference.j:
+    com.t2.vas.activity.preference.ReminderActivity$1 this$1 -> a
+    com.t2.vas.TimePref val$tp -> b
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.t2.vas.activity.preference.ReminderActivity$2 -> com.t2.vas.activity.preference.e:
+    com.t2.vas.activity.preference.ReminderActivity this$0 -> a
+    boolean setViewValue(android.view.View,java.lang.Object,java.lang.String) -> setViewValue
+com.t2.vas.activity.preference.ReminderActivity$2$1 -> com.t2.vas.activity.preference.i:
+    com.t2.vas.activity.preference.ReminderActivity$2 this$1 -> a
+    int val$dow -> b
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.t2.vas.activity.preference.ReminderActivity$3 -> com.t2.vas.activity.preference.g:
+    com.t2.vas.activity.preference.ReminderActivity this$0 -> a
+    java.util.Calendar val$cal -> b
+    com.t2.vas.TimePref val$tp -> c
+    void onTimeSet(android.widget.TimePicker,int,int) -> onTimeSet
+com.t2.vas.activity.preference.SecurityActivity -> com.t2.vas.activity.preference.SecurityActivity:
+    android.widget.CheckBox enabledCheckbox -> c
+    android.view.ViewGroup inputsContainer -> d
+    android.widget.EditText pinEditText -> e
+    android.widget.EditText question1EditText -> f
+    android.widget.EditText answer1EditText -> g
+    android.widget.EditText question2EditText -> h
+    android.widget.EditText answer2EditText -> i
+    void onCreate(android.os.Bundle) -> onCreate
+    void onBackButtonPressed() -> a_
+    void setFieldsEnabled(boolean) -> a
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.t2.vas.data.DataProvider -> com.t2.vas.c.b:
+    com.t2.vas.db.DBAdapter dbAdapter -> a
+    java.util.LinkedHashMap getData(long,long,long) -> a
+com.t2.vas.data.GroupResultsDataProvider -> com.t2.vas.c.d:
+    java.util.LinkedHashMap getData(long,long,long) -> a
+com.t2.vas.data.NotesDataProvider -> com.t2.vas.c.c:
+    java.util.LinkedHashMap getData(long,long,long) -> a
+com.t2.vas.data.ScaleResultsDataProvider -> com.t2.vas.c.a:
+    java.util.LinkedHashMap getData(long,long,long) -> a
+com.t2.vas.db.AbsTable -> com.t2.vas.a.c:
+    com.t2.vas.db.DBAdapter dbAdapter -> e
+    java.util.HashMap metaData -> a
+    boolean openForThis -> b
+    java.lang.String getTableName() -> a
+    com.t2.vas.db.DBAdapter getDBAdapter() -> i
+    java.lang.String quote(java.lang.String) -> a
+    void openForThis() -> j
+    void closeForThis() -> k
+    long insert(android.content.ContentValues) -> b
+    long delete(android.content.ContentValues) -> c
+    android.database.Cursor select(android.content.ContentValues,java.lang.String) -> a
+    android.database.Cursor select(java.lang.String,java.lang.String[],java.lang.String) -> a
+    android.database.Cursor select$e65dd6f(java.lang.String,java.lang.String[],java.lang.String) -> b
+com.t2.vas.db.AbsTable$QueryComponents -> com.t2.vas.a.f:
+    java.lang.String whereClause -> a
+    java.lang.String[] whereArgs -> b
+    com.t2.vas.db.AbsTable$QueryComponents factory(android.content.ContentValues) -> a
+com.t2.vas.db.DBAdapter -> com.t2.vas.a.b:
+    android.content.Context context -> a
+    android.database.sqlite.SQLiteDatabase database -> b
+    com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener createListener -> c
+    com.t2.vas.db.DBAdapter$OnDatabaseUpdatedListener onUpgradeListner -> d
+    android.content.Context getContext() -> a
+    android.database.sqlite.SQLiteDatabase getDatabase() -> b
+    com.t2.vas.db.DBAdapter open() -> c
+    boolean isOpen() -> d
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+    void setOnCreateListener(com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener) -> a
+    void setOnUpdatedListener(com.t2.vas.db.DBAdapter$OnDatabaseUpdatedListener) -> a
+com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener -> com.t2.vas.a.e:
+    void onDatabaseCreated(android.database.sqlite.SQLiteDatabase) -> a
+com.t2.vas.db.DBAdapter$OnDatabaseUpdatedListener -> com.t2.vas.a.d:
+    void onUpgrade$621a88f2(android.database.sqlite.SQLiteDatabase,int) -> a
+com.t2.vas.db.Table -> com.t2.vas.a.a:
+    long _id -> d
+    boolean delete() -> d
+    boolean load() -> f
+    boolean save() -> g
+    void empty() -> h
+    boolean update(android.content.ContentValues) -> a
+    java.lang.String getTableName() -> a
+    boolean load(android.database.Cursor) -> a
+    long insert() -> b
+    boolean update() -> c
+com.t2.vas.db.tables.Group -> com.t2.vas.a.a.c:
+    java.lang.String title -> a
+    int immutable -> b
+    boolean inverseResults -> c
+    java.lang.String getTableName() -> a
+    void onCreate$1468ea2e() -> e
+    void onUpgrade$621a88f2(android.database.sqlite.SQLiteDatabase,int) -> a
+    long insert() -> b
+    boolean load(android.database.Cursor) -> a
+    boolean update() -> c
+    boolean delete() -> d
+    android.database.Cursor getGroupsWithScalesCursor() -> l
+    android.database.Cursor getGroupsCursor() -> m
+    java.util.ArrayList getGroups() -> n
+    android.database.Cursor getScalesCursor() -> o
+    java.util.ArrayList getScales() -> p
+    int getResultsCount() -> q
+    void clearResults() -> r
+    android.database.Cursor getResults(long,long) -> a
+    long getIdByName(java.lang.String) -> b
+    long getScaleId(java.lang.String,java.lang.String) -> a
+    int getScalesCount() -> s
+    boolean resultExists(long,int) -> a
+com.t2.vas.db.tables.Note -> com.t2.vas.a.a.d:
+    long timestamp -> a
+    java.lang.String note -> b
+    java.lang.String getTableName() -> a
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> a
+    long insert() -> b
+    boolean load(android.database.Cursor) -> a
+    boolean update() -> c
+    android.database.Cursor queryForNotes(long,long,java.lang.String) -> a
+    android.database.Cursor getNotesCursor(long,long) -> a
+    int getCount() -> e
+    void clearAll() -> l
+    boolean exists(long,java.lang.String) -> a
+com.t2.vas.db.tables.Result -> com.t2.vas.a.a.b:
+    long group_id -> a
+    long scale_id -> b
+    long timestamp -> c
+    int value -> f
+    java.lang.String getTableName() -> a
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> a
+    void onUpgrade$621a88f2(android.database.sqlite.SQLiteDatabase,int) -> a
+    long insert() -> b
+    boolean load(android.database.Cursor) -> a
+    boolean update() -> c
+com.t2.vas.db.tables.Scale -> com.t2.vas.a.a.a:
+    long group_id -> a
+    java.lang.String max_label -> b
+    java.lang.String min_label -> c
+    int weight -> f
+    java.lang.String getTableName() -> a
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> a
+    long insert() -> b
+    boolean load(android.database.Cursor) -> a
+    boolean update() -> c
+    boolean delete() -> d
+    android.database.Cursor getResults(long,long) -> a
+    android.database.Cursor getUniqueScalesCursor() -> e
+com.t2.vas.importexport.DatabaseImportRowHandler -> com.t2.vas.b.c:
+    com.t2.vas.db.DBAdapter dbAdapter -> a
+    com.t2.vas.importexport.ImportFileStats fileStats -> b
+    boolean mergeGroup -> c
+    com.t2.vas.db.tables.Group currentGroup -> d
+    com.t2.vas.db.tables.Scale currentScale -> e
+    com.t2.vas.db.tables.Result currentResult -> f
+    com.t2.vas.db.tables.Note currentNote -> g
+    java.util.ArrayList importNames -> h
+    boolean importNotes -> i
+    long startTime -> j
+    long endTime -> k
+    boolean importCurrentGroupData -> l
+    void onGroupFound(java.lang.String,boolean) -> a
+    void onScaleFound(java.lang.String,java.lang.String) -> a
+    void onResultFound(long,int) -> a
+    void onNoteFound(long,java.lang.String) -> a
+com.t2.vas.importexport.GroupStat -> com.t2.vas.b.g:
+    java.lang.String title -> a
+    int resultsCount -> b
+    long minResultTimestamp -> c
+    long maxResultTimestamp -> d
+    java.util.ArrayList scales -> e
+com.t2.vas.importexport.ImportExport -> com.t2.vas.b.d:
+    java.text.SimpleDateFormat dateFormat -> a
+    com.t2.vas.importexport.StatsImportRowHandler statsImportRowHandler -> b
+    void exportGroupData$12c617f4(com.t2.vas.db.DBAdapter,java.io.File,java.util.List,long,long) -> a
+    void exportNotesData$57616a5(com.t2.vas.db.DBAdapter,java.io.File,long,long) -> a
+    void importData(java.io.File,com.t2.vas.db.DBAdapter,com.t2.vas.importexport.ImportFileStats,java.util.ArrayList,boolean,long,long) -> a
+    com.t2.vas.importexport.ImportFileStats getFileStats(java.io.File) -> a
+    boolean parseFile(java.io.File,com.t2.vas.importexport.ImportExport$ImportRowHandler) -> a
+com.t2.vas.importexport.ImportExport$ImportRowHandler -> com.t2.vas.b.f:
+    void onGroupFound(java.lang.String,boolean) -> a
+    void onScaleFound(java.lang.String,java.lang.String) -> a
+    void onResultFound(long,int) -> a
+    void onNoteFound(long,java.lang.String) -> a
+com.t2.vas.importexport.ImportFileStats -> com.t2.vas.b.e:
+    java.util.ArrayList groups -> a
+    int notesCount -> b
+    long minNoteTimestamp -> c
+    long maxNoteTimestamp -> d
+    long getMinResultTimestamp() -> a
+    long getMaxResultTimestamp() -> b
+com.t2.vas.importexport.ScaleStat -> com.t2.vas.b.a:
+    java.lang.String minLabel -> a
+    java.lang.String maxLabel -> b
+    int resultsCount -> c
+    long minResultTimestamp -> d
+    long maxResultTimestamp -> e
+com.t2.vas.importexport.StatsImportRowHandler -> com.t2.vas.b.b:
+    com.t2.vas.importexport.ImportFileStats fileStats -> a
+    com.t2.vas.importexport.GroupStat currentGroupStat -> b
+    com.t2.vas.importexport.ScaleStat currentScaleStat -> c
+    void reset() -> a
+    void onGroupFound(java.lang.String,boolean) -> a
+    void onScaleFound(java.lang.String,java.lang.String) -> a
+    void onResultFound(long,int) -> a
+    void onNoteFound(long,java.lang.String) -> a
+com.t2.vas.view.OffsetGraphicalChartView -> com.t2.vas.view.a:
+    org.achartengine.chart.AbstractChart mChart -> a
+    android.graphics.Rect mRect -> b
+    void onDraw(android.graphics.Canvas) -> onDraw
+com.t2.vas.view.SeparatedListAdapter -> com.t2.vas.view.b:
+    java.util.Map sections -> a
+    android.widget.ArrayAdapter headers -> b
+    java.util.Map enabledSection -> c
+    void addSection(java.lang.String,android.widget.Adapter,boolean) -> a
+    android.widget.Adapter getAdapterForItem(int) -> a
+    java.lang.Object getItem(int) -> getItem
+    int getCount() -> getCount
+    int getViewTypeCount() -> getViewTypeCount
+    int getItemViewType(int) -> getItemViewType
+    boolean isEnabled(int) -> isEnabled
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    long getItemId(int) -> getItemId
+com.t2.vas.view.SimpleCursorDateSectionAdapter -> com.t2.vas.view.c:
+    java.text.SimpleDateFormat dateFormatter -> a
+    java.lang.String[] sections -> b
+    java.util.HashMap sectionToCursorPosMap -> c
+    java.util.HashMap sectionToCursorPosMapRev -> d
+    java.util.ArrayList sectionTimesList -> e
+    int getPositionForSection(int) -> getPositionForSection
+    int getSectionForPosition(int) -> getSectionForPosition
+    int getPositionForTimestamp(long) -> a
+    java.lang.Object[] getSections() -> getSections
+    com.t2.vas.view.SimpleCursorDateSectionAdapter buildNotesAdapter(android.content.Context,android.database.Cursor,java.text.SimpleDateFormat,java.text.SimpleDateFormat) -> a
+com.t2.vas.view.SimpleCursorDateSectionAdapter$1 -> com.t2.vas.view.e:
+    java.text.SimpleDateFormat val$dateFormatter -> a
+    android.content.Context val$context -> b
+    boolean setViewValue(android.view.View,android.database.Cursor,int) -> setViewValue
+com.t2.vas.view.SliderWidget -> com.t2.vas.view.SliderWidget:
+    android.widget.TextView minLabel -> a
+    android.widget.TextView maxLabel -> b
+    android.widget.SeekBar slideBar -> c
+    com.t2.vas.view.SliderWidget$OnSliderWidgetChangeListener onSliderWidgetChangeListener -> d
+    void onFinishInflate() -> onFinishInflate
+    void setMinLabelText(java.lang.CharSequence) -> a
+    void setMaxLabelText(java.lang.CharSequence) -> b
+    void setProgress(int) -> a
+    void setOnSliderWidgetChangeListener(com.t2.vas.view.SliderWidget$OnSliderWidgetChangeListener) -> a
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
+com.t2.vas.view.SliderWidget$OnSliderWidgetChangeListener -> com.t2.vas.view.d:
+    void onProgressChanged$583ea110(com.t2.vas.view.SliderWidget,int) -> a
+com.t2.vas.view.ToggledButton -> com.t2.vas.view.ToggledButton:
+    boolean isChecked -> a
+    int[] initialState -> b
+    void init() -> a
+    void setChecked(boolean) -> a
+    int[] onCreateDrawableState(int) -> onCreateDrawableState
+org.achartengine.GraphicalActivity -> org.achartengine.GraphicalActivity:
+    org.achartengine.GraphicalView mView -> a
+    org.achartengine.chart.AbstractChart mChart -> b
+    void onCreate(android.os.Bundle) -> onCreate
+org.achartengine.GraphicalView -> org.achartengine.a:
+    org.achartengine.chart.AbstractChart mChart -> a
+    android.graphics.Rect mRect -> b
+    android.os.Handler mHandler -> c
+    void onDraw(android.graphics.Canvas) -> onDraw
+org.achartengine.chart.AbstractChart -> org.achartengine.a.f:
+    void draw(android.graphics.Canvas,int,int,int,int) -> a
+    void drawLegend(android.graphics.Canvas,org.achartengine.renderer.DefaultRenderer,java.lang.String[],int,int,int,int,int,int,android.graphics.Paint) -> a
+    boolean getExceed(float,org.achartengine.renderer.DefaultRenderer,int,int) -> a
+    boolean isVertical(org.achartengine.renderer.DefaultRenderer) -> a
+    void drawPath(android.graphics.Canvas,float[],android.graphics.Paint,boolean) -> a
+    int getLegendShapeWidth() -> a
+    void drawLegendShape(android.graphics.Canvas,org.achartengine.renderer.SimpleSeriesRenderer,float,float,android.graphics.Paint) -> a
+org.achartengine.chart.LineChart -> org.achartengine.a.c:
+    void drawSeries$4fa4c70f(android.graphics.Canvas,android.graphics.Paint,float[],org.achartengine.renderer.SimpleSeriesRenderer,float) -> a
+    int getLegendShapeWidth() -> a
+    void drawLegendShape(android.graphics.Canvas,org.achartengine.renderer.SimpleSeriesRenderer,float,float,android.graphics.Paint) -> a
+    boolean isRenderPoints(org.achartengine.renderer.SimpleSeriesRenderer) -> a
+org.achartengine.chart.PointStyle -> org.achartengine.a.e:
+    org.achartengine.chart.PointStyle X -> a
+    org.achartengine.chart.PointStyle CIRCLE -> b
+    org.achartengine.chart.PointStyle TRIANGLE -> c
+    org.achartengine.chart.PointStyle SQUARE -> d
+    org.achartengine.chart.PointStyle DIAMOND -> e
+    org.achartengine.chart.PointStyle POINT -> f
+    java.lang.String mName -> g
+    org.achartengine.chart.PointStyle[] $VALUES -> h
+    org.achartengine.chart.PointStyle[] values() -> values
+    org.achartengine.chart.PointStyle valueOf(java.lang.String) -> valueOf
+    java.lang.String toString() -> toString
+org.achartengine.chart.ScatterChart -> org.achartengine.a.d:
+    void drawSeries$4fa4c70f(android.graphics.Canvas,android.graphics.Paint,float[],org.achartengine.renderer.SimpleSeriesRenderer,float) -> a
+    int getLegendShapeWidth() -> a
+    void drawLegendShape(android.graphics.Canvas,org.achartengine.renderer.SimpleSeriesRenderer,float,float,android.graphics.Paint) -> a
+    void drawX(android.graphics.Canvas,android.graphics.Paint,float,float) -> a
+    void drawCircle(android.graphics.Canvas,android.graphics.Paint,float,float) -> b
+    void drawTriangle(android.graphics.Canvas,android.graphics.Paint,float[],float,float) -> a
+    void drawSquare(android.graphics.Canvas,android.graphics.Paint,float,float) -> c
+    void drawDiamond(android.graphics.Canvas,android.graphics.Paint,float[],float,float) -> b
+org.achartengine.chart.ScatterChart$1 -> org.achartengine.a.a:
+    int[] $SwitchMap$org$achartengine$chart$PointStyle -> a
+org.achartengine.chart.XYChart -> org.achartengine.a.b:
+    org.achartengine.model.XYMultipleSeriesDataset mDataset -> a
+    org.achartengine.renderer.XYMultipleSeriesRenderer mRenderer -> b
+    float mScale -> c
+    float mTranslate -> d
+    android.graphics.PointF mCenter -> e
+    int GRID_COLOR -> f
+    void draw(android.graphics.Canvas,int,int,int,int) -> a
+    void drawChartValuesText$63fe7beb(android.graphics.Canvas,org.achartengine.model.XYSeries,android.graphics.Paint,float[]) -> a
+    void drawText(android.graphics.Canvas,java.lang.String,float,float,android.graphics.Paint,int) -> a
+    void transform(android.graphics.Canvas,float,boolean) -> a
+    java.lang.String getLabel(double) -> a
+    void drawXLabels(java.util.List,java.lang.Double[],android.graphics.Canvas,android.graphics.Paint,int,int,int,double,double) -> a
+    void drawSeries$4fa4c70f(android.graphics.Canvas,android.graphics.Paint,float[],org.achartengine.renderer.SimpleSeriesRenderer,float) -> a
+    boolean isRenderPoints(org.achartengine.renderer.SimpleSeriesRenderer) -> a
+org.achartengine.model.XYMultipleSeriesDataset -> org.achartengine.c.a:
+    java.util.List mSeries -> a
+    void addSeries(org.achartengine.model.XYSeries) -> a
+    org.achartengine.model.XYSeries getSeriesAt(int) -> a
+    int getSeriesCount() -> a
+org.achartengine.model.XYSeries -> org.achartengine.c.b:
+    java.lang.String mTitle -> a
+    java.util.List mX -> b
+    java.util.List mY -> c
+    double mMinX -> d
+    double mMaxX -> e
+    double mMinY -> f
+    double mMaxY -> g
+    void initRange() -> g
+    void updateRange(double,double) -> b
+    java.lang.String getTitle() -> a
+    void add(double,double) -> a
+    double getX(int) -> a
+    double getY(int) -> b
+    int getItemCount() -> b
+    double getMinX() -> c
+    double getMinY() -> d
+    double getMaxX() -> e
+    double getMaxY() -> f
+org.achartengine.renderer.DefaultRenderer -> org.achartengine.b.d:
+    android.graphics.Typeface REGULAR_TEXT_FONT -> a
+    java.lang.String textTypefaceName -> b
+    int textTypefaceStyle -> c
+    int mBackgroundColor -> d
+    boolean mApplyBackgroundColor -> e
+    boolean mShowAxes -> f
+    int mAxesColor -> g
+    boolean mShowLabels -> h
+    int mLabelsColor -> i
+    float mLabelsTextSize -> j
+    boolean mShowLegend -> k
+    float mLegendTextSize -> l
+    boolean mShowGrid -> m
+    java.util.List mRenderers -> n
+    boolean antialiasing -> o
+    void addSeriesRenderer(org.achartengine.renderer.SimpleSeriesRenderer) -> a
+    org.achartengine.renderer.SimpleSeriesRenderer getSeriesRendererAt(int) -> a
+    int getSeriesRendererCount() -> y
+    int getBackgroundColor() -> z
+    boolean isApplyBackgroundColor() -> A
+    int getAxesColor() -> B
+    void setAxesColor$13462e() -> C
+    int getLabelsColor() -> D
+    void setLabelsColor$13462e() -> E
+    float getLabelsTextSize() -> F
+    boolean isShowAxes() -> G
+    boolean isShowLabels() -> H
+    boolean isShowGrid() -> I
+    void setShowGrid$1385ff() -> J
+    boolean isShowLegend() -> K
+    void setShowLegend$1385ff() -> L
+    java.lang.String getTextTypefaceName() -> M
+    int getTextTypefaceStyle() -> N
+    float getLegendTextSize() -> O
+    boolean isAntialiasing() -> P
+    void setAntialiasing$1385ff() -> Q
+org.achartengine.renderer.SimpleSeriesRenderer -> org.achartengine.b.c:
+    int mColor -> a
+    int getColor() -> h
+    void setColor(int) -> b
+org.achartengine.renderer.XYMultipleSeriesRenderer -> org.achartengine.b.b:
+    java.lang.String mChartTitle -> a
+    float mChartTitleTextSize -> b
+    java.lang.String mXTitle -> c
+    java.lang.String mYTitle -> d
+    float mAxisTitleTextSize -> e
+    double mMinX -> f
+    double mMaxX -> g
+    double mMinY -> h
+    double mMaxY -> i
+    int mXLabels -> j
+    int mYLabels -> k
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation mOrientation -> l
+    java.util.Map mXTextLabels -> m
+    boolean mDisplayChartValues -> n
+    float mChartValuesTextSize -> o
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation getOrientation() -> a
+    java.lang.String getChartTitle() -> b
+    float getChartTitleTextSize() -> c
+    java.lang.String getXTitle() -> d
+    java.lang.String getYTitle() -> e
+    float getAxisTitleTextSize() -> f
+    double getXAxisMin() -> g
+    void setXAxisMin$133369() -> h
+    boolean isMinXSet() -> i
+    double getXAxisMax() -> j
+    void setXAxisMax(double) -> a
+    boolean isMaxXSet() -> k
+    double getYAxisMin() -> l
+    void setYAxisMin$133369() -> m
+    boolean isMinYSet() -> n
+    double getYAxisMax() -> o
+    void setYAxisMax$133369() -> p
+    boolean isMaxYSet() -> q
+    int getXLabels() -> r
+    void setXLabels$13462e() -> s
+    java.lang.String getXTextLabel(java.lang.Double) -> a
+    java.lang.Double[] getXTextLabelLocations() -> t
+    int getYLabels() -> u
+    void setYLabels$13462e() -> v
+    boolean isDisplayChartValues() -> w
+    float getChartValuesTextSize() -> x
+org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation -> org.achartengine.b.e:
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation HORIZONTAL -> a
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation VERTICAL -> b
+    int mAngle -> c
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation[] $VALUES -> d
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation[] values() -> values
+    org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation valueOf(java.lang.String) -> valueOf
+    int getAngle() -> a
+org.achartengine.renderer.XYSeriesRenderer -> org.achartengine.b.a:
+    boolean mFillPoints -> a
+    boolean mFillBelowLine -> b
+    int mFillColor -> c
+    org.achartengine.chart.PointStyle mPointStyle -> d
+    float mLineWidth -> e
+    boolean isFillBelowLine() -> a
+    void setFillBelowLine$1385ff() -> b
+    boolean isFillPoints() -> c
+    void setFillPoints$1385ff() -> d
+    int getFillBelowLineColor() -> e
+    void setFillBelowLineColor(int) -> a
+    org.achartengine.chart.PointStyle getPointStyle() -> f
+    void setPointStyle(org.achartengine.chart.PointStyle) -> a
+    float getLineWidth() -> g
+    void setLineWidth(float) -> a
+org.achartengine.util.MathHelper -> org.achartengine.d.a:
+    double[] RADIANS -> a
+    double[] SIN -> b
+    double[] COS -> c
+    java.text.NumberFormat FORMAT -> d
+    java.util.List getLabels(double,double,int) -> a
