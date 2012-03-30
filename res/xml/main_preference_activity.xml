@@ -20,7 +20,7 @@
 			android:title="@string/security_title"
 			android:key="security" />
 	</PreferenceCategory>
-
+<!--
 	<PreferenceCategory
 		android:title="@string/settings_import_export">
 		<Preference
@@ -31,7 +31,7 @@
 			android:title="@string/export_title"
 			android:key="export" />
 	</PreferenceCategory>
-
+-->
 	<PreferenceCategory
 		android:title="@string/settings_general">
 		<CheckBoxPreference
