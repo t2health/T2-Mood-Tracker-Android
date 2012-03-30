@@ -25,9 +25,9 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
         screen.findPreference("reminders").setOnPreferenceClickListener(this);
         screen.findPreference("clear_data").setOnPreferenceClickListener(this);
         screen.findPreference("security").setOnPreferenceClickListener(this);
-    	screen.findPreference("import").setOnPreferenceClickListener(this);
-        screen.findPreference("export").setOnPreferenceClickListener(this);
-        
+    	//screen.findPreference("import").setOnPreferenceClickListener(this);
+        //screen.findPreference("export").setOnPreferenceClickListener(this);
+
         screen.findPreference("send_anon_data").setOnPreferenceChangeListener(this);
     }
 
@@ -40,37 +40,37 @@ public class MainPreferenceActivity extends ABSPreferenceNavigation implements O
 			i.putExtra(GroupListActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
-			
+
 		} else if(prefKey.equals("reminders")) {
 			Intent i = new Intent(this, ReminderActivity.class);
 			i.putExtra(ReminderActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
-			
+
 		} else if(prefKey.equals("clear_data")) {
 			Intent i = new Intent(this, ClearDataActivity.class);
 			i.putExtra(ClearDataActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
-			
+
 		} else if(prefKey.equals("security")) {
 			Intent i = new Intent(this, SecurityActivity.class);
 			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
-		
+
 		} else if(prefKey.equals("import")) {
 			Intent i = new Intent(this, ImportActivity.class);
 			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
-		
+
 		} else if(prefKey.equals("export")) {
 			Intent i = new Intent(this, ExportActivity.class);
 			i.putExtra(SecurityActivity.EXTRA_BACK_BUTTON_TEXT, getString(R.string.back_button));
 			this.startActivity(i);
 			return true;
-			
+
 		}
 
 		return false;

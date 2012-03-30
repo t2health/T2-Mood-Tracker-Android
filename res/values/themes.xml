@@ -2,18 +2,18 @@
 <resources>
 	<style name="CustomTheme" parent="@android:style/Theme.Light">
 		<item name="android:windowTitleSize">48dip</item>
-		
+
 		<item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
 		<item name="android:windowBackground">@drawable/background</item>
-		
+
 		<item name="android:listViewStyle">@style/Widget.ListView</item>
-		<item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparator</item>  
+		<item name="android:listSeparatorTextViewStyle">@style/WidgetTextViewListSeparator</item>
 	</style>
-	
+
 	<style name="CustomThemeNoTitle" parent="@style/CustomTheme">
 		<item name="android:windowNoTitle">true</item>
 	</style>
-	
+
 	<style name="CustomThemeBlank" parent="CustomThemeNoTitle">
 		<item name="android:windowBackground">@null</item>
 	</style>
