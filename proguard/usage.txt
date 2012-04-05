@@ -100,7 +100,6 @@ com.flurry.android.FlurryAgent:
     352:353:static void a(com.flurry.android.AppCircleCallback)
     357:360:public static void addUserCookie(java.lang.String,java.lang.String)
     364:367:public static void clearUserCookies()
-    427:433:public static void logEvent(java.lang.String)
     439:445:public static void logEvent(java.lang.String,java.util.Map)
     451:457:public static void logEvent(java.lang.String,boolean)
     463:469:public static void logEvent(java.lang.String,java.util.Map,boolean)
@@ -131,10 +130,13 @@ com.flurry.android.ad:
 com.flurry.android.af:
     39:41:final synchronized void a(com.flurry.android.ad)
 com.flurry.android.ah:
+    7:7:ah()
     25:26:static void a()
     32:33:static void b()
     37:38:static void a(int)
     103:105:static int d(java.lang.String,java.lang.String,java.lang.Throwable)
+com.flurry.android.i:
+    19:19:i()
 com.flurry.android.n:
     35:35:public final boolean a(java.lang.String)
     40:41:public final void a()
@@ -154,6 +156,10 @@ com.flurry.android.q:
     717:717:final boolean l()
 com.nullwire.trace.DefaultExceptionHandler:
     private static final java.lang.String TAG
+com.nullwire.trace.ExceptionHandler:
+    public ExceptionHandler()
+com.nullwire.trace.G:
+    public G()
 com.t2.vas.Analytics:
     38:38:public static boolean isEnabled()
     71:74:public static void onEvent(java.lang.String,java.lang.String,java.lang.String)
@@ -163,12 +169,13 @@ com.t2.vas.AppSecurityManager:
     private static final int UNLOCK_ACTIVITY
     74:74:public boolean getIsUnlocked()
 com.t2.vas.ArraysExtra:
+    7:7:public ArraysExtra()
     83:101:public static final java.lang.Double[] toDoubleArray(java.lang.String[])
 com.t2.vas.Eula:
     private static final java.lang.String ASSET_EULA
     private static final java.lang.String PREFERENCE_EULA_ACCEPTED
     private static final java.lang.String PREFERENCES_EULA
-com.t2.vas.FromParentTouchHandler
+    36:36:public Eula()
 com.t2.vas.Global:
     public static final boolean UNLOCK_HIDDEN_FEATURES
     public static final boolean DEV_MODE
@@ -179,7 +186,10 @@ com.t2.vas.Global:
     public static final java.lang.String SHARE_TIME_FORMAT
     public static final java.lang.String EXPORT_TIME_FORMAT
     public static final java.lang.String REMOTE_STACK_TRACE_URL
+    8:8:public Global()
 com.t2.vas.Global$Database
+com.t2.vas.MathExtra:
+    5:5:public MathExtra()
 com.t2.vas.R
 com.t2.vas.R$anim
 com.t2.vas.R$array
@@ -201,9 +211,14 @@ com.t2.vas.ReminderService:
     private static final int SHOW_NOTIFICATION
     private static final int HIDE_NOTIFICATION
     217:217:public static boolean isRunning()
+com.t2.vas.SharedPref:
+    11:11:public SharedPref()
+com.t2.vas.SharedPref$Security:
+    155:155:public SharedPref$Security()
 com.t2.vas.VASAnalytics:
     public static final java.lang.String EVENT_SETTING_ANALYTICS_ENABLED
     public static final java.lang.String EVENT_SETTING_ANALYTICS_DISABLED
+    3:3:public VASAnalytics()
 com.t2.vas.activity.ABSExportActivity:
     private static final int EXPORT_SUCCESS
     private static final int EXPORT_FAILED
@@ -211,8 +226,11 @@ com.t2.vas.activity.ABSNavigationActivity:
     public static final java.lang.String EXTRA_BACK_BUTTON_TEXT
     public static final java.lang.String EXTRA_RIGHT_BUTTON_TEXT
     40:56:protected void setBackButtonImage(int)
-    105:105:protected android.view.View getLeftButton()
+    78:94:protected void setRightButtonImage(int)
+    105:105:protected android.view.View getRightButton()
+    109:109:protected android.view.View getLeftButton()
 com.t2.vas.activity.ABSNavigationActivity$2
+com.t2.vas.activity.ABSNavigationActivity$4
 com.t2.vas.activity.ABSResultsActivity:
     public static final java.lang.String EXTRA_TIME_START
     public static final java.lang.String EXTRA_CALENDAR_FIELD
@@ -269,8 +287,8 @@ com.t2.vas.activity.preference.ABSPreferenceNavigation:
     public static final java.lang.String EXTRA_BACK_BUTTON_RESID
     public static final java.lang.String EXTRA_RIGHT_BUTTON_TEXT
     public static final java.lang.String EXTRA_RIGHT_BUTTON_RESID
-    162:162:protected android.view.View getRightButton()
-    166:166:protected android.view.View getLeftButton()
+    160:160:protected android.view.View getRightButton()
+    164:164:protected android.view.View getLeftButton()
 com.t2.vas.db.AbsTable:
     public abstract void onCreate(android.database.sqlite.SQLiteDatabase)
     public abstract void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)
@@ -316,17 +334,23 @@ com.t2.vas.importexport.ImportExport:
     private static final java.lang.String scale_row_prefix
     private static final java.lang.String result_row_prefix
     private static final java.lang.String note_row_prefix
+    22:22:public ImportExport()
 com.t2.vas.importexport.ImportGroups
 com.t2.vas.importexport.ImportNotes
 com.t2.vas.view.SeparatedListAdapter:
     public static final int TYPE_SECTION_HEADER
     99:99:public boolean areAllItemsSelectable()
 com.t2.vas.view.SliderWidget:
+    21:22:public SliderWidget(android.content.Context)
     44:44:public java.lang.CharSequence getMinLabelText()
     52:52:public java.lang.CharSequence getMaxLabelText()
     60:60:public int getProgress()
-com.t2.vas.view.VASListView
-com.t2.vas.view.VASSeekBar
+com.t2.vas.view.ToggledButton:
+    13:15:public ToggledButton(android.content.Context)
+com.t2.vas.view.VASListView:
+    25:26:public VASListView(android.content.Context)
+com.t2.vas.view.VASSeekBar:
+    14:15:public VASSeekBar(android.content.Context)
 org.achartengine.ChartFactory
 org.achartengine.GraphicalView:
     64:69:public void repaint()
@@ -384,8 +408,11 @@ org.achartengine.renderer.XYMultipleSeriesRenderer:
 org.achartengine.util.MathHelper:
     public static final int ANGLE
     public static final double NULL_VALUE
+    44:46:private MathHelper()
     66:72:public static int getAngle(int)
     81:86:public static double sum(java.util.List)
     95:106:public static double[] minmax(java.util.List)
     198:203:public static double[] getDoubles(java.lang.Object[])
     212:217:public static float[] getFloats(java.lang.Object[])
+org.t2health.security.AndroidAppCheck:
+    12:12:public AndroidAppCheck()
