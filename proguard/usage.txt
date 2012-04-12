@@ -100,6 +100,7 @@ com.flurry.android.FlurryAgent:
     352:353:static void a(com.flurry.android.AppCircleCallback)
     357:360:public static void addUserCookie(java.lang.String,java.lang.String)
     364:367:public static void clearUserCookies()
+    427:433:public static void logEvent(java.lang.String)
     439:445:public static void logEvent(java.lang.String,java.util.Map)
     451:457:public static void logEvent(java.lang.String,boolean)
     463:469:public static void logEvent(java.lang.String,java.util.Map,boolean)
@@ -414,5 +415,3 @@ org.achartengine.util.MathHelper:
     95:106:public static double[] minmax(java.util.List)
     198:203:public static double[] getDoubles(java.lang.Object[])
     212:217:public static float[] getFloats(java.lang.Object[])
-org.t2health.security.AndroidAppCheck:
-    12:12:public AndroidAppCheck()

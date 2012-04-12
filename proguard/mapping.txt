@@ -114,14 +114,13 @@ com.flurry.android.FlurryAgent -> com.flurry.android.e:
     void onStartSession(android.content.Context,java.lang.String) -> a
     void onEndSession(android.content.Context) -> a
     void onPageView() -> a
-    void logEvent(java.lang.String) -> a
-    void onEvent(java.lang.String) -> b
+    void onEvent(java.lang.String) -> a
     com.flurry.android.q b() -> b
     void b(android.content.Context,java.lang.String) -> b
     void a(android.content.Context,boolean) -> a
     void a(java.lang.Runnable) -> a
     void h() -> f
-    void a$42701bee(java.lang.String) -> c
+    void a$42701bee(java.lang.String) -> b
     void a(java.lang.String,java.lang.String,java.lang.String) -> a
     byte[] b(boolean) -> a
     boolean a(byte[]) -> a
@@ -1682,13 +1681,3 @@ org.achartengine.util.MathHelper -> org.achartengine.d.a:
     double[] COS -> c
     java.text.NumberFormat FORMAT -> d
     java.util.List getLabels(double,double,int) -> a
-org.t2health.security.AndroidAppCheck -> org.a.a.a:
-    boolean a(java.lang.String,java.lang.String) -> a
-    boolean oo(org.t2health.security.AndroidAppCheck$foo) -> a
-    boolean x() -> a
-org.t2health.security.AndroidAppCheck$foo -> org.a.a.b:
-    org.t2health.security.AndroidAppCheck$foo sea -> a
-    java.lang.String[] command -> b
-    org.t2health.security.AndroidAppCheck$foo[] ENUM$VALUES -> c
-    org.t2health.security.AndroidAppCheck$foo[] values() -> values
-    org.t2health.security.AndroidAppCheck$foo valueOf(java.lang.String) -> valueOf

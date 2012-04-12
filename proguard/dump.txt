@@ -2747,7 +2747,7 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [android/location/LocationListener]
 
-Constant Pool (count = 1043):
+Constant Pool (count = 1041):
   + Integer [46586]
   + Integer [50000]
   + String []
@@ -2768,7 +2768,6 @@ Constant Pool (count = 1043):
   + String [Continuing previous session]
   + String [Done sending ]
   + String [Ending session]
-  + String [Failed to log event: ]
   + String [FlurryAgent]
   + String [ID]
   + String [Initializing AppCircle]
@@ -3022,9 +3021,9 @@ Constant Pool (count = 1043):
   + Methodref [com/flurry/android/e.b (Landroid/content/Context;)Ljava/lang/String;]
   + Methodref [com/flurry/android/e.b (Landroid/content/Context;Ljava/lang/String;)V]
   + Methodref [com/flurry/android/e.b (Ljava/io/DataInputStream;)V]
+  + Methodref [com/flurry/android/e.b (Ljava/lang/String;)V]
   + Methodref [com/flurry/android/e.b (Z)V]
   + Methodref [com/flurry/android/e.c (Landroid/content/Context;)Landroid/location/Location;]
-  + Methodref [com/flurry/android/e.c (Ljava/lang/String;)V]
   + Methodref [com/flurry/android/e.f ()V]
   + Methodref [com/flurry/android/e.g ()V]
   + Methodref [com/flurry/android/e.h ()V]
@@ -3228,13 +3227,13 @@ Constant Pool (count = 1043):
   + NameAndType [b (Landroid/content/Context;)Ljava/lang/String;]
   + NameAndType [b (Landroid/content/Context;Ljava/lang/String;)V]
   + NameAndType [b (Ljava/io/DataInputStream;)V]
+  + NameAndType [b (Ljava/lang/String;)V]
   + NameAndType [b (Ljava/lang/String;Ljava/lang/String;)I]
   + NameAndType [b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
   + NameAndType [b (Z)V]
   + NameAndType [b Ljava/lang/String;]
   + NameAndType [c ()J]
   + NameAndType [c (Landroid/content/Context;)Landroid/location/Location;]
-  + NameAndType [c (Ljava/lang/String;)V]
   + NameAndType [c I]
   + NameAndType [c J]
   + NameAndType [c Ljava/lang/String;]
@@ -3502,7 +3501,6 @@ Constant Pool (count = 1043):
   + Utf8 [E]
   + Utf8 [Ending session]
   + Utf8 [F]
-  + Utf8 [Failed to log event: ]
   + Utf8 [FlurryAgent]
   + Utf8 [G]
   + Utf8 [H]
@@ -3940,20 +3938,20 @@ Fields (count = 50):
     Access flags: 0xa
       = private static java.lang.String X
 
-Methods (count = 41):
+Methods (count = 40):
   + Method:       a(Ljava/lang/Throwable;)V
     Access flags: 0x10
       = final void a(java.lang.Throwable)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 171, locals = 4, stack = 4):
       [0] aload_1 v1
-      [1] invokevirtual #366
+      [1] invokevirtual #365
         + Methodref [java/lang/Throwable.printStackTrace ()V]
       [4] ldc #3
         + String []
       [6] astore_2 v2
       [7] aload_1 v1
-      [8] invokevirtual #365
+      [8] invokevirtual #364
         + Methodref [java/lang/Throwable.getStackTrace ()[Ljava/lang/StackTraceElement;]
       [11] dup
       [12] astore_3 v3
@@ -3965,111 +3963,111 @@ Methods (count = 41):
       [22] iconst_0
       [23] aaload
       [24] astore_3 v3
-      [25] new #125
+      [25] new #124
         + Class [java/lang/StringBuilder]
       [28] dup
-      [29] invokespecial #354
+      [29] invokespecial #353
         + Methodref [java/lang/StringBuilder.<init> ()V]
       [32] dup
       [33] astore_2 v2
       [34] aload_3 v3
-      [35] invokevirtual #348
+      [35] invokevirtual #347
         + Methodref [java/lang/StackTraceElement.getClassName ()Ljava/lang/String;]
-      [38] invokevirtual #359
+      [38] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [41] ldc #9
         + String [.]
-      [43] invokevirtual #359
+      [43] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [46] aload_3 v3
-      [47] invokevirtual #350
+      [47] invokevirtual #349
         + Methodref [java/lang/StackTraceElement.getMethodName ()Ljava/lang/String;]
-      [50] invokevirtual #359
+      [50] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [53] ldc #12
         + String [:]
-      [55] invokevirtual #359
+      [55] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [58] aload_3 v3
-      [59] invokevirtual #349
+      [59] invokevirtual #348
         + Methodref [java/lang/StackTraceElement.getLineNumber ()I]
-      [62] invokevirtual #356
+      [62] invokevirtual #355
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
       [65] pop
       [66] aload_1 v1
-      [67] invokevirtual #364
+      [67] invokevirtual #363
         + Methodref [java/lang/Throwable.getMessage ()Ljava/lang/String;]
       [70] ifnull +32 (target=102)
       [73] aload_2 v2
-      [74] new #125
+      [74] new #124
         + Class [java/lang/StringBuilder]
       [77] dup
       [78] ldc #4
         + String [ (]
-      [80] invokespecial #355
+      [80] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [83] aload_1 v1
-      [84] invokevirtual #364
+      [84] invokevirtual #363
         + Methodref [java/lang/Throwable.getMessage ()Ljava/lang/String;]
-      [87] invokevirtual #359
+      [87] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [90] ldc #7
         + String [)]
-      [92] invokevirtual #359
+      [92] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [95] invokevirtual #360
+      [95] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [98] invokevirtual #359
+      [98] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [101] pop
       [102] aload_2 v2
-      [103] invokevirtual #360
+      [103] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [106] astore_2 v2
       [107] goto +15 (target=122)
       [110] aload_1 v1
-      [111] invokevirtual #364
+      [111] invokevirtual #363
         + Methodref [java/lang/Throwable.getMessage ()Ljava/lang/String;]
       [114] ifnull +8 (target=122)
       [117] aload_1 v1
-      [118] invokevirtual #364
+      [118] invokevirtual #363
         + Methodref [java/lang/Throwable.getMessage ()Ljava/lang/String;]
       [121] astore_2 v2
       [122] aload_1 v1
-      [123] invokevirtual #346
+      [123] invokevirtual #345
         + Methodref [java/lang/Object.getClass ()Ljava/lang/Class;]
-      [126] invokevirtual #334
+      [126] invokevirtual #333
         + Methodref [java/lang/Class.toString ()Ljava/lang/String;]
       [129] astore_3 v3
-      [130] ldc #68
+      [130] ldc #67
         + String [uncaught]
       [132] astore_1 v1
-      [133] getstatic #198
+      [133] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
       [136] aload_1 v1
       [137] aload_2 v2
       [138] aload_3 v3
-      [139] invokespecial #271
+      [139] invokespecial #270
         + Methodref [com/flurry/android/e.a (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V]
       [142] goto +13 (target=155)
       [145] astore_1 v1
-      [146] ldc #22
+      [146] ldc #21
         + String [FlurryAgent]
       [148] ldc #3
         + String []
       [150] aload_1 v1
-      [151] invokestatic #290
+      [151] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [154] pop
       [155] aload_0 v0
-      [156] getfield #211
+      [156] getfield #210
         + Fieldref [com/flurry/android/e.u Ljava/util/Map;]
-      [159] invokeinterface #390
+      [159] invokeinterface #389
         + InterfaceMethodref [java/util/Map.clear ()V]
       [164] aload_0 v0
       [165] aconst_null
       [166] iconst_1
-      [167] invokespecial #268
+      [167] invokespecial #267
         + Methodref [com/flurry/android/e.a (Landroid/content/Context;Z)V]
       [170] return
       Code attribute exceptions (count = 1):
@@ -4086,79 +4084,79 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 98, locals = 2, stack = 4):
       [0] aload_0 v0
-      [1] invokespecial #345
+      [1] invokespecial #344
         + Methodref [java/lang/Object.<init> ()V]
       [4] aload_0 v0
       [5] aconst_null
-      [6] putfield #207
+      [6] putfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
       [9] aload_0 v0
       [10] iconst_0
-      [11] putfield #208
+      [11] putfield #207
         + Fieldref [com/flurry/android/e.r Z]
       [14] aload_0 v0
       [15] iconst_0
-      [16] putfield #209
+      [16] putfield #208
         + Fieldref [com/flurry/android/e.s Z]
       [19] aload_0 v0
-      [20] new #139
+      [20] new #138
         + Class [java/util/WeakHashMap]
       [23] dup
-      [24] invokespecial #376
+      [24] invokespecial #375
         + Methodref [java/util/WeakHashMap.<init> ()V]
-      [27] putfield #211
+      [27] putfield #210
         + Fieldref [com/flurry/android/e.u Ljava/util/Map;]
       [30] aload_0 v0
       [31] iconst_1
-      [32] putfield #215
+      [32] putfield #214
         + Fieldref [com/flurry/android/e.y Z]
       [35] aload_0 v0
-      [36] new #129
+      [36] new #128
         + Class [java/util/ArrayList]
       [39] dup
-      [40] invokespecial #367
+      [40] invokespecial #366
         + Methodref [java/util/ArrayList.<init> ()V]
-      [43] putfield #171
+      [43] putfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [46] aload_0 v0
       [47] ldc #3
         + String []
-      [49] putfield #175
+      [49] putfield #174
         + Fieldref [com/flurry/android/e.I Ljava/lang/String;]
       [52] aload_0 v0
       [53] ldc #3
         + String []
-      [55] putfield #176
+      [55] putfield #175
         + Fieldref [com/flurry/android/e.J Ljava/lang/String;]
       [58] aload_0 v0
       [59] iconst_m1
-      [60] putfield #177
+      [60] putfield #176
         + Fieldref [com/flurry/android/e.K B]
       [63] aload_0 v0
       [64] iconst_m1
-      [65] putfield #179
+      [65] putfield #178
         + Fieldref [com/flurry/android/e.M B]
-      [68] new #82
+      [68] new #81
         + Class [android/os/HandlerThread]
       [71] dup
-      [72] ldc #22
+      [72] ldc #21
         + String [FlurryAgent]
-      [74] invokespecial #247
+      [74] invokespecial #246
         + Methodref [android/os/HandlerThread.<init> (Ljava/lang/String;)V]
       [77] dup
       [78] astore_1 v1
-      [79] invokevirtual #249
+      [79] invokevirtual #248
         + Methodref [android/os/HandlerThread.start ()V]
       [82] aload_0 v0
-      [83] new #81
+      [83] new #80
         + Class [android/os/Handler]
       [86] dup
       [87] aload_1 v1
-      [88] invokevirtual #248
+      [88] invokevirtual #247
         + Methodref [android/os/HandlerThread.getLooper ()Landroid/os/Looper;]
-      [91] invokespecial #245
+      [91] invokespecial #244
         + Methodref [android/os/Handler.<init> (Landroid/os/Looper;)V]
-      [94] putfield #206
+      [94] putfield #205
         + Fieldref [com/flurry/android/e.p Landroid/os/Handler;]
       [97] return
       Code attribute exceptions (count = 0):
@@ -4170,42 +4168,42 @@ Methods (count = 41):
     + Code attribute instructions (code length = 55, locals = 2, stack = 3):
       [0] aload_0 v0
       [1] ifnonnull +13 (target=14)
-      [4] new #120
+      [4] new #119
         + Class [java/lang/NullPointerException]
       [7] dup
-      [8] ldc #29
+      [8] ldc #28
         + String [Null context]
-      [10] invokespecial #344
+      [10] invokespecial #343
         + Methodref [java/lang/NullPointerException.<init> (Ljava/lang/String;)V]
       [13] athrow
       [14] aload_1 v1
       [15] ifnull +10 (target=25)
       [18] aload_1 v1
-      [19] invokevirtual #353
+      [19] invokevirtual #352
         + Methodref [java/lang/String.length ()I]
       [22] ifne +13 (target=35)
-      [25] new #116
+      [25] new #115
         + Class [java/lang/IllegalArgumentException]
       [28] dup
       [29] ldc #14
         + String [Api key not specified]
-      [31] invokespecial #337
+      [31] invokespecial #336
         + Methodref [java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V]
       [34] athrow
-      [35] getstatic #198
+      [35] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
       [38] aload_0 v0
       [39] aload_1 v1
-      [40] invokespecial #276
+      [40] invokespecial #275
         + Methodref [com/flurry/android/e.b (Landroid/content/Context;Ljava/lang/String;)V]
       [43] return
       [44] astore_0 v0
-      [45] ldc #22
+      [45] ldc #21
         + String [FlurryAgent]
       [47] ldc #3
         + String []
       [49] aload_0 v0
-      [50] invokestatic #290
+      [50] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [53] pop
       [54] return
@@ -4225,28 +4223,28 @@ Methods (count = 41):
     + Code attribute instructions (code length = 34, locals = 1, stack = 3):
       [0] aload_0 v0
       [1] ifnonnull +13 (target=14)
-      [4] new #120
+      [4] new #119
         + Class [java/lang/NullPointerException]
       [7] dup
-      [8] ldc #29
+      [8] ldc #28
         + String [Null context]
-      [10] invokespecial #344
+      [10] invokespecial #343
         + Methodref [java/lang/NullPointerException.<init> (Ljava/lang/String;)V]
       [13] athrow
-      [14] getstatic #198
+      [14] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
       [17] aload_0 v0
       [18] iconst_0
-      [19] invokespecial #268
+      [19] invokespecial #267
         + Methodref [com/flurry/android/e.a (Landroid/content/Context;Z)V]
       [22] return
       [23] astore_0 v0
-      [24] ldc #22
+      [24] ldc #21
         + String [FlurryAgent]
       [26] ldc #3
         + String []
       [28] aload_0 v0
-      [29] invokestatic #290
+      [29] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [32] pop
       [33] return
@@ -4262,18 +4260,18 @@ Methods (count = 41):
       = public static void a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 18, locals = 1, stack = 3):
-      [0] getstatic #198
+      [0] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
-      [3] invokespecial #281
+      [3] invokespecial #280
         + Methodref [com/flurry/android/e.f ()V]
       [6] return
       [7] astore_0 v0
-      [8] ldc #22
+      [8] ldc #21
         + String [FlurryAgent]
       [10] ldc #3
         + String []
       [12] aload_0 v0
-      [13] invokestatic #290
+      [13] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [16] pop
       [17] return
@@ -4287,57 +4285,20 @@ Methods (count = 41):
     Access flags: 0x9
       = public static void a(java.lang.String)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 33, locals = 2, stack = 4):
-      [0] getstatic #198
-        + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
-      [3] aload_0 v0
-      [4] invokespecial #280
-        + Methodref [com/flurry/android/e.c (Ljava/lang/String;)V]
-      [7] return
-      [8] astore_1 v1
-      [9] ldc #22
-        + String [FlurryAgent]
-      [11] new #125
-        + Class [java/lang/StringBuilder]
-      [14] dup
-      [15] ldc #21
-        + String [Failed to log event: ]
-      [17] invokespecial #355
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [20] aload_0 v0
-      [21] invokevirtual #359
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [24] invokevirtual #360
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [27] aload_1 v1
-      [28] invokestatic #290
-        + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
-      [31] pop
-      [32] return
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (0 -> 7: 8):
-      + Class [java/lang/Throwable]
-      Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 1):
-        - [8] Var: ..., Stack: [a:java/lang/Throwable]
-  + Method:       b(Ljava/lang/String;)V
-    Access flags: 0x9
-      = public static void b(java.lang.String)
-    Class member attributes (count = 1):
     + Code attribute instructions (code length = 19, locals = 1, stack = 3):
-      [0] getstatic #198
+      [0] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
       [3] aload_0 v0
-      [4] invokespecial #280
-        + Methodref [com/flurry/android/e.c (Ljava/lang/String;)V]
+      [4] invokespecial #277
+        + Methodref [com/flurry/android/e.b (Ljava/lang/String;)V]
       [7] return
       [8] astore_0 v0
-      [9] ldc #22
+      [9] ldc #21
         + String [FlurryAgent]
       [11] ldc #3
         + String []
       [13] aload_0 v0
-      [14] invokestatic #290
+      [14] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [17] pop
       [18] return
@@ -4352,9 +4313,9 @@ Methods (count = 41):
       = static com.flurry.android.ag b()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 7, locals = 0, stack = 1):
-      [0] getstatic #198
+      [0] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
-      [3] getfield #189
+      [3] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
       [6] areturn
       Code attribute exceptions (count = 0):
@@ -4364,195 +4325,195 @@ Methods (count = 41):
       = private synchronized void b(android.content.Context,java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 716, locals = 9, stack = 9):
-      [0] ldc #22
+      [0] ldc #21
         + String [FlurryAgent]
-      [2] ldc #67
+      [2] ldc #66
         + String [startSession called]
-      [4] invokestatic #287
+      [4] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [7] pop
       [8] aload_0 v0
-      [9] getfield #212
+      [9] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
       [12] ifnull +48 (target=60)
       [15] aload_0 v0
-      [16] getfield #212
+      [16] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
       [19] aload_2 v2
-      [20] invokevirtual #351
+      [20] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [23] ifne +37 (target=60)
-      [26] ldc #22
+      [26] ldc #21
         + String [FlurryAgent]
-      [28] new #125
+      [28] new #124
         + Class [java/lang/StringBuilder]
       [31] dup
-      [32] ldc #65
+      [32] ldc #64
         + String [onStartSession called with different api keys: ]
-      [34] invokespecial #355
+      [34] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [37] aload_0 v0
-      [38] getfield #212
+      [38] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [41] invokevirtual #359
+      [41] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [44] ldc #6
         + String [ and ]
-      [46] invokevirtual #359
+      [46] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [49] aload_2 v2
-      [50] invokevirtual #359
+      [50] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [53] invokevirtual #360
+      [53] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [56] invokestatic #289
+      [56] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [59] pop
       [60] aload_0 v0
-      [61] getfield #211
+      [61] getfield #210
         + Fieldref [com/flurry/android/e.u Ljava/util/Map;]
       [64] aload_1 v1
       [65] aload_1 v1
-      [66] invokeinterface #394
+      [66] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
-      [71] checkcast #72
+      [71] checkcast #71
         + Class [android/content/Context]
       [74] ifnull +11 (target=85)
-      [77] ldc #22
+      [77] ldc #21
         + String [FlurryAgent]
-      [79] ldc #66
+      [79] ldc #65
         + String [onStartSession called with duplicate context, use a specific Activity or Service as context instead of using a global context]
-      [81] invokestatic #291
+      [81] invokestatic #290
         + Methodref [com/flurry/android/n.d (Ljava/lang/String;Ljava/lang/String;)I]
       [84] pop
       [85] aload_0 v0
-      [86] getfield #208
+      [86] getfield #207
         + Fieldref [com/flurry/android/e.r Z]
       [89] ifne +626 (target=715)
-      [92] ldc #22
+      [92] ldc #21
         + String [FlurryAgent]
-      [94] ldc #25
+      [94] ldc #24
         + String [Initializing Flurry session]
-      [96] invokestatic #287
+      [96] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [99] pop
       [100] aload_0 v0
       [101] aload_2 v2
-      [102] putfield #212
+      [102] putfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
       [105] aload_0 v0
       [106] aload_1 v1
       [107] aload_0 v0
       [108] astore_3 v3
-      [109] new #125
+      [109] new #124
         + Class [java/lang/StringBuilder]
       [112] dup
       [113] ldc #10
         + String [.flurryagent.]
-      [115] invokespecial #355
+      [115] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [118] aload_3 v3
-      [119] getfield #212
+      [119] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [122] invokevirtual #352
+      [122] invokevirtual #351
         + Methodref [java/lang/String.hashCode ()I]
       [125] bipush 16
-      [127] invokestatic #339
+      [127] invokestatic #338
         + Methodref [java/lang/Integer.toString (II)Ljava/lang/String;]
-      [130] invokevirtual #359
+      [130] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [133] invokevirtual #360
+      [133] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [136] invokevirtual #232
+      [136] invokevirtual #231
         + Methodref [android/content/Context.getFileStreamPath (Ljava/lang/String;)Ljava/io/File;]
-      [139] putfield #207
+      [139] putfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
-      [142] getstatic #202
+      [142] getstatic #201
         + Fieldref [com/flurry/android/e.l Z]
       [145] ifeq +13 (target=158)
-      [148] new #103
+      [148] new #102
         + Class [com/flurry/android/w]
       [151] dup
-      [152] invokespecial #299
+      [152] invokespecial #298
         + Methodref [com/flurry/android/w.<init> ()V]
-      [155] invokestatic #363
+      [155] invokestatic #362
         + Methodref [java/lang/Thread.setDefaultUncaughtExceptionHandler (Ljava/lang/Thread$UncaughtExceptionHandler;)V]
       [158] aload_1 v1
-      [159] invokevirtual #230
+      [159] invokevirtual #229
         + Methodref [android/content/Context.getApplicationContext ()Landroid/content/Context;]
       [162] astore_2 v2
       [163] aload_0 v0
-      [164] getfield #214
+      [164] getfield #213
         + Fieldref [com/flurry/android/e.x Ljava/lang/String;]
       [167] ifnonnull +11 (target=178)
       [170] aload_0 v0
       [171] aload_2 v2
-      [172] invokestatic #275
+      [172] invokestatic #274
         + Methodref [com/flurry/android/e.b (Landroid/content/Context;)Ljava/lang/String;]
-      [175] putfield #214
+      [175] putfield #213
         + Fieldref [com/flurry/android/e.x Ljava/lang/String;]
       [178] aload_2 v2
-      [179] invokevirtual #234
+      [179] invokevirtual #233
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
       [182] astore_3 v3
       [183] aload_0 v0
-      [184] getfield #213
+      [184] getfield #212
         + Fieldref [com/flurry/android/e.w Ljava/lang/String;]
       [187] ifnull +48 (target=235)
       [190] aload_0 v0
-      [191] getfield #213
+      [191] getfield #212
         + Fieldref [com/flurry/android/e.w Ljava/lang/String;]
       [194] aload_3 v3
-      [195] invokevirtual #351
+      [195] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [198] ifne +37 (target=235)
-      [201] ldc #22
+      [201] ldc #21
         + String [FlurryAgent]
-      [203] new #125
+      [203] new #124
         + Class [java/lang/StringBuilder]
       [206] dup
-      [207] ldc #64
+      [207] ldc #63
         + String [onStartSession called from different application packages: ]
-      [209] invokespecial #355
+      [209] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [212] aload_0 v0
-      [213] getfield #213
+      [213] getfield #212
         + Fieldref [com/flurry/android/e.w Ljava/lang/String;]
-      [216] invokevirtual #359
+      [216] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [219] ldc #6
         + String [ and ]
-      [221] invokevirtual #359
+      [221] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [224] aload_3 v3
-      [225] invokevirtual #359
+      [225] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [228] invokevirtual #360
+      [228] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [231] invokestatic #289
+      [231] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [234] pop
       [235] aload_0 v0
       [236] aload_3 v3
-      [237] putfield #213
+      [237] putfield #212
         + Fieldref [com/flurry/android/e.w Ljava/lang/String;]
-      [240] invokestatic #251
+      [240] invokestatic #250
         + Methodref [android/os/SystemClock.elapsedRealtime ()J]
       [243] dup2
       [244] lstore v5
       [246] aload_0 v0
-      [247] getfield #210
+      [247] getfield #209
         + Fieldref [com/flurry/android/e.t J]
       [250] lsub
-      [251] getstatic #199
+      [251] getstatic #198
         + Fieldref [com/flurry/android/e.i J]
       [254] lcmp
       [255] ifle +435 (target=690)
-      [258] ldc #22
+      [258] ldc #21
         + String [FlurryAgent]
-      [260] ldc #36
+      [260] ldc #35
         + String [Starting new session]
-      [262] invokestatic #287
+      [262] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [265] pop
       [266] aload_0 v0
@@ -4561,57 +4522,57 @@ Methods (count = 41):
       [269] astore v4
       [271] astore_3 v3
       [272] aload v4
-      [274] invokevirtual #231
+      [274] invokevirtual #230
         + Methodref [android/content/Context.getContentResolver ()Landroid/content/ContentResolver;]
-      [277] ldc #45
+      [277] ldc #44
         + String [android_id]
-      [279] invokestatic #252
+      [279] invokestatic #251
         + Methodref [android/provider/Settings$System.getString (Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;]
       [282] dup
       [283] astore v4
       [285] ifnull +51 (target=336)
       [288] aload v4
-      [290] invokevirtual #353
+      [290] invokevirtual #352
         + Methodref [java/lang/String.length ()I]
       [293] ifle +43 (target=336)
       [296] aload v4
-      [298] ldc #59
+      [298] ldc #58
         + String [null]
-      [300] invokevirtual #351
+      [300] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [303] ifne +33 (target=336)
       [306] aload v4
       [308] ldc #11
         + String [9774d56d682e549c]
-      [310] invokevirtual #351
+      [310] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [313] ifne +23 (target=336)
-      [316] new #125
+      [316] new #124
         + Class [java/lang/StringBuilder]
       [319] dup
       [320] ldc #13
         + String [AND]
-      [322] invokespecial #355
+      [322] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [325] aload v4
-      [327] invokevirtual #359
+      [327] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [330] invokevirtual #360
+      [330] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [333] goto +53 (target=386)
-      [336] invokestatic #343
+      [336] invokestatic #342
         + Methodref [java/lang/Math.random ()D]
-      [339] invokestatic #335
+      [339] invokestatic #334
         + Methodref [java/lang/Double.doubleToLongBits (D)J]
-      [342] ldc2_w #149
+      [342] ldc2_w #148
         + Long [37]
-      [345] invokestatic #362
+      [345] invokestatic #361
         + Methodref [java/lang/System.nanoTime ()J]
       [348] bipush 37
       [350] aload_3 v3
-      [351] getfield #212
+      [351] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [354] invokevirtual #352
+      [354] invokevirtual #351
         + Methodref [java/lang/String.hashCode ()I]
       [357] imul
       [358] i2l
@@ -4619,256 +4580,256 @@ Methods (count = 41):
       [360] lmul
       [361] ladd
       [362] lstore v7
-      [364] new #125
+      [364] new #124
         + Class [java/lang/StringBuilder]
       [367] dup
-      [368] ldc #23
+      [368] ldc #22
         + String [ID]
-      [370] invokespecial #355
+      [370] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [373] lload v7
       [375] bipush 16
-      [377] invokestatic #341
+      [377] invokestatic #340
         + Methodref [java/lang/Long.toString (JI)Ljava/lang/String;]
-      [380] invokevirtual #359
+      [380] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [383] invokevirtual #360
+      [383] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [386] putfield #168
+      [386] putfield #167
         + Fieldref [com/flurry/android/e.B Ljava/lang/String;]
       [389] aload_0 v0
-      [390] invokestatic #361
+      [390] invokestatic #360
         + Methodref [java/lang/System.currentTimeMillis ()J]
-      [393] putfield #172
+      [393] putfield #171
         + Fieldref [com/flurry/android/e.F J]
       [396] aload_0 v0
       [397] lload v5
-      [399] putfield #173
+      [399] putfield #172
         + Fieldref [com/flurry/android/e.G J]
       [402] aload_0 v0
-      [403] ldc2_w #147
+      [403] ldc2_w #146
         + Long [-1]
-      [406] putfield #174
+      [406] putfield #173
         + Fieldref [com/flurry/android/e.H J]
       [409] aload_0 v0
       [410] ldc #3
         + String []
-      [412] putfield #178
+      [412] putfield #177
         + Fieldref [com/flurry/android/e.L Ljava/lang/String;]
       [415] aload_0 v0
       [416] iconst_0
-      [417] putfield #181
+      [417] putfield #180
         + Fieldref [com/flurry/android/e.O I]
       [420] aload_0 v0
       [421] aconst_null
-      [422] putfield #182
+      [422] putfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
       [425] aload_0 v0
-      [426] invokestatic #374
+      [426] invokestatic #373
         + Methodref [java/util/TimeZone.getDefault ()Ljava/util/TimeZone;]
-      [429] invokevirtual #375
+      [429] invokevirtual #374
         + Methodref [java/util/TimeZone.getID ()Ljava/lang/String;]
-      [432] putfield #176
+      [432] putfield #175
         + Fieldref [com/flurry/android/e.J Ljava/lang/String;]
       [435] aload_0 v0
-      [436] new #125
+      [436] new #124
         + Class [java/lang/StringBuilder]
       [439] dup
-      [440] invokespecial #354
+      [440] invokespecial #353
         + Methodref [java/lang/StringBuilder.<init> ()V]
-      [443] invokestatic #372
+      [443] invokestatic #371
         + Methodref [java/util/Locale.getDefault ()Ljava/util/Locale;]
-      [446] invokevirtual #373
+      [446] invokevirtual #372
         + Methodref [java/util/Locale.getLanguage ()Ljava/lang/String;]
-      [449] invokevirtual #359
+      [449] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [452] ldc #41
+      [452] ldc #40
         + String [_]
-      [454] invokevirtual #359
+      [454] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [457] invokestatic #372
+      [457] invokestatic #371
         + Methodref [java/util/Locale.getDefault ()Ljava/util/Locale;]
-      [460] invokevirtual #371
+      [460] invokevirtual #370
         + Methodref [java/util/Locale.getCountry ()Ljava/lang/String;]
-      [463] invokevirtual #359
+      [463] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [466] invokevirtual #360
+      [466] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [469] putfield #175
+      [469] putfield #174
         + Fieldref [com/flurry/android/e.I Ljava/lang/String;]
       [472] aload_0 v0
-      [473] new #131
+      [473] new #130
         + Class [java/util/HashMap]
       [476] dup
-      [477] invokespecial #370
+      [477] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
-      [480] putfield #183
+      [480] putfield #182
         + Fieldref [com/flurry/android/e.Q Ljava/util/Map;]
       [483] aload_0 v0
-      [484] new #129
+      [484] new #128
         + Class [java/util/ArrayList]
       [487] dup
-      [488] invokespecial #367
+      [488] invokespecial #366
         + Methodref [java/util/ArrayList.<init> ()V]
-      [491] putfield #184
+      [491] putfield #183
         + Fieldref [com/flurry/android/e.R Ljava/util/List;]
       [494] aload_0 v0
       [495] iconst_1
-      [496] putfield #185
+      [496] putfield #184
         + Fieldref [com/flurry/android/e.S Z]
       [499] aload_0 v0
-      [500] new #129
+      [500] new #128
         + Class [java/util/ArrayList]
       [503] dup
-      [504] invokespecial #367
+      [504] invokespecial #366
         + Methodref [java/util/ArrayList.<init> ()V]
-      [507] putfield #187
+      [507] putfield #186
         + Fieldref [com/flurry/android/e.U Ljava/util/List;]
       [510] aload_0 v0
       [511] iconst_0
-      [512] putfield #186
+      [512] putfield #185
         + Fieldref [com/flurry/android/e.T I]
       [515] aload_0 v0
       [516] iconst_0
-      [517] putfield #188
+      [517] putfield #187
         + Fieldref [com/flurry/android/e.V I]
-      [520] getstatic #204
+      [520] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [523] ifeq +145 (target=668)
       [526] aload_0 v0
-      [527] getfield #189
+      [527] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
       [530] ifnonnull +138 (target=668)
-      [533] ldc #22
+      [533] ldc #21
         + String [FlurryAgent]
-      [535] ldc #24
+      [535] ldc #23
         + String [Initializing AppCircle]
-      [537] invokestatic #287
+      [537] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [540] pop
-      [541] new #94
+      [541] new #93
         + Class [com/flurry/android/f]
       [544] dup
-      [545] invokespecial #284
+      [545] invokespecial #283
         + Methodref [com/flurry/android/f.<init> ()V]
       [548] dup
       [549] astore_3 v3
       [550] aload_0 v0
-      [551] getfield #212
+      [551] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [554] putfield #217
+      [554] putfield #216
         + Fieldref [com/flurry/android/f.a Ljava/lang/String;]
       [557] aload_3 v3
       [558] aload_0 v0
-      [559] getfield #168
+      [559] getfield #167
         + Fieldref [com/flurry/android/e.B Ljava/lang/String;]
-      [562] putfield #218
+      [562] putfield #217
         + Fieldref [com/flurry/android/f.b Ljava/lang/String;]
       [565] aload_3 v3
       [566] aload_0 v0
-      [567] getfield #170
+      [567] getfield #169
         + Fieldref [com/flurry/android/e.D J]
-      [570] putfield #219
+      [570] putfield #218
         + Fieldref [com/flurry/android/f.c J]
       [573] aload_3 v3
       [574] aload_0 v0
-      [575] getfield #172
+      [575] getfield #171
         + Fieldref [com/flurry/android/e.F J]
-      [578] putfield #220
+      [578] putfield #219
         + Fieldref [com/flurry/android/f.d J]
       [581] aload_3 v3
       [582] aload_0 v0
-      [583] getfield #173
+      [583] getfield #172
         + Fieldref [com/flurry/android/e.G J]
-      [586] putfield #221
+      [586] putfield #220
         + Fieldref [com/flurry/android/f.e J]
       [589] aload_3 v3
-      [590] getstatic #194
+      [590] getstatic #193
         + Fieldref [com/flurry/android/e.d Ljava/lang/String;]
       [593] ifnull +9 (target=602)
-      [596] getstatic #194
+      [596] getstatic #193
         + Fieldref [com/flurry/android/e.d Ljava/lang/String;]
       [599] goto +6 (target=605)
-      [602] getstatic #195
+      [602] getstatic #194
         + Fieldref [com/flurry/android/e.e Ljava/lang/String;]
-      [605] putfield #222
+      [605] putfield #221
         + Fieldref [com/flurry/android/f.f Ljava/lang/String;]
       [608] aload_3 v3
-      [609] getstatic #196
+      [609] getstatic #195
         + Fieldref [com/flurry/android/e.f Ljava/lang/String;]
       [612] ifnull +9 (target=621)
-      [615] getstatic #196
+      [615] getstatic #195
         + Fieldref [com/flurry/android/e.f Ljava/lang/String;]
       [618] goto +6 (target=624)
-      [621] getstatic #197
+      [621] getstatic #196
         + Fieldref [com/flurry/android/e.g Ljava/lang/String;]
-      [624] putfield #223
+      [624] putfield #222
         + Fieldref [com/flurry/android/f.g Ljava/lang/String;]
       [627] aload_3 v3
       [628] aload_0 v0
-      [629] getfield #206
+      [629] getfield #205
         + Fieldref [com/flurry/android/e.p Landroid/os/Handler;]
-      [632] putfield #224
+      [632] putfield #223
         + Fieldref [com/flurry/android/f.h Landroid/os/Handler;]
       [635] aload_0 v0
-      [636] new #89
+      [636] new #88
         + Class [com/flurry/android/ag]
       [639] dup
       [640] aload_1 v1
       [641] aload_3 v3
-      [642] invokespecial #257
+      [642] invokespecial #256
         + Methodref [com/flurry/android/ag.<init> (Landroid/content/Context;Lcom/flurry/android/f;)V]
-      [645] putfield #189
+      [645] putfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
-      [648] getstatic #190
+      [648] getstatic #189
         + Fieldref [com/flurry/android/e.X Ljava/lang/String;]
       [651] ifnull +9 (target=660)
-      [654] getstatic #190
+      [654] getstatic #189
         + Fieldref [com/flurry/android/e.X Ljava/lang/String;]
-      [657] invokestatic #259
+      [657] invokestatic #258
         + Methodref [com/flurry/android/ag.a (Ljava/lang/String;)V]
-      [660] ldc #22
+      [660] ldc #21
         + String [FlurryAgent]
       [662] ldc #16
         + String [AppCircle initialized]
-      [664] invokestatic #287
+      [664] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [667] pop
       [668] aload_0 v0
-      [669] getfield #215
+      [669] getfield #214
         + Fieldref [com/flurry/android/e.y Z]
       [672] istore_3 v3
       [673] aload_0 v0
-      [674] new #101
+      [674] new #100
         + Class [com/flurry/android/u]
       [677] dup
       [678] aload_0 v0
       [679] aload_2 v2
       [680] iload_3 v3
-      [681] invokespecial #297
+      [681] invokespecial #296
         + Methodref [com/flurry/android/u.<init> (Lcom/flurry/android/e;Landroid/content/Context;Z)V]
-      [684] invokespecial #270
+      [684] invokespecial #269
         + Methodref [com/flurry/android/e.a (Ljava/lang/Runnable;)V]
       [687] goto +23 (target=710)
-      [690] ldc #22
+      [690] ldc #21
         + String [FlurryAgent]
       [692] ldc #18
         + String [Continuing previous session]
-      [694] invokestatic #287
+      [694] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [697] pop
       [698] aload_0 v0
-      [699] new #98
+      [699] new #97
         + Class [com/flurry/android/r]
       [702] dup
       [703] aload_0 v0
-      [704] invokespecial #293
+      [704] invokespecial #292
         + Methodref [com/flurry/android/r.<init> (Lcom/flurry/android/e;)V]
-      [707] invokespecial #270
+      [707] invokespecial #269
         + Methodref [com/flurry/android/e.a (Ljava/lang/Runnable;)V]
       [710] aload_0 v0
       [711] iconst_1
-      [712] putfield #208
+      [712] putfield #207
         + Fieldref [com/flurry/android/e.r Z]
       [715] return
       Code attribute exceptions (count = 0):
@@ -4896,121 +4857,121 @@ Methods (count = 41):
       [0] aload_1 v1
       [1] ifnull +27 (target=28)
       [4] aload_0 v0
-      [5] getfield #211
+      [5] getfield #210
         + Fieldref [com/flurry/android/e.u Ljava/util/Map;]
       [8] aload_1 v1
-      [9] invokeinterface #395
+      [9] invokeinterface #394
         + InterfaceMethodref [java/util/Map.remove (Ljava/lang/Object;)Ljava/lang/Object;]
-      [14] checkcast #72
+      [14] checkcast #71
         + Class [android/content/Context]
       [17] ifnonnull +11 (target=28)
-      [20] ldc #22
+      [20] ldc #21
         + String [FlurryAgent]
-      [22] ldc #61
+      [22] ldc #60
         + String [onEndSession called without context from corresponding onStartSession]
-      [24] invokestatic #291
+      [24] invokestatic #290
         + Methodref [com/flurry/android/n.d (Ljava/lang/String;Ljava/lang/String;)I]
       [27] pop
       [28] aload_0 v0
-      [29] getfield #208
+      [29] getfield #207
         + Fieldref [com/flurry/android/e.r Z]
       [32] ifeq +142 (target=174)
       [35] aload_0 v0
-      [36] getfield #211
+      [36] getfield #210
         + Fieldref [com/flurry/android/e.u Ljava/util/Map;]
-      [39] invokeinterface #393
+      [39] invokeinterface #392
         + InterfaceMethodref [java/util/Map.isEmpty ()Z]
       [44] ifeq +130 (target=174)
-      [47] ldc #22
+      [47] ldc #21
         + String [FlurryAgent]
       [49] ldc #20
         + String [Ending session]
-      [51] invokestatic #287
+      [51] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [54] pop
       [55] aload_0 v0
-      [56] invokespecial #283
+      [56] invokespecial #282
         + Methodref [com/flurry/android/e.h ()V]
       [59] aload_1 v1
       [60] ifnonnull +7 (target=67)
       [63] aconst_null
       [64] goto +7 (target=71)
       [67] aload_1 v1
-      [68] invokevirtual #230
+      [68] invokevirtual #229
         + Methodref [android/content/Context.getApplicationContext ()Landroid/content/Context;]
       [71] astore_3 v3
       [72] aload_1 v1
       [73] ifnull +56 (target=129)
       [76] aload_3 v3
-      [77] invokevirtual #234
+      [77] invokevirtual #233
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
       [80] astore v4
       [82] aload_0 v0
-      [83] getfield #213
+      [83] getfield #212
         + Fieldref [com/flurry/android/e.w Ljava/lang/String;]
       [86] aload v4
-      [88] invokevirtual #351
+      [88] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [91] ifne +38 (target=129)
-      [94] ldc #22
+      [94] ldc #21
         + String [FlurryAgent]
-      [96] new #125
+      [96] new #124
         + Class [java/lang/StringBuilder]
       [99] dup
-      [100] ldc #60
+      [100] ldc #59
         + String [onEndSession called from different application package, expected: ]
-      [102] invokespecial #355
+      [102] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [105] aload_0 v0
-      [106] getfield #213
+      [106] getfield #212
         + Fieldref [com/flurry/android/e.w Ljava/lang/String;]
-      [109] invokevirtual #359
+      [109] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [112] ldc #5
         + String [ actual: ]
-      [114] invokevirtual #359
+      [114] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [117] aload v4
-      [119] invokevirtual #359
+      [119] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [122] invokevirtual #360
+      [122] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [125] invokestatic #289
+      [125] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [128] pop
       [129] aload_0 v0
       [130] iconst_0
-      [131] putfield #208
+      [131] putfield #207
         + Fieldref [com/flurry/android/e.r Z]
-      [134] invokestatic #251
+      [134] invokestatic #250
         + Methodref [android/os/SystemClock.elapsedRealtime ()J]
       [137] lstore v4
       [139] aload_0 v0
       [140] lload v4
-      [142] putfield #210
+      [142] putfield #209
         + Fieldref [com/flurry/android/e.t J]
       [145] aload_0 v0
       [146] lload v4
       [148] aload_0 v0
-      [149] getfield #173
+      [149] getfield #172
         + Fieldref [com/flurry/android/e.G J]
       [152] lsub
-      [153] putfield #174
+      [153] putfield #173
         + Fieldref [com/flurry/android/e.H J]
       [156] aload_0 v0
       [157] aload_3 v3
       [158] astore_1 v1
       [159] dup
       [160] astore_0 v0
-      [161] new #99
+      [161] new #98
         + Class [com/flurry/android/s]
       [164] dup
       [165] aload_0 v0
       [166] iload_2 v2
       [167] aload_1 v1
-      [168] invokespecial #294
+      [168] invokespecial #293
         + Methodref [com/flurry/android/s.<init> (Lcom/flurry/android/e;ZLandroid/content/Context;)V]
-      [171] invokespecial #270
+      [171] invokespecial #269
         + Methodref [com/flurry/android/e.a (Ljava/lang/Runnable;)V]
       [174] return
       Code attribute exceptions (count = 0):
@@ -5027,10 +4988,10 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 10, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #206
+      [1] getfield #205
         + Fieldref [com/flurry/android/e.p Landroid/os/Handler;]
       [4] aload_1 v1
-      [5] invokevirtual #246
+      [5] invokevirtual #245
         + Methodref [android/os/Handler.post (Ljava/lang/Runnable;)Z]
       [8] pop
       [9] return
@@ -5043,226 +5004,226 @@ Methods (count = 41):
     + Code attribute instructions (code length = 11, locals = 1, stack = 3):
       [0] aload_0 v0
       [1] dup
-      [2] getfield #188
+      [2] getfield #187
         + Fieldref [com/flurry/android/e.V I]
       [5] iconst_1
       [6] iadd
-      [7] putfield #188
+      [7] putfield #187
         + Fieldref [com/flurry/android/e.V I]
       [10] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       c(Ljava/lang/String;)V
+  + Method:       b(Ljava/lang/String;)V
     Access flags: 0x22
-      = private synchronized void c(java.lang.String)
+      = private synchronized void b(java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 312, locals = 5, stack = 6):
       [0] aload_0 v0
-      [1] getfield #184
+      [1] getfield #183
         + Fieldref [com/flurry/android/e.R Ljava/util/List;]
       [4] ifnonnull +26 (target=30)
-      [7] ldc #22
+      [7] ldc #21
         + String [FlurryAgent]
-      [9] new #125
+      [9] new #124
         + Class [java/lang/StringBuilder]
       [12] dup
-      [13] ldc #63
+      [13] ldc #62
         + String [onEvent called before onStartSession.  Event: ]
-      [15] invokespecial #355
+      [15] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [18] aload_1 v1
-      [19] invokevirtual #359
+      [19] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [22] invokevirtual #360
+      [22] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [25] invokestatic #289
+      [25] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [28] pop
       [29] return
-      [30] invokestatic #251
+      [30] invokestatic #250
         + Methodref [android/os/SystemClock.elapsedRealtime ()J]
       [33] aload_0 v0
-      [34] getfield #173
+      [34] getfield #172
         + Fieldref [com/flurry/android/e.G J]
       [37] lsub
       [38] lstore_3 v3
       [39] aload_1 v1
       [40] sipush 128
-      [43] invokestatic #301
+      [43] invokestatic #300
         + Methodref [com/flurry/android/y.a (Ljava/lang/String;I)Ljava/lang/String;]
       [46] dup
       [47] astore_1 v1
-      [48] invokevirtual #353
+      [48] invokevirtual #352
         + Methodref [java/lang/String.length ()I]
       [51] ifne +4 (target=55)
       [54] return
       [55] aload_0 v0
-      [56] getfield #183
+      [56] getfield #182
         + Fieldref [com/flurry/android/e.Q Ljava/util/Map;]
       [59] aload_1 v1
-      [60] invokeinterface #392
+      [60] invokeinterface #391
         + InterfaceMethodref [java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;]
-      [65] checkcast #87
+      [65] checkcast #86
         + Class [com/flurry/android/aa]
       [68] dup
       [69] astore_2 v2
       [70] ifnonnull +79 (target=149)
       [73] aload_0 v0
-      [74] getfield #183
+      [74] getfield #182
         + Fieldref [com/flurry/android/e.Q Ljava/util/Map;]
-      [77] invokeinterface #396
+      [77] invokeinterface #395
         + InterfaceMethodref [java/util/Map.size ()I]
       [82] bipush 100
       [84] ificmpge +32 (target=116)
-      [87] new #87
+      [87] new #86
         + Class [com/flurry/android/aa]
       [90] dup
       [91] iconst_0
-      [92] invokespecial #254
+      [92] invokespecial #253
         + Methodref [com/flurry/android/aa.<init> (B)V]
       [95] dup
       [96] astore_2 v2
       [97] iconst_1
-      [98] putfield #162
+      [98] putfield #161
         + Fieldref [com/flurry/android/aa.a I]
       [101] aload_0 v0
-      [102] getfield #183
+      [102] getfield #182
         + Fieldref [com/flurry/android/e.Q Ljava/util/Map;]
       [105] aload_1 v1
       [106] aload_2 v2
-      [107] invokeinterface #394
+      [107] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [112] pop
       [113] goto +46 (target=159)
-      [116] ldc #22
+      [116] ldc #21
         + String [FlurryAgent]
-      [118] invokestatic #286
+      [118] invokestatic #285
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;)Z]
       [121] ifeq +38 (target=159)
-      [124] ldc #22
+      [124] ldc #21
         + String [FlurryAgent]
-      [126] new #125
+      [126] new #124
         + Class [java/lang/StringBuilder]
       [129] dup
-      [130] ldc #26
+      [130] ldc #25
         + String [MaxEventIds exceeded: ]
-      [132] invokespecial #355
+      [132] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [135] aload_1 v1
-      [136] invokevirtual #359
+      [136] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [139] invokevirtual #360
+      [139] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [142] invokestatic #287
+      [142] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [145] pop
       [146] goto +13 (target=159)
       [149] aload_2 v2
       [150] dup
-      [151] getfield #162
+      [151] getfield #161
         + Fieldref [com/flurry/android/aa.a I]
       [154] iconst_1
       [155] iadd
-      [156] putfield #162
+      [156] putfield #161
         + Fieldref [com/flurry/android/aa.a I]
-      [159] getstatic #200
+      [159] getstatic #199
         + Fieldref [com/flurry/android/e.j Z]
       [162] ifeq +144 (target=306)
       [165] aload_0 v0
-      [166] getfield #184
+      [166] getfield #183
         + Fieldref [com/flurry/android/e.R Ljava/util/List;]
-      [169] invokeinterface #389
+      [169] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
       [174] bipush 100
       [176] ificmpge +130 (target=306)
       [179] aload_0 v0
-      [180] getfield #186
+      [180] getfield #185
         + Fieldref [com/flurry/android/e.T I]
       [183] sipush 8000
       [186] ificmpge +120 (target=306)
-      [189] invokestatic #369
+      [189] invokestatic #368
         + Methodref [java/util/Collections.emptyMap ()Ljava/util/Map;]
       [192] dup
       [193] astore_2 v2
-      [194] invokeinterface #396
+      [194] invokeinterface #395
         + InterfaceMethodref [java/util/Map.size ()I]
       [199] bipush 10
       [201] ificmple +39 (target=240)
-      [204] ldc #22
+      [204] ldc #21
         + String [FlurryAgent]
-      [206] invokestatic #286
+      [206] invokestatic #285
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;)Z]
       [209] ifeq +102 (target=311)
-      [212] ldc #22
+      [212] ldc #21
         + String [FlurryAgent]
-      [214] new #125
+      [214] new #124
         + Class [java/lang/StringBuilder]
       [217] dup
-      [218] ldc #27
+      [218] ldc #26
         + String [MaxEventParams exceeded: ]
-      [220] invokespecial #355
+      [220] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [223] aload_2 v2
-      [224] invokeinterface #396
+      [224] invokeinterface #395
         + InterfaceMethodref [java/util/Map.size ()I]
-      [229] invokevirtual #356
+      [229] invokevirtual #355
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [232] invokevirtual #360
+      [232] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [235] invokestatic #287
+      [235] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [238] pop
       [239] return
-      [240] new #88
+      [240] new #87
         + Class [com/flurry/android/ad]
       [243] dup
       [244] aload_1 v1
       [245] aload_2 v2
       [246] lload_3 v3
-      [247] invokespecial #255
+      [247] invokespecial #254
         + Methodref [com/flurry/android/ad.<init> (Ljava/lang/String;Ljava/util/Map;J)V]
       [250] dup
       [251] astore_1 v1
-      [252] invokevirtual #256
+      [252] invokevirtual #255
         + Methodref [com/flurry/android/ad.a ()[B]
       [255] arraylength
       [256] aload_0 v0
-      [257] getfield #186
+      [257] getfield #185
         + Fieldref [com/flurry/android/e.T I]
       [260] iadd
       [261] sipush 8000
       [264] ificmpgt +29 (target=293)
       [267] aload_0 v0
-      [268] getfield #184
+      [268] getfield #183
         + Fieldref [com/flurry/android/e.R Ljava/util/List;]
       [271] aload_1 v1
-      [272] invokeinterface #385
+      [272] invokeinterface #384
         + InterfaceMethodref [java/util/List.add (Ljava/lang/Object;)Z]
       [277] pop
       [278] aload_0 v0
       [279] dup
-      [280] getfield #186
+      [280] getfield #185
         + Fieldref [com/flurry/android/e.T I]
       [283] aload_1 v1
-      [284] invokevirtual #256
+      [284] invokevirtual #255
         + Methodref [com/flurry/android/ad.a ()[B]
       [287] arraylength
       [288] iadd
-      [289] putfield #186
+      [289] putfield #185
         + Fieldref [com/flurry/android/e.T I]
       [292] return
       [293] aload_0 v0
       [294] sipush 8000
-      [297] putfield #186
+      [297] putfield #185
         + Fieldref [com/flurry/android/e.T I]
       [300] aload_0 v0
       [301] iconst_0
-      [302] putfield #185
+      [302] putfield #184
         + Fieldref [com/flurry/android/e.S Z]
       [305] return
       [306] aload_0 v0
       [307] iconst_0
-      [308] putfield #185
+      [308] putfield #184
         + Fieldref [com/flurry/android/e.S Z]
       [311] return
       Code attribute exceptions (count = 0):
@@ -5284,80 +5245,80 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 120, locals = 5, stack = 4):
       [0] aload_0 v0
-      [1] getfield #187
+      [1] getfield #186
         + Fieldref [com/flurry/android/e.U Ljava/util/List;]
       [4] ifnonnull +26 (target=30)
-      [7] ldc #22
+      [7] ldc #21
         + String [FlurryAgent]
-      [9] new #125
+      [9] new #124
         + Class [java/lang/StringBuilder]
       [12] dup
-      [13] ldc #62
+      [13] ldc #61
         + String [onError called before onStartSession.  Error: ]
-      [15] invokespecial #355
+      [15] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [18] aload_1 v1
-      [19] invokevirtual #359
+      [19] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [22] invokevirtual #360
+      [22] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [25] invokestatic #289
+      [25] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [28] pop
       [29] return
       [30] aload_0 v0
       [31] dup
-      [32] getfield #181
+      [32] getfield #180
         + Fieldref [com/flurry/android/e.O I]
       [35] iconst_1
       [36] iadd
-      [37] putfield #181
+      [37] putfield #180
         + Fieldref [com/flurry/android/e.O I]
       [40] aload_0 v0
-      [41] getfield #187
+      [41] getfield #186
         + Fieldref [com/flurry/android/e.U Ljava/util/List;]
-      [44] invokeinterface #389
+      [44] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
       [49] bipush 10
       [51] ificmpge +68 (target=119)
-      [54] new #91
+      [54] new #90
         + Class [com/flurry/android/ao]
       [57] dup
       [58] iconst_0
-      [59] invokespecial #265
+      [59] invokespecial #264
         + Methodref [com/flurry/android/ao.<init> (B)V]
       [62] dup
       [63] astore v4
-      [65] invokestatic #361
+      [65] invokestatic #360
         + Methodref [java/lang/System.currentTimeMillis ()J]
-      [68] putfield #163
+      [68] putfield #162
         + Fieldref [com/flurry/android/ao.a J]
       [71] aload v4
       [73] aload_1 v1
       [74] sipush 128
-      [77] invokestatic #301
+      [77] invokestatic #300
         + Methodref [com/flurry/android/y.a (Ljava/lang/String;I)Ljava/lang/String;]
-      [80] putfield #164
+      [80] putfield #163
         + Fieldref [com/flurry/android/ao.b Ljava/lang/String;]
       [83] aload v4
       [85] aload_2 v2
       [86] sipush 512
-      [89] invokestatic #301
+      [89] invokestatic #300
         + Methodref [com/flurry/android/y.a (Ljava/lang/String;I)Ljava/lang/String;]
-      [92] putfield #165
+      [92] putfield #164
         + Fieldref [com/flurry/android/ao.c Ljava/lang/String;]
       [95] aload v4
       [97] aload_3 v3
       [98] sipush 128
-      [101] invokestatic #301
+      [101] invokestatic #300
         + Methodref [com/flurry/android/y.a (Ljava/lang/String;I)Ljava/lang/String;]
-      [104] putfield #166
+      [104] putfield #165
         + Fieldref [com/flurry/android/ao.d Ljava/lang/String;]
       [107] aload_0 v0
-      [108] getfield #187
+      [108] getfield #186
         + Fieldref [com/flurry/android/e.U Ljava/util/List;]
       [111] aload v4
-      [113] invokeinterface #385
+      [113] invokeinterface #384
         + InterfaceMethodref [java/util/List.add (Ljava/lang/Object;)Z]
       [118] pop
       [119] return
@@ -5375,214 +5336,214 @@ Methods (count = 41):
       [1] astore_2 v2
       [2] aconst_null
       [3] astore_3 v3
-      [4] new #105
+      [4] new #104
         + Class [java/io/ByteArrayOutputStream]
       [7] dup
-      [8] invokespecial #302
+      [8] invokespecial #301
         + Methodref [java/io/ByteArrayOutputStream.<init> ()V]
       [11] astore v4
-      [13] new #107
+      [13] new #106
         + Class [java/io/DataOutputStream]
       [16] dup
       [17] aload v4
-      [19] invokespecial #314
+      [19] invokespecial #313
         + Methodref [java/io/DataOutputStream.<init> (Ljava/io/OutputStream;)V]
       [22] dup
       [23] astore_3 v3
       [24] bipush 15
-      [26] invokevirtual #324
+      [26] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
-      [29] getstatic #204
+      [29] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [32] ifeq +15 (target=47)
       [35] iload_1 v1
       [36] ifeq +11 (target=47)
       [39] aload_3 v3
       [40] iconst_1
-      [41] invokevirtual #324
+      [41] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [44] goto +8 (target=52)
       [47] aload_3 v3
       [48] iconst_0
-      [49] invokevirtual #324
+      [49] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
-      [52] getstatic #204
+      [52] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [55] ifeq +82 (target=137)
       [58] aload_3 v3
       [59] aload_0 v0
-      [60] getfield #189
+      [60] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
-      [63] invokevirtual #261
+      [63] invokevirtual #260
         + Methodref [com/flurry/android/ag.c ()J]
-      [66] invokevirtual #323
+      [66] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [69] aload_0 v0
-      [70] getfield #189
+      [70] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
-      [73] invokevirtual #262
+      [73] invokevirtual #261
         + Methodref [com/flurry/android/ag.d ()Ljava/util/Set;]
       [76] astore_1 v1
       [77] aload_3 v3
       [78] aload_1 v1
-      [79] invokeinterface #400
+      [79] invokeinterface #399
         + InterfaceMethodref [java/util/Set.size ()I]
-      [84] invokevirtual #324
+      [84] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [87] aload_1 v1
-      [88] invokeinterface #399
+      [88] invokeinterface #398
         + InterfaceMethodref [java/util/Set.iterator ()Ljava/util/Iterator;]
       [93] astore v5
       [95] aload v5
-      [97] invokeinterface #382
+      [97] invokeinterface #381
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [102] ifeq +32 (target=134)
       [105] aload v5
-      [107] invokeinterface #383
+      [107] invokeinterface #382
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [112] checkcast #118
+      [112] checkcast #117
         + Class [java/lang/Long]
-      [115] invokevirtual #340
+      [115] invokevirtual #339
         + Methodref [java/lang/Long.longValue ()J]
       [118] lstore v6
       [120] aload_3 v3
       [121] iconst_1
-      [122] invokevirtual #319
+      [122] invokevirtual #318
         + Methodref [java/io/DataOutputStream.writeByte (I)V]
       [125] aload_3 v3
       [126] lload v6
-      [128] invokevirtual #323
+      [128] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [131] goto -36 (target=95)
       [134] goto +13 (target=147)
       [137] aload_3 v3
       [138] lconst_0
-      [139] invokevirtual #323
+      [139] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [142] aload_3 v3
       [143] iconst_0
-      [144] invokevirtual #324
+      [144] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [147] aload_3 v3
       [148] iconst_3
-      [149] invokevirtual #324
+      [149] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [152] aload_3 v3
       [153] bipush 112
-      [155] invokevirtual #324
+      [155] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [158] aload_3 v3
-      [159] invokestatic #361
+      [159] invokestatic #360
         + Methodref [java/lang/System.currentTimeMillis ()J]
-      [162] invokevirtual #323
+      [162] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [165] aload_3 v3
       [166] aload_0 v0
-      [167] getfield #212
+      [167] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [170] invokevirtual #325
+      [170] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [173] aload_3 v3
       [174] aload_0 v0
-      [175] getfield #214
+      [175] getfield #213
         + Fieldref [com/flurry/android/e.x Ljava/lang/String;]
-      [178] invokevirtual #325
+      [178] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [181] aload_3 v3
       [182] iconst_0
-      [183] invokevirtual #324
+      [183] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [186] aload_3 v3
       [187] aload_0 v0
-      [188] getfield #168
+      [188] getfield #167
         + Fieldref [com/flurry/android/e.B Ljava/lang/String;]
-      [191] invokevirtual #325
+      [191] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [194] aload_3 v3
       [195] aload_0 v0
-      [196] getfield #170
+      [196] getfield #169
         + Fieldref [com/flurry/android/e.D J]
-      [199] invokevirtual #323
+      [199] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [202] aload_3 v3
       [203] aload_0 v0
-      [204] getfield #172
+      [204] getfield #171
         + Fieldref [com/flurry/android/e.F J]
-      [207] invokevirtual #323
+      [207] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [210] aload_3 v3
       [211] bipush 6
-      [213] invokevirtual #324
+      [213] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [216] aload_3 v3
-      [217] ldc #51
+      [217] ldc #50
         + String [device.model]
-      [219] invokevirtual #325
+      [219] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [222] aload_3 v3
-      [223] getstatic #158
+      [223] getstatic #157
         + Fieldref [android/os/Build.MODEL Ljava/lang/String;]
-      [226] invokevirtual #325
+      [226] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [229] aload_3 v3
-      [230] ldc #47
+      [230] ldc #46
         + String [build.brand]
-      [232] invokevirtual #325
+      [232] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [235] aload_3 v3
-      [236] getstatic #155
+      [236] getstatic #154
         + Fieldref [android/os/Build.BRAND Ljava/lang/String;]
-      [239] invokevirtual #325
+      [239] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [242] aload_3 v3
-      [243] ldc #49
+      [243] ldc #48
         + String [build.id]
-      [245] invokevirtual #325
+      [245] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [248] aload_3 v3
-      [249] getstatic #157
+      [249] getstatic #156
         + Fieldref [android/os/Build.ID Ljava/lang/String;]
-      [252] invokevirtual #325
+      [252] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [255] aload_3 v3
-      [256] ldc #69
+      [256] ldc #68
         + String [version.release]
-      [258] invokevirtual #325
+      [258] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [261] aload_3 v3
-      [262] getstatic #160
+      [262] getstatic #159
         + Fieldref [android/os/Build$VERSION.RELEASE Ljava/lang/String;]
-      [265] invokevirtual #325
+      [265] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [268] aload_3 v3
-      [269] ldc #48
+      [269] ldc #47
         + String [build.device]
-      [271] invokevirtual #325
+      [271] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [274] aload_3 v3
-      [275] getstatic #156
+      [275] getstatic #155
         + Fieldref [android/os/Build.DEVICE Ljava/lang/String;]
-      [278] invokevirtual #325
+      [278] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [281] aload_3 v3
-      [282] ldc #50
+      [282] ldc #49
         + String [build.product]
-      [284] invokevirtual #325
+      [284] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [287] aload_3 v3
-      [288] getstatic #159
+      [288] getstatic #158
         + Fieldref [android/os/Build.PRODUCT Ljava/lang/String;]
-      [291] invokevirtual #325
+      [291] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [294] aload_0 v0
-      [295] getfield #171
+      [295] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
-      [298] invokeinterface #389
+      [298] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
       [303] istore_1 v1
       [304] aload_3 v3
       [305] iload_1 v1
-      [306] invokevirtual #324
+      [306] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [309] iconst_0
       [310] istore v5
@@ -5590,58 +5551,58 @@ Methods (count = 41):
       [314] iload_1 v1
       [315] ificmpge +31 (target=346)
       [318] aload_0 v0
-      [319] getfield #171
+      [319] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [322] iload v5
-      [324] invokeinterface #386
+      [324] invokeinterface #385
         + InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [329] checkcast #70
+      [329] checkcast #69
         + Class [[B]
       [332] astore v6
       [334] aload_3 v3
       [335] aload v6
-      [337] invokevirtual #317
+      [337] invokevirtual #316
         + Methodref [java/io/DataOutputStream.write ([B)V]
       [340] iinc v5, 1
       [343] goto -31 (target=312)
       [346] aload_0 v0
-      [347] new #129
+      [347] new #128
         + Class [java/util/ArrayList]
       [350] dup
       [351] aload_0 v0
-      [352] getfield #171
+      [352] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
-      [355] invokespecial #368
+      [355] invokespecial #367
         + Methodref [java/util/ArrayList.<init> (Ljava/util/Collection;)V]
-      [358] putfield #216
+      [358] putfield #215
         + Fieldref [com/flurry/android/e.z Ljava/util/List;]
       [361] aload_3 v3
-      [362] invokevirtual #315
+      [362] invokevirtual #314
         + Methodref [java/io/DataOutputStream.close ()V]
       [365] aload v4
-      [367] invokevirtual #303
+      [367] invokevirtual #302
         + Methodref [java/io/ByteArrayOutputStream.toByteArray ()[B]
       [370] astore_2 v2
       [371] aload_3 v3
-      [372] invokestatic #300
+      [372] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [375] goto +29 (target=404)
       [378] astore v4
-      [380] ldc #22
+      [380] ldc #21
         + String [FlurryAgent]
       [382] ldc #3
         + String []
       [384] aload v4
-      [386] invokestatic #290
+      [386] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [389] pop
       [390] aload_3 v3
-      [391] invokestatic #300
+      [391] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [394] goto +10 (target=404)
       [397] astore_0 v0
       [398] aload_3 v3
-      [399] invokestatic #300
+      [399] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [402] aload_0 v0
       [403] athrow
@@ -5670,13 +5631,13 @@ Methods (count = 41):
       = private boolean a(byte[])
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 74, locals = 4, stack = 4):
-      [0] getstatic #191
+      [0] getstatic #190
         + Fieldref [com/flurry/android/e.a Ljava/lang/String;]
       [3] ifnull +9 (target=12)
-      [6] getstatic #191
+      [6] getstatic #190
         + Fieldref [com/flurry/android/e.a Ljava/lang/String;]
       [9] goto +6 (target=15)
-      [12] getstatic #192
+      [12] getstatic #191
         + Fieldref [com/flurry/android/e.b Ljava/lang/String;]
       [15] dup
       [16] astore_2 v2
@@ -5688,33 +5649,33 @@ Methods (count = 41):
       [24] aload_0 v0
       [25] aload_1 v1
       [26] aload_2 v2
-      [27] invokespecial #274
+      [27] invokespecial #273
         + Methodref [com/flurry/android/e.a ([BLjava/lang/String;)Z]
       [30] istore_3 v3
       [31] goto +29 (target=60)
       [34] astore_0 v0
-      [35] ldc #22
+      [35] ldc #21
         + String [FlurryAgent]
-      [37] new #125
+      [37] new #124
         + Class [java/lang/StringBuilder]
       [40] dup
-      [41] ldc #34
+      [41] ldc #33
         + String [Sending report exception: ]
-      [43] invokespecial #355
+      [43] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [46] aload_0 v0
-      [47] invokevirtual #336
+      [47] invokevirtual #335
         + Methodref [java/lang/Exception.getMessage ()Ljava/lang/String;]
-      [50] invokevirtual #359
+      [50] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [53] invokevirtual #360
+      [53] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [56] invokestatic #287
+      [56] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [59] pop
       [60] iload_3 v3
       [61] ifne +9 (target=70)
-      [64] getstatic #191
+      [64] getstatic #190
         + Fieldref [com/flurry/android/e.a Ljava/lang/String;]
       [67] ifnull +5 (target=72)
       [70] iload_3 v3
@@ -5738,69 +5699,69 @@ Methods (count = 41):
       = private boolean a(byte[],java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 252, locals = 6, stack = 4):
-      [0] ldc #57
+      [0] ldc #56
         + String [local]
       [2] aload_2 v2
-      [3] invokevirtual #351
+      [3] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [6] ifeq +5 (target=11)
       [9] iconst_1
       [10] ireturn
-      [11] ldc #22
+      [11] ldc #21
         + String [FlurryAgent]
-      [13] new #125
+      [13] new #124
         + Class [java/lang/StringBuilder]
       [16] dup
-      [17] ldc #35
+      [17] ldc #34
         + String [Sending report to: ]
-      [19] invokespecial #355
+      [19] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [22] aload_2 v2
-      [23] invokevirtual #359
+      [23] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [26] invokevirtual #360
+      [26] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [29] invokestatic #287
+      [29] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [32] pop
       [33] iconst_0
       [34] istore_3 v3
-      [35] new #145
+      [35] new #144
         + Class [org/apache/http/entity/ByteArrayEntity]
       [38] dup
       [39] aload_1 v1
-      [40] invokespecial #379
+      [40] invokespecial #378
         + Methodref [org/apache/http/entity/ByteArrayEntity.<init> ([B)V]
       [43] dup
       [44] astore_1 v1
-      [45] ldc #46
+      [45] ldc #45
         + String [application/octet-stream]
-      [47] invokevirtual #380
+      [47] invokevirtual #379
         + Methodref [org/apache/http/entity/ByteArrayEntity.setContentType (Ljava/lang/String;)V]
-      [50] new #144
+      [50] new #143
         + Class [org/apache/http/client/methods/HttpPost]
       [53] dup
       [54] aload_2 v2
-      [55] invokespecial #377
+      [55] invokespecial #376
         + Methodref [org/apache/http/client/methods/HttpPost.<init> (Ljava/lang/String;)V]
       [58] dup
       [59] astore_2 v2
       [60] aload_1 v1
-      [61] invokevirtual #378
+      [61] invokevirtual #377
         + Methodref [org/apache/http/client/methods/HttpPost.setEntity (Lorg/apache/http/HttpEntity;)V]
-      [64] new #146
+      [64] new #145
         + Class [org/apache/http/impl/client/DefaultHttpClient]
       [67] dup
-      [68] invokespecial #381
+      [68] invokespecial #380
         + Methodref [org/apache/http/impl/client/DefaultHttpClient.<init> ()V]
       [71] aload_2 v2
-      [72] invokeinterface #407
+      [72] invokeinterface #406
         + InterfaceMethodref [org/apache/http/client/HttpClient.execute (Lorg/apache/http/client/methods/HttpUriRequest;)Lorg/apache/http/HttpResponse;]
       [77] dup
       [78] astore_1 v1
-      [79] invokeinterface #405
+      [79] invokeinterface #404
         + InterfaceMethodref [org/apache/http/HttpResponse.getStatusLine ()Lorg/apache/http/StatusLine;]
-      [84] invokeinterface #406
+      [84] invokeinterface #405
         + InterfaceMethodref [org/apache/http/StatusLine.getStatusCode ()I]
       [89] istore_2 v2
       [90] aload_0 v0
@@ -5810,24 +5771,24 @@ Methods (count = 41):
       [95] iload_2 v2
       [96] sipush 200
       [99] ificmpne +112 (target=211)
-      [102] ldc #22
+      [102] ldc #21
         + String [FlurryAgent]
-      [104] ldc #33
+      [104] ldc #32
         + String [Report successful]
-      [106] invokestatic #287
+      [106] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [109] pop
       [110] aload_0 v0
       [111] iconst_1
-      [112] putfield #169
+      [112] putfield #168
         + Fieldref [com/flurry/android/e.C Z]
       [115] aload_0 v0
-      [116] getfield #171
+      [116] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [119] aload_0 v0
-      [120] getfield #216
+      [120] getfield #215
         + Fieldref [com/flurry/android/e.z Ljava/util/List;]
-      [123] invokeinterface #388
+      [123] invokeinterface #387
         + InterfaceMethodref [java/util/List.removeAll (Ljava/util/Collection;)Z]
       [128] pop
       [129] iconst_1
@@ -5837,65 +5798,65 @@ Methods (count = 41):
       [133] astore_2 v2
       [134] astore_1 v1
       [135] aload_2 v2
-      [136] invokeinterface #404
+      [136] invokeinterface #403
         + InterfaceMethodref [org/apache/http/HttpResponse.getEntity ()Lorg/apache/http/HttpEntity;]
       [141] astore_2 v2
-      [142] ldc #22
+      [142] ldc #21
         + String [FlurryAgent]
-      [144] ldc #31
+      [144] ldc #30
         + String [Processing report response]
-      [146] invokestatic #287
+      [146] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [149] pop
       [150] aload_2 v2
       [151] ifnull +57 (target=208)
       [154] aload_2 v2
-      [155] invokeinterface #403
+      [155] invokeinterface #402
         + InterfaceMethodref [org/apache/http/HttpEntity.getContentLength ()J]
       [160] lconst_0
       [161] lcmp
       [162] ifeq +46 (target=208)
       [165] aload_2 v2
-      [166] invokeinterface #402
+      [166] invokeinterface #401
         + InterfaceMethodref [org/apache/http/HttpEntity.getContent ()Ljava/io/InputStream;]
       [171] astore v5
-      [173] new #106
+      [173] new #105
         + Class [java/io/DataInputStream]
       [176] dup
       [177] aload v5
-      [179] invokespecial #304
+      [179] invokespecial #303
         + Methodref [java/io/DataInputStream.<init> (Ljava/io/InputStream;)V]
       [182] astore v5
       [184] aload_1 v1
       [185] aload v5
-      [187] invokespecial #269
+      [187] invokespecial #268
         + Methodref [com/flurry/android/e.a (Ljava/io/DataInputStream;)V]
       [190] aload_2 v2
-      [191] invokeinterface #401
+      [191] invokeinterface #400
         + InterfaceMethodref [org/apache/http/HttpEntity.consumeContent ()V]
       [196] goto +37 (target=233)
       [199] astore_0 v0
       [200] aload_2 v2
-      [201] invokeinterface #401
+      [201] invokeinterface #400
         + InterfaceMethodref [org/apache/http/HttpEntity.consumeContent ()V]
       [206] aload_0 v0
       [207] athrow
       [208] goto +25 (target=233)
-      [211] ldc #22
+      [211] ldc #21
         + String [FlurryAgent]
-      [213] new #125
+      [213] new #124
         + Class [java/lang/StringBuilder]
       [216] dup
-      [217] ldc #32
+      [217] ldc #31
         + String [Report failed. HTTP response: ]
-      [219] invokespecial #355
+      [219] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [222] iload_2 v2
-      [223] invokevirtual #356
+      [223] invokevirtual #355
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [226] invokevirtual #360
+      [226] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [229] invokestatic #287
+      [229] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [232] pop
       [233] aload v4
@@ -5908,7 +5869,7 @@ Methods (count = 41):
       [244] athrow
       [245] aload_0 v0
       [246] aconst_null
-      [247] putfield #216
+      [247] putfield #215
         + Fieldref [com/flurry/android/e.z Ljava/util/List;]
       [250] iload_3 v3
       [251] ireturn
@@ -5929,48 +5890,48 @@ Methods (count = 41):
       = private void a(java.io.DataInputStream)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 716, locals = 17, stack = 7):
-      [0] new #131
+      [0] new #130
         + Class [java/util/HashMap]
       [3] dup
-      [4] invokespecial #370
+      [4] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
       [7] astore_3 v3
-      [8] new #131
+      [8] new #130
         + Class [java/util/HashMap]
       [11] dup
-      [12] invokespecial #370
+      [12] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
       [15] astore v4
-      [17] new #131
+      [17] new #130
         + Class [java/util/HashMap]
       [20] dup
-      [21] invokespecial #370
+      [21] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
       [24] astore v5
-      [26] new #131
+      [26] new #130
         + Class [java/util/HashMap]
       [29] dup
-      [30] invokespecial #370
+      [30] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
       [33] astore v6
-      [35] new #131
+      [35] new #130
         + Class [java/util/HashMap]
       [38] dup
-      [39] invokespecial #370
+      [39] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
       [42] astore v7
-      [44] new #131
+      [44] new #130
         + Class [java/util/HashMap]
       [47] dup
-      [48] invokespecial #370
+      [48] invokespecial #369
         + Methodref [java/util/HashMap.<init> ()V]
       [51] astore v8
       [53] aload_1 v1
-      [54] invokevirtual #312
+      [54] invokevirtual #311
         + Methodref [java/io/DataInputStream.readUnsignedShort ()I]
       [57] istore_2 v2
       [58] aload_1 v1
-      [59] invokevirtual #308
+      [59] invokevirtual #307
         + Methodref [java/io/DataInputStream.readInt ()I]
       [62] istore v9
       [64] iload_2 v2
@@ -5993,20 +5954,20 @@ Methods (count = 41):
         273: offset = 542, target = 607
         default: offset = 555, target = 620
       [144] aload_1 v1
-      [145] invokevirtual #308
+      [145] invokevirtual #307
         + Methodref [java/io/DataInputStream.readInt ()I]
       [148] pop
       [149] goto +500 (target=649)
       [152] aload_1 v1
-      [153] invokevirtual #306
+      [153] invokevirtual #305
         + Methodref [java/io/DataInputStream.readByte ()B]
       [156] istore v9
       [158] aload_1 v1
-      [159] invokevirtual #312
+      [159] invokevirtual #311
         + Methodref [java/io/DataInputStream.readUnsignedShort ()I]
       [162] dup
       [163] istore v10
-      [165] anewarray #90
+      [165] anewarray #89
         + Class [com/flurry/android/ai]
       [168] astore v11
       [170] iconst_0
@@ -6014,11 +5975,11 @@ Methods (count = 41):
       [173] iload v12
       [175] iload v10
       [177] ificmpge +26 (target=203)
-      [180] new #90
+      [180] new #89
         + Class [com/flurry/android/ai]
       [183] dup
       [184] aload_1 v1
-      [185] invokespecial #264
+      [185] invokespecial #263
         + Methodref [com/flurry/android/ai.<init> (Ljava/io/DataInput;)V]
       [188] astore v13
       [190] aload v11
@@ -6029,15 +5990,15 @@ Methods (count = 41):
       [200] goto -27 (target=173)
       [203] aload_3 v3
       [204] iload v9
-      [206] invokestatic #333
+      [206] invokestatic #332
         + Methodref [java/lang/Byte.valueOf (B)Ljava/lang/Byte;]
       [209] aload v11
-      [211] invokeinterface #394
+      [211] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [216] pop
       [217] goto +432 (target=649)
       [220] aload_1 v1
-      [221] invokevirtual #312
+      [221] invokevirtual #311
         + Methodref [java/io/DataInputStream.readUnsignedShort ()I]
       [224] istore v12
       [226] iconst_0
@@ -6045,47 +6006,47 @@ Methods (count = 41):
       [229] iload v13
       [231] iload v12
       [233] ificmpge +63 (target=296)
-      [236] new #86
+      [236] new #85
         + Class [com/flurry/android/a]
       [239] dup
       [240] aload_1 v1
-      [241] invokespecial #253
+      [241] invokespecial #252
         + Methodref [com/flurry/android/a.<init> (Ljava/io/DataInput;)V]
       [244] astore v9
       [246] aload v4
       [248] aload v9
-      [250] getfield #161
+      [250] getfield #160
         + Fieldref [com/flurry/android/a.a J]
-      [253] invokestatic #342
+      [253] invokestatic #341
         + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
       [256] aload v9
-      [258] invokeinterface #394
+      [258] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [263] pop
-      [264] ldc #22
+      [264] ldc #21
         + String [FlurryAgent]
-      [266] new #125
+      [266] new #124
         + Class [java/lang/StringBuilder]
       [269] dup
-      [270] ldc #30
+      [270] ldc #29
         + String [Parsed image: ]
-      [272] invokespecial #355
+      [272] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [275] aload v9
-      [277] getfield #161
+      [277] getfield #160
         + Fieldref [com/flurry/android/a.a J]
-      [280] invokevirtual #357
+      [280] invokevirtual #356
         + Methodref [java/lang/StringBuilder.append (J)Ljava/lang/StringBuilder;]
-      [283] invokevirtual #360
+      [283] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [286] invokestatic #287
+      [286] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [289] pop
       [290] iinc v13, 1
       [293] goto -64 (target=229)
       [296] goto +353 (target=649)
       [299] aload_1 v1
-      [300] invokevirtual #308
+      [300] invokevirtual #307
         + Methodref [java/io/DataInputStream.readInt ()I]
       [303] istore v13
       [305] iconst_0
@@ -6093,19 +6054,19 @@ Methods (count = 41):
       [308] iload v9
       [310] iload v13
       [312] ificmpge +34 (target=346)
-      [315] new #102
+      [315] new #101
         + Class [com/flurry/android/v]
       [318] dup
       [319] aload_1 v1
-      [320] invokespecial #298
+      [320] invokespecial #297
         + Methodref [com/flurry/android/v.<init> (Ljava/io/DataInput;)V]
       [323] astore v10
       [325] aload v6
       [327] aload v10
-      [329] getfield #228
+      [329] getfield #227
         + Fieldref [com/flurry/android/v.a Ljava/lang/String;]
       [332] aload v10
-      [334] invokeinterface #394
+      [334] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [339] pop
       [340] iinc v9, 1
@@ -6113,12 +6074,12 @@ Methods (count = 41):
       [346] goto +303 (target=649)
       [349] aload_1 v1
       [350] iload v9
-      [352] invokevirtual #313
+      [352] invokevirtual #312
         + Methodref [java/io/DataInputStream.skipBytes (I)I]
       [355] pop
       [356] goto +293 (target=649)
       [359] aload_1 v1
-      [360] invokevirtual #306
+      [360] invokevirtual #305
         + Methodref [java/io/DataInputStream.readByte ()B]
       [363] istore v9
       [365] iconst_0
@@ -6126,28 +6087,28 @@ Methods (count = 41):
       [368] iload v10
       [370] iload v9
       [372] ificmpge +37 (target=409)
-      [375] new #100
+      [375] new #99
         + Class [com/flurry/android/t]
       [378] dup
       [379] aload_1 v1
-      [380] invokespecial #295
+      [380] invokespecial #294
         + Methodref [com/flurry/android/t.<init> (Ljava/io/DataInput;)V]
       [383] astore v14
       [385] aload v7
       [387] aload v14
-      [389] getfield #227
+      [389] getfield #226
         + Fieldref [com/flurry/android/t.a B]
-      [392] invokestatic #333
+      [392] invokestatic #332
         + Methodref [java/lang/Byte.valueOf (B)Ljava/lang/Byte;]
       [395] aload v14
-      [397] invokeinterface #394
+      [397] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [402] pop
       [403] iinc v10, 1
       [406] goto -38 (target=368)
       [409] goto +240 (target=649)
       [412] aload_1 v1
-      [413] invokevirtual #306
+      [413] invokevirtual #305
         + Methodref [java/io/DataInputStream.readByte ()B]
       [416] istore v9
       [418] iconst_0
@@ -6156,29 +6117,29 @@ Methods (count = 41):
       [423] iload v9
       [425] ificmpge +42 (target=467)
       [428] aload_1 v1
-      [429] invokevirtual #306
+      [429] invokevirtual #305
         + Methodref [java/io/DataInputStream.readByte ()B]
       [432] istore v14
       [434] aload v7
       [436] iload v14
-      [438] invokestatic #333
+      [438] invokestatic #332
         + Methodref [java/lang/Byte.valueOf (B)Ljava/lang/Byte;]
-      [441] invokeinterface #392
+      [441] invokeinterface #391
         + InterfaceMethodref [java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;]
-      [446] checkcast #100
+      [446] checkcast #99
         + Class [com/flurry/android/t]
       [449] dup
       [450] astore v15
       [452] ifnull +9 (target=461)
       [455] aload v15
       [457] aload_1 v1
-      [458] invokevirtual #296
+      [458] invokevirtual #295
         + Methodref [com/flurry/android/t.a (Ljava/io/DataInput;)V]
       [461] iinc v10, 1
       [464] goto -43 (target=421)
       [467] goto +182 (target=649)
       [470] aload_1 v1
-      [471] invokevirtual #308
+      [471] invokevirtual #307
         + Methodref [java/io/DataInputStream.readInt ()I]
       [474] istore v10
       [476] iconst_0
@@ -6187,118 +6148,118 @@ Methods (count = 41):
       [481] iload v10
       [483] ificmpge +39 (target=522)
       [486] aload_1 v1
-      [487] invokevirtual #309
+      [487] invokevirtual #308
         + Methodref [java/io/DataInputStream.readLong ()J]
       [490] lstore v15
       [492] aload_1 v1
-      [493] invokevirtual #310
+      [493] invokevirtual #309
         + Methodref [java/io/DataInputStream.readShort ()S]
       [496] istore v9
       [498] aload v8
       [500] iload v9
-      [502] invokestatic #347
+      [502] invokestatic #346
         + Methodref [java/lang/Short.valueOf (S)Ljava/lang/Short;]
       [505] lload v15
-      [507] invokestatic #342
+      [507] invokestatic #341
         + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
-      [510] invokeinterface #394
+      [510] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [515] pop
       [516] iinc v14, 1
       [519] goto -40 (target=479)
       [522] goto +127 (target=649)
       [525] aload_1 v1
-      [526] invokevirtual #309
+      [526] invokevirtual #308
         + Methodref [java/io/DataInputStream.readLong ()J]
       [529] lstore v14
       [531] aload v5
       [533] lload v14
-      [535] invokestatic #342
+      [535] invokestatic #341
         + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
-      [538] invokeinterface #392
+      [538] invokeinterface #391
         + InterfaceMethodref [java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;]
-      [543] checkcast #97
+      [543] checkcast #96
         + Class [com/flurry/android/q]
       [546] dup
       [547] astore v16
       [549] ifnonnull +12 (target=561)
-      [552] new #97
+      [552] new #96
         + Class [com/flurry/android/q]
       [555] dup
-      [556] invokespecial #292
+      [556] invokespecial #291
         + Methodref [com/flurry/android/q.<init> ()V]
       [559] astore v16
       [561] aload v16
       [563] aload_1 v1
-      [564] invokevirtual #311
+      [564] invokevirtual #310
         + Methodref [java/io/DataInputStream.readUTF ()Ljava/lang/String;]
-      [567] putfield #225
+      [567] putfield #224
         + Fieldref [com/flurry/android/q.a Ljava/lang/String;]
       [570] aload v16
       [572] aload_1 v1
-      [573] invokevirtual #308
+      [573] invokevirtual #307
         + Methodref [java/io/DataInputStream.readInt ()I]
-      [576] putfield #226
+      [576] putfield #225
         + Fieldref [com/flurry/android/q.c I]
       [579] aload v5
       [581] lload v14
-      [583] invokestatic #342
+      [583] invokestatic #341
         + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
       [586] aload v16
-      [588] invokeinterface #394
+      [588] invokeinterface #393
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [593] pop
       [594] goto +55 (target=649)
       [597] aload_1 v1
       [598] iload v9
-      [600] invokevirtual #313
+      [600] invokevirtual #312
         + Methodref [java/io/DataInputStream.skipBytes (I)I]
       [603] pop
       [604] goto +45 (target=649)
       [607] aload_1 v1
       [608] iload v9
-      [610] invokevirtual #313
+      [610] invokevirtual #312
         + Methodref [java/io/DataInputStream.skipBytes (I)I]
       [613] pop
       [614] goto +35 (target=649)
       [617] goto +32 (target=649)
-      [620] ldc #22
+      [620] ldc #21
         + String [FlurryAgent]
-      [622] new #125
+      [622] new #124
         + Class [java/lang/StringBuilder]
       [625] dup
-      [626] ldc #40
+      [626] ldc #39
         + String [Unknown chunkType: ]
-      [628] invokespecial #355
+      [628] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [631] iload_2 v2
-      [632] invokevirtual #356
+      [632] invokevirtual #355
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [635] invokevirtual #360
+      [635] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [638] invokestatic #287
+      [638] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [641] pop
       [642] aload_1 v1
       [643] iload v9
-      [645] invokevirtual #313
+      [645] invokevirtual #312
         + Methodref [java/io/DataInputStream.skipBytes (I)I]
       [648] pop
       [649] iload_2 v2
       [650] sipush 264
       [653] ificmpne -600 (target=53)
-      [656] getstatic #204
+      [656] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [659] ifeq +56 (target=715)
       [662] aload_3 v3
-      [663] invokeinterface #393
+      [663] invokeinterface #392
         + InterfaceMethodref [java/util/Map.isEmpty ()Z]
       [668] ifeq +11 (target=679)
-      [671] ldc #22
+      [671] ldc #21
         + String [FlurryAgent]
-      [673] ldc #28
+      [673] ldc #27
         + String [No ads from server]
-      [675] invokestatic #287
+      [675] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [678] pop
       [679] aload_0 v0
@@ -6314,7 +6275,7 @@ Methods (count = 41):
       [697] astore_3 v3
       [698] astore_2 v2
       [699] astore_1 v1
-      [700] getfield #189
+      [700] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
       [703] aload_1 v1
       [704] aload v4
@@ -6322,7 +6283,7 @@ Methods (count = 41):
       [708] aload_2 v2
       [709] aload_3 v3
       [710] aload v6
-      [712] invokevirtual #260
+      [712] invokevirtual #259
         + Methodref [com/flurry/android/ag.a (Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V]
       [715] return
       Code attribute exceptions (count = 0):
@@ -6366,66 +6327,66 @@ Methods (count = 41):
     + Code attribute instructions (code length = 85, locals = 2, stack = 4):
       [0] aload_0 v0
       [1] iload_1 v1
-      [2] invokespecial #272
+      [2] invokespecial #271
         + Methodref [com/flurry/android/e.a (Z)[B]
       [5] dup
       [6] astore_1 v1
       [7] ifnull +55 (target=62)
       [10] aload_0 v0
       [11] aload_1 v1
-      [12] invokespecial #273
+      [12] invokespecial #272
         + Methodref [com/flurry/android/e.a ([B)Z]
       [15] ifeq +47 (target=62)
-      [18] ldc #22
+      [18] ldc #21
         + String [FlurryAgent]
-      [20] new #125
+      [20] new #124
         + Class [java/lang/StringBuilder]
       [23] dup
       [24] ldc #19
         + String [Done sending ]
-      [26] invokespecial #355
+      [26] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [29] aload_0 v0
-      [30] getfield #208
+      [30] getfield #207
         + Fieldref [com/flurry/android/e.r Z]
       [33] ifeq +8 (target=41)
-      [36] ldc #56
+      [36] ldc #55
         + String [initial ]
       [38] goto +5 (target=43)
       [41] ldc #3
         + String []
-      [43] invokevirtual #359
+      [43] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [46] ldc #42
+      [46] ldc #41
         + String [agent report]
-      [48] invokevirtual #359
+      [48] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [51] invokevirtual #360
+      [51] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [54] invokestatic #287
+      [54] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [57] pop
       [58] aload_0 v0
-      [59] invokespecial #282
+      [59] invokespecial #281
         + Methodref [com/flurry/android/e.g ()V]
       [62] return
       [63] astore_1 v1
-      [64] ldc #22
+      [64] ldc #21
         + String [FlurryAgent]
       [66] ldc #3
         + String []
       [68] aload_1 v1
-      [69] invokestatic #288
+      [69] invokestatic #287
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [72] pop
       [73] return
       [74] astore_1 v1
-      [75] ldc #22
+      [75] ldc #21
         + String [FlurryAgent]
       [77] ldc #3
         + String []
       [79] aload_1 v1
-      [80] invokestatic #290
+      [80] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [83] pop
       [84] return
@@ -6447,64 +6408,64 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 152, locals = 3, stack = 5):
       [0] aload_1 v1
-      [1] invokevirtual #312
+      [1] invokevirtual #311
         + Methodref [java/io/DataInputStream.readUnsignedShort ()I]
       [4] dup
       [5] istore_2 v2
       [6] iconst_2
       [7] ificmple +27 (target=34)
-      [10] new #111
+      [10] new #110
         + Class [java/io/IOException]
       [13] dup
-      [14] new #125
+      [14] new #124
         + Class [java/lang/StringBuilder]
       [17] dup
-      [18] ldc #39
+      [18] ldc #38
         + String [Unknown agent file version: ]
-      [20] invokespecial #355
+      [20] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [23] iload_2 v2
-      [24] invokevirtual #356
+      [24] invokevirtual #355
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [27] invokevirtual #360
+      [27] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [30] invokespecial #332
+      [30] invokespecial #331
         + Methodref [java/io/IOException.<init> (Ljava/lang/String;)V]
       [33] athrow
       [34] iload_2 v2
       [35] iconst_2
       [36] ificmplt +115 (target=151)
       [39] aload_1 v1
-      [40] invokevirtual #311
+      [40] invokevirtual #310
         + Methodref [java/io/DataInputStream.readUTF ()Ljava/lang/String;]
       [43] dup
       [44] astore_2 v2
       [45] aload_0 v0
-      [46] getfield #212
+      [46] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [49] invokevirtual #351
+      [49] invokevirtual #350
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [52] ifeq +65 (target=117)
       [55] aload_0 v0
       [56] aload_1 v1
-      [57] invokevirtual #311
+      [57] invokevirtual #310
         + Methodref [java/io/DataInputStream.readUTF ()Ljava/lang/String;]
-      [60] putfield #168
+      [60] putfield #167
         + Fieldref [com/flurry/android/e.B Ljava/lang/String;]
       [63] aload_0 v0
       [64] aload_1 v1
-      [65] invokevirtual #305
+      [65] invokevirtual #304
         + Methodref [java/io/DataInputStream.readBoolean ()Z]
-      [68] putfield #169
+      [68] putfield #168
         + Fieldref [com/flurry/android/e.C Z]
       [71] aload_0 v0
       [72] aload_1 v1
-      [73] invokevirtual #309
+      [73] invokevirtual #308
         + Methodref [java/io/DataInputStream.readLong ()J]
-      [76] putfield #170
+      [76] putfield #169
         + Fieldref [com/flurry/android/e.D J]
       [79] aload_1 v1
-      [80] invokevirtual #312
+      [80] invokevirtual #311
         + Methodref [java/io/DataInputStream.readUnsignedShort ()I]
       [83] dup
       [84] istore_2 v2
@@ -6514,45 +6475,45 @@ Methods (count = 41):
       [91] astore_2 v2
       [92] aload_1 v1
       [93] aload_2 v2
-      [94] invokevirtual #307
+      [94] invokevirtual #306
         + Methodref [java/io/DataInputStream.readFully ([B)V]
       [97] aload_0 v0
-      [98] getfield #171
+      [98] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [101] iconst_0
       [102] aload_2 v2
-      [103] invokeinterface #384
+      [103] invokeinterface #383
         + InterfaceMethodref [java/util/List.add (ILjava/lang/Object;)V]
       [108] goto -29 (target=79)
       [111] aload_0 v0
       [112] iconst_1
-      [113] putfield #209
+      [113] putfield #208
         + Fieldref [com/flurry/android/e.s Z]
       [116] return
-      [117] ldc #22
+      [117] ldc #21
         + String [FlurryAgent]
-      [119] new #125
+      [119] new #124
         + Class [java/lang/StringBuilder]
       [122] dup
       [123] ldc #15
         + String [Api keys do not match, old: ]
-      [125] invokespecial #355
+      [125] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [128] aload_2 v2
-      [129] invokevirtual #359
+      [129] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [132] ldc #8
         + String [, new: ]
-      [134] invokevirtual #359
+      [134] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [137] aload_0 v0
-      [138] getfield #212
+      [138] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [141] invokevirtual #359
+      [141] invokevirtual #358
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [144] invokevirtual #360
+      [144] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [147] invokestatic #287
+      [147] invokestatic #286
         + Methodref [com/flurry/android/n.a (Ljava/lang/String;Ljava/lang/String;)I]
       [150] pop
       [151] return
@@ -6572,93 +6533,93 @@ Methods (count = 41):
       [0] aconst_null
       [1] astore_2 v2
       [2] aload_0 v0
-      [3] getfield #207
+      [3] getfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
-      [6] invokevirtual #328
+      [6] invokevirtual #327
         + Methodref [java/io/File.getParentFile ()Ljava/io/File;]
       [9] dup
       [10] astore_1 v1
-      [11] invokevirtual #329
+      [11] invokevirtual #328
         + Methodref [java/io/File.mkdirs ()Z]
       [14] ifne +37 (target=51)
       [17] aload_1 v1
-      [18] invokevirtual #327
+      [18] invokevirtual #326
         + Methodref [java/io/File.exists ()Z]
       [21] ifne +30 (target=51)
-      [24] ldc #22
+      [24] ldc #21
         + String [FlurryAgent]
-      [26] new #125
+      [26] new #124
         + Class [java/lang/StringBuilder]
       [29] dup
-      [30] ldc #37
+      [30] ldc #36
         + String [Unable to create persistent dir: ]
-      [32] invokespecial #355
+      [32] invokespecial #354
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [35] aload_1 v1
-      [36] invokevirtual #358
+      [36] invokevirtual #357
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-      [39] invokevirtual #360
+      [39] invokevirtual #359
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [42] invokestatic #289
+      [42] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [45] pop
       [46] aconst_null
-      [47] invokestatic #300
+      [47] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [50] return
-      [51] new #110
+      [51] new #109
         + Class [java/io/FileOutputStream]
       [54] dup
       [55] aload_0 v0
-      [56] getfield #207
+      [56] getfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
-      [59] invokespecial #331
+      [59] invokespecial #330
         + Methodref [java/io/FileOutputStream.<init> (Ljava/io/File;)V]
       [62] astore_1 v1
-      [63] new #107
+      [63] new #106
         + Class [java/io/DataOutputStream]
       [66] dup
       [67] aload_1 v1
-      [68] invokespecial #314
+      [68] invokespecial #313
         + Methodref [java/io/DataOutputStream.<init> (Ljava/io/OutputStream;)V]
       [71] dup
       [72] astore_2 v2
       [73] ldc #1
         + Integer [46586]
-      [75] invokevirtual #324
+      [75] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [78] aload_2 v2
       [79] iconst_2
-      [80] invokevirtual #324
+      [80] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [83] aload_2 v2
       [84] aload_0 v0
-      [85] getfield #212
+      [85] getfield #211
         + Fieldref [com/flurry/android/e.v Ljava/lang/String;]
-      [88] invokevirtual #325
+      [88] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [91] aload_2 v2
       [92] aload_0 v0
-      [93] getfield #168
+      [93] getfield #167
         + Fieldref [com/flurry/android/e.B Ljava/lang/String;]
-      [96] invokevirtual #325
+      [96] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [99] aload_2 v2
       [100] aload_0 v0
-      [101] getfield #169
+      [101] getfield #168
         + Fieldref [com/flurry/android/e.C Z]
-      [104] invokevirtual #318
+      [104] invokevirtual #317
         + Methodref [java/io/DataOutputStream.writeBoolean (Z)V]
       [107] aload_2 v2
       [108] aload_0 v0
-      [109] getfield #170
+      [109] getfield #169
         + Fieldref [com/flurry/android/e.D J]
-      [112] invokevirtual #323
+      [112] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [115] aload_0 v0
-      [116] getfield #171
+      [116] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
-      [119] invokeinterface #389
+      [119] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
       [124] iconst_1
       [125] isub
@@ -6666,12 +6627,12 @@ Methods (count = 41):
       [127] iload_1 v1
       [128] iflt +51 (target=179)
       [131] aload_0 v0
-      [132] getfield #171
+      [132] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [135] iload_1 v1
-      [136] invokeinterface #386
+      [136] invokeinterface #385
         + InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [141] checkcast #70
+      [141] checkcast #69
         + Class [[B]
       [144] dup
       [145] astore_3 v3
@@ -6681,7 +6642,7 @@ Methods (count = 41):
       [150] iconst_2
       [151] iadd
       [152] aload_2 v2
-      [153] invokevirtual #316
+      [153] invokevirtual #315
         + Methodref [java/io/DataOutputStream.size ()I]
       [156] iadd
       [157] ldc #2
@@ -6689,38 +6650,38 @@ Methods (count = 41):
       [159] ificmpgt +20 (target=179)
       [162] aload_2 v2
       [163] iload v4
-      [165] invokevirtual #324
+      [165] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [168] aload_2 v2
       [169] aload_3 v3
-      [170] invokevirtual #317
+      [170] invokevirtual #316
         + Methodref [java/io/DataOutputStream.write ([B)V]
       [173] iinc v1, -1
       [176] goto -49 (target=127)
       [179] aload_2 v2
       [180] iconst_0
-      [181] invokevirtual #324
+      [181] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [184] aload_2 v2
-      [185] invokestatic #300
+      [185] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [188] return
       [189] astore_1 v1
-      [190] ldc #22
+      [190] ldc #21
         + String [FlurryAgent]
       [192] ldc #3
         + String []
       [194] aload_1 v1
-      [195] invokestatic #290
+      [195] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [198] pop
       [199] aload_2 v2
-      [200] invokestatic #300
+      [200] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [203] return
       [204] astore_0 v0
       [205] aload_2 v2
-      [206] invokestatic #300
+      [206] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [209] aload_0 v0
       [210] athrow
@@ -6745,46 +6706,46 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 58, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] invokevirtual #233
+      [1] invokevirtual #232
         + Methodref [android/content/Context.getPackageManager ()Landroid/content/pm/PackageManager;]
       [4] aconst_null
       [5] astore_1 v1
       [6] aload_0 v0
-      [7] invokevirtual #234
+      [7] invokevirtual #233
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
       [10] iconst_0
-      [11] invokevirtual #236
+      [11] invokevirtual #235
         + Methodref [android/content/pm/PackageManager.getPackageInfo (Ljava/lang/String;I)Landroid/content/pm/PackageInfo;]
       [14] dup
       [15] astore_0 v0
-      [16] getfield #154
+      [16] getfield #153
         + Fieldref [android/content/pm/PackageInfo.versionName Ljava/lang/String;]
       [19] ifnull +8 (target=27)
       [22] aload_0 v0
-      [23] getfield #154
+      [23] getfield #153
         + Fieldref [android/content/pm/PackageInfo.versionName Ljava/lang/String;]
       [26] areturn
       [27] aload_0 v0
-      [28] getfield #153
+      [28] getfield #152
         + Fieldref [android/content/pm/PackageInfo.versionCode I]
       [31] ifeq +11 (target=42)
       [34] aload_0 v0
-      [35] getfield #153
+      [35] getfield #152
         + Fieldref [android/content/pm/PackageInfo.versionCode I]
-      [38] invokestatic #338
+      [38] invokestatic #337
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
       [41] areturn
       [42] goto +13 (target=55)
       [45] astore_1 v1
-      [46] ldc #22
+      [46] ldc #21
         + String [FlurryAgent]
       [48] ldc #3
         + String []
       [50] aload_1 v1
-      [51] invokestatic #290
+      [51] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [54] pop
-      [55] ldc #38
+      [55] ldc #37
         + String [Unknown]
       [57] areturn
       Code attribute exceptions (count = 2):
@@ -6804,23 +6765,23 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 108, locals = 4, stack = 7):
       [0] aload_1 v1
-      [1] ldc #44
+      [1] ldc #43
         + String [android.permission.ACCESS_FINE_LOCATION]
-      [3] invokevirtual #229
+      [3] invokevirtual #228
         + Methodref [android/content/Context.checkCallingOrSelfPermission (Ljava/lang/String;)I]
       [6] ifeq +12 (target=18)
       [9] aload_1 v1
-      [10] ldc #43
+      [10] ldc #42
         + String [android.permission.ACCESS_COARSE_LOCATION]
-      [12] invokevirtual #229
+      [12] invokevirtual #228
         + Methodref [android/content/Context.checkCallingOrSelfPermission (Ljava/lang/String;)I]
       [15] ifne +91 (target=106)
       [18] aload_1 v1
-      [19] ldc #58
+      [19] ldc #57
         + String [location]
-      [21] invokevirtual #235
+      [21] invokevirtual #234
         + Methodref [android/content/Context.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
-      [24] checkcast #78
+      [24] checkcast #77
         + Class [android/location/LocationManager]
       [27] astore_1 v1
       [28] aload_0 v0
@@ -6828,16 +6789,16 @@ Methods (count = 41):
       [30] astore_2 v2
       [31] monitorenter
       [32] aload_0 v0
-      [33] getfield #167
+      [33] getfield #166
         + Fieldref [com/flurry/android/e.A Landroid/location/LocationManager;]
       [36] ifnonnull +11 (target=47)
       [39] aload_0 v0
       [40] aload_1 v1
-      [41] putfield #167
+      [41] putfield #166
         + Fieldref [com/flurry/android/e.A Landroid/location/LocationManager;]
       [44] goto +8 (target=52)
       [47] aload_0 v0
-      [48] getfield #167
+      [48] getfield #166
         + Fieldref [com/flurry/android/e.A Landroid/location/LocationManager;]
       [51] astore_1 v1
       [52] aload_2 v2
@@ -6848,21 +6809,21 @@ Methods (count = 41):
       [59] monitorexit
       [60] aload_3 v3
       [61] athrow
-      [62] getstatic #203
+      [62] getstatic #202
         + Fieldref [com/flurry/android/e.m Landroid/location/Criteria;]
       [65] dup
       [66] astore_2 v2
       [67] ifnonnull +11 (target=78)
-      [70] new #75
+      [70] new #74
         + Class [android/location/Criteria]
       [73] dup
-      [74] invokespecial #237
+      [74] invokespecial #236
         + Methodref [android/location/Criteria.<init> ()V]
       [77] astore_2 v2
       [78] aload_1 v1
       [79] aload_2 v2
       [80] iconst_1
-      [81] invokevirtual #241
+      [81] invokevirtual #240
         + Methodref [android/location/LocationManager.getBestProvider (Landroid/location/Criteria;Z)Ljava/lang/String;]
       [84] dup
       [85] astore_3 v3
@@ -6872,13 +6833,13 @@ Methods (count = 41):
       [91] lconst_0
       [92] fconst_0
       [93] aload_0 v0
-      [94] invokestatic #250
+      [94] invokestatic #249
         + Methodref [android/os/Looper.getMainLooper ()Landroid/os/Looper;]
-      [97] invokevirtual #244
+      [97] invokevirtual #243
         + Methodref [android/location/LocationManager.requestLocationUpdates (Ljava/lang/String;JFLandroid/location/LocationListener;Landroid/os/Looper;)V]
       [100] aload_1 v1
       [101] aload_3 v3
-      [102] invokevirtual #242
+      [102] invokevirtual #241
         + Methodref [android/location/LocationManager.getLastKnownLocation (Ljava/lang/String;)Landroid/location/Location;]
       [105] areturn
       [106] aconst_null
@@ -6900,14 +6861,14 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 16, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #167
+      [1] getfield #166
         + Fieldref [com/flurry/android/e.A Landroid/location/LocationManager;]
       [4] ifnull +11 (target=15)
       [7] aload_0 v0
-      [8] getfield #167
+      [8] getfield #166
         + Fieldref [com/flurry/android/e.A Landroid/location/LocationManager;]
       [11] aload_0 v0
-      [12] invokevirtual #243
+      [12] invokevirtual #242
         + Methodref [android/location/LocationManager.removeUpdates (Landroid/location/LocationListener;)V]
       [15] return
       Code attribute exceptions (count = 0):
@@ -6921,19 +6882,19 @@ Methods (count = 41):
     + Code attribute instructions (code length = 21, locals = 2, stack = 3):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #182
+      [2] putfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
       [5] aload_0 v0
-      [6] invokespecial #283
+      [6] invokespecial #282
         + Methodref [com/flurry/android/e.h ()V]
       [9] return
       [10] astore_0 v0
-      [11] ldc #22
+      [11] ldc #21
         + String [FlurryAgent]
       [13] ldc #3
         + String []
       [15] aload_0 v0
-      [16] invokestatic #290
+      [16] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [19] pop
       [20] return
@@ -6972,7 +6933,7 @@ Methods (count = 41):
       = static synthetic com.flurry.android.e c()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 4, locals = 0, stack = 1):
-      [0] getstatic #198
+      [0] getstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
       [3] areturn
       Code attribute exceptions (count = 0):
@@ -6983,7 +6944,7 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #209
+      [1] getfield #208
         + Fieldref [com/flurry/android/e.s Z]
       [4] ireturn
       Code attribute exceptions (count = 0):
@@ -6996,106 +6957,106 @@ Methods (count = 41):
       [0] aload_0 v0
       [1] dup
       [2] astore_0 v0
-      [3] getfield #207
+      [3] getfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
-      [6] invokevirtual #327
+      [6] invokevirtual #326
         + Methodref [java/io/File.exists ()Z]
       [9] ifeq +109 (target=118)
       [12] aconst_null
       [13] astore_2 v2
-      [14] new #109
+      [14] new #108
         + Class [java/io/FileInputStream]
       [17] dup
       [18] aload_0 v0
-      [19] getfield #207
+      [19] getfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
-      [22] invokespecial #330
+      [22] invokespecial #329
         + Methodref [java/io/FileInputStream.<init> (Ljava/io/File;)V]
       [25] astore_1 v1
-      [26] new #106
+      [26] new #105
         + Class [java/io/DataInputStream]
       [29] dup
       [30] aload_1 v1
-      [31] invokespecial #304
+      [31] invokespecial #303
         + Methodref [java/io/DataInputStream.<init> (Ljava/io/InputStream;)V]
       [34] dup
       [35] astore_2 v2
-      [36] invokevirtual #312
+      [36] invokevirtual #311
         + Methodref [java/io/DataInputStream.readUnsignedShort ()I]
       [39] ldc #1
         + Integer [46586]
       [41] ificmpne +8 (target=49)
       [44] aload_0 v0
       [45] aload_2 v2
-      [46] invokespecial #277
+      [46] invokespecial #276
         + Methodref [com/flurry/android/e.b (Ljava/io/DataInputStream;)V]
       [49] aload_2 v2
-      [50] invokestatic #300
+      [50] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [53] goto +27 (target=80)
       [56] astore_1 v1
-      [57] ldc #22
+      [57] ldc #21
         + String [FlurryAgent]
       [59] ldc #3
         + String []
       [61] aload_1 v1
-      [62] invokestatic #290
+      [62] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [65] pop
       [66] aload_2 v2
-      [67] invokestatic #300
+      [67] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [70] goto +10 (target=80)
       [73] astore_0 v0
       [74] aload_2 v2
-      [75] invokestatic #300
+      [75] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [78] aload_0 v0
       [79] athrow
       [80] aload_0 v0
-      [81] getfield #209
+      [81] getfield #208
         + Fieldref [com/flurry/android/e.s Z]
       [84] ifne +21 (target=105)
       [87] aload_0 v0
-      [88] getfield #207
+      [88] getfield #206
         + Fieldref [com/flurry/android/e.q Ljava/io/File;]
-      [91] invokevirtual #326
+      [91] invokevirtual #325
         + Methodref [java/io/File.delete ()Z]
       [94] ifne +11 (target=105)
-      [97] ldc #22
+      [97] ldc #21
         + String [FlurryAgent]
       [99] ldc #17
         + String [Cannot delete persistence file]
-      [101] invokestatic #289
+      [101] invokestatic #288
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;)I]
       [104] pop
       [105] goto +13 (target=118)
       [108] astore_1 v1
-      [109] ldc #22
+      [109] ldc #21
         + String [FlurryAgent]
       [111] ldc #3
         + String []
       [113] aload_1 v1
-      [114] invokestatic #290
+      [114] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [117] pop
       [118] aload_0 v0
-      [119] getfield #209
+      [119] getfield #208
         + Fieldref [com/flurry/android/e.s Z]
       [122] ifne +21 (target=143)
       [125] aload_0 v0
       [126] iconst_0
-      [127] putfield #169
+      [127] putfield #168
         + Fieldref [com/flurry/android/e.C Z]
       [130] aload_0 v0
       [131] aload_0 v0
-      [132] getfield #172
+      [132] getfield #171
         + Fieldref [com/flurry/android/e.F J]
-      [135] putfield #170
+      [135] putfield #169
         + Fieldref [com/flurry/android/e.D J]
       [138] aload_0 v0
       [139] iconst_1
-      [140] putfield #209
+      [140] putfield #208
         + Fieldref [com/flurry/android/e.s Z]
       [143] return
       Code attribute exceptions (count = 4):
@@ -7135,7 +7096,7 @@ Methods (count = 41):
       [15] monitorenter
       [16] aload_0 v0
       [17] aload_3 v3
-      [18] putfield #182
+      [18] putfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
       [21] aload_1 v1
       [22] monitorexit
@@ -7145,13 +7106,13 @@ Methods (count = 41):
       [28] monitorexit
       [29] aload_0 v0
       [30] athrow
-      [31] getstatic #204
+      [31] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [34] ifeq +10 (target=44)
       [37] aload_0 v0
-      [38] getfield #189
+      [38] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
-      [41] invokevirtual #258
+      [41] invokevirtual #257
         + Methodref [com/flurry/android/ag.a ()V]
       [44] aload_0 v0
       [45] iconst_1
@@ -7159,12 +7120,12 @@ Methods (count = 41):
         + Methodref [com/flurry/android/e.b (Z)V]
       [49] return
       [50] astore_3 v3
-      [51] ldc #22
+      [51] ldc #21
         + String [FlurryAgent]
       [53] ldc #3
         + String []
       [55] aload_3 v3
-      [56] invokestatic #290
+      [56] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [59] pop
       [60] return
@@ -7185,7 +7146,7 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #171
+      [1] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -7197,350 +7158,350 @@ Methods (count = 41):
     + Code attribute instructions (code length = 538, locals = 5, stack = 3):
       [0] aconst_null
       [1] astore_1 v1
-      [2] new #105
+      [2] new #104
         + Class [java/io/ByteArrayOutputStream]
       [5] dup
-      [6] invokespecial #302
+      [6] invokespecial #301
         + Methodref [java/io/ByteArrayOutputStream.<init> ()V]
       [9] astore_2 v2
-      [10] new #107
+      [10] new #106
         + Class [java/io/DataOutputStream]
       [13] dup
       [14] aload_2 v2
-      [15] invokespecial #314
+      [15] invokespecial #313
         + Methodref [java/io/DataOutputStream.<init> (Ljava/io/OutputStream;)V]
       [18] dup
       [19] astore_1 v1
       [20] iconst_1
-      [21] invokevirtual #324
+      [21] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [24] aload_1 v1
       [25] aload_0 v0
-      [26] getfield #214
+      [26] getfield #213
         + Fieldref [com/flurry/android/e.x Ljava/lang/String;]
-      [29] invokevirtual #325
+      [29] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [32] aload_1 v1
       [33] aload_0 v0
-      [34] getfield #172
+      [34] getfield #171
         + Fieldref [com/flurry/android/e.F J]
-      [37] invokevirtual #323
+      [37] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [40] aload_1 v1
       [41] aload_0 v0
-      [42] getfield #174
+      [42] getfield #173
         + Fieldref [com/flurry/android/e.H J]
-      [45] invokevirtual #323
+      [45] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [48] aload_1 v1
       [49] lconst_0
-      [50] invokevirtual #323
+      [50] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [53] aload_1 v1
       [54] aload_0 v0
-      [55] getfield #175
+      [55] getfield #174
         + Fieldref [com/flurry/android/e.I Ljava/lang/String;]
-      [58] invokevirtual #325
+      [58] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [61] aload_1 v1
       [62] aload_0 v0
-      [63] getfield #176
+      [63] getfield #175
         + Fieldref [com/flurry/android/e.J Ljava/lang/String;]
-      [66] invokevirtual #325
+      [66] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [69] aload_1 v1
       [70] aload_0 v0
-      [71] getfield #177
+      [71] getfield #176
         + Fieldref [com/flurry/android/e.K B]
-      [74] invokevirtual #319
+      [74] invokevirtual #318
         + Methodref [java/io/DataOutputStream.writeByte (I)V]
       [77] aload_1 v1
       [78] aload_0 v0
-      [79] getfield #178
+      [79] getfield #177
         + Fieldref [com/flurry/android/e.L Ljava/lang/String;]
-      [82] invokevirtual #325
+      [82] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [85] aload_0 v0
-      [86] getfield #182
+      [86] getfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
       [89] ifnonnull +11 (target=100)
       [92] aload_1 v1
       [93] iconst_0
-      [94] invokevirtual #318
+      [94] invokevirtual #317
         + Methodref [java/io/DataOutputStream.writeBoolean (Z)V]
       [97] goto +41 (target=138)
       [100] aload_1 v1
       [101] iconst_1
-      [102] invokevirtual #318
+      [102] invokevirtual #317
         + Methodref [java/io/DataOutputStream.writeBoolean (Z)V]
       [105] aload_1 v1
       [106] aload_0 v0
-      [107] getfield #182
+      [107] getfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
-      [110] invokevirtual #239
+      [110] invokevirtual #238
         + Methodref [android/location/Location.getLatitude ()D]
-      [113] invokevirtual #320
+      [113] invokevirtual #319
         + Methodref [java/io/DataOutputStream.writeDouble (D)V]
       [116] aload_1 v1
       [117] aload_0 v0
-      [118] getfield #182
+      [118] getfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
-      [121] invokevirtual #240
+      [121] invokevirtual #239
         + Methodref [android/location/Location.getLongitude ()D]
-      [124] invokevirtual #320
+      [124] invokevirtual #319
         + Methodref [java/io/DataOutputStream.writeDouble (D)V]
       [127] aload_1 v1
       [128] aload_0 v0
-      [129] getfield #182
+      [129] getfield #181
         + Fieldref [com/flurry/android/e.P Landroid/location/Location;]
-      [132] invokevirtual #238
+      [132] invokevirtual #237
         + Methodref [android/location/Location.getAccuracy ()F]
-      [135] invokevirtual #321
+      [135] invokevirtual #320
         + Methodref [java/io/DataOutputStream.writeFloat (F)V]
       [138] aload_1 v1
       [139] aload_0 v0
-      [140] getfield #188
+      [140] getfield #187
         + Fieldref [com/flurry/android/e.V I]
-      [143] invokevirtual #322
+      [143] invokevirtual #321
         + Methodref [java/io/DataOutputStream.writeInt (I)V]
       [146] aload_1 v1
       [147] iconst_m1
-      [148] invokevirtual #319
+      [148] invokevirtual #318
         + Methodref [java/io/DataOutputStream.writeByte (I)V]
       [151] aload_1 v1
       [152] iconst_m1
-      [153] invokevirtual #319
+      [153] invokevirtual #318
         + Methodref [java/io/DataOutputStream.writeByte (I)V]
       [156] aload_1 v1
       [157] aload_0 v0
-      [158] getfield #179
+      [158] getfield #178
         + Fieldref [com/flurry/android/e.M B]
-      [161] invokevirtual #319
+      [161] invokevirtual #318
         + Methodref [java/io/DataOutputStream.writeByte (I)V]
       [164] aload_0 v0
-      [165] getfield #180
+      [165] getfield #179
         + Fieldref [com/flurry/android/e.N Ljava/lang/Long;]
       [168] ifnonnull +11 (target=179)
       [171] aload_1 v1
       [172] iconst_0
-      [173] invokevirtual #318
+      [173] invokevirtual #317
         + Methodref [java/io/DataOutputStream.writeBoolean (Z)V]
       [176] goto +19 (target=195)
       [179] aload_1 v1
       [180] iconst_1
-      [181] invokevirtual #318
+      [181] invokevirtual #317
         + Methodref [java/io/DataOutputStream.writeBoolean (Z)V]
       [184] aload_1 v1
       [185] aload_0 v0
-      [186] getfield #180
+      [186] getfield #179
         + Fieldref [com/flurry/android/e.N Ljava/lang/Long;]
-      [189] invokevirtual #340
+      [189] invokevirtual #339
         + Methodref [java/lang/Long.longValue ()J]
-      [192] invokevirtual #323
+      [192] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [195] aload_1 v1
       [196] aload_0 v0
-      [197] getfield #183
+      [197] getfield #182
         + Fieldref [com/flurry/android/e.Q Ljava/util/Map;]
-      [200] invokeinterface #396
+      [200] invokeinterface #395
         + InterfaceMethodref [java/util/Map.size ()I]
-      [205] invokevirtual #324
+      [205] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [208] aload_0 v0
-      [209] getfield #183
+      [209] getfield #182
         + Fieldref [com/flurry/android/e.Q Ljava/util/Map;]
-      [212] invokeinterface #391
+      [212] invokeinterface #390
         + InterfaceMethodref [java/util/Map.entrySet ()Ljava/util/Set;]
-      [217] invokeinterface #399
+      [217] invokeinterface #398
         + InterfaceMethodref [java/util/Set.iterator ()Ljava/util/Iterator;]
       [222] astore_3 v3
       [223] aload_3 v3
-      [224] invokeinterface #382
+      [224] invokeinterface #381
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [229] ifeq +48 (target=277)
       [232] aload_3 v3
-      [233] invokeinterface #383
+      [233] invokeinterface #382
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [238] checkcast #136
+      [238] checkcast #135
         + Class [java/util/Map$Entry]
       [241] astore v4
       [243] aload_1 v1
       [244] aload v4
-      [246] invokeinterface #397
+      [246] invokeinterface #396
         + InterfaceMethodref [java/util/Map$Entry.getKey ()Ljava/lang/Object;]
-      [251] checkcast #124
+      [251] checkcast #123
         + Class [java/lang/String]
-      [254] invokevirtual #325
+      [254] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [257] aload_1 v1
       [258] aload v4
-      [260] invokeinterface #398
+      [260] invokeinterface #397
         + InterfaceMethodref [java/util/Map$Entry.getValue ()Ljava/lang/Object;]
-      [265] checkcast #87
+      [265] checkcast #86
         + Class [com/flurry/android/aa]
-      [268] getfield #162
+      [268] getfield #161
         + Fieldref [com/flurry/android/aa.a I]
-      [271] invokevirtual #322
+      [271] invokevirtual #321
         + Methodref [java/io/DataOutputStream.writeInt (I)V]
       [274] goto -51 (target=223)
       [277] aload_1 v1
       [278] aload_0 v0
-      [279] getfield #184
+      [279] getfield #183
         + Fieldref [com/flurry/android/e.R Ljava/util/List;]
-      [282] invokeinterface #389
+      [282] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
-      [287] invokevirtual #324
+      [287] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [290] aload_0 v0
-      [291] getfield #184
+      [291] getfield #183
         + Fieldref [com/flurry/android/e.R Ljava/util/List;]
-      [294] invokeinterface #387
+      [294] invokeinterface #386
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [299] astore_3 v3
       [300] aload_3 v3
-      [301] invokeinterface #382
+      [301] invokeinterface #381
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [306] ifeq +26 (target=332)
       [309] aload_3 v3
-      [310] invokeinterface #383
+      [310] invokeinterface #382
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [315] checkcast #88
+      [315] checkcast #87
         + Class [com/flurry/android/ad]
       [318] astore v4
       [320] aload_1 v1
       [321] aload v4
-      [323] invokevirtual #256
+      [323] invokevirtual #255
         + Methodref [com/flurry/android/ad.a ()[B]
-      [326] invokevirtual #317
+      [326] invokevirtual #316
         + Methodref [java/io/DataOutputStream.write ([B)V]
       [329] goto -29 (target=300)
       [332] aload_1 v1
       [333] aload_0 v0
-      [334] getfield #185
+      [334] getfield #184
         + Fieldref [com/flurry/android/e.S Z]
-      [337] invokevirtual #318
+      [337] invokevirtual #317
         + Methodref [java/io/DataOutputStream.writeBoolean (Z)V]
       [340] aload_1 v1
       [341] aload_0 v0
-      [342] getfield #181
+      [342] getfield #180
         + Fieldref [com/flurry/android/e.O I]
-      [345] invokevirtual #322
+      [345] invokevirtual #321
         + Methodref [java/io/DataOutputStream.writeInt (I)V]
       [348] aload_1 v1
       [349] aload_0 v0
-      [350] getfield #187
+      [350] getfield #186
         + Fieldref [com/flurry/android/e.U Ljava/util/List;]
-      [353] invokeinterface #389
+      [353] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
-      [358] invokevirtual #324
+      [358] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [361] aload_0 v0
-      [362] getfield #187
+      [362] getfield #186
         + Fieldref [com/flurry/android/e.U Ljava/util/List;]
-      [365] invokeinterface #387
+      [365] invokeinterface #386
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [370] astore_3 v3
       [371] aload_3 v3
-      [372] invokeinterface #382
+      [372] invokeinterface #381
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [377] ifeq +53 (target=430)
       [380] aload_3 v3
-      [381] invokeinterface #383
+      [381] invokeinterface #382
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [386] checkcast #91
+      [386] checkcast #90
         + Class [com/flurry/android/ao]
       [389] astore v4
       [391] aload_1 v1
       [392] aload v4
-      [394] getfield #163
+      [394] getfield #162
         + Fieldref [com/flurry/android/ao.a J]
-      [397] invokevirtual #323
+      [397] invokevirtual #322
         + Methodref [java/io/DataOutputStream.writeLong (J)V]
       [400] aload_1 v1
       [401] aload v4
-      [403] getfield #164
+      [403] getfield #163
         + Fieldref [com/flurry/android/ao.b Ljava/lang/String;]
-      [406] invokevirtual #325
+      [406] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [409] aload_1 v1
       [410] aload v4
-      [412] getfield #165
+      [412] getfield #164
         + Fieldref [com/flurry/android/ao.c Ljava/lang/String;]
-      [415] invokevirtual #325
+      [415] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [418] aload_1 v1
       [419] aload v4
-      [421] getfield #166
+      [421] getfield #165
         + Fieldref [com/flurry/android/ao.d Ljava/lang/String;]
-      [424] invokevirtual #325
+      [424] invokevirtual #324
         + Methodref [java/io/DataOutputStream.writeUTF (Ljava/lang/String;)V]
       [427] goto -56 (target=371)
-      [430] getstatic #204
+      [430] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [433] ifeq +59 (target=492)
       [436] aload_0 v0
-      [437] getfield #189
+      [437] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
-      [440] invokevirtual #263
+      [440] invokevirtual #262
         + Methodref [com/flurry/android/ag.e ()Ljava/util/List;]
       [443] astore_3 v3
       [444] aload_1 v1
       [445] aload_3 v3
-      [446] invokeinterface #389
+      [446] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
-      [451] invokevirtual #324
+      [451] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [454] aload_3 v3
-      [455] invokeinterface #387
+      [455] invokeinterface #386
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [460] astore v4
       [462] aload v4
-      [464] invokeinterface #382
+      [464] invokeinterface #381
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [469] ifeq +20 (target=489)
       [472] aload v4
-      [474] invokeinterface #383
+      [474] invokeinterface #382
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [479] checkcast #95
+      [479] checkcast #94
         + Class [com/flurry/android/m]
       [482] aload_1 v1
-      [483] invokevirtual #285
+      [483] invokevirtual #284
         + Methodref [com/flurry/android/m.a (Ljava/io/DataOutput;)V]
       [486] goto -24 (target=462)
       [489] goto +8 (target=497)
       [492] aload_1 v1
       [493] iconst_0
-      [494] invokevirtual #324
+      [494] invokevirtual #323
         + Methodref [java/io/DataOutputStream.writeShort (I)V]
       [497] aload_0 v0
-      [498] getfield #171
+      [498] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
       [501] aload_2 v2
-      [502] invokevirtual #303
+      [502] invokevirtual #302
         + Methodref [java/io/ByteArrayOutputStream.toByteArray ()[B]
-      [505] invokeinterface #385
+      [505] invokeinterface #384
         + InterfaceMethodref [java/util/List.add (Ljava/lang/Object;)Z]
       [510] pop
       [511] aload_1 v1
-      [512] invokestatic #300
+      [512] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [515] return
       [516] astore_2 v2
-      [517] ldc #22
+      [517] ldc #21
         + String [FlurryAgent]
       [519] ldc #3
         + String []
       [521] aload_2 v2
-      [522] invokestatic #290
+      [522] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [525] pop
       [526] aload_1 v1
-      [527] invokestatic #300
+      [527] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [530] return
       [531] astore_0 v0
       [532] aload_1 v1
-      [533] invokestatic #300
+      [533] invokestatic #299
         + Methodref [com/flurry/android/y.a (Ljava/io/Closeable;)V]
       [536] aload_0 v0
       [537] athrow
@@ -7573,7 +7534,7 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #282
+      [1] invokespecial #281
         + Methodref [com/flurry/android/e.g ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -7588,23 +7549,23 @@ Methods (count = 41):
       [2] astore_2 v2
       [3] monitorenter
       [4] aload_0 v0
-      [5] getfield #208
+      [5] getfield #207
         + Fieldref [com/flurry/android/e.r Z]
       [8] ifne +34 (target=42)
-      [11] invokestatic #251
+      [11] invokestatic #250
         + Methodref [android/os/SystemClock.elapsedRealtime ()J]
       [14] aload_0 v0
-      [15] getfield #210
+      [15] getfield #209
         + Fieldref [com/flurry/android/e.t J]
       [18] lsub
-      [19] getstatic #199
+      [19] getstatic #198
         + Fieldref [com/flurry/android/e.i J]
       [22] lcmp
       [23] ifle +19 (target=42)
       [26] aload_0 v0
-      [27] getfield #171
+      [27] getfield #170
         + Fieldref [com/flurry/android/e.E Ljava/util/List;]
-      [30] invokeinterface #389
+      [30] invokeinterface #388
         + InterfaceMethodref [java/util/List.size ()I]
       [35] ifle +7 (target=42)
       [38] iconst_1
@@ -7627,12 +7588,12 @@ Methods (count = 41):
         + Methodref [com/flurry/android/e.b (Z)V]
       [63] return
       [64] astore_1 v1
-      [65] ldc #22
+      [65] ldc #21
         + String [FlurryAgent]
       [67] ldc #3
         + String []
       [69] aload_1 v1
-      [70] invokestatic #290
+      [70] invokestatic #289
         + Methodref [com/flurry/android/n.b (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
       [73] pop
       [74] return
@@ -7653,7 +7614,7 @@ Methods (count = 41):
       = static synthetic long d()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 4, locals = 0, stack = 2):
-      [0] getstatic #199
+      [0] getstatic #198
         + Fieldref [com/flurry/android/e.i J]
       [3] lreturn
       Code attribute exceptions (count = 0):
@@ -7664,7 +7625,7 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #206
+      [1] getfield #205
         + Fieldref [com/flurry/android/e.p Landroid/os/Handler;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -7674,7 +7635,7 @@ Methods (count = 41):
       = static synthetic boolean e()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 4, locals = 0, stack = 1):
-      [0] getstatic #204
+      [0] getstatic #203
         + Fieldref [com/flurry/android/e.n Z]
       [3] ireturn
       Code attribute exceptions (count = 0):
@@ -7685,7 +7646,7 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #189
+      [1] getfield #188
         + Fieldref [com/flurry/android/e.W Lcom/flurry/android/ag;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -7696,62 +7657,62 @@ Methods (count = 41):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 79, locals = 0, stack = 2):
       [0] aconst_null
-      [1] putstatic #191
+      [1] putstatic #190
         + Fieldref [com/flurry/android/e.a Ljava/lang/String;]
-      [4] ldc #54
+      [4] ldc #53
         + String [http://data.flurry.com/aap.do]
-      [6] putstatic #192
+      [6] putstatic #191
         + Fieldref [com/flurry/android/e.b Ljava/lang/String;]
-      [9] ldc #55
+      [9] ldc #54
         + String [https://data.flurry.com/aap.do]
-      [11] putstatic #193
+      [11] putstatic #192
         + Fieldref [com/flurry/android/e.c Ljava/lang/String;]
       [14] aconst_null
-      [15] putstatic #194
+      [15] putstatic #193
         + Fieldref [com/flurry/android/e.d Ljava/lang/String;]
-      [18] ldc #53
+      [18] ldc #52
         + String [http://ad.flurry.com/getCanvas.do]
-      [20] putstatic #195
+      [20] putstatic #194
         + Fieldref [com/flurry/android/e.e Ljava/lang/String;]
       [23] aconst_null
-      [24] putstatic #196
+      [24] putstatic #195
         + Fieldref [com/flurry/android/e.f Ljava/lang/String;]
-      [27] ldc #52
+      [27] ldc #51
         + String [http://ad.flurry.com/getAndroidApp.do]
-      [29] putstatic #197
+      [29] putstatic #196
         + Fieldref [com/flurry/android/e.g Ljava/lang/String;]
-      [32] new #93
+      [32] new #92
         + Class [com/flurry/android/e]
       [35] dup
-      [36] invokespecial #267
+      [36] invokespecial #266
         + Methodref [com/flurry/android/e.<init> ()V]
-      [39] putstatic #198
+      [39] putstatic #197
         + Fieldref [com/flurry/android/e.h Lcom/flurry/android/e;]
-      [42] ldc2_w #151
+      [42] ldc2_w #150
         + Long [10000]
-      [45] putstatic #199
+      [45] putstatic #198
         + Fieldref [com/flurry/android/e.i J]
       [48] iconst_1
-      [49] putstatic #200
+      [49] putstatic #199
         + Fieldref [com/flurry/android/e.j Z]
       [52] iconst_0
-      [53] putstatic #201
+      [53] putstatic #200
         + Fieldref [com/flurry/android/e.k Z]
       [56] iconst_1
-      [57] putstatic #202
+      [57] putstatic #201
         + Fieldref [com/flurry/android/e.l Z]
       [60] aconst_null
-      [61] putstatic #203
+      [61] putstatic #202
         + Fieldref [com/flurry/android/e.m Landroid/location/Criteria;]
       [64] iconst_0
-      [65] putstatic #204
+      [65] putstatic #203
         + Fieldref [com/flurry/android/e.n Z]
-      [68] new #92
+      [68] new #91
         + Class [com/flurry/android/b]
       [71] dup
-      [72] invokespecial #266
+      [72] invokespecial #265
         + Methodref [com/flurry/android/b.<init> ()V]
-      [75] putstatic #205
+      [75] putstatic #204
         + Fieldref [com/flurry/android/e.o Lcom/flurry/android/b;]
       [78] return
       Code attribute exceptions (count = 0):
@@ -22066,7 +22027,7 @@ Constant Pool (count = 93):
   + Methodref [com/flurry/android/e.a ()V]
   + Methodref [com/flurry/android/e.a (Landroid/content/Context;)V]
   + Methodref [com/flurry/android/e.a (Landroid/content/Context;Ljava/lang/String;)V]
-  + Methodref [com/flurry/android/e.b (Ljava/lang/String;)V]
+  + Methodref [com/flurry/android/e.a (Ljava/lang/String;)V]
   + Methodref [com/t2/vas/a.c ()Z]
   + Methodref [java/lang/Class.getName ()Ljava/lang/String;]
   + Methodref [java/lang/Object.<init> ()V]
@@ -22080,10 +22041,10 @@ Constant Pool (count = 93):
   + NameAndType [a ()V]
   + NameAndType [a (Landroid/content/Context;)V]
   + NameAndType [a (Landroid/content/Context;Ljava/lang/String;)V]
+  + NameAndType [a (Ljava/lang/String;)V]
   + NameAndType [a Ljava/lang/String;]
   + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + NameAndType [append (Z)Ljava/lang/StringBuilder;]
-  + NameAndType [b (Ljava/lang/String;)V]
   + NameAndType [b Ljava/lang/String;]
   + NameAndType [c ()Z]
   + NameAndType [c Z]
@@ -22381,7 +22342,7 @@ Methods (count = 10):
       [34] pop
       [35] aload_0 v0
       [36] invokestatic #24
-        + Methodref [com/flurry/android/e.b (Ljava/lang/String;)V]
+        + Methodref [com/flurry/android/e.a (Ljava/lang/String;)V]
       [39] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
@@ -45856,25 +45817,8 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 221):
-  + String [ Country: ]
-  + String [AI6NAUCMM6QCZYHLV9B4]
-  + String [Code: ]
-  + String [Shtuff]
-  + String [test-keys]
-  + Class [android/app/WallpaperManager]
-  + Class [android/content/Context]
+Constant Pool (count = 50):
   + Class [android/content/Intent]
-  + Class [android/content/pm/ApplicationInfo]
-  + Class [android/content/res/AssetManager]
-  + Class [android/content/res/Configuration]
-  + Class [android/content/res/Resources]
-  + Class [android/os/Binder]
-  + Class [android/os/Build]
-  + Class [android/os/Bundle]
-  + Class [android/os/Debug]
-  + Class [android/view/View]
-  + Class [com/flurry/android/e]
   + Class [com/t2/vas/ReminderService]
   + Class [com/t2/vas/activity/ABSActivity]
   + Class [com/t2/vas/activity/MainActivity]
@@ -45882,160 +45826,37 @@ Constant Pool (count = 221):
   + Class [com/t2/vas/activity/StartupActivity]
   + Class [com/t2/vas/d]
   + Class [com/t2/vas/s]
-  + Class [java/io/BufferedReader]
-  + Class [java/io/IOException]
-  + Class [java/io/InputStreamReader]
-  + Class [java/lang/String]
-  + Class [java/lang/StringBuilder]
-  + Class [java/util/Locale]
-  + Class [org/a/a/a]
-  + Class [org/a/a/b]
-  + Fieldref [android/content/pm/ApplicationInfo.flags I]
-  + Fieldref [android/content/pm/ApplicationInfo.sourceDir Ljava/lang/String;]
-  + Fieldref [android/content/res/Configuration.locale Ljava/util/Locale;]
-  + Fieldref [android/os/Build.TAGS Ljava/lang/String;]
   + Fieldref [com/t2/vas/activity/StartupActivity.a Landroid/content/SharedPreferences;]
-  + Fieldref [org/a/a/b.a Lorg/a/a/b;]
-  + Methodref [android/app/WallpaperManager.getDrawable ()Landroid/graphics/drawable/Drawable;]
-  + Methodref [android/app/WallpaperManager.getInstance (Landroid/content/Context;)Landroid/app/WallpaperManager;]
-  + Methodref [android/content/Context.getAssets ()Landroid/content/res/AssetManager;]
-  + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
-  + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
   + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-  + Methodref [android/content/res/AssetManager.open (Ljava/lang/String;)Ljava/io/InputStream;]
-  + Methodref [android/content/res/Resources.getConfiguration ()Landroid/content/res/Configuration;]
-  + Methodref [android/os/Binder.getCallingUid ()I]
-  + Methodref [android/os/Debug.isDebuggerConnected ()Z]
-  + Methodref [android/view/View.<init> (Landroid/content/Context;)V]
-  + Methodref [android/view/View.setBackgroundDrawable (Landroid/graphics/drawable/Drawable;)V]
-  + Methodref [com/flurry/android/e.a (Landroid/content/Context;Ljava/lang/String;)V]
-  + Methodref [com/flurry/android/e.a (Ljava/lang/String;)V]
   + Methodref [com/t2/vas/ReminderService.b (Landroid/content/Context;)V]
   + Methodref [com/t2/vas/activity/ABSActivity.<init> ()V]
   + Methodref [com/t2/vas/activity/ABSActivity.onCreate (Landroid/os/Bundle;)V]
   + Methodref [com/t2/vas/activity/StartupActivity.finish ()V]
-  + Methodref [com/t2/vas/activity/StartupActivity.getApplicationContext ()Landroid/content/Context;]
-  + Methodref [com/t2/vas/activity/StartupActivity.getApplicationInfo ()Landroid/content/pm/ApplicationInfo;]
-  + Methodref [com/t2/vas/activity/StartupActivity.setContentView (Landroid/view/View;)V]
   + Methodref [com/t2/vas/activity/StartupActivity.startActivity (Landroid/content/Intent;)V]
   + Methodref [com/t2/vas/d.a (Landroid/content/Context;)V]
   + Methodref [com/t2/vas/s.a (Landroid/content/SharedPreferences;)Z]
-  + Methodref [java/io/BufferedReader.<init> (Ljava/io/Reader;)V]
-  + Methodref [java/io/BufferedReader.readLine ()Ljava/lang/String;]
-  + Methodref [java/io/IOException.printStackTrace ()V]
-  + Methodref [java/io/InputStreamReader.<init> (Ljava/io/InputStream;)V]
-  + Methodref [java/lang/String.contains (Ljava/lang/CharSequence;)Z]
-  + Methodref [java/lang/String.equalsIgnoreCase (Ljava/lang/String;)Z]
-  + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-  + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-  + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-  + Methodref [java/util/Locale.getISO3Country ()Ljava/lang/String;]
-  + Methodref [org/a/a/a.a ()Z]
-  + Methodref [org/a/a/a.a (Ljava/lang/String;Ljava/lang/String;)Z]
-  + Methodref [org/a/a/a.a (Lorg/a/a/b;)Z]
   + NameAndType [<init> ()V]
-  + NameAndType [<init> (Landroid/content/Context;)V]
   + NameAndType [<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-  + NameAndType [<init> (Ljava/io/InputStream;)V]
-  + NameAndType [<init> (Ljava/io/Reader;)V]
-  + NameAndType [<init> (Ljava/lang/String;)V]
-  + NameAndType [TAGS Ljava/lang/String;]
-  + NameAndType [a ()Z]
   + NameAndType [a (Landroid/content/Context;)V]
-  + NameAndType [a (Landroid/content/Context;Ljava/lang/String;)V]
   + NameAndType [a (Landroid/content/SharedPreferences;)Z]
-  + NameAndType [a (Ljava/lang/String;)V]
-  + NameAndType [a (Ljava/lang/String;Ljava/lang/String;)Z]
-  + NameAndType [a (Lorg/a/a/b;)Z]
   + NameAndType [a Landroid/content/SharedPreferences;]
-  + NameAndType [a Lorg/a/a/b;]
-  + NameAndType [append (I)Ljava/lang/StringBuilder;]
-  + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + NameAndType [b (Landroid/content/Context;)V]
-  + NameAndType [contains (Ljava/lang/CharSequence;)Z]
-  + NameAndType [equalsIgnoreCase (Ljava/lang/String;)Z]
   + NameAndType [finish ()V]
-  + NameAndType [flags I]
-  + NameAndType [getApplicationContext ()Landroid/content/Context;]
-  + NameAndType [getApplicationInfo ()Landroid/content/pm/ApplicationInfo;]
-  + NameAndType [getAssets ()Landroid/content/res/AssetManager;]
-  + NameAndType [getCallingUid ()I]
-  + NameAndType [getConfiguration ()Landroid/content/res/Configuration;]
-  + NameAndType [getDrawable ()Landroid/graphics/drawable/Drawable;]
-  + NameAndType [getISO3Country ()Ljava/lang/String;]
-  + NameAndType [getInstance (Landroid/content/Context;)Landroid/app/WallpaperManager;]
-  + NameAndType [getPackageName ()Ljava/lang/String;]
-  + NameAndType [getResources ()Landroid/content/res/Resources;]
-  + NameAndType [isDebuggerConnected ()Z]
-  + NameAndType [locale Ljava/util/Locale;]
   + NameAndType [onCreate (Landroid/os/Bundle;)V]
-  + NameAndType [open (Ljava/lang/String;)Ljava/io/InputStream;]
-  + NameAndType [printStackTrace ()V]
-  + NameAndType [readLine ()Ljava/lang/String;]
-  + NameAndType [setBackgroundDrawable (Landroid/graphics/drawable/Drawable;)V]
-  + NameAndType [setContentView (Landroid/view/View;)V]
-  + NameAndType [sourceDir Ljava/lang/String;]
   + NameAndType [startActivity (Landroid/content/Intent;)V]
-  + NameAndType [toString ()Ljava/lang/String;]
-  + Utf8 [ Country: ]
-  + Utf8 [()I]
-  + Utf8 [()Landroid/content/Context;]
-  + Utf8 [()Landroid/content/pm/ApplicationInfo;]
-  + Utf8 [()Landroid/content/res/AssetManager;]
-  + Utf8 [()Landroid/content/res/Configuration;]
-  + Utf8 [()Landroid/content/res/Resources;]
-  + Utf8 [()Landroid/graphics/drawable/Drawable;]
-  + Utf8 [()Ljava/lang/String;]
   + Utf8 [()V]
-  + Utf8 [()Z]
-  + Utf8 [(I)Ljava/lang/StringBuilder;]
-  + Utf8 [(Landroid/content/Context;)Landroid/app/WallpaperManager;]
   + Utf8 [(Landroid/content/Context;)V]
   + Utf8 [(Landroid/content/Context;Ljava/lang/Class;)V]
-  + Utf8 [(Landroid/content/Context;Ljava/lang/String;)V]
   + Utf8 [(Landroid/content/Intent;)V]
   + Utf8 [(Landroid/content/SharedPreferences;)Z]
-  + Utf8 [(Landroid/graphics/drawable/Drawable;)V]
   + Utf8 [(Landroid/os/Bundle;)V]
-  + Utf8 [(Landroid/view/View;)V]
-  + Utf8 [(Ljava/io/InputStream;)V]
-  + Utf8 [(Ljava/io/Reader;)V]
-  + Utf8 [(Ljava/lang/CharSequence;)Z]
-  + Utf8 [(Ljava/lang/String;)Ljava/io/InputStream;]
-  + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + Utf8 [(Ljava/lang/String;)V]
-  + Utf8 [(Ljava/lang/String;)Z]
-  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Z]
-  + Utf8 [(Lorg/a/a/b;)Z]
   + Utf8 [<init>]
-  + Utf8 [AI6NAUCMM6QCZYHLV9B4]
   + Utf8 [Code]
-  + Utf8 [Code: ]
-  + Utf8 [I]
   + Utf8 [Landroid/content/SharedPreferences;]
-  + Utf8 [Ljava/lang/String;]
-  + Utf8 [Ljava/util/Locale;]
-  + Utf8 [Lorg/a/a/b;]
-  + Utf8 [Shtuff]
   + Utf8 [StackMapTable]
-  + Utf8 [TAGS]
   + Utf8 [a]
-  + Utf8 [android/app/WallpaperManager]
-  + Utf8 [android/content/Context]
   + Utf8 [android/content/Intent]
-  + Utf8 [android/content/pm/ApplicationInfo]
-  + Utf8 [android/content/res/AssetManager]
-  + Utf8 [android/content/res/Configuration]
-  + Utf8 [android/content/res/Resources]
-  + Utf8 [android/os/Binder]
-  + Utf8 [android/os/Build]
-  + Utf8 [android/os/Bundle]
-  + Utf8 [android/os/Debug]
-  + Utf8 [android/view/View]
-  + Utf8 [append]
   + Utf8 [b]
-  + Utf8 [com/flurry/android/e]
   + Utf8 [com/t2/vas/ReminderService]
   + Utf8 [com/t2/vas/activity/ABSActivity]
   + Utf8 [com/t2/vas/activity/MainActivity]
@@ -46043,40 +45864,9 @@ Constant Pool (count = 221):
   + Utf8 [com/t2/vas/activity/StartupActivity]
   + Utf8 [com/t2/vas/d]
   + Utf8 [com/t2/vas/s]
-  + Utf8 [contains]
-  + Utf8 [equalsIgnoreCase]
   + Utf8 [finish]
-  + Utf8 [flags]
-  + Utf8 [getApplicationContext]
-  + Utf8 [getApplicationInfo]
-  + Utf8 [getAssets]
-  + Utf8 [getCallingUid]
-  + Utf8 [getConfiguration]
-  + Utf8 [getDrawable]
-  + Utf8 [getISO3Country]
-  + Utf8 [getInstance]
-  + Utf8 [getPackageName]
-  + Utf8 [getResources]
-  + Utf8 [isDebuggerConnected]
-  + Utf8 [java/io/BufferedReader]
-  + Utf8 [java/io/IOException]
-  + Utf8 [java/io/InputStreamReader]
-  + Utf8 [java/lang/String]
-  + Utf8 [java/lang/StringBuilder]
-  + Utf8 [java/util/Locale]
-  + Utf8 [locale]
   + Utf8 [onCreate]
-  + Utf8 [open]
-  + Utf8 [org/a/a/a]
-  + Utf8 [org/a/a/b]
-  + Utf8 [printStackTrace]
-  + Utf8 [readLine]
-  + Utf8 [setBackgroundDrawable]
-  + Utf8 [setContentView]
-  + Utf8 [sourceDir]
   + Utf8 [startActivity]
-  + Utf8 [test-keys]
-  + Utf8 [toString]
 
 Fields (count = 0):
 
@@ -46087,7 +45877,7 @@ Methods (count = 2):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #55
+      [1] invokespecial #12
         + Methodref [com/t2/vas/activity/ABSActivity.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -46096,274 +45886,55 @@ Methods (count = 2):
     Access flags: 0x1
       = public void onCreate(android.os.Bundle)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 374, locals = 5, stack = 5):
+    + Code attribute instructions (code length = 58, locals = 2, stack = 4):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #56
+      [2] invokespecial #13
         + Methodref [com/t2/vas/activity/ABSActivity.onCreate (Landroid/os/Bundle;)V]
-      [5] iconst_0
-      [6] istore_1 v1
-      [7] invokestatic #48
-        + Methodref [android/os/Binder.getCallingUid ()I]
-      [10] sipush 10000
-      [13] ificmpge +7 (target=20)
-      [16] iconst_0
-      [17] goto +4 (target=21)
-      [20] iconst_1
-      [21] ifne +5 (target=26)
-      [24] iconst_1
-      [25] istore_1 v1
-      [26] aconst_null
-      [27] astore_2 v2
-      [28] aload_0 v0
-      [29] invokevirtual #58
-        + Methodref [com/t2/vas/activity/StartupActivity.getApplicationContext ()Landroid/content/Context;]
-      [32] invokevirtual #42
-        + Methodref [android/content/Context.getAssets ()Landroid/content/res/AssetManager;]
-      [35] ldc #4
-        + String [Shtuff]
-      [37] invokevirtual #46
-        + Methodref [android/content/res/AssetManager.open (Ljava/lang/String;)Ljava/io/InputStream;]
-      [40] astore_3 v3
-      [41] new #26
-        + Class [java/io/BufferedReader]
-      [44] dup
-      [45] new #28
-        + Class [java/io/InputStreamReader]
-      [48] dup
-      [49] aload_3 v3
-      [50] invokespecial #67
-        + Methodref [java/io/InputStreamReader.<init> (Ljava/io/InputStream;)V]
-      [53] invokespecial #64
-        + Methodref [java/io/BufferedReader.<init> (Ljava/io/Reader;)V]
-      [56] invokevirtual #65
-        + Methodref [java/io/BufferedReader.readLine ()Ljava/lang/String;]
-      [59] astore_2 v2
-      [60] goto +8 (target=68)
-      [63] aconst_null
-      [64] astore_3 v3
-      [65] invokevirtual #66
-        + Methodref [java/io/IOException.printStackTrace ()V]
-      [68] aload_0 v0
-      [69] invokevirtual #58
-        + Methodref [com/t2/vas/activity/StartupActivity.getApplicationContext ()Landroid/content/Context;]
-      [72] invokevirtual #44
-        + Methodref [android/content/Context.getResources ()Landroid/content/res/Resources;]
-      [75] invokevirtual #47
-        + Methodref [android/content/res/Resources.getConfiguration ()Landroid/content/res/Configuration;]
-      [78] getfield #36
-        + Fieldref [android/content/res/Configuration.locale Ljava/util/Locale;]
-      [81] invokevirtual #74
-        + Methodref [java/util/Locale.getISO3Country ()Ljava/lang/String;]
-      [84] astore_3 v3
-      [85] iload_1 v1
-      [86] ifne +22 (target=108)
-      [89] getstatic #39
-        + Fieldref [org/a/a/b.a Lorg/a/a/b;]
-      [92] invokestatic #77
-        + Methodref [org/a/a/a.a (Lorg/a/a/b;)Z]
-      [95] ifeq +7 (target=102)
-      [98] iconst_0
-      [99] goto +4 (target=103)
-      [102] iconst_1
-      [103] ifne +5 (target=108)
-      [106] iconst_2
-      [107] istore_1 v1
-      [108] iload_1 v1
-      [109] ifne +19 (target=128)
-      [112] aload_2 v2
-      [113] aload_0 v0
-      [114] invokevirtual #59
-        + Methodref [com/t2/vas/activity/StartupActivity.getApplicationInfo ()Landroid/content/pm/ApplicationInfo;]
-      [117] getfield #35
-        + Fieldref [android/content/pm/ApplicationInfo.sourceDir Ljava/lang/String;]
-      [120] invokestatic #76
-        + Methodref [org/a/a/a.a (Ljava/lang/String;Ljava/lang/String;)Z]
-      [123] ifne +5 (target=128)
-      [126] iconst_3
-      [127] istore_1 v1
-      [128] iload_1 v1
-      [129] ifne +19 (target=148)
-      [132] invokestatic #49
-        + Methodref [android/os/Debug.isDebuggerConnected ()Z]
-      [135] ifeq +7 (target=142)
-      [138] iconst_0
-      [139] goto +4 (target=143)
-      [142] iconst_1
-      [143] ifne +5 (target=148)
-      [146] iconst_4
-      [147] istore_1 v1
-      [148] iload_1 v1
-      [149] ifne +31 (target=180)
-      [152] aload_0 v0
-      [153] invokevirtual #58
-        + Methodref [com/t2/vas/activity/StartupActivity.getApplicationContext ()Landroid/content/Context;]
-      [156] aload_0 v0
-      [157] invokevirtual #58
-        + Methodref [com/t2/vas/activity/StartupActivity.getApplicationContext ()Landroid/content/Context;]
-      [160] invokevirtual #43
-        + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
-      [163] astore v4
-      [165] astore_2 v2
-      [166] aload v4
-      [168] aload_2 v2
-      [169] invokevirtual #43
-        + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
-      [172] invokevirtual #69
-        + Methodref [java/lang/String.equalsIgnoreCase (Ljava/lang/String;)Z]
-      [175] ifne +5 (target=180)
-      [178] iconst_5
-      [179] istore_1 v1
-      [180] iload_1 v1
-      [181] ifne +31 (target=212)
-      [184] getstatic #37
-        + Fieldref [android/os/Build.TAGS Ljava/lang/String;]
-      [187] dup
-      [188] astore_2 v2
-      [189] ifnull +16 (target=205)
-      [192] aload_2 v2
-      [193] ldc #5
-        + String [test-keys]
-      [195] invokevirtual #68
-        + Methodref [java/lang/String.contains (Ljava/lang/CharSequence;)Z]
-      [198] ifeq +7 (target=205)
-      [201] iconst_0
-      [202] goto +4 (target=206)
-      [205] iconst_1
-      [206] ifne +6 (target=212)
-      [209] bipush 6
-      [211] istore_1 v1
-      [212] iload_1 v1
-      [213] ifne +12 (target=225)
-      [216] invokestatic #75
-        + Methodref [org/a/a/a.a ()Z]
-      [219] ifne +6 (target=225)
-      [222] bipush 7
-      [224] istore_1 v1
-      [225] iload_1 v1
-      [226] ifne +26 (target=252)
-      [229] aload_0 v0
-      [230] invokevirtual #59
-        + Methodref [com/t2/vas/activity/StartupActivity.getApplicationInfo ()Landroid/content/pm/ApplicationInfo;]
-      [233] getfield #34
-        + Fieldref [android/content/pm/ApplicationInfo.flags I]
-      [236] iconst_2
-      [237] iand
-      [238] ifeq +7 (target=245)
-      [241] iconst_0
-      [242] goto +4 (target=246)
-      [245] iconst_1
-      [246] ifne +6 (target=252)
-      [249] bipush 8
-      [251] istore_1 v1
-      [252] aload_0 v0
-      [253] invokestatic #62
+      [5] aload_0 v0
+      [6] invokestatic #16
         + Methodref [com/t2/vas/d.a (Landroid/content/Context;)V]
-      [256] aload_0 v0
-      [257] invokestatic #54
+      [9] aload_0 v0
+      [10] invokestatic #11
         + Methodref [com/t2/vas/ReminderService.b (Landroid/content/Context;)V]
-      [260] aload_0 v0
-      [261] getfield #38
+      [13] aload_0 v0
+      [14] getfield #9
         + Fieldref [com/t2/vas/activity/StartupActivity.a Landroid/content/SharedPreferences;]
-      [264] invokestatic #63
+      [17] invokestatic #17
         + Methodref [com/t2/vas/s.a (Landroid/content/SharedPreferences;)Z]
-      [267] ifeq +18 (target=285)
-      [270] new #8
+      [20] ifeq +17 (target=37)
+      [23] new #1
         + Class [android/content/Intent]
-      [273] dup
-      [274] aload_0 v0
-      [275] ldc #21
+      [26] dup
+      [27] aload_0 v0
+      [28] ldc #4
         + Class [com/t2/vas/activity/MainActivity]
-      [277] invokespecial #45
+      [30] invokespecial #10
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-      [280] astore v4
-      [282] goto +15 (target=297)
-      [285] new #8
+      [33] astore_1 v1
+      [34] goto +14 (target=48)
+      [37] new #1
         + Class [android/content/Intent]
-      [288] dup
-      [289] aload_0 v0
-      [290] ldc #22
+      [40] dup
+      [41] aload_0 v0
+      [42] ldc #5
         + Class [com/t2/vas/activity/SplashScreenActivity]
-      [292] invokespecial #45
+      [44] invokespecial #10
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-      [295] astore v4
-      [297] new #17
-        + Class [android/view/View]
-      [300] dup
-      [301] aload_0 v0
-      [302] invokespecial #50
-        + Methodref [android/view/View.<init> (Landroid/content/Context;)V]
-      [305] astore_2 v2
-      [306] iload_1 v1
-      [307] ifne +14 (target=321)
-      [310] aload_0 v0
-      [311] aload v4
-      [313] invokevirtual #61
+      [47] astore_1 v1
+      [48] aload_0 v0
+      [49] aload_1 v1
+      [50] invokevirtual #15
         + Methodref [com/t2/vas/activity/StartupActivity.startActivity (Landroid/content/Intent;)V]
-      [316] aload_0 v0
-      [317] invokevirtual #57
+      [53] aload_0 v0
+      [54] invokevirtual #14
         + Methodref [com/t2/vas/activity/StartupActivity.finish ()V]
-      [320] return
-      [321] aload_0 v0
-      [322] ldc #2
-        + String [AI6NAUCMM6QCZYHLV9B4]
-      [324] invokestatic #52
-        + Methodref [com/flurry/android/e.a (Landroid/content/Context;Ljava/lang/String;)V]
-      [327] new #30
-        + Class [java/lang/StringBuilder]
-      [330] dup
-      [331] ldc #3
-        + String [Code: ]
-      [333] invokespecial #70
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [336] iload_1 v1
-      [337] invokevirtual #71
-        + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [340] ldc #1
-        + String [ Country: ]
-      [342] invokevirtual #72
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [345] aload_3 v3
-      [346] invokevirtual #72
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [349] invokevirtual #73
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [352] invokestatic #53
-        + Methodref [com/flurry/android/e.a (Ljava/lang/String;)V]
-      [355] aload_0 v0
-      [356] invokestatic #41
-        + Methodref [android/app/WallpaperManager.getInstance (Landroid/content/Context;)Landroid/app/WallpaperManager;]
-      [359] invokevirtual #40
-        + Methodref [android/app/WallpaperManager.getDrawable ()Landroid/graphics/drawable/Drawable;]
-      [362] astore_1 v1
-      [363] aload_2 v2
-      [364] aload_1 v1
-      [365] invokevirtual #51
-        + Methodref [android/view/View.setBackgroundDrawable (Landroid/graphics/drawable/Drawable;)V]
-      [368] aload_0 v0
-      [369] aload_2 v2
-      [370] invokevirtual #60
-        + Methodref [com/t2/vas/activity/StartupActivity.setContentView (Landroid/view/View;)V]
-      [373] return
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (28 -> 60: 63):
-      + Class [java/io/IOException]
+      [57] return
+      Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 14):
-        - [26] Var: ...[i], Stack: (empty)
-        - [63] Var: [a:com/t2/vas/activity/StartupActivity][a:android/os/Bundle][i][a:java/lang/String], Stack: [a:java/io/IOException]
-        - [68] Var: ..., Stack: (empty)
-        - [108] Var: ...[a:java/lang/String], Stack: (empty)
-        - [128] Var: ..., Stack: (empty)
-        - [148] Var: ..., Stack: (empty)
-        - [180] Var: ..., Stack: (empty)
-        - [212] Var: ..., Stack: (empty)
-        - [225] Var: ..., Stack: (empty)
-        - [252] Var: ..., Stack: (empty)
-        - [285] Var: ..., Stack: (empty)
-        - [297] Var: ...[a:android/content/Intent], Stack: (empty)
-        - [321] Var: ...[a:android/view/View], Stack: (empty)
-        - [373] Var: ..., Stack: (empty)
+      + Stack map table attribute (count = 2):
+        - [37] Var: ..., Stack: (empty)
+        - [48] Var: ...[a:android/content/Intent], Stack: (empty)
 
 Class file attributes (count = 0):
 
@@ -74154,538 +73725,6 @@ Methods (count = 2):
       [69] iinc v0, 1
       [72] goto -40 (target=32)
       [75] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-
-Class file attributes (count = 0):
-
-_____________________________________________________________________
-+ Program class: org/a/a/a
-  Superclass:    java/lang/Object
-  Major version: 0x32
-  Minor version: 0x0
-  Access flags:  0x31
-    = public final class org.a.a.a extends java.lang.Object
-
-Interfaces (count = 0):
-
-Constant Pool (count = 134):
-  + String [.apk]
-  + String [/system/app/]
-  + String [FaceNiff]
-  + String [SHA-512]
-  + String [Superuser]
-  + String [classes.dex]
-  + Class [[B]
-  + Class [[Ljava/lang/String;]
-  + Class [java/io/File]
-  + Class [java/io/InputStream]
-  + Class [java/lang/Exception]
-  + Class [java/lang/Integer]
-  + Class [java/lang/Object]
-  + Class [java/lang/Process]
-  + Class [java/lang/Runtime]
-  + Class [java/lang/String]
-  + Class [java/lang/StringBuffer]
-  + Class [java/lang/StringBuilder]
-  + Class [java/lang/Throwable]
-  + Class [java/security/MessageDigest]
-  + Class [java/util/jar/JarEntry]
-  + Class [java/util/jar/JarFile]
-  + Class [org/a/a/a]
-  + Class [org/a/a/b]
-  + Fieldref [org/a/a/b.b [Ljava/lang/String;]
-  + Methodref [java/io/File.<init> (Ljava/lang/String;)V]
-  + Methodref [java/io/File.exists ()Z]
-  + Methodref [java/io/InputStream.close ()V]
-  + Methodref [java/io/InputStream.read ([B)I]
-  + Methodref [java/lang/Exception.printStackTrace ()V]
-  + Methodref [java/lang/Integer.toString (II)Ljava/lang/String;]
-  + Methodref [java/lang/Runtime.exec ([Ljava/lang/String;)Ljava/lang/Process;]
-  + Methodref [java/lang/Runtime.getRuntime ()Ljava/lang/Runtime;]
-  + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
-  + Methodref [java/lang/String.substring (I)Ljava/lang/String;]
-  + Methodref [java/lang/StringBuffer.<init> ()V]
-  + Methodref [java/lang/StringBuffer.append (Ljava/lang/String;)Ljava/lang/StringBuffer;]
-  + Methodref [java/lang/StringBuffer.toString ()Ljava/lang/String;]
-  + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-  + Methodref [java/lang/StringBuilder.append (Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-  + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-  + Methodref [java/security/MessageDigest.digest ()[B]
-  + Methodref [java/security/MessageDigest.getInstance (Ljava/lang/String;)Ljava/security/MessageDigest;]
-  + Methodref [java/security/MessageDigest.update ([BII)V]
-  + Methodref [java/util/jar/JarFile.<init> (Ljava/lang/String;)V]
-  + Methodref [java/util/jar/JarFile.getInputStream (Ljava/util/zip/ZipEntry;)Ljava/io/InputStream;]
-  + Methodref [java/util/jar/JarFile.getJarEntry (Ljava/lang/String;)Ljava/util/jar/JarEntry;]
-  + NameAndType [<init> ()V]
-  + NameAndType [<init> (Ljava/lang/String;)V]
-  + NameAndType [append (Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-  + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuffer;]
-  + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + NameAndType [b [Ljava/lang/String;]
-  + NameAndType [close ()V]
-  + NameAndType [digest ()[B]
-  + NameAndType [equals (Ljava/lang/Object;)Z]
-  + NameAndType [exec ([Ljava/lang/String;)Ljava/lang/Process;]
-  + NameAndType [exists ()Z]
-  + NameAndType [getInputStream (Ljava/util/zip/ZipEntry;)Ljava/io/InputStream;]
-  + NameAndType [getInstance (Ljava/lang/String;)Ljava/security/MessageDigest;]
-  + NameAndType [getJarEntry (Ljava/lang/String;)Ljava/util/jar/JarEntry;]
-  + NameAndType [getRuntime ()Ljava/lang/Runtime;]
-  + NameAndType [printStackTrace ()V]
-  + NameAndType [read ([B)I]
-  + NameAndType [substring (I)Ljava/lang/String;]
-  + NameAndType [toString ()Ljava/lang/String;]
-  + NameAndType [toString (II)Ljava/lang/String;]
-  + NameAndType [update ([BII)V]
-  + Utf8 [()Ljava/lang/Runtime;]
-  + Utf8 [()Ljava/lang/String;]
-  + Utf8 [()V]
-  + Utf8 [()Z]
-  + Utf8 [()[B]
-  + Utf8 [(I)Ljava/lang/String;]
-  + Utf8 [(II)Ljava/lang/String;]
-  + Utf8 [(Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-  + Utf8 [(Ljava/lang/Object;)Z]
-  + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuffer;]
-  + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + Utf8 [(Ljava/lang/String;)Ljava/security/MessageDigest;]
-  + Utf8 [(Ljava/lang/String;)Ljava/util/jar/JarEntry;]
-  + Utf8 [(Ljava/lang/String;)V]
-  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Z]
-  + Utf8 [(Ljava/util/zip/ZipEntry;)Ljava/io/InputStream;]
-  + Utf8 [(Lorg/a/a/b;)Z]
-  + Utf8 [([B)I]
-  + Utf8 [([BII)V]
-  + Utf8 [([Ljava/lang/String;)Ljava/lang/Process;]
-  + Utf8 [.apk]
-  + Utf8 [/system/app/]
-  + Utf8 [<init>]
-  + Utf8 [Code]
-  + Utf8 [FaceNiff]
-  + Utf8 [SHA-512]
-  + Utf8 [StackMapTable]
-  + Utf8 [Superuser]
-  + Utf8 [[B]
-  + Utf8 [[Ljava/lang/String;]
-  + Utf8 [a]
-  + Utf8 [append]
-  + Utf8 [b]
-  + Utf8 [classes.dex]
-  + Utf8 [close]
-  + Utf8 [digest]
-  + Utf8 [equals]
-  + Utf8 [exec]
-  + Utf8 [exists]
-  + Utf8 [getInputStream]
-  + Utf8 [getInstance]
-  + Utf8 [getJarEntry]
-  + Utf8 [getRuntime]
-  + Utf8 [java/io/File]
-  + Utf8 [java/io/InputStream]
-  + Utf8 [java/lang/Exception]
-  + Utf8 [java/lang/Integer]
-  + Utf8 [java/lang/Object]
-  + Utf8 [java/lang/Process]
-  + Utf8 [java/lang/Runtime]
-  + Utf8 [java/lang/String]
-  + Utf8 [java/lang/StringBuffer]
-  + Utf8 [java/lang/StringBuilder]
-  + Utf8 [java/lang/Throwable]
-  + Utf8 [java/security/MessageDigest]
-  + Utf8 [java/util/jar/JarEntry]
-  + Utf8 [java/util/jar/JarFile]
-  + Utf8 [org/a/a/a]
-  + Utf8 [org/a/a/b]
-  + Utf8 [printStackTrace]
-  + Utf8 [read]
-  + Utf8 [substring]
-  + Utf8 [toString]
-  + Utf8 [update]
-
-Fields (count = 0):
-
-Methods (count = 3):
-  + Method:       a(Ljava/lang/String;Ljava/lang/String;)Z
-    Access flags: 0x9
-      = public static boolean a(java.lang.String,java.lang.String)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 151, locals = 6, stack = 4):
-      [0] aconst_null
-      [1] astore_2 v2
-      [2] ldc #4
-        + String [SHA-512]
-      [4] invokestatic #44
-        + Methodref [java/security/MessageDigest.getInstance (Ljava/lang/String;)Ljava/security/MessageDigest;]
-      [7] astore_3 v3
-      [8] new #22
-        + Class [java/util/jar/JarFile]
-      [11] dup
-      [12] aload_1 v1
-      [13] invokespecial #46
-        + Methodref [java/util/jar/JarFile.<init> (Ljava/lang/String;)V]
-      [16] dup
-      [17] astore_1 v1
-      [18] ldc #6
-        + String [classes.dex]
-      [20] invokevirtual #48
-        + Methodref [java/util/jar/JarFile.getJarEntry (Ljava/lang/String;)Ljava/util/jar/JarEntry;]
-      [23] astore v4
-      [25] aload_1 v1
-      [26] aload v4
-      [28] invokevirtual #47
-        + Methodref [java/util/jar/JarFile.getInputStream (Ljava/util/zip/ZipEntry;)Ljava/io/InputStream;]
-      [31] astore_1 v1
-      [32] sipush 1024
-      [35] newarray 8
-      [37] astore v4
-      [39] iconst_0
-      [40] istore v5
-      [42] goto +12 (target=54)
-      [45] aload_3 v3
-      [46] aload v4
-      [48] iconst_0
-      [49] iload v5
-      [51] invokevirtual #45
-        + Methodref [java/security/MessageDigest.update ([BII)V]
-      [54] aload_1 v1
-      [55] aload v4
-      [57] invokevirtual #29
-        + Methodref [java/io/InputStream.read ([B)I]
-      [60] dup
-      [61] istore v5
-      [63] iconst_m1
-      [64] ificmpne -19 (target=45)
-      [67] aload_1 v1
-      [68] invokevirtual #28
-        + Methodref [java/io/InputStream.close ()V]
-      [71] aload_3 v3
-      [72] invokevirtual #43
-        + Methodref [java/security/MessageDigest.digest ()[B]
-      [75] astore_1 v1
-      [76] new #17
-        + Class [java/lang/StringBuffer]
-      [79] dup
-      [80] invokespecial #36
-        + Methodref [java/lang/StringBuffer.<init> ()V]
-      [83] astore_3 v3
-      [84] iconst_0
-      [85] istore v4
-      [87] goto +32 (target=119)
-      [90] aload_3 v3
-      [91] aload_1 v1
-      [92] iload v4
-      [94] baload
-      [95] sipush 255
-      [98] iand
-      [99] sipush 256
-      [102] iadd
-      [103] bipush 16
-      [105] invokestatic #31
-        + Methodref [java/lang/Integer.toString (II)Ljava/lang/String;]
-      [108] iconst_1
-      [109] invokevirtual #35
-        + Methodref [java/lang/String.substring (I)Ljava/lang/String;]
-      [112] invokevirtual #37
-        + Methodref [java/lang/StringBuffer.append (Ljava/lang/String;)Ljava/lang/StringBuffer;]
-      [115] pop
-      [116] iinc v4, 1
-      [119] iload v4
-      [121] aload_1 v1
-      [122] arraylength
-      [123] ificmplt -33 (target=90)
-      [126] aload_3 v3
-      [127] invokevirtual #38
-        + Methodref [java/lang/StringBuffer.toString ()Ljava/lang/String;]
-      [130] astore_2 v2
-      [131] goto +8 (target=139)
-      [134] aconst_null
-      [135] astore_3 v3
-      [136] invokevirtual #30
-        + Methodref [java/lang/Exception.printStackTrace ()V]
-      [139] aload_0 v0
-      [140] aload_2 v2
-      [141] invokevirtual #34
-        + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
-      [144] ifeq +5 (target=149)
-      [147] iconst_1
-      [148] ireturn
-      [149] iconst_0
-      [150] ireturn
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (2 -> 131: 134):
-      + Class [java/lang/Exception]
-      Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 7):
-        - [45] Var: [a:java/lang/String][a:java/lang/String][a:java/lang/String][a:java/security/MessageDigest][a:java/util/jar/JarFile][a:java/util/jar/JarEntry][a:java/io/InputStream][a:[B][i], Stack: 
-        - [54] Var: ..., Stack: (empty)
-        - [90] Var: ...[a:[B][a:java/lang/StringBuffer][i], Stack: (empty)
-        - [119] Var: ..., Stack: (empty)
-        - [134] Var: [a:java/lang/String][a:java/lang/String][a:java/lang/String], Stack: [a:java/lang/Exception]
-        - [139] Var: ..., Stack: (empty)
-        - [149] Var: ..., Stack: (empty)
-  + Method:       a(Lorg/a/a/b;)Z
-    Access flags: 0x9
-      = public static boolean a(org.a.a.b)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 19, locals = 1, stack = 2):
-      [0] invokestatic #33
-        + Methodref [java/lang/Runtime.getRuntime ()Ljava/lang/Runtime;]
-      [3] aload_0 v0
-      [4] getfield #25
-        + Fieldref [org/a/a/b.b [Ljava/lang/String;]
-      [7] invokevirtual #32
-        + Methodref [java/lang/Runtime.exec ([Ljava/lang/String;)Ljava/lang/Process;]
-      [10] pop
-      [11] goto +6 (target=17)
-      [14] pop
-      [15] iconst_0
-      [16] ireturn
-      [17] iconst_1
-      [18] ireturn
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (0 -> 11: 14):
-      + Class [java/lang/Exception]
-      Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 2):
-        - [14] Var: [a:org/a/a/b][a:java/lang/Process], Stack: [a:java/lang/Exception]
-        - [17] Var: ..., Stack: (empty)
-  + Method:       a()Z
-    Access flags: 0x9
-      = public static boolean a()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 68, locals = 2, stack = 5):
-      [0] iconst_2
-      [1] anewarray #16
-        + Class [java/lang/String]
-      [4] dup
-      [5] iconst_0
-      [6] ldc #3
-        + String [FaceNiff]
-      [8] aastore
-      [9] dup
-      [10] iconst_1
-      [11] ldc #5
-        + String [Superuser]
-      [13] aastore
-      [14] astore_0 v0
-      [15] iconst_0
-      [16] istore_1 v1
-      [17] goto +43 (target=60)
-      [20] new #9
-        + Class [java/io/File]
-      [23] dup
-      [24] new #18
-        + Class [java/lang/StringBuilder]
-      [27] dup
-      [28] ldc #2
-        + String [/system/app/]
-      [30] invokespecial #39
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [33] aload_0 v0
-      [34] invokevirtual #40
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-      [37] ldc #1
-        + String [.apk]
-      [39] invokevirtual #41
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [42] invokevirtual #42
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [45] invokespecial #26
-        + Methodref [java/io/File.<init> (Ljava/lang/String;)V]
-      [48] invokevirtual #27
-        + Methodref [java/io/File.exists ()Z]
-      [51] ifeq +6 (target=57)
-      [54] iconst_0
-      [55] ireturn
-      [56] pop
-      [57] iinc v1, 1
-      [60] iload_1 v1
-      [61] aload_0 v0
-      [62] arraylength
-      [63] ificmplt -43 (target=20)
-      [66] iconst_1
-      [67] ireturn
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (20 -> 54: 56):
-      + Class [java/lang/Throwable]
-      Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 4):
-        - [20] Var: ...[a:[Ljava/lang/String;][i], Stack: (empty)
-        - [56] Var: ..., Stack: [a:java/lang/Throwable]
-        - [57] Var: ..., Stack: (empty)
-        - [60] Var: ..., Stack: (empty)
-
-Class file attributes (count = 0):
-
-_____________________________________________________________________
-+ Program class: org/a/a/b
-  Superclass:    java/lang/Enum
-  Major version: 0x32
-  Minor version: 0x0
-  Access flags:  0x4031
-    = public final enum enum org.a.a.b extends java.lang.Enum
-
-Interfaces (count = 0):
-
-Constant Pool (count = 48):
-  + String [/system/xbin/which]
-  + String [sea]
-  + String [su]
-  + Class [java/lang/Enum]
-  + Class [java/lang/String]
-  + Class [java/lang/System]
-  + Class [org/a/a/b]
-  + Fieldref [org/a/a/b.a Lorg/a/a/b;]
-  + Fieldref [org/a/a/b.b [Ljava/lang/String;]
-  + Fieldref [org/a/a/b.c [Lorg/a/a/b;]
-  + Methodref [java/lang/Enum.<init> (Ljava/lang/String;I)V]
-  + Methodref [java/lang/Enum.valueOf (Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;]
-  + Methodref [java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V]
-  + Methodref [org/a/a/b.<init> (Ljava/lang/String;[Ljava/lang/String;)V]
-  + NameAndType [<init> (Ljava/lang/String;I)V]
-  + NameAndType [<init> (Ljava/lang/String;[Ljava/lang/String;)V]
-  + NameAndType [a Lorg/a/a/b;]
-  + NameAndType [arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V]
-  + NameAndType [b [Ljava/lang/String;]
-  + NameAndType [c [Lorg/a/a/b;]
-  + NameAndType [valueOf (Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;]
-  + Utf8 [()V]
-  + Utf8 [()[Lorg/a/a/b;]
-  + Utf8 [(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;]
-  + Utf8 [(Ljava/lang/Object;ILjava/lang/Object;II)V]
-  + Utf8 [(Ljava/lang/String;)Lorg/a/a/b;]
-  + Utf8 [(Ljava/lang/String;I)V]
-  + Utf8 [(Ljava/lang/String;[Ljava/lang/String;)V]
-  + Utf8 [/system/xbin/which]
-  + Utf8 [<clinit>]
-  + Utf8 [<init>]
-  + Utf8 [Code]
-  + Utf8 [Lorg/a/a/b;]
-  + Utf8 [[Ljava/lang/String;]
-  + Utf8 [[Lorg/a/a/b;]
-  + Utf8 [a]
-  + Utf8 [arraycopy]
-  + Utf8 [b]
-  + Utf8 [c]
-  + Utf8 [java/lang/Enum]
-  + Utf8 [java/lang/String]
-  + Utf8 [java/lang/System]
-  + Utf8 [org/a/a/b]
-  + Utf8 [sea]
-  + Utf8 [su]
-  + Utf8 [valueOf]
-  + Utf8 [values]
-
-Fields (count = 3):
-  + Field:        a Lorg/a/a/b;
-    Access flags: 0x4019
-      = public static final org.a.a.b a
-  + Field:        b [Ljava/lang/String;
-    Access flags: 0x0
-      = java.lang.String[] b
-  + Field:        c [Lorg/a/a/b;
-    Access flags: 0x101a
-      = private static final synthetic org.a.a.b[] c
-
-Methods (count = 4):
-  - Method:       <clinit>()V
-    Access flags: 0x8
-      = static void <clinit>()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 40, locals = 0, stack = 7):
-      [0] new #7
-        + Class [org/a/a/b]
-      [3] dup
-      [4] ldc #2
-        + String [sea]
-      [6] iconst_2
-      [7] anewarray #5
-        + Class [java/lang/String]
-      [10] dup
-      [11] iconst_0
-      [12] ldc #1
-        + String [/system/xbin/which]
-      [14] aastore
-      [15] dup
-      [16] iconst_1
-      [17] ldc #3
-        + String [su]
-      [19] aastore
-      [20] invokespecial #14
-        + Methodref [org/a/a/b.<init> (Ljava/lang/String;[Ljava/lang/String;)V]
-      [23] putstatic #8
-        + Fieldref [org/a/a/b.a Lorg/a/a/b;]
-      [26] iconst_1
-      [27] anewarray #7
-        + Class [org/a/a/b]
-      [30] dup
-      [31] iconst_0
-      [32] getstatic #8
-        + Fieldref [org/a/a/b.a Lorg/a/a/b;]
-      [35] aastore
-      [36] putstatic #10
-        + Fieldref [org/a/a/b.c [Lorg/a/a/b;]
-      [39] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  - Method:       <init>(Ljava/lang/String;[Ljava/lang/String;)V
-    Access flags: 0x2
-      = private b(java.lang.String,java.lang.String[])
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 12, locals = 3, stack = 3):
-      [0] aload_0 v0
-      [1] aload_1 v1
-      [2] iconst_0
-      [3] invokespecial #11
-        + Methodref [java/lang/Enum.<init> (Ljava/lang/String;I)V]
-      [6] aload_0 v0
-      [7] aload_2 v2
-      [8] putfield #9
-        + Fieldref [org/a/a/b.b [Ljava/lang/String;]
-      [11] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       values()[Lorg/a/a/b;
-    Access flags: 0x9
-      = public static org.a.a.b[] values()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 22, locals = 2, stack = 5):
-      [0] getstatic #10
-        + Fieldref [org/a/a/b.c [Lorg/a/a/b;]
-      [3] dup
-      [4] astore_0 v0
-      [5] iconst_0
-      [6] aload_0 v0
-      [7] arraylength
-      [8] dup
-      [9] istore_0 v0
-      [10] anewarray #7
-        + Class [org/a/a/b]
-      [13] dup
-      [14] astore_1 v1
-      [15] iconst_0
-      [16] iload_0 v0
-      [17] invokestatic #13
-        + Methodref [java/lang/System.arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V]
-      [20] aload_1 v1
-      [21] areturn
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       valueOf(Ljava/lang/String;)Lorg/a/a/b;
-    Access flags: 0x9
-      = public static org.a.a.b valueOf(java.lang.String)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 10, locals = 1, stack = 2):
-      [0] ldc #7
-        + Class [org/a/a/b]
-      [2] aload_0 v0
-      [3] invokestatic #12
-        + Methodref [java/lang/Enum.valueOf (Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;]
-      [6] checkcast #7
-        + Class [org/a/a/b]
-      [9] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
