@@ -566,9 +566,12 @@ com.t2.vas.FromParentTouchHandler -> com.t2.vas.j:
     boolean onTouchEventFromParent(android.view.MotionEvent) -> a
 com.t2.vas.Global -> com.t2.vas.k:
     java.io.File EXPORT_DIR -> a
-com.t2.vas.MathExtra -> com.t2.vas.l:
+com.t2.vas.MarketPlatform -> com.t2.vas.l:
+    int hashcode -> a
+    boolean isGoogleMarket(android.content.Context) -> a
+com.t2.vas.MathExtra -> com.t2.vas.m:
     long roundTime(long,int) -> a
-com.t2.vas.ReminderData -> com.t2.vas.m:
+com.t2.vas.ReminderData -> com.t2.vas.n:
     java.util.ArrayList daysEnabled -> a
     java.util.ArrayList timesEnabled -> b
     java.util.ArrayList visibleGroups -> c
@@ -593,16 +596,16 @@ com.t2.vas.ReminderService -> com.t2.vas.ReminderService:
     void access$2(com.t2.vas.ReminderService) -> c
     void access$3(com.t2.vas.ReminderService) -> d
     android.os.Handler access$4(com.t2.vas.ReminderService) -> e
-com.t2.vas.ReminderService$1 -> com.t2.vas.n:
+com.t2.vas.ReminderService$1 -> com.t2.vas.o:
     com.t2.vas.ReminderService this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.t2.vas.ReminderService$2 -> com.t2.vas.o:
+com.t2.vas.ReminderService$2 -> com.t2.vas.p:
     com.t2.vas.ReminderService this$0 -> a
     void run() -> run
-com.t2.vas.ReminderService$3 -> com.t2.vas.p:
+com.t2.vas.ReminderService$3 -> com.t2.vas.q:
     android.content.Context val$c -> a
     void run() -> run
-com.t2.vas.ScaleAdapter -> com.t2.vas.q:
+com.t2.vas.ScaleAdapter -> com.t2.vas.r:
     java.util.ArrayList items -> a
     android.view.LayoutInflater inflater -> b
     int layoutResId -> c
@@ -611,7 +614,7 @@ com.t2.vas.ScaleAdapter -> com.t2.vas.q:
     void onProgressChanged$583ea110(com.t2.vas.view.SliderWidget,int) -> a
     int getProgressValuesAt(int) -> a
     void setProgressValueAt(int,int) -> a
-com.t2.vas.SharedPref -> com.t2.vas.r:
+com.t2.vas.SharedPref -> com.t2.vas.s:
     boolean getSendAnnonData(android.content.SharedPreferences) -> a
     void setShowStartupTips(android.content.SharedPreferences,boolean) -> a
     boolean getShowStartupTips(android.content.SharedPreferences) -> b
@@ -622,7 +625,7 @@ com.t2.vas.SharedPref -> com.t2.vas.r:
     void setReminderTimes(android.content.SharedPreferences,java.util.List) -> b
     java.lang.String[] getValues(android.content.SharedPreferences,java.lang.String,java.lang.String,java.lang.String[]) -> a
     void setValues(android.content.SharedPreferences,java.lang.String,java.lang.String,java.lang.String[]) -> b
-com.t2.vas.SharedPref$Security -> com.t2.vas.s:
+com.t2.vas.SharedPref$Security -> com.t2.vas.t:
     boolean isEnabled(android.content.SharedPreferences) -> a
     java.lang.String getPin(android.content.SharedPreferences) -> b
     java.lang.String getQuestion1(android.content.SharedPreferences) -> c
@@ -634,10 +637,10 @@ com.t2.vas.SharedPref$Security -> com.t2.vas.s:
     void setChallenge1(android.content.SharedPreferences,java.lang.String,java.lang.String) -> a
     void setChallenge2(android.content.SharedPreferences,java.lang.String,java.lang.String) -> b
     void setChallenge(int,android.content.SharedPreferences,java.lang.String,java.lang.String) -> a
-com.t2.vas.TimePref -> com.t2.vas.t:
+com.t2.vas.TimePref -> com.t2.vas.u:
     long time -> a
     boolean enabled -> b
-com.t2.vas.VASAnalytics -> com.t2.vas.u:
+com.t2.vas.VASAnalytics -> com.t2.vas.v:
 com.t2.vas.activity.ABSActivity -> com.t2.vas.activity.ABSActivity:
     android.content.SharedPreferences sharedPref -> a
     com.t2.vas.db.DBAdapter dbAdapter -> b
@@ -1245,6 +1248,7 @@ com.t2.vas.activity.preference.SecurityActivity -> com.t2.vas.activity.preferenc
 com.t2.vas.data.DataProvider -> com.t2.vas.a.a:
     com.t2.vas.db.DBAdapter dbAdapter -> a
     java.util.LinkedHashMap getData(long,long,long) -> a
+    double GetGroupAverage(long,long,long) -> b
 com.t2.vas.data.GroupResultsDataProvider -> com.t2.vas.a.b:
     java.util.LinkedHashMap getData(long,long,long) -> a
 com.t2.vas.data.NotesDataProvider -> com.t2.vas.a.c:
@@ -1270,7 +1274,17 @@ com.t2.vas.db.AbsTable$QueryComponents -> com.t2.vas.b.b:
     java.lang.String whereClause -> a
     java.lang.String[] whereArgs -> b
     com.t2.vas.db.AbsTable$QueryComponents factory(android.content.ContentValues) -> a
-com.t2.vas.db.DBAdapter -> com.t2.vas.b.c:
+com.t2.vas.db.BackupRestore -> com.t2.vas.b.c:
+    java.lang.String TAG -> a
+    java.io.File DATABASE_DIRECTORY -> b
+    java.io.File IMPORT_FILE -> c
+    java.io.File DATA_DIRECTORY_DATABASE -> d
+    boolean backupDb(android.content.Context) -> a
+com.t2.vas.db.BackupRestore$1 -> com.t2.vas.b.d:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.db.BackupRestore$2 -> com.t2.vas.b.e:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.t2.vas.db.DBAdapter -> com.t2.vas.b.f:
     android.content.Context context -> a
     android.database.sqlite.SQLiteDatabase database -> b
     com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener createListener -> c
@@ -1283,11 +1297,11 @@ com.t2.vas.db.DBAdapter -> com.t2.vas.b.c:
     void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
     void setOnCreateListener(com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener) -> a
     void setOnUpdatedListener(com.t2.vas.db.DBAdapter$OnDatabaseUpdatedListener) -> a
-com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener -> com.t2.vas.b.d:
+com.t2.vas.db.DBAdapter$OnDatabaseCreatedListener -> com.t2.vas.b.g:
     void onDatabaseCreated(android.database.sqlite.SQLiteDatabase) -> a
-com.t2.vas.db.DBAdapter$OnDatabaseUpdatedListener -> com.t2.vas.b.e:
+com.t2.vas.db.DBAdapter$OnDatabaseUpdatedListener -> com.t2.vas.b.h:
     void onUpgrade$621a88f2(android.database.sqlite.SQLiteDatabase,int) -> a
-com.t2.vas.db.Table -> com.t2.vas.b.f:
+com.t2.vas.db.Table -> com.t2.vas.b.i:
     long _id -> c
     boolean delete() -> e
     boolean load() -> f

@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="libs/achartengine-0.5.0.jar"/>
 	<classpathentry kind="lib" path="libs/FlurryAgent.jar"/>
 	<classpathentry kind="lib" path="libs/trace.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

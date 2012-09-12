@@ -45,8 +45,9 @@
 				<p>T2 Mood Tracker was developed by the National Center for Telehealth and Technology (T2) which is a component center of the Defense Centers of Excellence for Psychological Health and Traumatic Brain Injury (DCoE).  T2’s mission is to lead the development of telehealth and technology solutions for Psychological Health and Traumatic Brain Injury to improve the lives of our Nation’s Warriors, Veterans and their Families.</p>
 				
 			]]></string>
-		<string name="rate_app_title">Rate App</string>
-		<string name="feedback_title">Feedback</string>
+		<string name="rate_app_amazon">Rate on Amazon</string>
+		<string name="rate_app_google">Rate on Play Store</string>
+				<string name="feedback_title">Feedback</string>
 		<string name="tell_a_friend_title">Tell a Friend</string>
 	<string name="unusual_results_message">Your results are a little unusual today, please consider entering a note.</string>
 	
@@ -54,10 +55,14 @@
 	<string name="feedback_subject">Feedback on T2 Mood Tracker App</string>
 	<string name="feedback_content"><![CDATA[Please feel free to send your feedback on this application to the team at the National Center for Telehealth & Technology (T2).]]></string>
 	<string name="tell_a_friend_subject">Check out this app for monitoring your mood!</string>
-	<string name="tell_a_friend_content"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
+	<string name="tell_a_friend_content_google"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
 <a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
-<a href="https://market.android.com/details?id=com.t2.vas">Click here to download the app for Android.</a>]]></string>
+<a href="https://market.android.com/details?id=com.t2.vas">Click here to download the app for Android from the Play Store.</a>]]></string>
+	<string name="tell_a_friend_content_amazon"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
+<a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
+<a href="http://www.amazon.com/gp/mas/dl/android?p=com.t2.vas">Click here to download the app for Android from the Amazon Appstore.</a>]]></string>
 	
+		
 	<string name="tip_title">Tip</string>
 	<string name="touch_anywhere_to_continue">Touch anywhere to continue</string>
 	<string name="is_desirable">Is a desirable trait?</string>

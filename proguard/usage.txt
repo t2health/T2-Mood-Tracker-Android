@@ -1,3 +1,5 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
 au.com.bytecode.opencsv.CSVParser:
     public static final char DEFAULT_SEPARATOR
     public static final int INITIAL_READ_SIZE
@@ -172,6 +174,7 @@ com.t2.vas.AppSecurityManager:
 com.t2.vas.ArraysExtra:
     7:7:public ArraysExtra()
     83:101:public static final java.lang.Double[] toDoubleArray(java.lang.String[])
+com.t2.vas.BuildConfig
 com.t2.vas.Eula:
     private static final java.lang.String ASSET_EULA
     private static final java.lang.String PREFERENCE_EULA_ACCEPTED
@@ -189,6 +192,9 @@ com.t2.vas.Global:
     public static final java.lang.String REMOTE_STACK_TRACE_URL
     8:8:public Global()
 com.t2.vas.Global$Database
+com.t2.vas.MarketPlatform:
+    13:13:public MarketPlatform()
+    22:30:public static void printHashcode(android.content.Context)
 com.t2.vas.MathExtra:
     5:5:public MathExtra()
 com.t2.vas.R
@@ -245,7 +251,7 @@ com.t2.vas.activity.ABSResultsActivity:
     private static final int KEYS_TAB
     private static final int NOTES_TAB
 com.t2.vas.activity.ABSResultsActivity$KeyItem:
-    743:749:public java.util.HashMap toHashMap()
+    753:759:public java.util.HashMap toHashMap()
 com.t2.vas.activity.ABSResultsActivity$KeyItemAdapter:
     public static final int VIEW_TYPE_ONE_LINE
     public static final int VIEW_TYPE_TWO_LINE
@@ -303,6 +309,14 @@ com.t2.vas.db.AbsTable:
     public abstract boolean delete()
     156:157:public void setMetaData(java.lang.String,java.lang.String)
     160:160:public java.lang.String getMetaData(java.lang.String)
+com.t2.vas.db.BackupRestore:
+    public static final java.lang.String PACKAGE_NAME
+    public static final java.lang.String DATABASE_NAME
+    97:171:public static boolean restoreDb(android.content.Context)
+com.t2.vas.db.BackupRestore$3
+com.t2.vas.db.BackupRestore$4
+com.t2.vas.db.BackupRestore$5
+com.t2.vas.db.BackupRestore$6
 com.t2.vas.db.DBAdapter:
     61:65:public static android.content.ContentValues buildContentValues(java.lang.String[],java.lang.String[])
 com.t2.vas.db.Table:
@@ -342,16 +356,9 @@ com.t2.vas.view.SeparatedListAdapter:
     public static final int TYPE_SECTION_HEADER
     99:99:public boolean areAllItemsSelectable()
 com.t2.vas.view.SliderWidget:
-    21:22:public SliderWidget(android.content.Context)
     44:44:public java.lang.CharSequence getMinLabelText()
     52:52:public java.lang.CharSequence getMaxLabelText()
     60:60:public int getProgress()
-com.t2.vas.view.ToggledButton:
-    13:15:public ToggledButton(android.content.Context)
-com.t2.vas.view.VASListView:
-    25:26:public VASListView(android.content.Context)
-com.t2.vas.view.VASSeekBar:
-    14:15:public VASSeekBar(android.content.Context)
 org.achartengine.ChartFactory
 org.achartengine.GraphicalView:
     64:69:public void repaint()

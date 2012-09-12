@@ -90,24 +90,32 @@ public class Scale extends Table {
 	}
 
 	public Cursor getResults(long startTime, long endTime) {
-		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
-		return this.getDBAdapter().getDatabase().query(
-				quote(Result.TABLE_NAME),
-				new String[]{
-						quote(Result.FIELD_TIMESTAMP),
-						quote(Result.FIELD_VALUE),
-				},
-				quote(Result.FIELD_SCALE_ID)+"=? AND "+ quote(Result.FIELD_TIMESTAMP) +" >= ? AND "+ quote(Result.FIELD_TIMESTAMP) +" < ?",
-				new String[]{
-						this._id+"",
-						startTime+"",
-						endTime+""
-				},
-				null,
-				null,
-				null,
-				null
-		);
+		// Log.v(TAG, "id:"+this._id +" startTime:"+startTime
+		// +" endTime:"+endTime);
+		return this
+				.getDBAdapter()
+				.getDatabase()
+				.query(
+						quote(Result.TABLE_NAME) + " inner join " + quote(Group.TABLE_NAME) + " on "
+								+ quote(Result.TABLE_NAME) + "." + quote(Result.FIELD_GROUP_ID) + " = "
+								+ quote(Group.TABLE_NAME) + "." + quote(Group.FIELD_ID),
+						new String[] {
+								quote(Result.FIELD_TIMESTAMP),
+								quote(Result.FIELD_VALUE),
+								quote(Group.FIELD_INVERSE_RESULTS)
+						},
+						quote(Result.FIELD_SCALE_ID) + "=? AND " + quote(Result.FIELD_TIMESTAMP) + " >= ? AND "
+								+ quote(Result.FIELD_TIMESTAMP) + " < ?",
+						new String[] {
+								this._id + "",
+								startTime + "",
+								endTime + ""
+						},
+						null,
+						null,
+						null,
+						null
+				);
 	}
 	
 	public Cursor getUniqueScalesCursor() {

@@ -2,7 +2,10 @@ package com.t2.vas.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.t2.vas.DBInstallData;
+import com.t2.vas.MarketPlatform;
 import com.t2.vas.ReminderService;
 import com.t2.vas.SharedPref;
 
@@ -28,6 +31,8 @@ public class StartupActivity extends ABSActivity {
 		} else {
 			i = new Intent(this, SplashScreenActivity.class);
 		}
+		
+		//MarketPlatform.printHashcode(this);
 		
 		this.startActivity(i);
 		this.finish();

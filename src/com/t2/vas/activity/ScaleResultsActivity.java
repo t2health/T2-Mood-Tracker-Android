@@ -42,10 +42,7 @@ public class ScaleResultsActivity extends ABSResultsActivity {
 	
 	@Override
 	protected double getValue(KeyItem item, double value) {
-		if(!this.reverseLabels) {
-			return value;
-		}
-		return 100 - value;
+		return value;
 	}
 
 	@Override
