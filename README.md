@@ -13,7 +13,7 @@ Submitting bugs
 ===============
 If you think you've found a bug, please report it by following these instructions:  
 
-1. Visit the [Issue tracker: https://github.com/t2health/T2-Mood-Tracker/issues](https://github.com/t2health/T2-Mood-Tracker/issues)
+1. Visit the [Issue tracker: https://github.com/t2health/T2-Mood-Tracker-Android/issues](https://github.com/t2health/T2-Mood-Tracker-Android/issues)
 2. Create an issue explaining the problem and expected result
     - Be sure to include any relevant information for reproducing the issue
     - Include information such as:
@@ -40,7 +40,7 @@ Instructions for using Eclipse:
 3. Window > Show View > Other
 4. Open Git Highlight Git Repositories
 5. Click OK
-6. Copy our Git url https://github.com/t2health/T2-Mood-Tracker.git
+6. Copy our Git url https://github.com/t2health/T2-Mood-Tracker-Android.git
 7. Right click in the Git Repositories view in Eclipse
 8. Click Paste Repository Path or URI and follow the steps
 9. Right click on the project and Import it into your workspace.
@@ -49,4 +49,4 @@ License
 ==============================================
 Copyright 2011 The National Center for Telehealth and Technology
 
-T2 Mood Tracker is Licensed under the NASA Open Source License: [https://github.com/t2health/T2-Mood-Tracker/blob/master/NASA-LICENSE.txt](https://github.com/t2health/T2-Mood-Tracker/blob/master/NASA-LICENSE.txt)
+T2 Mood Tracker is Licensed under the NASA Open Source License: [https://github.com/t2health/T2-Mood-Tracker-Android/blob/master/NASA-LICENSE.txt](https://github.com/t2health/T2-Mood-Tracker-Android/blob/master/NASA-LICENSE.txt)
