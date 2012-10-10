@@ -1,191 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.t2.vas"
-	android:versionCode="20" android:versionName="2.2.9">
+    package="com.t2.vas"
+    android:installLocation="auto"
+    android:versionCode="27"
+    android:versionName="3.2.2" >
 
-    <uses-sdk android:minSdkVersion="7" android:maxSdkVersion="7"/>
-    
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+
     <application
-    	android:icon="@drawable/icon"
-    	android:label="@string/app_name"
-    	android:launchMode="singleTask"
-    	android:hardwareAccelerated="true">
-
-        <service
-        	android:name=".ReminderService">
-			<intent-filter>
-				<action
-					android:name="com.t2.vas.ReminderService">
-				</action>
-			</intent-filter>
-		</service>
-
-		<receiver android:name=".BootReceiver">
-			<intent-filter>
-				<action
-					android:name ="android.intent.action.BOOT_COMPLETED">
-				</action>
-			</intent-filter>
-		</receiver>
-
-		<activity
-        	android:label="@string/app_name"
-        	android:launchMode="singleTask"
-        	android:name=".activity.StartupActivity"
-    		android:theme="@style/CustomThemeBlank">
-
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:launchMode="singleTask" >
+        <service android:name="com.t2.vas.NotificationService" />
 
         <activity
-        	android:label="@string/app_name"
-        	android:name=".activity.SplashScreenActivity"
-    		android:theme="@style/CustomThemeNoTitle">
-		</activity>
+            android:name=".activity.StudyEnrollmentActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-    	<activity
-        	android:label="@string/app_name"
-        	android:name=".activity.MainActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+                <data
+                    android:host="enroll"
+                    android:scheme="t2moodtracker" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
         </activity>
-
         <activity
-        	android:name=".activity.WebViewActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
-        </activity>
+            android:name=".activity.StartupActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomThemeBlank" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-        	android:label="@string/help_title"
-        	android:name=".activity.HelpActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+            android:name=".activity.SplashScreenActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomThemeNoTitle" >
         </activity>
-
         <activity
-        	android:label="@string/share_title"
-        	android:name=".activity.ShareActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+            android:name=".activity.MainTabActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
-
         <activity
-        	android:label="@string/export_title"
-        	android:name=".activity.ExportActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+            android:name=".activity.MainRateActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
-
         <activity
-        	android:label="@string/import_title"
-        	android:name=".activity.ImportActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+            android:name=".activity.MainResultsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
-
         <activity
-        	android:label="@string/choose_file_title"
-        	android:name=".activity.FileListActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+            android:name=".activity.MainSupportActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
-
         <activity
-        	android:label="@string/notes_list_title"
-        	android:name=".activity.NotesListActivity"
-        	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
+            android:name=".activity.MainSettingsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.HelpActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/help_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.ShareActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/share_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.ExportActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/export_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.ImportActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/import_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.FileListActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/choose_file_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.BackupFileListActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/choose_file_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.NotesListActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/notes_list_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.RateActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/rate_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.GroupResultsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/results_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.ScaleResultsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/results_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.UnlockActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:theme="@style/CustomThemeNoTitle" >
+        </activity>
+        <activity
+            android:name=".activity.ForgotPinActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/forgot_pin"
+            android:theme="@style/CustomTheme" >
         </activity>
 
-	    <activity
-	    	android:label="@string/rate_title"
-	    	android:name=".activity.RateActivity"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
+        <!-- Notes Activities -->
+        <activity
+            android:name=".activity.AddEditNoteActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.preference.MainPreferenceActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/settings_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.preference.ReminderActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/reminders_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.preference.SecurityActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/security_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.preference.ClearDataActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/clear_data_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
 
-	   	<activity
-	    	android:label="@string/results_title"
-	    	android:name=".activity.GroupResultsActivity"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
-	   	<activity
-	    	android:label="@string/results_title"
-	    	android:name=".activity.ScaleResultsActivity"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
+        <!-- Group Editor Activities -->
+        <activity
+            android:name=".activity.editor.GroupListActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/group_list_title"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name=".activity.editor.GroupActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/CustomTheme" >
+        </activity>
+    </application>
 
-	   	<activity
-	    	android:name=".activity.UnlockActivity"
-	    	android:label="@string/app_name"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomThemeNoTitle">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.ForgotPinActivity"
-	    	android:label="@string/forgot_pin"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
-
-	   	<!-- Notes Activities -->
-	   	<activity
-	    	android:name=".activity.AddEditNoteActivity"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
-
-
-	    <activity
-	    	android:name=".activity.preference.MainPreferenceActivity"
-	    	android:label="@string/settings_title"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
-
-	    <activity
-	    	android:name=".activity.preference.ReminderActivity"
-	    	android:label="@string/reminders_title"
-	    	android:theme="@style/CustomTheme"
-	    	android:excludeFromRecents="true">
-	   	</activity>
-
-	   	<activity
-	    	android:name=".activity.preference.SecurityActivity"
-	    	android:label="@string/security_title"
-	    	android:theme="@style/CustomTheme"
-	    	android:excludeFromRecents="true">
-	   	</activity>
-
-	   	<activity
-	    	android:name=".activity.preference.ClearDataActivity"
-	    	android:label="@string/clear_data_title"
-	    	android:excludeFromRecents="true"
-    		android:theme="@style/CustomTheme">
-	   	</activity>
-
-	   	<!-- Group Editor Activities -->
-	   	<activity
-	    	android:name=".activity.editor.GroupListActivity"
-	    	android:label="@string/group_list_title"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
-	   	<activity
-	    	android:name=".activity.editor.GroupActivity"
-	    	android:excludeFromRecents="true"
-	    	android:theme="@style/CustomTheme">
-	   	</activity>
-   	</application>
-
-    
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
 </manifest>

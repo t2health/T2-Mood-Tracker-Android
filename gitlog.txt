@@ -1,0 +1,1313 @@
+commit a8d81f75e405e510c9e0cf19c1f84fc294b709ab
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 26 09:02:39 2012 -0700
+
+    final
+
+commit 82f74925ddc954e984d592a822c93766860b5b1e
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 26 09:01:07 2012 -0700
+
+    final
+
+commit e5cf1508844f1aab36274bc40945ede4af532c5e
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Fri Sep 21 09:48:21 2012 -0700
+
+    zoom bugs
+
+commit aa77ecea2332c7abe836ef6d0939ca09c598088f
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Fri Sep 21 09:34:57 2012 -0700
+
+    alert bugs
+
+commit d31febfcc7e4844a1050c5e9a04c4f36cdd04185
+Merge: 8d61ca5 18b2aea
+Author: wturney <wes.turney@tee2.org>
+Date:   Fri Sep 21 08:53:23 2012 -0700
+
+    Merge branch 'master' of ssh://wturney@git.t2.local/git/mobile/android/MoodTracker.git
+
+commit 8d61ca593fbf21ffe3faadfa8a2844920edd1f16
+Author: wturney <wes.turney@tee2.org>
+Date:   Fri Sep 21 08:51:16 2012 -0700
+
+    Bug 1687
+
+commit 18b2aeadc73907b2d2d3e5258639da2fe8afd638
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Fri Sep 21 08:30:13 2012 -0700
+
+    alerts
+
+commit 4aaf823deb333484826392aa79904117e96f581d
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Thu Sep 20 13:18:23 2012 -0700
+
+    notifications
+
+commit 036d2c1c7a8c744d6ea0187f998ebc5aecd1c328
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 19 14:46:13 2012 -0700
+
+    notifications
+
+commit 2f8ef5900a45f286453f089909342321e701e1e9
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 19 13:46:52 2012 -0700
+
+    notifications
+
+commit fb165c1b78ee3a59cae67b823fe6a18084ec9bf6
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 19 13:33:20 2012 -0700
+
+    notifications
+
+commit 6ab7b2c4f1f8e3f94a0b7c1c012f081fd268221a
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 19 13:30:09 2012 -0700
+
+    notifications
+
+commit abfdbf204c63ba707f968963f17f1918bde35ddd
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 19 13:25:40 2012 -0700
+
+    notifications
+
+commit 4a4615b402b269f7ed61f683b5bdf589260f342e
+Author: wturney <wes.turney@tee2.org>
+Date:   Fri Sep 14 10:39:30 2012 -0700
+
+    Initial Checkin of logging & study enrollment.
+
+commit 374915c2c66ecb12e255b99350090d8c102786b8
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Thu Sep 13 09:37:35 2012 -0700
+
+    bugfixes
+
+commit 3ed4b7e0dc0e42c3b77e5fa202ba1d41b3984d31
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 12 15:20:45 2012 -0700
+
+    amazon
+
+commit 5079621f8e4591bf87a8a81dbe3c56798f6e2a1e
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Sep 12 08:45:09 2012 -0700
+
+    pdf tweaks
+
+commit f98419781913b26d8092a0f514254e9bda31e8c5
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Tue Sep 11 10:42:50 2012 -0700
+
+    abouttext
+
+commit a39118bda0d965d7b20d0df281a27239f1caeea1
+Author: stephenody <stephen.ody@WK43428-ODY.t2.local>
+Date:   Tue Sep 11 08:48:55 2012 -0700
+
+    releaseready
+
+commit 58e3dd5dc11cb809ccfd361149a773a86b87b80e
+Author: unknown <stephen.ody@WK43428-ODY.t2.local>
+Date:   Fri Aug 24 13:40:57 2012 -0700
+
+    checkin
+
+commit 925737f7d7a5374f7998d294ab2f9ed446f9a7aa
+Author: unknown <stephen.ody@WK43428-ODY.t2.local>
+Date:   Wed Aug 22 13:26:08 2012 -0700
+
+    latest
+
+commit 68abee1f487fb190975142ffaa54326a7dab6336
+Author: sody <987(*&oiuOIU>
+Date:   Fri Aug 10 15:58:04 2012 -0700
+
+    batchcommit
+
+commit beff6d230f846f04058b4721f10212a05056a89c
+Author: sody <987(*&oiuOIU>
+Date:   Mon Jul 30 12:39:32 2012 -0700
+
+    batchcommit
+
+commit 13320c78d568adb04744796db36a218ee851f52a
+Author: sody <987(*&oiuOIU>
+Date:   Fri Jul 20 14:54:18 2012 -0700
+
+    batchcommit
+
+commit d879734552f92fdb9410e792cc7ea1afee313dba
+Author: sody <987(*&oiuOIU>
+Date:   Mon Jul 16 11:32:32 2012 -0700
+
+    batchcommit
+
+commit 7fd1be742b2e9ad199306849a44a521f77f0d4a1
+Author: sody <987(*&oiuOIU>
+Date:   Thu Jun 28 14:36:53 2012 -0700
+
+    foo
+
+commit 292428066b6f090f11c7fb1c851182911ca33aa2
+Author: sody <987(*&oiuOIU>
+Date:   Fri Jun 8 13:39:11 2012 -0700
+
+    edited
+
+commit cbcbe0ee6681610282d6a3461268e52357e0bf98
+Author: sody <987(*&oiuOIU>
+Date:   Fri Jun 8 13:16:09 2012 -0700
+
+    Initial commit
+
+commit c2eec51ff1d38c5dfe9ef9b67855a43149f428ed
+Author: dbietz <dan.bietz@tee2.org>
+Date:   Thu Apr 12 12:02:47 2012 -0700
+
+    Removed android security module.
+
+commit 2d314b72183669f3b98bfda3764b681a5fa5d6d6
+Author: dbietz <dan.bietz@tee2.org>
+Date:   Thu Apr 5 12:18:11 2012 -0700
+
+    Added security api
+
+commit d7ce3f9e649242133e338547b4e32112c18a6768
+Author: Robbie Van Gorkom <robbie.vangorkom@tee2.org>
+Date:   Fri Mar 30 14:23:05 2012 -0700
+
+    Final modification before prod release
+
+commit 2865da614e8d22bb8b868cb2154699cea654e1d9
+Author: Robbie Van Gorkom <robbie.vangorkom@tee2.org>
+Date:   Fri Mar 30 14:02:44 2012 -0700
+
+    ignore
+
+commit cd6529c4f69d5ef9b2c33ad213a17e3239fdd0d1
+Author: Robbie Van Gorkom <robbie.vangorkom@tee2.org>
+Date:   Fri Mar 30 13:44:45 2012 -0700
+
+    Updating android version. (android is backwards-compatible) it will still run on 1.6 devices.
+    Updating build files.
+    Enabling hardware acceleration on devices that support it.
+
+commit 85b71cf9690a86127d0731018ee06d7c4992f520
+Author: Robbie Van Gorkom <robbie.vangorkom@tee2.org>
+Date:   Fri Mar 30 13:29:17 2012 -0700
+
+    Fixing bugs
+
+commit 3bda65648dd725d11a656b4bc0731f59828c9aa1
+Author: Robbie Van Gorkom <robbie.vangorkom@tee2.org>
+Date:   Fri Mar 30 12:55:59 2012 -0700
+
+    Removing import export features.
+
+commit 37d0bd403217827b6202ad756a33128edaa8d35c
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed May 11 20:50:42 2011 +0000
+
+    Making the import spinner work.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1365 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5c5cc737203abecf83a9c81a40f3d00cf05a404d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed May 11 17:28:52 2011 +0000
+
+    Added dialog to main screen asking to hide unused categories. Only appears once a week at the most and marks categories that have not had results in over a week.
+    Added ability to delete an exported mood tracker file.
+    Made it more clear how to hide categories in the category editor by removing the On/Off button and add a Show on main screen item to the group itself.
+    Addressing a bug reported via android market regarding calling requestFeature before adding content.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1361 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 925a9cf8c29adfb2df9ad0308db981f9d43871ed
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 8 21:13:23 2011 +0000
+
+    Cleaning up warning from Find Bugs
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1142 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit e7da06f7bce1b7e963e1f8eec2162b620c91e013
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 8 15:06:00 2011 +0000
+
+    Elminating java warnings.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1135 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 3d70d7400c992380cba0b7ea4dbb2e6a6275ab35
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 6 20:18:15 2011 +0000
+
+    Changing some string names
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1126 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 3f54a16de9a6001bc0676c1de2efaae91c3ceaee
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 6 16:04:09 2011 +0000
+
+    Changing version number of app.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1125 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit a3c774a1f28a6a99e58d932e3d4b382d44b360e8
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 6 16:03:07 2011 +0000
+
+    Added import/export features to the settings page, uses same interface as share activity.
+    Import/Export files are csv, added csv parser/writer code.
+    Abstracted share activity's code to be resusable for all import/export functions.
+    Share Activity has been modified to use the export/import file format.
+    Moved Eula to the main screen in order to prevent leaking of windows.
+    Removed unused imports from many classes.
+    Changed tables to use global static variables to reference their fields.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1124 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 874769186a6c431da5b75d720fd6fa137144b424
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Mar 28 21:37:15 2011 +0000
+
+    Updating the version for next release
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1112 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 33a26694189602f99e60fa910b6a561755dee4d8
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Mar 28 21:36:38 2011 +0000
+
+    Tuning analytics back on.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1111 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 8562a45f0be3b4b1b90f2a7dc52628da9f0370e1
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Mar 28 21:32:46 2011 +0000
+
+    Turning analytics back on.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1110 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit da43b1aca11dd77c1ee8964a0818ad4425f91e27
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Mar 28 17:28:28 2011 +0000
+
+    Adding new flurry agent
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1107 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 1d9471a182bbeea6efa568a86401fd50f2d8b11d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Mar 28 17:13:41 2011 +0000
+
+    Moving the exception handler to be the first item loaded. This way we can capture database init exceptions.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1106 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit f64b9d8f8a1b0b43c5de48c147b620d9a6ea503a
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Mar 28 17:10:41 2011 +0000
+
+    Adding fix for devices that did not run the onUpgrade method when the database changed. Not sure why this occurred, but this should fix it.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1105 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit d893b0a36f4c905dc84bb4ecca08f12b6d40fbef
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 22:57:08 2011 +0000
+
+    When you choose add notes from results the current date will be used for the note if your are viewing the current month.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1101 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit dae45e18df4340d6a681e21d2b4b7d784cbe8253
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 22:02:16 2011 +0000
+
+    Adding new icon
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1100 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 9e88f86ea4235460be757eabc1abdcafd9840a39
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 19:56:04 2011 +0000
+
+    Adding new EULA
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1094 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 59339b9bb7ed2342672e54752c7e6574fd620853
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 19:35:15 2011 +0000
+
+    Handled creation of data on first start.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1091 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 0169579fb1b9b28006c1354071a9cb71f0782225
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 19:30:42 2011 +0000
+
+    App properly handles an upgrade from 2.0.x to 2.2 now.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1090 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 94d2976dea1df44261b08b34b65e1ed81b40e434
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 18:16:09 2011 +0000
+
+    Made "Add Notes" on the results screen default to the currently viewed month.
+    Added body back to the feedback email.
+    Stopped y-axis labels from flashing when switching months.
+    Updated help text.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1087 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit b4ca2b3dc1bc042c4a6009835db673334142f639
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Mar 24 16:26:28 2011 +0000
+
+    Updated help text again
+    Added y-axis Hi,Lo labels
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1084 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 7c1d5df5a21a50e861abd50be580ef5e1eaa55f8
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Mar 8 15:46:07 2011 +0000
+
+    Updated help text
+    renamed a string.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1083 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 4379feeaec0c66451632ede07873d67db483c651
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Mar 8 14:43:22 2011 +0000
+
+    Changed splash screen to meet the T2 brand.
+    Change the UI to have a darker feel (t2 branding).
+    updated unlock screen to match splash screen
+    Made certain categories graph themselves in reverse. So general well being will graph high when you improve. Depression, Aniety, etc will increase when you have those ailments.
+    Updated the about text.
+    Changed the name of category editor.
+    renamed the min/max labels
+    added "add note" on graph results screen
+    moved some strings to the strings.xml file
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@1082 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit cd6ffe47e708f5bf58f6a12613f88cbecbd8c0db
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 22:54:37 2011 +0000
+
+    fixing bug #263
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@996 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit aa48ee1162201eab4e5277f755dae345d8e0b851
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 22:43:08 2011 +0000
+
+    Added help text
+    Replaced logo with one that is easier to see.
+    Cleaned out static fade db creation to a seperate class.
+    Updated the share link to point to the web android market.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@995 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit e8b7a83ab0e080990dc85bf0f12b74af52fccb6d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 21:15:50 2011 +0000
+
+    Fixing bug 358
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@994 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5ed48dda3b5512ed2c906e267bef69d26604704b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 21:08:22 2011 +0000
+
+    fixed bug 343
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@993 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit c9c5d94af19e05454923c36ee85566968a6ebbbb
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 20:52:26 2011 +0000
+
+    Fixing bugs relating to items with text length greater than 1 line.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@992 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 0101aa42a4de954bdf41903771e97ca27559a1eb
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 20:30:17 2011 +0000
+
+    Add feature to ensure all scales were viewed on the rating activity before results are saved.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@991 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 43c4ddb03c1a1a28e5e6dd70c0a53c79287b10b8
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 20:10:29 2011 +0000
+
+    Making better use of horizontal space in add/edit note activity. (bug 338)
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@990 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit fcf37fcd8a265b73d63e902aa380f3ba7ded098e
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Feb 23 20:02:33 2011 +0000
+
+    You cannot add/edit notes without text.
+    Fixed label on add/edit scale dialog.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@989 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit a5e5d98c95dbb3bbffcac627765a6bf854ffe561
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Jan 31 22:20:32 2011 +0000
+
+    Added a rate option to the main screen list.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@950 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 27890bf709db95c11c597036fb83d99976efd3fc
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Jan 31 21:17:37 2011 +0000
+
+    Adding the reminder ticker text.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@949 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit bd3f456af0272739fd1ae4cd213b39d473e1030c
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Jan 31 19:59:46 2011 +0000
+
+    fixing bug relating to the "your results look unusual" message.
+    bug #249
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@948 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 67bb5356f24c998ff0c13d7b308c98aff1e4e4bb
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Jan 31 18:32:06 2011 +0000
+
+    Fixing several bugs:
+    243 - Pressing hardware back button doesn't have the same effect as the software back button.
+    244 - Reminder service is reminding every second.
+    245 - Turning off send annon data doesn't turn off remote stack trace reporting.
+    246 - Unchecking the send annon preference doesn't change the checkbox state.
+    247 - Immutable groups on the category editor should be greyed out.
+    248 - Notes tab selection is not remembered on orientation change.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@947 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 8adff59971be1228b77cd8daad80f9dd8c958ccb
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Jan 28 19:01:47 2011 +0000
+
+    Made share function only show if the app has been set to do so in the Global file.
+    Removing a whole bunch on old code.
+    Removing all unused imports.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@940 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit df160ab1818d6830c4464fd8690518d44f8d4e7a
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Jan 28 18:33:09 2011 +0000
+
+    Make sure the app doesn't lock after enabling security. Bug#198
+    Closed an orphaned cursor.
+    Cleaned up the appearance of settings.
+    Removed some unused code.
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@938 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 4fb08a6d6310e083f36ac47a39624478d602e187
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Jan 28 18:06:36 2011 +0000
+
+    Making sure the share body text is handled as html.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@937 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit f5fba64acc07be394bc18803e3e504c21e238e3b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Jan 28 17:56:06 2011 +0000
+
+    Made flurry events use the simple class name by default.
+    Improved the performance on the main and graph screen.
+    Bugs #210,235
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@936 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 92933524691b7d3a81d5c27862d2a278de3699a3
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Jan 27 21:47:47 2011 +0000
+
+    Made the share document have 1 less column.
+    Made the key area of the charts a little bigger.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@933 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5544a435beba277fc56cd430e1daae03804db78c
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Jan 27 21:16:46 2011 +0000
+
+    Make chart lines scale with screen density.
+    bug #230
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@932 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit d6ba5912fb8c540123c241be9c113c0d5a4a33e3
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Jan 27 20:40:00 2011 +0000
+
+    Made the nav buttons center vertically.
+    Removed some old code.
+    Added share functionality. (bug#223)
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@931 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit b50dea4ce49918bdb07196cd8c1d14801bea6c1b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Jan 27 16:45:11 2011 +0000
+
+    Add a note indicator to the charts.
+    Bug #197
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@926 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 29eac71bee61a8fa52997e692849a44d7bc2f10d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Jan 27 16:08:43 2011 +0000
+
+    Add feedback and tell a friend content.
+    bug #225
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@923 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 035d83d98e5be60a025cebe11ffe836141578ae8
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Jan 26 23:28:34 2011 +0000
+
+    Allowing you clear notes data.
+    Bug #211
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@922 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5fe3714431c9d399f148d449bc8728c384b3efaa
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Jan 26 22:00:02 2011 +0000
+
+    Making the notes list activity have fast scroll enabled.
+    bug# 200
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@920 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit eef46928ab0e8da395f55904c6c454fc703c08c7
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Jan 26 21:55:58 2011 +0000
+
+    Adjusting the consitency of activity class names and their associates layout files.
+    bug #216
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@919 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 4edc6517c988574c21792d01a2e6d65716cc482b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Jan 26 21:43:48 2011 +0000
+
+    cleaned strings file
+    condensed help into 1 file
+    bugs #213 201
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@918 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit bb258e6899d9c236ab65a74e7fb7a2aa0856cf20
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Jan 26 20:04:53 2011 +0000
+
+    Putting strings into the string.xml file.
+    Bug #209
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@914 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 9bd9a538e32068d64073c28381915c791f49678d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Jan 26 19:37:31 2011 +0000
+
+    Rewrote the splash screen and added startup tips. Also added startup tips to the unlock screen.
+    Changed the icon sizes.
+    Use the "Add notes" string instead of an image on the notes list activity.
+    Rewrote the reminder service.
+    Made the groups listed on the main page use the reminder data to set their warning indicator.
+    
+    Addressing bugs 199,196,195,194,202
+    
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@913 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 864d6b6084ea764845ea0203da7dd5c9a2380bef
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Jan 25 20:48:05 2011 +0000
+
+    Removed a bunch of unused files.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@910 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 86e36d351c1838aa576c7b0fe4af33d0d39ba5c0
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Jan 25 19:24:06 2011 +0000
+
+    Moodtracker 2.2 Initial commit before cleanup and documentation.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@909 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 377e9a723613ebb4dc73ac0c83774addc51cb185
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Dec 21 21:46:47 2010 +0000
+
+    Here you go hasan.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@839 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 6a8dcc0be48e961489be6e5f3ed1d9c2ec24113c
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Dec 21 21:46:11 2010 +0000
+
+    Here you go Hasan.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@838 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit b5e11870627d3891d50e5d01094de2371c6bccbd
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Nov 16 17:29:31 2010 +0000
+
+    Initial cleanup complete.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@772 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 3e70061c4a6723800afa13df006f73fd2db234d5
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Nov 16 17:14:38 2010 +0000
+
+    Initial commit of version 3.0
+    Will begin removing all old classes and layouts.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@771 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 887224d0a5527e771330826950bf33ed75063cce
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Nov 8 17:14:29 2010 +0000
+
+    Added Analytics event to notify when analytics was enabled/disabled.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@754 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit fdf88081701e02f36494b1a3f98e7cef279dec85
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Oct 20 17:22:11 2010 +0000
+
+    Final before next release.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@733 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 9b9e74851782e56b6c66c1628a3fefbab0429310
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Oct 20 17:13:15 2010 +0000
+
+    changing the background
+    adding a panel drawable.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@732 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 4be035e48b880b5b767f8a39f10a4fcf6eb30962
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Oct 20 16:59:39 2010 +0000
+
+    removing ldpi resources
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@731 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 35eee7af007c8893a070999a083ae4b78f140117
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Oct 15 20:45:52 2010 +0000
+
+    Average chart now aligns properly.
+    Fixed a few bugs.
+    Added experimental feather allowing data to be exported. This can be done by long-pressing the (i) button on the results activity. (if the feature is enabled).
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@728 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 2abdf4267e72fd84e9390430e56bac650db6dcda
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Sep 30 20:39:42 2010 +0000
+
+    Fixing bug. Could not disable analytics.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@711 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 3d76c7ec6b9fff0543e57e7b61270b79ab4e81a7
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Sep 23 20:35:53 2010 +0000
+
+    Sometimes the chart points would become unaligned. This was fixed.
+    A note icon is now visible on the charts where a note exists. (instead of a black box)
+    Cleaned up group transition animations.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@686 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 61a1c508dc47ecf376dc40241f7c713bbddc1957
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 22 20:00:13 2010 +0000
+
+    Fixed the last remaining DB close exception.
+    
+    Category slider selector will now hilight the first item after load. This seems to be a bug with the Gallery class.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@679 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 6b512b0ab336eef7527e884ad71077d9e3155362
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 22 20:00:04 2010 +0000
+
+    Orientation independence
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@678 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 908973e22c9dc85cfbd316c8b71d7f3e7ebb7659
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 22 17:37:31 2010 +0000
+
+    Further, removing unused resources.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@677 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 0f5bf828c4990f431ecd541022d1517145ae6f2d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 22 17:36:39 2010 +0000
+
+    Removing unused layouts and animations.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@676 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 80c35ebb753ea527b0ef8386a3af8a2c03655a42
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 22 17:28:31 2010 +0000
+
+    Removing unused layouts and animations.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@675 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 2e5320d6f9b8ff599ab3bea5656848a4d927b86b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 22 17:01:51 2010 +0000
+
+    Fixed the last remaining DB close exception.
+    
+    Category slider selector will now hilight the first item after load. This seems to be a bug with the Gallery class.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@674 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 798ad5b6ea66d8c43407071edf8150fd32a3907a
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Sep 21 18:24:45 2010 +0000
+
+    Fix bug:
+    When you enter scale data for the first time, all the charts look the same.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@671 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit e390fcb64921770b9229a41f933d65828b2a4dc4
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Sep 21 17:55:34 2010 +0000
+
+    Added feature to copy a scale from an existing group.
+    Made database management a task of the ABSActivity. This cleans up the management of opening and closing the DB.
+    Fixed many little bugs.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@670 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit d1b91a956d6da641375373605af99a6f9cee1acc
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Sep 20 18:15:16 2010 +0000
+
+    Better support for running the reminder service.
+    Will now enable the service when the setting is set. Will also conditionally start the service depending on user pref.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@668 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 9226f712950c5ad90bf4e15d182f2d47dc337748
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Sep 20 17:48:27 2010 +0000
+
+    Fixed several bugs.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@667 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5721afbf8dd32313fbfac74ee5ff9722f36f0db9
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Sep 16 16:13:21 2010 +0000
+
+    Small bug fixes.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@663 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 75b209625b08f255c6f7b37e1883b386a11adeb6
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 15 22:42:33 2010 +0000
+
+    Just telling subversion something it should already know.
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@662 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit dba0b70c38bf01b259914ba90fe937fa882bc23d
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 15 22:38:55 2010 +0000
+
+    Fixing subversion.. It thinks there are problems.. There're arn't.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@661 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit a5f353fa5663c239cbc4dba0b5a03710a352c6d7
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Sep 15 22:36:13 2010 +0000
+
+    Incorporation of the Chart API.
+    Some bug fixes here and there.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@660 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit ebbaaf6d6a4172304b38ece16dcc6ce7cfe08e54
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Aug 26 18:03:33 2010 +0000
+
+    Added bunch of analytics events.
+    Turned off auto generation of fake data.
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@651 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit ff89307faae8a2f863d97a46ffabeade78866709
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Aug 11 18:40:55 2010 +0000
+
+    For some reason, SVN didn't sync this data last time.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@647 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 20698d11c98899eb922cad5a24fd1e4b0fdb0ff7
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Aug 9 18:28:52 2010 +0000
+
+    Note Activity had the wrong title.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@643 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit ad3e11725db9866f0c75c80d835a4131f63d12fb
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Aug 9 16:22:37 2010 +0000
+
+    Version 2.0
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@642 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 84cf750fd77e73bbe9ea57433e8c9d07f1e04659
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Jul 9 14:29:44 2010 +0000
+
+    Changed some strings.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@608 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 616fc09d964714aeb162ed9ce17c09f4763943bf
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue May 11 18:53:52 2010 +0000
+
+    VAS-36
+    Initial email feature has been implemented. Unable to test the emailing though as no email client exists on the emulator. This reuqires further testing.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@374 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 433a8ec9c42da3dd944ec78d974cf5ae1bb8f87f
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue May 11 17:12:25 2010 +0000
+
+    VAS-45
+    An add note button is now available from the notes dialog in the results activity.
+    Also corrected some mis-spellings for intent data on the note activity.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@373 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 61042ef1206cf6c9c2abca657589398372f67250
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue May 11 16:57:56 2010 +0000
+
+    An unclosed cursor persisted. Its closed now.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@372 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit bfaca31c2981ca9113c0103d5397598c5e10fc6f
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue May 11 16:54:39 2010 +0000
+
+    VAS-1
+    Fixed the force close bug.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@371 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 87c61393d202ef3b4fa36dd64c6793db525629a6
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue May 11 16:49:51 2010 +0000
+
+    VAS-44
+    An average of the group for the results now appears by default when looking at results.
+    Now notes indicators are loaded in the group chart, this speeds up the loading of each chart.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@370 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 87c18c134391836c22e8692a25a03ab7b81ba6dc
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri May 7 20:45:39 2010 +0000
+
+    Changed some strings
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@359 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 29a72fa2505748ac77fa0984d188b0dadbb8700f
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri May 7 15:07:52 2010 +0000
+
+    Made the values of strings.xml more consistent.
+    
+    Added some colorized icons to the main activity.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@352 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 45e67858267d44b9e1d71f921d95615103f3d17e
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu May 6 17:29:49 2010 +0000
+
+    small changes
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@347 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 32f3c764e92ffffbb4cac3ce8ae2084995b25770
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed May 5 15:26:29 2010 +0000
+
+    Clean up of some layouts.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@338 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 430e12f26b1ae3b59b50e50d13b1c3429f13412e
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon May 3 20:50:05 2010 +0000
+
+    Added an app icon.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@337 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit c655da40548db0b232d42fcc7cb7d8662884c1e5
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon May 3 19:53:53 2010 +0000
+
+    Reworked the main screen.
+    
+    Some random bug fixes.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@336 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit bfd88574e80014c208d0e1e1fcea03ade2cefa05
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon May 3 18:03:01 2010 +0000
+
+    Features.
+    Long pressing a day in the results chart will bring up the add notes interface.
+    
+    
+    Bug fixes:
+    Health tips only show up when the main activity first loads.
+    Notes indicators are visible on charts despite the existence of data on that day.
+    Moved the form submission button to the footer of the listview in the forms activity.
+    installing of test result data no longer adds data for the current date. Now you can actually use the app after installing it for the first time.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@335 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5be441764a3b2033ced55c325745a8f7b0ad4b9c
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 22:36:49 2010 +0000
+
+    oops, forgot to have the splash screen switch to the main activity automatically.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@334 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 7f3681e98aa89eca532b0424692c570809016236
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 22:36:17 2010 +0000
+
+    useing some trickery, the splash screen chip almost aligns perfectly on different resolutions.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@333 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit f874d3385fb10df19199ade736f19bd0fb3e9cc9
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 21:37:10 2010 +0000
+
+    Eliminated a few unclosed cursor exceptions.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@328 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 894ff01cca1bb1f55aac4a992b48b1f357177fc7
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 20:32:34 2010 +0000
+
+    SPed up teh results page when switching orientation. again.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@327 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit ee42bee44015c695a096dfb1763012261a1875c7
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 20:18:38 2010 +0000
+
+    Loading of charts in the results activity is considerably faster.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@326 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit e76dd472f08aa1c0513800b10ea95f57e26a0950
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 19:55:45 2010 +0000
+
+    The form and the results activities preserve their inforation when the orientation of the device is changed. (No this is not handled automatically by the OS).
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@325 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 8a38fe0086098d0fab9836fbc68dd5ca176d6755
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 16:34:30 2010 +0000
+
+    Changed the landscape layout for results.
+    
+    When the notes activity is unlocked via password. The state is remembered for 1 hour. Also added preference to clear this remembered state.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@324 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit a861be2dec8d47f3ed738eacee0bb5264baa9bb8
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 16:10:51 2010 +0000
+
+    splash screen doesn't freeze or restart when orientation is changed while its running.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@323 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 5b3b09907f0386909a8a958416d28f3293e803f1
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 30 15:37:20 2010 +0000
+
+    Was able to get teh chip on the splash page to center closely on various DPI screens.
+    
+    Added a startup health tips feature.
+    
+    Added a close button to all dialogs.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@322 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit e1b73529fc08ab51c38817722810e001f7c80577
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Apr 29 21:19:18 2010 +0000
+
+    Bug fix. Non demo options in the main activity were not working.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@321 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 38b9f14ab060c17848a7c098de90c4e44e382f1b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Apr 29 21:02:59 2010 +0000
+
+    Splash screen is complete. It has a known issue where the main chip doesn't fit exactly on the background chip. This has to do with different dpi on each screen and what is being commited is the closest I could get.
+    
+    The main screen has been cleaned up a bit again.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@319 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit ad1917205ce64b7c213a6c6d43f17c5b808d5b65
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 28 22:47:04 2010 +0000
+
+    A T2 branded splash screen is now shown when the app loads.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@317 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 429cdf0eb695dbdbc97ac1b9a0f9a2c76a0f47e3
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 28 19:47:16 2010 +0000
+
+    Small fixes here and there.
+    
+    Chart series can now take a data handler that can be used to load and refresh data as needed. In this case, from a database.
+    
+    Moved more static strings into the strings.xml file.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@313 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit f991d1f6a4bb8851b9281d6125e74cbd824f461c
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 28 16:55:59 2010 +0000
+
+    Some branding additions.
+    
+    Added a few pre-built groups and scales and they are all immutable. Put their data in teh strings.xml file.
+    
+    You can view the notes on a chart by moving the vertical select bar to a date and clicking the list button.
+    
+    Rewrote the code to pull result values as a SQL query. (a bit faster). Classes have been abstracted to allow for the creation of a provider interface so charts can pull their data when they are displayed for the first time.
+    
+    
+    
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@312 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit ecbcd5148c53ee5a5da43aa5791b6c9ef82ac0db
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 23 16:23:12 2010 +0000
+
+    Experimenting with different main screen images.
+    
+    Created a static class to install initial DB data as well as generate some results.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@295 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 2df4ed9b5263cfe8d885033def964c4705dc71da
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 23 14:57:06 2010 +0000
+
+    The app is not landscape and portrait compatible.
+    
+    Pulled a few strings into strings.xml.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@281 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit f1d18c4e78628fefc98eed0aea7ffa9b4085ee99
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Apr 22 22:53:07 2010 +0000
+
+    App is mostly layout aware now.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@280 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit a7d9c9ea7565e6ced898397e6fa6ec8a4f973c83
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Apr 22 21:35:01 2010 +0000
+
+    Extra little fixes here and there.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@279 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 94e29f8b1ab1ab3a6fbc74bfb64dc2442843de0f
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Thu Apr 22 19:09:56 2010 +0000
+
+    Settings activity is complete.
+    Password protect option for notes is complete.
+    Cleaning up of string.xml has begun.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@278 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit e67085abb86d452927e0f1268c6690c773d08c7a
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 21 22:02:46 2010 +0000
+
+    Refactored the help system so it references string ids from strings.xml.
+    
+    Set the main activity to save you last selected group of scales.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@277 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit dbc26286de1f3ce0052058adbca142fe101b383f
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 21 21:25:23 2010 +0000
+
+    In the event the user hasn't taken a scale for a while, the user can spcify a reminder (never, hour, day, week) from the last time they submitted. A service backend will check every hour to see if any measures need to be taken. In the event a measure needs to be taken, the user is notified.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@273 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 8777c2751ca8b5afe739d64cff4d8a0765c29692
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Wed Apr 21 16:43:19 2010 +0000
+
+    Latest stable version.
+    
+    Help system is complete. Each activity can provide help text as necessary.
+    Consitent list views are now througout the app.
+    Additionall usibility features have been added.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@272 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 063dc195b5c0ce7eb9735def93a67b68400bb6b3
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Apr 20 22:59:25 2010 +0000
+
+    Latest stable version.
+    
+    Edit to create custom groups and scales is complete. Main activity is complete, need good drawables though.
+    
+    The beginings of the help system has begin.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@271 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 73b475f863594bb76c75e4763504e73bf227ad2a
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Tue Apr 20 16:18:57 2010 +0000
+
+    Fixed several small bugs.
+    
+    Added a main screen from which to launch all the features of the app.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@267 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit aef5248bcdb78afd937769a24c71483318302f1b
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Mon Apr 19 22:51:13 2010 +0000
+
+    charts are now interactive.
+    notes are app wide not scale specific.
+    abstracted the note management code into dialog themed activities.
+    
+    
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@266 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 6289772694edd35b87df38c4e61db8ed2bef5526
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 16 21:33:22 2010 +0000
+
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@263 9a4616e5-df29-b34f-a986-34b38b490834
+
+commit 8624ddf641a2a63300d5fd5e614fa3ea9fbcd85e
+Author: robbie.vangorkom <robbie.vangorkom@9a4616e5-df29-b34f-a986-34b38b490834>
+Date:   Fri Apr 16 20:31:45 2010 +0000
+
+    Initial import.
+    
+    git-svn-id: http://svn.t2.local/svn/mobile/trunk/android/VAS/VAS@261 9a4616e5-df29-b34f-a986-34b38b490834

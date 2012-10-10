@@ -1,31 +1,5 @@
 /*
  * 
- * T2 Mood Tracker
- * 
- * Copyright © 2009-2012 United States Government as represented by 
- * the Chief Information Officer of the National Center for Telehealth 
- * and Technology. All Rights Reserved.
- * 
- * Copyright © 2009-2012 Contributors. All Rights Reserved. 
- * 
- * THIS OPEN SOURCE AGREEMENT ("AGREEMENT") DEFINES THE RIGHTS OF USE, 
- * REPRODUCTION, DISTRIBUTION, MODIFICATION AND REDISTRIBUTION OF CERTAIN 
- * COMPUTER SOFTWARE ORIGINALLY RELEASED BY THE UNITED STATES GOVERNMENT 
- * AS REPRESENTED BY THE GOVERNMENT AGENCY LISTED BELOW ("GOVERNMENT AGENCY"). 
- * THE UNITED STATES GOVERNMENT, AS REPRESENTED BY GOVERNMENT AGENCY, IS AN 
- * INTENDED THIRD-PARTY BENEFICIARY OF ALL SUBSEQUENT DISTRIBUTIONS OR 
- * REDISTRIBUTIONS OF THE SUBJECT SOFTWARE. ANYONE WHO USES, REPRODUCES, 
- * DISTRIBUTES, MODIFIES OR REDISTRIBUTES THE SUBJECT SOFTWARE, AS DEFINED 
- * HEREIN, OR ANY PART THEREOF, IS, BY THAT ACTION, ACCEPTING IN FULL THE 
- * RESPONSIBILITIES AND OBLIGATIONS CONTAINED IN THIS AGREEMENT.
- * 
- * Government Agency: The National Center for Telehealth and Technology
- * Government Agency Original Software Designation: T2MoodTracker001
- * Government Agency Original Software Title: T2 Mood Tracker
- * User Registration Requested. Please send email 
- * with your contact information to: robert.kayl2@us.army.mil
- * Government Agency Point of Contact for Original Software: robert.kayl2@us.army.mil
- * 
  */
 package com.t2.vas.db.tables;
 
@@ -119,32 +93,43 @@ public class Scale extends Table {
 	}
 
 	public Cursor getResults(long startTime, long endTime) {
-		// Log.v(TAG, "id:"+this._id +" startTime:"+startTime
-		// +" endTime:"+endTime);
-		return this
-				.getDBAdapter()
-				.getDatabase()
-				.query(
-						quote(Result.TABLE_NAME) + " inner join " + quote(Group.TABLE_NAME) + " on "
-								+ quote(Result.TABLE_NAME) + "." + quote(Result.FIELD_GROUP_ID) + " = "
-								+ quote(Group.TABLE_NAME) + "." + quote(Group.FIELD_ID),
-						new String[] {
-								quote(Result.FIELD_TIMESTAMP),
-								quote(Result.FIELD_VALUE),
-								quote(Group.FIELD_INVERSE_RESULTS)
-						},
-						quote(Result.FIELD_SCALE_ID) + "=? AND " + quote(Result.FIELD_TIMESTAMP) + " >= ? AND "
-								+ quote(Result.FIELD_TIMESTAMP) + " < ?",
-						new String[] {
-								this._id + "",
-								startTime + "",
-								endTime + ""
-						},
-						null,
-						null,
-						null,
-						null
-				);
+		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
+		return this.getDBAdapter().getDatabase().query(
+				quote(Result.TABLE_NAME),
+				new String[]{
+						quote(Result.FIELD_TIMESTAMP),
+						quote(Result.FIELD_VALUE),
+				},
+				quote(Result.FIELD_SCALE_ID)+"=? AND "+ quote(Result.FIELD_TIMESTAMP) +" >= ? AND "+ quote(Result.FIELD_TIMESTAMP) +" < ?",
+				new String[]{
+						this._id+"",
+						startTime+"",
+						endTime+""
+				},
+				null,
+				null,
+				null,
+				null
+		);
+	}
+	
+	public Cursor getAllResults() {
+		//Log.v(TAG, "id:"+this._id +" startTime:"+startTime +" endTime:"+endTime);
+		return this.getDBAdapter().getDatabase().query(
+				quote(Result.TABLE_NAME),
+				new String[]{
+						quote(Result.FIELD_TIMESTAMP),
+						quote(Result.FIELD_VALUE),
+				},
+				quote(Result.FIELD_SCALE_ID)+"=?",
+				new String[]{
+						this._id+""
+				},
+				null,
+				null,
+				null,
+				null
+		);
 	}
 	
 	public Cursor getUniqueScalesCursor() {

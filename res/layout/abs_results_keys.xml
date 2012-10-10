@@ -28,6 +28,7 @@
 	
 	<!-- The tab content -->
 	<FrameLayout
+	    android:id="@+id/collapseList"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1.0">
@@ -39,6 +40,12 @@
 			
 		<ListView
 			android:id="@+id/notesList"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:visibility="invisible" />
+		
+		<ListView
+			android:id="@+id/optionsList"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:visibility="invisible" />

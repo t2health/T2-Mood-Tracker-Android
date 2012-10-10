@@ -1,8 +1,0 @@
-MSYS-1.0.16 Build:2010-09-29 00:07
-Exception: STATUS_ACCESS_VIOLATION at eip=00000000
-eax=685537BC ebx=685538C4 ecx=0001B008 edx=000000EC esi=00000000 edi=685500D4
-ebp=0028FEC8 esp=0028FEAC program=c:\RhoStudio\devkit\bin\lessecho.exe
-cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
-Stack trace:
-Frame     Function  Args
-End of stack trace

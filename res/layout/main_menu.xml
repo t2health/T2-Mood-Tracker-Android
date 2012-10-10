@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llMainMenu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shine"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:visibility="invisible" >
+
+    <!-- The tabs -->
+
+    <view
+        android:id="@+id/btnTabRate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_weight="1"
+        class="com.t2.vas.ToggledImageButton"
+        android:contentDescription="Rate"
+ />
+
+    <view
+        android:id="@+id/btnTabResults"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_weight="1"
+        class="com.t2.vas.ToggledImageButton"
+        android:contentDescription="" />
+
+    <view
+        android:id="@+id/btnTabSupport"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_weight="1"
+        class="com.t2.vas.ToggledImageButton"
+        android:contentDescription="Support" />
+
+    <view
+        android:id="@+id/btnTabSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_weight="1"
+        class="com.t2.vas.ToggledImageButton"
+        android:contentDescription="Settings" />
+
+</LinearLayout>

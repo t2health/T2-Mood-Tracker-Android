@@ -1,31 +1,5 @@
 /*
  * 
- * T2 Mood Tracker
- * 
- * Copyright © 2009-2012 United States Government as represented by 
- * the Chief Information Officer of the National Center for Telehealth 
- * and Technology. All Rights Reserved.
- * 
- * Copyright © 2009-2012 Contributors. All Rights Reserved. 
- * 
- * THIS OPEN SOURCE AGREEMENT ("AGREEMENT") DEFINES THE RIGHTS OF USE, 
- * REPRODUCTION, DISTRIBUTION, MODIFICATION AND REDISTRIBUTION OF CERTAIN 
- * COMPUTER SOFTWARE ORIGINALLY RELEASED BY THE UNITED STATES GOVERNMENT 
- * AS REPRESENTED BY THE GOVERNMENT AGENCY LISTED BELOW ("GOVERNMENT AGENCY"). 
- * THE UNITED STATES GOVERNMENT, AS REPRESENTED BY GOVERNMENT AGENCY, IS AN 
- * INTENDED THIRD-PARTY BENEFICIARY OF ALL SUBSEQUENT DISTRIBUTIONS OR 
- * REDISTRIBUTIONS OF THE SUBJECT SOFTWARE. ANYONE WHO USES, REPRODUCES, 
- * DISTRIBUTES, MODIFIES OR REDISTRIBUTES THE SUBJECT SOFTWARE, AS DEFINED 
- * HEREIN, OR ANY PART THEREOF, IS, BY THAT ACTION, ACCEPTING IN FULL THE 
- * RESPONSIBILITIES AND OBLIGATIONS CONTAINED IN THIS AGREEMENT.
- * 
- * Government Agency: The National Center for Telehealth and Technology
- * Government Agency Original Software Designation: T2MoodTracker001
- * Government Agency Original Software Title: T2 Mood Tracker
- * User Registration Requested. Please send email 
- * with your contact information to: robert.kayl2@us.army.mil
- * Government Agency Point of Contact for Original Software: robert.kayl2@us.army.mil
- * 
  */
 package com.t2.vas.activity.editor;
 
@@ -40,9 +14,12 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -57,6 +34,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.t2.vas.Analytics;
 import com.t2.vas.R;
 import com.t2.vas.SharedPref;
 import com.t2.vas.activity.ABSNavigationActivity;
@@ -65,7 +43,7 @@ import com.t2.vas.db.tables.Scale;
 import com.t2.vas.view.SeparatedListAdapter;
 
 public class GroupActivity extends ABSNavigationActivity implements
-		OnItemClickListener, DialogInterface.OnClickListener, OnCheckedChangeListener {
+OnItemClickListener, DialogInterface.OnClickListener, OnCheckedChangeListener {
 	public static final String TAG = GroupActivity.class.getSimpleName();
 
 	public static final String EXTRA_GROUP_ID = "group_id";
@@ -105,6 +83,8 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 	private Cursor copyScalesCursor;
 
+	private static final int Menu1 = Menu.FIRST + 1;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,7 +103,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 						R.id.text1,
 						R.id.text2,
 				}
-		);
+				);
 
 		addScaleLayout = (ViewGroup) this.getLayoutInflater().inflate(
 				R.layout.add_edit_scale_activity, null);
@@ -138,50 +118,59 @@ public class GroupActivity extends ABSNavigationActivity implements
 		renameEditText = new EditText(this);
 		renameEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		renameDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.edit_group_title).setView(renameEditText)
-				.setPositiveButton(R.string.save, this)
-				.setNegativeButton(R.string.cancel, this).create();
+		.setTitle(R.string.edit_group_title).setView(renameEditText)
+		.setPositiveButton(R.string.save, this)
+		.setNegativeButton(R.string.cancel, this).create();
 		deleteGroupDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.delete)
-				.setMessage(R.string.delete_category_confirm)
-				.setPositiveButton(R.string.yes, this)
-				.setNegativeButton(R.string.no, this).create();
+		.setTitle(R.string.delete)
+		.setMessage(R.string.delete_category_confirm)
+		.setPositiveButton(R.string.yes, this)
+		.setNegativeButton(R.string.no, this).create();
 		deleteScaleDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.delete)
-				.setMessage(R.string.delete_scale_message)
-				.setPositiveButton(R.string.yes, this)
-				.setNegativeButton(R.string.no, this).create();
+		.setTitle(R.string.delete)
+		.setMessage(R.string.delete_scale_message)
+		.setPositiveButton(R.string.yes, this)
+		.setNegativeButton(R.string.no, this).create();
 		addGatewayDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.add_rating_scale)
-				.setItems(R.array.add_scale_gateway_options, this)
-				.setNegativeButton(R.string.cancel, this).create();
+		.setTitle(R.string.add_rating_scale)
+		.setItems(R.array.add_scale_gateway_options, this)
+		.setNegativeButton(R.string.cancel, this).create();
 		addDialog = new AlertDialog.Builder(this).setTitle(R.string.add_rating_scale)
 				.setPositiveButton(R.string.save, this)
 				.setNegativeButton(R.string.cancel, this)
 				.setView(addScaleLayout).create();
 		editDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.edit_scale).setView(editScaleLayout)
-				.setPositiveButton(R.string.save, this)
-				.setNegativeButton(R.string.cancel, this).create();
+		.setTitle(R.string.edit_scale).setView(editScaleLayout)
+		.setPositiveButton(R.string.save, this)
+		.setNegativeButton(R.string.cancel, this).create();
 		copyDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.copy_scale)
-				.setNegativeButton(R.string.cancel, this)
-				.setAdapter(copyScalesAdapter, this)
-				.create();
-		
+		.setTitle(R.string.copy_scale)
+		.setNegativeButton(R.string.cancel, this)
+		.setAdapter(copyScalesAdapter, this)
+		.create();
+
 		group = new Group(dbAdapter);
 		group._id = this.getIntent().getLongExtra(EXTRA_GROUP_ID, 0);
 		if (!group.load()) {
-			this.finish();
-			return;
+			renameEditText.setText("");
+			renameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			    @Override
+			    public void onFocusChange(View v, boolean hasFocus) {
+			        if (hasFocus) {
+			        	renameDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+			        }
+			    }
+			});
+			renameDialog.show();
 		}
-		
+
 		this.setContentView(R.layout.list_layout);
 		this.setTitle(group.title);
-		this.setRightButtonText(getString(R.string.add_scale));
+		
 
 		listView = (ListView) this.findViewById(R.id.list);
-
+		
+		
 		ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
 		HashMap<String, Object> item;
 
@@ -194,12 +183,12 @@ public class GroupActivity extends ABSNavigationActivity implements
 		item.put("id", "delete");
 		item.put("title", getString(R.string.delete));
 		items.add(item);
-		
+
 		item = new HashMap<String, Object>();
 		item.put("id", "inverseData");
 		item.put("title", getString(R.string.is_desirable));
 		items.add(item);
-		
+
 		item = new HashMap<String, Object>();
 		item.put("id", "visible");
 		item.put("title", getString(R.string.show_on_main));
@@ -208,6 +197,16 @@ public class GroupActivity extends ABSNavigationActivity implements
 		generalAdapter = new ItemsAdapter(this, items, R.layout.list_item_1,
 				new String[] { "title", }, new int[] { R.id.text1, });
 
+		setupScalesListview();
+
+		// disable certain components
+		if(group.immutable > 0) {
+			//this.setRightButtonVisibility(View.GONE);
+		}
+	}
+
+	private void setupScalesListview()
+	{
 		scalesCursor = group.getScalesCursor();
 		this.startManagingCursor(scalesCursor);
 		scaleAdapter = new SimpleCursorAdapter(
@@ -224,7 +223,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 						R.id.text2, 
 						R.id.deleteButton, 
 				}
-		);
+				);
 		scaleAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
 			@Override
 			public boolean setViewValue(View view, Cursor cursor,
@@ -232,7 +231,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 				if(group.immutable > 0) {
 					view.setEnabled(false);
 				}
-				
+
 				if (view.getId() == R.id.deleteButton) {
 					final long id = cursor.getLong(columnIndex);
 					view.setFocusable(false);
@@ -255,22 +254,17 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		listView.setAdapter(listAdapter);
 		listView.setOnItemClickListener(this);
-		
-		// disable certain components
-		if(group.immutable > 0) {
-			this.setRightButtonVisibility(View.GONE);
-		}
 	}
-
+	
 	private void onScaleDeleteButtonPressed(long scaleId) {
 		editScaleId = scaleId;
 		deleteScaleDialog.show();
 	}
 
-	@Override
-	protected void onRightButtonPressed() {
-		addGatewayDialog.show();
-	}
+	//	@Override
+	//	protected void onRightButtonPressed() {
+	//		addGatewayDialog.show();
+	//	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -279,26 +273,27 @@ public class GroupActivity extends ABSNavigationActivity implements
 		boolean isGeneralAdapter = adapter == generalAdapter;
 		boolean isScaleAdapter = adapter == scaleAdapter;
 		boolean isMutable = group.immutable == 0;
-		
+
 		if(isGeneralAdapter) {
+			@SuppressWarnings("unchecked")
 			HashMap<String, Object> data = (HashMap<String, Object>) arg0.getItemAtPosition(arg2);
 			String itemId = (String) data.get("id");
-			
+
 			if(isMutable) {
 				if (itemId.equals("rename")) {
 					renameEditText.setText(group.title);
 					renameDialog.show();
 					return;
-	
+
 				} else if (itemId.equals("delete")) {
 					deleteGroupDialog.show();
 					return;
-				
+
 				} else if(itemId.equals("inverseData")) {
 					CheckedTextView ctv = (CheckedTextView)arg1.findViewById(R.id.text1);
 					group.inverseResults = !ctv.isChecked();
 					group.save();
-					
+
 					listAdapter.notifyDataSetChanged();
 					listAdapter.notifyDataSetInvalidated();
 					return;
@@ -313,7 +308,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 						hiddenGroupIds.remove(group._id);
 					}
 					SharedPref.setHiddenGroups(sharedPref, hiddenGroupIds);
-					
+
 					listAdapter.notifyDataSetChanged();
 					listAdapter.notifyDataSetInvalidated();
 					return;
@@ -321,7 +316,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 					Toast.makeText(this, R.string.group_immutable_message, Toast.LENGTH_LONG).show();
 				}
 			}
-			
+
 		} else if(isScaleAdapter) {
 			if(isMutable) {
 				long id = listAdapter.getItemId(arg2);
@@ -348,13 +343,14 @@ public class GroupActivity extends ABSNavigationActivity implements
 			if (which == AlertDialog.BUTTON_POSITIVE) {
 				String minLabel = addMinLabel.getText().toString().trim().replace('\n', ' ');
 				String maxLabel = addMaxLabel.getText().toString().trim().replace('\n', ' ');
-				
+
 				Scale scale = new Scale(dbAdapter);
 				scale.min_label = minLabel;
 				scale.max_label = maxLabel;
 				scale.group_id = group._id;
 
 				scale.save();
+				Analytics.onEvent(this,  "Add Scale," + scale.min_label + "-" + scale.max_label);
 			}
 
 		} else if (dialog == editDialog) {
@@ -367,18 +363,43 @@ public class GroupActivity extends ABSNavigationActivity implements
 				scale.group_id = group._id;
 
 				scale.save();
+				Analytics.onEvent(this,  "Edit Scale," + scale.min_label + "-" + scale.max_label);
 			}
 
 		} else if (dialog == renameDialog) {
 			if (which == AlertDialog.BUTTON_POSITIVE) {
-				group.title = renameEditText.getText().toString().trim().replace('\n', ' ');
-				group.save();
-				setTitle(group.title);
+				if(group == null)
+				{
+					//Steveo: creating a new group
+					group = new Group(dbAdapter);
+					group.title = renameEditText.getText().toString().trim().replace('\n', ' ');
+					group.save();
+					Analytics.onEvent(this,  "Add Category," + group.title);
+				}
+				else
+				{
+					//Editing existing group
+					group.title = renameEditText.getText().toString().trim().replace('\n', ' ');
+					Analytics.onEvent(this,  (group._id > 0 ? "Rename Category," : "Add Category,") + group.title);
+					group.save();
+					setTitle(group.title);
+					
+				}
+			}
+			else
+			{
+				if(group == null)
+				{
+					this.finish();
+					return;
+				}
 			}
 
 		} else if (dialog == deleteGroupDialog) {
 			if (which == AlertDialog.BUTTON_POSITIVE) {
+			    Analytics.onEvent(this,  "Delete Category," + group.title);
 				group.delete();
+				
 				this.finish();
 				return;
 			}
@@ -387,7 +408,9 @@ public class GroupActivity extends ABSNavigationActivity implements
 			if (which == AlertDialog.BUTTON_POSITIVE) {
 				Scale scale = new Scale(dbAdapter);
 				scale._id = editScaleId;
+				Analytics.onEvent(this,  "Delete Scale," + scale.min_label + "-" + scale.max_label);
 				scale.delete();
+				
 			}
 
 		} else if (dialog == addGatewayDialog) {
@@ -395,14 +418,14 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 			if (which == 0) {
 				copyDialog.show();
-				
+
 			} else if (which == 1) {
 				addMinLabel.setText("");
 				addMaxLabel.setText("");
 				addMinLabel.requestFocus();
 				addDialog.show();
 			}
-			
+
 		} else if(dialog == copyDialog) {
 			//Log.v(TAG, "SEL:"+which);
 			if(which >= 0) {
@@ -415,20 +438,18 @@ public class GroupActivity extends ABSNavigationActivity implements
 				scale.group_id = group._id;
 				scale._id = 0;
 				scale.insert();
+				Analytics.onEvent(this,  "Copy Scale," + scale.min_label + "-" + scale.max_label);
 			}
 		}
 
-		scalesCursor.requery();
+		setupScalesListview();
 		listAdapter.notifyDataSetChanged();
 	}
 
 	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {}
+
+
 	private class ItemsAdapter extends SimpleAdapter {
 
 		private LayoutInflater layoutInflater;
@@ -436,7 +457,7 @@ public class GroupActivity extends ABSNavigationActivity implements
 
 		public ItemsAdapter(Context context,
 				List<? extends Map<String, ?>> data, int resource,
-				String[] from, int[] to) {
+						String[] from, int[] to) {
 			super(context, data, resource, from, to);
 			this.defaultLayout = resource;
 			this.layoutInflater = (LayoutInflater)context.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -446,28 +467,61 @@ public class GroupActivity extends ABSNavigationActivity implements
 		public View getView(int position, View convertView, ViewGroup parent) {
 			@SuppressWarnings("unchecked")
 			HashMap<String,Object> item = (HashMap<String, Object>) this.getItem(position);
-			
+
 			View newView = convertView;
 			if(item.get("id").equals("inverseData")) {
 				newView = layoutInflater.inflate(R.layout.list_item_1_checked, null);
 				((CheckedTextView)newView.findViewById(R.id.text1)).setChecked(group.inverseResults);
-				
+
 			} else if(item.get("id").equals("visible")) {
 				List<Long> hiddenGroupIds = SharedPref.getHiddenGroups(sharedPref);
 				newView = layoutInflater.inflate(R.layout.list_item_1_checked, null);
 				((CheckedTextView)newView.findViewById(R.id.text1)).setChecked(!hiddenGroupIds.contains(group._id));
-				
+
 			} else {
 				newView = layoutInflater.inflate(defaultLayout, null);
 			}
-			
+
 			((TextView)newView.findViewById(R.id.text1)).setText(item.get("title")+"");
-			
+
 			if(group.immutable > 0 && !item.get("id").equals("visible")) {
 				((TextView)newView.findViewById(R.id.text1)).setEnabled(false);
 			}
-			
+
 			return newView;
 		}
+	}
+	
+	public void populateMenu(Menu menu) {
+
+		menu.setQwertyMode(true);
+
+		MenuItem item1 = menu.add(0, Menu1, 0, R.string.add_rating_scale);
+		{
+			//item1.setAlphabeticShortcut('a');
+			item1.setIcon(android.R.drawable.ic_menu_add);
+		}
+		
+	}
+
+	public boolean applyMenuChoice(MenuItem item) {
+		switch (item.getItemId()) {
+		case Menu1:
+			addGatewayDialog.show();
+			break;
+		
+		}
+		return false;
+	}
+	
+	@Override 
+	public boolean onCreateOptionsMenu(Menu menu) {
+		populateMenu(menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	/** when menu button option selected */
+	@Override public boolean onOptionsItemSelected(MenuItem item) {
+		return applyMenuChoice(item) || super.onOptionsItemSelected(item);
 	}
 }

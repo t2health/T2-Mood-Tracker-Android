@@ -1,19 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-	<include 
+    <!--
+         include 
 		layout="@layout/abs_results_charts"
 		android:layout_width="fill_parent"
-		android:layout_height="240dip" />
-		
-	<include 
-		layout="@layout/abs_results_keys"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_weight="1.0" />
+		android:layout_height="240dip" /
+    -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.5"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0"
+            android:background="@drawable/background"
+            android:scaleType="fitXY"
+            android:src="@drawable/hilo" />
+
+        <zencharts.charts.DateChart
+            android:id="@+id/datechart"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5" />
+    </LinearLayout>
+    <!-- The tabs -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <view
+            android:id="@+id/keysTabButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            class="com.t2.vas.view.ToggledButton"
+            android:text="@string/groups_tab" />
+
+        <view
+            android:id="@+id/notesTabButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            class="com.t2.vas.view.ToggledButton"
+            android:text="@string/notes_tab" />
+
+        <view
+            android:id="@+id/optionsTabButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            class="com.t2.vas.view.ToggledButton"
+            android:text="@string/options_tab" />
+    </LinearLayout>
+
+    <!-- The tab content -->
+
+    <FrameLayout
+        android:id="@+id/collapseList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0" >
+
+        <ListView
+            android:id="@+id/keysList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/notesList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/optionsList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="invisible" />
+    </FrameLayout>
 
 </LinearLayout>

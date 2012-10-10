@@ -2,18 +2,21 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-
-
-	<include 
-		layout="@layout/abs_results_charts"
-		android:layout_width="240dip"
-		android:layout_height="fill_parent" />
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+		
+	<zencharts.charts.DateChart
+            android:id="@+id/datechart"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+         />
 		
 	<include 
 		layout="@layout/abs_results_keys"
-		android:layout_width="wrap_content"
-		android:layout_height="fill_parent"
-		android:layout_weight="1.0" />
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1.0"
+		android:visibility="gone" />
 
 </LinearLayout>

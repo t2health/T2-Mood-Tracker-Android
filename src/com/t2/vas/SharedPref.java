@@ -1,31 +1,5 @@
 /*
  * 
- * T2 Mood Tracker
- * 
- * Copyright © 2009-2012 United States Government as represented by 
- * the Chief Information Officer of the National Center for Telehealth 
- * and Technology. All Rights Reserved.
- * 
- * Copyright © 2009-2012 Contributors. All Rights Reserved. 
- * 
- * THIS OPEN SOURCE AGREEMENT ("AGREEMENT") DEFINES THE RIGHTS OF USE, 
- * REPRODUCTION, DISTRIBUTION, MODIFICATION AND REDISTRIBUTION OF CERTAIN 
- * COMPUTER SOFTWARE ORIGINALLY RELEASED BY THE UNITED STATES GOVERNMENT 
- * AS REPRESENTED BY THE GOVERNMENT AGENCY LISTED BELOW ("GOVERNMENT AGENCY"). 
- * THE UNITED STATES GOVERNMENT, AS REPRESENTED BY GOVERNMENT AGENCY, IS AN 
- * INTENDED THIRD-PARTY BENEFICIARY OF ALL SUBSEQUENT DISTRIBUTIONS OR 
- * REDISTRIBUTIONS OF THE SUBJECT SOFTWARE. ANYONE WHO USES, REPRODUCES, 
- * DISTRIBUTES, MODIFIES OR REDISTRIBUTES THE SUBJECT SOFTWARE, AS DEFINED 
- * HEREIN, OR ANY PART THEREOF, IS, BY THAT ACTION, ACCEPTING IN FULL THE 
- * RESPONSIBILITIES AND OBLIGATIONS CONTAINED IN THIS AGREEMENT.
- * 
- * Government Agency: The National Center for Telehealth and Technology
- * Government Agency Original Software Designation: T2MoodTracker001
- * Government Agency Original Software Title: T2 Mood Tracker
- * User Registration Requested. Please send email 
- * with your contact information to: robert.kayl2@us.army.mil
- * Government Agency Point of Contact for Original Software: robert.kayl2@us.army.mil
- * 
  */
 package com.t2.vas;
 
@@ -38,8 +12,69 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class SharedPref {
+	
+	public static int getKeyResource(SharedPreferences sharedPref, String key) {
+		return sharedPref.getInt("res"+key, 0);
+	}
+	public static void setKeyResource(SharedPreferences sharedPref, String key, int resID) {
+		sharedPref.edit().putInt("res"+key, resID).commit();
+	}
+	
+	public static boolean getSymbols(SharedPreferences sharedPref) {
+		return sharedPref.getBoolean("show_symbols", true);
+	}
+	public static void setSymbols(SharedPreferences sharedPref, boolean toggle) {
+		sharedPref.edit().putBoolean("show_symbols", toggle).commit();
+	}
+	public static boolean getLines(SharedPreferences sharedPref) {
+		return sharedPref.getBoolean("show_lines", true);
+	}
+	public static void setLines(SharedPreferences sharedPref, boolean toggle) {
+		sharedPref.edit().putBoolean("show_lines", toggle).commit();
+	}
+	public static boolean getShading(SharedPreferences sharedPref) {
+		return sharedPref.getBoolean("show_shading", true);
+	}
+	public static void setShading(SharedPreferences sharedPref, boolean toggle) {
+		sharedPref.edit().putBoolean("show_shading", toggle).commit();
+	}
+	
+	public static int getNotifyHour(SharedPreferences sharedPref) {
+		return sharedPref.getInt("notify_hour", 1);
+	}
+
+	public static void setNotifyHour(SharedPreferences sharedPref, int hour) {
+		sharedPref.edit().putInt("notify_hour", hour).commit();
+	}
+	
+	public static int getNotifyMinute(SharedPreferences sharedPref) {
+		return sharedPref.getInt("notify_minute", 1);
+	}
+
+	public static void setNotifyMinute(SharedPreferences sharedPref, int minute) {
+		sharedPref.edit().putInt("notify_minute", minute).commit();
+	}
+
+	
+	public static int getKeyColor(SharedPreferences sharedPref, String key) {
+		return sharedPref.getInt("col"+key, 0);
+	}
+	public static void setKeyColor(SharedPreferences sharedPref, String key, int color) {
+		sharedPref.edit().putInt("col"+key, color).commit();
+	}
+	
 	public static boolean getSendAnnonData(SharedPreferences sharedPref) {
 		return sharedPref.getBoolean("send_anon_data", true);
+	}
+	public static void setSendAnnonData(SharedPreferences sharedPref, boolean enabled) {
+		sharedPref.edit().putBoolean("send_anon_data", enabled).commit();
+	}
+	
+	public static boolean getNotifyGroups(SharedPreferences sharedPref) {
+		return sharedPref.getBoolean("notify_unused_groups", true);
+	}
+	public static void setNotifyGroups(SharedPreferences sharedPref, boolean enabled) {
+		sharedPref.edit().putBoolean("notify_unused_groups", enabled).commit();
 	}
 	
 	public static void setShowStartupTips(SharedPreferences sharedPref, boolean enabled) {

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:paddingBottom="10dip" >
+
+    <LinearLayout
+        android:id="@+id/ll_sliderparent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_lowvalue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Not At All"
+            android:textColor="#ffffff"
+            style="@style/ScaleFontLarge"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_mediumvalue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#ffffff"
+            style="@style/ScaleFontLarge"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_highvalue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Very Much So"
+            android:textColor="#ffffff"
+            style="@style/ScaleFontLarge"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <com.t2.vas.Slider
+        android:id="@+id/seekbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:thumb="@drawable/seek_thumb"
+        android:progressDrawable="@drawable/progressdrawable" />
+
+</LinearLayout>

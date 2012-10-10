@@ -1,14 +1,17 @@
 com.flurry.android.CatalogActivity
 com.flurry.android.CatalogActivity: void onClick(android.view.View)
-com.t2.vas.BootReceiver
-com.t2.vas.BootReceiver: BootReceiver()
-com.t2.vas.ReminderService
-com.t2.vas.ReminderService: ReminderService()
+com.t2.vas.NotificationService
+com.t2.vas.NotificationService: NotificationService()
+com.t2.vas.Slider
+com.t2.vas.Slider: Slider(android.content.Context,android.util.AttributeSet,int)
+com.t2.vas.Slider: Slider(android.content.Context,android.util.AttributeSet)
+com.t2.vas.Slider: Slider(android.content.Context)
+com.t2.vas.ToggledImageButton
+com.t2.vas.ToggledImageButton: ToggledImageButton(android.content.Context)
+com.t2.vas.ToggledImageButton: ToggledImageButton(android.content.Context,android.util.AttributeSet)
+com.t2.vas.ToggledImageButton: ToggledImageButton(android.content.Context,android.util.AttributeSet,int)
 com.t2.vas.activity.ABSActivity
 com.t2.vas.activity.ABSActivity: ABSActivity()
-com.t2.vas.activity.ABSCustomTitleActivity
-com.t2.vas.activity.ABSCustomTitleActivity: ABSCustomTitleActivity()
-com.t2.vas.activity.ABSCustomTitleActivity: void setContentView(android.view.View)
 com.t2.vas.activity.ABSExportActivity
 com.t2.vas.activity.ABSExportActivity: ABSExportActivity()
 com.t2.vas.activity.ABSImportExportActivity
@@ -16,17 +19,20 @@ com.t2.vas.activity.ABSImportExportActivity: ABSImportExportActivity()
 com.t2.vas.activity.ABSImportExportActivity: void onClick(android.view.View)
 com.t2.vas.activity.ABSNavigationActivity
 com.t2.vas.activity.ABSNavigationActivity: ABSNavigationActivity()
-com.t2.vas.activity.ABSResultsActivity
-com.t2.vas.activity.ABSResultsActivity: ABSResultsActivity()
-com.t2.vas.activity.ABSResultsActivity: void onClick(android.view.View)
+com.t2.vas.activity.ABSNavigationActivity: void onClick(android.view.View)
 com.t2.vas.activity.ABSSecurityActivity
 com.t2.vas.activity.ABSSecurityActivity: ABSSecurityActivity()
 com.t2.vas.activity.ABSStartupTipsActivity
+com.t2.vas.activity.ABSTabActivity
+com.t2.vas.activity.ABSTabActivity: ABSTabActivity()
 com.t2.vas.activity.AddEditNoteActivity
 com.t2.vas.activity.AddEditNoteActivity: AddEditNoteActivity()
 com.t2.vas.activity.AddEditNoteActivity: void onClick(android.view.View)
+com.t2.vas.activity.BackupFileListActivity
+com.t2.vas.activity.BackupFileListActivity: BackupFileListActivity()
 com.t2.vas.activity.ExportActivity
 com.t2.vas.activity.ExportActivity: ExportActivity()
+com.t2.vas.activity.ExportActivity: void onClick(android.view.View)
 com.t2.vas.activity.FileListActivity
 com.t2.vas.activity.FileListActivity: FileListActivity()
 com.t2.vas.activity.ForgotPinActivity
@@ -34,18 +40,28 @@ com.t2.vas.activity.ForgotPinActivity: ForgotPinActivity()
 com.t2.vas.activity.ForgotPinActivity: void onClick(android.view.View)
 com.t2.vas.activity.GroupResultsActivity
 com.t2.vas.activity.GroupResultsActivity: GroupResultsActivity()
+com.t2.vas.activity.GroupResultsActivity: void onClick(android.view.View)
 com.t2.vas.activity.HelpActivity
 com.t2.vas.activity.HelpActivity: HelpActivity()
 com.t2.vas.activity.ImportActivity
 com.t2.vas.activity.ImportActivity: ImportActivity()
-com.t2.vas.activity.MainActivity
-com.t2.vas.activity.MainActivity: MainActivity()
+com.t2.vas.activity.MainRateActivity
+com.t2.vas.activity.MainRateActivity: MainRateActivity()
+com.t2.vas.activity.MainResultsActivity
+com.t2.vas.activity.MainResultsActivity: MainResultsActivity()
+com.t2.vas.activity.MainSettingsActivity
+com.t2.vas.activity.MainSettingsActivity: MainSettingsActivity()
+com.t2.vas.activity.MainSupportActivity
+com.t2.vas.activity.MainSupportActivity: MainSupportActivity()
+com.t2.vas.activity.MainTabActivity
+com.t2.vas.activity.MainTabActivity: MainTabActivity()
 com.t2.vas.activity.NotesListActivity
 com.t2.vas.activity.NotesListActivity: NotesListActivity()
 com.t2.vas.activity.RateActivity
 com.t2.vas.activity.RateActivity: RateActivity()
 com.t2.vas.activity.ScaleResultsActivity
 com.t2.vas.activity.ScaleResultsActivity: ScaleResultsActivity()
+com.t2.vas.activity.ScaleResultsActivity: void onClick(android.view.View)
 com.t2.vas.activity.ShareActivity
 com.t2.vas.activity.ShareActivity: ShareActivity()
 com.t2.vas.activity.SplashScreenActivity
@@ -53,6 +69,8 @@ com.t2.vas.activity.SplashScreenActivity: SplashScreenActivity()
 com.t2.vas.activity.SplashScreenActivity: void onClick(android.view.View)
 com.t2.vas.activity.StartupActivity
 com.t2.vas.activity.StartupActivity: StartupActivity()
+com.t2.vas.activity.StudyEnrollmentActivity
+com.t2.vas.activity.StudyEnrollmentActivity: StudyEnrollmentActivity()
 com.t2.vas.activity.UnlockActivity
 com.t2.vas.activity.UnlockActivity: UnlockActivity()
 com.t2.vas.activity.UnlockActivity: void onClick(android.view.View)
@@ -77,6 +95,12 @@ com.t2.vas.activity.preference.ReminderActivity
 com.t2.vas.activity.preference.ReminderActivity: ReminderActivity()
 com.t2.vas.activity.preference.SecurityActivity
 com.t2.vas.activity.preference.SecurityActivity: SecurityActivity()
+com.t2.vas.view.ColorPickerView
+com.t2.vas.view.ColorPickerView: ColorPickerView(android.content.Context,android.util.AttributeSet)
+com.t2.vas.view.ColorPickerView: ColorPickerView(android.content.Context,android.util.AttributeSet,int)
+com.t2.vas.view.Slider
+com.t2.vas.view.Slider: Slider(android.content.Context,android.util.AttributeSet,int)
+com.t2.vas.view.Slider: Slider(android.content.Context,android.util.AttributeSet)
 com.t2.vas.view.SliderWidget
 com.t2.vas.view.SliderWidget: SliderWidget(android.content.Context)
 com.t2.vas.view.SliderWidget: SliderWidget(android.content.Context,android.util.AttributeSet)
@@ -85,17 +109,32 @@ com.t2.vas.view.ToggledButton: ToggledButton(android.content.Context)
 com.t2.vas.view.ToggledButton: ToggledButton(android.content.Context,android.util.AttributeSet)
 com.t2.vas.view.ToggledButton: ToggledButton(android.content.Context,android.util.AttributeSet,int)
 com.t2.vas.view.VASListView
-com.t2.vas.view.VASListView: VASListView(android.content.Context)
 com.t2.vas.view.VASListView: VASListView(android.content.Context,android.util.AttributeSet)
 com.t2.vas.view.VASListView: VASListView(android.content.Context,android.util.AttributeSet,int)
 com.t2.vas.view.VASSeekBar
 com.t2.vas.view.VASSeekBar: VASSeekBar(android.content.Context)
 com.t2.vas.view.VASSeekBar: VASSeekBar(android.content.Context,android.util.AttributeSet)
 com.t2.vas.view.VASSeekBar: VASSeekBar(android.content.Context,android.util.AttributeSet,int)
-org.achartengine.GraphicalActivity
-org.achartengine.chart.BarChart$Type: org.achartengine.chart.BarChart$Type[] values()
-org.achartengine.chart.BarChart$Type: org.achartengine.chart.BarChart$Type valueOf(java.lang.String)
-org.achartengine.chart.PointStyle: org.achartengine.chart.PointStyle[] values()
-org.achartengine.chart.PointStyle: org.achartengine.chart.PointStyle valueOf(java.lang.String)
-org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation: org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation[] values()
-org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation: org.achartengine.renderer.XYMultipleSeriesRenderer$Orientation valueOf(java.lang.String)
+org.apache.harmony.awt.gl.color.NativeCMM
+org.apache.harmony.awt.gl.color.NativeCMM: long cmmOpenProfile(byte[])
+org.apache.harmony.awt.gl.color.NativeCMM: void cmmCloseProfile(long)
+org.apache.harmony.awt.gl.color.NativeCMM: int cmmGetProfileSize(long)
+org.apache.harmony.awt.gl.color.NativeCMM: void cmmGetProfile(long,byte[])
+org.apache.harmony.awt.gl.color.NativeCMM: int cmmGetProfileElementSize(long,int)
+org.apache.harmony.awt.gl.color.NativeCMM: void cmmGetProfileElement(long,int,byte[])
+org.apache.harmony.awt.gl.color.NativeCMM: void cmmSetProfileElement(long,int,byte[])
+org.apache.harmony.awt.gl.color.NativeCMM: long cmmCreateMultiprofileTransform(long[],int[])
+org.apache.harmony.awt.gl.color.NativeCMM: void cmmDeleteTransform(long)
+org.apache.harmony.awt.gl.color.NativeCMM: void cmmTranslateColors(long,org.apache.harmony.awt.gl.color.NativeImageFormat,org.apache.harmony.awt.gl.color.NativeImageFormat)
+org.apache.harmony.awt.gl.color.NativeImageFormat
+org.apache.harmony.awt.gl.color.NativeImageFormat: void initIDs()
+org.joda.convert.JDKStringConverter: org.joda.convert.JDKStringConverter[] values()
+org.joda.convert.JDKStringConverter: org.joda.convert.JDKStringConverter valueOf(java.lang.String)
+org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId: org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId[] values()
+org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId: org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId valueOf(java.lang.String)
+zencharts.charts.DateChart
+zencharts.charts.DateChart: DateChart(android.content.Context,android.util.AttributeSet)
+zencharts.charts.DateChart$GridPeriod: zencharts.charts.DateChart$GridPeriod[] values()
+zencharts.charts.DateChart$GridPeriod: zencharts.charts.DateChart$GridPeriod valueOf(java.lang.String)
+zencharts.charts.LineChart
+zencharts.charts.LineChart: LineChart(android.content.Context,android.util.AttributeSet)

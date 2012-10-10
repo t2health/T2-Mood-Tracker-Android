@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">T2 Mood Tracker</string>
-	
-	<!-- General String -->
-	<string name="back_button">Back</string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="save">Save</string>
-	<string name="close">Close</string>
-	<string name="cancel">Cancel</string>
-	<string name="delete">Delete</string>
-	<string name="never">Never</string>
-	<string name="add_note">Add Note</string>
-	<string name="mood_tracker">Mood Tracker</string>
-	<string name="rename">Rename</string>
-	<string name="add">Add</string>
-	
-	<string name="import_title">Import data from sdcard</string>
-	<string name="export_title">Export data to sdcard</string>
-	
-	<!-- Main screen sections -->
-	<string name="rate_section_title">Rate</string>
-	<string name="results_section_title">Results</string>
-		<string name="graph_results_title">Graph Results</string>
-		<string name="view_notes_title">View Notes</string>
-	<string name="general_section_title"> </string>
-		<string name="about_title">About T2 Mood Tracker</string>
-			<string name="about_text"><![CDATA[
+
+    <string name="app_name">T2 Mood Tracker</string>
+
+    <!-- General String -->
+    <string name="back_button">Back</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="never">Never</string>
+    <string name="add_note">Add Note</string>
+    <string name="mood_tracker">Mood Tracker</string>
+    <string name="rename">Set/Change Group Name</string>
+    <string name="add">Add</string>
+    <string name="backup">Backup Data</string>
+    <string name="restore">Restore Data</string>
+    <string name="import_title">Import data from sdcard</string>
+    <string name="export_title">Create Reports</string>
+    <string name="rate_app_amazon">Rate on Amazon</string>
+    <string name="rate_app_google">Rate on Play Store</string>
+
+    <!-- Main screen sections -->
+    <string name="rate_section_title">Rate</string>
+    <string name="results_section_title">Results</string>
+    <string name="graph_results_title">Graph Results</string>
+    <string name="saved_results_title">Saved Reports</string>
+    <string name="view_notes_title">View Notes</string>
+    <string name="support_section_title">Support</string>
+    <string name="general_section_title"></string>
+    <string name="about_title">About T2 Mood Tracker</string>
+    <string name="resources_title">Local Resources/Help</string>
+    <string name="about_text">
+<![CDATA[
+				<body background="file:///android_asset/img/bg.png" link="#ffffff" vlink="#ffffff" alink="#ffffff">
 				<style type="text/css">
 				img {
 					width: 45%;
@@ -37,204 +46,265 @@
 				}
 				</style>
 				<p>
-					<img class="last" src="file:///android_asset/img/mt_logo.png" />
+					<img class="last" src="file:///android_asset/img/splashlogo.png" />
 					<img class="first" src="file:///android_asset/img/t2_logo.png" />
 				</p>
-				<p>T2 Mood Tracker was developed to help you track your emotional experience over time and to provide you with a tool to share this information with your health care provider.</p>  
-				<p>The app provides you with a quick and easy way of regularly tracking your moods and behavior.  Your mood ratings can be viewed on easy to read graphs. You can also make notes describing things that happened during the day that might have affected your moods.  This provides you and your health care provider with a complete tool to look for patterns in how you are feeling over time. It may help to evaluate the impact of daily events or the effects of treatment on your mood. </p>
-				<p>T2 Mood Tracker was developed by the National Center for Telehealth and Technology (T2) which is a component center of the Defense Centers of Excellence for Psychological Health and Traumatic Brain Injury (DCoE).  T2’s mission is to lead the development of telehealth and technology solutions for Psychological Health and Traumatic Brain Injury to improve the lives of our Nation’s Warriors, Veterans and their Families.</p>
-				
-			]]></string>
-		<string name="rate_app_amazon">Rate on Amazon</string>
-		<string name="rate_app_google">Rate on Play Store</string>
-				<string name="feedback_title">Feedback</string>
-		<string name="tell_a_friend_title">Tell a Friend</string>
-	<string name="unusual_results_message">Your results are a little unusual today, please consider entering a note.</string>
-	
-	<string name="feedback_to">moodtracker@t2health.org</string>
-	<string name="feedback_subject">Feedback on T2 Mood Tracker App</string>
-	<string name="feedback_content"><![CDATA[Please feel free to send your feedback on this application to the team at the National Center for Telehealth & Technology (T2).]]></string>
-	<string name="tell_a_friend_subject">Check out this app for monitoring your mood!</string>
-	<string name="tell_a_friend_content_google"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
-<a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
-<a href="https://market.android.com/details?id=com.t2.vas">Click here to download the app for Android from the Play Store.</a>]]></string>
-	<string name="tell_a_friend_content_amazon"><![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
-<a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
-<a href="http://www.amazon.com/gp/mas/dl/android?p=com.t2.vas">Click here to download the app for Android from the Amazon Appstore.</a>]]></string>
-	
-		
-	<string name="tip_title">Tip</string>
-	<string name="touch_anywhere_to_continue">Touch anywhere to continue</string>
-	<string name="is_desirable">Is a desirable trait?</string>
-	<string name="show_on_main">Show on main screen?</string>
-	
-	<string name="unused_groups_title">Hide Unused Categories?</string>
-	<string name="unused_groups_desc">"You have some unused categories ({0}). Would you like to hide them now? This can be undone in settings."</string>
-	
-	<!-- Export -->
-	<string name="share_title">Share</string>
-	<string name="share_button">Share</string>
-	<string name="share_data_title">Share Data</string>
-	<string name="share_progress_message">Preparing the data.</string>
-	
-	<string name="files_exported">The data has been exported to the "T2MoodTracker" folder on your sdcard.</string>
-	<string name="fail_to_export_files">Failed to export the data.</string>
-	
-	<string name="export_sdcard_not_mounted">The sdcard needs to be mounted to use this feature.</string>
-	<string name="export_from_date">From Date:</string>
-	<string name="export_to_date">To Date:</string>
-	<string name="export_button">Export</string>
-	<string name="export_choose_date">Choose Date</string>
-	<string name="export_groups_header">Categories</string>
-	<string name="export_other_header">Other Data</string>
-	<string name="export_preparing_data">Preparing Data</string>
-	<string name="export_dates_offset_bad">The start date entered is later than your end date. This should be fixed.</string>
-	<string name="export_progress_message">Exporting the data.</string>
-	
-	<!-- Import -->
-	<string name="file_options_title">File Options</string>
-	<string name="delete_file_title">Delete File?</string>
-	<string name="delete_file_desc">Are you sure you would like to delete this file?</string>
-	<string name="delete_file_yes">Yes - Delete file</string>
-	<string name="delete_selected_file">Delete selected file</string>
-	<string name="choose_file_title">Choose File</string>
-	<string name="import_button">Import Selected Data</string>
-	<string name="import_not_valid_file">The selected file does not have the proper format.</string>
-	<string name="no_csv_files_found">You do not have any files available for import. Place csv files in the "T2MoodTracker" folder on your sdcard. Note: Mood tracker requires a specific format in order to import files. This format can be revealed by exporting existing data and inspecting the resultant file.</string>
-	<string name="import_complete">Import Complete</string>
-	<string name="import_progress_message">Reading data file</string>
-	
-	<!-- Help -->
-	<string name="help_title">Help</string>	
-	
-	<!-- Rating form -->
-	<string name="rate_title">Rate Your Mood</string>
-	<string name="rate_help">Rating your mood is quick and easy.  Simply select a category you’d like to track. If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
-	<string name="scroll_to_see_more_scales">Scroll the list to see more rating scales.</string>
-	
-	<!--  Graph results -->
-	<string name="results_title">Results</string>
-	<string name="groups_tab">Categories</string>
-	<string name="scales_tab">Scales</string>
-	<string name="notes_tab">Notes</string>
-	<string name="chart_high">Hi</string>
-	<string name="chart_low">Lo</string>
-		
-	<!-- Notes -->
-	<string name="notes_list_title">Notes</string>
-	<string name="note_details_title">Note Details</string>
-	<string name="edit_note_title">Edit Note</string>
-	<string name="add_note_title">Add Note</string>
-	<string name="note_delete_confirm">Are you sure you would like to delete this note?</string>
-	<string name="provide_note_text_message">Please provide some details about this note.</string>
-	
-	<!-- Settings -->
-	<string name="settings_app_wide">App-Wide Settings</string>
-	<string name="settings_import_export">Import/Export</string>
-	<string name="settings_title">Settings</string>
-	<string name="settings_general">General</string>
-	<string name="notify_unused_groups">Notify when Categories are unused</string>
-	<string name="show_tips_on_startup">Show Tips on Startup</string>
-	<string name="send_anon_data_title">Send Anonymous Usage Data</string>
-	<string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
+				<font color="#ffffff">
+				<P>T2 Mood Tracker is designed to help you track your emotional experience over time and to provide you with a tool to share this information with your health care provider.
+
+				<P>This app comes with six pre-loaded issues: anxiety, depression, general well-being, head injury, post-traumatic stress, and stress. You can also add customized scales on any topic (e.g., a pain scale). You use simple sliders to rate yourself on these behavioral categories and the app automatically graphs your inputs. You can also make notes describing things that happened during the day that may have affected your moods. This provides you and your health care provider with a complete tool to help you uncover patterns in how you are feeling. It may also help you to evaluate the impact of daily events or the effects of treatment on your mood. 
+
+				<P>T2 Mood Tracker was developed by the National Center for Telehealth & Technology (T2), the Defense Department’s primary agency for applying innovative technology to issues of psychological health and traumatic brain injury
 
 
-	<!--  Group List -->
-	<string name="group_list_title">Add/Edit Rating Categories</string>
-	<string name="add_group_title">Add Rating Category</string>
-	
-	<!-- Group Editor -->
-	<string name="general_group_operations">General</string>
-	<string name="edit_group_title">Rename</string>
-	<string name="delete_category_confirm">Are you sure you want to remove this category, associated scales and ratings.</string>
-	<string name="group_immutable_message">This category and its rating scales cannot be modified.</string>
-	<string name="add_scale">Add Scale</string>
-	<string name="add_rating_scale">Add Rating Scale</string>
+			]]>
+    </string>
+    <string name="resources_text">
+<![CDATA[
+				<body background="file:///android_asset/img/bg.png" link="#ffffff" vlink="#ffffff" alink="#ffffff">
+				<div style="overflow: auto; width: xxwidthxx; height: xxheightxx">
+				<font color="#ffffff">
+				<B><center>DCoE 24/7 Outreach Center</center></b>
+				<P><b>Contact Us:</b>
+				<UL>
+				<LI><a href="tel:866-966-1020">Phone: 866-966-1020</a>
+				<LI><a href="mailto:resources@dcoeoutreach.org">Email: resources@dcoeoutreach.org</a>
+				</UL>
+				<P><B>We Feature:</B>
+				<UL>
+				<LI>Trained, professional health resource consultants with expertise in psychological health and traumatic brain injury
+				<LI>Available 24/7
+				<LI>Information provided by phone, online chat or e-mail
+				<LI>Free!
+				</UL>
+				<P><B>We Provide:</B>
+				<UL>
+				<LI>A trusted source of information on psychological health and traumatic brain injury issues and resources
+				<LI>Responses to your specific questions and needs. If we can’t answer your question, we will be sure to connect you to someone that can—whether it’s within the Department of Defense, other federal agencies or a civilian/community organization.
+				</UL>
+				<P><B>We Serve:</B>
+				<P>Everyone! Whether you are a warrior, a family member or a clinician, the DCoE Outreach Center is there for you.
+				<table width=\'100%\'>
+				<tr>
+				<td><font color="#ffffff">
+				<UL>
+				<LI>Service Members
+				<LI>Families and Friends
+				<LI>Military Leaders
+				<LI>Clinicians
+				<LI>Educators
+				</UL>
+				</td>
+				<td><font color="#ffffff">
+				<UL>
+				<LI>Veterans
+				<LI>Support Personnel
+				<LI>Clergy
+				<LI>Researchers
+				<LI>Deployed Government Civilians
+				</UL>
+				</td>
+				</table>
+				<font size=-2>
+				<P>The DCoE Outreach Center was created to provide information on psychological health and traumatic brain injury. It does not function as a treatment or counseling center and cannot provide advice.
+			]]>
+    </string>
+    <string name="backup_database">Backup Database</string>
+    <string name="restore_database">Restore Database</string>
+    <string name="rate_app_title">Rate App</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="tell_a_friend_title">Tell a Friend</string>
+    <string name="unusual_results_message">Your results are a little unusual today, please consider entering a note.</string>
+    <string name="feedback_to">mobileapplications@t2health.org</string>
+    <string name="feedback_subject">Feedback on T2 Mood Tracker App</string>
+    <string name="feedback_content"><![CDATA[Please feel free to send your feedback on this application to the team at the National Center for Telehealth & Technology (T2).]]></string>
+    <string name="tell_a_friend_subject">Check out this app for monitoring your mood!</string>
+    <string name="tell_a_friend_content_google">
+<![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
+<a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
+<a href="https://market.android.com/details?id=com.t2.vas">Click here to download the app for Android from the Play Store.</a>]]>
+    </string>
+    <string name="tell_a_friend_content_amazon">
+<![CDATA[<p>I have been using the T2 Mood Tracker app on my phone. It\'s a really great tool for monitoring what\'s going on in my life using simple rating scales that I can fill in as often as I\'d like. I thought you might like to check it out!</p>
+<a href="http://itunes.com/apps/t2moodtracker">Click here to download the app for iPhone.</a><br />
+<a href="http://www.amazon.com/gp/mas/dl/android?p=com.t2.vas">Click here to download the app for Android from the Amazon Appstore.</a>]]>
+    </string>
+    <string name="tip_title">Tip</string>
+    <string name="touch_anywhere_to_continue">Touch anywhere to continue</string>
+    <string name="is_desirable">Is a desirable trait?</string>
+    <string name="show_on_main">Show on main screen?</string>
+    <string name="unused_groups_title">Hide Unused Categories?</string>
+    <string name="unused_groups_desc">"You have some unused categories ({0}). Would you like to hide them now? This can be undone in settings."</string>
+
+    <!-- Export -->
+    <string name="share_title">Share</string>
+    <string name="share_button">Share</string>
+    <string name="share_data_title">Share Data</string>
+    <string name="share_progress_message">Preparing the data.</string>
+    <string name="files_exported">The data has been exported to the "T2MoodTracker" folder on your SD Card.</string>
+    <string name="fail_to_export_files">Failed to export the data.</string>
+    <string name="export_sdcard_not_mounted">The sdcard needs to be mounted to use this feature.</string>
+    <string name="export_from_date">From Date:</string>
+    <string name="export_to_date">To Date:</string>
+    <string name="export_button">Export</string>
+    <string name="export_choose_date">Choose Date</string>
+    <string name="export_groups_header">Categories</string>
+    <string name="export_other_header">Other Data</string>
+    <string name="export_preparing_data">Preparing Data</string>
+    <string name="export_dates_offset_bad">The start date entered is later than your end date. This should be fixed.</string>
+    <string name="export_progress_message">Exporting the data.</string>
+
+    <!-- Import -->
+    <string name="file_options_title">File Options</string>
+    <string name="delete_file_title">Delete File?</string>
+    <string name="delete_file_desc">Are you sure you would like to delete this file?</string>
+    <string name="delete_file_yes">Yes - Delete file</string>
+    <string name="delete_selected_file">Delete selected file</string>
+    <string name="choose_file_title">Choose File</string>
+    <string name="import_button">Import Selected Data</string>
+    <string name="import_not_valid_file">The selected file does not have the proper format.</string>
+    <string name="no_csv_files_found">You do not have any files available for import. Place csv files in the "T2MoodTracker" folder on your sdcard. Note: Mood tracker requires a specific format in order to import files. This format can be revealed by exporting existing data and inspecting the resultant file.</string>
+    <string name="import_complete">Import Complete</string>
+    <string name="import_progress_message">Reading data file</string>
+
+    <!-- Help -->
+    <string name="help_title">Help</string>
+
+    <!-- Rating form -->
+    <string name="rate_title">Rate Your Mood</string>
+    <string name="rate_help">Rating your mood is quick and easy.  Simply select a category you’d like to track. If you select “Depression” you will see a screen that has ten pairs of feelings, for example, “Happy”—“Sad”.  Use your finger to move the pointer to a place on each of the ten lines that best represents how you are feeling.  When you click submit, you will see a graph of all of your ratings with your most recent rating to the right.</string>
+    <string name="scroll_to_see_more_scales">Scroll the list to see more rating scales.</string>
+    <string name="rate_hint">Press the menu button for more options (add notes, create categories, etc...)</string>
+
+    <!-- Graph results -->
+    <string name="results_title">Results</string>
+    <string name="groups_tab">Categories</string>
+    <string name="scales_tab">Scales</string>
+    <string name="notes_tab">Notes</string>
+    <string name="options_tab">Options</string>
+    <string name="chart_high">Hi</string>
+    <string name="chart_low">Lo</string>
+    <string name="chart_hint">Click the options tab to change the display and the amount of data that appears on the chart.</string>
+
+    <!-- Notes -->
+    <string name="notes_list_title">Notes</string>
+    <string name="note_details_title">Note Details</string>
+    <string name="edit_note_title">Edit Note</string>
+    <string name="add_note_title">Add Note</string>
+    <string name="note_delete_confirm">Are you sure you would like to delete this note?</string>
+    <string name="provide_note_text_message">Please provide some details about this note.</string>
+
+    <!-- Settings -->
+    <string name="settings_app_wide">App-Wide Settings</string>
+    <string name="settings_import_export">Import/Export</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_general">General</string>
+    <string name="notify_unused_groups">Notify Unused Categories</string>
+    <string name="show_tips_on_startup">Show Tips on Startup</string>
+    <string name="send_anon_data_title">Send Anonymous Data</string>
+    <string name="send_anon_data_desc">Allow developers to determine how this App is being used.</string>
+
+    <!-- Group List -->
+    <string name="group_list_title">Add/Edit Rating Categories</string>
+    <string name="add_group_title">Add Rating Category</string>
+
+    <!-- Group Editor -->
+    <string name="general_group_operations">Settings</string>
+    <string name="edit_group_title">Set Group Name</string>
+    <string name="delete_category_confirm">Are you sure you want to remove this category, associated scales and ratings.</string>
+    <string name="group_immutable_message">This category and its rating scales cannot be modified.</string>
+    <string name="add_scale">Add Scale</string>
+    <string name="add_rating_scale">Add Rating Scale</string>
     <string name="edit_scale">Edit Rating Scale</string>
     <string name="copy_scale">Copy a Rating Scale</string>
-	<string name="min_label">Undesirable Trait</string>
-	<string name="max_label">Desirable Trait</string>
-	<string name="scale_saved">The rating scale has been saved.</string>
-	<string name="provide_scale_min_max">Please provide a min/max scale label.</string>
-	<string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
-	<string name="scales_list">Rating Scales</string>
-	<string-array name="add_scale_gateway_options">
-		<item>Add Existing</item>
-		<item>Add Custom</item>
-	</string-array>
-	
-	<!-- Reminder -->
-	<string name="reminders_title">Reminder</string>
-	<string name="times_list">Times</string>
-	<string name="days_list">Days</string>
-	<string name="remind_notification_bar_text">Some Categories require your attention.</string>
-	<string name="remind_notification_title">T2 Mood Tracker</string>
-	<string name="remind_notification_desc">Some Categories require your attention.</string>
-	<!--  NOTE: Look in arrays.xml for the days of the week. -->
-	
-	<!-- Clear Data -->
-	<string name="clear_data_title">Clear Data</string>
-	<string name="clear_data_button">Clear Data</string>
-	<string name="clear_data_groups_confirm">Your have chosen to clear _#_ ratings data. Are you sure you would like to do this?</string>
-	<string name="clear_data_notes_confirm">You have chosen to clear _#_ notes. Are you sure you would like to do this?</string>
-	<string name="clear_data_groups_cleared_text">_#_ ratings have been cleared.</string>
-	<string name="clear_data_notes_cleared_text">_#_ notes have been cleared.</string>
-	<string name="clear_data_notes">Notes</string>
-	<string name="clear_data_groups">Categories</string>
-	<string name="clear_data_other">Other Data</string>
-	
-	<!-- Security -->
-	<string name="security_title">Security</string>
-	<string name="security_desc">Force the use of a password when loading the app.</string>
-	<string name="security_enabled">Security Enabled</string>
-	<string name="security_pin">Pin</string>
-	<string name="question1">Question 1</string>
-	<string name="question2">Question 2</string>
-	<string name="answer1">Answer 1</string>
-	<string name="answer2">Answer 2</string>
-	<string name="forgot_pin">Forgot Pin</string>
-	<string name="enter_your_pin">Enter your pin</string>
-	
-	<!-- EULA -->
-	<string name="eula_title">License</string>
-	<string name="eula_accept">Accept</string>
-	<string name="eula_refuse">Refuse</string>
+    <string name="min_label">Undesirable Trait</string>
+    <string name="max_label">Desirable Trait</string>
+    <string name="scale_saved">The rating scale has been saved.</string>
+    <string name="provide_scale_min_max">Please provide a min/max scale label.</string>
+    <string name="delete_scale_message">Are you sure you would like to delete this rating scale and all of the values you\'ve provided?</string>
+    <string name="scales_list">Rating Scales</string>
+
+    <string-array name="add_scale_gateway_options">
+        <item>Add Existing</item>
+        <item>Add Custom</item>
+    </string-array>
+
+    <!-- Reminder -->
+    <string name="reminders_title">Reminder</string>
+    <string name="times_list">Times</string>
+    <string name="days_list">Days</string>
+    <string name="remind_notification_bar_text">Some Categories require your attention.</string>
+    <string name="remind_notification_title">T2 Mood Tracker</string>
+    <string name="remind_notification_desc">Some Categories require your attention.</string>
+    <!-- NOTE: Look in arrays.xml for the days of the week. -->
 
 
-	<string-array name="startup_tips">
-		<item>The body is vulnerable to problems when it is not “maintained” properly.  Take timeout to relax or do enjoyable activities.</item>
-		<item>Put effort into maintaining positive relationships at work.  After deployment you still need someone to watch your back. </item>
-		<!-- <item>If you talk about your deployment at work, test the waters first.  You don\'t have to give all the details.</item> -->
-		<item>Blowing off steam is a bad idea:   anger creates more anger, and stress creates more stress.  Solve the problem.</item>
-		<item>Problems with drinking and drugs can be tough to work through on your own.   Talk to a chaplain or health care professional.</item>
-		<item>Getting involved in your community and spending time with others can help you feel less alone and allows you to give back to your community.</item>
-		<item>Talking about feelings, although uncomfortable, is an important step to getting past grief.</item>
-		<item>It’s common for depressed people to believe that nothing will help.  Today\'s treatments for depression are very effective. </item>
-		<item>If you\'re depressed avoid the urge to be alone. Be with other people. Confide in someone – it’s healthier than self-isolating. </item>
-		<item>Balance your life--don\'t let your day define your priorities, let your priorities define your day.</item>
-		<item>If you\'re feeling guilty about something remember that self-forgiveness means recognizing mistakes and accepting shortcomings.</item>
-		<item>Don\'t believe everything you think:  Challenge your negative thoughts.  Is there evidence to support the way you are perceiving the situation? </item>
-		<item>It\'s not the event that causes stress, it\'s how you interpret the event.  Changing your "all or nothing thinking" will allow you to reduce stress.  </item>
-		<item>If staying focused at work is a problem, jotting in a notebook or using a journal can be helpful</item>
-		<!-- <item>In some deployed settings it can be tough to schedule times to talk with loved ones .  Make a special effort to contact the family on important dates. </item> -->
-		<!-- <item>As you prepare for homecoming after deployment, it’s important to go slow, be patient, and allow several months to reestablish close family connections. </item> -->
-		<!-- <item>Lots of reassurance from both parents will help reduce the amount and intensity of children\'s negative reactions to deployment.</item> -->
-		<!-- <item>Toddlers will generally copy the attitude of the at-home parent. If the at-home parent is coping well, the child will tend to do well.</item> -->
-		<!-- <item>Dealing with deployment issues can be overwhelming.   Talk to family, or friends, or someone from the clergy.</item> -->
-		<item>One source of anger is fear.  The next time you get angry, ask yourself what made you afraid.  If you work on the fear, the anger will get better.</item>
-		<item>To break the habit of aggressive behavior, it is necessary to become aware of what triggers or sets off the anger.  </item>
-		<item>There is a difference between feelings and behavior – an individual may feel angry but the anger does not have to be acted on in an aggressive way. </item>
-		<item>There are often feelings behind anger that make the anger stronger like fear which can be based on embarrassment, powerlessness, frustration and hurt.</item>
-		<item>Try to avoid words like “should,” “shouldn’t,” “must,” “ought,” “always,” “have to,” or “need to”.  Statements including these words tend to increase anger.  </item>
-		<!-- <item>Like physical fitness, spiritual fitness must be tended to and practiced.  Veterans who have a spiritual practice report less severe and fewer PTSD symptoms.</item> -->
-		<item>If you are struggling with spiritual question, take the time to talk to someone you trust.</item>
-		<item>Participating in activities with family, friends, or a larger community adds  to your spiritual fitness by increasing your connection to other people. </item>
-		<item>The ability to make sense of a traumatic event in a way that ‘fits’ with one\'s previous beliefs  may lead to psychological or spiritual growth</item>
-		<item>Research shows that when people forgive others, they become less vengeful, and more generous and kind toward others.  </item>
-		<!-- <item>Acceptance is part of dealing with an injury.  Depending on the severity of the injury, this process can take between a couple of months and two years.  </item> -->
-		<!-- <item>Making sense of your injury may take days, weeks, or months. Give yourself time, but  try to identify how it can have a positive effect on your life. </item> -->
-		<item>If you are coping with an injury, remember to set some goals.  Goal-setting is important for both your physical recovery and for positive mental health.</item>
-		<!-- <item>Goals while recovering from an injury,  should be challenging enough to keep your interest but not so difficult as to require superhuman effort. </item> -->
-		<item>If you are struggling with chronic pain, don\'t give up.  Be open to trying different treatments or combinations of treatments until you find something that works for you. </item>
-	</string-array>
+    <!-- Clear Data -->
+    <string name="clear_data_title">Clear Data</string>
+    <string name="clear_data_button">Clear Data</string>
+    <string name="clear_data_groups_confirm">Your have chosen to clear _#_ ratings data. Are you sure you would like to do this?</string>
+    <string name="clear_data_notes_confirm">You have chosen to clear _#_ notes. Are you sure you would like to do this?</string>
+    <string name="clear_data_groups_cleared_text">_#_ ratings have been cleared.</string>
+    <string name="clear_data_notes_cleared_text">_#_ notes have been cleared.</string>
+    <string name="clear_data_notes">Notes</string>
+    <string name="clear_data_groups">Categories</string>
+    <string name="clear_data_other">Other Data</string>
+
+    <!-- Security -->
+    <string name="security_title">Security</string>
+    <string name="security_desc">Force the use of a password when loading the app.</string>
+    <string name="security_enabled">Security Enabled</string>
+    <string name="security_pin">Pin</string>
+    <string name="question1">Question 1</string>
+    <string name="question2">Question 2</string>
+    <string name="answer1">Answer 1</string>
+    <string name="answer2">Answer 2</string>
+    <string name="forgot_pin">Forgot Pin</string>
+    <string name="enter_your_pin">Enter your pin</string>
+
+    <!-- EULA -->
+    <string name="eula_title">License</string>
+    <string name="eula_accept">Accept</string>
+    <string name="eula_refuse">Refuse</string>
+
+    <string-array name="startup_tips">
+        <item>The body is vulnerable to problems when it is not “maintained” properly.  Take timeout to relax or do enjoyable activities.</item>
+        <item>Put effort into maintaining positive relationships at work.  After deployment you still need someone to watch your back. </item>
+        <!-- <item>If you talk about your deployment at work, test the waters first.  You don\'t have to give all the details.</item> -->
+        <item>Blowing off steam is a bad idea:   anger creates more anger, and stress creates more stress.  Solve the problem.</item>
+        <item>Problems with drinking and drugs can be tough to work through on your own.   Talk to a chaplain or health care professional.</item>
+        <item>Getting involved in your community and spending time with others can help you feel less alone and allows you to give back to your community.</item>
+        <item>Talking about feelings, although uncomfortable, is an important step to getting past grief.</item>
+        <item>It’s common for depressed people to believe that nothing will help.  Today\'s treatments for depression are very effective. </item>
+        <item>If you\'re depressed avoid the urge to be alone. Be with other people. Confide in someone – it’s healthier than self-isolating. </item>
+        <item>Balance your life--don\'t let your day define your priorities, let your priorities define your day.</item>
+        <item>If you\'re feeling guilty about something remember that self-forgiveness means recognizing mistakes and accepting shortcomings.</item>
+        <item>Don\'t believe everything you think:  Challenge your negative thoughts.  Is there evidence to support the way you are perceiving the situation? </item>
+        <item>It\'s not the event that causes stress, it\'s how you interpret the event.  Changing your "all or nothing thinking" will allow you to reduce stress.  </item>
+        <item>If staying focused at work is a problem, jotting in a notebook or using a journal can be helpful</item>
+        <!-- <item>In some deployed settings it can be tough to schedule times to talk with loved ones .  Make a special effort to contact the family on important dates. </item> -->
+        <!-- <item>As you prepare for homecoming after deployment, it’s important to go slow, be patient, and allow several months to reestablish close family connections. </item> -->
+        <!-- <item>Lots of reassurance from both parents will help reduce the amount and intensity of children\'s negative reactions to deployment.</item> -->
+        <!-- <item>Toddlers will generally copy the attitude of the at-home parent. If the at-home parent is coping well, the child will tend to do well.</item> -->
+        <!-- <item>Dealing with deployment issues can be overwhelming.   Talk to family, or friends, or someone from the clergy.</item> -->
+        <item>One source of anger is fear.  The next time you get angry, ask yourself what made you afraid.  If you work on the fear, the anger will get better.</item>
+        <item>To break the habit of aggressive behavior, it is necessary to become aware of what triggers or sets off the anger.  </item>
+        <item>There is a difference between feelings and behavior – an individual may feel angry but the anger does not have to be acted on in an aggressive way. </item>
+        <item>There are often feelings behind anger that make the anger stronger like fear which can be based on embarrassment, powerlessness, frustration and hurt.</item>
+        <item>Try to avoid words like “should,” “shouldn’t,” “must,” “ought,” “always,” “have to,” or “need to”.  Statements including these words tend to increase anger.  </item>
+        <!-- <item>Like physical fitness, spiritual fitness must be tended to and practiced.  Veterans who have a spiritual practice report less severe and fewer PTSD symptoms.</item> -->
+        <item>If you are struggling with spiritual question, take the time to talk to someone you trust.</item>
+        <item>Participating in activities with family, friends, or a larger community adds  to your spiritual fitness by increasing your connection to other people. </item>
+        <item>The ability to make sense of a traumatic event in a way that ‘fits’ with one\'s previous beliefs  may lead to psychological or spiritual growth</item>
+        <item>Research shows that when people forgive others, they become less vengeful, and more generous and kind toward others.  </item>
+        <!-- <item>Acceptance is part of dealing with an injury.  Depending on the severity of the injury, this process can take between a couple of months and two years.  </item> -->
+        <!-- <item>Making sense of your injury may take days, weeks, or months. Give yourself time, but  try to identify how it can have a positive effect on your life. </item> -->
+        <item>If you are coping with an injury, remember to set some goals.  Goal-setting is important for both your physical recovery and for positive mental health.</item>
+        <!-- <item>Goals while recovering from an injury,  should be challenging enough to keep your interest but not so difficult as to require superhuman effort. </item> -->
+        <item>If you are struggling with chronic pain, don\'t give up.  Be open to trying different treatments or combinations of treatments until you find something that works for you. </item>
+    </string-array>
+
+    <string name="prf_study_participant_number">prf_study_participant_number</string>
+    <string name="prf_study_recipient_email">prf_study_recipient_email</string>
+
 </resources>

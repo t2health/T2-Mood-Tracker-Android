@@ -1,31 +1,5 @@
 /*
  * 
- * T2 Mood Tracker
- * 
- * Copyright © 2009-2012 United States Government as represented by 
- * the Chief Information Officer of the National Center for Telehealth 
- * and Technology. All Rights Reserved.
- * 
- * Copyright © 2009-2012 Contributors. All Rights Reserved. 
- * 
- * THIS OPEN SOURCE AGREEMENT ("AGREEMENT") DEFINES THE RIGHTS OF USE, 
- * REPRODUCTION, DISTRIBUTION, MODIFICATION AND REDISTRIBUTION OF CERTAIN 
- * COMPUTER SOFTWARE ORIGINALLY RELEASED BY THE UNITED STATES GOVERNMENT 
- * AS REPRESENTED BY THE GOVERNMENT AGENCY LISTED BELOW ("GOVERNMENT AGENCY"). 
- * THE UNITED STATES GOVERNMENT, AS REPRESENTED BY GOVERNMENT AGENCY, IS AN 
- * INTENDED THIRD-PARTY BENEFICIARY OF ALL SUBSEQUENT DISTRIBUTIONS OR 
- * REDISTRIBUTIONS OF THE SUBJECT SOFTWARE. ANYONE WHO USES, REPRODUCES, 
- * DISTRIBUTES, MODIFIES OR REDISTRIBUTES THE SUBJECT SOFTWARE, AS DEFINED 
- * HEREIN, OR ANY PART THEREOF, IS, BY THAT ACTION, ACCEPTING IN FULL THE 
- * RESPONSIBILITIES AND OBLIGATIONS CONTAINED IN THIS AGREEMENT.
- * 
- * Government Agency: The National Center for Telehealth and Technology
- * Government Agency Original Software Designation: T2MoodTracker001
- * Government Agency Original Software Title: T2 Mood Tracker
- * User Registration Requested. Please send email 
- * with your contact information to: robert.kayl2@us.army.mil
- * Government Agency Point of Contact for Original Software: robert.kayl2@us.army.mil
- * 
  */
 package com.t2.vas.db;
 
@@ -34,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.t2.vas.Global;
 import com.t2.vas.R;
@@ -42,7 +18,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Environment;
-import android.util.Log;
 
 public class BackupRestore 
 {
@@ -73,7 +48,10 @@ public class BackupRestore
 		if( ! SdIsPresent() ) return false;
 
 		File dbFile = DATA_DIRECTORY_DATABASE;
-		String filename = "T2MoodTracker.db";
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		String filename = "MoodTracker_Backup_";
+		filename += dateFormat.format(new Date(System.currentTimeMillis()));
+		filename += ".db";
 
 		File exportDir = DATABASE_DIRECTORY;
 		File file = new File(exportDir, filename);
@@ -121,7 +99,7 @@ public class BackupRestore
 
 	/** Replaces current database with the IMPORT_FILE if
 	 * import database is valid and of the correct type **/
-	public static boolean restoreDb(Context ctx)
+	public static boolean restoreDb(Context ctx, File importFile)
 	{
 		if( ! SdIsPresent() )
 			{
@@ -142,7 +120,7 @@ public class BackupRestore
 			}
 
 		File exportFile = DATA_DIRECTORY_DATABASE;
-		File importFile = IMPORT_FILE;
+		//File importFile = IMPORT_FILE;
 
 
 		if (!importFile.exists()) 
@@ -203,7 +181,9 @@ public class BackupRestore
 
 	private static void copyFile(File src, File dst) throws IOException 
 	{
+		@SuppressWarnings("resource")
 		FileChannel inChannel = new FileInputStream(src).getChannel();
+		@SuppressWarnings("resource")
 		FileChannel outChannel = new FileOutputStream(dst).getChannel();
 		try 
 		{

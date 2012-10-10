@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<style name="CustomTheme" parent="@android:style/Theme.Light">
-		<item name="android:windowTitleSize">48dip</item>
-
-		<item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
-		<item name="android:windowBackground">@drawable/background</item>
 
 		<item name="android:listViewStyle">@style/Widget.ListView</item>
 		<item name="android:listSeparatorTextViewStyle">@style/WidgetTextViewListSeparator</item>

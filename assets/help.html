@@ -1,51 +1,734 @@
 <html>
-	<head>
-		<title>Help</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-	</head>
-	<body>
-		<h2 id="index">Index</h2>
-		<ul>
-			<li><a href="#MainActivity">Main Screen</a></li>
-			<li><a href="#RateActivity">Rate Your Mood</a></li>
-			<li><a href="#GroupResultsActivity">Review Your Result Graphs</a></li>
-			<li><a href="#NotesListActivity">Managing Notes</a></li>
-			<li><a href="#GroupListActivity">Creating Custom Categories</a></li>
-		</ul>
-	
-		<h2 id="MainActivity">Main Screen</h2>
-		<p>The main screen allows you to perform several functions.  You can <span style="color:#ff0000">Add a Note</span> by touching the icon on the top right corner of the screen.</p>  
-		<p>You can also navigate to any of the <span style="color:#ff0000">Rating Categories</span> which include <span style="color:#4444ff">Anxiety, Depression, General Well-Being, Head Injury, Post-traumatic Stress, or Stress</span>.</p>  
-		<p>The <span style="color:#ff0000">Results</span> area takes you to graph results which display all of your previous ratings, and allows you to <span style="color:#ff0000">view notes</span> you have previously entered.</p>
-		<p>The lower area of the screen provides <span style="color:#ff0000">information</span> about T2 Mood Tracker, gives you with the opportunity to send written <span style="color:#ff0000">feedback</span> about the app directly to the developers, and offers this <span style="color:#ff0000">help</span> information.</p>  
-		<p>The <span style="color:#ff0000">Settings</span> area contains a <span style="color:#4444ff">Category Editor</span> which allows you to hide any of the rating categories that may not interest to you.</p>
-		<p>You can also set a <span style="color:#4444ff">reminder</span> so you don't forget to make your ratings.  At any point you can <span style="color:#4444ff">clear</span> all of your ratings from any of the categories and clear your notes as well.</p>
-		<p>You can also enable <span style="color:#4444ff">security</span> using a PIN and enable or disable the <span style="color:#4444ff">health tips</span> on startup.</p> 
-		<p>Knowing how T2 Mood Tracker is being used helps the developers to modify and upgrade the app based on <span style="color:#4444ff">anonymous usage</span> patterns.  This information DOES NOT compromise your personal anonymity in any way.  You may disable this function if you choose, however.</p>
-		<p>The last function on the list allows you to tell a friend about the app using an email message which includes download information.</p>
-		<a href="#index">Back to Index</a>
-		
-		<h2 id="RateActivity">Rate Your Mood</h2>
-		<p>By selecting the mood category you‚Äôd like to rate you will see a screen with ten opposing pairs of feeling states like happy-sad.  To rate how you are doing, move the slider with your finger to the place on the scale that best reflects how you are feeling at the moment.</p>  
-		<p>Make sure you rate yourself on each of the ten pairs of feelings by scrolling to the very bottom of the screen.  When you have completed your ratings, touch ‚Äúsave‚Äù and you will be returned to the main screen.  Your rating will be automatically included on the graph for that mood category.</p>
-		<a href="#index">Back to Index</a>
-		
-		<div id="ScaleResultsActivity"></div>
-		<h2 id="GroupResultsActivity">Reviewing Your Results</h2>
-		<p>By selecting <span style="color:#ff0000">Graphed Results</span> from the main screen you can view all of your ratings by date.  To view graphs of previous or subsequent months use the arrows beneath the graph.  You can view your results on any combination of mood categories by toggling each one ON or OFF.</p>
-		<p>Each point on the graph represents the average of your mood ratings for each of the ten opposing pairs of feeling states for that mood category on a given day.  Data points toward the top of the graph represent higher levels of each mood category (high Anxiety, high General Well-Being) while ratings toward the bottom of the graph represent lower levels.</p>
-		<img src="file:///android_asset/img/graph_example.png" style="width:300px" />
-		<p>You can view your notes by touching <span style="color:#ff0000">Notes.</span>  There is a small triangle shaped indicator on the top of the graph indicating which dates have notes associated with them.  You can add a note for any date by touching ‚Äú<span style="color:#ff0000">Add a Note</span>‚Äù at the top of the screen.</p>
-		<p>By touching any of the Mood Category labels (e.g., Anxiety), you can display the graphs of your self-ratings for each of the ten pair of opposing feeling states.  As with the category graphs, you can display or hide each of the graphs by toggling them ON and OFF.</p>
-		<p>You can <span style="color:#ff0000">clear your graphs</span> by going to Settings > Clear Result Data</p>
-		<a href="#index">Back to Index</a>
-		
-		<h2 id="NotesListActivity">Managing Notes</h2>
-		<p>By touching <span style="color:#ff0000">View/Edit Notes</span> on the Main Screen, you can see all of your notes with the most recent note you&#8217;ve made on top.  Any note that has more text than is displayed has an indicator alerting you that there is additional text.  By touching the note, the full text is displayed and the keyboard is made available to edit the note if desired.  You can also create a new note from this screen.  You can <span style="color:#ff0000">clear your notes</span> by going to Settings > Clear Result</p>
-		<a href="#index">Back to Index</a>
-		
-		<h2 id="GroupListActivity">Creating Custom Categories</h2>
-		<p>You can <span style="color:#ff0000">create a custom self-rating category</span> by going to Settings > Add/Edit Rating Categories from the main screen.  Touch the "+" button in the upper right hand corner of the screen.  You can <span style="color:#ff0000">name your new category</span> and then press "save". Next you can choose your new category and begin adding scales by pressing the "+" button. You can make as many custom categories as you like.</p>
-		<a href="#index">Back to Index</a> 
-	</body>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Help</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Mangal;
+	panose-1:2 4 5 3 5 2 3 3 2 2;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:OpenSymbol;}
+@font-face
+	{font-family:"Droid Sans Fallback";}
+@font-face
+	{font-family:"Lohit Hindi";}
+@font-face
+	{font-family:Thorndale;}
+@font-face
+	{font-family:"HG Mincho Light J";}
+@font-face
+	{font-family:Albany;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"\@Droid Sans Fallback";}
+@font-face
+	{font-family:"\@Lohit Hindi";}
+@font-face
+	{font-family:"\@Albany";}
+@font-face
+	{font-family:"\@HG Mincho Light J";}
+@font-face
+	{font-family:"\@OpenSymbol";}
+@font-face
+	{font-family:"\@Thorndale";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:24.0pt;
+	font-family:"Thorndale","serif";}
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:.4in;
+	text-indent:-.4in;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	font-style:italic;}
+p.MsoEnvelopeReturn, li.MsoEnvelopeReturn, div.MsoEnvelopeReturn
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	font-style:italic;}
+p.MsoList, li.MsoList, div.MsoList
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{color:navy;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-link:"Comment Subject Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoRMPane, li.MsoRMPane, div.MsoRMPane
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.EndnoteCharacters
+	{mso-style-name:"Endnote Characters";}
+span.FootnoteCharacters
+	{mso-style-name:"Footnote Characters";}
+span.Bullets
+	{mso-style-name:Bullets;
+	font-family:OpenSymbol;}
+p.Heading, li.Heading, div.Heading
+	{mso-style-name:Heading;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Albany","sans-serif";}
+p.Index, li.Index, div.Index
+	{mso-style-name:Index;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.HorizontalLine, li.HorizontalLine, div.HorizontalLine
+	{mso-style-name:"Horizontal Line";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:6.0pt;
+	font-family:"Times New Roman","serif";}
+p.TableContents, li.TableContents, div.TableContents
+	{mso-style-name:"Table Contents";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:14.15pt;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";
+	font-family:"Droid Sans Fallback";}
+span.CommentSubjectChar
+	{mso-style-name:"Comment Subject Char";
+	mso-style-link:"Comment Subject";
+	font-family:"Droid Sans Fallback";
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:28.35pt 28.35pt 28.35pt 56.7pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=navy vlink=purple style='line-break:strict'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><a name="_top"></a><b><span style='font-size:16.0pt'>Index</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:16.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.35pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-size:14.0pt;font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#RateYourMood"><span style='font-size:14.0pt'>ëRateí
+Your Mood</span></a><span style='font-size:14.0pt'> </span></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.35pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#ReviewingYourResults"><span style='font-size:14.0pt'>Reviewing
+Your ëResultsí</span></a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#GraphResults">Graph Results</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#ViewNotes">View Notes</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#SavedReports">Saved Reports</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#CreateNewReports">Create Reports</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.35pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-size:14.0pt;font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#SupportFunctions"><span style='font-size:14.0pt'>ëSupportí
+Functions</span></a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#About">About T2 Mood Tracker</a> </p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#Feedback">Feedback</a> </p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#Help">Help</a> </p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#RateApp">Rate App</a> </p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#Tell">Tell A Friend</a> </p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#LocalResourcesHelp">Local Resources/Help</a> </p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#BackupDatabase">Backup Database</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#RestoreDatabase">Restore Database</a>ñ</p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:35.35pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-size:14.0pt;font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#Settings"><span style='font-size:14.0pt'>ëSettingsí</span></a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#AddEditRatingCategories">Add/Edit Rating Categories</a>
+</p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#Reminders">Reminders</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#NotifyUnusedCategories">Notify Unused Categories</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#ShowStartupTips">Show Startup Tips</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#SendAnonymousData">Send Anonymous Data</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#Security">Security</a></p>
+
+<p class=MsoBodyText style='margin-top:0in;margin-right:0in;margin-bottom:0in;
+margin-left:70.7pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><a href="#ClearData">Clear Data</a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><a name=RateYourMood><b><span style='font-size:18.0pt'>ë<span
+style='color:#4F6228'>Rate</span>í Your Mood</span></b></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoBodyText>The <span style='color:#4F6228'>Rate</span> tab allows you
+to rate your mood. T2 Mood Tracker comes pre-programmed with six mood
+categories: <span style='color:#4444FF'>Anxiety, Depression, General
+Well-Being, Head Injury, Post-Traumatic Stress, and Stress. </span>You can
+create custom mood categories by tapping <span style='color:#4444FF'>+ Add
+Rating Category </span>in the menu for the Rate screen.</p>
+
+<p class=MsoBodyText>To rate a mood category, tap the category name. This takes
+you to a screen populated with sliders. The left end of the slider shows a
+negative feeling, and the other end shows a positive feeling. Simply move the
+slider toward the end that best reflects how you currently feel. Stronger
+feelings should be rated more to the extreme edges, while milder feelings will
+trend closer to the middle. </p>
+
+<p class=MsoBodyText>When you are done with your ratings, touch <span
+style='color:#4444FF'>save</span> to return to the <span style='color:#4F6228'>Rate</span>
+tab. Your rating is automatically included on the graph for that mood category.</p>
+
+<p class=MsoBodyText>On the Rate tab (and any other tab), you can also add a
+note by touching <span style='color:#4444FF'>Add Note</span> from the menu
+button.</p>
+
+<p class=MsoBodyText><a href="#_top">Back to Index</a> </p>
+
+<p class=MsoNormal><a name=ReviewingYourResults><b><span style='font-size:18.0pt'>Reviewing
+Your ë<span style='color:#4F6228'>Results</span>í</span></b></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoBodyText>The <span style='color:#4F6228'>Results</span> tab allows
+you to view all of your ratings by date, manage reports, and review your
+previous notes. </p>
+
+<p class=MsoBodyText><a name=GraphResults><b><span style='color:#0070C0'>Graph
+Results</span></b></a></p>
+
+<p class=MsoBodyText>Selecting <span style='color:#4444FF'>Graph Results</span>
+takes you to a graph showing your previous ratings. When in portrait view, the
+graph provides multiple configuration options. When in landscape view, the
+graph takes up the entire screen to make viewing results easier. Each point on
+the graph represents the average of your ratings for that mood category for
+that specific date and time. Data points toward the top of the graph represent
+higher levels of each mood category (high Anxiety, high General Well-Being)
+while ratings toward the bottom of the graph represent lower levels.</p>
+
+<p class=MsoBodyText>Use pinch and zoom to narrow and increase your data views,
+and simply swipe the graph left or right to pan through the data points.</p>
+
+<p class=MsoBodyText><b>Customizing Your Results </b></p>
+
+<p class=MsoBodyText>Sharing results is easy! Touch <span style='color:#4444FF'>Save
+Screenshot</span> in the menu to save a screenshot of your current graph. Using
+this function allows you to quickly share that screenshot via the different
+share options you currently have on your device (e.g. email, messaging, etc.).
+All screenshots are saved in the T2MoodTracker folder on your SD card.</p>
+
+<p class=MsoBodyText>Customizing the color &amp; symbols used in the graph ñ<span
+style='color:#4444FF'> </span>Tapping on the symbol to the left of a category
+or scale takes you the <span style='color:#4444FF'>Customize Chart Icon</span>
+view. Select a color and the desired symbol then hit <span style='color:#4444FF'>OK</span>.
+You can also customize how the individual feelings within a mood category appear
+by selecting the name of the category while in the <span style='color:#4444FF'>Graph
+Results</span> screen, and follow the same process. </p>
+
+<p class=MsoBodyText>When in portrait view, the <span style='color:#4444FF'>Categories,</span>
+<span style='color:#4444FF'>Notes, </span>and<span style='color:#4444FF'>
+Options</span> buttons allow you to configure the graph how you want it to look.</p>
+
+<p class=MsoBodyText><span style='color:#4444FF'>Categories</span> ñ This
+button allows you to control which categories you see on the graph. Flip each
+categoryís switch <span style='color:#4444FF'>On</span> or <span
+style='color:#4444FF'>Off</span> to update the graph appropriately. Tap a
+category name to see the individual negative/positive scales for that category.
+This allows you to view the graph for the individual feeling scales within one mood
+category. Like the category view, flipping a switch <span style='color:#4444FF'>On</span>
+or <span style='color:#4444FF'>Off</span> will update the graph appropriately. Tapping
+on either Categories or Scales will alternately hide the information pane, and
+then show it again. To return to the category view, use the back function. </p>
+
+<p class=MsoBodyText><span style='color:#4444FF'>Notes</span> ñ This button
+shows your saved notes starting with the most recent. Tap a specific note to
+see a full-screen view of the note.</p>
+
+<p class=MsoBodyText><span style='color:#4444FF'>Options</span> ñ This button
+allows you to configure many options on the graph. Like the other views, using
+the <span style='color:#4444FF'>On</span>/<span style='color:#4444FF'>Off </span>switches
+will turn those options on and off.<span style='color:#4444FF'>† </span></p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Data Range</span> allows you to
+select the default data range the graph results show. Use the selector to
+choose <span style='color:#4444FF'>30 days</span>,<span style='color:#4444FF'>
+90 days</span>,<span style='color:#4444FF'> 180 days</span>,<span
+style='color:#4444FF'> or 1 Year</span>. This restricts the data shown on the
+graph to the range selected. These options should be experimented with if you
+have a large amount of data points and want to speed up the chart generation
+process. You can access data beyond 1 year by exporting the data to a CSV or
+PDF report.</p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Toggle Symbols:</span> add/remove
+random symbols to the graph lines to help better distinguish the category data.
+To customize the symbol used for a category or scale, tap on the symbol to the
+left of the category or scale name. This opens the Customize Chart Icon screen.
+From here, select a color and use the arrows to scroll through available
+symbols. Once satisfied with your selections, confirm by touching <span
+style='color:#4444FF'>OK</span>. </p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Toggle Lines:</span> add/remove a colored
+line to the category data. </p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Toggle Shading:</span> add/remove a shaded
+gradient to the category data. </p>
+
+<p class=MsoBodyText><a name=ViewNotes><b><span style='color:#0070C0'>View
+Notes</span></b></a></p>
+
+<p class=MsoBodyText>This button shows your saved notes starting with the most
+recent. Tap a specific note to see a full-screen view of the note. From here,
+you can update the note with additional information or delete a note. Be
+careful with this option, as all deletions are permanent. You can add a new
+note from any screen by clicking <span style='color:#4444FF'>Add Note</span> in
+the menu.</p>
+
+<p class=MsoBodyText><a name=SavedReports><b><span style='color:#0070C0'>Saved
+Reports</span></b></a></p>
+
+<p class=MsoBodyText>This button takes you to the Saved Reports page where you
+can view your saved reports. Tapping on a report provides you with the option
+to either <span style='color:#4444FF'>Email</span> the report, or to <span
+style='color:#4444FF'>View</span> it (note: to view a PDF file, or a CSV file,
+youíll need the appropriate application loaded on your device). </p>
+
+<p class=MsoBodyText>Pressing a report name for a long hold gives you the
+option to delete that specific report. Be careful with this option, as all
+deletions are permanent unless you have that report saved elsewhere.</p>
+
+<p class=MsoBodyText><a name=CreateNewReports><b><span style='color:#0070C0'>Create
+Reports</span></b></a></p>
+
+<p class=MsoBodyText>Selecting <span style='color:#4444FF'>Create Reports</span>
+brings up a report generator. From here, you can specify exactly what data to
+include in a report. </p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Date Range</span> will define the
+start and end point for the data you include. Tap either <span
+style='color:#4444FF'>From Date</span> or <span style='color:#4444FF'>To Date </span>and
+use the date selector. </p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Format of the report can be controlled by selecting either CSV or
+PDF formats for the output of the report.</p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Categories</span> allows you to
+select which categories to include in the report. Use the <span
+style='color:#4444FF'>On/Off</span> checkbox to control that output.</p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='color:#4444FF'>Notes</span> determines whether or
+not to include your notes with the report. Use the <span style='color:#4444FF'>On/Off</span>
+checkbox to control that output.</p>
+
+<p class=MsoBodyText>When you have all the parameters set, select the <span
+style='color:#4444FF'>Export</span> button at the bottom. </p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Saving as a CSV exports the data range selected to a CSV formatted
+file and saves it on your SD card in the T2 Mood Tracker folder. You can share
+this file from the <span style='color:#4444FF'>Saved Reports</span> screen,
+where you can select and review your saved reports.</p>
+
+<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>∑<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Saving as a PDF exports the data range selected to a PDF formatted
+file and saves it on your SD card in the T2MoodTracker folder. You can share
+this file from the <span style='color:#4444FF'>Saved Reports</span> screen,
+where you can select and review your saved reports. PDF reports are easy to
+read and include a chart of each category, as well as the scale information for
+each category. Linear regression trend lines are included to help determine the
+overall trend of the data. </p>
+
+<p class=MsoBodyText><a href="#_top">Back to Index</a> </p>
+
+<p class=MsoBodyText style='margin-bottom:0in;margin-bottom:.0001pt'><a
+name=SupportFunctions></a><a name="_Toc329777721"><b><span style='font-size:
+18.0pt'>ë<span style='color:#4F6228'>Support</span>í Functions</span></b></a></p>
+
+<p class=MsoBodyText>&nbsp;</p>
+
+<p class=MsoBodyText>The Support tab provides some communication and resource-location
+options.</p>
+
+<p class=MsoBodyText><a name=About><span style='color:#0070C0'>About T2 Mood
+Tracker</span> </a>provides background information on why T2 Mood Tracker was
+created and the National Center for Telehealth &amp; Technology.</p>
+
+<p class=MsoBodyText><a name=Feedback><span style='color:#0070C0'>Feedback</span></a>
+opens an email with our email address. Send us your feedback so we can continue
+improving T2 Mood Tracker.</p>
+
+<p class=MsoBodyText><a name=Help><span style='color:#0070C0'>Help</span></a> links
+you to this help file (so we guess you already found it!). Help can also be
+accessed at any time from the menu</p>
+
+<p class=MsoBodyText><a name=RateApp><span style='color:#0070C0'>Rate App</span>
+</a>links to the marketplace where you downloaded T2 Mood Tracker. Rate the app
+and provide some feedback for other potential users.</p>
+
+<p class=MsoBodyText><a name=Tell><span style='color:#0070C0'>Tell</span></a><span
+style='color:#0070C0'> a Friend</span> sends a link to the marketplace where
+you downloaded T2 Mood Tracker to a friend. </p>
+
+<p class=MsoBodyText><a name=LocalResourcesHelp><span style='color:#0070C0'>Local
+Resources/Help </span></a>provides information about the Defense Centers of
+Excellence (DCoE) Outreach Center, including the email address and toll free
+number to locate local resources for psychological health information or
+assistance.</p>
+
+<p class=MsoBodyText><a name=BackupDatabase><span style='color:#0070C0'>Backup
+Database </span></a>saves a backup of your data in the T2MoodTracker folder on
+your SD card. Make sure you use this routinely to prevent a loss of your data
+through phone changes, or uninstalls of the app. You can transfer this file
+from your SD card to other locations to prevent loss if your phone is lost to
+you. </p>
+
+<p class=MsoBodyText><a name=RestoreDatabase><span style='color:#0070C0'>Restore
+Database</span> </a>allows you to restore saved data from the <span
+style='color:#0070C0'>Backup Database</span> function. If you use this
+function, it will overwrite any existing information, so use it cautiously.</p>
+
+<p class=MsoBodyText><a href="#_top">Back to Index</a></p>
+
+<p class=MsoBodyText style='margin-bottom:0in;margin-bottom:.0001pt'><a
+name=Settings></a><a name="_Toc329777722"><b><span style='font-size:18.0pt'>ë<span
+style='color:#4F6228'>Settings</span>í</span></b></a></p>
+
+<p class=MsoBodyText style='margin-bottom:0in;margin-bottom:.0001pt'><b><span
+style='font-size:18.0pt'>&nbsp;</span></b></p>
+
+<p class=MsoBodyText>The <span style='color:#4F6228'>Settings</span> tab takes
+you to the heart of customizing T2 Mood Tracker. Within <span style='color:
+#4F6228'>Settings</span>, you can add and edit rating categories, setup
+reminders, turn unused category notifications, startup tips, and anonymous data
+transmission on or off, enable security, and clear old data.</p>
+
+<p class=MsoBodyText><a name=AddEditRatingCategories><b><span style='color:
+#0070C0'>Add/Edit Rating Categories </span></b></a></p>
+
+<p class=MsoBodyText>This button takes you to the Add/Edit Rating Categories
+screen. This area contains the six pre-programmed categories included in T2
+Mood Tracker and any custom categories you added. Touch a category to delete it
+or edit its name, scales, etc. The six pre-programmed categories cannot be deleted
+or modified, but you can choose whether or not they display in your Rate tab
+area by toggling the <span style='color:#4444FF'>Show on main screen? </span>checkmark
+for each category.</p>
+
+<p class=MsoPlainText><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>To
+add a new category, touch the <span style='color:#4444FF'>Add Rating Category</span>
+button in the menu. This will open up the category editing screen, and
+immediately prompt you for the category name. Once youíve selected a name,
+youíll need to decide if your new category is a desirable trait. If you
+accidentally indicate that a negative trait, such as sadness or anger, is desirable,
+it will display incorrectly in your graphed results.</span></p>
+
+<p class=MsoPlainText><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoPlainText><a name=CustomCharting><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'>Before you can use this new category,
+youíll need to add in scales. You can do this via the <span style='color:#0070C0'>Add
+Rating Scale</span> button in the menu. Youíll be queried to use an existing
+scale (one already built by you or used in the pre-programmed categories), or
+to create a new one.</span></a></p>
+
+<p class=MsoPlainText><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoPlainText><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>If
+selecting from an existing scale, simply scroll down until you find the one you
+want to use and tap on it. If creating a new scale, fill in what the
+undesirable and desirable traits are, e.g., Sad/Happy, then choose the save
+button. Continue this process until satisfied with the scales for your new
+category. You can add up to 10 different scales for a category.</span></p>
+
+<p class=MsoPlainText><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoBodyText><a name=Reminders><b><span style='color:#0070C0'>Reminder</span></b></a></p>
+
+<p class=MsoBodyText>You can set up to three different <span style='color:#4444FF'>reminders</span>
+a day so you don't forget to make your ratings. </p>
+
+<p class=MsoBodyText><a name=NotifyUnusedCategories><b><span style='color:#0070C0'>Notify
+Unused Categories</span></b></a></p>
+
+<p class=MsoBodyText>Turning this function on will remind you if you have
+categories that you donít regularly use. </p>
+
+<p class=MsoBodyText><a name=ShowStartupTips><b><span style='color:#0070C0'>Show
+Tips on Startup</span></b></a></p>
+
+<p class=MsoBodyText>This allows you to turn the health tips on the initial
+splash screen <span style='color:#4444FF'>On </span>or<span style='color:#4444FF'>
+Off</span>. You can also disable the startup tips on the initial splash screen.</p>
+
+<p class=MsoBodyText><a name=SendAnonymousData><b><span style='color:#0070C0'>Send
+Anonymous Data</span></b></a></p>
+
+<p class=MsoBodyText>Knowing how T2 Mood Tracker is being used helps the
+developers modify and upgrade the app based on anonymous usage patterns. This
+information DOES NOT compromise your personal anonymity in any way. You may
+disable this function by selecting <span style='color:#4444FF'>Off</span>.</p>
+
+<p class=MsoBodyText><a name=Security><b><span style='color:#0070C0'>Security</span></b></a></p>
+
+<p class=MsoBodyText>This area allows you to choose a PIN to secure T2 Mood
+Tracker on your device and protect your data. When you select your PIN, you establish
+two security questions so you can recover your PIN if you forget it. You can
+deactivate this feature by inputting your current PIN and then clearing the
+function. </p>
+
+<p class=MsoBodyText><a name=ClearData><b><span style='color:#0070C0'>Clear
+Data</span></b></a></p>
+
+<p class=MsoBodyText>This allows you to clear all ratings and/or notes from a category.
+Tap on a category or the notes section to clear the data. You will receive a
+confirmation message to complete the deletion. If you choose <span
+style='color:#4444FF'>Ok</span>, all the data from that category will be
+deleted. Be careful with this option, as all deletions are permanent. </p>
+
+<p class=MsoBodyText><a href="#_top">Back to Index</a> </p>
+
+</div>
+
+</body>
+
 </html>

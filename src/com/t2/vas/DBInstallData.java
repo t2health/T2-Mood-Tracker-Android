@@ -1,31 +1,5 @@
 /*
  * 
- * T2 Mood Tracker
- * 
- * Copyright © 2009-2012 United States Government as represented by 
- * the Chief Information Officer of the National Center for Telehealth 
- * and Technology. All Rights Reserved.
- * 
- * Copyright © 2009-2012 Contributors. All Rights Reserved. 
- * 
- * THIS OPEN SOURCE AGREEMENT ("AGREEMENT") DEFINES THE RIGHTS OF USE, 
- * REPRODUCTION, DISTRIBUTION, MODIFICATION AND REDISTRIBUTION OF CERTAIN 
- * COMPUTER SOFTWARE ORIGINALLY RELEASED BY THE UNITED STATES GOVERNMENT 
- * AS REPRESENTED BY THE GOVERNMENT AGENCY LISTED BELOW ("GOVERNMENT AGENCY"). 
- * THE UNITED STATES GOVERNMENT, AS REPRESENTED BY GOVERNMENT AGENCY, IS AN 
- * INTENDED THIRD-PARTY BENEFICIARY OF ALL SUBSEQUENT DISTRIBUTIONS OR 
- * REDISTRIBUTIONS OF THE SUBJECT SOFTWARE. ANYONE WHO USES, REPRODUCES, 
- * DISTRIBUTES, MODIFIES OR REDISTRIBUTES THE SUBJECT SOFTWARE, AS DEFINED 
- * HEREIN, OR ANY PART THEREOF, IS, BY THAT ACTION, ACCEPTING IN FULL THE 
- * RESPONSIBILITIES AND OBLIGATIONS CONTAINED IN THIS AGREEMENT.
- * 
- * Government Agency: The National Center for Telehealth and Technology
- * Government Agency Original Software Designation: T2MoodTracker001
- * Government Agency Original Software Title: T2 Mood Tracker
- * User Registration Requested. Please send email 
- * with your contact information to: robert.kayl2@us.army.mil
- * Government Agency Point of Contact for Original Software: robert.kayl2@us.army.mil
- * 
  */
 package com.t2.vas;
 
@@ -41,6 +15,7 @@ import android.util.Log;
 
 import com.t2.vas.db.DBAdapter;
 import com.t2.vas.db.tables.Group;
+import com.t2.vas.db.tables.LogEntry;
 import com.t2.vas.db.tables.Note;
 import com.t2.vas.db.tables.Result;
 import com.t2.vas.db.tables.Scale;
@@ -75,6 +50,7 @@ public class DBInstallData {
 		new Scale(dbAdapter).onCreate(db);
 		new Result(dbAdapter).onCreate(db);
 		new Note(dbAdapter).onCreate(db);
+		new LogEntry(dbAdapter).onCreate(db);
 	}
 	
 	public static void update(Context c, DBAdapter dbAdapter, SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -82,6 +58,7 @@ public class DBInstallData {
 		new Scale(dbAdapter).onUpgrade(db, oldVersion, newVersion);
 		new Result(dbAdapter).onUpgrade(db, oldVersion, newVersion);
 		new Note(dbAdapter).onUpgrade(db, oldVersion, newVersion);
+		new LogEntry(dbAdapter).onUpgrade(db, oldVersion, newVersion);
 	}
 	
 	public static void createInitialData(DBAdapter dbAdapter, boolean generateFakeResults) {
@@ -152,7 +129,7 @@ public class DBInstallData {
 		// Add a bunch of fake notes.
 		if(generateFakeResults) {
 			Log.v(TAG, "Generating Notes");
-			int daysOfResults = 2000;
+			int daysOfResults = Global.Database.CREATE_FAKE_AMOUNT;
 			Random rand = new Random();
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.DAY_OF_MONTH, -2);
@@ -213,7 +190,7 @@ public class DBInstallData {
 		//Log.v(TAG, "Generating results");
 		Result result = new Result(dbAdapter);
 		ContentValues c = null;
-		int daysOfResults = 1000;
+		int daysOfResults = Global.Database.CREATE_FAKE_AMOUNT;
 		Random rand = new Random();
 
 		int skipDay = rand.nextInt(27) + 1;
@@ -249,6 +226,10 @@ public class DBInstallData {
 				value = (value > 100)?100:value;
 				//Log.v(TAG, "V:"+value);
 
+				//Five hours a day
+				for(int hrs = 0; hrs < 3; hrs++)
+				{
+					cal.add(Calendar.HOUR_OF_DAY, 1);
 				c = new ContentValues();
 				c.put("group_id", tmpScale.group_id);
 				c.put("scale_id", tmpScale._id);
@@ -256,6 +237,7 @@ public class DBInstallData {
 				c.put("value", value);
 				result.insert(c);
 
+				}
 				//Log.v(TAG, "gid:"+tmpScale.group_id+" sid:"+tmpScale._id+" v:"+value+" ts:"+cal.getTimeInMillis());
 
 				prevValue = value;

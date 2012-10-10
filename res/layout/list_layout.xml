@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
 
-	<ListView
-		android:id="@+id/list"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" />
-		
-	<TextView
-		android:id="@+id/emptyListTextView"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:visibility="gone" />
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        layout="@layout/tabs" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="#44ffffff" />
+
+    <TextView
+        android:id="@+id/emptyListTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textColor="#ffffff"
+        android:visibility="gone" />
+
 </LinearLayout>
